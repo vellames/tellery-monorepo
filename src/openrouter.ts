@@ -30,7 +30,9 @@ async function openRouterFetch<T>(
   options: RequestInit = {}
 ): Promise<T> {
   if (!OPENROUTER_API_KEY) {
-    throw new Error("Missing required environment variable: OPENROUTER_API_KEY");
+    throw new Error(
+      "Missing required environment variable: OPENROUTER_API_KEY"
+    );
   }
 
   const response = await fetch(`${OPENROUTER_BASE_URL}${path}`, {

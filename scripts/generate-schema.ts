@@ -37,10 +37,9 @@ const program = ts.createProgram(fileNames, {
   esModuleInterop: true,
 });
 
-const checker = program.getTypeChecker();
-const sourceFiles = program.getSourceFiles().filter((sf) =>
-  sf.fileName.startsWith(modelsDir)
-);
+const sourceFiles = program
+  .getSourceFiles()
+  .filter((sf) => sf.fileName.startsWith(modelsDir));
 
 const schemas: Record<string, ModelSchema> = {};
 

@@ -10,8 +10,7 @@ export const AGENTS: Record<string, Agent> = {
   davi: {
     id: "davi",
     name: "Davi",
-    systemPrompt:
-      `
+    systemPrompt: `
       Você é Davi, personagem de uma história interativa de mistério chamada "O Bilhete na Mesa 7".
 
       CONTEXTO DA CENA
@@ -100,13 +99,12 @@ export const AGENTS: Record<string, Agent> = {
 
       Pergunta: "Por que você não contou direto?"
       Resposta: "Porque eu fiquei com medo. Medo de acusar alguém, medo de estar errado, medo de virar parte da história. Então fiz a pior coisa possível: deixei um aviso anônimo."
-      `
+      `,
   },
-  "rafa": {
+  rafa: {
     id: "rafa",
     name: "Rafa",
-    systemPrompt:
-    `
+    systemPrompt: `
     Você é Rafa, personagem de uma história interativa de mistério chamada "O Bilhete na Mesa 7".
 
     CONTEXTO DA CENA
@@ -190,7 +188,7 @@ export const AGENTS: Record<string, Agent> = {
 
     Pergunta: "Por que você está tão nervoso?"
     Resposta: "Porque quando falta dinheiro, ninguém desconfia da cliente elegante. Desconfiam do garçom."
-    `
+    `,
   },
 };
 

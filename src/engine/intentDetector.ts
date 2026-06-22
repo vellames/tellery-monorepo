@@ -106,7 +106,7 @@ function normalizeDetectedIntent(
     typeof response.primaryIntentId === "string" &&
     validIntentIds.has(response.primaryIntentId)
       ? response.primaryIntentId
-      : responseIntentIds[0] ?? fallbackIntentId;
+      : (responseIntentIds[0] ?? fallbackIntentId);
 
   const normalizedIntentIds = Array.from(
     new Set([primaryIntentId, ...responseIntentIds])
@@ -116,8 +116,7 @@ function normalizeDetectedIntent(
     primaryIntentId,
     intentIds: normalizedIntentIds,
     confidence: normalizeConfidence(response.confidence),
-    reasoning:
-      typeof response.reasoning === "string" ? response.reasoning : "",
+    reasoning: typeof response.reasoning === "string" ? response.reasoning : "",
     language,
     model,
   };

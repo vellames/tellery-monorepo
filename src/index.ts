@@ -49,7 +49,12 @@ app.get("/models", async (_req, res) => {
 });
 
 app.post("/chat", async (req, res) => {
-  const { message, model = DEFAULT_MODEL, messages, agentId } = req.body as {
+  const {
+    message,
+    model = DEFAULT_MODEL,
+    messages,
+    agentId,
+  } = req.body as {
     message?: string;
     model?: string;
     messages?: ChatMessage[];

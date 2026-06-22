@@ -21,13 +21,13 @@ export const i18n = {
     intentDetectorSystemPrompt:
       "Voce e um classificador de intencoes para uma engine de historias interativas. Classifique a mensagem do usuario usando apenas as intencoes fornecidas.",
     intentDetectorUserPrompt:
-      "Mensagem do usuario: {{message}}\n\nIntencoes possiveis:\n{{intents}}\n\nResponda somente com JSON valido neste formato: {\"primaryIntentId\": string, \"intentIds\": string[], \"confidence\": number, \"reasoning\": string}. Use confidence entre 0 e 1. intentIds deve estar em ordem de relevancia e conter apenas IDs da lista. Se nenhuma intencao encaixar, use off_topic se existir; caso contrario, escolha a mais proxima.",
+      'Mensagem do usuario: {{message}}\n\nIntencoes possiveis:\n{{intents}}\n\nResponda somente com JSON valido neste formato: {"primaryIntentId": string, "intentIds": string[], "confidence": number, "reasoning": string}. Use confidence entre 0 e 1. intentIds deve estar em ordem de relevancia e conter apenas IDs da lista. Se nenhuma intencao encaixar, use off_topic se existir; caso contrario, escolha a mais proxima.',
   },
   en: {
     intentDetectorSystemPrompt:
       "You are an intent classifier for an interactive story engine. Classify the user's message using only the provided intents.",
     intentDetectorUserPrompt:
-      "User message: {{message}}\n\nPossible intents:\n{{intents}}\n\nReply only with valid JSON in this format: {\"primaryIntentId\": string, \"intentIds\": string[], \"confidence\": number, \"reasoning\": string}. Use confidence between 0 and 1. intentIds must be ordered by relevance and contain only IDs from the list. If no intent fits, use off_topic if available; otherwise choose the closest intent.",
+      'User message: {{message}}\n\nPossible intents:\n{{intents}}\n\nReply only with valid JSON in this format: {"primaryIntentId": string, "intentIds": string[], "confidence": number, "reasoning": string}. Use confidence between 0 and 1. intentIds must be ordered by relevance and contain only IDs from the list. If no intent fits, use off_topic if available; otherwise choose the closest intent.',
   },
 } satisfies Record<SupportedLanguage, Record<string, string>>;
 
