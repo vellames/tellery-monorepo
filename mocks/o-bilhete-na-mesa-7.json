@@ -1,0 +1,1138 @@
+{
+  "id": "history_o_bilhete_na_mesa_7",
+  "createdAt": "2026-06-22T00:00:00.000Z",
+  "updatedAt": "2026-06-22T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-bilhete-na-mesa-7",
+  "title": "O Bilhete na Mesa 7",
+  "subtitle": "Um mistério elegante depois do fechamento do Café Aurora",
+  "teaser": "Às 22h17, Elisa encontra um bilhete anônimo sobre a mesa 7: \"Eu sei o que você fez ontem.\" Três pessoas ainda estão no café. Uma delas escreveu. Outra tem algo a esconder.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 10,
+  "status": "draft",
+  "version": 1,
+  "coverImageUrl": null,
+  "thumbnailUrl": null,
+  "opening": {
+    "shortText": "O Café Aurora já fechou, mas ninguém consegue ir embora depois que Elisa encontra um bilhete anônimo na mesa 7.",
+    "fullText": "São 22h17 no Café Aurora. As luzes estão mais baixas, as cadeiras começam a subir sobre as mesas e a chuva fina do início da noite virou apenas brilho no vidro. Elisa, a dona do café, acaba de encontrar um bilhete dobrado na mesa 7. A frase é curta: \"Eu sei o que você fez ontem.\" Clara, Rafa e Davi ainda estão ali. O bilhete parece acusar alguém, mas também pode ter sido escrito para assustar, proteger ou pressionar. Cabe a você conversar, observar os detalhes certos e reconstruir o que aconteceu.",
+    "callToAction": "Investigue a mesa 7, converse com os presentes e descubra quem deixou o bilhete e por quê."
+  },
+  "objective": {
+    "mainQuestion": "Quem deixou o bilhete anônimo na mesa 7, e por quê?",
+    "description": "Descubra a autoria do bilhete, o motivo por trás dele e o segredo ocorrido no dia anterior no caixa do Café Aurora."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_note",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o bilhete, seu texto, sua descoberta ou seu significado.",
+      "examples": ["O que diz o bilhete?", "Quem encontrou isso?", "Por que esse bilhete importa?"],
+      "keywords": ["bilhete", "recado", "anônimo", "frase", "mesa 7"]
+    },
+    {
+      "id": "inspect_note",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente o bilhete em busca de marcas, dobras, cheiro ou tinta.",
+      "examples": ["Quero examinar o bilhete", "Olho o papel com atenção", "Há marcas no bilhete?"],
+      "keywords": ["examinar", "inspecionar", "papel", "dobras", "marcas"]
+    },
+    {
+      "id": "ask_about_ink",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a cor ou tipo de tinta usada no bilhete.",
+      "examples": ["Que cor é a tinta?", "A tinta parece de qual caneta?", "Foi escrito em azul?"],
+      "keywords": ["tinta", "azul", "caneta", "cor"]
+    },
+    {
+      "id": "smell_note",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Cheirar o bilhete ou investigar aromas associados a ele.",
+      "examples": ["Sinto o cheiro do bilhete", "O papel tem algum perfume?", "Cheiro o recado"],
+      "keywords": ["cheiro", "perfume", "aroma", "cítrico"]
+    },
+    {
+      "id": "ask_about_perfume",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre perfumes usados pelos personagens ou cheiro cítrico no café.",
+      "examples": ["Quem usa perfume cítrico?", "Clara está usando esse perfume?", "Esse cheiro combina com alguém?"],
+      "keywords": ["perfume", "cítrico", "fragrância", "Clara"]
+    },
+    {
+      "id": "ask_about_table_7",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a posição, visibilidade ou uso da mesa 7.",
+      "examples": ["Onde fica a mesa 7?", "Dá para ver a rua dali?", "Quem estava perto da mesa 7?"],
+      "keywords": ["mesa 7", "janela", "posição", "vista"]
+    },
+    {
+      "id": "ask_about_yesterday",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre os acontecimentos do dia anterior.",
+      "examples": ["O que aconteceu ontem?", "Quem estava aqui ontem?", "Ontem teve algo estranho?"],
+      "keywords": ["ontem", "dia anterior", "aconteceu", "estranho"]
+    },
+    {
+      "id": "ask_about_elisa_leaving",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Elisa ter saído às pressas depois de uma ligação.",
+      "examples": ["Elisa saiu ontem?", "Que ligação foi aquela?", "Por que você deixou o balcão?"],
+      "keywords": ["Elisa", "ligação", "saiu", "pressas", "fora"]
+    },
+    {
+      "id": "ask_about_cash_register",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o caixa, dinheiro, acesso ou se ele ficou aberto.",
+      "examples": ["O caixa ficou aberto?", "Faltou dinheiro?", "Quem chegou perto do caixa?"],
+      "keywords": ["caixa", "dinheiro", "aberto", "faltou", "registradora"]
+    },
+    {
+      "id": "ask_about_counter",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o balcão, movimentações perto dele ou objetos ali.",
+      "examples": ["Quem passou pelo balcão?", "O que tinha no balcão?", "Clara ficou perto do balcão?"],
+      "keywords": ["balcão", "movimento", "aproximou", "passou"]
+    },
+    {
+      "id": "ask_about_blue_pen",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre caneta azul ou quem costuma escrever com tinta azul.",
+      "examples": ["Quem usa caneta azul?", "Davi tem uma caneta azul?", "A caneta azul é de quem?"],
+      "keywords": ["caneta azul", "azul", "Davi", "tinta"]
+    },
+    {
+      "id": "ask_about_black_pen",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a caneta preta de Rafa.",
+      "examples": ["Essa caneta preta é de quem?", "Rafa escreve com preto?", "A caneta do garçom combina com o bilhete?"],
+      "keywords": ["caneta preta", "preta", "Rafa"]
+    },
+    {
+      "id": "ask_about_umbrella",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o guarda-chuva de Clara ou sua desculpa para voltar ao café.",
+      "examples": ["Clara voltou por causa do guarda-chuva?", "O guarda-chuva está molhado?", "Esse guarda-chuva foi usado hoje?"],
+      "keywords": ["guarda-chuva", "Clara", "seco", "desculpa", "voltou"]
+    },
+    {
+      "id": "ask_about_clara",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Clara, sua presença ou seu comportamento.",
+      "examples": ["O que Clara fazia aqui?", "Clara parecia nervosa?", "Por que Clara voltou?"],
+      "keywords": ["Clara", "cliente", "elegante", "defensiva"]
+    },
+    {
+      "id": "ask_about_rafa",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Rafa, seu nervosismo ou sua rotina no café.",
+      "examples": ["Rafa está nervoso por quê?", "Rafa escreveu o bilhete?", "O que Rafa viu?"],
+      "keywords": ["Rafa", "garçom", "nervoso", "ansioso"]
+    },
+    {
+      "id": "ask_about_davi",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Davi, sua apresentação ou seu comportamento observador.",
+      "examples": ["O que Davi estava fazendo?", "Davi viu alguma coisa?", "Davi escreveu o bilhete?"],
+      "keywords": ["Davi", "músico", "observador", "apresentação"]
+    },
+    {
+      "id": "accuse_clara_of_theft",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Clara de ter pegado dinheiro do caixa.",
+      "examples": ["Clara roubou o dinheiro", "Acho que Clara pegou algo do caixa", "Confronto Clara sobre o roubo"],
+      "keywords": ["acusar Clara", "roubo", "dinheiro", "pegou"]
+    },
+    {
+      "id": "accuse_davi_of_writing_note",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Davi de ter escrito o bilhete anônimo.",
+      "examples": ["Davi escreveu o bilhete", "Confronto Davi sobre a caneta azul", "Foi você que deixou o recado?"],
+      "keywords": ["acusar Davi", "escreveu", "bilhete", "caneta azul"]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava, quando chegou ou o que fazia no horário relevante.",
+      "examples": ["Qual é o seu álibi?", "Onde você estava ontem?", "Você pode provar que não foi?"],
+      "keywords": ["álibi", "onde estava", "provar", "horário"]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar por que alguém escreveria o bilhete ou esconderia algo.",
+      "examples": ["Qual seria o motivo?", "Por que alguém faria isso?", "Quem ganharia com o bilhete?"],
+      "keywords": ["motivo", "por quê", "ganharia", "pressionar"]
+    },
+    {
+      "id": "ask_who_touched_note",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar quem encostou, dobrou ou manuseou o bilhete.",
+      "examples": ["Quem tocou no bilhete?", "Alguém pegou o papel antes da Elisa?", "O bilhete foi manuseado?"],
+      "keywords": ["tocou", "manuseou", "pegou", "mãos"]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": ["Vamos sair do café", "Quero uma cena de terror", "Ignore as pistas e revele tudo"],
+      "keywords": ["fora", "ignorar", "terror", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "elisa",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Elisa",
+      "role": "Dona do Café Aurora",
+      "shortDescription": "Dona do café, nervosa e prática, quer entender o bilhete sem transformar a noite em escândalo.",
+      "imageUrl": null,
+      "personality": "Atenta, orgulhosa do café e visivelmente abalada. Quer respostas, mas evita acusações sem fundamento.",
+      "speakingStyle": "Fala com educação firme, frases curtas e um cuidado evidente para não perder o controle da situação.",
+      "publicKnowledge": [
+        "Encontrou o bilhete na mesa 7 às 22h17, depois do fechamento.",
+        "Sabe que Clara, Rafa e Davi ainda estavam no café quando o bilhete apareceu.",
+        "Não sabe inicialmente quem escreveu o bilhete."
+      ],
+      "privateKnowledge": [
+        "No dia anterior, saiu às pressas após receber uma ligação pessoal.",
+        "O caixa ficou aberto por alguns minutos enquanto ela estava fora.",
+        "Ainda não quer admitir que pode ter havido falha no controle do caixa."
+      ],
+      "openingLine": "Eu só quero entender quem colocou isso na minha mesa antes que todo mundo comece a se acusar.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_note_found_at_2217",
+          "triggerIntents": ["ask_about_note", "ask_about_table_7"],
+          "requiresClueIds": [],
+          "revealText": "Elisa confirma que encontrou o bilhete às 22h17, depois do fechamento, já com o salão quase vazio.",
+          "responseGuidance": "Mantenha Elisa nervosa, mas objetiva. Ela deve repetir o texto do bilhete se perguntarem."
+        },
+        {
+          "clueId": "clue_elisa_left_after_call",
+          "triggerIntents": ["ask_about_elisa_leaving", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Elisa admite que, no dia anterior, recebeu uma ligação e saiu do balcão às pressas por alguns minutos.",
+          "responseGuidance": "Ela deve parecer constrangida, não culpada. Não deve acusar ninguém."
+        },
+        {
+          "clueId": "clue_cash_register_left_open",
+          "triggerIntents": ["ask_about_cash_register", "ask_about_counter"],
+          "requiresClueIds": ["clue_elisa_left_after_call"],
+          "revealText": "Elisa reconhece que o caixa pode ter ficado aberto enquanto ela saiu para atender a ligação.",
+          "responseGuidance": "Ela deve enfatizar que foi por pouco tempo e que se arrepende da distração."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Não acusar Clara diretamente sem pistas sobre caixa, balcão ou testemunhas.",
+        "Não revelar a autoria do bilhete, pois Elisa não sabe.",
+        "Manter o tom de mistério leve, sem pânico ou ameaça."
+      ]
+    },
+    {
+      "id": "clara",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Clara",
+      "role": "Última cliente do café",
+      "shortDescription": "Cliente elegante, impaciente e defensiva, com perfume cítrico discreto e uma desculpa frágil para ter voltado.",
+      "imageUrl": null,
+      "personality": "Controlada, vaidosa, reativa a perguntas diretas. Tenta parecer ofendida quando se sente encurralada.",
+      "speakingStyle": "Fala com precisão e ironia suave, cortando perguntas quando considera que passaram do limite.",
+      "publicKnowledge": [
+        "Diz que voltou ao café por causa de um guarda-chuva esquecido.",
+        "Usa um perfume cítrico reconhecível.",
+        "Foi uma das últimas pessoas a circular perto da mesa 7."
+      ],
+      "privateKnowledge": [
+        "Tocou no bilhete antes de Elisa encontrá-lo.",
+        "No dia anterior, viu o caixa aberto, passou pelo balcão e pegou dinheiro.",
+        "Voltou ao café para medir se alguém suspeitava dela."
+      ],
+      "openingLine": "Se isso é algum tipo de interrogatório, prefiro que seja breve. Eu só voltei por causa do meu guarda-chuva.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_clara_citrus_perfume",
+          "triggerIntents": ["ask_about_perfume", "smell_note", "ask_about_clara"],
+          "requiresClueIds": ["clue_note_citrus_perfume"],
+          "revealText": "Clara admite que usa um perfume cítrico, mas insiste que isso não prova nada.",
+          "responseGuidance": "Ela deve tratar a pista como coincidência elegante, não como confissão."
+        },
+        {
+          "clueId": "clue_clara_touched_note",
+          "triggerIntents": ["ask_who_touched_note", "ask_about_note"],
+          "requiresClueIds": ["clue_note_was_handled", "clue_note_citrus_perfume"],
+          "revealText": "Clara admite que pode ter tocado no bilhete ao vê-lo sobre a mesa, antes de chamar Elisa.",
+          "responseGuidance": "Ela deve minimizar o gesto e negar autoria do texto."
+        },
+        {
+          "clueId": "clue_umbrella_too_dry",
+          "triggerIntents": ["ask_about_umbrella", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "A justificativa de Clara fica instável: o guarda-chuva está seco demais para alguém que teria voltado por causa da chuva recente.",
+          "responseGuidance": "Ela deve ficar irritada e dizer que talvez nem tenha chovido no trecho em que caminhou."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_clara_cash_theft",
+          "createdAt": "2026-06-22T00:00:00.000Z",
+          "updatedAt": "2026-06-22T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Clara pegou dinheiro do caixa no dia anterior.",
+          "truth": "Clara aproveitou alguns minutos em que Elisa saiu às pressas e o caixa ficou aberto. Ela se aproximou do balcão e pegou dinheiro. Voltou no dia seguinte para saber se alguém suspeitava dela.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_clara_stage_0_deny_register",
+              "createdAt": "2026-06-22T00:00:00.000Z",
+              "updatedAt": "2026-06-22T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["ask_about_cash_register", "accuse_clara_of_theft", "ask_about_counter"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer relação com o caixa e reagir com indignação controlada.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu não tenho nada a ver com o caixa. Sou cliente, não funcionária.",
+                "Essa acusação é bastante conveniente, mas não tem fundamento."
+              ]
+            },
+            {
+              "id": "secret_clara_stage_1_saw_open_register",
+              "createdAt": "2026-06-22T00:00:00.000Z",
+              "updatedAt": "2026-06-22T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_cash_register", "ask_about_yesterday"],
+              "requiresClueIds": ["clue_cash_register_left_open"],
+              "revealsClueIds": ["clue_clara_saw_open_register"],
+              "behavior": "Admitir que viu o caixa aberto, mas apresentar isso como observação casual.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Talvez eu tenha visto o caixa aberto. Isso não significa que eu tenha feito alguma coisa.",
+                "Havia movimento no balcão. Eu reparei, só isso."
+              ]
+            },
+            {
+              "id": "secret_clara_stage_2_near_counter",
+              "createdAt": "2026-06-22T00:00:00.000Z",
+              "updatedAt": "2026-06-22T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_counter", "ask_about_alibi"],
+              "requiresClueIds": ["clue_rafa_saw_clara_near_counter"],
+              "revealsClueIds": ["clue_clara_near_counter"],
+              "behavior": "Admitir que passou perto do balcão, alegando procurar espaço para deixar a xícara ou pegar suas coisas.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu passei perto do balcão, sim. O café é pequeno, isso não é exatamente uma revelação.",
+                "Fui só deixar uma xícara mais perto do balcão. Nada dramático."
+              ]
+            },
+            {
+              "id": "secret_clara_stage_3_took_something",
+              "createdAt": "2026-06-22T00:00:00.000Z",
+              "updatedAt": "2026-06-22T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["accuse_clara_of_theft", "ask_about_cash_register"],
+              "requiresClueIds": ["clue_davi_saw_clara_cash_register", "clue_clara_near_counter"],
+              "revealsClueIds": ["clue_clara_took_something_from_register"],
+              "behavior": "Admitir parcialmente que pegou algo, tentando justificar como engano, impulso ou dinheiro que pretendia devolver.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu peguei algo, sim, mas não foi como vocês estão imaginando.",
+                "Foi um erro pequeno, impulsivo. Eu ia resolver antes que virasse essa encenação toda."
+              ]
+            },
+            {
+              "id": "secret_clara_stage_4_confess_theft",
+              "createdAt": "2026-06-22T00:00:00.000Z",
+              "updatedAt": "2026-06-22T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": ["accuse_clara_of_theft"],
+              "requiresClueIds": ["clue_clara_took_something_from_register", "clue_davi_wrote_note", "clue_umbrella_too_dry"],
+              "revealsClueIds": ["clue_clara_stole_money"],
+              "behavior": "Confessar que pegou dinheiro do caixa, ainda tentando preservar dignidade e propor reparação.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu peguei o dinheiro. Não tenho uma explicação bonita para isso. Só uma péssima decisão.",
+                "Foi dinheiro do caixa. Eu voltei porque queria saber se alguém tinha percebido."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar o roubo antes do estágio 4.",
+        "Negar autoria do bilhete em todos os estágios, pois Clara não o escreveu.",
+        "Evitar melodrama pesado; a culpa deve ser adulta, contida e socialmente desconfortável."
+      ]
+    },
+    {
+      "id": "rafa",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Rafa",
+      "role": "Garçom",
+      "shortDescription": "Garçom jovem e ansioso, nervoso por medo de ser acusado injustamente.",
+      "imageUrl": null,
+      "personality": "Prestativo, inseguro sob pressão e rápido demais para se defender.",
+      "speakingStyle": "Fala em frases atropeladas, com explicações demais e pedidos indiretos para que acreditem nele.",
+      "publicKnowledge": [
+        "Trabalhava no fechamento do café.",
+        "Usa uma caneta preta para comandas e anotações.",
+        "Estava nervoso quando o bilhete apareceu."
+      ],
+      "privateKnowledge": [
+        "Viu Clara perto do balcão no dia anterior.",
+        "Viu Davi usando uma caneta azul para anotar músicas.",
+        "Não escreveu o bilhete e não pegou dinheiro."
+      ],
+      "openingLine": "Eu sei que pareço nervoso, mas parecer nervoso não é a mesma coisa que ser culpado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_rafa_black_pen",
+          "triggerIntents": ["ask_about_black_pen", "ask_about_rafa", "ask_about_ink"],
+          "requiresClueIds": [],
+          "revealText": "Rafa mostra que sua caneta habitual é preta, a mesma que usa nas comandas do café.",
+          "responseGuidance": "Ele deve se defender rápido demais, deixando claro que a cor não bate com o bilhete."
+        },
+        {
+          "clueId": "clue_rafa_saw_clara_near_counter",
+          "triggerIntents": ["ask_about_counter", "ask_about_clara", "ask_about_cash_register"],
+          "requiresClueIds": ["clue_cash_register_left_open"],
+          "revealText": "Rafa diz que viu Clara perto do balcão no dia anterior, mas não viu dinheiro sendo pego.",
+          "responseGuidance": "Ele deve tomar cuidado para não parecer acusador, pois teme que isso volte contra ele."
+        },
+        {
+          "clueId": "clue_davi_blue_pen",
+          "triggerIntents": ["ask_about_blue_pen", "ask_about_davi", "ask_about_ink"],
+          "requiresClueIds": ["clue_note_blue_ink"],
+          "revealText": "Rafa lembra que Davi escrevia anotações musicais com uma caneta azul durante a noite.",
+          "responseGuidance": "Ele deve apresentar isso como lembrança, não como acusação direta."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_rafa_false_suspect",
+          "createdAt": "2026-06-22T00:00:00.000Z",
+          "updatedAt": "2026-06-22T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Rafa está nervoso porque teme ser acusado, mas é inocente.",
+          "truth": "Rafa não escreveu o bilhete e não roubou dinheiro. Seu nervosismo vem do medo de ser responsabilizado por trabalhar perto do caixa.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_rafa_stage_1_explain_nerves",
+              "createdAt": "2026-06-22T00:00:00.000Z",
+              "updatedAt": "2026-06-22T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_rafa", "ask_about_alibi"],
+              "requiresClueIds": ["clue_rafa_black_pen"],
+              "revealsClueIds": ["clue_rafa_false_suspect"],
+              "behavior": "Explicar que ficou nervoso por medo de parecer culpado, já que trabalha perto do caixa.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu fiquei nervoso porque sempre sobra para quem trabalha perto do caixa.",
+                "Minha caneta é preta. Eu não escrevi aquilo. Só não queria virar o suspeito mais fácil."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não afirmar que viu Clara roubar diretamente.",
+        "Não confessar autoria do bilhete, pois ele é inocente.",
+        "Permitir que pareça suspeito, mas sempre com explicações plausíveis."
+      ]
+    },
+    {
+      "id": "davi",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Davi",
+      "role": "Músico do Café Aurora",
+      "shortDescription": "Músico calmo e observador, fala pouco e escolhe bem o que revela.",
+      "imageUrl": null,
+      "personality": "Sereno, perspicaz e evasivo quando pressionado. Tem senso moral, mas evita confronto direto.",
+      "speakingStyle": "Fala em imagens discretas e observações laterais, como quem prefere sugerir a declarar.",
+      "publicKnowledge": [
+        "Tocou no café naquela noite.",
+        "Costuma anotar ideias musicais em guardanapos ou papéis soltos.",
+        "Carrega uma caneta azul."
+      ],
+      "privateKnowledge": [
+        "Escreveu o bilhete com sua caneta azul.",
+        "Viu Clara perto do caixa enquanto Elisa estava fora no dia anterior.",
+        "Queria pressionar Clara a admitir o que fez sem acusá-la publicamente."
+      ],
+      "openingLine": "Às vezes uma frase curta faz mais barulho que uma música inteira.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_davi_saw_clara_cash_register",
+          "triggerIntents": ["ask_about_clara", "ask_about_cash_register", "ask_about_yesterday"],
+          "requiresClueIds": ["clue_cash_register_left_open", "clue_rafa_saw_clara_near_counter"],
+          "revealText": "Davi admite que viu Clara perto do caixa no intervalo em que Elisa tinha saído, mas diz que não queria causar uma cena.",
+          "responseGuidance": "Ele deve conduzir a atenção para Clara sem soar vingativo."
+        },
+        {
+          "clueId": "clue_davi_blue_pen",
+          "triggerIntents": ["ask_about_blue_pen", "ask_about_davi"],
+          "requiresClueIds": [],
+          "revealText": "Davi reconhece que usa uma caneta azul para anotar letras e cifras durante as apresentações.",
+          "responseGuidance": "Ele deve tratar a caneta como algo banal, sem confessar o bilhete ainda."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_davi_wrote_note",
+          "createdAt": "2026-06-22T00:00:00.000Z",
+          "updatedAt": "2026-06-22T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Davi escreveu o bilhete para pressionar Clara.",
+          "truth": "Davi escreveu \"Eu sei o que você fez ontem\" com sua caneta azul e deixou o bilhete na mesa 7 para pressionar Clara, pois tinha visto Clara perto do caixa aberto no dia anterior.",
+          "defaultStrategy": "avoid",
+          "revealStages": [
+            {
+              "id": "secret_davi_stage_1_deflect_note",
+              "createdAt": "2026-06-22T00:00:00.000Z",
+              "updatedAt": "2026-06-22T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_note", "ask_about_motive", "ask_about_davi"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Evitar responder diretamente e sugerir que o bilhete parece uma tentativa de fazer alguém falar.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Talvez o bilhete não queira acusar Elisa. Talvez queira acordar a consciência de outra pessoa.",
+                "Quem escreveu sabia o suficiente para ser breve. Isso já diz alguma coisa."
+              ]
+            },
+            {
+              "id": "secret_davi_stage_2_admit_pressure",
+              "createdAt": "2026-06-22T00:00:00.000Z",
+              "updatedAt": "2026-06-22T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["accuse_davi_of_writing_note", "ask_about_blue_pen"],
+              "requiresClueIds": ["clue_note_blue_ink", "clue_davi_blue_pen"],
+              "revealsClueIds": [],
+              "behavior": "Reconhecer que a coincidência da caneta pesa, mas ainda evitar confessar.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Sim, eu uso tinta azul. Metade dos músicos também usa alguma caneta perdida no bolso.",
+                "Uma caneta azul me aproxima do papel. Não necessariamente da intenção."
+              ]
+            },
+            {
+              "id": "secret_davi_stage_3_confess_note",
+              "createdAt": "2026-06-22T00:00:00.000Z",
+              "updatedAt": "2026-06-22T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["accuse_davi_of_writing_note"],
+              "requiresClueIds": ["clue_note_blue_ink", "clue_davi_blue_pen", "clue_davi_saw_clara_cash_register"],
+              "revealsClueIds": ["clue_davi_wrote_note", "clue_davi_note_motive"],
+              "behavior": "Confessar que escreveu o bilhete e explicar que queria pressionar Clara sem expô-la diretamente.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Fui eu. Escrevi porque vi Clara perto do caixa e achei que ela entenderia o recado antes que tudo piorasse.",
+                "Não queria transformar Elisa em juíza nem Clara em espetáculo. Queria que ela devolvesse o que pegou."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar autoria antes de haver tinta azul, caneta azul e testemunho sobre Clara no caixa.",
+        "Não alegar que viu Clara pegar dinheiro diretamente; ele viu Clara perto do caixa.",
+        "Conduzir o usuário para Clara com sutileza, sem entregar a solução inteira."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "mesa_7",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Mesa 7",
+      "shortDescription": "Mesa junto à janela onde o bilhete foi encontrado.",
+      "imageUrl": null,
+      "initialDescription": "A mesa 7 fica perto da janela, com uma xícara fria, um guardanapo dobrado e o bilhete que interrompeu o fechamento do café. Dali, a área externa é parcialmente visível pelo vidro.",
+      "ambientClueIds": ["clue_table_7_near_window"],
+      "objectIds": ["bilhete", "xicara", "guardanapo", "caneta_azul_davi"]
+    },
+    {
+      "id": "balcao",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Balcão",
+      "shortDescription": "Área do caixa, das comandas e da rotina de fechamento.",
+      "imageUrl": null,
+      "initialDescription": "O balcão está limpo demais para parecer casual. O caixa fica encaixado ao lado da máquina de espresso, e uma caneta preta repousa próxima às comandas de Rafa.",
+      "ambientClueIds": [],
+      "objectIds": ["caixa", "caneta_preta_rafa"]
+    },
+    {
+      "id": "area_externa",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Área externa",
+      "shortDescription": "Pequena entrada do café, vista parcialmente da mesa 7.",
+      "imageUrl": null,
+      "initialDescription": "Do lado de fora, a calçada reflete a luz âmbar do letreiro. Perto da porta há um suporte de guarda-chuvas e a janela que dá vista parcial para a mesa 7.",
+      "ambientClueIds": [],
+      "objectIds": ["suporte_guarda_chuvas", "janela", "guarda_chuva_clara"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "bilhete",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bilhete",
+      "shortDescription": "Papel dobrado com a frase: \"Eu sei o que você fez ontem.\"",
+      "imageUrl": null,
+      "locationId": "mesa_7",
+      "initialDescription": "O papel é simples, arrancado de um bloco pequeno. A frase foi escrita com letra firme e pouca pressa.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_note_text",
+          "triggerIntents": ["ask_about_note", "inspect_note"],
+          "requiresClueIds": [],
+          "revealText": "O bilhete diz exatamente: \"Eu sei o que você fez ontem.\""
+        },
+        {
+          "clueId": "clue_note_blue_ink",
+          "triggerIntents": ["inspect_note", "ask_about_ink"],
+          "requiresClueIds": [],
+          "revealText": "A tinta do bilhete é azul, com traço consistente de caneta comum, não de marcador ou lápis."
+        },
+        {
+          "clueId": "clue_note_citrus_perfume",
+          "triggerIntents": ["smell_note", "inspect_note"],
+          "requiresClueIds": [],
+          "revealText": "O papel tem um cheiro cítrico sutil, como perfume transferido pelo toque de alguém."
+        },
+        {
+          "clueId": "clue_note_was_handled",
+          "triggerIntents": ["inspect_note", "ask_who_touched_note"],
+          "requiresClueIds": [],
+          "revealText": "Há marcas leves de manuseio nas bordas do bilhete, sugerindo que ele foi tocado depois de escrito."
+        }
+      ]
+    },
+    {
+      "id": "xicara",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Xícara",
+      "shortDescription": "Xícara fria deixada na mesa 7.",
+      "imageUrl": null,
+      "locationId": "mesa_7",
+      "initialDescription": "Uma xícara com resto de café frio repousa perto do lugar onde o bilhete foi encontrado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_cup_recent_presence",
+          "triggerIntents": ["inspect_note", "ask_about_table_7"],
+          "requiresClueIds": [],
+          "revealText": "A xícara indica presença recente na mesa 7, mas não liga ninguém diretamente à autoria do bilhete."
+        }
+      ]
+    },
+    {
+      "id": "guardanapo",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Guardanapo",
+      "shortDescription": "Guardanapo dobrado ao lado da xícara.",
+      "imageUrl": null,
+      "locationId": "mesa_7",
+      "initialDescription": "O guardanapo está dobrado com cuidado, sem mensagem escrita. Parece mais parte da arrumação do que uma pista central.",
+      "clueRevealRules": []
+    },
+    {
+      "id": "caixa",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caixa",
+      "shortDescription": "Registradora do Café Aurora no balcão.",
+      "imageUrl": null,
+      "locationId": "balcao",
+      "initialDescription": "O caixa está fechado agora, mas a gaveta tem marcas de uso constante e fica ao alcance de quem se aproxima do balcão.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_cash_register_left_open",
+          "triggerIntents": ["ask_about_cash_register", "ask_about_counter"],
+          "requiresClueIds": ["clue_elisa_left_after_call"],
+          "revealText": "Reconstituindo a rotina, fica claro que o caixa ficou aberto por alguns minutos quando Elisa saiu ontem."
+        }
+      ]
+    },
+    {
+      "id": "caneta_preta_rafa",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caneta preta de Rafa",
+      "shortDescription": "Caneta preta usada por Rafa nas comandas.",
+      "imageUrl": null,
+      "locationId": "balcao",
+      "initialDescription": "Uma caneta preta barata está ao lado das comandas, com a tampa mordida e o corpo gasto.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_rafa_black_pen",
+          "triggerIntents": ["ask_about_black_pen", "ask_about_ink"],
+          "requiresClueIds": [],
+          "revealText": "A caneta de Rafa escreve em preto, o que não combina com a tinta azul do bilhete."
+        }
+      ]
+    },
+    {
+      "id": "caneta_azul_davi",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caneta azul de Davi",
+      "shortDescription": "Caneta azul usada por Davi para anotar músicas.",
+      "imageUrl": null,
+      "locationId": "mesa_7",
+      "initialDescription": "Uma caneta azul aparece entre papéis de música de Davi, discreta o bastante para passar despercebida.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_davi_blue_pen",
+          "triggerIntents": ["ask_about_blue_pen", "ask_about_davi", "ask_about_ink"],
+          "requiresClueIds": ["clue_note_blue_ink"],
+          "revealText": "A caneta azul de Davi combina com a cor de tinta usada no bilhete."
+        }
+      ]
+    },
+    {
+      "id": "suporte_guarda_chuvas",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Suporte de guarda-chuvas",
+      "shortDescription": "Suporte próximo à entrada do café.",
+      "imageUrl": null,
+      "locationId": "area_externa",
+      "initialDescription": "O suporte de metal tem alguns respingos antigos no fundo, mas nada que sugira uso intenso na última hora.",
+      "clueRevealRules": []
+    },
+    {
+      "id": "janela",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Janela",
+      "shortDescription": "Janela ao lado da mesa 7, com vista parcial da entrada.",
+      "imageUrl": null,
+      "locationId": "area_externa",
+      "initialDescription": "A janela reflete parte do salão e mostra a entrada do café em ângulo. A mesa 7 fica próxima o bastante para ser vista por quem presta atenção.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_table_7_near_window",
+          "triggerIntents": ["ask_about_table_7", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "A mesa 7 fica perto da janela, com visibilidade parcial da área externa e da entrada."
+        }
+      ]
+    },
+    {
+      "id": "guarda_chuva_clara",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Guarda-chuva de Clara",
+      "shortDescription": "Guarda-chuva que Clara diz ter voltado para buscar.",
+      "imageUrl": null,
+      "locationId": "area_externa",
+      "initialDescription": "O guarda-chuva é elegante e compacto. Clara afirma que voltou ao café apenas para buscá-lo.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_umbrella_too_dry",
+          "triggerIntents": ["ask_about_umbrella", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "O guarda-chuva de Clara está seco demais para sustentar bem a história de que ela voltou por causa da chuva recente."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_note_found_at_2217",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bilhete encontrado às 22h17",
+      "description": "Elisa encontrou o bilhete na mesa 7 depois do fechamento, às 22h17.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_note_text",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Texto do bilhete",
+      "description": "O bilhete diz: \"Eu sei o que você fez ontem.\"",
+      "importance": "required"
+    },
+    {
+      "id": "clue_note_blue_ink",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tinta azul",
+      "description": "O bilhete foi escrito com tinta azul.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_note_citrus_perfume",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Perfume cítrico no papel",
+      "description": "O bilhete tem cheiro cítrico, sugerindo contato com alguém que usa esse perfume.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_note_was_handled",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bilhete manuseado",
+      "description": "O bilhete foi tocado depois de escrito, explicando por que pode carregar pistas de alguém que não é o autor.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_clara_citrus_perfume",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Perfume de Clara",
+      "description": "Clara usa um perfume cítrico compatível com o cheiro no bilhete.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_clara_touched_note",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Clara tocou no bilhete",
+      "description": "Clara tocou no bilhete antes de Elisa encontrá-lo, mas isso não significa que o escreveu.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_table_7_near_window",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Mesa 7 perto da janela",
+      "description": "A mesa 7 fica perto da janela e tem visibilidade parcial da entrada e da área externa.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_elisa_left_after_call",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Elisa saiu após ligação",
+      "description": "No dia anterior, Elisa saiu às pressas depois de receber uma ligação.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_cash_register_left_open",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Caixa ficou aberto",
+      "description": "O caixa ficou aberto por alguns minutos enquanto Elisa estava fora.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_rafa_black_pen",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Caneta preta de Rafa",
+      "description": "Rafa usa uma caneta preta, incompatível com a tinta azul do bilhete.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_rafa_saw_clara_near_counter",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Rafa viu Clara perto do balcão",
+      "description": "Rafa viu Clara perto do balcão no dia anterior, mas não viu o roubo diretamente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_rafa_false_suspect",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Rafa é suspeito falso",
+      "description": "Rafa está nervoso por medo de ser acusado, mas não escreveu o bilhete nem roubou dinheiro.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_davi_blue_pen",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Caneta azul de Davi",
+      "description": "Davi usa uma caneta azul para anotar músicas.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_davi_saw_clara_cash_register",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Davi viu Clara perto do caixa",
+      "description": "Davi viu Clara perto do caixa aberto enquanto Elisa estava fora.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_davi_wrote_note",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Davi escreveu o bilhete",
+      "description": "Davi escreveu o bilhete com sua caneta azul.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_davi_note_motive",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Motivo de Davi",
+      "description": "Davi escreveu o bilhete para pressionar Clara a admitir o que fez, sem acusá-la diretamente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_clara_saw_open_register",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Clara viu o caixa aberto",
+      "description": "Clara admite que viu o caixa aberto no dia anterior.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_clara_near_counter",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Clara passou perto do balcão",
+      "description": "Clara admite que passou perto do balcão, depois de ser associada ao local por testemunho.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_clara_took_something_from_register",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Clara pegou algo do caixa",
+      "description": "Clara admite parcialmente que pegou algo do caixa, tentando justificar o gesto.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_clara_stole_money",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Clara roubou dinheiro",
+      "description": "Clara pegou dinheiro do caixa no dia anterior enquanto Elisa estava fora.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_umbrella_too_dry",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Guarda-chuva seco demais",
+      "description": "O guarda-chuva de Clara está seco demais para sustentar sua desculpa de ter voltado apenas por causa dele.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_cup_recent_presence",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Xícara recente",
+      "description": "A xícara indica presença recente na mesa 7, mas não resolve autoria ou motivo.",
+      "importance": "red_herring"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_bilhete_na_mesa_7",
+    "createdAt": "2026-06-22T00:00:00.000Z",
+    "updatedAt": "2026-06-22T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_wrote_note",
+        "createdAt": "2026-06-22T00:00:00.000Z",
+        "updatedAt": "2026-06-22T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem escreveu o bilhete?",
+        "type": "character",
+        "options": [
+          { "id": "elisa", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Elisa" },
+          { "id": "clara", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Clara" },
+          { "id": "rafa", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Rafa" },
+          { "id": "davi", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Davi" }
+        ]
+      },
+      {
+        "id": "why_note_was_written",
+        "createdAt": "2026-06-22T00:00:00.000Z",
+        "updatedAt": "2026-06-22T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Por que o bilhete foi escrito?",
+        "type": "choice",
+        "options": [
+          { "id": "pressure_clara", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Para pressionar Clara a admitir o que fez" },
+          { "id": "threaten_elisa", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Para ameaçar Elisa" },
+          { "id": "frame_rafa", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Para incriminar Rafa" },
+          { "id": "hide_romantic_secret", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Para esconder um segredo pessoal sem relação com o caixa" }
+        ]
+      },
+      {
+        "id": "who_took_money",
+        "createdAt": "2026-06-22T00:00:00.000Z",
+        "updatedAt": "2026-06-22T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem pegou dinheiro do caixa?",
+        "type": "character",
+        "options": [
+          { "id": "elisa", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Elisa" },
+          { "id": "clara", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Clara" },
+          { "id": "rafa", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Rafa" },
+          { "id": "davi", "createdAt": "2026-06-22T00:00:00.000Z", "updatedAt": "2026-06-22T00:00:00.000Z", "deletedAt": null, "label": "Davi" }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A frase certa para a pessoa certa",
+      "type": "full_truth",
+      "condition": {
+        "conclusionMatches": {
+          "who_wrote_note": "davi",
+          "why_note_was_written": "pressure_clara",
+          "who_took_money": "clara"
+        },
+        "requiresClueIds": ["clue_davi_wrote_note", "clue_davi_note_motive", "clue_clara_stole_money"]
+      },
+      "summary": "Você reconstruiu a verdade completa: Davi escreveu o bilhete com sua caneta azul para pressionar Clara, que havia pegado dinheiro do caixa enquanto Elisa estava fora.",
+      "epilogue": "O silêncio no Café Aurora muda de peso. Clara deixa de sustentar a postura impecável e promete devolver o dinheiro. Davi admite que escolheu mal o método, mas não o motivo. Elisa guarda o bilhete na gaveta, não como ameaça, mas como lembrete de que até um café elegante depende da confiança de quem fica depois do fechamento."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Uma verdade pela metade",
+      "type": "partial_truth",
+      "condition": {
+        "conclusionMatches": {
+          "who_wrote_note": "davi"
+        },
+        "requiresClueIds": ["clue_note_blue_ink", "clue_davi_blue_pen"]
+      },
+      "summary": "Você identificou Davi como autor provável do bilhete, mas não fechou completamente o motivo ou a responsabilidade de Clara pelo dinheiro do caixa.",
+      "epilogue": "Davi não consegue negar por muito tempo a coincidência da tinta azul. Ainda assim, sem todas as peças, Clara permanece atrás de uma versão educada demais para ser confortável. Elisa aceita que há mais naquela noite do que o bilhete, mas a verdade completa fica pairando no aroma de café frio."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O suspeito mais fácil",
+      "type": "wrong_accusation",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade fixa do caso. Rafa ou Elisa podem parecer suspeitos, mas nenhum deles escreveu o bilhete ou pegou dinheiro do caixa.",
+      "epilogue": "A noite termina com mais desconforto do que resposta. Rafa fica magoado por ter sido tratado como culpado, Elisa continua inquieta e Clara sai protegida por uma desculpa frágil. Sobre a mesa 7, o bilhete ainda parece saber mais do que todos admitiram."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 5,
+    "suggestConclusionAfterClues": 9,
+    "maxRecommendedInteractions": 16
+  }
+}
