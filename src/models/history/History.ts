@@ -5,7 +5,7 @@ import type { EndingDefinition } from "./Ending";
 import type { HistoryRules } from "./HistoryRules";
 import type { IntentDefinition } from "./Intent";
 import type { LocationDefinition } from "./Location";
-import { BaseModel, createBaseModel } from "./BaseModel";
+import { BaseModel, createBaseModel } from "../BaseModel";
 import type { ObjectDefinition } from "./Object";
 
 export interface History extends BaseModel {

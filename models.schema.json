@@ -626,5 +626,328 @@
       }
     ],
     "extends": []
+  },
+  "CharacterSessionState": {
+    "name": "CharacterSessionState",
+    "fields": [
+      {
+        "name": "characterId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "conversationSummary",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "lastInteractionIds",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "revealedClueIds",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "secretStates",
+        "type": "CharacterSecretSessionState[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "CharacterSecretSessionState": {
+    "name": "CharacterSecretSessionState",
+    "fields": [
+      {
+        "name": "secretId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "currentStageLevel",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "revealedStageIds",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "revealedClueIds",
+        "type": "string[]",
+        "optional": false
+      }
+    ],
+    "extends": []
+  },
+  "LocationSessionState": {
+    "name": "LocationSessionState",
+    "fields": [
+      {
+        "name": "locationId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "visited",
+        "type": "boolean",
+        "optional": false
+      },
+      {
+        "name": "visitedAt",
+        "type": "Date",
+        "optional": true
+      },
+      {
+        "name": "revealedAmbientClueIds",
+        "type": "string[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "ObjectSessionState": {
+    "name": "ObjectSessionState",
+    "fields": [
+      {
+        "name": "objectId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "inspected",
+        "type": "boolean",
+        "optional": false
+      },
+      {
+        "name": "inspectedAt",
+        "type": "Date",
+        "optional": true
+      },
+      {
+        "name": "revealedClueIds",
+        "type": "string[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "HistorySession": {
+    "name": "HistorySession",
+    "fields": [
+      {
+        "name": "userId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "historyId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "historyVersion",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "status",
+        "type": "\"active\" | \"completed\" | \"abandoned\"",
+        "optional": false
+      },
+      {
+        "name": "startedAt",
+        "type": "Date",
+        "optional": false
+      },
+      {
+        "name": "completedAt",
+        "type": "Date",
+        "optional": true
+      },
+      {
+        "name": "progress",
+        "type": "HistorySessionProgress",
+        "optional": false
+      },
+      {
+        "name": "characterStates",
+        "type": "CharacterSessionState[]",
+        "optional": false
+      },
+      {
+        "name": "locationStates",
+        "type": "LocationSessionState[]",
+        "optional": false
+      },
+      {
+        "name": "objectStates",
+        "type": "ObjectSessionState[]",
+        "optional": false
+      },
+      {
+        "name": "conclusion",
+        "type": "UserConclusion",
+        "optional": true
+      },
+      {
+        "name": "ending",
+        "type": "SessionEnding",
+        "optional": true
+      },
+      {
+        "name": "usage",
+        "type": "SessionUsage",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "HistorySessionProgress": {
+    "name": "HistorySessionProgress",
+    "fields": [
+      {
+        "name": "discoveredClueIds",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "visitedLocationIds",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "inspectedObjectIds",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "talkedToCharacterIds",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "currentTarget",
+        "type": "SessionTarget",
+        "optional": true
+      },
+      {
+        "name": "interactionCount",
+        "type": "number",
+        "optional": false
+      }
+    ],
+    "extends": []
+  },
+  "SessionTarget": {
+    "name": "SessionTarget",
+    "fields": [
+      {
+        "name": "type",
+        "type": "\"character\" | \"location\" | \"object\"",
+        "optional": false
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "extends": []
+  },
+  "UserConclusion": {
+    "name": "UserConclusion",
+    "fields": [
+      {
+        "name": "submittedAt",
+        "type": "Date",
+        "optional": false
+      },
+      {
+        "name": "answers",
+        "type": "Record<string, string>",
+        "optional": false
+      }
+    ],
+    "extends": []
+  },
+  "SessionEnding": {
+    "name": "SessionEnding",
+    "fields": [
+      {
+        "name": "endingId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "type",
+        "type": "\"full_truth\" | \"partial_truth\" | \"wrong_accusation\"",
+        "optional": false
+      },
+      {
+        "name": "score",
+        "type": "SessionScore",
+        "optional": true
+      }
+    ],
+    "extends": []
+  },
+  "SessionScore": {
+    "name": "SessionScore",
+    "fields": [
+      {
+        "name": "discoveredClues",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "totalClues",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "requiredCluesDiscovered",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "totalRequiredClues",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "correctAnswers",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "totalAnswers",
+        "type": "number",
+        "optional": false
+      }
+    ],
+    "extends": []
+  },
+  "SessionUsage": {
+    "name": "SessionUsage",
+    "fields": [],
+    "extends": []
   }
 }

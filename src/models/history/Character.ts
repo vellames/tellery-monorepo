@@ -1,4 +1,4 @@
-import { BaseModel } from "./BaseModel";
+import { BaseModel } from "../BaseModel";
 
 export interface CharacterDefinition extends BaseModel {
   name: string;

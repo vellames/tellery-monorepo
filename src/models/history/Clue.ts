@@ -1,4 +1,4 @@
-import { BaseModel } from "./BaseModel";
+import { BaseModel } from "../BaseModel";
 
 export type ClueImportance = "required" | "supporting" | "red_herring";
 

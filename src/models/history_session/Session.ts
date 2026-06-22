@@ -1,4 +1,4 @@
-import { BaseModel, createBaseModel } from "./BaseModel";
+import { BaseModel, createBaseModel } from "../BaseModel";
 import { CharacterSessionState } from "./CharacterSessionState";
 import { LocationSessionState } from "./LocationSessionState";
 import { ObjectSessionState } from "./ObjectSessionState";

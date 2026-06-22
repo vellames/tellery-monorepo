@@ -18,10 +18,18 @@ const root = path.resolve(__dirname, "..");
 const modelsDir = path.join(root, "src/models");
 const outPath = path.join(root, "models.schema.json");
 
-const fileNames = fs
-  .readdirSync(modelsDir)
-  .filter((f) => f.endsWith(".ts"))
-  .map((f) => path.join(modelsDir, f));
+function getModelFileNames(dir: string): string[] {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) return getModelFileNames(fullPath);
+    if (entry.isFile() && entry.name.endsWith(".ts")) return [fullPath];
+
+    return [];
+  });
+}
+
+const fileNames = getModelFileNames(modelsDir);
 
 const program = ts.createProgram(fileNames, {
   target: ts.ScriptTarget.ES2022,
