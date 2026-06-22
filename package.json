@@ -11,7 +11,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "verify": "prettier --write . && eslint . --fix",
+    "verify": "prettier --write . && eslint . --fix && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
