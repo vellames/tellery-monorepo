@@ -18,6 +18,10 @@ const startSessionBodySchema = z.object({
   historySlug: z.string().min(1).optional(),
 });
 
+const interactBodySchema = z.object({
+  stateId: z.string().min(1),
+});
+
 app.use(express.json());
 
 app.get("/", (_req, res) => {
@@ -26,6 +30,8 @@ app.get("/", (_req, res) => {
     endpoints: {
       "GET /health": "Health check",
       "POST /session/start": "Start a mock in-memory history session",
+      "POST /session/:sessionId/interact":
+        "Interact with a character or object in a session",
     },
   });
 });
@@ -83,6 +89,39 @@ app.post("/session/start", (req, res) => {
       objective: history.objective,
     },
   });
+});
+
+app.post("/session/:sessionId/interact", (req, res) => {
+  const session = sessions.findById(req.params.sessionId);
+  if (!session) {
+    res
+      .status(404)
+      .json({ error: `Unknown sessionId: ${req.params.sessionId}` });
+    return;
+  }
+
+  const parsedBody = interactBodySchema.safeParse(req.body);
+  if (!parsedBody.success) {
+    res.status(400).json({
+      error: "Invalid request body",
+      issues: parsedBody.error.issues,
+    });
+    return;
+  }
+
+  const id = parsedBody.data.stateId;
+
+  const stateExists = [
+    ...session.characterStates,
+    ...session.objectStates,
+  ].some((state) => state.id === id);
+
+  if (!stateExists) {
+    res.status(404).json({ error: `Unknown session state id: ${id}` });
+    return;
+  }
+
+  res.json({ id });
 });
 
 app.listen(port, () => {
