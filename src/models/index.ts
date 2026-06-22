@@ -9,3 +9,7 @@ export * from "./Object";
 export * from "./Clue";
 export * from "./Conclusion";
 export * from "./Ending";
+export * from "./Session";
+export * from "./CharacterSessionState";
+export * from "./LocationSessionState";
+export * from "./ObjectSessionState";

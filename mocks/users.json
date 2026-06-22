@@ -1,0 +1,29 @@
+[
+  {
+    "id": "user_ana_teste",
+    "createdAt": "2026-06-22T00:00:00.000Z",
+    "updatedAt": "2026-06-22T00:00:00.000Z",
+    "deletedAt": null,
+    "name": "Ana Teste",
+    "email": "ana.teste@tellery.local",
+    "password": "teste123"
+  },
+  {
+    "id": "user_bruno_teste",
+    "createdAt": "2026-06-22T00:00:00.000Z",
+    "updatedAt": "2026-06-22T00:00:00.000Z",
+    "deletedAt": null,
+    "name": "Bruno Teste",
+    "email": "bruno.teste@tellery.local",
+    "password": "teste123"
+  },
+  {
+    "id": "user_carol_teste",
+    "createdAt": "2026-06-22T00:00:00.000Z",
+    "updatedAt": "2026-06-22T00:00:00.000Z",
+    "deletedAt": null,
+    "name": "Carol Teste",
+    "email": "carol.teste@tellery.local",
+    "password": "teste123"
+  }
+]
