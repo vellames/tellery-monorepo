@@ -1,0 +1,630 @@
+{
+  "BaseModel": {
+    "name": "BaseModel",
+    "fields": [
+      {
+        "name": "id",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "createdAt",
+        "type": "Date",
+        "optional": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "Date",
+        "optional": false
+      },
+      {
+        "name": "deletedAt",
+        "type": "Date | null",
+        "optional": false
+      }
+    ],
+    "extends": []
+  },
+  "CharacterDefinition": {
+    "name": "CharacterDefinition",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "role",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "shortDescription",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "imageUrl",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "personality",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "speakingStyle",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "publicKnowledge",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "privateKnowledge",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "openingLine",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "clueRevealRules",
+        "type": "CharacterClueRevealRule[]",
+        "optional": false
+      },
+      {
+        "name": "secrets",
+        "type": "CharacterSecret[]",
+        "optional": false
+      },
+      {
+        "name": "conversationBoundaries",
+        "type": "string[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "CharacterClueRevealRule": {
+    "name": "CharacterClueRevealRule",
+    "fields": [
+      {
+        "name": "clueId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "triggerIntents",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "requiresClueIds",
+        "type": "string[]",
+        "optional": true
+      },
+      {
+        "name": "revealText",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "responseGuidance",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "extends": []
+  },
+  "CharacterSecret": {
+    "name": "CharacterSecret",
+    "fields": [
+      {
+        "name": "summary",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "truth",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "defaultStrategy",
+        "type": "SecretDefaultStrategy",
+        "optional": false
+      },
+      {
+        "name": "revealStages",
+        "type": "SecretRevealStage[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "SecretRevealStage": {
+    "name": "SecretRevealStage",
+    "fields": [
+      {
+        "name": "level",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "triggerIntents",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "requiresClueIds",
+        "type": "string[]",
+        "optional": true
+      },
+      {
+        "name": "revealsClueIds",
+        "type": "string[]",
+        "optional": true
+      },
+      {
+        "name": "behavior",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "allowedToRevealTruth",
+        "type": "boolean",
+        "optional": false
+      },
+      {
+        "name": "sampleResponses",
+        "type": "string[]",
+        "optional": true
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "ClueDefinition": {
+    "name": "ClueDefinition",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "importance",
+        "type": "ClueImportance",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "ConclusionDefinition": {
+    "name": "ConclusionDefinition",
+    "fields": [
+      {
+        "name": "fields",
+        "type": "ConclusionField[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "ConclusionField": {
+    "name": "ConclusionField",
+    "fields": [
+      {
+        "name": "label",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "type",
+        "type": "ConclusionFieldType",
+        "optional": false
+      },
+      {
+        "name": "options",
+        "type": "ConclusionOption[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "ConclusionOption": {
+    "name": "ConclusionOption",
+    "fields": [
+      {
+        "name": "label",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "EndingDefinition": {
+    "name": "EndingDefinition",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "type",
+        "type": "EndingType",
+        "optional": false
+      },
+      {
+        "name": "condition",
+        "type": "EndingCondition",
+        "optional": false
+      },
+      {
+        "name": "summary",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "epilogue",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "EndingCondition": {
+    "name": "EndingCondition",
+    "fields": [
+      {
+        "name": "conclusionMatches",
+        "type": "Record<string, string>",
+        "optional": true
+      },
+      {
+        "name": "requiresClueIds",
+        "type": "string[]",
+        "optional": true
+      }
+    ],
+    "extends": []
+  },
+  "HistoryRules": {
+    "name": "HistoryRules",
+    "fields": [
+      {
+        "name": "minCluesBeforeConclusion",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "suggestConclusionAfterClues",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "maxRecommendedInteractions",
+        "type": "number",
+        "optional": true
+      }
+    ],
+    "extends": []
+  },
+  "IntentDefinition": {
+    "name": "IntentDefinition",
+    "fields": [
+      {
+        "name": "description",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "examples",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "keywords",
+        "type": "string[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "LocationDefinition": {
+    "name": "LocationDefinition",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "shortDescription",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "imageUrl",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "initialDescription",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "ambientClueIds",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "objectIds",
+        "type": "string[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "ObjectDefinition": {
+    "name": "ObjectDefinition",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "shortDescription",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "imageUrl",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "locationId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "initialDescription",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "clueRevealRules",
+        "type": "ObjectClueRevealRule[]",
+        "optional": false
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "ObjectClueRevealRule": {
+    "name": "ObjectClueRevealRule",
+    "fields": [
+      {
+        "name": "clueId",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "triggerIntents",
+        "type": "string[]",
+        "optional": false
+      },
+      {
+        "name": "requiresClueIds",
+        "type": "string[]",
+        "optional": true
+      },
+      {
+        "name": "revealText",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "extends": []
+  },
+  "History": {
+    "name": "History",
+    "fields": [
+      {
+        "name": "slug",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "teaser",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "genre",
+        "type": "\"mystery\"",
+        "optional": false
+      },
+      {
+        "name": "language",
+        "type": "\"pt-BR\"",
+        "optional": false
+      },
+      {
+        "name": "estimatedDurationMinutes",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "status",
+        "type": "\"draft\" | \"published\" | \"archived\"",
+        "optional": false
+      },
+      {
+        "name": "version",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "coverImageUrl",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "thumbnailUrl",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "opening",
+        "type": "HistoryOpening",
+        "optional": false
+      },
+      {
+        "name": "objective",
+        "type": "HistoryObjective",
+        "optional": false
+      },
+      {
+        "name": "intentDefinitions",
+        "type": "IntentDefinition[]",
+        "optional": false
+      },
+      {
+        "name": "characters",
+        "type": "CharacterDefinition[]",
+        "optional": false
+      },
+      {
+        "name": "locations",
+        "type": "LocationDefinition[]",
+        "optional": false
+      },
+      {
+        "name": "objects",
+        "type": "ObjectDefinition[]",
+        "optional": false
+      },
+      {
+        "name": "clues",
+        "type": "ClueDefinition[]",
+        "optional": false
+      },
+      {
+        "name": "conclusion",
+        "type": "ConclusionDefinition",
+        "optional": false
+      },
+      {
+        "name": "endings",
+        "type": "EndingDefinition[]",
+        "optional": false
+      },
+      {
+        "name": "rules",
+        "type": "HistoryRules",
+        "optional": false
+      },
+      {
+        "name": "publishedAt",
+        "type": "Date",
+        "optional": true
+      }
+    ],
+    "extends": [
+      "BaseModel"
+    ]
+  },
+  "HistoryOpening": {
+    "name": "HistoryOpening",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "imageUrl",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "shortText",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "fullText",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "callToAction",
+        "type": "string",
+        "optional": true
+      }
+    ],
+    "extends": []
+  },
+  "HistoryObjective": {
+    "name": "HistoryObjective",
+    "fields": [
+      {
+        "name": "mainQuestion",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "extends": []
+  }
+}
