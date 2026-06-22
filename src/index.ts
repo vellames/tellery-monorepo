@@ -1,5 +1,6 @@
 import express from "express";
 import { z } from "zod";
+import { detectIntent } from "./engine";
 import {
   HistoryRepository,
   HistorySessionRepository,
@@ -20,6 +21,7 @@ const startSessionBodySchema = z.object({
 
 const interactBodySchema = z.object({
   stateId: z.string().min(1),
+  interaction: z.string().min(1),
 });
 
 app.use(express.json());
@@ -91,7 +93,7 @@ app.post("/session/start", (req, res) => {
   });
 });
 
-app.post("/session/:sessionId/interact", (req, res) => {
+app.post("/session/:sessionId/interact", async (req, res) => {
   const session = sessions.findById(req.params.sessionId);
   if (!session) {
     res
@@ -118,6 +120,32 @@ app.post("/session/:sessionId/interact", (req, res) => {
 
   if (!stateExists) {
     res.status(404).json({ error: `Unknown session state id: ${id}` });
+    return;
+  }
+
+  const history = histories.findById(session.historyId);
+  if (!history) {
+    res.status(404).json({ error: `Unknown historyId: ${session.historyId}` });
+    return;
+  }
+
+  try {
+    const detectedIntent = await detectIntent({
+      message: parsedBody.data.interaction,
+      intents: history.intentDefinitions,
+      language: history.language,
+    });
+
+    console.log("intent_detector_result", {
+      sessionId: session.id,
+      stateId: id,
+      interaction: parsedBody.data.interaction,
+      detectedIntent,
+    });
+  } catch (error) {
+    res.status(502).json({
+      error: error instanceof Error ? error.message : "Intent detection failed",
+    });
     return;
   }
 

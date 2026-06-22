@@ -1,15 +1,16 @@
 import { z } from "zod";
-import { INTENT_DETECTOR_MODEL } from "../config";
+import { INTENT_DETECTOR_MODEL, INTENT_DETECTOR_THRESHOLD } from "../config";
 import { createOpenRouterChatModel } from "../openrouter";
 import { normalizeLanguage, t, SupportedLanguage } from "../i18n";
 import { IntentDefinition } from "../models";
 
-const IntentDetectorResponseSchema = z.object({
-  primaryIntentId: z.string(),
-  intentIds: z.array(z.string()),
-  confidence: z.number().min(0).max(1),
-  reasoning: z.string(),
-});
+const IntentDetectorResponseSchema = z.array(
+  z.object({
+    intentId: z.string(),
+    confidence: z.number().min(0).max(1),
+    reasoning: z.string(),
+  })
+);
 
 type IntentDetectorModelResponse = z.infer<typeof IntentDetectorResponseSchema>;
 
@@ -21,8 +22,7 @@ export interface DetectIntentInput {
 }
 
 export interface DetectedIntent {
-  primaryIntentId: string;
-  intentIds: string[];
+  intentId: string;
   confidence: number;
   reasoning: string;
   language: SupportedLanguage;
@@ -31,13 +31,14 @@ export interface DetectedIntent {
 
 export async function detectIntent(
   input: DetectIntentInput
-): Promise<DetectedIntent> {
+): Promise<DetectedIntent[]> {
   if (input.intents.length === 0) {
     throw new Error("detectIntent requires at least one intent");
   }
 
   const language = normalizeLanguage(input.language);
   const model = input.model ?? INTENT_DETECTOR_MODEL;
+  const threshold = normalizeThreshold(INTENT_DETECTOR_THRESHOLD);
   const intentIds = new Set(input.intents.map((intent) => intent.id));
   const fallbackIntentId = intentIds.has("off_topic")
     ? "off_topic"
@@ -58,6 +59,7 @@ export async function detectIntent(
       content: t(language, "intentDetectorUserPrompt", {
         message: input.message,
         intents: formatIntentsForPrompt(input.intents),
+        threshold: threshold.toString(),
       }),
     },
   ]);
@@ -67,8 +69,15 @@ export async function detectIntent(
     intentIds,
     fallbackIntentId,
     language,
-    model
+    model,
+    threshold
   );
+}
+
+function normalizeThreshold(threshold: number): number {
+  if (Number.isNaN(threshold)) return 0.5;
+
+  return Math.min(1, Math.max(0, threshold));
 }
 
 function formatIntentsForPrompt(intents: IntentDefinition[]): string {
@@ -87,26 +96,31 @@ function normalizeDetectedIntent(
   validIntentIds: Set<string>,
   fallbackIntentId: string,
   language: SupportedLanguage,
-  model: string
-): DetectedIntent {
-  const responseIntentIds = response.intentIds.filter((intentId) =>
-    validIntentIds.has(intentId)
-  );
+  model: string,
+  threshold: number
+): DetectedIntent[] {
+  const detectedIntents = response
+    .filter(
+      (intent) =>
+        validIntentIds.has(intent.intentId) && intent.confidence >= threshold
+    )
+    .map((intent) => ({
+      intentId: intent.intentId,
+      confidence: intent.confidence,
+      reasoning: intent.reasoning,
+      language,
+      model,
+    }));
 
-  const primaryIntentId = validIntentIds.has(response.primaryIntentId)
-    ? response.primaryIntentId
-    : (responseIntentIds[0] ?? fallbackIntentId);
+  if (detectedIntents.length > 0) return detectedIntents;
 
-  const normalizedIntentIds = Array.from(
-    new Set([primaryIntentId, ...responseIntentIds])
-  );
-
-  return {
-    primaryIntentId,
-    intentIds: normalizedIntentIds,
-    confidence: response.confidence,
-    reasoning: response.reasoning,
-    language,
-    model,
-  };
+  return [
+    {
+      intentId: fallbackIntentId,
+      confidence: 0,
+      reasoning: "No intent reached the configured threshold.",
+      language,
+      model,
+    },
+  ];
 }
