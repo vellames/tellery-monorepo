@@ -1,7 +1,17 @@
+import { z } from "zod";
 import { INTENT_DETECTOR_MODEL } from "../config";
-import { chat } from "../openrouter";
+import { createOpenRouterChatModel } from "../openrouter";
 import { normalizeLanguage, t, SupportedLanguage } from "../i18n";
 import { IntentDefinition } from "../models";
+
+const IntentDetectorResponseSchema = z.object({
+  primaryIntentId: z.string(),
+  intentIds: z.array(z.string()),
+  confidence: z.number().min(0).max(1),
+  reasoning: z.string(),
+});
+
+type IntentDetectorModelResponse = z.infer<typeof IntentDetectorResponseSchema>;
 
 export interface DetectIntentInput {
   message: string;
@@ -19,13 +29,6 @@ export interface DetectedIntent {
   model: string;
 }
 
-interface IntentDetectorModelResponse {
-  primaryIntentId?: unknown;
-  intentIds?: unknown;
-  confidence?: unknown;
-  reasoning?: unknown;
-}
-
 export async function detectIntent(
   input: DetectIntentInput
 ): Promise<DetectedIntent> {
@@ -40,29 +43,31 @@ export async function detectIntent(
     ? "off_topic"
     : input.intents[0].id;
 
-  const { reply, model: responseModel } = await chat(
-    [
-      {
-        role: "system",
-        content: t(language, "intentDetectorSystemPrompt"),
-      },
-      {
-        role: "user",
-        content: t(language, "intentDetectorUserPrompt", {
-          message: input.message,
-          intents: formatIntentsForPrompt(input.intents),
-        }),
-      },
-    ],
-    model
-  );
+  const llm = createOpenRouterChatModel(model);
+  const structuredLlm = llm.withStructuredOutput(IntentDetectorResponseSchema, {
+    name: "classify_user_intent",
+  });
+
+  const response = await structuredLlm.invoke([
+    {
+      role: "system",
+      content: t(language, "intentDetectorSystemPrompt"),
+    },
+    {
+      role: "user",
+      content: t(language, "intentDetectorUserPrompt", {
+        message: input.message,
+        intents: formatIntentsForPrompt(input.intents),
+      }),
+    },
+  ]);
 
   return normalizeDetectedIntent(
-    parseModelJson(reply),
+    response,
     intentIds,
     fallbackIntentId,
     language,
-    responseModel
+    model
   );
 }
 
@@ -77,17 +82,6 @@ function formatIntentsForPrompt(intents: IntentDefinition[]): string {
     .join("\n");
 }
 
-function parseModelJson(reply: string): IntentDetectorModelResponse {
-  const trimmedReply = reply.trim();
-  const jsonMatch = trimmedReply.match(/\{[\s\S]*\}/);
-
-  if (!jsonMatch) {
-    throw new Error(`Intent detector returned non-JSON response: ${reply}`);
-  }
-
-  return JSON.parse(jsonMatch[0]) as IntentDetectorModelResponse;
-}
-
 function normalizeDetectedIntent(
   response: IntentDetectorModelResponse,
   validIntentIds: Set<string>,
@@ -95,18 +89,13 @@ function normalizeDetectedIntent(
   language: SupportedLanguage,
   model: string
 ): DetectedIntent {
-  const responseIntentIds = Array.isArray(response.intentIds)
-    ? response.intentIds.filter(
-        (intentId): intentId is string =>
-          typeof intentId === "string" && validIntentIds.has(intentId)
-      )
-    : [];
+  const responseIntentIds = response.intentIds.filter((intentId) =>
+    validIntentIds.has(intentId)
+  );
 
-  const primaryIntentId =
-    typeof response.primaryIntentId === "string" &&
-    validIntentIds.has(response.primaryIntentId)
-      ? response.primaryIntentId
-      : (responseIntentIds[0] ?? fallbackIntentId);
+  const primaryIntentId = validIntentIds.has(response.primaryIntentId)
+    ? response.primaryIntentId
+    : (responseIntentIds[0] ?? fallbackIntentId);
 
   const normalizedIntentIds = Array.from(
     new Set([primaryIntentId, ...responseIntentIds])
@@ -115,15 +104,9 @@ function normalizeDetectedIntent(
   return {
     primaryIntentId,
     intentIds: normalizedIntentIds,
-    confidence: normalizeConfidence(response.confidence),
-    reasoning: typeof response.reasoning === "string" ? response.reasoning : "",
+    confidence: response.confidence,
+    reasoning: response.reasoning,
     language,
     model,
   };
-}
-
-function normalizeConfidence(confidence: unknown): number {
-  if (typeof confidence !== "number" || Number.isNaN(confidence)) return 0;
-
-  return Math.min(1, Math.max(0, confidence));
 }

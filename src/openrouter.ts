@@ -1,3 +1,4 @@
+import { ChatOpenAI } from "@langchain/openai";
 import {
   DEFAULT_MODEL,
   OPENROUTER_API_KEY,
@@ -11,18 +12,27 @@ export interface ChatMessage {
   content: string;
 }
 
-interface ChatCompletionResponse {
-  choices: Array<{
-    message: ChatMessage;
-  }>;
-  model: string;
-}
-
 interface ModelsResponse {
   data: Array<{
     id: string;
     name: string;
   }>;
+}
+
+export function createOpenRouterChatModel(model: string = DEFAULT_MODEL) {
+  if (!OPENROUTER_API_KEY) {
+    throw new Error(
+      "Missing required environment variable: OPENROUTER_API_KEY"
+    );
+  }
+
+  return new ChatOpenAI({
+    apiKey: OPENROUTER_API_KEY,
+    model,
+    configuration: {
+      baseURL: OPENROUTER_BASE_URL,
+    },
+  });
 }
 
 async function openRouterFetch<T>(
@@ -56,20 +66,22 @@ export async function chat(
   messages: ChatMessage[],
   model: string = DEFAULT_MODEL
 ): Promise<{ reply: string; model: string }> {
-  const data = await openRouterFetch<ChatCompletionResponse>(
-    "/chat/completions",
-    {
-      method: "POST",
-      body: JSON.stringify({ model, messages }),
-    }
+  const llm = createOpenRouterChatModel(model);
+  const response = await llm.invoke(
+    messages.map((message) => [message.role, message.content])
   );
 
-  const reply = data.choices[0]?.message?.content;
+  const reply = Array.isArray(response.content)
+    ? response.content
+        .map((content) => (typeof content === "string" ? content : ""))
+        .join("")
+    : response.content;
+
   if (!reply) {
     throw new Error("OpenRouter returned an empty response");
   }
 
-  return { reply, model: data.model };
+  return { reply, model };
 }
 
 export async function listModels(): Promise<
