@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 import { HistorySessionService } from "../services/session/history-session.service";
 import { SessionInteractionService } from "../services/session/session-interaction.service";
 import {
@@ -6,6 +7,7 @@ import {
   startSessionBodySchema,
 } from "../types/http/session.validation";
 import { HttpError } from "../utils/http-error";
+import { handleError, sendSuccess } from "../utils/response.utils";
 
 export class SessionController {
   constructor(
@@ -17,10 +19,11 @@ export class SessionController {
     const parsedBody = startSessionBodySchema.safeParse(req.body);
 
     if (!parsedBody.success) {
-      res.status(400).json({
-        error: "Invalid request body",
-        issues: parsedBody.error.issues,
-      });
+      handleError(
+        res,
+        new Error("Invalid request body"),
+        StatusCodes.BAD_REQUEST
+      );
       return;
     }
 
@@ -28,19 +31,24 @@ export class SessionController {
       const response = await this.historySessionService.startSession(
         parsedBody.data
       );
-      res.status(201).json(response);
+      sendSuccess(res, response, undefined, StatusCodes.CREATED);
     } catch (error) {
-      this.handleError(error, res);
+      if (error instanceof HttpError) {
+        handleError(res, error, error.statusCode);
+        return;
+      }
+      handleError(res, error);
     }
   };
 
   interact = async (req: Request, res: Response): Promise<void> => {
     const parsedBody = interactBodySchema.safeParse(req.body);
     if (!parsedBody.success) {
-      res.status(400).json({
-        error: "Invalid request body",
-        issues: parsedBody.error.issues,
-      });
+      handleError(
+        res,
+        new Error("Invalid request body"),
+        StatusCodes.BAD_REQUEST
+      );
       return;
     }
 
@@ -50,20 +58,13 @@ export class SessionController {
         sessionId,
         parsedBody.data
       );
-      res.json(response);
+      sendSuccess(res, response);
     } catch (error) {
-      this.handleError(error, res);
+      if (error instanceof HttpError) {
+        handleError(res, error, error.statusCode);
+        return;
+      }
+      handleError(res, error);
     }
   };
-
-  private handleError(error: unknown, res: Response): void {
-    if (error instanceof HttpError) {
-      res.status(error.statusCode).json({ error: error.message });
-      return;
-    }
-
-    res.status(500).json({
-      error: error instanceof Error ? error.message : "Internal server error",
-    });
-  }
 }

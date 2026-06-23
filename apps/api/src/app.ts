@@ -4,12 +4,15 @@ import swaggerUi from "swagger-ui-express";
 import { i18nMiddleware } from "@ai-history/i18n";
 import routes from "./routes";
 import { swaggerSpec } from "./config/swagger.config";
+import { requestLogger } from "./middleware/request-logger.middleware";
+import { errorHandler, notFoundHandler } from "./middleware/error.middleware";
 
 export function createApp() {
   const app = express();
 
   app.use(cors());
   app.use(i18nMiddleware);
+  app.use(requestLogger);
   app.use(express.json());
 
   app.use(
@@ -41,6 +44,9 @@ export function createApp() {
   });
 
   app.use(routes);
+
+  app.use(notFoundHandler);
+  app.use(errorHandler);
 
   return app;
 }
