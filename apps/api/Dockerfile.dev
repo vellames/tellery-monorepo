@@ -16,5 +16,5 @@ COPY . .
 
 EXPOSE 3232
 
-# Run the api dev server (tsx watch) via the workspace.
+# Run the api dev server (nodemon + ts-node) via the workspace.
 CMD ["npm", "run", "dev", "-w", "@ai-history/api"]
