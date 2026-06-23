@@ -10,7 +10,14 @@ import { errorHandler, notFoundHandler } from './middleware/error.middleware';
 export function createApp() {
   const app = express();
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: process.env.CORS_ORIGIN || '*',
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'Accept-Language'],
+    })
+  );
   app.use(i18nMiddleware);
   app.use(requestLogger);
   app.use(express.json());
