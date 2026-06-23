@@ -1,19 +1,21 @@
 import { Request, Response } from 'express';
+import { TranslationFunction } from '../types/i18n.types';
 
 export class HealthController {
-  index(_req: Request, res: Response): void {
+  index(req: Request, res: Response): void {
+    const t = req.t as TranslationFunction;
     res.json({
-      message: 'AI History API',
+      message: t('common:api.name'),
       endpoints: {
-        'GET /health': 'Health check',
-        'POST /session/start': 'Start a mock in-memory history session',
-        'POST /session/:sessionId/interact':
-          'Interact with a character or object in a session',
+        'GET /health': t('common:api.healthCheck'),
+        'POST /session/start': t('common:api.startSession'),
+        'POST /session/:sessionId/interact': t('common:api.interactSession'),
       },
     });
   }
 
-  health(_req: Request, res: Response): void {
-    res.json({ status: 'ok' });
+  health(req: Request, res: Response): void {
+    const t = req.t as TranslationFunction;
+    res.json({ status: t('common:status') });
   }
 }

@@ -10,6 +10,8 @@ const router = Router();
  *     tags: [Session]
  *     summary: Start a new history session
  *     description: Creates an in-memory history session for a user.
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
  *     requestBody:
  *       required: true
  *       content:
@@ -88,6 +90,7 @@ router.post('/start', async (req, res) => {
  *         schema:
  *           type: string
  *         description: The session ID.
+ *       - $ref: '#/components/parameters/AcceptLanguage'
  *     requestBody:
  *       required: true
  *       content:

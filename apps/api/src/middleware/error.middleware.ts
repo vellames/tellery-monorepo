@@ -1,29 +1,37 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
+import { TranslationFunction } from '../types/i18n.types';
 
 export const notFoundHandler = (
   req: Request,
   res: Response,
   _next: NextFunction
 ): void => {
+  const t = req.t as TranslationFunction;
   res.status(StatusCodes.NOT_FOUND).json({
     success: false,
-    error: `Route ${req.method} ${req.path} not found`,
+    error: t('common:errors.routeNotFound', {
+      method: req.method,
+      path: req.path,
+    }),
   });
 };
 
 export const errorHandler = (
   error: Error,
-  _req: Request,
+  req: Request,
   res: Response,
   _next: NextFunction
 ): void => {
+  const t = req.t as TranslationFunction;
   console.error('Error:', error);
 
   if ('statusCode' in error && typeof error.statusCode === 'number') {
+    const messageKey = (error as { messageKey?: string }).messageKey;
+    const message = messageKey ? t(messageKey) : error.message;
     res.status(error.statusCode).json({
       success: false,
-      error: error.message,
+      error: message,
     });
     return;
   }
@@ -31,7 +39,7 @@ export const errorHandler = (
   if (error.name === 'PrismaClientKnownRequestError') {
     res.status(StatusCodes.BAD_REQUEST).json({
       success: false,
-      error: 'Database operation failed',
+      error: t('common:errors.databaseError'),
     });
     return;
   }
@@ -40,7 +48,7 @@ export const errorHandler = (
     success: false,
     error:
       process.env.NODE_ENV === 'production'
-        ? 'Internal server error'
+        ? t('common:errors.internalServerError')
         : error.message,
   });
 };

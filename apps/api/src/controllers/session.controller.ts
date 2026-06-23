@@ -8,6 +8,7 @@ import {
 } from '../types/http/session.validation';
 import { HttpError } from '../utils/http-error';
 import { handleError, sendSuccess } from '../utils/response.utils';
+import { TranslationFunction } from '../types/i18n.types';
 
 export class SessionController {
   constructor(
@@ -16,12 +17,13 @@ export class SessionController {
   ) {}
 
   start = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
     const parsedBody = startSessionBodySchema.safeParse(req.body);
 
     if (!parsedBody.success) {
       handleError(
         res,
-        new Error('Invalid request body'),
+        new Error(t('common:errors.invalidRequestBody')),
         StatusCodes.UNPROCESSABLE_ENTITY
       );
       return;
@@ -34,19 +36,23 @@ export class SessionController {
       sendSuccess(res, response, undefined, StatusCodes.CREATED);
     } catch (error) {
       if (error instanceof HttpError) {
-        handleError(res, error, error.statusCode);
+        const message = error.messageKey
+          ? t(error.messageKey, { id: error.message })
+          : error.message;
+        handleError(res, new Error(message), error.statusCode);
         return;
       }
-      handleError(res, error);
+      handleError(res, new Error(t('common:errors.internalError')));
     }
   };
 
   interact = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
     const parsedBody = interactBodySchema.safeParse(req.body);
     if (!parsedBody.success) {
       handleError(
         res,
-        new Error('Invalid request body'),
+        new Error(t('common:errors.invalidRequestBody')),
         StatusCodes.UNPROCESSABLE_ENTITY
       );
       return;
@@ -61,10 +67,13 @@ export class SessionController {
       sendSuccess(res, response);
     } catch (error) {
       if (error instanceof HttpError) {
-        handleError(res, error, error.statusCode);
+        const message = error.messageKey
+          ? t(error.messageKey, { id: error.message })
+          : error.message;
+        handleError(res, new Error(message), error.statusCode);
         return;
       }
-      handleError(res, error);
+      handleError(res, new Error(t('common:errors.internalError')));
     }
   };
 }

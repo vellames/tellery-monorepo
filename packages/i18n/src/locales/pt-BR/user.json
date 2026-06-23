@@ -1,0 +1,7 @@
+{
+  "errors": {
+    "userNotFound": "Usuário não encontrado",
+    "emailAlreadyInUse": "E-mail já está em uso",
+    "unknownUser": "Usuário desconhecido: {{id}}"
+  }
+}

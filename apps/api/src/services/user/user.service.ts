@@ -16,7 +16,7 @@ export class UserService {
       throw new HttpError(
         409,
         'Email already in use',
-        'common:errors.emailAlreadyInUse'
+        'user:errors.emailAlreadyInUse'
       );
     }
 
@@ -27,7 +27,7 @@ export class UserService {
   async findById(id: string): Promise<UserResponseDto> {
     const user = await this.users.findById(id);
     if (!user) {
-      throw new HttpError(404, 'User not found', 'common:errors.userNotFound');
+      throw new HttpError(404, 'User not found', 'user:errors.userNotFound');
     }
     return this.toResponseDto(user);
   }
@@ -40,7 +40,7 @@ export class UserService {
   async update(id: string, data: UpdateUserDto): Promise<UserResponseDto> {
     const user = await this.users.findById(id);
     if (!user) {
-      throw new HttpError(404, 'User not found', 'common:errors.userNotFound');
+      throw new HttpError(404, 'User not found', 'user:errors.userNotFound');
     }
 
     if (data.email && data.email !== user.email) {
@@ -49,7 +49,7 @@ export class UserService {
         throw new HttpError(
           409,
           'Email already in use',
-          'common:errors.emailAlreadyInUse'
+          'user:errors.emailAlreadyInUse'
         );
       }
     }
@@ -61,7 +61,7 @@ export class UserService {
   async delete(id: string): Promise<void> {
     const user = await this.users.findById(id);
     if (!user) {
-      throw new HttpError(404, 'User not found', 'common:errors.userNotFound');
+      throw new HttpError(404, 'User not found', 'user:errors.userNotFound');
     }
 
     await this.users.softDelete(id);

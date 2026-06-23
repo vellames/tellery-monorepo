@@ -1,10 +1,17 @@
 {
   "welcome": "Welcome",
   "status": "ok",
+  "api": {
+    "name": "AI History API",
+    "healthCheck": "Health check",
+    "startSession": "Start a mock in-memory history session",
+    "interactSession": "Interact with a character or object in a session"
+  },
   "errors": {
     "invalidRequestBody": "Invalid request body",
-    "userNotFound": "User not found",
-    "emailAlreadyInUse": "Email already in use",
-    "internalError": "An unexpected error occurred"
+    "internalError": "An unexpected error occurred",
+    "routeNotFound": "Route {{method}} {{path}} not found",
+    "databaseError": "Database operation failed",
+    "internalServerError": "Internal server error"
   }
 }

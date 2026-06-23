@@ -1,10 +1,17 @@
 {
   "welcome": "Bem-vindo",
   "status": "ok",
+  "api": {
+    "name": "AI History API",
+    "healthCheck": "Verificação de saúde",
+    "startSession": "Iniciar uma sessão de história em memória",
+    "interactSession": "Interagir com um personagem ou objeto em uma sessão"
+  },
   "errors": {
     "invalidRequestBody": "Corpo da requisição inválido",
-    "userNotFound": "Usuário não encontrado",
-    "emailAlreadyInUse": "E-mail já está em uso",
-    "internalError": "Ocorreu um erro inesperado"
+    "internalError": "Ocorreu um erro inesperado",
+    "routeNotFound": "Rota {{method}} {{path}} não encontrada",
+    "databaseError": "Falha na operação do banco de dados",
+    "internalServerError": "Erro interno do servidor"
   }
 }

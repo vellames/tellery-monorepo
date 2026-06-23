@@ -16,7 +16,7 @@ export class HistorySessionService {
   async startSession(input: StartSessionBody) {
     const user = await this.users.findById(input.userId);
     if (!user) {
-      throw new HttpError(404, `Unknown userId: ${input.userId}`);
+      throw new HttpError(404, input.userId, 'user:errors.unknownUser');
     }
 
     const history =
@@ -29,7 +29,7 @@ export class HistorySessionService {
       this.histories.findDefault();
 
     if (!history) {
-      throw new HttpError(404, 'No history available to start');
+      throw new HttpError(404, '', 'session:errors.noHistoryAvailable');
     }
 
     const session = this.sessions.create({

@@ -73,7 +73,7 @@ describe('UserController', () => {
         new HttpError(
           StatusCodes.CONFLICT,
           'Email already in use',
-          'common:errors.emailAlreadyInUse'
+          'user:errors.emailAlreadyInUse'
         )
       );
       req = {
@@ -90,7 +90,7 @@ describe('UserController', () => {
       expect(status).toHaveBeenCalledWith(StatusCodes.CONFLICT);
       expect(json).toHaveBeenCalledWith(
         expect.objectContaining({
-          error: 'common:errors.emailAlreadyInUse',
+          error: 'user:errors.emailAlreadyInUse',
         })
       );
     });

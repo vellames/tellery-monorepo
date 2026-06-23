@@ -10,6 +10,8 @@ const router = Router();
  *     tags: [Health]
  *     summary: API root
  *     description: Returns available endpoints.
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
  *     responses:
  *       200:
  *         description: API info and endpoint list
@@ -35,6 +37,8 @@ router.get('/', (req, res) => {
  *     tags: [Health]
  *     summary: Health check
  *     description: Returns server health status.
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
  *     responses:
  *       200:
  *         description: Server is healthy

@@ -24,19 +24,23 @@ export class SessionInteractionService {
   async interact(sessionId: string, input: InteractBody) {
     const session = this.sessions.findById(sessionId);
     if (!session) {
-      throw new HttpError(404, `Unknown sessionId: ${sessionId}`);
+      throw new HttpError(404, sessionId, 'session:errors.unknownSession');
     }
 
     const id = input.stateId;
     const resolvedState = resolveSessionState(session, id);
 
     if (!resolvedState) {
-      throw new HttpError(404, `Unknown session state id: ${id}`);
+      throw new HttpError(404, id, 'session:errors.unknownSessionState');
     }
 
     const history = this.histories.findById(session.historyId);
     if (!history) {
-      throw new HttpError(404, `Unknown historyId: ${session.historyId}`);
+      throw new HttpError(
+        404,
+        session.historyId,
+        'session:errors.unknownHistory'
+      );
     }
 
     let discoveredClueIds: string[] = [];
@@ -97,7 +101,8 @@ export class SessionInteractionService {
           if (!character) {
             throw new HttpError(
               404,
-              `Unknown characterId: ${resolvedState.state.characterId}`
+              resolvedState.state.characterId,
+              'session:errors.unknownCharacter'
             );
           }
 
@@ -175,7 +180,8 @@ export class SessionInteractionService {
           if (!object) {
             throw new HttpError(
               404,
-              `Unknown objectId: ${resolvedState.state.objectId}`
+              resolvedState.state.objectId,
+              'session:errors.unknownObject'
             );
           }
 
@@ -222,7 +228,8 @@ export class SessionInteractionService {
 
         throw new HttpError(
           502,
-          error instanceof Error ? error.message : 'Intent detection failed'
+          error instanceof Error ? error.message : '',
+          'session:errors.intentDetectionFailed'
         );
       }
     }

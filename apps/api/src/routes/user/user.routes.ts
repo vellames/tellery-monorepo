@@ -10,6 +10,8 @@ const router = Router();
  *     tags: [Users]
  *     summary: Register a new user
  *     description: Creates a new user account. Returns the user data without the password.
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
  *     requestBody:
  *       required: true
  *       content:

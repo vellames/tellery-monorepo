@@ -1,0 +1,11 @@
+{
+  "errors": {
+    "unknownSession": "Unknown session: {{id}}",
+    "unknownSessionState": "Unknown session state: {{id}}",
+    "unknownHistory": "Unknown history: {{id}}",
+    "unknownCharacter": "Unknown character: {{id}}",
+    "unknownObject": "Unknown object: {{id}}",
+    "noHistoryAvailable": "No history available to start",
+    "intentDetectionFailed": "Intent detection failed"
+  }
+}

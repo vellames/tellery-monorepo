@@ -15,6 +15,21 @@ const options: swaggerJsdoc.Options = {
       },
     ],
     components: {
+      parameters: {
+        AcceptLanguage: {
+          name: 'Accept-Language',
+          in: 'header',
+          required: false,
+          description:
+            'Preferred language for response messages. Supported: `en`, `pt-BR`. Defaults to `en`.',
+          schema: {
+            type: 'string',
+            enum: ['en', 'pt-BR'],
+            default: 'en',
+          },
+          example: 'pt-BR',
+        },
+      },
       schemas: {
         ErrorResponse: {
           type: 'object',

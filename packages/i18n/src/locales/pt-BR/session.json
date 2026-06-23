@@ -1,0 +1,11 @@
+{
+  "errors": {
+    "unknownSession": "Sessão desconhecida: {{id}}",
+    "unknownSessionState": "Estado de sessão desconhecido: {{id}}",
+    "unknownHistory": "História desconhecida: {{id}}",
+    "unknownCharacter": "Personagem desconhecido: {{id}}",
+    "unknownObject": "Objeto desconhecido: {{id}}",
+    "noHistoryAvailable": "Nenhuma história disponível para iniciar",
+    "intentDetectionFailed": "Falha na detecção de intenção"
+  }
+}
