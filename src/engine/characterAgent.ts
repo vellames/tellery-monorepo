@@ -121,19 +121,34 @@ function getEligibleCharacterClueRules(
     detectedIntents.map((detectedIntent) => detectedIntent.intentId)
   );
   const discoveredClues = new Set(discoveredClueIds);
+  const eligibleRules: CharacterClueRevealRule[] = [];
+  const eligibleRuleClueIds = new Set<string>();
+  let changed = true;
 
-  return rules.filter((rule) => {
-    const hasTriggerIntent = rule.triggerIntents.some((intentId) =>
-      detectedIntentIds.has(intentId)
-    );
-    const hasRequiredClues = (rule.requiresClueIds ?? []).every((clueId) =>
-      discoveredClues.has(clueId)
-    );
+  while (changed) {
+    changed = false;
 
-    return (
-      hasTriggerIntent && hasRequiredClues && !discoveredClues.has(rule.clueId)
-    );
-  });
+    for (const rule of rules) {
+      if (discoveredClues.has(rule.clueId)) continue;
+      if (eligibleRuleClueIds.has(rule.clueId)) continue;
+
+      const hasTriggerIntent = rule.triggerIntents.some((intentId) =>
+        detectedIntentIds.has(intentId)
+      );
+      const hasRequiredClues = (rule.requiresClueIds ?? []).every((clueId) =>
+        discoveredClues.has(clueId)
+      );
+
+      if (!hasTriggerIntent || !hasRequiredClues) continue;
+
+      eligibleRules.push(rule);
+      eligibleRuleClueIds.add(rule.clueId);
+      discoveredClues.add(rule.clueId);
+      changed = true;
+    }
+  }
+
+  return eligibleRules;
 }
 
 function getEligibleSecretStages(
@@ -236,21 +251,35 @@ function normalizeCharacterAgentResponse(
   language: SupportedLanguage,
   model: string
 ): CharacterAgentResult {
-  const eligibleClueIds = new Set([
+  const eligibleClueIds = [
     ...eligibleClueRules.map((rule) => rule.clueId),
     ...eligibleSecretStages.flatMap(({ stage }) => stage.revealsClueIds ?? []),
-  ]);
+  ];
+  const eligibleClueIdSet = new Set(eligibleClueIds);
+  const modelDiscoveredClues = response.discoveredClues.filter((result) =>
+    eligibleClueIdSet.has(result.clueId)
+  );
+  const modelDiscoveredClueIds = new Set(
+    modelDiscoveredClues.map((result) => result.clueId)
+  );
+  const enforcedDiscoveredClues = eligibleClueIds
+    .filter((clueId) => !modelDiscoveredClueIds.has(clueId))
+    .map((clueId) => ({
+      clueId,
+      reasoning:
+        "Automatically included because the character reveal rule or secret stage was eligible for this interaction.",
+    }));
 
   return {
     reply: response.reply,
-    discoveredClues: response.discoveredClues
-      .filter((result) => eligibleClueIds.has(result.clueId))
-      .map((result) => ({
+    discoveredClues: [...modelDiscoveredClues, ...enforcedDiscoveredClues].map(
+      (result) => ({
         clueId: result.clueId,
         reasoning: result.reasoning,
         language,
         model,
-      })),
+      })
+    ),
     updatedConversationSummary: response.updatedConversationSummary,
     language,
     model,

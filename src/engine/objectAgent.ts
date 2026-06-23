@@ -129,14 +129,28 @@ function normalizeObjectAgentResponse(
   language: SupportedLanguage,
   model: string
 ): ObjectAgentDiscoveredClue[] {
-  const eligibleClueIds = new Set(eligibleRules.map((rule) => rule.clueId));
+  const eligibleClueIds = eligibleRules.map((rule) => rule.clueId);
+  const eligibleClueIdSet = new Set(eligibleClueIds);
+  const modelDiscoveredClues = response.filter((result) =>
+    eligibleClueIdSet.has(result.clueId)
+  );
+  const modelDiscoveredClueIds = new Set(
+    modelDiscoveredClues.map((result) => result.clueId)
+  );
+  const enforcedDiscoveredClues = eligibleClueIds
+    .filter((clueId) => !modelDiscoveredClueIds.has(clueId))
+    .map((clueId) => ({
+      clueId,
+      reasoning:
+        "Automatically included because the object reveal rule was eligible for this interaction.",
+    }));
 
-  return response
-    .filter((result) => eligibleClueIds.has(result.clueId))
-    .map((result) => ({
+  return [...modelDiscoveredClues, ...enforcedDiscoveredClues].map(
+    (result) => ({
       clueId: result.clueId,
       reasoning: result.reasoning,
       language,
       model,
-    }));
+    })
+  );
 }
