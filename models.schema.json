@@ -89,7 +89,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "CharacterClueRevealRule": {
     "name": "CharacterClueRevealRule",
@@ -146,7 +148,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "SecretRevealStage": {
     "name": "SecretRevealStage",
@@ -187,7 +191,9 @@
         "optional": true
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "ClueDefinition": {
     "name": "ClueDefinition",
@@ -208,7 +214,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "ConclusionDefinition": {
     "name": "ConclusionDefinition",
@@ -219,7 +227,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "ConclusionField": {
     "name": "ConclusionField",
@@ -240,7 +250,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "ConclusionOption": {
     "name": "ConclusionOption",
@@ -251,7 +263,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "EndingDefinition": {
     "name": "EndingDefinition",
@@ -282,7 +296,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "EndingCondition": {
     "name": "EndingCondition",
@@ -340,7 +356,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "LocationDefinition": {
     "name": "LocationDefinition",
@@ -376,7 +394,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "ObjectDefinition": {
     "name": "ObjectDefinition",
@@ -412,7 +432,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "ObjectClueRevealRule": {
     "name": "ObjectClueRevealRule",
@@ -554,7 +576,9 @@
         "optional": true
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "HistoryOpening": {
     "name": "HistoryOpening",
@@ -632,7 +656,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "CharacterSecretSessionState": {
     "name": "CharacterSecretSessionState",
@@ -684,7 +710,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "ObjectSessionState": {
     "name": "ObjectSessionState",
@@ -710,7 +738,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "HistorySession": {
     "name": "HistorySession",
@@ -781,7 +811,9 @@
         "optional": false
       }
     ],
-    "extends": ["BaseModel"]
+    "extends": [
+      "BaseModel"
+    ]
   },
   "HistorySessionProgress": {
     "name": "HistorySessionProgress",

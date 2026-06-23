@@ -15,7 +15,7 @@ interface ModelSchema {
 }
 
 const root = path.resolve(__dirname, "..");
-const modelsDir = path.join(root, "src/models");
+const modelsDir = path.join(root, "apps/api/src/models");
 const outPath = path.join(root, "models.schema.json");
 
 function getModelFileNames(dir: string): string[] {
