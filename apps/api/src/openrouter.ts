@@ -3,7 +3,7 @@ import {
   DEFAULT_MODEL,
   OPENROUTER_API_KEY,
   OPENROUTER_BASE_URL,
-} from "./config";
+} from "./config/app.config";
 
 export type ChatRole = "system" | "user" | "assistant";
 

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CHARACTER_AGENT_MODEL } from "../config";
+import { CHARACTER_AGENT_MODEL } from "../config/app.config";
 import { normalizeLanguage, SupportedLanguage, t } from "@ai-history/i18n";
 import {
   CharacterClueRevealRule,
