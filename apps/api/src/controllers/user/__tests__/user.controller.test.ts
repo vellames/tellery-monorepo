@@ -4,6 +4,7 @@ import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { UserController } from '../user.controller';
 import { UserService } from '../../../services/user/user.service';
 import { HttpError } from '../../../utils/http-error';
+import { TranslationFunction } from '../../../types/i18n.types';
 
 describe('UserController', () => {
   let userService: DeepMockProxy<UserService>;
@@ -12,6 +13,7 @@ describe('UserController', () => {
   let res: Partial<Response>;
   let json: jest.Mock;
   let status: jest.Mock;
+  let t: TranslationFunction;
 
   beforeEach(() => {
     userService = mockDeep<UserService>();
@@ -19,6 +21,7 @@ describe('UserController', () => {
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });
     res = { status };
+    t = jest.fn((key: string) => key) as unknown as TranslationFunction;
   });
 
   afterEach(() => {
@@ -41,6 +44,7 @@ describe('UserController', () => {
           email: 'ana@teste.local',
           password: 'password123',
         },
+        t,
       };
 
       await controller.register(req as Request, res as Response);
@@ -54,7 +58,7 @@ describe('UserController', () => {
     });
 
     it('should return 422 when body is invalid', async () => {
-      req = { body: { name: '', email: 'not-an-email', password: '' } };
+      req = { body: { name: '', email: 'not-an-email', password: '' }, t };
 
       await controller.register(req as Request, res as Response);
 
@@ -66,7 +70,11 @@ describe('UserController', () => {
 
     it('should return 409 when email is already in use', async () => {
       userService.create.mockRejectedValue(
-        new HttpError(StatusCodes.CONFLICT, 'Email already in use')
+        new HttpError(
+          StatusCodes.CONFLICT,
+          'Email already in use',
+          'common:errors.emailAlreadyInUse'
+        )
       );
       req = {
         body: {
@@ -74,13 +82,16 @@ describe('UserController', () => {
           email: 'ana@teste.local',
           password: 'password123',
         },
+        t,
       };
 
       await controller.register(req as Request, res as Response);
 
       expect(status).toHaveBeenCalledWith(StatusCodes.CONFLICT);
       expect(json).toHaveBeenCalledWith(
-        expect.objectContaining({ error: 'Email already in use' })
+        expect.objectContaining({
+          error: 'common:errors.emailAlreadyInUse',
+        })
       );
     });
 
@@ -92,6 +103,7 @@ describe('UserController', () => {
           email: 'ana@teste.local',
           password: 'password123',
         },
+        t,
       };
 
       await controller.register(req as Request, res as Response);

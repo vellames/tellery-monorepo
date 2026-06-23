@@ -1,18 +1,12 @@
 import request from 'supertest';
 import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
+import { Request, Response } from 'express';
 import { IUserRepository } from '../../interfaces';
 import { User } from '@prisma/client';
 import { UserController } from '../../controllers/user/user.controller';
 import { UserService } from '../../services/user/user.service';
-
-// Mock i18n middleware so we don't need to initialize i18next
-jest.mock('@ai-history/i18n', () => ({
-  initI18n: jest.fn().mockResolvedValue(undefined),
-  i18nMiddleware: (_req: any, _res: any, next: any) => next(),
-  i18next: { changeLanguage: jest.fn(), t: (k: string) => k },
-  t: (lang: string, key: string) => key,
-}));
+import { initI18n } from '@ai-history/i18n';
 
 // Build mock-backed controller instances before mocking the container
 const mockRepo: DeepMockProxy<IUserRepository> = mockDeep<IUserRepository>();
@@ -25,13 +19,13 @@ jest.mock('../../container/di.container', () => ({
     getInstance: () => ({
       getUserController: () => userController,
       getHealthController: () => ({
-        index: (_req: any, res: any) =>
+        index: (_req: Request, res: Response) =>
           res.json({ message: 'AI History API', endpoints: {} }),
-        health: (_req: any, res: any) => res.json({ status: 'ok' }),
+        health: (_req: Request, res: Response) => res.json({ status: 'ok' }),
       }),
       getSessionController: () => ({
-        start: async (_req: any, res: any) => res.status(201).json({}),
-        interact: async (_req: any, res: any) => res.json({}),
+        start: async (_req: Request, res: Response) => res.status(201).json({}),
+        interact: async (_req: Request, res: Response) => res.json({}),
       }),
     }),
   },
@@ -50,6 +44,10 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   email: 'ana@teste.local',
   password: 'password123',
   ...overrides,
+});
+
+beforeAll(async () => {
+  await initI18n();
 });
 
 describe('E2E: /users/register', () => {
@@ -110,7 +108,7 @@ describe('E2E: /users/register', () => {
     expect(response.body.success).toBe(false);
   });
 
-  it('should return 409 when email is already in use', async () => {
+  it('should return 409 with English message by default', async () => {
     mockRepo.findByEmail.mockResolvedValue(mockUser());
 
     const response = await request(app).post('/users/register').send({
@@ -124,10 +122,39 @@ describe('E2E: /users/register', () => {
     expect(response.body.error).toBe('Email already in use');
   });
 
+  it('should return 409 with Portuguese message when Accept-Language is pt-BR', async () => {
+    mockRepo.findByEmail.mockResolvedValue(mockUser());
+
+    const response = await request(app)
+      .post('/users/register')
+      .set('Accept-Language', 'pt-BR')
+      .send({
+        name: 'Ana Teste',
+        email: 'ana@teste.local',
+        password: 'password123',
+      });
+
+    expect(response.status).toBe(StatusCodes.CONFLICT);
+    expect(response.body.success).toBe(false);
+    expect(response.body.error).toBe('E-mail já está em uso');
+  });
+
+  it('should return 422 with Portuguese message when Accept-Language is pt-BR', async () => {
+    const response = await request(app)
+      .post('/users/register')
+      .set('Accept-Language', 'pt-BR')
+      .send({
+        email: 'ana@teste.local',
+        password: 'password123',
+      });
+
+    expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(response.body.success).toBe(false);
+    expect(response.body.error).toBe('Corpo da requisição inválido');
+  });
+
   it('should return 404 for unknown routes', async () => {
-    const response = await request(app).get(
-      '/users/nonexistent-endpoint'
-    );
+    const response = await request(app).get('/users/nonexistent-endpoint');
 
     expect(response.status).toBe(StatusCodes.NOT_FOUND);
     expect(response.body.success).toBe(false);

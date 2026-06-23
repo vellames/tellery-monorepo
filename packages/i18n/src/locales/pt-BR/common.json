@@ -1,4 +1,10 @@
 {
   "welcome": "Bem-vindo",
-  "status": "ok"
+  "status": "ok",
+  "errors": {
+    "invalidRequestBody": "Corpo da requisição inválido",
+    "userNotFound": "Usuário não encontrado",
+    "emailAlreadyInUse": "E-mail já está em uso",
+    "internalError": "Ocorreu um erro inesperado"
+  }
 }
