@@ -1,6 +1,12 @@
 import express from "express";
 import { z } from "zod";
-import { detectIntent } from "./engine";
+import { detectIntent, DetectedIntent } from "./engine";
+import {
+  CharacterSessionState,
+  HistorySession,
+  LocationSessionState,
+  ObjectSessionState,
+} from "./models";
 import {
   HistoryRepository,
   HistorySessionRepository,
@@ -82,6 +88,7 @@ app.post("/session/start", (req, res) => {
 
   res.status(201).json({
     session,
+    sessionStatus: session.status,
     history: {
       id: history.id,
       slug: history.slug,
@@ -112,13 +119,9 @@ app.post("/session/:sessionId/interact", async (req, res) => {
   }
 
   const id = parsedBody.data.stateId;
+  const resolvedState = resolveSessionState(session, id);
 
-  const stateExists = [
-    ...session.characterStates,
-    ...session.objectStates,
-  ].some((state) => state.id === id);
-
-  if (!stateExists) {
+  if (!resolvedState) {
     res.status(404).json({ error: `Unknown session state id: ${id}` });
     return;
   }
@@ -129,28 +132,103 @@ app.post("/session/:sessionId/interact", async (req, res) => {
     return;
   }
 
-  try {
-    const detectedIntent = await detectIntent({
-      message: parsedBody.data.interaction,
-      intents: history.intentDefinitions,
-      language: history.language,
-    });
+  let discoveredClueIds: string[] = [];
 
-    console.log("intent_detector_result", {
-      sessionId: session.id,
-      stateId: id,
-      interaction: parsedBody.data.interaction,
-      detectedIntent,
-    });
-  } catch (error) {
-    res.status(502).json({
-      error: error instanceof Error ? error.message : "Intent detection failed",
-    });
-    return;
+  if (resolvedState.type === "location" && !resolvedState.state.visited) {
+    const location = history.locations.find(
+      (historyLocation) => historyLocation.id === resolvedState.state.locationId
+    );
+
+    resolvedState.state.visited = true;
+    resolvedState.state.visitedAt = new Date();
+    session.progress.visitedLocationIds = addUnique(
+      session.progress.visitedLocationIds,
+      resolvedState.state.locationId
+    );
+
+    if (location) {
+      discoveredClueIds = location.ambientClueIds.filter(
+        (clueId) => !session.progress.discoveredClueIds.includes(clueId)
+      );
+      resolvedState.state.revealedAmbientClueIds = addUnique(
+        resolvedState.state.revealedAmbientClueIds,
+        ...location.ambientClueIds
+      );
+      session.progress.discoveredClueIds = addUnique(
+        session.progress.discoveredClueIds,
+        ...location.ambientClueIds
+      );
+    }
   }
 
-  res.json({ id });
+  let detectedIntents: DetectedIntent[] = [];
+
+  if (resolvedState.type !== "location") {
+    try {
+      detectedIntents = await detectIntent({
+        message: parsedBody.data.interaction,
+        intents: history.intentDefinitions,
+        language: history.language,
+      });
+
+      console.log("intent_detector_result", {
+        sessionId: session.id,
+        stateId: id,
+        interaction: parsedBody.data.interaction,
+        detectedIntents,
+      });
+    } catch (error) {
+      res.status(502).json({
+        error:
+          error instanceof Error ? error.message : "Intent detection failed",
+      });
+      return;
+    }
+  }
+
+  const discoveredClues = history.clues.filter((clue) =>
+    discoveredClueIds.includes(clue.id)
+  );
+
+  res.json({
+    id,
+    detectedIntents,
+    discoveredClues,
+    sessionStatus: session.status,
+    session,
+  });
 });
+
+function addUnique<T>(items: T[], ...newItems: T[]): T[] {
+  return Array.from(new Set([...items, ...newItems]));
+}
+
+type ResolvedSessionState =
+  | { type: "character"; state: CharacterSessionState }
+  | { type: "object"; state: ObjectSessionState }
+  | { type: "location"; state: LocationSessionState };
+
+function resolveSessionState(
+  session: HistorySession,
+  stateId: string
+): ResolvedSessionState | undefined {
+  const characterState = session.characterStates.find(
+    (state) => state.id === stateId
+  );
+  if (characterState) return { type: "character", state: characterState };
+
+  const objectState = session.objectStates.find(
+    (state) => state.id === stateId
+  );
+  if (objectState) return { type: "object", state: objectState };
+
+  const locationState = session.locationStates.find(
+    (state) => state.id === stateId
+  );
+  if (locationState) return { type: "location", state: locationState };
+
+  return undefined;
+}
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
