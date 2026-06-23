@@ -67,7 +67,16 @@ npm run build        # turbo run build (builds all workspaces)
 ```sh
 npm run lint         # turbo run lint
 npm run typecheck    # turbo run typecheck
-npm run verify       # format + lint + typecheck + build
+npm run verify       # format + lint + typecheck + build + test
+```
+
+### Testing
+
+```sh
+npm run test              # turbo run test
+npm run test -w @ai-history/api          # run api tests only
+npm run test:watch -w @ai-history/api    # watch mode
+npm run test:coverage -w @ai-history/api # with coverage report
 ```
 
 ## Conventions
@@ -83,3 +92,14 @@ npm run verify       # format + lint + typecheck + build
 - Environment variables are loaded from the root `.env` file (symlinked into `apps/api/` for Prisma).
 - API runs on port 3232. Postgres runs on port 5555.
 - Commit messages are lowercase and imperative (e.g. `add prisma with postgres`).
+
+## Mandatory practices
+
+- **Unit tests are required.** Every repository, service, and controller must have unit tests. Tests run as part of `npm run verify` — no PR is complete without passing tests.
+- **Swagger documentation is required.** Every new endpoint must be documented with JSDoc `@openapi` annotations in its route file. Undocumented endpoints are not allowed.
+- **SOLID principles must be followed:**
+  - **Single Responsibility:** each class does one thing — controllers handle HTTP, services contain business logic, repositories handle persistence.
+  - **Open/Closed:** extend behavior through new classes or interfaces, not by modifying existing ones.
+  - **Liskov Substitution:** any repository implementation must be substitutable through its interface without breaking the service.
+  - **Interface Segregation:** interfaces should be small and focused — don't force implementations to depend on methods they don't use.
+  - **Dependency Inversion:** services depend on interfaces (`IUserRepository`), never on concrete classes (`UserRepository`).
