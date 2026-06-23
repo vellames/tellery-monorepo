@@ -14,7 +14,7 @@ RUN npm install
 # Copy the rest of the monorepo.
 COPY . .
 
-EXPOSE 3000
+EXPOSE 3232
 
 # Run the api dev server (tsx watch) via the workspace.
 CMD ["npm", "run", "dev", "-w", "@ai-history/api"]

@@ -33,5 +33,5 @@ WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=builder /app/ .
 WORKDIR /app/apps/api
-EXPOSE 3000
+EXPOSE 3232
 CMD ["npm", "start"]
