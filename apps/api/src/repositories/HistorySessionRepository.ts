@@ -10,6 +10,7 @@ import {
   CharacterConversationMessage,
   IHistorySessionRepository,
 } from "../interfaces";
+import { PrismaTransaction } from "../types/database.types";
 
 export class HistorySessionRepository implements IHistorySessionRepository {
   private readonly sessions = new Map<string, HistorySession>();
@@ -17,6 +18,12 @@ export class HistorySessionRepository implements IHistorySessionRepository {
     string,
     CharacterConversationMessage[]
   >();
+
+  async runTransaction<T>(
+    _callback: (tx: PrismaTransaction) => Promise<T>
+  ): Promise<T> {
+    throw new Error("HistorySessionRepository does not support transactions");
+  }
 
   create(input: { userId: string; history: History }): HistorySession {
     const session = createHistorySession({

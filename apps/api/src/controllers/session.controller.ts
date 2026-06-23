@@ -13,7 +13,7 @@ export class SessionController {
     private readonly sessionInteractionService: SessionInteractionService
   ) {}
 
-  start = (req: Request, res: Response): void => {
+  start = async (req: Request, res: Response): Promise<void> => {
     const parsedBody = startSessionBodySchema.safeParse(req.body);
 
     if (!parsedBody.success) {
@@ -25,7 +25,9 @@ export class SessionController {
     }
 
     try {
-      const response = this.historySessionService.startSession(parsedBody.data);
+      const response = await this.historySessionService.startSession(
+        parsedBody.data
+      );
       res.status(201).json(response);
     } catch (error) {
       this.handleError(error, res);

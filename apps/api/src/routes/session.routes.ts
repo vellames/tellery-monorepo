@@ -70,8 +70,8 @@ const router = Router();
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post("/start", (req, res) => {
-  DIContainer.getInstance().getSessionController().start(req, res);
+router.post("/start", async (req, res) => {
+  await DIContainer.getInstance().getSessionController().start(req, res);
 });
 
 /**

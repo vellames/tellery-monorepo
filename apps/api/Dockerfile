@@ -13,7 +13,7 @@ RUN npm install -g turbo@2
 COPY . .
 RUN turbo prune @ai-history/api --docker
 
-# ---- Builder: install deps and build ----
+# ---- Builder: install deps, generate Prisma client, build ----
 FROM base AS builder
 WORKDIR /app
 # Install dependencies using the pruned lockfile (better layer caching).
@@ -25,6 +25,8 @@ COPY --from=pruner /app/out/full/ .
 COPY --from=pruner /app/tsconfig.base.json ./tsconfig.base.json
 # Root-level mocks/ are not part of any workspace package, so prune omits them.
 COPY --from=pruner /app/mocks ./mocks
+# Generate Prisma client.
+RUN npx prisma generate --schema=apps/api/prisma/schema.prisma
 RUN npx turbo run build --filter=@ai-history/api
 
 # ---- Runner: production image ----
@@ -34,4 +36,5 @@ ENV NODE_ENV=production
 COPY --from=builder /app/ .
 WORKDIR /app/apps/api
 EXPOSE 3232
+# `npm start` runs `prisma migrate deploy` (safe, additive) then the server.
 CMD ["npm", "start"]

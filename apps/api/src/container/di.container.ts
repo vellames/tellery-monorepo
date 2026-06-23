@@ -1,3 +1,4 @@
+import { PrismaClient } from "@prisma/client";
 import { HealthController } from "../controllers/health.controller";
 import { SessionController } from "../controllers/session.controller";
 import {
@@ -16,7 +17,11 @@ import { SessionInteractionService } from "../services/session/session-interacti
 export class DIContainer {
   private static instance: DIContainer;
 
-  private readonly userRepository: IUserRepository = new UserRepository();
+  private readonly prisma = new PrismaClient();
+
+  private readonly userRepository: IUserRepository = new UserRepository(
+    this.prisma
+  );
   private readonly historyRepository: IHistoryRepository =
     new HistoryRepository();
   private readonly historySessionRepository: IHistorySessionRepository =

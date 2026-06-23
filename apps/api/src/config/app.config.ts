@@ -6,6 +6,10 @@ const DEFAULT_MODEL =
 export const appConfig = {
   port: process.env.PORT ?? 3232,
 
+  database: {
+    url: process.env.DATABASE_URL,
+  },
+
   language: {
     default: process.env.DEFAULT_LANGUAGE ?? "pt-BR",
   },

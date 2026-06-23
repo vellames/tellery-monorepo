@@ -18,9 +18,32 @@ services:
       - /app/packages/i18n/node_modules
     env_file:
       - ../../.env
+    depends_on:
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
     networks:
       - ai-history-network
+
+  postgres:
+    image: postgres:16-alpine
+    env_file:
+      - ../../.env
+    ports:
+      - "${DB_PORT:-5555}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - ai-history-network
+
+volumes:
+  postgres_data:
 
 networks:
   ai-history-network:

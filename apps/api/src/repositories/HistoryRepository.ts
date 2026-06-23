@@ -1,11 +1,18 @@
 import { History } from "../models";
 import { IHistoryRepository } from "../interfaces";
+import { PrismaTransaction } from "../types/database.types";
 import { loadMockJson } from "./mockLoader";
 
 export class HistoryRepository implements IHistoryRepository {
   private readonly histories = [
     loadMockJson<History>("o-bilhete-na-mesa-7.json"),
   ];
+
+  async runTransaction<T>(
+    _callback: (tx: PrismaTransaction) => Promise<T>
+  ): Promise<T> {
+    throw new Error("HistoryRepository does not support transactions");
+  }
 
   findDefault(): History | undefined {
     return this.histories[0];

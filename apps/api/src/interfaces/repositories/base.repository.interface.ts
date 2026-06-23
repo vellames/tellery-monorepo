@@ -1,5 +1,7 @@
-/**
- * Base repository interface that all repositories implement.
- * When a database layer is introduced, transaction support can be added here.
- */
-export interface IBaseRepository {}
+import { PrismaTransaction } from "../../types/database.types";
+
+export interface IBaseRepository {
+  runTransaction<T>(
+    callback: (tx: PrismaTransaction) => Promise<T>
+  ): Promise<T>;
+}
