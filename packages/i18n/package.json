@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "build": "tsc && npm run copy-locales",
-    "copy-locales": "cp -R src/locales dist/locales",
+    "copy-locales": "cp -R src/locales/. dist/locales",
     "dev": "tsc --watch --preserveWatchOutput",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
