@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import { IUserRepository } from '../../interfaces';
+import { IUserRepository, IPasswordHasher } from '../../interfaces';
 import {
   CreateUserDto,
   UpdateUserDto,
@@ -8,7 +8,10 @@ import {
 import { HttpError } from '../../utils/http-error';
 
 export class UserService {
-  constructor(private readonly users: IUserRepository) {}
+  constructor(
+    private readonly users: IUserRepository,
+    private readonly passwordHasher: IPasswordHasher
+  ) {}
 
   async create(data: CreateUserDto): Promise<UserResponseDto> {
     const existing = await this.users.findByEmail(data.email);
@@ -20,7 +23,8 @@ export class UserService {
       );
     }
 
-    const user = await this.users.create(data);
+    const hashedPassword = await this.passwordHasher.hash(data.password);
+    const user = await this.users.create({ ...data, password: hashedPassword });
     return this.toResponseDto(user);
   }
 
@@ -54,7 +58,12 @@ export class UserService {
       }
     }
 
-    const updated = await this.users.update(id, data);
+    const updateData: UpdateUserDto = { ...data };
+    if (data.password) {
+      updateData.password = await this.passwordHasher.hash(data.password);
+    }
+
+    const updated = await this.users.update(id, updateData);
     return this.toResponseDto(updated);
   }
 

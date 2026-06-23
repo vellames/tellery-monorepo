@@ -15,6 +15,7 @@ const envSchema = z.object({
     .enum(['development', 'production', 'test'])
     .default('development'),
   CORS_ORIGIN: z.string().default('*'),
+  BCRYPT_SALT_ROUNDS: z.coerce.number().int().min(8).max(15).default(10),
 });
 
 const parsed = envSchema.safeParse(process.env);
@@ -50,5 +51,9 @@ export const appConfig = {
     objectAgentModel: env.OPENROUTER_OBJECT_MODEL ?? env.OPENROUTER_MODEL,
     characterAgentModel: env.OPENROUTER_CHARACTER_MODEL ?? env.OPENROUTER_MODEL,
     intentDetectorThreshold: env.INTENT_DETECTOR_THRESHOLD,
+  },
+
+  security: {
+    bcryptSaltRounds: env.BCRYPT_SALT_ROUNDS,
   },
 } as const;

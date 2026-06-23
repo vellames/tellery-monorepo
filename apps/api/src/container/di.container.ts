@@ -1,10 +1,12 @@
 import { PrismaClient } from '@prisma/client';
+import { appConfig } from '../config/app.config';
 import { HealthController } from '../controllers/health.controller';
 import { SessionController } from '../controllers/session.controller';
 import { UserController } from '../controllers/user/user.controller';
 import {
   IHistoryRepository,
   IHistorySessionRepository,
+  IPasswordHasher,
   IUserRepository,
 } from '../interfaces';
 import {
@@ -14,6 +16,7 @@ import {
 } from '../repositories';
 import { HistorySessionService } from '../services/session/history-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
+import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
 import { UserService } from '../services/user/user.service';
 
 export class DIContainer {
@@ -30,7 +33,13 @@ export class DIContainer {
     new HistorySessionRepository();
 
   private readonly healthController = new HealthController(this.prisma);
-  private readonly userService = new UserService(this.userRepository);
+  private readonly passwordHasher: IPasswordHasher = new BcryptPasswordHasher(
+    appConfig.security.bcryptSaltRounds
+  );
+  private readonly userService = new UserService(
+    this.userRepository,
+    this.passwordHasher
+  );
   private readonly userController = new UserController(this.userService);
   private readonly historySessionService = new HistorySessionService(
     this.userRepository,

@@ -2,7 +2,7 @@ import request from 'supertest';
 import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { Request, Response } from 'express';
-import { IUserRepository } from '../../interfaces';
+import { IUserRepository, IPasswordHasher } from '../../interfaces';
 import { User } from '@prisma/client';
 import { UserController } from '../../controllers/user/user.controller';
 import { UserService } from '../../services/user/user.service';
@@ -10,7 +10,10 @@ import { initI18n } from '@ai-history/i18n';
 
 // Build mock-backed controller instances before mocking the container
 const mockRepo: DeepMockProxy<IUserRepository> = mockDeep<IUserRepository>();
-const userService = new UserService(mockRepo);
+const mockPasswordHasher: DeepMockProxy<IPasswordHasher> =
+  mockDeep<IPasswordHasher>();
+mockPasswordHasher.hash.mockResolvedValue('hashed-password');
+const userService = new UserService(mockRepo, mockPasswordHasher);
 const userController = new UserController(userService);
 
 // Mock DIContainer so routes use our mock-backed controllers

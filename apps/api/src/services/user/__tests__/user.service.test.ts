@@ -1,6 +1,6 @@
 import { User } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
-import { IUserRepository } from '../../../interfaces';
+import { IUserRepository, IPasswordHasher } from '../../../interfaces';
 import { UserService } from '../user.service';
 import { HttpError } from '../../../utils/http-error';
 
@@ -11,21 +11,25 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   deletedAt: null,
   name: 'Ana Teste',
   email: 'ana@teste.local',
-  password: 'password123',
+  password: 'hashed-password',
   ...overrides,
 });
 
 describe('UserService', () => {
   let repo: DeepMockProxy<IUserRepository>;
+  let passwordHasher: DeepMockProxy<IPasswordHasher>;
   let service: UserService;
 
   beforeEach(() => {
     repo = mockDeep<IUserRepository>();
-    service = new UserService(repo);
+    passwordHasher = mockDeep<IPasswordHasher>();
+    passwordHasher.hash.mockResolvedValue('hashed-password');
+    service = new UserService(repo, passwordHasher);
   });
 
   afterEach(() => {
     mockReset(repo);
+    mockReset(passwordHasher);
   });
 
   describe('create', () => {
@@ -39,6 +43,12 @@ describe('UserService', () => {
         password: 'password123',
       });
 
+      expect(passwordHasher.hash).toHaveBeenCalledWith('password123');
+      expect(repo.create).toHaveBeenCalledWith({
+        name: 'Ana Teste',
+        email: 'ana@teste.local',
+        password: 'hashed-password',
+      });
       expect(result).toEqual({
         id: 'user-1',
         name: 'Ana Teste',
@@ -66,6 +76,21 @@ describe('UserService', () => {
           password: 'password123',
         })
       ).rejects.toThrow('Email already in use');
+    });
+
+    it('should not hash the password when email is already in use', async () => {
+      repo.findByEmail.mockResolvedValue(mockUser());
+
+      await expect(
+        service.create({
+          name: 'Ana Teste',
+          email: 'ana@teste.local',
+          password: 'password123',
+        })
+      ).rejects.toThrow(HttpError);
+
+      expect(passwordHasher.hash).not.toHaveBeenCalled();
+      expect(repo.create).not.toHaveBeenCalled();
     });
 
     it('should not expose password in the response', async () => {
@@ -133,6 +158,27 @@ describe('UserService', () => {
       const result = await service.update('user-1', { name: 'Updated' });
 
       expect(result.name).toBe('Updated');
+    });
+
+    it('should hash the new password before updating', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      repo.update.mockResolvedValue(mockUser());
+
+      await service.update('user-1', { password: 'new-password' });
+
+      expect(passwordHasher.hash).toHaveBeenCalledWith('new-password');
+      expect(repo.update).toHaveBeenCalledWith('user-1', {
+        password: 'hashed-password',
+      });
+    });
+
+    it('should not hash the password when it is not being updated', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      repo.update.mockResolvedValue(mockUser({ name: 'New Name' }));
+
+      await service.update('user-1', { name: 'New Name' });
+
+      expect(passwordHasher.hash).not.toHaveBeenCalled();
     });
 
     it('should throw 404 when user is not found', async () => {
