@@ -1,4 +1,4 @@
-import { History } from "../models";
+import { History } from "../../models";
 import { IBaseRepository } from "./base.repository.interface";
 
 export interface IHistoryRepository extends IBaseRepository {

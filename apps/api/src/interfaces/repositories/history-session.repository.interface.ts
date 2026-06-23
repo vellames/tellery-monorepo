@@ -1,4 +1,4 @@
-import { History, HistorySession } from "../models";
+import { History, HistorySession } from "../../models";
 import { IBaseRepository } from "./base.repository.interface";
 
 export interface CharacterConversationMessage {
