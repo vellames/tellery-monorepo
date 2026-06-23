@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { StatusCodes } from 'http-status-codes';
 import { TranslationFunction } from '../types/i18n.types';
 
 export class HealthController {
@@ -32,7 +33,7 @@ export class HealthController {
         database: t('common:database.connected'),
       });
     } catch {
-      res.status(503).json({
+      res.status(StatusCodes.SERVICE_UNAVAILABLE).json({
         status: t('common:status.unhealthy'),
         database: t('common:database.disconnected'),
       });

@@ -13,6 +13,7 @@ import {
 import { InteractBody } from '../../types/http/session.validation';
 import { addUnique } from '../../utils/array';
 import { HttpError } from '../../utils/http-error';
+import { StatusCodes } from 'http-status-codes';
 import { resolveSessionState } from './session-state-resolver';
 
 export class SessionInteractionService {
@@ -24,20 +25,28 @@ export class SessionInteractionService {
   async interact(sessionId: string, input: InteractBody) {
     const session = this.sessions.findById(sessionId);
     if (!session) {
-      throw new HttpError(404, sessionId, 'session:errors.unknownSession');
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        sessionId,
+        'session:errors.unknownSession'
+      );
     }
 
     const id = input.stateId;
     const resolvedState = resolveSessionState(session, id);
 
     if (!resolvedState) {
-      throw new HttpError(404, id, 'session:errors.unknownSessionState');
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        id,
+        'session:errors.unknownSessionState'
+      );
     }
 
     const history = this.histories.findById(session.historyId);
     if (!history) {
       throw new HttpError(
-        404,
+        StatusCodes.NOT_FOUND,
         session.historyId,
         'session:errors.unknownHistory'
       );
@@ -100,7 +109,7 @@ export class SessionInteractionService {
 
           if (!character) {
             throw new HttpError(
-              404,
+              StatusCodes.NOT_FOUND,
               resolvedState.state.characterId,
               'session:errors.unknownCharacter'
             );
@@ -179,7 +188,7 @@ export class SessionInteractionService {
 
           if (!object) {
             throw new HttpError(
-              404,
+              StatusCodes.NOT_FOUND,
               resolvedState.state.objectId,
               'session:errors.unknownObject'
             );
@@ -227,7 +236,7 @@ export class SessionInteractionService {
         if (error instanceof HttpError) throw error;
 
         throw new HttpError(
-          502,
+          StatusCodes.BAD_GATEWAY,
           error instanceof Error ? error.message : '',
           'session:errors.intentDetectionFailed'
         );

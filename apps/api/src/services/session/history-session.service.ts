@@ -5,6 +5,7 @@ import {
 } from '../../interfaces';
 import { HttpError } from '../../utils/http-error';
 import { StartSessionBody } from '../../types/http/session.validation';
+import { StatusCodes } from 'http-status-codes';
 
 export class HistorySessionService {
   constructor(
@@ -16,7 +17,11 @@ export class HistorySessionService {
   async startSession(input: StartSessionBody) {
     const user = await this.users.findById(input.userId);
     if (!user) {
-      throw new HttpError(404, input.userId, 'user:errors.unknownUser');
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        input.userId,
+        'user:errors.unknownUser'
+      );
     }
 
     const history =
@@ -29,7 +34,11 @@ export class HistorySessionService {
       this.histories.findDefault();
 
     if (!history) {
-      throw new HttpError(404, '', 'session:errors.noHistoryAvailable');
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        '',
+        'session:errors.noHistoryAvailable'
+      );
     }
 
     const session = this.sessions.create({
