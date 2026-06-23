@@ -103,3 +103,9 @@ npm run test:coverage -w @ai-history/api # with coverage report
   - **Liskov Substitution:** any repository implementation must be substitutable through its interface without breaking the service.
   - **Interface Segregation:** interfaces should be small and focused — don't force implementations to depend on methods they don't use.
   - **Dependency Inversion:** services depend on interfaces (`IUserRepository`), never on concrete classes (`UserRepository`).
+- **HTTP status codes:**
+  - `422 Unprocessable Entity` — invalid user input (failed Zod validation, missing required fields, bad values). This is the default for validation errors.
+  - `400 Bad Request` — protocol-level errors only (malformed JSON, wrong content-type, Prisma-level errors). Never use 400 for user data validation.
+  - `404 Not Found` — resource does not exist.
+  - `409 Conflict` — duplicate resource (e.g. email already in use).
+  - `500 Internal Server Error` — unexpected server errors.

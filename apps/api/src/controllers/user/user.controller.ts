@@ -14,7 +14,7 @@ export class UserController {
       handleError(
         res,
         new Error('Invalid request body'),
-        StatusCodes.BAD_REQUEST
+        StatusCodes.UNPROCESSABLE_ENTITY
       );
       return;
     }

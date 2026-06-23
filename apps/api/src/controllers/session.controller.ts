@@ -22,7 +22,7 @@ export class SessionController {
       handleError(
         res,
         new Error('Invalid request body'),
-        StatusCodes.BAD_REQUEST
+        StatusCodes.UNPROCESSABLE_ENTITY
       );
       return;
     }
@@ -47,7 +47,7 @@ export class SessionController {
       handleError(
         res,
         new Error('Invalid request body'),
-        StatusCodes.BAD_REQUEST
+        StatusCodes.UNPROCESSABLE_ENTITY
       );
       return;
     }
