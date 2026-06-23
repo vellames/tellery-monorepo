@@ -1,6 +1,11 @@
 import express from "express";
 import { z } from "zod";
-import { detectIntent, DetectedIntent } from "./engine";
+import {
+  detectIntent,
+  DetectedIntent,
+  ObjectAgentDiscoveredClue,
+  runObjectAgent,
+} from "./engine";
 import {
   CharacterSessionState,
   HistorySession,
@@ -162,6 +167,7 @@ app.post("/session/:sessionId/interact", async (req, res) => {
   }
 
   let detectedIntents: DetectedIntent[] = [];
+  let objectAgentDiscoveredClues: ObjectAgentDiscoveredClue[] = [];
 
   if (resolvedState.type !== "location") {
     try {
@@ -177,6 +183,57 @@ app.post("/session/:sessionId/interact", async (req, res) => {
         interaction: parsedBody.data.interaction,
         detectedIntents,
       });
+
+      if (resolvedState.type === "object") {
+        const object = history.objects.find(
+          (historyObject) => historyObject.id === resolvedState.state.objectId
+        );
+
+        if (!object) {
+          res.status(404).json({
+            error: `Unknown objectId: ${resolvedState.state.objectId}`,
+          });
+          return;
+        }
+
+        objectAgentDiscoveredClues = await runObjectAgent({
+          object,
+          clues: history.clues,
+          detectedIntents,
+          discoveredClueIds: session.progress.discoveredClueIds,
+          language: history.language,
+        });
+
+        const objectDiscoveredClueIds = objectAgentDiscoveredClues.map(
+          (clue) => clue.clueId
+        );
+
+        resolvedState.state.inspected = true;
+        resolvedState.state.inspectedAt = new Date();
+        resolvedState.state.revealedClueIds = addUnique(
+          resolvedState.state.revealedClueIds,
+          ...objectDiscoveredClueIds
+        );
+        session.progress.inspectedObjectIds = addUnique(
+          session.progress.inspectedObjectIds,
+          resolvedState.state.objectId
+        );
+        session.progress.discoveredClueIds = addUnique(
+          session.progress.discoveredClueIds,
+          ...objectDiscoveredClueIds
+        );
+        discoveredClueIds = addUnique(
+          discoveredClueIds,
+          ...objectDiscoveredClueIds
+        );
+
+        console.log("object_agent_result", {
+          sessionId: session.id,
+          stateId: id,
+          objectId: object.id,
+          objectAgentDiscoveredClues,
+        });
+      }
     } catch (error) {
       res.status(502).json({
         error:
@@ -193,6 +250,7 @@ app.post("/session/:sessionId/interact", async (req, res) => {
   res.json({
     id,
     detectedIntents,
+    objectAgentDiscoveredClues,
     discoveredClues,
     sessionStatus: session.status,
     session,

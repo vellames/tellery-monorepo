@@ -12,6 +12,9 @@ export const DEFAULT_MODEL =
 export const INTENT_DETECTOR_MODEL =
   process.env.OPENROUTER_INTENT_MODEL ?? DEFAULT_MODEL;
 
+export const OBJECT_AGENT_MODEL =
+  process.env.OPENROUTER_OBJECT_MODEL ?? DEFAULT_MODEL;
+
 export const INTENT_DETECTOR_THRESHOLD = Number(
   process.env.INTENT_DETECTOR_THRESHOLD ?? "0.5"
 );
