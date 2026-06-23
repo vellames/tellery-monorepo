@@ -7,6 +7,53 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum HistoryStatus {
+  draft
+  published
+  archived
+}
+
+enum ClueImportance {
+  required
+  supporting
+  red_herring
+}
+
+enum ConclusionFieldType {
+  character
+  choice
+}
+
+enum EndingType {
+  full_truth
+  partial_truth
+  wrong_accusation
+}
+
+enum SecretDefaultStrategy {
+  deny
+  avoid
+  deflect
+  cover_story
+  justify
+}
+
+enum HistorySessionStatus {
+  active
+  completed
+  abandoned
+}
+
+enum InteractionRole {
+  user
+  character
+  object
+}
+
+// ─── User ─────────────────────────────────────────────────────────────────────
+
 model User {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
@@ -17,5 +64,736 @@ model User {
   email    String @unique
   password String
 
-  @@map("users")
+  sessions HistorySession[]
+}
+
+// ─── History (authored content) ───────────────────────────────────────────────
+
+model History {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  slug String @unique
+
+  title    String
+  subtitle String?
+  teaser   String
+
+  genre String
+
+  estimatedDurationMinutes Int
+  status                   HistoryStatus @default(draft)
+
+  coverImageUrl String?
+  thumbnailUrl  String?
+
+  opening   String
+  objective String
+
+  publishedAt DateTime?
+
+  intentDefinitions IntentDefinition[]
+  characters        CharacterDefinition[]
+  locations         LocationDefinition[]
+  objects           ObjectDefinition[]
+  clues             ClueDefinition[]
+  conclusion        ConclusionDefinition?
+  endings           EndingDefinition[]
+}
+
+model IntentDefinition {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  historyId String
+  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+
+  description String
+  examples    String[] @default([])
+  keywords    String[] @default([])
+
+  triggerIntentsForCharacterRules CharacterClueRevealRule[] @relation("CharacterRevealRuleTriggerIntents")
+  triggerIntentsForObjectRules    ObjectClueRevealRule[]    @relation("ObjectRevealRuleTriggerIntents")
+  triggerIntentsForSecretStages   SecretRevealStage[]       @relation("SecretStageTriggerIntents")
+
+  @@index([historyId])
+}
+
+model CharacterDefinition {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  historyId String
+  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+
+  name             String
+  role             String
+  shortDescription String
+
+  imageUrl String?
+
+  personality   String
+  speakingStyle String
+
+  publicKnowledge        String[] @default([])
+  privateKnowledge       String[] @default([])
+  conversationBoundaries String[] @default([])
+
+  openingLine String
+
+  clueRevealRules CharacterClueRevealRule[]
+  secrets         CharacterSecret[]
+
+  @@index([historyId])
+}
+
+model CharacterClueRevealRule {
+  id String @id @default(uuid())
+
+  characterId String
+  character   CharacterDefinition @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  clueId String
+  clue   ClueDefinition @relation("CharacterRevealRuleClue", fields: [clueId], references: [id], onDelete: Cascade)
+
+  triggerIntents IntentDefinition[] @relation("CharacterRevealRuleTriggerIntents")
+  requiredClues  ClueDefinition[]   @relation("CharacterRevealRuleRequiredClues")
+
+  revealText       String
+  responseGuidance String
+
+  @@index([characterId])
+  @@index([clueId])
+}
+
+model CharacterSecret {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  characterId String
+  character   CharacterDefinition @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  summary String
+  truth   String
+
+  defaultStrategy SecretDefaultStrategy
+
+  revealStages SecretRevealStage[]
+
+  @@index([characterId])
+}
+
+model SecretRevealStage {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  secretId String
+  secret   CharacterSecret @relation(fields: [secretId], references: [id], onDelete: Cascade)
+
+  level Int
+
+  triggerIntents IntentDefinition[] @relation("SecretStageTriggerIntents")
+  requiredClues  ClueDefinition[]   @relation("SecretStageRequiredClues")
+  revealedClues  ClueDefinition[]   @relation("SecretStageRevealedClues")
+
+  behavior             String
+  allowedToRevealTruth Boolean
+
+  sampleResponses String[] @default([])
+
+  @@index([secretId])
+}
+
+model LocationDefinition {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  historyId String
+  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+
+  name             String
+  shortDescription String
+
+  imageUrl String?
+
+  initialDescription String
+
+  ambientClues ClueDefinition[] @relation("LocationAmbientClues")
+
+  objects ObjectDefinition[]
+
+  @@index([historyId])
+}
+
+model ObjectDefinition {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  historyId String
+  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+
+  locationId String
+  location   LocationDefinition @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  name             String
+  shortDescription String
+
+  imageUrl String?
+
+  initialDescription String
+
+  clueRevealRules ObjectClueRevealRule[]
+
+  @@index([historyId])
+  @@index([locationId])
+}
+
+model ObjectClueRevealRule {
+  id String @id @default(uuid())
+
+  objectId String
+  object   ObjectDefinition @relation(fields: [objectId], references: [id], onDelete: Cascade)
+
+  clueId String
+  clue   ClueDefinition @relation("ObjectRevealRuleClue", fields: [clueId], references: [id], onDelete: Cascade)
+
+  triggerIntents IntentDefinition[] @relation("ObjectRevealRuleTriggerIntents")
+  requiredClues  ClueDefinition[]   @relation("ObjectRevealRuleRequiredClues")
+
+  revealText String
+
+  @@index([objectId])
+  @@index([clueId])
+}
+
+model ClueDefinition {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  historyId String
+  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+
+  title       String
+  description String
+
+  importance ClueImportance
+
+  characterRevealRules CharacterClueRevealRule[] @relation("CharacterRevealRuleClue")
+  objectRevealRules    ObjectClueRevealRule[]    @relation("ObjectRevealRuleClue")
+
+  requiredByCharacterRules CharacterClueRevealRule[] @relation("CharacterRevealRuleRequiredClues")
+  requiredByObjectRules    ObjectClueRevealRule[]    @relation("ObjectRevealRuleRequiredClues")
+
+  requiredBySecretStages SecretRevealStage[] @relation("SecretStageRequiredClues")
+  revealedBySecretStages SecretRevealStage[] @relation("SecretStageRevealedClues")
+
+  ambientInLocations LocationDefinition[] @relation("LocationAmbientClues")
+  requiredByEndings  EndingDefinition[]   @relation("EndingRequiredClues")
+
+  @@index([historyId])
+}
+
+model ConclusionDefinition {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  historyId String @unique
+  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+
+  fields ConclusionField[]
+}
+
+model ConclusionField {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  conclusionId String
+  conclusion   ConclusionDefinition @relation(fields: [conclusionId], references: [id], onDelete: Cascade)
+
+  label String
+  type  ConclusionFieldType
+
+  options ConclusionOption[]
+
+  @@index([conclusionId])
+}
+
+model ConclusionOption {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  fieldId String
+  field   ConclusionField @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+
+  label String
+
+  @@index([fieldId])
+}
+
+model EndingDefinition {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  historyId String
+  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+
+  title String
+
+  type EndingType
+
+  conclusionMatches Json
+  requiredClues     ClueDefinition[] @relation("EndingRequiredClues")
+
+  summary  String
+  epilogue String
+
+  @@index([historyId])
+}
+
+// ─── History session (runtime state — full definition snapshot) ───────────────
+
+model HistorySession {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  historyId String
+
+  // history snapshot
+  title                    String
+  subtitle                 String?
+  teaser                   String
+  opening                  String
+  objective                String
+  genre                    String
+  coverImageUrl            String?
+  thumbnailUrl             String?
+  estimatedDurationMinutes Int
+
+  status      HistorySessionStatus @default(active)
+  startedAt   DateTime             @default(now())
+  completedAt DateTime?
+
+  clues            SessionClue[]
+  intents          SessionIntent[]
+  conclusionFields SessionConclusionField[]
+  endingSnapshots  SessionEndingSnapshot[]
+
+  characterStates CharacterSessionState[]
+  locationStates  LocationSessionState[]
+  objectStates    ObjectSessionState[]
+
+  conclusion SessionConclusion?
+  ending     SessionEnding?
+
+  @@index([userId])
+  @@index([historyId])
+}
+
+model SessionClue {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  sessionId String
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  clueDefinitionId String
+
+  title       String
+  description String
+  importance ClueImportance
+
+  discovered   Boolean   @default(false)
+  discoveredAt DateTime?
+
+  characterRules              SessionCharacterClueRevealRule[] @relation("CharRuleClue")
+  objectRules                 SessionObjectClueRevealRule[]    @relation("ObjRuleClue")
+  requiredByCharacterRules    SessionCharacterClueRevealRule[] @relation("CharRuleRequiredClues")
+  requiredByObjectRules       SessionObjectClueRevealRule[]    @relation("ObjRuleRequiredClues")
+  requiredBySecretStages      SessionSecretRevealStage[]       @relation("SecretStageRequiredClues")
+  revealedBySecretStages      SessionSecretRevealStage[]       @relation("SecretStageRevealedClues")
+  ambientForLocations         LocationSessionState[]           @relation("LocationAmbientClues")
+  revealedAmbientForLocations LocationSessionState[]           @relation("LocationRevealedAmbientClues")
+  requiredByEndings           SessionEndingSnapshot[]          @relation("EndingRequiredClues")
+  revealedByCharacterStates   CharacterSessionState[]         @relation("CharStateRevealedClues")
+  revealedByObjectStates      ObjectSessionState[]            @relation("ObjStateRevealedClues")
+  revealedBySecretStates      CharacterSecretSessionState[]   @relation("SecretStateRevealedClues")
+
+  @@index([sessionId])
+}
+
+model SessionIntent {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  sessionId String
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  intentDefinitionId String
+
+  description String
+  examples    String[] @default([])
+  keywords    String[] @default([])
+
+  triggeredByCharacterRules SessionCharacterClueRevealRule[] @relation("CharRuleTriggerIntents")
+  triggeredByObjectRules    SessionObjectClueRevealRule[]    @relation("ObjRuleTriggerIntents")
+  triggeredBySecretStages   SessionSecretRevealStage[]       @relation("SecretStageTriggerIntents")
+
+  @@index([sessionId])
+}
+
+model CharacterSessionState {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  sessionId String
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  characterDefinitionId String
+
+  name             String
+  role             String
+  shortDescription String
+  imageUrl         String?
+
+  personality   String
+  speakingStyle String
+  openingLine   String
+
+  publicKnowledge        String[] @default([])
+  privateKnowledge       String[] @default([])
+  conversationBoundaries String[] @default([])
+
+  conversationSummary String?
+
+  clueRevealRules SessionCharacterClueRevealRule[]
+  secrets         CharacterSecretSessionState[]
+  revealedClues   SessionClue[]               @relation("CharStateRevealedClues")
+  messages        CharacterConversationMessage[]
+
+  @@index([sessionId])
+}
+
+model SessionCharacterClueRevealRule {
+  id String @id @default(uuid())
+
+  characterStateId String
+  characterState   CharacterSessionState @relation(fields: [characterStateId], references: [id], onDelete: Cascade)
+
+  clueId String
+  clue   SessionClue @relation("CharRuleClue", fields: [clueId], references: [id], onDelete: Cascade)
+
+  triggerIntents SessionIntent[] @relation("CharRuleTriggerIntents")
+  requiredClues  SessionClue[]   @relation("CharRuleRequiredClues")
+
+  revealText       String
+  responseGuidance String
+
+  @@index([characterStateId])
+  @@index([clueId])
+}
+
+model CharacterSecretSessionState {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  characterStateId String
+  characterState   CharacterSessionState @relation(fields: [characterStateId], references: [id], onDelete: Cascade)
+
+  secretDefinitionId String
+
+  summary String
+  truth   String
+
+  defaultStrategy SecretDefaultStrategy
+
+  currentStageLevel Int @default(0)
+
+  revealStages  SessionSecretRevealStage[]
+  revealedClues SessionClue[]              @relation("SecretStateRevealedClues")
+
+  @@index([characterStateId])
+}
+
+model SessionSecretRevealStage {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  secretStateId String
+  secretState   CharacterSecretSessionState @relation(fields: [secretStateId], references: [id], onDelete: Cascade)
+
+  stageDefinitionId String
+
+  level Int
+
+  triggerIntents SessionIntent[] @relation("SecretStageTriggerIntents")
+  requiredClues  SessionClue[]   @relation("SecretStageRequiredClues")
+  revealsClues   SessionClue[]   @relation("SecretStageRevealedClues")
+
+  behavior             String
+  allowedToRevealTruth Boolean
+
+  sampleResponses String[] @default([])
+
+  @@index([secretStateId])
+}
+
+model LocationSessionState {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  sessionId String
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  locationDefinitionId String
+
+  name             String
+  shortDescription String
+  imageUrl         String?
+  initialDescription String
+
+  ambientClues         SessionClue[] @relation("LocationAmbientClues")
+  revealedAmbientClues SessionClue[] @relation("LocationRevealedAmbientClues")
+
+  visited   Boolean   @default(false)
+  visitedAt DateTime?
+
+  @@index([sessionId])
+}
+
+model ObjectSessionState {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  sessionId String
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  objectDefinitionId String
+
+  name             String
+  shortDescription String
+  imageUrl         String?
+  initialDescription String
+
+  clueRevealRules SessionObjectClueRevealRule[]
+  revealedClues   SessionClue[]                 @relation("ObjStateRevealedClues")
+  messages        ObjectInteractionMessage[]
+
+  inspected   Boolean   @default(false)
+  inspectedAt DateTime?
+
+  @@index([sessionId])
+}
+
+model SessionObjectClueRevealRule {
+  id String @id @default(uuid())
+
+  objectStateId String
+  objectState   ObjectSessionState @relation(fields: [objectStateId], references: [id], onDelete: Cascade)
+
+  clueId String
+  clue   SessionClue @relation("ObjRuleClue", fields: [clueId], references: [id], onDelete: Cascade)
+
+  triggerIntents SessionIntent[] @relation("ObjRuleTriggerIntents")
+  requiredClues  SessionClue[]   @relation("ObjRuleRequiredClues")
+
+  revealText String
+
+  @@index([objectStateId])
+  @@index([clueId])
+}
+
+model ObjectInteractionMessage {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  objectStateId String
+  objectState   ObjectSessionState @relation(fields: [objectStateId], references: [id], onDelete: Cascade)
+
+  role    InteractionRole
+  content String
+
+  @@index([objectStateId])
+}
+
+model CharacterConversationMessage {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  characterStateId String
+  characterState   CharacterSessionState @relation(fields: [characterStateId], references: [id], onDelete: Cascade)
+
+  role    InteractionRole
+  content String
+
+  @@index([characterStateId])
+}
+
+model SessionConclusionField {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  sessionId String
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  fieldDefinitionId String
+
+  label String
+  type  ConclusionFieldType
+
+  options SessionConclusionOption[]
+
+  @@index([sessionId])
+}
+
+model SessionConclusionOption {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  fieldId String
+  field   SessionConclusionField @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+
+  optionDefinitionId String
+
+  label String
+
+  @@index([fieldId])
+}
+
+model SessionConclusion {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  sessionId String @unique
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  submittedAt DateTime
+
+  answers SessionConclusionAnswer[]
+
+  @@index([sessionId])
+}
+
+model SessionConclusionAnswer {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  conclusionId String
+  conclusion   SessionConclusion @relation(fields: [conclusionId], references: [id], onDelete: Cascade)
+
+  fieldId String
+  field   SessionConclusionField @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+
+  optionId String
+  option   SessionConclusionOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  @@unique([conclusionId, fieldId])
+  @@index([conclusionId])
+  @@index([fieldId])
+  @@index([optionId])
+}
+
+model SessionEndingSnapshot {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  sessionId String
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  endingDefinitionId String
+
+  title    String
+  type     EndingType
+  summary  String
+  epilogue String
+
+  conclusionMatches Json
+  requiredClues     SessionClue[] @relation("EndingRequiredClues")
+
+  chosenBy SessionEnding?
+
+  @@index([sessionId])
+}
+
+model SessionEnding {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  sessionId String @unique
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  endingSnapshotId String
+  endingSnapshot   SessionEndingSnapshot @relation(fields: [endingSnapshotId], references: [id], onDelete: Cascade)
+
+  score SessionScore?
+
+  @@index([sessionId])
+  @@index([endingSnapshotId])
+}
+
+model SessionScore {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  sessionEndingId String @unique
+  sessionEnding   SessionEnding @relation(fields: [sessionEndingId], references: [id], onDelete: Cascade)
+
+  discoveredClues         Int
+  totalClues              Int
+  requiredCluesDiscovered Int
+  totalRequiredClues      Int
+  correctAnswers          Int
+  totalAnswers            Int
 }
