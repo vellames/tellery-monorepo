@@ -16,8 +16,7 @@
     "format:check": "prettier --check .",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
-    "verify": "npm run format && npm run lint && npm run typecheck && npm run build",
-    "generate-schema": "tsx scripts/generate-schema.ts"
+    "verify": "npm run format && npm run lint && npm run typecheck && npm run build"
   },
   "keywords": [],
   "author": "",
