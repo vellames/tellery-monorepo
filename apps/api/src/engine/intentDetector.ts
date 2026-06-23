@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { INTENT_DETECTOR_MODEL, INTENT_DETECTOR_THRESHOLD } from "../config";
 import { createOpenRouterChatModel } from "../openrouter";
-import { normalizeLanguage, t, SupportedLanguage } from "../i18n";
+import { normalizeLanguage, t, SupportedLanguage } from "@ai-history/i18n";
 import { IntentDefinition } from "../models";
 
 const IntentDetectorResponseSchema = z.array(

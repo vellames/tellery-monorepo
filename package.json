@@ -5,7 +5,8 @@
   "private": true,
   "packageManager": "npm@11.4.2",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
     "build": "turbo run build",

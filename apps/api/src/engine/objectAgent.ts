@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { OBJECT_AGENT_MODEL } from "../config";
-import { normalizeLanguage, SupportedLanguage, t } from "../i18n";
+import { normalizeLanguage, SupportedLanguage, t } from "@ai-history/i18n";
 import { createOpenRouterChatModel } from "../openrouter";
 import {
   ClueDefinition,

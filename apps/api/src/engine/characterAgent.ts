@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { CHARACTER_AGENT_MODEL } from "../config";
-import { normalizeLanguage, SupportedLanguage, t } from "../i18n";
+import { normalizeLanguage, SupportedLanguage, t } from "@ai-history/i18n";
 import {
   CharacterClueRevealRule,
   CharacterDefinition,

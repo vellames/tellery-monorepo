@@ -1,0 +1,26 @@
+{
+  "name": "@ai-history/i18n",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc && npm run copy-locales",
+    "copy-locales": "cp -R src/locales dist/locales",
+    "dev": "tsc --watch --preserveWatchOutput",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "verify": "npm run lint && npm run typecheck && npm run build"
+  },
+  "dependencies": {
+    "i18next": "^24.0.5",
+    "i18next-fs-backend": "^2.3.2",
+    "i18next-http-middleware": "^3.7.4"
+  },
+  "peerDependencies": {
+    "express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6"
+  }
+}

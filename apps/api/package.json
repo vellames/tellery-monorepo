@@ -13,6 +13,7 @@
     "verify": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
+    "@ai-history/i18n": "^1.0.0",
     "@langchain/openai": "^1.5.2",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
