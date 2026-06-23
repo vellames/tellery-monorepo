@@ -7,9 +7,9 @@ import {
   runObjectAgent,
 } from "../../engine";
 import {
-  HistoryRepository,
-  HistorySessionRepository,
-} from "../../repositories";
+  IHistoryRepository,
+  IHistorySessionRepository,
+} from "../../interfaces";
 import { InteractBody } from "../../types/http/session.validation";
 import { addUnique } from "../../utils/array";
 import { HttpError } from "../../utils/http-error";
@@ -17,8 +17,8 @@ import { resolveSessionState } from "./session-state-resolver";
 
 export class SessionInteractionService {
   constructor(
-    private readonly histories: HistoryRepository,
-    private readonly sessions: HistorySessionRepository
+    private readonly histories: IHistoryRepository,
+    private readonly sessions: IHistorySessionRepository
   ) {}
 
   async interact(sessionId: string, input: InteractBody) {

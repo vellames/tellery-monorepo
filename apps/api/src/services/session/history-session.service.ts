@@ -1,16 +1,16 @@
 import {
-  HistoryRepository,
-  HistorySessionRepository,
-  UserRepository,
-} from "../../repositories";
+  IHistoryRepository,
+  IHistorySessionRepository,
+  IUserRepository,
+} from "../../interfaces";
 import { HttpError } from "../../utils/http-error";
 import { StartSessionBody } from "../../types/http/session.validation";
 
 export class HistorySessionService {
   constructor(
-    private readonly users: UserRepository,
-    private readonly histories: HistoryRepository,
-    private readonly sessions: HistorySessionRepository
+    private readonly users: IUserRepository,
+    private readonly histories: IHistoryRepository,
+    private readonly sessions: IHistorySessionRepository
   ) {}
 
   startSession(input: StartSessionBody) {

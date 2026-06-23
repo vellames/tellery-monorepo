@@ -1,6 +1,11 @@
 import { HealthController } from "../controllers/health.controller";
 import { SessionController } from "../controllers/session.controller";
 import {
+  IHistoryRepository,
+  IHistorySessionRepository,
+  IUserRepository,
+} from "../interfaces";
+import {
   HistoryRepository,
   HistorySessionRepository,
   UserRepository,
@@ -11,19 +16,21 @@ import { SessionInteractionService } from "../services/session/session-interacti
 export class DIContainer {
   private static instance: DIContainer;
 
-  private readonly users = new UserRepository();
-  private readonly histories = new HistoryRepository();
-  private readonly sessions = new HistorySessionRepository();
+  private readonly userRepository: IUserRepository = new UserRepository();
+  private readonly historyRepository: IHistoryRepository =
+    new HistoryRepository();
+  private readonly historySessionRepository: IHistorySessionRepository =
+    new HistorySessionRepository();
 
   private readonly healthController = new HealthController();
   private readonly historySessionService = new HistorySessionService(
-    this.users,
-    this.histories,
-    this.sessions
+    this.userRepository,
+    this.historyRepository,
+    this.historySessionRepository
   );
   private readonly sessionInteractionService = new SessionInteractionService(
-    this.histories,
-    this.sessions
+    this.historyRepository,
+    this.historySessionRepository
   );
   private readonly sessionController = new SessionController(
     this.historySessionService,

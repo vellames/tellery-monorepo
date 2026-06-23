@@ -1,7 +1,8 @@
 import { History } from "../models";
+import { IHistoryRepository } from "../interfaces";
 import { loadMockJson } from "./mockLoader";
 
-export class HistoryRepository {
+export class HistoryRepository implements IHistoryRepository {
   private readonly histories = [
     loadMockJson<History>("o-bilhete-na-mesa-7.json"),
   ];

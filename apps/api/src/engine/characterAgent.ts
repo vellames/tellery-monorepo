@@ -10,7 +10,7 @@ import {
   SecretRevealStage,
 } from "../models";
 import { CharacterSessionState } from "../models";
-import { CharacterConversationMessage } from "../repositories";
+import { CharacterConversationMessage } from "../interfaces";
 import { createOpenRouterChatModel } from "../openrouter";
 import { DetectedIntent } from "./intentDetector";
 

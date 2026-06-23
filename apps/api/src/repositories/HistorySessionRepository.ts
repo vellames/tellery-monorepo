@@ -6,14 +6,12 @@ import {
   History,
   HistorySession,
 } from "../models";
+import {
+  CharacterConversationMessage,
+  IHistorySessionRepository,
+} from "../interfaces";
 
-export interface CharacterConversationMessage {
-  role: "user" | "character";
-  content: string;
-  createdAt: Date;
-}
-
-export class HistorySessionRepository {
+export class HistorySessionRepository implements IHistorySessionRepository {
   private readonly sessions = new Map<string, HistorySession>();
   private readonly characterConversationMessages = new Map<
     string,

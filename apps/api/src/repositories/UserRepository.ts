@@ -1,7 +1,8 @@
 import { User } from "../models";
+import { IUserRepository } from "../interfaces";
 import { loadMockJson } from "./mockLoader";
 
-export class UserRepository {
+export class UserRepository implements IUserRepository {
   private readonly users = loadMockJson<User[]>("users.json");
 
   findById(userId: string): User | undefined {
