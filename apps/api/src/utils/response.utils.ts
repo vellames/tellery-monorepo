@@ -1,5 +1,5 @@
-import { Response } from "express";
-import { StatusCodes } from "http-status-codes";
+import { Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
 export const sendSuccess = <T>(
   res: Response,
@@ -32,6 +32,6 @@ export const handleError = (
 ): void => {
   res.status(statusCode).json({
     success: false,
-    error: error instanceof Error ? error.message : "Internal server error",
+    error: error instanceof Error ? error.message : 'Internal server error',
   });
 };

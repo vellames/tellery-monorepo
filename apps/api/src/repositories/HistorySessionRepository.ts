@@ -5,12 +5,12 @@ import {
   createObjectSessionState,
   History,
   HistorySession,
-} from "../models";
+} from '../models';
 import {
   CharacterConversationMessage,
   IHistorySessionRepository,
-} from "../interfaces";
-import { PrismaTransaction } from "../types/database.types";
+} from '../interfaces';
+import { PrismaTransaction } from '../types/database.types';
 
 export class HistorySessionRepository implements IHistorySessionRepository {
   private readonly sessions = new Map<string, HistorySession>();
@@ -22,7 +22,7 @@ export class HistorySessionRepository implements IHistorySessionRepository {
   async runTransaction<T>(
     _callback: (tx: PrismaTransaction) => Promise<T>
   ): Promise<T> {
-    throw new Error("HistorySessionRepository does not support transactions");
+    throw new Error('HistorySessionRepository does not support transactions');
   }
 
   create(input: { userId: string; history: History }): HistorySession {

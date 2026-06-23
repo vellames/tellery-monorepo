@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { DIContainer } from "../container/di.container";
+import { Router } from 'express';
+import { DIContainer } from '../container/di.container';
 
 const router = Router();
 
@@ -70,7 +70,7 @@ const router = Router();
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post("/start", async (req, res) => {
+router.post('/start', async (req, res) => {
   await DIContainer.getInstance().getSessionController().start(req, res);
 });
 
@@ -157,7 +157,7 @@ router.post("/start", async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post("/:sessionId/interact", async (req, res) => {
+router.post('/:sessionId/interact', async (req, res) => {
   await DIContainer.getInstance().getSessionController().interact(req, res);
 });
 

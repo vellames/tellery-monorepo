@@ -1,4 +1,4 @@
-import { BaseModel } from "../BaseModel";
+import { BaseModel } from '../BaseModel';
 
 export interface ConclusionDefinition extends BaseModel {
   fields: ConclusionField[];
@@ -10,7 +10,7 @@ export interface ConclusionField extends BaseModel {
   options: ConclusionOption[];
 }
 
-export type ConclusionFieldType = "character" | "choice";
+export type ConclusionFieldType = 'character' | 'choice';
 
 export interface ConclusionOption extends BaseModel {
   label: string;

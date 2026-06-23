@@ -1,4 +1,4 @@
-import { BaseModel } from "../BaseModel";
+import { BaseModel } from '../BaseModel';
 
 export interface EndingDefinition extends BaseModel {
   title: string;
@@ -11,7 +11,7 @@ export interface EndingDefinition extends BaseModel {
   epilogue: string;
 }
 
-export type EndingType = "full_truth" | "partial_truth" | "wrong_accusation";
+export type EndingType = 'full_truth' | 'partial_truth' | 'wrong_accusation';
 
 export interface EndingCondition {
   conclusionMatches?: Record<string, string>;

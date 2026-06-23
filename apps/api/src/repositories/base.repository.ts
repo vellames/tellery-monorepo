@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-import { IBaseRepository } from "../interfaces";
-import { PrismaTransaction } from "../types/database.types";
+import { PrismaClient } from '@prisma/client';
+import { IBaseRepository } from '../interfaces';
+import { PrismaTransaction } from '../types/database.types';
 
 export abstract class BaseRepository implements IBaseRepository {
   protected prisma: PrismaClient;

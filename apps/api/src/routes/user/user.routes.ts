@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { DIContainer } from "../../container/di.container";
+import { Router } from 'express';
+import { DIContainer } from '../../container/di.container';
 
 const router = Router();
 
@@ -32,7 +32,7 @@ const router = Router();
  *       409:
  *         description: Email already in use
  */
-router.post("/register", async (req, res) => {
+router.post('/register', async (req, res) => {
   await DIContainer.getInstance().getUserController().register(req, res);
 });
 

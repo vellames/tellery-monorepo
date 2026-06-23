@@ -1,11 +1,11 @@
-import { User } from "@prisma/client";
-import { IUserRepository } from "../../interfaces";
+import { User } from '@prisma/client';
+import { IUserRepository } from '../../interfaces';
 import {
   CreateUserDto,
   UpdateUserDto,
   UserResponseDto,
-} from "../../types/domain/user/user.dto";
-import { HttpError } from "../../utils/http-error";
+} from '../../types/domain/user/user.dto';
+import { HttpError } from '../../utils/http-error';
 
 export class UserService {
   constructor(private readonly users: IUserRepository) {}
@@ -13,7 +13,7 @@ export class UserService {
   async create(data: CreateUserDto): Promise<UserResponseDto> {
     const existing = await this.users.findByEmail(data.email);
     if (existing) {
-      throw new HttpError(409, "Email already in use");
+      throw new HttpError(409, 'Email already in use');
     }
 
     const user = await this.users.create(data);
@@ -23,7 +23,7 @@ export class UserService {
   async findById(id: string): Promise<UserResponseDto> {
     const user = await this.users.findById(id);
     if (!user) {
-      throw new HttpError(404, "User not found");
+      throw new HttpError(404, 'User not found');
     }
     return this.toResponseDto(user);
   }
@@ -36,13 +36,13 @@ export class UserService {
   async update(id: string, data: UpdateUserDto): Promise<UserResponseDto> {
     const user = await this.users.findById(id);
     if (!user) {
-      throw new HttpError(404, "User not found");
+      throw new HttpError(404, 'User not found');
     }
 
     if (data.email && data.email !== user.email) {
       const existing = await this.users.findByEmail(data.email);
       if (existing) {
-        throw new HttpError(409, "Email already in use");
+        throw new HttpError(409, 'Email already in use');
       }
     }
 
@@ -53,7 +53,7 @@ export class UserService {
   async delete(id: string): Promise<void> {
     const user = await this.users.findById(id);
     if (!user) {
-      throw new HttpError(404, "User not found");
+      throw new HttpError(404, 'User not found');
     }
 
     await this.users.softDelete(id);

@@ -1,8 +1,8 @@
-import { z } from "zod";
-import { appConfig } from "../config/app.config";
-import { createOpenRouterChatModel } from "../openrouter";
-import { normalizeLanguage, t, SupportedLanguage } from "@ai-history/i18n";
-import { IntentDefinition } from "../models";
+import { z } from 'zod';
+import { appConfig } from '../config/app.config';
+import { createOpenRouterChatModel } from '../openrouter';
+import { normalizeLanguage, t, SupportedLanguage } from '@ai-history/i18n';
+import { IntentDefinition } from '../models';
 
 const IntentDetectorResponseSchema = z.array(
   z.object({
@@ -33,7 +33,7 @@ export async function detectIntent(
   input: DetectIntentInput
 ): Promise<DetectedIntent[]> {
   if (input.intents.length === 0) {
-    throw new Error("detectIntent requires at least one intent");
+    throw new Error('detectIntent requires at least one intent');
   }
 
   const language = normalizeLanguage(input.language);
@@ -42,23 +42,23 @@ export async function detectIntent(
     appConfig.openrouter.intentDetectorThreshold
   );
   const intentIds = new Set(input.intents.map((intent) => intent.id));
-  const fallbackIntentId = intentIds.has("off_topic")
-    ? "off_topic"
+  const fallbackIntentId = intentIds.has('off_topic')
+    ? 'off_topic'
     : input.intents[0].id;
 
   const llm = createOpenRouterChatModel(model);
   const structuredLlm = llm.withStructuredOutput(IntentDetectorResponseSchema, {
-    name: "classify_user_intent",
+    name: 'classify_user_intent',
   });
 
   const response = await structuredLlm.invoke([
     {
-      role: "system",
-      content: t(language, "intentDetectorSystemPrompt"),
+      role: 'system',
+      content: t(language, 'intentDetectorSystemPrompt'),
     },
     {
-      role: "user",
-      content: t(language, "intentDetectorUserPrompt", {
+      role: 'user',
+      content: t(language, 'intentDetectorUserPrompt', {
         message: input.message,
         intents: formatIntentsForPrompt(input.intents),
         threshold: threshold.toString(),
@@ -85,12 +85,12 @@ function normalizeThreshold(threshold: number): number {
 function formatIntentsForPrompt(intents: IntentDefinition[]): string {
   return intents
     .map((intent) => {
-      const examples = intent.examples.join(" | ");
-      const keywords = intent.keywords.join(", ");
+      const examples = intent.examples.join(' | ');
+      const keywords = intent.keywords.join(', ');
 
       return `- ${intent.id}: ${intent.description}\n  examples: ${examples}\n  keywords: ${keywords}`;
     })
-    .join("\n");
+    .join('\n');
 }
 
 function normalizeDetectedIntent(
@@ -120,7 +120,7 @@ function normalizeDetectedIntent(
     {
       intentId: fallbackIntentId,
       confidence: 0,
-      reasoning: "No intent reached the configured threshold.",
+      reasoning: 'No intent reached the configured threshold.',
       language,
       model,
     },

@@ -1,20 +1,20 @@
-import { PrismaClient } from "@prisma/client";
-import { HealthController } from "../controllers/health.controller";
-import { SessionController } from "../controllers/session.controller";
-import { UserController } from "../controllers/user/user.controller";
+import { PrismaClient } from '@prisma/client';
+import { HealthController } from '../controllers/health.controller';
+import { SessionController } from '../controllers/session.controller';
+import { UserController } from '../controllers/user/user.controller';
 import {
   IHistoryRepository,
   IHistorySessionRepository,
   IUserRepository,
-} from "../interfaces";
+} from '../interfaces';
 import {
   HistoryRepository,
   HistorySessionRepository,
   UserRepository,
-} from "../repositories";
-import { HistorySessionService } from "../services/session/history-session.service";
-import { SessionInteractionService } from "../services/session/session-interaction.service";
-import { UserService } from "../services/user/user.service";
+} from '../repositories';
+import { HistorySessionService } from '../services/session/history-session.service';
+import { SessionInteractionService } from '../services/session/session-interaction.service';
+import { UserService } from '../services/user/user.service';
 
 export class DIContainer {
   private static instance: DIContainer;

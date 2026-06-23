@@ -1,7 +1,7 @@
-import { ChatOpenAI } from "@langchain/openai";
-import { appConfig } from "./config/app.config";
+import { ChatOpenAI } from '@langchain/openai';
+import { appConfig } from './config/app.config';
 
-export type ChatRole = "system" | "user" | "assistant";
+export type ChatRole = 'system' | 'user' | 'assistant';
 
 export interface ChatMessage {
   role: ChatRole;
@@ -20,7 +20,7 @@ export function createOpenRouterChatModel(
 ) {
   if (!appConfig.openrouter.apiKey) {
     throw new Error(
-      "Missing required environment variable: OPENROUTER_API_KEY"
+      'Missing required environment variable: OPENROUTER_API_KEY'
     );
   }
 
@@ -39,7 +39,7 @@ async function openRouterFetch<T>(
 ): Promise<T> {
   if (!appConfig.openrouter.apiKey) {
     throw new Error(
-      "Missing required environment variable: OPENROUTER_API_KEY"
+      'Missing required environment variable: OPENROUTER_API_KEY'
     );
   }
 
@@ -47,7 +47,7 @@ async function openRouterFetch<T>(
     ...options,
     headers: {
       Authorization: `Bearer ${appConfig.openrouter.apiKey}`,
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       ...options.headers,
     },
   });
@@ -71,12 +71,12 @@ export async function chat(
 
   const reply = Array.isArray(response.content)
     ? response.content
-        .map((content) => (typeof content === "string" ? content : ""))
-        .join("")
+        .map((content) => (typeof content === 'string' ? content : ''))
+        .join('')
     : response.content;
 
   if (!reply) {
-    throw new Error("OpenRouter returned an empty response");
+    throw new Error('OpenRouter returned an empty response');
   }
 
   return { reply, model };
@@ -85,6 +85,6 @@ export async function chat(
 export async function listModels(): Promise<
   Array<{ id: string; name: string }>
 > {
-  const data = await openRouterFetch<ModelsResponse>("/models");
+  const data = await openRouterFetch<ModelsResponse>('/models');
   return data.data.map(({ id, name }) => ({ id, name }));
 }

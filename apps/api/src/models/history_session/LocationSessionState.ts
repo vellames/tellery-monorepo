@@ -1,4 +1,4 @@
-import { BaseModel, createBaseModel } from "../BaseModel";
+import { BaseModel, createBaseModel } from '../BaseModel';
 
 export interface LocationSessionState extends BaseModel {
   locationId: string;

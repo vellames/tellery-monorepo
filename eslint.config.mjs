@@ -1,29 +1,37 @@
-import js from "@eslint/js";
-import tseslint from "typescript-eslint";
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import globals from 'globals';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default tseslint.config(
   {
-    ignores: ["**/dist/**", "node_modules/**", ".turbo/**", "**/*.config.js"],
+    ignores: [
+      '**/dist/**',
+      'node_modules/**',
+      '.turbo/**',
+      '**/coverage/**',
+      '**/*.config.js',
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  eslintConfigPrettier,
   {
-    files: ["**/*.ts"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
+    },
     rules: {
-      "@typescript-eslint/no-empty-object-type": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "error",
+      '@typescript-eslint/no-empty-object-type': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
         {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
         },
       ],
-    },
-  },
-  {
-    files: ["scripts/**/*.ts"],
-    rules: {
-      "@typescript-eslint/no-require-imports": "off",
     },
   }
 );

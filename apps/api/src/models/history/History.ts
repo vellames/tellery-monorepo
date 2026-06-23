@@ -1,12 +1,12 @@
-import type { ClueDefinition } from "./Clue";
-import type { ConclusionDefinition } from "./Conclusion";
-import type { CharacterDefinition } from "./Character";
-import type { EndingDefinition } from "./Ending";
-import type { HistoryRules } from "./HistoryRules";
-import type { IntentDefinition } from "./Intent";
-import type { LocationDefinition } from "./Location";
-import { BaseModel, createBaseModel } from "../BaseModel";
-import type { ObjectDefinition } from "./Object";
+import type { ClueDefinition } from './Clue';
+import type { ConclusionDefinition } from './Conclusion';
+import type { CharacterDefinition } from './Character';
+import type { EndingDefinition } from './Ending';
+import type { HistoryRules } from './HistoryRules';
+import type { IntentDefinition } from './Intent';
+import type { LocationDefinition } from './Location';
+import { BaseModel, createBaseModel } from '../BaseModel';
+import type { ObjectDefinition } from './Object';
 
 export interface History extends BaseModel {
   slug: string;
@@ -15,12 +15,12 @@ export interface History extends BaseModel {
   subtitle?: string;
   teaser: string;
 
-  genre: "mystery";
-  language: "pt-BR";
+  genre: 'mystery';
+  language: 'pt-BR';
 
   estimatedDurationMinutes: number;
 
-  status: "draft" | "published" | "archived";
+  status: 'draft' | 'published' | 'archived';
   version: number;
 
   coverImageUrl?: string;
@@ -74,10 +74,10 @@ export function createHistory(input: {
     title: input.title,
     subtitle: input.subtitle,
     teaser: input.teaser,
-    genre: "mystery",
-    language: "pt-BR",
+    genre: 'mystery',
+    language: 'pt-BR',
     estimatedDurationMinutes: 0,
-    status: "draft",
+    status: 'draft',
     version: 1,
     opening: input.opening,
     objective: input.objective,

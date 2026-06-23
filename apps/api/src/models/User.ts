@@ -1,4 +1,4 @@
-import { BaseModel, createBaseModel } from "./BaseModel";
+import { BaseModel, createBaseModel } from './BaseModel';
 
 export interface User extends BaseModel {
   name: string;

@@ -1,8 +1,8 @@
-import { History, HistorySession } from "../../models";
-import { IBaseRepository } from "./base.repository.interface";
+import { History, HistorySession } from '../../models';
+import { IBaseRepository } from './base.repository.interface';
 
 export interface CharacterConversationMessage {
-  role: "user" | "character";
+  role: 'user' | 'character';
   content: string;
   createdAt: Date;
 }

@@ -2,9 +2,9 @@ import {
   IHistoryRepository,
   IHistorySessionRepository,
   IUserRepository,
-} from "../../interfaces";
-import { HttpError } from "../../utils/http-error";
-import { StartSessionBody } from "../../types/http/session.validation";
+} from '../../interfaces';
+import { HttpError } from '../../utils/http-error';
+import { StartSessionBody } from '../../types/http/session.validation';
 
 export class HistorySessionService {
   constructor(
@@ -29,7 +29,7 @@ export class HistorySessionService {
       this.histories.findDefault();
 
     if (!history) {
-      throw new HttpError(404, "No history available to start");
+      throw new HttpError(404, 'No history available to start');
     }
 
     const session = this.sessions.create({

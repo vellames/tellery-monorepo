@@ -1,4 +1,4 @@
-import { PrismaTransaction } from "../../types/database.types";
+import { PrismaTransaction } from '../../types/database.types';
 
 export interface IBaseRepository {
   runTransaction<T>(

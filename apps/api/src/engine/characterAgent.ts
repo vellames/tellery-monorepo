@@ -1,6 +1,6 @@
-import { z } from "zod";
-import { appConfig } from "../config/app.config";
-import { normalizeLanguage, SupportedLanguage, t } from "@ai-history/i18n";
+import { z } from 'zod';
+import { appConfig } from '../config/app.config';
+import { normalizeLanguage, SupportedLanguage, t } from '@ai-history/i18n';
 import {
   CharacterClueRevealRule,
   CharacterDefinition,
@@ -8,11 +8,11 @@ import {
   CharacterSecretSessionState,
   ClueDefinition,
   SecretRevealStage,
-} from "../models";
-import { CharacterSessionState } from "../models";
-import { CharacterConversationMessage } from "../interfaces";
-import { createOpenRouterChatModel } from "../openrouter";
-import { DetectedIntent } from "./intentDetector";
+} from '../models';
+import { CharacterSessionState } from '../models';
+import { CharacterConversationMessage } from '../interfaces';
+import { createOpenRouterChatModel } from '../openrouter';
+import { DetectedIntent } from './intentDetector';
 
 const CharacterAgentResponseSchema = z.object({
   reply: z.string(),
@@ -74,20 +74,20 @@ export async function runCharacterAgent(
 
   const llm = createOpenRouterChatModel(model);
   const structuredLlm = llm.withStructuredOutput(CharacterAgentResponseSchema, {
-    name: "respond_as_character",
+    name: 'respond_as_character',
   });
 
   const response = await structuredLlm.invoke([
     {
-      role: "system",
-      content: t(language, "characterAgentSystemPrompt"),
+      role: 'system',
+      content: t(language, 'characterAgentSystemPrompt'),
     },
     {
-      role: "user",
-      content: t(language, "characterAgentUserPrompt", {
+      role: 'user',
+      content: t(language, 'characterAgentUserPrompt', {
         character: formatCharacterForPrompt(input.character),
         conversationSummary:
-          input.characterState.conversationSummary ?? "Sem resumo ainda.",
+          input.characterState.conversationSummary ?? 'Sem resumo ainda.',
         recentConversation: formatConversationForPrompt(
           input.recentConversation
         ),
@@ -223,11 +223,11 @@ function formatCharacterForPrompt(character: CharacterDefinition): string {
 function formatConversationForPrompt(
   conversation: CharacterConversationMessage[]
 ): string {
-  if (conversation.length === 0) return "Sem historico recente.";
+  if (conversation.length === 0) return 'Sem historico recente.';
 
   return conversation
     .map((message) => `${message.role}: ${message.content}`)
-    .join("\n");
+    .join('\n');
 }
 
 function formatCharacterClueRulesForPrompt(
@@ -298,7 +298,7 @@ function normalizeCharacterAgentResponse(
     .map((clueId) => ({
       clueId,
       reasoning:
-        "Automatically included because the character reveal rule or secret stage was eligible for this interaction.",
+        'Automatically included because the character reveal rule or secret stage was eligible for this interaction.',
     }));
 
   const updatedSecretStates: CharacterSecretSessionState[] = Array.from(

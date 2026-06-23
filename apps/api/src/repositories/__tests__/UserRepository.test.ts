@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-import { mockDeep, mockReset, DeepMockProxy } from "jest-mock-extended";
-import { UserRepository } from "../UserRepository";
+import { PrismaClient } from '@prisma/client';
+import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
+import { UserRepository } from '../UserRepository';
 
 type PrismaUser = {
   id: string;
@@ -13,17 +13,17 @@ type PrismaUser = {
 };
 
 const mockUser = (overrides: Partial<PrismaUser> = {}): PrismaUser => ({
-  id: "user-1",
-  createdAt: new Date("2026-01-01"),
-  updatedAt: new Date("2026-01-01"),
+  id: 'user-1',
+  createdAt: new Date('2026-01-01'),
+  updatedAt: new Date('2026-01-01'),
   deletedAt: null,
-  name: "Ana Teste",
-  email: "ana@teste.local",
-  password: "password123",
+  name: 'Ana Teste',
+  email: 'ana@teste.local',
+  password: 'password123',
   ...overrides,
 });
 
-describe("UserRepository", () => {
+describe('UserRepository', () => {
   let prisma: DeepMockProxy<PrismaClient>;
   let repo: UserRepository;
 
@@ -36,12 +36,12 @@ describe("UserRepository", () => {
     mockReset(prisma);
   });
 
-  describe("create", () => {
-    it("should create a user with the provided data", async () => {
+  describe('create', () => {
+    it('should create a user with the provided data', async () => {
       const input = {
-        name: "Ana Teste",
-        email: "ana@teste.local",
-        password: "password123",
+        name: 'Ana Teste',
+        email: 'ana@teste.local',
+        password: 'password123',
       };
       const created = mockUser(input);
       prisma.user.create.mockResolvedValue(created);
@@ -59,53 +59,53 @@ describe("UserRepository", () => {
     });
   });
 
-  describe("findById", () => {
-    it("should find a non-deleted user by id", async () => {
+  describe('findById', () => {
+    it('should find a non-deleted user by id', async () => {
       const user = mockUser();
       prisma.user.findFirst.mockResolvedValue(user);
 
-      const result = await repo.findById("user-1");
+      const result = await repo.findById('user-1');
 
       expect(result).toEqual(user);
       expect(prisma.user.findFirst).toHaveBeenCalledWith({
-        where: { id: "user-1", deletedAt: null },
+        where: { id: 'user-1', deletedAt: null },
       });
     });
 
-    it("should return null when user is not found", async () => {
+    it('should return null when user is not found', async () => {
       prisma.user.findFirst.mockResolvedValue(null);
 
-      const result = await repo.findById("nonexistent");
+      const result = await repo.findById('nonexistent');
 
       expect(result).toBeNull();
     });
   });
 
-  describe("findByEmail", () => {
-    it("should find a non-deleted user by email", async () => {
+  describe('findByEmail', () => {
+    it('should find a non-deleted user by email', async () => {
       const user = mockUser();
       prisma.user.findFirst.mockResolvedValue(user);
 
-      const result = await repo.findByEmail("ana@teste.local");
+      const result = await repo.findByEmail('ana@teste.local');
 
       expect(result).toEqual(user);
       expect(prisma.user.findFirst).toHaveBeenCalledWith({
-        where: { email: "ana@teste.local", deletedAt: null },
+        where: { email: 'ana@teste.local', deletedAt: null },
       });
     });
 
-    it("should return null when email is not found", async () => {
+    it('should return null when email is not found', async () => {
       prisma.user.findFirst.mockResolvedValue(null);
 
-      const result = await repo.findByEmail("nobody@teste.local");
+      const result = await repo.findByEmail('nobody@teste.local');
 
       expect(result).toBeNull();
     });
   });
 
-  describe("findAll", () => {
-    it("should return all non-deleted users ordered by createdAt desc", async () => {
-      const users = [mockUser({ id: "user-1" }), mockUser({ id: "user-2" })];
+  describe('findAll', () => {
+    it('should return all non-deleted users ordered by createdAt desc', async () => {
+      const users = [mockUser({ id: 'user-1' }), mockUser({ id: 'user-2' })];
       prisma.user.findMany.mockResolvedValue(users);
 
       const result = await repo.findAll();
@@ -113,11 +113,11 @@ describe("UserRepository", () => {
       expect(result).toEqual(users);
       expect(prisma.user.findMany).toHaveBeenCalledWith({
         where: { deletedAt: null },
-        orderBy: { createdAt: "desc" },
+        orderBy: { createdAt: 'desc' },
       });
     });
 
-    it("should return empty array when no users exist", async () => {
+    it('should return empty array when no users exist', async () => {
       prisma.user.findMany.mockResolvedValue([]);
 
       const result = await repo.findAll();
@@ -126,60 +126,60 @@ describe("UserRepository", () => {
     });
   });
 
-  describe("update", () => {
-    it("should update only provided fields", async () => {
-      const updated = mockUser({ name: "Updated Name" });
+  describe('update', () => {
+    it('should update only provided fields', async () => {
+      const updated = mockUser({ name: 'Updated Name' });
       prisma.user.update.mockResolvedValue(updated);
 
-      const result = await repo.update("user-1", { name: "Updated Name" });
+      const result = await repo.update('user-1', { name: 'Updated Name' });
 
       expect(result).toEqual(updated);
       expect(prisma.user.update).toHaveBeenCalledWith({
-        where: { id: "user-1" },
-        data: { name: "Updated Name" },
+        where: { id: 'user-1' },
+        data: { name: 'Updated Name' },
       });
     });
 
-    it("should update multiple fields", async () => {
+    it('should update multiple fields', async () => {
       const updated = mockUser({
-        name: "New Name",
-        email: "new@teste.local",
+        name: 'New Name',
+        email: 'new@teste.local',
       });
       prisma.user.update.mockResolvedValue(updated);
 
-      const result = await repo.update("user-1", {
-        name: "New Name",
-        email: "new@teste.local",
+      const result = await repo.update('user-1', {
+        name: 'New Name',
+        email: 'new@teste.local',
       });
 
       expect(result).toEqual(updated);
       expect(prisma.user.update).toHaveBeenCalledWith({
-        where: { id: "user-1" },
-        data: { name: "New Name", email: "new@teste.local" },
+        where: { id: 'user-1' },
+        data: { name: 'New Name', email: 'new@teste.local' },
       });
     });
 
-    it("should not include undefined fields in update data", async () => {
+    it('should not include undefined fields in update data', async () => {
       const updated = mockUser();
       prisma.user.update.mockResolvedValue(updated);
 
-      await repo.update("user-1", { name: "New Name" });
+      await repo.update('user-1', { name: 'New Name' });
 
       expect(prisma.user.update).toHaveBeenCalledWith({
-        where: { id: "user-1" },
-        data: { name: "New Name" },
+        where: { id: 'user-1' },
+        data: { name: 'New Name' },
       });
     });
   });
 
-  describe("softDelete", () => {
-    it("should set deletedAt instead of removing the record", async () => {
+  describe('softDelete', () => {
+    it('should set deletedAt instead of removing the record', async () => {
       prisma.user.update.mockResolvedValue(mockUser());
 
-      await repo.softDelete("user-1");
+      await repo.softDelete('user-1');
 
       expect(prisma.user.update).toHaveBeenCalledWith({
-        where: { id: "user-1" },
+        where: { id: 'user-1' },
         data: { deletedAt: expect.any(Date) },
       });
     });

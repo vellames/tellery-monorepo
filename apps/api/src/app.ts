@@ -1,11 +1,11 @@
-import cors from "cors";
-import express, { Request, Response } from "express";
-import swaggerUi from "swagger-ui-express";
-import { i18nMiddleware } from "@ai-history/i18n";
-import routes from "./routes";
-import { swaggerSpec } from "./config/swagger.config";
-import { requestLogger } from "./middleware/request-logger.middleware";
-import { errorHandler, notFoundHandler } from "./middleware/error.middleware";
+import cors from 'cors';
+import express, { Request, Response } from 'express';
+import swaggerUi from 'swagger-ui-express';
+import { i18nMiddleware } from '@ai-history/i18n';
+import routes from './routes';
+import { swaggerSpec } from './config/swagger.config';
+import { requestLogger } from './middleware/request-logger.middleware';
+import { errorHandler, notFoundHandler } from './middleware/error.middleware';
 
 export function createApp() {
   const app = express();
@@ -16,11 +16,11 @@ export function createApp() {
   app.use(express.json());
 
   app.use(
-    "/api/docs",
+    '/api/docs',
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpec, {
       explorer: true,
-      customSiteTitle: "AI History API Documentation",
+      customSiteTitle: 'AI History API Documentation',
       customCss: `
       .swagger-ui .topbar { display: none; }
       .swagger-ui .info .title { color: #3b82f6; }
@@ -28,18 +28,18 @@ export function createApp() {
       swaggerOptions: {
         persistAuthorization: true,
         displayRequestDuration: true,
-        docExpansion: "list",
+        docExpansion: 'list',
         filter: true,
         showExtensions: true,
         showCommonExtensions: true,
         tryItOutEnabled: true,
-        supportedSubmitMethods: ["get", "post", "put", "delete", "patch"],
+        supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
       },
     })
   );
 
-  app.get("/api/swagger.json", (_req: Request, res: Response) => {
-    res.setHeader("Content-Type", "application/json");
+  app.get('/api/swagger.json', (_req: Request, res: Response) => {
+    res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);
   });
 

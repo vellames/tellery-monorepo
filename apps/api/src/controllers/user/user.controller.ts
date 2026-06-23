@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import { StatusCodes } from "http-status-codes";
-import { UserService } from "../../services/user/user.service";
-import { createUserSchema } from "../../types/domain/user/user.validation";
-import { HttpError } from "../../utils/http-error";
-import { handleError, sendSuccess } from "../../utils/response.utils";
+import { Request, Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
+import { UserService } from '../../services/user/user.service';
+import { createUserSchema } from '../../types/domain/user/user.validation';
+import { HttpError } from '../../utils/http-error';
+import { handleError, sendSuccess } from '../../utils/response.utils';
 
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -13,7 +13,7 @@ export class UserController {
     if (!parsed.success) {
       handleError(
         res,
-        new Error("Invalid request body"),
+        new Error('Invalid request body'),
         StatusCodes.BAD_REQUEST
       );
       return;

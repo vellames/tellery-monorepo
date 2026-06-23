@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import { StatusCodes } from "http-status-codes";
+import { Request, Response, NextFunction } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
 export const notFoundHandler = (
   req: Request,
@@ -18,9 +18,9 @@ export const errorHandler = (
   res: Response,
   _next: NextFunction
 ): void => {
-  console.error("Error:", error);
+  console.error('Error:', error);
 
-  if ("statusCode" in error && typeof error.statusCode === "number") {
+  if ('statusCode' in error && typeof error.statusCode === 'number') {
     res.status(error.statusCode).json({
       success: false,
       error: error.message,
@@ -28,10 +28,10 @@ export const errorHandler = (
     return;
   }
 
-  if (error.name === "PrismaClientKnownRequestError") {
+  if (error.name === 'PrismaClientKnownRequestError') {
     res.status(StatusCodes.BAD_REQUEST).json({
       success: false,
-      error: "Database operation failed",
+      error: 'Database operation failed',
     });
     return;
   }
@@ -39,8 +39,8 @@ export const errorHandler = (
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     success: false,
     error:
-      process.env.NODE_ENV === "production"
-        ? "Internal server error"
+      process.env.NODE_ENV === 'production'
+        ? 'Internal server error'
         : error.message,
   });
 };

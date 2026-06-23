@@ -1,5 +1,5 @@
-import { History } from "../../models";
-import { IBaseRepository } from "./base.repository.interface";
+import { History } from '../../models';
+import { IBaseRepository } from './base.repository.interface';
 
 export interface IHistoryRepository extends IBaseRepository {
   findDefault(): History | undefined;

@@ -1,4 +1,4 @@
-import { BaseModel, createBaseModel } from "../BaseModel";
+import { BaseModel, createBaseModel } from '../BaseModel';
 
 export interface ObjectSessionState extends BaseModel {
   objectId: string;

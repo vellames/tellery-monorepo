@@ -3,7 +3,7 @@ import {
   i18next,
   SupportedLanguage,
   supportedLanguages,
-} from "./config/i18n.config";
+} from './config/i18n.config';
 
 export {
   defaultLanguage,
@@ -12,14 +12,14 @@ export {
   initI18n,
   SupportedLanguage,
   supportedLanguages,
-} from "./config/i18n.config";
-export { i18nMiddleware } from "./middleware/i18n.middleware";
+} from './config/i18n.config';
+export { i18nMiddleware } from './middleware/i18n.middleware';
 export {
   I18nRequest,
   SupportedLocale,
   TranslationFunction,
   TranslationOptions,
-} from "./types/i18n.types";
+} from './types/i18n.types';
 
 export function normalizeLanguage(language?: string): SupportedLanguage {
   const requestedLanguage = language ?? defaultLanguage;
@@ -28,16 +28,16 @@ export function normalizeLanguage(language?: string): SupportedLanguage {
     return requestedLanguage as SupportedLanguage;
   }
 
-  if (requestedLanguage.toLowerCase().startsWith("en")) return "en";
+  if (requestedLanguage.toLowerCase().startsWith('en')) return 'en';
 
-  return "pt-BR";
+  return 'pt-BR';
 }
 
 export function t(
   language: SupportedLanguage,
   key: string,
   params: Record<string, string> = {},
-  namespace = "prompts"
+  namespace = 'prompts'
 ): string {
   return i18next.t(`${namespace}:${key}`, {
     ...params,

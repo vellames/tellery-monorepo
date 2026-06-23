@@ -5,15 +5,15 @@ import {
   ObjectAgentDiscoveredClue,
   runCharacterAgent,
   runObjectAgent,
-} from "../../engine";
+} from '../../engine';
 import {
   IHistoryRepository,
   IHistorySessionRepository,
-} from "../../interfaces";
-import { InteractBody } from "../../types/http/session.validation";
-import { addUnique } from "../../utils/array";
-import { HttpError } from "../../utils/http-error";
-import { resolveSessionState } from "./session-state-resolver";
+} from '../../interfaces';
+import { InteractBody } from '../../types/http/session.validation';
+import { addUnique } from '../../utils/array';
+import { HttpError } from '../../utils/http-error';
+import { resolveSessionState } from './session-state-resolver';
 
 export class SessionInteractionService {
   constructor(
@@ -41,7 +41,7 @@ export class SessionInteractionService {
 
     let discoveredClueIds: string[] = [];
 
-    if (resolvedState.type === "location" && !resolvedState.state.visited) {
+    if (resolvedState.type === 'location' && !resolvedState.state.visited) {
       const location = history.locations.find(
         (historyLocation) =>
           historyLocation.id === resolvedState.state.locationId
@@ -73,7 +73,7 @@ export class SessionInteractionService {
     let characterAgentResult: CharacterAgentResult | null = null;
     let objectAgentDiscoveredClues: ObjectAgentDiscoveredClue[] = [];
 
-    if (resolvedState.type !== "location") {
+    if (resolvedState.type !== 'location') {
       try {
         detectedIntents = await detectIntent({
           message: input.interaction,
@@ -81,14 +81,14 @@ export class SessionInteractionService {
           language: history.language,
         });
 
-        console.log("intent_detector_result", {
+        console.log('intent_detector_result', {
           sessionId: session.id,
           stateId: id,
           interaction: input.interaction,
           detectedIntents,
         });
 
-        if (resolvedState.type === "character") {
+        if (resolvedState.type === 'character') {
           const character = history.characters.find(
             (historyCharacter) =>
               historyCharacter.id === resolvedState.state.characterId
@@ -146,7 +146,7 @@ export class SessionInteractionService {
             sessionId: session.id,
             characterStateId: resolvedState.state.id,
             message: {
-              role: "user",
+              role: 'user',
               content: input.interaction,
               createdAt: new Date(),
             },
@@ -155,19 +155,19 @@ export class SessionInteractionService {
             sessionId: session.id,
             characterStateId: resolvedState.state.id,
             message: {
-              role: "character",
+              role: 'character',
               content: characterAgentResult.reply,
               createdAt: new Date(),
             },
           });
 
-          console.log("character_agent_result", {
+          console.log('character_agent_result', {
             sessionId: session.id,
             stateId: id,
             characterId: character.id,
             characterAgentResult,
           });
-        } else if (resolvedState.type === "object") {
+        } else if (resolvedState.type === 'object') {
           const object = history.objects.find(
             (historyObject) => historyObject.id === resolvedState.state.objectId
           );
@@ -210,7 +210,7 @@ export class SessionInteractionService {
             ...objectDiscoveredClueIds
           );
 
-          console.log("object_agent_result", {
+          console.log('object_agent_result', {
             sessionId: session.id,
             stateId: id,
             objectId: object.id,
@@ -222,7 +222,7 @@ export class SessionInteractionService {
 
         throw new HttpError(
           502,
-          error instanceof Error ? error.message : "Intent detection failed"
+          error instanceof Error ? error.message : 'Intent detection failed'
         );
       }
     }

@@ -1,4 +1,4 @@
-import { BaseModel } from "../BaseModel";
+import { BaseModel } from '../BaseModel';
 
 export interface CharacterDefinition extends BaseModel {
   name: string;
@@ -39,11 +39,11 @@ export interface CharacterSecret extends BaseModel {
 }
 
 export type SecretDefaultStrategy =
-  | "deny"
-  | "avoid"
-  | "deflect"
-  | "cover_story"
-  | "justify";
+  | 'deny'
+  | 'avoid'
+  | 'deflect'
+  | 'cover_story'
+  | 'justify';
 
 export interface SecretRevealStage extends BaseModel {
   level: number;

@@ -1,13 +1,13 @@
-import { Request, Response } from "express";
-import { StatusCodes } from "http-status-codes";
-import { HistorySessionService } from "../services/session/history-session.service";
-import { SessionInteractionService } from "../services/session/session-interaction.service";
+import { Request, Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
+import { HistorySessionService } from '../services/session/history-session.service';
+import { SessionInteractionService } from '../services/session/session-interaction.service';
 import {
   interactBodySchema,
   startSessionBodySchema,
-} from "../types/http/session.validation";
-import { HttpError } from "../utils/http-error";
-import { handleError, sendSuccess } from "../utils/response.utils";
+} from '../types/http/session.validation';
+import { HttpError } from '../utils/http-error';
+import { handleError, sendSuccess } from '../utils/response.utils';
 
 export class SessionController {
   constructor(
@@ -21,7 +21,7 @@ export class SessionController {
     if (!parsedBody.success) {
       handleError(
         res,
-        new Error("Invalid request body"),
+        new Error('Invalid request body'),
         StatusCodes.BAD_REQUEST
       );
       return;
@@ -46,7 +46,7 @@ export class SessionController {
     if (!parsedBody.success) {
       handleError(
         res,
-        new Error("Invalid request body"),
+        new Error('Invalid request body'),
         StatusCodes.BAD_REQUEST
       );
       return;

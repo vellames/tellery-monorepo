@@ -1,14 +1,14 @@
-import { BaseModel, createBaseModel } from "../BaseModel";
-import { CharacterSessionState } from "./CharacterSessionState";
-import { LocationSessionState } from "./LocationSessionState";
-import { ObjectSessionState } from "./ObjectSessionState";
+import { BaseModel, createBaseModel } from '../BaseModel';
+import { CharacterSessionState } from './CharacterSessionState';
+import { LocationSessionState } from './LocationSessionState';
+import { ObjectSessionState } from './ObjectSessionState';
 
 export interface HistorySession extends BaseModel {
   userId: string;
   historyId: string;
   historyVersion: number;
 
-  status: "active" | "completed" | "abandoned";
+  status: 'active' | 'completed' | 'abandoned';
 
   startedAt: Date;
   completedAt?: Date;
@@ -38,7 +38,7 @@ export interface HistorySessionProgress {
 }
 
 export interface SessionTarget {
-  type: "character" | "location" | "object";
+  type: 'character' | 'location' | 'object';
   id: string;
 }
 
@@ -50,7 +50,7 @@ export interface UserConclusion {
 export interface SessionEnding {
   endingId: string;
   title: string;
-  type: "full_truth" | "partial_truth" | "wrong_accusation";
+  type: 'full_truth' | 'partial_truth' | 'wrong_accusation';
 
   score?: SessionScore;
 }
@@ -78,7 +78,7 @@ export function createHistorySession(input: {
     userId: input.userId,
     historyId: input.historyId,
     historyVersion: input.historyVersion,
-    status: "active",
+    status: 'active',
     startedAt: new Date(),
     progress: {
       discoveredClueIds: [],

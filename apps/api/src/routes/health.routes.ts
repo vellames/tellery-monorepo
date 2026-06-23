@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { DIContainer } from "../container/di.container";
+import { Router } from 'express';
+import { DIContainer } from '../container/di.container';
 
 const router = Router();
 
@@ -24,7 +24,7 @@ const router = Router();
  *                 endpoints:
  *                   type: object
  */
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   DIContainer.getInstance().getHealthController().index(req, res);
 });
 
@@ -47,7 +47,7 @@ router.get("/", (req, res) => {
  *                   type: string
  *                   example: ok
  */
-router.get("/health", (req, res) => {
+router.get('/health', (req, res) => {
   DIContainer.getInstance().getHealthController().health(req, res);
 });
 

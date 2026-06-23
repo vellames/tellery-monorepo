@@ -1,7 +1,7 @@
-import { User } from "@prisma/client";
-import { CreateUserDto, UpdateUserDto } from "../../types/domain/user/user.dto";
-import { PrismaTransaction } from "../../types/database.types";
-import { IBaseRepository } from "./base.repository.interface";
+import { User } from '@prisma/client';
+import { CreateUserDto, UpdateUserDto } from '../../types/domain/user/user.dto';
+import { PrismaTransaction } from '../../types/database.types';
+import { IBaseRepository } from './base.repository.interface';
 
 export interface IUserRepository extends IBaseRepository {
   create(data: CreateUserDto, tx?: PrismaTransaction): Promise<User>;

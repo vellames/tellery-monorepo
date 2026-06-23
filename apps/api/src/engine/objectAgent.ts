@@ -1,13 +1,13 @@
-import { z } from "zod";
-import { appConfig } from "../config/app.config";
-import { normalizeLanguage, SupportedLanguage, t } from "@ai-history/i18n";
-import { createOpenRouterChatModel } from "../openrouter";
+import { z } from 'zod';
+import { appConfig } from '../config/app.config';
+import { normalizeLanguage, SupportedLanguage, t } from '@ai-history/i18n';
+import { createOpenRouterChatModel } from '../openrouter';
 import {
   ClueDefinition,
   ObjectClueRevealRule,
   ObjectDefinition,
-} from "../models";
-import { DetectedIntent } from "./intentDetector";
+} from '../models';
+import { DetectedIntent } from './intentDetector';
 
 const ObjectAgentResponseSchema = z.array(
   z.object({
@@ -49,17 +49,17 @@ export async function runObjectAgent(
 
   const llm = createOpenRouterChatModel(model);
   const structuredLlm = llm.withStructuredOutput(ObjectAgentResponseSchema, {
-    name: "evaluate_object_clue_reveals",
+    name: 'evaluate_object_clue_reveals',
   });
 
   const response = await structuredLlm.invoke([
     {
-      role: "system",
-      content: t(language, "objectAgentSystemPrompt"),
+      role: 'system',
+      content: t(language, 'objectAgentSystemPrompt'),
     },
     {
-      role: "user",
-      content: t(language, "objectAgentUserPrompt", {
+      role: 'user',
+      content: t(language, 'objectAgentUserPrompt', {
         object: formatObjectForPrompt(input.object),
         detectedIntents: JSON.stringify(input.detectedIntents, null, 2),
         discoveredClueIds: JSON.stringify(input.discoveredClueIds),
@@ -142,7 +142,7 @@ function normalizeObjectAgentResponse(
     .map((clueId) => ({
       clueId,
       reasoning:
-        "Automatically included because the object reveal rule was eligible for this interaction.",
+        'Automatically included because the object reveal rule was eligible for this interaction.',
     }));
 
   return [...modelDiscoveredClues, ...enforcedDiscoveredClues].map(

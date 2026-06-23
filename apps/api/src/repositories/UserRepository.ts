@@ -1,8 +1,8 @@
-import { PrismaClient, User } from "@prisma/client";
-import { IUserRepository } from "../interfaces";
-import { CreateUserDto, UpdateUserDto } from "../types/domain/user/user.dto";
-import { PrismaTransaction } from "../types/database.types";
-import { BaseRepository } from "./base.repository";
+import { PrismaClient, User } from '@prisma/client';
+import { IUserRepository } from '../interfaces';
+import { CreateUserDto, UpdateUserDto } from '../types/domain/user/user.dto';
+import { PrismaTransaction } from '../types/database.types';
+import { BaseRepository } from './base.repository';
 
 export class UserRepository extends BaseRepository implements IUserRepository {
   constructor(prisma: PrismaClient) {
@@ -41,7 +41,7 @@ export class UserRepository extends BaseRepository implements IUserRepository {
     const client = tx || this.prisma;
     return client.user.findMany({
       where: { deletedAt: null },
-      orderBy: { createdAt: "desc" },
+      orderBy: { createdAt: 'desc' },
     });
   }
 

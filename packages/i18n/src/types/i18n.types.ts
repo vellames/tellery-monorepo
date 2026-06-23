@@ -5,7 +5,7 @@ export type TranslationFunction = (
   options?: TranslationOptions
 ) => string;
 
-export type SupportedLocale = "en" | "pt-BR";
+export type SupportedLocale = 'en' | 'pt-BR';
 
 export interface I18nRequest {
   language: SupportedLocale;
