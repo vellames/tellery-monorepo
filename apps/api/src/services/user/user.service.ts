@@ -1,7 +1,14 @@
 import { User } from '@prisma/client';
-import { IUserRepository, IPasswordHasher } from '../../interfaces';
+import { StatusCodes } from 'http-status-codes';
 import {
+  IUserRepository,
+  IPasswordHasher,
+  ITokenService,
+} from '../../interfaces';
+import {
+  AuthResponseDto,
   CreateUserDto,
+  LoginDto,
   UpdateUserDto,
   UserResponseDto,
 } from '../../types/domain/user/user.dto';
@@ -10,14 +17,15 @@ import { HttpError } from '../../utils/http-error';
 export class UserService {
   constructor(
     private readonly users: IUserRepository,
-    private readonly passwordHasher: IPasswordHasher
+    private readonly passwordHasher: IPasswordHasher,
+    private readonly tokenService: ITokenService
   ) {}
 
   async create(data: CreateUserDto): Promise<UserResponseDto> {
     const existing = await this.users.findByEmail(data.email);
     if (existing) {
       throw new HttpError(
-        409,
+        StatusCodes.CONFLICT,
         'Email already in use',
         'user:errors.emailAlreadyInUse'
       );
@@ -28,10 +36,37 @@ export class UserService {
     return this.toResponseDto(user);
   }
 
+  async login(data: LoginDto): Promise<AuthResponseDto> {
+    const user = await this.users.findByEmail(data.email);
+    if (!user) {
+      throw new HttpError(
+        StatusCodes.UNAUTHORIZED,
+        'Invalid email or password',
+        'user:errors.invalidCredentials'
+      );
+    }
+
+    const valid = await this.passwordHasher.compare(data.password, user.password);
+    if (!valid) {
+      throw new HttpError(
+        StatusCodes.UNAUTHORIZED,
+        'Invalid email or password',
+        'user:errors.invalidCredentials'
+      );
+    }
+
+    const token = this.tokenService.sign({ sub: user.id, email: user.email });
+    return { user: this.toResponseDto(user), token };
+  }
+
   async findById(id: string): Promise<UserResponseDto> {
     const user = await this.users.findById(id);
     if (!user) {
-      throw new HttpError(404, 'User not found', 'user:errors.userNotFound');
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        'User not found',
+        'user:errors.userNotFound'
+      );
     }
     return this.toResponseDto(user);
   }
@@ -44,14 +79,18 @@ export class UserService {
   async update(id: string, data: UpdateUserDto): Promise<UserResponseDto> {
     const user = await this.users.findById(id);
     if (!user) {
-      throw new HttpError(404, 'User not found', 'user:errors.userNotFound');
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        'User not found',
+        'user:errors.userNotFound'
+      );
     }
 
     if (data.email && data.email !== user.email) {
       const existing = await this.users.findByEmail(data.email);
       if (existing) {
         throw new HttpError(
-          409,
+          StatusCodes.CONFLICT,
           'Email already in use',
           'user:errors.emailAlreadyInUse'
         );
@@ -70,7 +109,11 @@ export class UserService {
   async delete(id: string): Promise<void> {
     const user = await this.users.findById(id);
     if (!user) {
-      throw new HttpError(404, 'User not found', 'user:errors.userNotFound');
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        'User not found',
+        'user:errors.userNotFound'
+      );
     }
 
     await this.users.softDelete(id);

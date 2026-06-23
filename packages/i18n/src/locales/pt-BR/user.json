@@ -2,6 +2,7 @@
   "errors": {
     "userNotFound": "Usuário não encontrado",
     "emailAlreadyInUse": "E-mail já está em uso",
+    "invalidCredentials": "E-mail ou senha inválidos",
     "unknownUser": "Usuário desconhecido: {{id}}"
   }
 }

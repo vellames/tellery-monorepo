@@ -1,6 +1,10 @@
 import { User } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
-import { IUserRepository, IPasswordHasher } from '../../../interfaces';
+import {
+  IUserRepository,
+  IPasswordHasher,
+  ITokenService,
+} from '../../../interfaces';
 import { UserService } from '../user.service';
 import { HttpError } from '../../../utils/http-error';
 
@@ -18,18 +22,22 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
 describe('UserService', () => {
   let repo: DeepMockProxy<IUserRepository>;
   let passwordHasher: DeepMockProxy<IPasswordHasher>;
+  let tokenService: DeepMockProxy<ITokenService>;
   let service: UserService;
 
   beforeEach(() => {
     repo = mockDeep<IUserRepository>();
     passwordHasher = mockDeep<IPasswordHasher>();
     passwordHasher.hash.mockResolvedValue('hashed-password');
-    service = new UserService(repo, passwordHasher);
+    tokenService = mockDeep<ITokenService>();
+    tokenService.sign.mockReturnValue('signed-token');
+    service = new UserService(repo, passwordHasher, tokenService);
   });
 
   afterEach(() => {
     mockReset(repo);
     mockReset(passwordHasher);
+    mockReset(tokenService);
   });
 
   describe('create', () => {
@@ -104,6 +112,81 @@ describe('UserService', () => {
       });
 
       expect(result).not.toHaveProperty('password');
+    });
+  });
+
+  describe('login', () => {
+    it('should return user and token when credentials are valid', async () => {
+      repo.findByEmail.mockResolvedValue(mockUser());
+      passwordHasher.compare.mockResolvedValue(true);
+
+      const result = await service.login({
+        email: 'ana@teste.local',
+        password: 'password123',
+      });
+
+      expect(passwordHasher.compare).toHaveBeenCalledWith(
+        'password123',
+        'hashed-password'
+      );
+      expect(tokenService.sign).toHaveBeenCalledWith({
+        sub: 'user-1',
+        email: 'ana@teste.local',
+      });
+      expect(result).toEqual({
+        user: {
+          id: 'user-1',
+          name: 'Ana Teste',
+          email: 'ana@teste.local',
+          createdAt: '2026-01-01T00:00:00.000Z',
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+        token: 'signed-token',
+      });
+    });
+
+    it('should throw 401 when user is not found', async () => {
+      repo.findByEmail.mockResolvedValue(null);
+
+      await expect(
+        service.login({
+          email: 'ana@teste.local',
+          password: 'password123',
+        })
+      ).rejects.toThrow(HttpError);
+
+      await expect(
+        service.login({
+          email: 'ana@teste.local',
+          password: 'password123',
+        })
+      ).rejects.toThrow('Invalid email or password');
+    });
+
+    it('should throw 401 when password does not match', async () => {
+      repo.findByEmail.mockResolvedValue(mockUser());
+      passwordHasher.compare.mockResolvedValue(false);
+
+      await expect(
+        service.login({
+          email: 'ana@teste.local',
+          password: 'wrong-password',
+        })
+      ).rejects.toThrow(HttpError);
+
+      expect(tokenService.sign).not.toHaveBeenCalled();
+    });
+
+    it('should not expose password in the response', async () => {
+      repo.findByEmail.mockResolvedValue(mockUser());
+      passwordHasher.compare.mockResolvedValue(true);
+
+      const result = await service.login({
+        email: 'ana@teste.local',
+        password: 'password123',
+      });
+
+      expect(result.user).not.toHaveProperty('password');
     });
   });
 

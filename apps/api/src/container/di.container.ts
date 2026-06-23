@@ -7,6 +7,7 @@ import {
   IHistoryRepository,
   IHistorySessionRepository,
   IPasswordHasher,
+  ITokenService,
   IUserRepository,
 } from '../interfaces';
 import {
@@ -17,6 +18,7 @@ import {
 import { HistorySessionService } from '../services/session/history-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
 import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
+import { JwtTokenService } from '../services/user/jwt-token.service';
 import { UserService } from '../services/user/user.service';
 
 export class DIContainer {
@@ -36,9 +38,14 @@ export class DIContainer {
   private readonly passwordHasher: IPasswordHasher = new BcryptPasswordHasher(
     appConfig.security.bcryptSaltRounds
   );
+  private readonly tokenService: ITokenService = new JwtTokenService(
+    appConfig.security.jwtSecret,
+    appConfig.security.jwtExpiresIn
+  );
   private readonly userService = new UserService(
     this.userRepository,
-    this.passwordHasher
+    this.passwordHasher,
+    this.tokenService
   );
   private readonly userController = new UserController(this.userService);
   private readonly historySessionService = new HistorySessionService(

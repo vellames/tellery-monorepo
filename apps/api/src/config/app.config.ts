@@ -16,6 +16,8 @@ const envSchema = z.object({
     .default('development'),
   CORS_ORIGIN: z.string().default('*'),
   BCRYPT_SALT_ROUNDS: z.coerce.number().int().min(8).max(15).default(10),
+  JWT_SECRET: z.string().min(16),
+  JWT_EXPIRES_IN: z.string().default('7d'),
 });
 
 const parsed = envSchema.safeParse(process.env);
@@ -55,5 +57,7 @@ export const appConfig = {
 
   security: {
     bcryptSaltRounds: env.BCRYPT_SALT_ROUNDS,
+    jwtSecret: env.JWT_SECRET,
+    jwtExpiresIn: env.JWT_EXPIRES_IN,
   },
 } as const;

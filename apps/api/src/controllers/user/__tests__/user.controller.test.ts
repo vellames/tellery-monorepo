@@ -111,4 +111,79 @@ describe('UserController', () => {
       expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
     });
   });
+
+  describe('login', () => {
+    it('should return 200 with the auth payload', async () => {
+      const authPayload = {
+        user: {
+          id: 'user-1',
+          name: 'Ana Teste',
+          email: 'ana@teste.local',
+          createdAt: '2026-01-01T00:00:00.000Z',
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+        token: 'signed-token',
+      };
+      userService.login.mockResolvedValue(authPayload);
+      req = {
+        body: { email: 'ana@teste.local', password: 'password123' },
+        t,
+      };
+
+      await controller.login(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+      expect(json).toHaveBeenCalledWith({
+        success: true,
+        data: authPayload,
+        message: undefined,
+      });
+    });
+
+    it('should return 422 when body is invalid', async () => {
+      req = { body: { email: 'not-an-email', password: '' }, t };
+
+      await controller.login(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({ success: false })
+      );
+    });
+
+    it('should return 401 when credentials are invalid', async () => {
+      userService.login.mockRejectedValue(
+        new HttpError(
+          StatusCodes.UNAUTHORIZED,
+          'Invalid email or password',
+          'user:errors.invalidCredentials'
+        )
+      );
+      req = {
+        body: { email: 'ana@teste.local', password: 'wrong-password' },
+        t,
+      };
+
+      await controller.login(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNAUTHORIZED);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          error: 'user:errors.invalidCredentials',
+        })
+      );
+    });
+
+    it('should return 500 on unexpected errors', async () => {
+      userService.login.mockRejectedValue(new Error('Something went wrong'));
+      req = {
+        body: { email: 'ana@teste.local', password: 'password123' },
+        t,
+      };
+
+      await controller.login(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    });
+  });
 });

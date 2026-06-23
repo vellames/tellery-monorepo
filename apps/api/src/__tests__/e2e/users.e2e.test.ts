@@ -2,7 +2,7 @@ import request from 'supertest';
 import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { Request, Response } from 'express';
-import { IUserRepository, IPasswordHasher } from '../../interfaces';
+import { IUserRepository, IPasswordHasher, ITokenService } from '../../interfaces';
 import { User } from '@prisma/client';
 import { UserController } from '../../controllers/user/user.controller';
 import { UserService } from '../../services/user/user.service';
@@ -13,7 +13,14 @@ const mockRepo: DeepMockProxy<IUserRepository> = mockDeep<IUserRepository>();
 const mockPasswordHasher: DeepMockProxy<IPasswordHasher> =
   mockDeep<IPasswordHasher>();
 mockPasswordHasher.hash.mockResolvedValue('hashed-password');
-const userService = new UserService(mockRepo, mockPasswordHasher);
+const mockTokenService: DeepMockProxy<ITokenService> =
+  mockDeep<ITokenService>();
+mockTokenService.sign.mockReturnValue('signed-token');
+const userService = new UserService(
+  mockRepo,
+  mockPasswordHasher,
+  mockTokenService
+);
 const userController = new UserController(userService);
 
 // Mock DIContainer so routes use our mock-backed controllers
@@ -29,7 +36,8 @@ jest.mock('../../container/di.container', () => ({
           res.json({ status: 'ok', database: 'connected' }),
       }),
       getSessionController: () => ({
-        start: async (_req: Request, res: Response) => res.status(201).json({}),
+        start: async (_req: Request, res: Response) =>
+          res.status(StatusCodes.CREATED).json({}),
         interact: async (_req: Request, res: Response) => res.json({}),
       }),
     }),
@@ -163,6 +171,101 @@ describe('E2E: /users/register', () => {
 
     expect(response.status).toBe(StatusCodes.NOT_FOUND);
     expect(response.body.success).toBe(false);
+  });
+});
+
+describe('E2E: /users/login', () => {
+  afterEach(() => {
+    mockReset(mockRepo);
+    mockReset(mockPasswordHasher);
+    mockPasswordHasher.hash.mockResolvedValue('hashed-password');
+    mockTokenService.sign.mockReturnValue('signed-token');
+  });
+
+  it('should return 200 with user and token when credentials are valid', async () => {
+    mockRepo.findByEmail.mockResolvedValue(mockUser());
+    mockPasswordHasher.compare.mockResolvedValue(true);
+
+    const response = await request(app).post('/users/login').send({
+      email: 'ana@teste.local',
+      password: 'password123',
+    });
+
+    expect(response.status).toBe(StatusCodes.OK);
+    expect(response.body.success).toBe(true);
+    expect(response.body.data).toEqual({
+      user: {
+        id: 'user-1',
+        name: 'Ana Teste',
+        email: 'ana@teste.local',
+        createdAt: '2026-01-01T00:00:00.000Z',
+        updatedAt: '2026-01-01T00:00:00.000Z',
+      },
+      token: 'signed-token',
+    });
+    expect(response.body.data.user).not.toHaveProperty('password');
+  });
+
+  it('should return 401 when user is not found', async () => {
+    mockRepo.findByEmail.mockResolvedValue(null);
+
+    const response = await request(app).post('/users/login').send({
+      email: 'unknown@teste.local',
+      password: 'password123',
+    });
+
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
+    expect(response.body.success).toBe(false);
+    expect(response.body.error).toBe('Invalid email or password');
+  });
+
+  it('should return 401 when password does not match', async () => {
+    mockRepo.findByEmail.mockResolvedValue(mockUser());
+    mockPasswordHasher.compare.mockResolvedValue(false);
+
+    const response = await request(app).post('/users/login').send({
+      email: 'ana@teste.local',
+      password: 'wrong-password',
+    });
+
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
+    expect(response.body.success).toBe(false);
+    expect(response.body.error).toBe('Invalid email or password');
+  });
+
+  it('should return 422 when email is invalid', async () => {
+    const response = await request(app).post('/users/login').send({
+      email: 'not-an-email',
+      password: 'password123',
+    });
+
+    expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(response.body.success).toBe(false);
+  });
+
+  it('should return 422 when password is missing', async () => {
+    const response = await request(app).post('/users/login').send({
+      email: 'ana@teste.local',
+    });
+
+    expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(response.body.success).toBe(false);
+  });
+
+  it('should return 401 with Portuguese message when Accept-Language is pt-BR', async () => {
+    mockRepo.findByEmail.mockResolvedValue(null);
+
+    const response = await request(app)
+      .post('/users/login')
+      .set('Accept-Language', 'pt-BR')
+      .send({
+        email: 'unknown@teste.local',
+        password: 'password123',
+      });
+
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
+    expect(response.body.success).toBe(false);
+    expect(response.body.error).toBe('E-mail ou senha inválidos');
   });
 });
 

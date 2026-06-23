@@ -3,3 +3,4 @@ export * from './repositories/history.repository.interface';
 export * from './repositories/history-session.repository.interface';
 export * from './repositories/user.repository.interface';
 export * from './services/password-hasher.interface';
+export * from './services/token-service.interface';
