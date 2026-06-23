@@ -1,0 +1,20 @@
+FROM node:20-alpine
+
+# Monorepo-aware dev image. Build context = repository ROOT so the shared
+# workspace files (root package.json, lockfile, turbo.json, tsconfig.base.json)
+# are available; api's tsconfig extends ../../tsconfig.base.json.
+WORKDIR /app
+
+# Install dependencies from the workspace manifests (better layer caching).
+COPY package*.json turbo.json tsconfig.base.json ./
+COPY apps/api/package.json ./apps/api/package.json
+COPY packages/i18n/package.json ./packages/i18n/package.json
+RUN npm install
+
+# Copy the rest of the monorepo.
+COPY . .
+
+EXPOSE 3000
+
+# Run the api dev server (tsx watch) via the workspace.
+CMD ["npm", "run", "dev", "-w", "@ai-history/api"]

@@ -1,0 +1,15 @@
+**/node_modules
+**/dist
+**/coverage
+**/.turbo
+.git
+.gitignore
+**/.env
+**/.env.*
+*.log
+npm-debug.log*
+.DS_Store
+**/.DS_Store
+.cursor
+_learnings
+tmp

@@ -1,0 +1,27 @@
+# Pinned project name so the Compose project stays stable regardless of directory.
+name: ai-history
+
+services:
+  app:
+    build:
+      # Build context is the monorepo root so shared workspace files resolve.
+      context: ../..
+      dockerfile: apps/api/Dockerfile.dev
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    volumes:
+      # Mount the whole repo so the in-container layout matches the workspace.
+      - ../..:/app
+      # Keep container-installed node_modules (avoid host/OS binary mismatch).
+      - /app/node_modules
+      - /app/apps/api/node_modules
+      - /app/packages/i18n/node_modules
+    env_file:
+      - ../../.env
+    restart: unless-stopped
+    networks:
+      - ai-history-network
+
+networks:
+  ai-history-network:
+    driver: bridge
