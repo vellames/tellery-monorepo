@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import { z } from "zod";
 import {
@@ -22,6 +23,10 @@ import {
 
 const app = express();
 const port = process.env.PORT ?? 3000;
+
+app.use(cors());
+app.use(express.json());
+
 const users = new UserRepository();
 const histories = new HistoryRepository();
 const sessions = new HistorySessionRepository();
@@ -36,8 +41,6 @@ const interactBodySchema = z.object({
   stateId: z.string().min(1),
   interaction: z.string().min(1),
 });
-
-app.use(express.json());
 
 app.get("/", (_req, res) => {
   res.json({
@@ -221,6 +224,8 @@ app.post("/session/:sessionId/interact", async (req, res) => {
 
         resolvedState.state.conversationSummary =
           characterAgentResult.updatedConversationSummary;
+        resolvedState.state.secretStates =
+          characterAgentResult.updatedSecretStates;
         resolvedState.state.revealedClueIds = addUnique(
           resolvedState.state.revealedClueIds,
           ...characterDiscoveredClueIds

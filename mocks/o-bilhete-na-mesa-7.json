@@ -51,6 +51,19 @@
       "keywords": ["examinar", "inspecionar", "papel", "dobras", "marcas"]
     },
     {
+      "id": "inspect_object",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar esse objeto",
+        "Olho isso com atenção",
+        "Inspeciono a xícara"
+      ],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+    },
+    {
       "id": "ask_about_ink",
       "createdAt": "2026-06-22T00:00:00.000Z",
       "updatedAt": "2026-06-22T00:00:00.000Z",
@@ -331,7 +344,8 @@
       "privateKnowledge": [
         "No dia anterior, saiu às pressas após receber uma ligação pessoal.",
         "O caixa ficou aberto por alguns minutos enquanto ela estava fora.",
-        "Ainda não quer admitir que pode ter havido falha no controle do caixa."
+        "Ainda não quer admitir que pode ter havido falha no controle do caixa.",
+        "Ainda não confirmou oficialmente falta de dinheiro no caixa."
       ],
       "openingLine": "Eu só quero entender quem colocou isso na minha mesa antes que todo mundo comece a se acusar.",
       "clueRevealRules": [
@@ -361,6 +375,7 @@
       "conversationBoundaries": [
         "Não acusar Clara diretamente sem pistas sobre caixa, balcão ou testemunhas.",
         "Não revelar a autoria do bilhete, pois Elisa não sabe.",
+        "Não afirmar que já conferiu o caixa ou que já deu falta de dinheiro.",
         "Manter o tom de mistério leve, sem pânico ou ameaça."
       ]
     },
@@ -492,8 +507,10 @@
                 "ask_about_cash_register"
               ],
               "requiresClueIds": [
+                "clue_cash_register_left_open",
+                "clue_rafa_saw_clara_near_counter",
                 "clue_davi_saw_clara_cash_register",
-                "clue_clara_near_counter"
+                "clue_umbrella_too_dry"
               ],
               "revealsClueIds": ["clue_clara_took_something_from_register"],
               "behavior": "Admitir parcialmente que pegou algo, tentando justificar como engano, impulso ou dinheiro que pretendia devolver.",
@@ -511,11 +528,17 @@
               "level": 4,
               "triggerIntents": ["accuse_clara_of_theft"],
               "requiresClueIds": [
-                "clue_clara_took_something_from_register",
+                "clue_cash_register_left_open",
+                "clue_rafa_saw_clara_near_counter",
+                "clue_davi_saw_clara_cash_register",
                 "clue_davi_wrote_note",
+                "clue_davi_note_motive",
                 "clue_umbrella_too_dry"
               ],
-              "revealsClueIds": ["clue_clara_stole_money"],
+              "revealsClueIds": [
+                "clue_clara_took_something_from_register",
+                "clue_clara_stole_money"
+              ],
               "behavior": "Confessar que pegou dinheiro do caixa, ainda tentando preservar dignidade e propor reparação.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -551,7 +574,8 @@
       "privateKnowledge": [
         "Viu Clara perto do balcão no dia anterior.",
         "Viu Davi usando uma caneta azul para anotar músicas.",
-        "Não escreveu o bilhete e não pegou dinheiro."
+        "Não escreveu o bilhete e não pegou dinheiro.",
+        "Não sabe se houve falta confirmada no caixa; só teme ser culpado se algo estiver errado."
       ],
       "openingLine": "Eu sei que pareço nervoso, mas parecer nervoso não é a mesma coisa que ser culpado.",
       "clueRevealRules": [
@@ -620,6 +644,8 @@
       ],
       "conversationBoundaries": [
         "Não afirmar que viu Clara roubar diretamente.",
+        "Não afirmar que Elisa já percebeu falta de dinheiro no caixa.",
+        "Tratar o dinheiro como suspeita ou risco, não como falta oficialmente confirmada.",
         "Não confessar autoria do bilhete, pois ele é inocente.",
         "Permitir que pareça suspeito, mas sempre com explicações plausíveis."
       ]
@@ -803,25 +829,33 @@
       "clueRevealRules": [
         {
           "clueId": "clue_note_text",
-          "triggerIntents": ["ask_about_note", "inspect_note"],
+          "triggerIntents": [
+            "ask_about_note",
+            "inspect_note",
+            "inspect_object"
+          ],
           "requiresClueIds": [],
           "revealText": "O bilhete diz exatamente: \"Eu sei o que você fez ontem.\""
         },
         {
           "clueId": "clue_note_blue_ink",
-          "triggerIntents": ["inspect_note", "ask_about_ink"],
+          "triggerIntents": ["inspect_note", "inspect_object", "ask_about_ink"],
           "requiresClueIds": [],
           "revealText": "A tinta do bilhete é azul, com traço consistente de caneta comum, não de marcador ou lápis."
         },
         {
           "clueId": "clue_note_citrus_perfume",
-          "triggerIntents": ["smell_note", "inspect_note"],
+          "triggerIntents": ["smell_note", "inspect_note", "inspect_object"],
           "requiresClueIds": [],
           "revealText": "O papel tem um cheiro cítrico sutil, como perfume transferido pelo toque de alguém."
         },
         {
           "clueId": "clue_note_was_handled",
-          "triggerIntents": ["inspect_note", "ask_who_touched_note"],
+          "triggerIntents": [
+            "inspect_note",
+            "inspect_object",
+            "ask_who_touched_note"
+          ],
           "requiresClueIds": [],
           "revealText": "Há marcas leves de manuseio nas bordas do bilhete, sugerindo que ele foi tocado depois de escrito."
         }
@@ -840,7 +874,7 @@
       "clueRevealRules": [
         {
           "clueId": "clue_cup_recent_presence",
-          "triggerIntents": ["inspect_note", "ask_about_table_7"],
+          "triggerIntents": ["inspect_object", "ask_about_table_7"],
           "requiresClueIds": [],
           "revealText": "A xícara indica presença recente na mesa 7, mas não liga ninguém diretamente à autoria do bilhete."
         }

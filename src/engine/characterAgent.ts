@@ -5,6 +5,7 @@ import {
   CharacterClueRevealRule,
   CharacterDefinition,
   CharacterSecret,
+  CharacterSecretSessionState,
   ClueDefinition,
   SecretRevealStage,
 } from "../models";
@@ -49,6 +50,7 @@ export interface CharacterAgentResult {
   reply: string;
   discoveredClues: CharacterAgentDiscoveredClue[];
   updatedConversationSummary: string;
+  updatedSecretStates: CharacterSecretSessionState[];
   language: SupportedLanguage;
   model: string;
 }
@@ -65,6 +67,7 @@ export async function runCharacterAgent(
   );
   const eligibleSecretStages = getEligibleSecretStages(
     input.character.secrets,
+    input.characterState.secretStates,
     input.detectedIntents,
     input.discoveredClueIds
   );
@@ -97,7 +100,8 @@ export async function runCharacterAgent(
         ),
         eligibleSecretStages: formatSecretStagesForPrompt(
           eligibleSecretStages,
-          input.clues
+          input.clues,
+          input.characterState.secretStates
         ),
       }),
     },
@@ -107,6 +111,7 @@ export async function runCharacterAgent(
     response,
     eligibleClueRules,
     eligibleSecretStages,
+    input.characterState.secretStates,
     language,
     model
   );
@@ -153,6 +158,7 @@ function getEligibleCharacterClueRules(
 
 function getEligibleSecretStages(
   secrets: CharacterSecret[],
+  secretStates: CharacterSecretSessionState[],
   detectedIntents: DetectedIntent[],
   discoveredClueIds: string[]
 ): Array<{ secret: CharacterSecret; stage: SecretRevealStage }> {
@@ -161,20 +167,38 @@ function getEligibleSecretStages(
   );
   const discoveredClues = new Set(discoveredClueIds);
 
-  return secrets.flatMap((secret) =>
-    secret.revealStages
-      .filter((stage) => {
-        const hasTriggerIntent = stage.triggerIntents.some((intentId) =>
-          detectedIntentIds.has(intentId)
-        );
-        const hasRequiredClues = (stage.requiresClueIds ?? []).every((clueId) =>
-          discoveredClues.has(clueId)
-        );
+  return secrets.flatMap((secret) => {
+    const secretState = secretStates.find((s) => s.secretId === secret.id);
+    const currentLevel = secretState?.currentStageLevel ?? -1;
 
-        return hasTriggerIntent && hasRequiredClues;
-      })
-      .map((stage) => ({ secret, stage }))
-  );
+    const sortedStages = [...secret.revealStages].sort(
+      (stageA, stageB) => stageA.level - stageB.level
+    );
+
+    const eligibleStages = sortedStages.filter((stage) => {
+      if (stage.level <= currentLevel) return false;
+
+      const hasTriggerIntent = stage.triggerIntents.some((intentId) =>
+        detectedIntentIds.has(intentId)
+      );
+      const hasRequiredClues = (stage.requiresClueIds ?? []).every((clueId) =>
+        discoveredClues.has(clueId)
+      );
+
+      return hasTriggerIntent && hasRequiredClues;
+    });
+
+    const highestEligibleStage = eligibleStages.at(-1);
+    if (!highestEligibleStage) return [];
+
+    return sortedStages
+      .filter(
+        (stage) =>
+          stage.level > currentLevel &&
+          stage.level <= highestEligibleStage.level
+      )
+      .map((stage) => ({ secret, stage }));
+  });
 }
 
 function formatCharacterForPrompt(character: CharacterDefinition): string {
@@ -222,20 +246,26 @@ function formatCharacterClueRulesForPrompt(
 
 function formatSecretStagesForPrompt(
   stages: Array<{ secret: CharacterSecret; stage: SecretRevealStage }>,
-  clues: ClueDefinition[]
+  clues: ClueDefinition[],
+  secretStates: CharacterSecretSessionState[]
 ): string {
   return JSON.stringify(
-    stages.map(({ secret, stage }) => ({
-      secretId: secret.id,
-      secretSummary: secret.summary,
-      secretTruth: secret.truth,
-      defaultStrategy: secret.defaultStrategy,
-      stage,
-      revealsClues: (stage.revealsClueIds ?? []).map((clueId) => ({
-        clueId,
-        clue: clues.find((clue) => clue.id === clueId) ?? null,
-      })),
-    })),
+    stages.map(({ secret, stage }) => {
+      const secretState = secretStates.find((s) => s.secretId === secret.id);
+      return {
+        secretId: secret.id,
+        secretSummary: secret.summary,
+        secretTruth: secret.truth,
+        defaultStrategy: secret.defaultStrategy,
+        currentStageLevel: secretState?.currentStageLevel ?? -1,
+        nextStageLevel: stage.level,
+        stage,
+        revealsClues: (stage.revealsClueIds ?? []).map((clueId) => ({
+          clueId,
+          clue: clues.find((clue) => clue.id === clueId) ?? null,
+        })),
+      };
+    }),
     null,
     2
   );
@@ -248,6 +278,7 @@ function normalizeCharacterAgentResponse(
     secret: CharacterSecret;
     stage: SecretRevealStage;
   }>,
+  existingSecretStates: CharacterSecretSessionState[],
   language: SupportedLanguage,
   model: string
 ): CharacterAgentResult {
@@ -270,6 +301,42 @@ function normalizeCharacterAgentResponse(
         "Automatically included because the character reveal rule or secret stage was eligible for this interaction.",
     }));
 
+  const updatedSecretStates: CharacterSecretSessionState[] = Array.from(
+    new Set(eligibleSecretStages.map(({ secret }) => secret.id))
+  ).map((secretId) => {
+    const secretStages = eligibleSecretStages.filter(
+      ({ secret }) => secret.id === secretId
+    );
+    const existing = existingSecretStates.find((s) => s.secretId === secretId);
+    const currentStageLevel = Math.max(
+      existing?.currentStageLevel ?? -1,
+      ...secretStages.map(({ stage }) => stage.level)
+    );
+    const revealedStageIds = Array.from(
+      new Set([
+        ...(existing?.revealedStageIds ?? []),
+        ...secretStages.map(({ stage }) => stage.id),
+      ])
+    );
+    const revealedClueIds = Array.from(
+      new Set([
+        ...(existing?.revealedClueIds ?? []),
+        ...secretStages.flatMap(({ stage }) => stage.revealsClueIds ?? []),
+      ])
+    );
+
+    return {
+      secretId,
+      currentStageLevel,
+      revealedStageIds,
+      revealedClueIds,
+    };
+  });
+
+  const mergedSecretStates = existingSecretStates
+    .filter((s) => !updatedSecretStates.some((u) => u.secretId === s.secretId))
+    .concat(updatedSecretStates);
+
   return {
     reply: response.reply,
     discoveredClues: [...modelDiscoveredClues, ...enforcedDiscoveredClues].map(
@@ -281,6 +348,7 @@ function normalizeCharacterAgentResponse(
       })
     ),
     updatedConversationSummary: response.updatedConversationSummary,
+    updatedSecretStates: mergedSecretStates,
     language,
     model,
   };
