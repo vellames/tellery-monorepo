@@ -7,8 +7,18 @@ import {
   HistorySession,
 } from "../models";
 
+export interface CharacterConversationMessage {
+  role: "user" | "character";
+  content: string;
+  createdAt: Date;
+}
+
 export class HistorySessionRepository {
   private readonly sessions = new Map<string, HistorySession>();
+  private readonly characterConversationMessages = new Map<
+    string,
+    CharacterConversationMessage[]
+  >();
 
   create(input: { userId: string; history: History }): HistorySession {
     const session = createHistorySession({
@@ -44,5 +54,41 @@ export class HistorySessionRepository {
     return Array.from(this.sessions.values()).filter(
       (session) => !session.deletedAt
     );
+  }
+
+  appendCharacterConversationMessage(input: {
+    sessionId: string;
+    characterStateId: string;
+    message: CharacterConversationMessage;
+  }): void {
+    const key = this.createCharacterConversationKey(
+      input.sessionId,
+      input.characterStateId
+    );
+    const messages = this.characterConversationMessages.get(key) ?? [];
+
+    messages.push(input.message);
+    this.characterConversationMessages.set(key, messages);
+  }
+
+  getRecentCharacterConversation(input: {
+    sessionId: string;
+    characterStateId: string;
+    limit?: number;
+  }): CharacterConversationMessage[] {
+    const key = this.createCharacterConversationKey(
+      input.sessionId,
+      input.characterStateId
+    );
+    const messages = this.characterConversationMessages.get(key) ?? [];
+
+    return messages.slice(-(input.limit ?? 6));
+  }
+
+  private createCharacterConversationKey(
+    sessionId: string,
+    characterStateId: string
+  ): string {
+    return `${sessionId}:${characterStateId}`;
   }
 }

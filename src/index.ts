@@ -1,9 +1,11 @@
 import express from "express";
 import { z } from "zod";
 import {
+  CharacterAgentResult,
   detectIntent,
   DetectedIntent,
   ObjectAgentDiscoveredClue,
+  runCharacterAgent,
   runObjectAgent,
 } from "./engine";
 import {
@@ -167,6 +169,7 @@ app.post("/session/:sessionId/interact", async (req, res) => {
   }
 
   let detectedIntents: DetectedIntent[] = [];
+  let characterAgentResult: CharacterAgentResult | null = null;
   let objectAgentDiscoveredClues: ObjectAgentDiscoveredClue[] = [];
 
   if (resolvedState.type !== "location") {
@@ -184,7 +187,83 @@ app.post("/session/:sessionId/interact", async (req, res) => {
         detectedIntents,
       });
 
-      if (resolvedState.type === "object") {
+      if (resolvedState.type === "character") {
+        const character = history.characters.find(
+          (historyCharacter) =>
+            historyCharacter.id === resolvedState.state.characterId
+        );
+
+        if (!character) {
+          res.status(404).json({
+            error: `Unknown characterId: ${resolvedState.state.characterId}`,
+          });
+          return;
+        }
+
+        const recentConversation = sessions.getRecentCharacterConversation({
+          sessionId: session.id,
+          characterStateId: resolvedState.state.id,
+        });
+
+        characterAgentResult = await runCharacterAgent({
+          character,
+          characterState: resolvedState.state,
+          clues: history.clues,
+          detectedIntents,
+          discoveredClueIds: session.progress.discoveredClueIds,
+          interaction: parsedBody.data.interaction,
+          recentConversation,
+          language: history.language,
+        });
+
+        const characterDiscoveredClueIds =
+          characterAgentResult.discoveredClues.map((clue) => clue.clueId);
+
+        resolvedState.state.conversationSummary =
+          characterAgentResult.updatedConversationSummary;
+        resolvedState.state.revealedClueIds = addUnique(
+          resolvedState.state.revealedClueIds,
+          ...characterDiscoveredClueIds
+        );
+        session.progress.talkedToCharacterIds = addUnique(
+          session.progress.talkedToCharacterIds,
+          resolvedState.state.characterId
+        );
+        session.progress.discoveredClueIds = addUnique(
+          session.progress.discoveredClueIds,
+          ...characterDiscoveredClueIds
+        );
+        discoveredClueIds = addUnique(
+          discoveredClueIds,
+          ...characterDiscoveredClueIds
+        );
+
+        sessions.appendCharacterConversationMessage({
+          sessionId: session.id,
+          characterStateId: resolvedState.state.id,
+          message: {
+            role: "user",
+            content: parsedBody.data.interaction,
+            createdAt: new Date(),
+          },
+        });
+        sessions.appendCharacterConversationMessage({
+          sessionId: session.id,
+          characterStateId: resolvedState.state.id,
+          message: {
+            role: "character",
+            content: characterAgentResult.reply,
+            createdAt: new Date(),
+          },
+        });
+
+        console.log("character_agent_result", {
+          sessionId: session.id,
+          stateId: id,
+          characterId: character.id,
+          characterAgentResult,
+        });
+      } else if (resolvedState.type === "object") {
         const object = history.objects.find(
           (historyObject) => historyObject.id === resolvedState.state.objectId
         );
@@ -249,7 +328,9 @@ app.post("/session/:sessionId/interact", async (req, res) => {
 
   res.json({
     id,
+    reply: characterAgentResult?.reply ?? null,
     detectedIntents,
+    characterAgentResult,
     objectAgentDiscoveredClues,
     discoveredClues,
     sessionStatus: session.status,

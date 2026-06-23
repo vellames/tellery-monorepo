@@ -26,6 +26,10 @@ export const i18n = {
       "Voce e um agente de objetos para uma engine de historias interativas. Sua tarefa e avaliar regras de revelacao de pistas de um objeto usando as intencoes detectadas e o estado atual da sessao.",
     objectAgentUserPrompt:
       'Objeto:\n{{object}}\n\nIntencoes detectadas:\n{{detectedIntents}}\n\nPistas ja descobertas na sessao:\n{{discoveredClueIds}}\n\nRegras elegiveis para avaliacao:\n{{eligibleRules}}\n\nResponda somente com JSON valido neste formato: [{"clueId": string, "reasoning": string}]. Retorne uma linha para cada pista que deve ser descoberta agora. Use apenas clueIds das regras elegiveis. Se nenhuma pista deve ser descoberta, retorne [].',
+    characterAgentSystemPrompt:
+      "Voce e um agente de personagem para uma engine de historias interativas. Responda sempre como o personagem, preserve a verdade fixa do caso e revele pistas apenas quando as regras elegiveis permitirem.",
+    characterAgentUserPrompt:
+      'Personagem:\n{{character}}\n\nResumo da conversa ate agora:\n{{conversationSummary}}\n\nHistorico recente:\n{{recentConversation}}\n\nMensagem do usuario:\n{{interaction}}\n\nIntencoes detectadas:\n{{detectedIntents}}\n\nPistas ja descobertas na sessao:\n{{discoveredClueIds}}\n\nRegras de pistas elegiveis:\n{{eligibleClueRules}}\n\nEstagios de segredo elegiveis:\n{{eligibleSecretStages}}\n\nResponda somente com JSON valido neste formato: {"reply": string, "discoveredClues": [{"clueId": string, "reasoning": string}], "updatedConversationSummary": string}. A fala deve seguir personalidade, estilo e limites do personagem. Use discoveredClues apenas com clueIds das regras ou estagios elegiveis. Se nenhuma pista for revelada, use [].',
   },
   en: {
     intentDetectorSystemPrompt:
@@ -36,6 +40,10 @@ export const i18n = {
       "You are an object agent for an interactive story engine. Your task is to evaluate an object's clue reveal rules using detected intents and current session state.",
     objectAgentUserPrompt:
       'Object:\n{{object}}\n\nDetected intents:\n{{detectedIntents}}\n\nAlready discovered session clues:\n{{discoveredClueIds}}\n\nEligible rules to evaluate:\n{{eligibleRules}}\n\nReply only with valid JSON in this format: [{"clueId": string, "reasoning": string}]. Return one row for each clue that should be discovered now. Use only clueIds from eligible rules. If no clue should be discovered, return [].',
+    characterAgentSystemPrompt:
+      "You are a character agent for an interactive story engine. Always answer as the character, preserve the fixed truth of the case, and reveal clues only when eligible rules allow it.",
+    characterAgentUserPrompt:
+      'Character:\n{{character}}\n\nConversation summary so far:\n{{conversationSummary}}\n\nRecent conversation:\n{{recentConversation}}\n\nUser message:\n{{interaction}}\n\nDetected intents:\n{{detectedIntents}}\n\nAlready discovered session clues:\n{{discoveredClueIds}}\n\nEligible clue rules:\n{{eligibleClueRules}}\n\nEligible secret stages:\n{{eligibleSecretStages}}\n\nReply only with valid JSON in this format: {"reply": string, "discoveredClues": [{"clueId": string, "reasoning": string}], "updatedConversationSummary": string}. The reply must follow the character personality, speaking style, and boundaries. Use discoveredClues only with clueIds from eligible rules or stages. If no clue is revealed, use [].',
   },
 } satisfies Record<SupportedLanguage, Record<string, string>>;
 
