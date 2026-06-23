@@ -3,10 +3,160 @@ import { DIContainer } from "../container/di.container";
 
 const router = Router();
 
+/**
+ * @openapi
+ * /session/start:
+ *   post:
+ *     tags: [Session]
+ *     summary: Start a new history session
+ *     description: Creates an in-memory history session for a user.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [userId]
+ *             properties:
+ *               userId:
+ *                 type: string
+ *                 example: user_ana_teste
+ *               historyId:
+ *                 type: string
+ *                 description: Optional history ID. Falls back to historySlug or default.
+ *               historySlug:
+ *                 type: string
+ *                 description: Optional history slug. Falls back to default if neither ID nor slug is provided.
+ *     responses:
+ *       201:
+ *         description: Session created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 session:
+ *                   type: object
+ *                   description: The created session state.
+ *                 sessionStatus:
+ *                   type: string
+ *                   example: active
+ *                 history:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     slug:
+ *                       type: string
+ *                     title:
+ *                       type: string
+ *                     subtitle:
+ *                       type: string
+ *                       nullable: true
+ *                     opening:
+ *                       type: object
+ *                     objective:
+ *                       type: object
+ *       400:
+ *         description: Invalid request body
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ValidationError"
+ *       404:
+ *         description: User or history not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ */
 router.post("/start", (req, res) => {
   DIContainer.getInstance().getSessionController().start(req, res);
 });
 
+/**
+ * @openapi
+ * /session/{sessionId}/interact:
+ *   post:
+ *     tags: [Session]
+ *     summary: Interact with a session
+ *     description: Interact with a character, object, or location in a session. Location interactions do not call the LLM; character and object interactions trigger intent detection and agent execution.
+ *     parameters:
+ *       - name: sessionId
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The session ID.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [stateId, interaction]
+ *             properties:
+ *               stateId:
+ *                 type: string
+ *                 description: The session state ID (character, object, or location state).
+ *               interaction:
+ *                 type: string
+ *                 description: The user's interaction message.
+ *     responses:
+ *       200:
+ *         description: Interaction result
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   description: The state ID that was interacted with.
+ *                 reply:
+ *                   type: string
+ *                   nullable: true
+ *                   description: The character's reply (null for locations and objects).
+ *                 detectedIntents:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                 characterAgentResult:
+ *                   type: object
+ *                   nullable: true
+ *                 objectAgentDiscoveredClues:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                 discoveredClues:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                 sessionStatus:
+ *                   type: string
+ *                   example: active
+ *                 session:
+ *                   type: object
+ *                   description: The updated session state.
+ *       400:
+ *         description: Invalid request body
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ValidationError"
+ *       404:
+ *         description: Session, state, or history not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ *       502:
+ *         description: Intent detection or agent execution failed
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ */
 router.post("/:sessionId/interact", async (req, res) => {
   await DIContainer.getInstance().getSessionController().interact(req, res);
 });
