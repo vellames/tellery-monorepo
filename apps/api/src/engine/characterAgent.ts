@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CHARACTER_AGENT_MODEL } from "../config/app.config";
+import { appConfig } from "../config/app.config";
 import { normalizeLanguage, SupportedLanguage, t } from "@ai-history/i18n";
 import {
   CharacterClueRevealRule,
@@ -59,7 +59,7 @@ export async function runCharacterAgent(
   input: RunCharacterAgentInput
 ): Promise<CharacterAgentResult> {
   const language = normalizeLanguage(input.language);
-  const model = input.model ?? CHARACTER_AGENT_MODEL;
+  const model = input.model ?? appConfig.openrouter.characterAgentModel;
   const eligibleClueRules = getEligibleCharacterClueRules(
     input.character.clueRevealRules,
     input.detectedIntents,

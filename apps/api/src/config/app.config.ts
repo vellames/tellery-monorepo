@@ -1,27 +1,25 @@
 import "dotenv/config";
 
-export const appConfig = {
-  port: process.env.PORT ?? 3232,
-};
-
-export const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-
-export const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1";
-
-export const DEFAULT_LANGUAGE = process.env.DEFAULT_LANGUAGE ?? "pt-BR";
-
-export const DEFAULT_MODEL =
+const DEFAULT_MODEL =
   process.env.OPENROUTER_MODEL ?? "deepseek/deepseek-v4-pro";
 
-export const INTENT_DETECTOR_MODEL =
-  process.env.OPENROUTER_INTENT_MODEL ?? DEFAULT_MODEL;
+export const appConfig = {
+  port: process.env.PORT ?? 3232,
 
-export const OBJECT_AGENT_MODEL =
-  process.env.OPENROUTER_OBJECT_MODEL ?? DEFAULT_MODEL;
+  language: {
+    default: process.env.DEFAULT_LANGUAGE ?? "pt-BR",
+  },
 
-export const CHARACTER_AGENT_MODEL =
-  process.env.OPENROUTER_CHARACTER_MODEL ?? DEFAULT_MODEL;
-
-export const INTENT_DETECTOR_THRESHOLD = Number(
-  process.env.INTENT_DETECTOR_THRESHOLD ?? "0.5"
-);
+  openrouter: {
+    apiKey: process.env.OPENROUTER_API_KEY,
+    baseUrl: "https://openrouter.ai/api/v1",
+    defaultModel: DEFAULT_MODEL,
+    intentDetectorModel: process.env.OPENROUTER_INTENT_MODEL ?? DEFAULT_MODEL,
+    objectAgentModel: process.env.OPENROUTER_OBJECT_MODEL ?? DEFAULT_MODEL,
+    characterAgentModel:
+      process.env.OPENROUTER_CHARACTER_MODEL ?? DEFAULT_MODEL,
+    intentDetectorThreshold: Number(
+      process.env.INTENT_DETECTOR_THRESHOLD ?? "0.5"
+    ),
+  },
+} as const;

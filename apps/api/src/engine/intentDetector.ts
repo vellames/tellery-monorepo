@@ -1,8 +1,5 @@
 import { z } from "zod";
-import {
-  INTENT_DETECTOR_MODEL,
-  INTENT_DETECTOR_THRESHOLD,
-} from "../config/app.config";
+import { appConfig } from "../config/app.config";
 import { createOpenRouterChatModel } from "../openrouter";
 import { normalizeLanguage, t, SupportedLanguage } from "@ai-history/i18n";
 import { IntentDefinition } from "../models";
@@ -40,8 +37,10 @@ export async function detectIntent(
   }
 
   const language = normalizeLanguage(input.language);
-  const model = input.model ?? INTENT_DETECTOR_MODEL;
-  const threshold = normalizeThreshold(INTENT_DETECTOR_THRESHOLD);
+  const model = input.model ?? appConfig.openrouter.intentDetectorModel;
+  const threshold = normalizeThreshold(
+    appConfig.openrouter.intentDetectorThreshold
+  );
   const intentIds = new Set(input.intents.map((intent) => intent.id));
   const fallbackIntentId = intentIds.has("off_topic")
     ? "off_topic"

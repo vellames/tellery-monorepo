@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { OBJECT_AGENT_MODEL } from "../config/app.config";
+import { appConfig } from "../config/app.config";
 import { normalizeLanguage, SupportedLanguage, t } from "@ai-history/i18n";
 import { createOpenRouterChatModel } from "../openrouter";
 import {
@@ -38,7 +38,7 @@ export async function runObjectAgent(
   input: RunObjectAgentInput
 ): Promise<ObjectAgentDiscoveredClue[]> {
   const language = normalizeLanguage(input.language);
-  const model = input.model ?? OBJECT_AGENT_MODEL;
+  const model = input.model ?? appConfig.openrouter.objectAgentModel;
   const eligibleRules = getEligibleObjectRules(
     input.object.clueRevealRules,
     input.detectedIntents,

@@ -1,9 +1,5 @@
 import { ChatOpenAI } from "@langchain/openai";
-import {
-  DEFAULT_MODEL,
-  OPENROUTER_API_KEY,
-  OPENROUTER_BASE_URL,
-} from "./config/app.config";
+import { appConfig } from "./config/app.config";
 
 export type ChatRole = "system" | "user" | "assistant";
 
@@ -19,18 +15,20 @@ interface ModelsResponse {
   }>;
 }
 
-export function createOpenRouterChatModel(model: string = DEFAULT_MODEL) {
-  if (!OPENROUTER_API_KEY) {
+export function createOpenRouterChatModel(
+  model: string = appConfig.openrouter.defaultModel
+) {
+  if (!appConfig.openrouter.apiKey) {
     throw new Error(
       "Missing required environment variable: OPENROUTER_API_KEY"
     );
   }
 
   return new ChatOpenAI({
-    apiKey: OPENROUTER_API_KEY,
+    apiKey: appConfig.openrouter.apiKey,
     model,
     configuration: {
-      baseURL: OPENROUTER_BASE_URL,
+      baseURL: appConfig.openrouter.baseUrl,
     },
   });
 }
@@ -39,16 +37,16 @@ async function openRouterFetch<T>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {
-  if (!OPENROUTER_API_KEY) {
+  if (!appConfig.openrouter.apiKey) {
     throw new Error(
       "Missing required environment variable: OPENROUTER_API_KEY"
     );
   }
 
-  const response = await fetch(`${OPENROUTER_BASE_URL}${path}`, {
+  const response = await fetch(`${appConfig.openrouter.baseUrl}${path}`, {
     ...options,
     headers: {
-      Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+      Authorization: `Bearer ${appConfig.openrouter.apiKey}`,
       "Content-Type": "application/json",
       ...options.headers,
     },
@@ -64,7 +62,7 @@ async function openRouterFetch<T>(
 
 export async function chat(
   messages: ChatMessage[],
-  model: string = DEFAULT_MODEL
+  model: string = appConfig.openrouter.defaultModel
 ): Promise<{ reply: string; model: string }> {
   const llm = createOpenRouterChatModel(model);
   const response = await llm.invoke(
