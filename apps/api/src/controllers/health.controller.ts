@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
+import { PrismaClient } from '@prisma/client';
 import { TranslationFunction } from '../types/i18n.types';
 
 export class HealthController {
+  constructor(private readonly prisma: PrismaClient) {}
+
   index(req: Request, res: Response): void {
     const t = req.t as TranslationFunction;
     res.json({
@@ -16,6 +19,23 @@ export class HealthController {
 
   health(req: Request, res: Response): void {
     const t = req.t as TranslationFunction;
-    res.json({ status: t('common:status') });
+    res.json({ status: t('common:status.ok') });
+  }
+
+  async readiness(req: Request, res: Response): Promise<void> {
+    const t = req.t as TranslationFunction;
+
+    try {
+      await this.prisma.$queryRaw`SELECT 1`;
+      res.json({
+        status: t('common:status.ok'),
+        database: t('common:database.connected'),
+      });
+    } catch {
+      res.status(503).json({
+        status: t('common:status.unhealthy'),
+        database: t('common:database.disconnected'),
+      });
+    }
   }
 }

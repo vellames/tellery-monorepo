@@ -22,6 +22,8 @@ jest.mock('../../container/di.container', () => ({
         index: (_req: Request, res: Response) =>
           res.json({ message: 'AI History API', endpoints: {} }),
         health: (_req: Request, res: Response) => res.json({ status: 'ok' }),
+        readiness: async (_req: Request, res: Response) =>
+          res.json({ status: 'ok', database: 'connected' }),
       }),
       getSessionController: () => ({
         start: async (_req: Request, res: Response) => res.status(201).json({}),

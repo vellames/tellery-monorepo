@@ -29,7 +29,7 @@ export class DIContainer {
   private readonly historySessionRepository: IHistorySessionRepository =
     new HistorySessionRepository();
 
-  private readonly healthController = new HealthController();
+  private readonly healthController = new HealthController(this.prisma);
   private readonly userService = new UserService(this.userRepository);
   private readonly userController = new UserController(this.userService);
   private readonly historySessionService = new HistorySessionService(
@@ -64,5 +64,13 @@ export class DIContainer {
 
   getUserController(): UserController {
     return this.userController;
+  }
+
+  getPrisma(): PrismaClient {
+    return this.prisma;
+  }
+
+  async disconnect(): Promise<void> {
+    await this.prisma.$disconnect();
   }
 }

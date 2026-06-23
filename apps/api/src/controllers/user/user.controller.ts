@@ -3,7 +3,11 @@ import { StatusCodes } from 'http-status-codes';
 import { UserService } from '../../services/user/user.service';
 import { createUserSchema } from '../../types/domain/user/user.validation';
 import { HttpError } from '../../utils/http-error';
-import { handleError, sendSuccess } from '../../utils/response.utils';
+import {
+  handleError,
+  sendSuccess,
+  sendValidationError,
+} from '../../utils/response.utils';
 import { TranslationFunction } from '../../types/i18n.types';
 
 export class UserController {
@@ -13,10 +17,10 @@ export class UserController {
     const t = req.t as TranslationFunction;
     const parsed = createUserSchema.safeParse(req.body);
     if (!parsed.success) {
-      handleError(
+      sendValidationError(
         res,
-        new Error(t('common:errors.invalidRequestBody')),
-        StatusCodes.UNPROCESSABLE_ENTITY
+        t('common:errors.invalidRequestBody'),
+        parsed.error.issues
       );
       return;
     }

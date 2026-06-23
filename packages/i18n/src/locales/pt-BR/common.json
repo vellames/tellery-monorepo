@@ -1,6 +1,13 @@
 {
   "welcome": "Bem-vindo",
-  "status": "ok",
+  "status": {
+    "ok": "ok",
+    "unhealthy": "instável"
+  },
+  "database": {
+    "connected": "conectado",
+    "disconnected": "desconectado"
+  },
   "api": {
     "name": "AI History API",
     "healthCheck": "Verificação de saúde",

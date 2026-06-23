@@ -7,7 +7,11 @@ import {
   startSessionBodySchema,
 } from '../types/http/session.validation';
 import { HttpError } from '../utils/http-error';
-import { handleError, sendSuccess } from '../utils/response.utils';
+import {
+  handleError,
+  sendSuccess,
+  sendValidationError,
+} from '../utils/response.utils';
 import { TranslationFunction } from '../types/i18n.types';
 
 export class SessionController {
@@ -21,10 +25,10 @@ export class SessionController {
     const parsedBody = startSessionBodySchema.safeParse(req.body);
 
     if (!parsedBody.success) {
-      handleError(
+      sendValidationError(
         res,
-        new Error(t('common:errors.invalidRequestBody')),
-        StatusCodes.UNPROCESSABLE_ENTITY
+        t('common:errors.invalidRequestBody'),
+        parsedBody.error.issues
       );
       return;
     }
@@ -50,10 +54,10 @@ export class SessionController {
     const t = req.t as TranslationFunction;
     const parsedBody = interactBodySchema.safeParse(req.body);
     if (!parsedBody.success) {
-      handleError(
+      sendValidationError(
         res,
-        new Error(t('common:errors.invalidRequestBody')),
-        StatusCodes.UNPROCESSABLE_ENTITY
+        t('common:errors.invalidRequestBody'),
+        parsedBody.error.issues
       );
       return;
     }

@@ -17,11 +17,23 @@ export const sendSuccess = <T>(
 export const sendError = (
   res: Response,
   error: string,
-  statusCode: StatusCodes = StatusCodes.BAD_REQUEST
+  statusCode: StatusCodes = StatusCodes.UNPROCESSABLE_ENTITY
 ): void => {
   res.status(statusCode).json({
     success: false,
     error,
+  });
+};
+
+export const sendValidationError = (
+  res: Response,
+  error: string,
+  issues: unknown[]
+): void => {
+  res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({
+    success: false,
+    error,
+    issues,
   });
 };
 

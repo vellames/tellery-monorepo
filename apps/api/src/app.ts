@@ -4,6 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import { i18nMiddleware } from '@ai-history/i18n';
 import routes from './routes';
 import { swaggerSpec } from './config/swagger.config';
+import { appConfig } from './config/app.config';
 import { requestLogger } from './middleware/request-logger.middleware';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware';
 
@@ -12,7 +13,7 @@ export function createApp() {
 
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN || '*',
+      origin: appConfig.corsOrigin,
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization', 'Accept-Language'],

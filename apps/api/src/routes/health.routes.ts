@@ -55,4 +55,45 @@ router.get('/health', (req, res) => {
   DIContainer.getInstance().getHealthController().health(req, res);
 });
 
+/**
+ * @openapi
+ * /health/ready:
+ *   get:
+ *     tags: [Health]
+ *     summary: Readiness check
+ *     description: Checks if the server and database are ready to accept traffic.
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     responses:
+ *       200:
+ *         description: Server is ready
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: ok
+ *                 database:
+ *                   type: string
+ *                   example: connected
+ *       503:
+ *         description: Server is not ready
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: unhealthy
+ *                 database:
+ *                   type: string
+ *                   example: disconnected
+ */
+router.get('/health/ready', async (req, res) => {
+  await DIContainer.getInstance().getHealthController().readiness(req, res);
+});
+
 export default router;
