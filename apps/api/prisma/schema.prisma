@@ -686,6 +686,7 @@ model SessionConclusionField {
   type  ConclusionFieldType
 
   options SessionConclusionOption[]
+  answers SessionConclusionAnswer[]
 
   @@index([sessionId])
 }
@@ -702,6 +703,8 @@ model SessionConclusionOption {
   optionDefinitionId String
 
   label String
+
+  answers SessionConclusionAnswer[]
 
   @@index([fieldId])
 }
@@ -774,7 +777,7 @@ model SessionEnding {
   sessionId String @unique
   session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
-  endingSnapshotId String
+  endingSnapshotId String @unique
   endingSnapshot   SessionEndingSnapshot @relation(fields: [endingSnapshotId], references: [id], onDelete: Cascade)
 
   score SessionScore?
