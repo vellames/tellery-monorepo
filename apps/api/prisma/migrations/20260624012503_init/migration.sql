@@ -529,6 +529,14 @@ CREATE TABLE "_ObjectRevealRuleTriggerIntents" (
 );
 
 -- CreateTable
+CREATE TABLE "_SecretStageTriggerIntents" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_SecretStageTriggerIntents_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateTable
 CREATE TABLE "_CharacterRevealRuleTriggerIntents" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
@@ -553,14 +561,6 @@ CREATE TABLE "_ObjectRevealRuleRequiredClues" (
 );
 
 -- CreateTable
-CREATE TABLE "_ObjRuleRequiredClues" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL,
-
-    CONSTRAINT "_ObjRuleRequiredClues_AB_pkey" PRIMARY KEY ("A","B")
-);
-
--- CreateTable
 CREATE TABLE "_SecretStageRequiredClues" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
@@ -577,11 +577,51 @@ CREATE TABLE "_SecretStageRevealedClues" (
 );
 
 -- CreateTable
+CREATE TABLE "_LocationAmbientClues" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_LocationAmbientClues_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateTable
 CREATE TABLE "_EndingRequiredClues" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
 
     CONSTRAINT "_EndingRequiredClues_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateTable
+CREATE TABLE "_ObjRuleRequiredClues" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_ObjRuleRequiredClues_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateTable
+CREATE TABLE "_SessionSecretStageRequiredClues" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_SessionSecretStageRequiredClues_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateTable
+CREATE TABLE "_SessionSecretStageRevealedClues" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_SessionSecretStageRevealedClues_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateTable
+CREATE TABLE "_SessionEndingRequiredClues" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_SessionEndingRequiredClues_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
@@ -593,11 +633,11 @@ CREATE TABLE "_ObjRuleTriggerIntents" (
 );
 
 -- CreateTable
-CREATE TABLE "_SecretStageTriggerIntents" (
+CREATE TABLE "_SessionSecretStageTriggerIntents" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
 
-    CONSTRAINT "_SecretStageTriggerIntents_AB_pkey" PRIMARY KEY ("A","B")
+    CONSTRAINT "_SessionSecretStageTriggerIntents_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
@@ -633,11 +673,11 @@ CREATE TABLE "_SecretStateRevealedClues" (
 );
 
 -- CreateTable
-CREATE TABLE "_LocationAmbientClues" (
+CREATE TABLE "_SessionLocationAmbientClues" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
 
-    CONSTRAINT "_LocationAmbientClues_AB_pkey" PRIMARY KEY ("A","B")
+    CONSTRAINT "_SessionLocationAmbientClues_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
@@ -801,6 +841,9 @@ CREATE UNIQUE INDEX "SessionScore_sessionEndingId_key" ON "SessionScore"("sessio
 CREATE INDEX "_ObjectRevealRuleTriggerIntents_B_index" ON "_ObjectRevealRuleTriggerIntents"("B");
 
 -- CreateIndex
+CREATE INDEX "_SecretStageTriggerIntents_B_index" ON "_SecretStageTriggerIntents"("B");
+
+-- CreateIndex
 CREATE INDEX "_CharacterRevealRuleTriggerIntents_B_index" ON "_CharacterRevealRuleTriggerIntents"("B");
 
 -- CreateIndex
@@ -810,22 +853,34 @@ CREATE INDEX "_CharacterRevealRuleRequiredClues_B_index" ON "_CharacterRevealRul
 CREATE INDEX "_ObjectRevealRuleRequiredClues_B_index" ON "_ObjectRevealRuleRequiredClues"("B");
 
 -- CreateIndex
-CREATE INDEX "_ObjRuleRequiredClues_B_index" ON "_ObjRuleRequiredClues"("B");
-
--- CreateIndex
 CREATE INDEX "_SecretStageRequiredClues_B_index" ON "_SecretStageRequiredClues"("B");
 
 -- CreateIndex
 CREATE INDEX "_SecretStageRevealedClues_B_index" ON "_SecretStageRevealedClues"("B");
 
 -- CreateIndex
+CREATE INDEX "_LocationAmbientClues_B_index" ON "_LocationAmbientClues"("B");
+
+-- CreateIndex
 CREATE INDEX "_EndingRequiredClues_B_index" ON "_EndingRequiredClues"("B");
+
+-- CreateIndex
+CREATE INDEX "_ObjRuleRequiredClues_B_index" ON "_ObjRuleRequiredClues"("B");
+
+-- CreateIndex
+CREATE INDEX "_SessionSecretStageRequiredClues_B_index" ON "_SessionSecretStageRequiredClues"("B");
+
+-- CreateIndex
+CREATE INDEX "_SessionSecretStageRevealedClues_B_index" ON "_SessionSecretStageRevealedClues"("B");
+
+-- CreateIndex
+CREATE INDEX "_SessionEndingRequiredClues_B_index" ON "_SessionEndingRequiredClues"("B");
 
 -- CreateIndex
 CREATE INDEX "_ObjRuleTriggerIntents_B_index" ON "_ObjRuleTriggerIntents"("B");
 
 -- CreateIndex
-CREATE INDEX "_SecretStageTriggerIntents_B_index" ON "_SecretStageTriggerIntents"("B");
+CREATE INDEX "_SessionSecretStageTriggerIntents_B_index" ON "_SessionSecretStageTriggerIntents"("B");
 
 -- CreateIndex
 CREATE INDEX "_CharStateRevealedClues_B_index" ON "_CharStateRevealedClues"("B");
@@ -840,7 +895,7 @@ CREATE INDEX "_CharRuleRequiredClues_B_index" ON "_CharRuleRequiredClues"("B");
 CREATE INDEX "_SecretStateRevealedClues_B_index" ON "_SecretStateRevealedClues"("B");
 
 -- CreateIndex
-CREATE INDEX "_LocationAmbientClues_B_index" ON "_LocationAmbientClues"("B");
+CREATE INDEX "_SessionLocationAmbientClues_B_index" ON "_SessionLocationAmbientClues"("B");
 
 -- CreateIndex
 CREATE INDEX "_LocationRevealedAmbientClues_B_index" ON "_LocationRevealedAmbientClues"("B");
@@ -975,6 +1030,12 @@ ALTER TABLE "_ObjectRevealRuleTriggerIntents" ADD CONSTRAINT "_ObjectRevealRuleT
 ALTER TABLE "_ObjectRevealRuleTriggerIntents" ADD CONSTRAINT "_ObjectRevealRuleTriggerIntents_B_fkey" FOREIGN KEY ("B") REFERENCES "ObjectClueRevealRule"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "_SecretStageTriggerIntents" ADD CONSTRAINT "_SecretStageTriggerIntents_A_fkey" FOREIGN KEY ("A") REFERENCES "IntentDefinition"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_SecretStageTriggerIntents" ADD CONSTRAINT "_SecretStageTriggerIntents_B_fkey" FOREIGN KEY ("B") REFERENCES "SecretRevealStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "_CharacterRevealRuleTriggerIntents" ADD CONSTRAINT "_CharacterRevealRuleTriggerIntents_A_fkey" FOREIGN KEY ("A") REFERENCES "CharacterClueRevealRule"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -993,28 +1054,52 @@ ALTER TABLE "_ObjectRevealRuleRequiredClues" ADD CONSTRAINT "_ObjectRevealRuleRe
 ALTER TABLE "_ObjectRevealRuleRequiredClues" ADD CONSTRAINT "_ObjectRevealRuleRequiredClues_B_fkey" FOREIGN KEY ("B") REFERENCES "ObjectClueRevealRule"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "_SecretStageRequiredClues" ADD CONSTRAINT "_SecretStageRequiredClues_A_fkey" FOREIGN KEY ("A") REFERENCES "ClueDefinition"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_SecretStageRequiredClues" ADD CONSTRAINT "_SecretStageRequiredClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SecretRevealStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_SecretStageRevealedClues" ADD CONSTRAINT "_SecretStageRevealedClues_A_fkey" FOREIGN KEY ("A") REFERENCES "ClueDefinition"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_SecretStageRevealedClues" ADD CONSTRAINT "_SecretStageRevealedClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SecretRevealStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_LocationAmbientClues" ADD CONSTRAINT "_LocationAmbientClues_A_fkey" FOREIGN KEY ("A") REFERENCES "ClueDefinition"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_LocationAmbientClues" ADD CONSTRAINT "_LocationAmbientClues_B_fkey" FOREIGN KEY ("B") REFERENCES "LocationDefinition"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_EndingRequiredClues" ADD CONSTRAINT "_EndingRequiredClues_A_fkey" FOREIGN KEY ("A") REFERENCES "ClueDefinition"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_EndingRequiredClues" ADD CONSTRAINT "_EndingRequiredClues_B_fkey" FOREIGN KEY ("B") REFERENCES "EndingDefinition"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "_ObjRuleRequiredClues" ADD CONSTRAINT "_ObjRuleRequiredClues_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ObjRuleRequiredClues" ADD CONSTRAINT "_ObjRuleRequiredClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionObjectClueRevealRule"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_SecretStageRequiredClues" ADD CONSTRAINT "_SecretStageRequiredClues_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionSecretStageRequiredClues" ADD CONSTRAINT "_SessionSecretStageRequiredClues_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_SecretStageRequiredClues" ADD CONSTRAINT "_SecretStageRequiredClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionSecretRevealStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionSecretStageRequiredClues" ADD CONSTRAINT "_SessionSecretStageRequiredClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionSecretRevealStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_SecretStageRevealedClues" ADD CONSTRAINT "_SecretStageRevealedClues_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionSecretStageRevealedClues" ADD CONSTRAINT "_SessionSecretStageRevealedClues_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_SecretStageRevealedClues" ADD CONSTRAINT "_SecretStageRevealedClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionSecretRevealStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionSecretStageRevealedClues" ADD CONSTRAINT "_SessionSecretStageRevealedClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionSecretRevealStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_EndingRequiredClues" ADD CONSTRAINT "_EndingRequiredClues_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionEndingRequiredClues" ADD CONSTRAINT "_SessionEndingRequiredClues_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_EndingRequiredClues" ADD CONSTRAINT "_EndingRequiredClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionEndingSnapshot"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionEndingRequiredClues" ADD CONSTRAINT "_SessionEndingRequiredClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionEndingSnapshot"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ObjRuleTriggerIntents" ADD CONSTRAINT "_ObjRuleTriggerIntents_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionIntent"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -1023,10 +1108,10 @@ ALTER TABLE "_ObjRuleTriggerIntents" ADD CONSTRAINT "_ObjRuleTriggerIntents_A_fk
 ALTER TABLE "_ObjRuleTriggerIntents" ADD CONSTRAINT "_ObjRuleTriggerIntents_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionObjectClueRevealRule"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_SecretStageTriggerIntents" ADD CONSTRAINT "_SecretStageTriggerIntents_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionIntent"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionSecretStageTriggerIntents" ADD CONSTRAINT "_SessionSecretStageTriggerIntents_A_fkey" FOREIGN KEY ("A") REFERENCES "SessionIntent"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_SecretStageTriggerIntents" ADD CONSTRAINT "_SecretStageTriggerIntents_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionSecretRevealStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionSecretStageTriggerIntents" ADD CONSTRAINT "_SessionSecretStageTriggerIntents_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionSecretRevealStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CharStateRevealedClues" ADD CONSTRAINT "_CharStateRevealedClues_A_fkey" FOREIGN KEY ("A") REFERENCES "CharacterSessionState"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -1053,10 +1138,10 @@ ALTER TABLE "_SecretStateRevealedClues" ADD CONSTRAINT "_SecretStateRevealedClue
 ALTER TABLE "_SecretStateRevealedClues" ADD CONSTRAINT "_SecretStateRevealedClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_LocationAmbientClues" ADD CONSTRAINT "_LocationAmbientClues_A_fkey" FOREIGN KEY ("A") REFERENCES "LocationSessionState"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionLocationAmbientClues" ADD CONSTRAINT "_SessionLocationAmbientClues_A_fkey" FOREIGN KEY ("A") REFERENCES "LocationSessionState"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_LocationAmbientClues" ADD CONSTRAINT "_LocationAmbientClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_SessionLocationAmbientClues" ADD CONSTRAINT "_SessionLocationAmbientClues_B_fkey" FOREIGN KEY ("B") REFERENCES "SessionClue"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_LocationRevealedAmbientClues" ADD CONSTRAINT "_LocationRevealedAmbientClues_A_fkey" FOREIGN KEY ("A") REFERENCES "LocationSessionState"("id") ON DELETE CASCADE ON UPDATE CASCADE;

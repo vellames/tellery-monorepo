@@ -440,11 +440,11 @@ model SessionClue {
   objectRules                 SessionObjectClueRevealRule[]    @relation("ObjRuleClue")
   requiredByCharacterRules    SessionCharacterClueRevealRule[] @relation("CharRuleRequiredClues")
   requiredByObjectRules       SessionObjectClueRevealRule[]    @relation("ObjRuleRequiredClues")
-  requiredBySecretStages      SessionSecretRevealStage[]       @relation("SecretStageRequiredClues")
-  revealedBySecretStages      SessionSecretRevealStage[]       @relation("SecretStageRevealedClues")
-  ambientForLocations         LocationSessionState[]           @relation("LocationAmbientClues")
+  requiredBySecretStages      SessionSecretRevealStage[]       @relation("SessionSecretStageRequiredClues")
+  revealedBySecretStages      SessionSecretRevealStage[]       @relation("SessionSecretStageRevealedClues")
+  ambientForLocations         LocationSessionState[]           @relation("SessionLocationAmbientClues")
   revealedAmbientForLocations LocationSessionState[]           @relation("LocationRevealedAmbientClues")
-  requiredByEndings           SessionEndingSnapshot[]          @relation("EndingRequiredClues")
+  requiredByEndings           SessionEndingSnapshot[]          @relation("SessionEndingRequiredClues")
   revealedByCharacterStates   CharacterSessionState[]         @relation("CharStateRevealedClues")
   revealedByObjectStates      ObjectSessionState[]            @relation("ObjStateRevealedClues")
   revealedBySecretStates      CharacterSecretSessionState[]   @relation("SecretStateRevealedClues")
@@ -469,7 +469,7 @@ model SessionIntent {
 
   triggeredByCharacterRules SessionCharacterClueRevealRule[] @relation("CharRuleTriggerIntents")
   triggeredByObjectRules    SessionObjectClueRevealRule[]    @relation("ObjRuleTriggerIntents")
-  triggeredBySecretStages   SessionSecretRevealStage[]       @relation("SecretStageTriggerIntents")
+  triggeredBySecretStages   SessionSecretRevealStage[]       @relation("SessionSecretStageTriggerIntents")
 
   @@index([sessionId])
 }
@@ -564,9 +564,9 @@ model SessionSecretRevealStage {
 
   level Int
 
-  triggerIntents SessionIntent[] @relation("SecretStageTriggerIntents")
-  requiredClues  SessionClue[]   @relation("SecretStageRequiredClues")
-  revealsClues   SessionClue[]   @relation("SecretStageRevealedClues")
+  triggerIntents SessionIntent[] @relation("SessionSecretStageTriggerIntents")
+  requiredClues  SessionClue[]   @relation("SessionSecretStageRequiredClues")
+  revealsClues   SessionClue[]   @relation("SessionSecretStageRevealedClues")
 
   behavior             String
   allowedToRevealTruth Boolean
@@ -592,7 +592,7 @@ model LocationSessionState {
   imageUrl         String?
   initialDescription String
 
-  ambientClues         SessionClue[] @relation("LocationAmbientClues")
+  ambientClues         SessionClue[] @relation("SessionLocationAmbientClues")
   revealedAmbientClues SessionClue[] @relation("LocationRevealedAmbientClues")
 
   visited   Boolean   @default(false)
@@ -761,7 +761,7 @@ model SessionEndingSnapshot {
   epilogue String
 
   conclusionMatches Json
-  requiredClues     SessionClue[] @relation("EndingRequiredClues")
+  requiredClues     SessionClue[] @relation("SessionEndingRequiredClues")
 
   chosenBy SessionEnding?
 
