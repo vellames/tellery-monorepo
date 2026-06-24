@@ -2,7 +2,11 @@ import request from 'supertest';
 import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { Request, Response } from 'express';
-import { IUserRepository, IPasswordHasher, ITokenService } from '../../interfaces';
+import {
+  IUserRepository,
+  IPasswordHasher,
+  ITokenService,
+} from '../../interfaces';
 import { User } from '@prisma/client';
 import { UserController } from '../../controllers/user/user.controller';
 import { UserService } from '../../services/user/user.service';

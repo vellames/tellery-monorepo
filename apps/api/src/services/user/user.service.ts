@@ -46,7 +46,10 @@ export class UserService {
       );
     }
 
-    const valid = await this.passwordHasher.compare(data.password, user.password);
+    const valid = await this.passwordHasher.compare(
+      data.password,
+      user.password
+    );
     if (!valid) {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,

@@ -20,10 +20,13 @@
     "db:migrate": "npx prisma migrate dev --schema=prisma/schema.prisma",
     "db:push": "npx prisma db push --schema=prisma/schema.prisma",
     "db:studio": "npx prisma studio --schema=prisma/schema.prisma",
-    "db:generate": "npx prisma generate --schema=prisma/schema.prisma"
+    "db:generate": "npx prisma generate --schema=prisma/schema.prisma",
+    "db:seed": "node dist/seed.js",
+    "release": "npx prisma migrate deploy --schema=prisma/schema.prisma && node dist/seed.js"
   },
   "prisma": {
-    "schema": "prisma/schema.prisma"
+    "schema": "prisma/schema.prisma",
+    "seed": "ts-node --transpile-only src/seed.ts"
   },
   "dependencies": {
     "@ai-history/i18n": "^1.0.0",
