@@ -1,8 +1,11 @@
 import { PrismaClient } from '@prisma/client';
+import { t } from '@ai-history/i18n';
 import { appConfig } from '../config/app.config';
 import { HealthController } from '../controllers/health.controller';
 import { SessionController } from '../controllers/session.controller';
 import { UserController } from '../controllers/user/user.controller';
+import { IntentDetectionService } from '../engine/intent/intent-detection.service';
+import { OpenRouterStructuredChatModel } from '../engine/llm/openrouter-structured-chat-model';
 import {
   IHistoryDefinitionRepository,
   ISessionRepository,
@@ -58,8 +61,14 @@ export class DIContainer {
     this.historyDefinitionRepository,
     this.sessionRepository
   );
+  private readonly intentDetectionService = new IntentDetectionService(
+    new OpenRouterStructuredChatModel(appConfig.openrouter.intentDetectorModel),
+    appConfig.openrouter.intentDetectorThreshold,
+    t
+  );
   private readonly sessionInteractionService = new SessionInteractionService(
-    this.sessionRepository
+    this.sessionRepository,
+    this.intentDetectionService
   );
   private readonly sessionController = new SessionController(
     this.historySessionService,

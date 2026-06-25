@@ -1,16 +1,27 @@
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
+import { SupportedLanguage } from '@ai-history/i18n';
 import { StatusCodes } from 'http-status-codes';
+import { IntentDetectionService } from '../../../engine/intent/intent-detection.service';
 import { SessionInteractionService } from '../session-interaction.service';
 import { ISessionRepository } from '../../../interfaces';
 import type { HistorySessionWithRelations } from '../../../repositories/SessionRepository';
 
 describe('SessionInteractionService', () => {
   let sessions: DeepMockProxy<ISessionRepository>;
+  let intentDetection: DeepMockProxy<IntentDetectionService>;
   let service: SessionInteractionService;
 
   const ownerId = 'user-owner';
   const intruderId = 'user-intruder';
   const sessionId = 'session-1';
+  const language = 'pt-BR' as SupportedLanguage;
+
+  const intent = {
+    id: 'intent-1',
+    description: 'accuse',
+    examples: ['you did it'],
+    keywords: ['accuse'],
+  };
 
   const buildSession = (
     overrides: Partial<HistorySessionWithRelations> = {}
@@ -18,6 +29,7 @@ describe('SessionInteractionService', () => {
     ({
       id: sessionId,
       userId: ownerId,
+      intents: [intent],
       characterStates: [],
       objectStates: [],
       locationStates: [],
@@ -26,11 +38,13 @@ describe('SessionInteractionService', () => {
 
   beforeEach(() => {
     sessions = mockDeep<ISessionRepository>();
-    service = new SessionInteractionService(sessions);
+    intentDetection = mockDeep<IntentDetectionService>();
+    service = new SessionInteractionService(sessions, intentDetection);
   });
 
   afterEach(() => {
     mockReset(sessions);
+    mockReset(intentDetection);
   });
 
   const input = { stateId: 'state-1', interaction: 'hello' };
@@ -40,7 +54,7 @@ describe('SessionInteractionService', () => {
       sessions.findById.mockResolvedValue(null);
 
       await expect(
-        service.interact(sessionId, ownerId, input)
+        service.interact(sessionId, ownerId, input, language)
       ).rejects.toMatchObject({
         statusCode: StatusCodes.NOT_FOUND,
         messageKey: 'session:errors.unknownSession',
@@ -51,7 +65,7 @@ describe('SessionInteractionService', () => {
       sessions.findById.mockResolvedValue(buildSession({ userId: ownerId }));
 
       await expect(
-        service.interact(sessionId, intruderId, input)
+        service.interact(sessionId, intruderId, input, language)
       ).rejects.toMatchObject({
         statusCode: StatusCodes.FORBIDDEN,
         messageKey: 'session:errors.sessionNotOwned',
@@ -62,7 +76,7 @@ describe('SessionInteractionService', () => {
       sessions.findById.mockResolvedValue(buildSession());
 
       await expect(
-        service.interact(sessionId, ownerId, input)
+        service.interact(sessionId, ownerId, input, language)
       ).rejects.toMatchObject({
         statusCode: StatusCodes.NOT_FOUND,
         messageKey: 'session:errors.unknownSessionState',
@@ -70,41 +84,74 @@ describe('SessionInteractionService', () => {
     });
   });
 
-  describe('state type resolution', () => {
-    it('returns stateType "character" for a character state id', async () => {
+  describe('intent detection', () => {
+    const detected = [
+      { intentId: 'intent-1', confidence: 0.9, reasoning: 'clear' },
+    ];
+
+    it('detects intents for a character state and returns them', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
           characterStates: [{ id: input.stateId }] as never,
         })
       );
+      intentDetection.detect.mockResolvedValue(detected);
 
-      const result = await service.interact(sessionId, ownerId, input);
+      const result = await service.interact(sessionId, ownerId, input, language);
 
-      expect(result).toEqual({ id: input.stateId, stateType: 'character' });
+      expect(intentDetection.detect).toHaveBeenCalledWith({
+        message: input.interaction,
+        language,
+        intents: [intent],
+      });
+      expect(result).toEqual({
+        id: input.stateId,
+        stateType: 'character',
+        detectedIntents: detected,
+      });
     });
 
-    it('returns stateType "object" for an object state id', async () => {
+    it('detects intents for an object state and returns them', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
           objectStates: [{ id: input.stateId }] as never,
         })
       );
+      intentDetection.detect.mockResolvedValue(detected);
 
-      const result = await service.interact(sessionId, ownerId, input);
+      const result = await service.interact(sessionId, ownerId, input, language);
 
-      expect(result).toEqual({ id: input.stateId, stateType: 'object' });
+      expect(result.stateType).toBe('object');
+      expect(intentDetection.detect).toHaveBeenCalled();
+      expect(result.detectedIntents).toEqual(detected);
     });
 
-    it('returns stateType "location" for a location state id', async () => {
+    it('skips intent detection for a location state (returns empty)', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
           locationStates: [{ id: input.stateId }] as never,
         })
       );
 
-      const result = await service.interact(sessionId, ownerId, input);
+      const result = await service.interact(sessionId, ownerId, input, language);
 
-      expect(result).toEqual({ id: input.stateId, stateType: 'location' });
+      expect(result.stateType).toBe('location');
+      expect(intentDetection.detect).not.toHaveBeenCalled();
+      expect(result.detectedIntents).toEqual([]);
+    });
+
+    it('skips intent detection when the session has no intents', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          intents: [],
+          characterStates: [{ id: input.stateId }] as never,
+        })
+      );
+
+      const result = await service.interact(sessionId, ownerId, input, language);
+
+      expect(intentDetection.detect).not.toHaveBeenCalled();
+      expect(result.detectedIntents).toEqual([]);
     });
   });
 });

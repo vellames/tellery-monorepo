@@ -68,7 +68,8 @@ export class SessionController {
       const response = await this.sessionInteractionService.interact(
         sessionId,
         req.user!.id,
-        parsedBody.data
+        parsedBody.data,
+        req.language
       );
       sendSuccess(res, response);
     } catch (error) {

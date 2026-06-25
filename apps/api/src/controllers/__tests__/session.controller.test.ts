@@ -37,13 +37,20 @@ describe('SessionController - interact', () => {
 
   const validBody = { stateId: 'state-1', interaction: 'hello there' };
 
-  it('passes sessionId and the authenticated user id to the service', async () => {
-    const response = { id: 'state-1', stateType: 'character' as const };
+  it('passes sessionId, authenticated user id and language to the service', async () => {
+    const response = {
+      id: 'state-1',
+      stateType: 'character' as const,
+      detectedIntents: [
+        { intentId: 'intent-1', confidence: 0.9, reasoning: 'clear' },
+      ],
+    };
     sessionInteractionService.interact.mockResolvedValue(response);
     req = {
       params: { sessionId: 'session-1' },
       body: validBody,
       user: { id: 'user-1', email: 'ana@teste.local' },
+      language: 'pt-BR',
       t,
     };
 
@@ -52,7 +59,8 @@ describe('SessionController - interact', () => {
     expect(sessionInteractionService.interact).toHaveBeenCalledWith(
       'session-1',
       'user-1',
-      validBody
+      validBody,
+      'pt-BR'
     );
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
     expect(json).toHaveBeenCalledWith({

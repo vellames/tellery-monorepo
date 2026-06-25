@@ -130,6 +130,20 @@ router.post('/start', authenticate, async (req, res) => {
  *                   type: string
  *                   enum: [character, object, location]
  *                   description: The type of the resolved session state.
+ *                 detectedIntents:
+ *                   type: array
+ *                   description: Intents detected from the user's message (empty for location interactions).
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       intentId:
+ *                         type: string
+ *                       confidence:
+ *                         type: number
+ *                         minimum: 0
+ *                         maximum: 1
+ *                       reasoning:
+ *                         type: string
  *       400:
  *         description: Invalid request body
  *         content:

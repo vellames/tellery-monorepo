@@ -14,6 +14,7 @@ import {
 
 export const historySessionInclude = {
   clues: true,
+  intents: true,
   characterStates: {
     include: {
       clueRevealRules: {
