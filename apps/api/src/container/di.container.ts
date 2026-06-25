@@ -4,15 +4,19 @@ import { HealthController } from '../controllers/health.controller';
 import { SessionController } from '../controllers/session.controller';
 import { UserController } from '../controllers/user/user.controller';
 import {
+  IHistoryDefinitionRepository,
   IHistoryRepository,
   IHistorySessionRepository,
+  ISessionRepository,
   IPasswordHasher,
   ITokenService,
   IUserRepository,
 } from '../interfaces';
 import {
+  HistoryDefinitionRepository,
   HistoryRepository,
   HistorySessionRepository,
+  SessionRepository,
   UserRepository,
 } from '../repositories';
 import { HistorySessionService } from '../services/session/history-session.service';
@@ -33,6 +37,10 @@ export class DIContainer {
     new HistoryRepository();
   private readonly historySessionRepository: IHistorySessionRepository =
     new HistorySessionRepository();
+  private readonly historyDefinitionRepository: IHistoryDefinitionRepository =
+    new HistoryDefinitionRepository(this.prisma);
+  private readonly sessionRepository: ISessionRepository =
+    new SessionRepository(this.prisma);
 
   private readonly healthController = new HealthController(this.prisma);
   private readonly passwordHasher: IPasswordHasher = new BcryptPasswordHasher(
@@ -50,8 +58,8 @@ export class DIContainer {
   private readonly userController = new UserController(this.userService);
   private readonly historySessionService = new HistorySessionService(
     this.userRepository,
-    this.historyRepository,
-    this.historySessionRepository
+    this.historyDefinitionRepository,
+    this.sessionRepository
   );
   private readonly sessionInteractionService = new SessionInteractionService(
     this.historyRepository,

@@ -9,7 +9,7 @@ const router = Router();
  *   post:
  *     tags: [Session]
  *     summary: Start a new history session
- *     description: Creates an in-memory history session for a user.
+ *     description: Creates and persists a history session for a user.
  *     parameters:
  *       - $ref: '#/components/parameters/AcceptLanguage'
  *     requestBody:
@@ -25,10 +25,10 @@ const router = Router();
  *                 example: user_ana_teste
  *               historyId:
  *                 type: string
- *                 description: Optional history ID. Falls back to historySlug or default.
+ *                 description: The history ID to start a session for. Either historyId or historySlug is required.
  *               historySlug:
  *                 type: string
- *                 description: Optional history slug. Falls back to default if neither ID nor slug is provided.
+ *                 description: The history slug to start a session for. Used if historyId is omitted or not found.
  *     responses:
  *       201:
  *         description: Session created successfully
@@ -56,9 +56,9 @@ const router = Router();
  *                       type: string
  *                       nullable: true
  *                     opening:
- *                       type: object
+ *                       type: string
  *                     objective:
- *                       type: object
+ *                       type: string
  *       400:
  *         description: Invalid request body
  *         content:

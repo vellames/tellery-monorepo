@@ -3,7 +3,6 @@ import { PrismaTransaction } from '../../types/database.types';
 import { IBaseRepository } from './base.repository.interface';
 
 export interface IHistoryDefinitionRepository extends IBaseRepository {
-  findDefault(tx?: PrismaTransaction): Promise<HistoryWithDefinitions | null>;
   findById(
     historyId: string,
     tx?: PrismaTransaction

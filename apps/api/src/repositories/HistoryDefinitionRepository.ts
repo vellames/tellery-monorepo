@@ -48,17 +48,6 @@ export class HistoryDefinitionRepository
     super(prisma);
   }
 
-  async findDefault(
-    tx?: PrismaTransaction
-  ): Promise<HistoryWithDefinitions | null> {
-    const client = tx ?? this.prisma;
-    return client.history.findFirst({
-      where: { deletedAt: null },
-      include: historyDefinitionInclude,
-      orderBy: { createdAt: 'asc' },
-    });
-  }
-
   async findById(
     historyId: string,
     tx?: PrismaTransaction

@@ -14,10 +14,6 @@ export class HistoryRepository implements IHistoryRepository {
     throw new Error('HistoryRepository does not support transactions');
   }
 
-  findDefault(): History | undefined {
-    return this.histories[0];
-  }
-
   findById(historyId: string): History | undefined {
     return this.histories.find(
       (history) => history.id === historyId && !history.deletedAt

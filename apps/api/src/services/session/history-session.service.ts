@@ -1,6 +1,6 @@
 import {
-  IHistoryRepository,
-  IHistorySessionRepository,
+  IHistoryDefinitionRepository,
+  ISessionRepository,
   IUserRepository,
 } from '../../interfaces';
 import { HttpError } from '../../utils/http-error';
@@ -10,8 +10,8 @@ import { StatusCodes } from 'http-status-codes';
 export class HistorySessionService {
   constructor(
     private readonly users: IUserRepository,
-    private readonly histories: IHistoryRepository,
-    private readonly sessions: IHistorySessionRepository
+    private readonly histories: IHistoryDefinitionRepository,
+    private readonly sessions: ISessionRepository
   ) {}
 
   async startSession(input: StartSessionBody) {
@@ -26,22 +26,21 @@ export class HistorySessionService {
 
     const history =
       (input.historyId
-        ? this.histories.findById(input.historyId)
-        : undefined) ??
+        ? await this.histories.findById(input.historyId)
+        : null) ??
       (input.historySlug
-        ? this.histories.findBySlug(input.historySlug)
-        : undefined) ??
-      this.histories.findDefault();
+        ? await this.histories.findBySlug(input.historySlug)
+        : null);
 
     if (!history) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
-        '',
-        'session:errors.noHistoryAvailable'
+        input.historyId ?? input.historySlug ?? '',
+        'session:errors.unknownHistory'
       );
     }
 
-    const session = this.sessions.create({
+    const session = await this.sessions.create({
       userId: user.id,
       history,
     });

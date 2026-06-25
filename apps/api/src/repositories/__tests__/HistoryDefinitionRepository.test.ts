@@ -49,30 +49,6 @@ describe('HistoryDefinitionRepository', () => {
     mockReset(prisma);
   });
 
-  describe('findDefault', () => {
-    it('returns the first non-deleted history ordered by createdAt asc', async () => {
-      const history = mockHistory();
-      prisma.history.findFirst.mockResolvedValue(history);
-
-      const result = await repo.findDefault();
-
-      expect(result).toEqual(history);
-      expect(prisma.history.findFirst).toHaveBeenCalledWith({
-        where: { deletedAt: null },
-        include: historyDefinitionInclude,
-        orderBy: { createdAt: 'asc' },
-      });
-    });
-
-    it('returns null when no history exists', async () => {
-      prisma.history.findFirst.mockResolvedValue(null);
-
-      const result = await repo.findDefault();
-
-      expect(result).toBeNull();
-    });
-  });
-
   describe('findById', () => {
     it('finds a non-deleted history by id with all definitions', async () => {
       const history = mockHistory();

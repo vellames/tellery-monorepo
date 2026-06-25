@@ -1,10 +1,15 @@
 import { z } from 'zod';
 
-export const startSessionBodySchema = z.object({
-  userId: z.string().min(1),
-  historyId: z.string().min(1).optional(),
-  historySlug: z.string().min(1).optional(),
-});
+export const startSessionBodySchema = z
+  .object({
+    userId: z.string().min(1),
+    historyId: z.string().min(1).optional(),
+    historySlug: z.string().min(1).optional(),
+  })
+  .refine((data) => Boolean(data.historyId || data.historySlug), {
+    message: 'historyId or historySlug is required',
+    path: ['historyId'],
+  });
 
 export const interactBodySchema = z.object({
   stateId: z.string().min(1),
