@@ -1,17 +1,16 @@
-import {
-  CharacterSessionState,
-  HistorySession,
-  LocationSessionState,
-  ObjectSessionState,
-} from '../../models';
+import type { HistorySessionWithRelations } from '../../repositories/SessionRepository';
+
+type CharacterState = HistorySessionWithRelations['characterStates'][number];
+type ObjectState = HistorySessionWithRelations['objectStates'][number];
+type LocationState = HistorySessionWithRelations['locationStates'][number];
 
 export type ResolvedSessionState =
-  | { type: 'character'; state: CharacterSessionState }
-  | { type: 'object'; state: ObjectSessionState }
-  | { type: 'location'; state: LocationSessionState };
+  | { type: 'character'; state: CharacterState }
+  | { type: 'object'; state: ObjectState }
+  | { type: 'location'; state: LocationState };
 
 export function resolveSessionState(
-  session: HistorySession,
+  session: HistorySessionWithRelations,
   stateId: string
 ): ResolvedSessionState | undefined {
   const characterState = session.characterStates.find(

@@ -5,7 +5,6 @@ import { SessionController } from '../controllers/session.controller';
 import { UserController } from '../controllers/user/user.controller';
 import {
   IHistoryDefinitionRepository,
-  IHistorySessionRepository,
   ISessionRepository,
   IPasswordHasher,
   ITokenService,
@@ -13,7 +12,6 @@ import {
 } from '../interfaces';
 import {
   HistoryDefinitionRepository,
-  HistorySessionRepository,
   SessionRepository,
   UserRepository,
 } from '../repositories';
@@ -33,8 +31,6 @@ export class DIContainer {
   private readonly userRepository: IUserRepository = new UserRepository(
     this.prisma
   );
-  private readonly historySessionRepository: IHistorySessionRepository =
-    new HistorySessionRepository();
   private readonly historyDefinitionRepository: IHistoryDefinitionRepository =
     new HistoryDefinitionRepository(this.prisma);
   private readonly sessionRepository: ISessionRepository =
@@ -63,7 +59,7 @@ export class DIContainer {
     this.sessionRepository
   );
   private readonly sessionInteractionService = new SessionInteractionService(
-    this.historySessionRepository
+    this.sessionRepository
   );
   private readonly sessionController = new SessionController(
     this.historySessionService,

@@ -1,38 +1,32 @@
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { StatusCodes } from 'http-status-codes';
 import { SessionInteractionService } from '../session-interaction.service';
-import { IHistorySessionRepository } from '../../../interfaces';
-import { createHistorySession, HistorySession } from '../../../models';
-import {
-  createCharacterSessionState,
-} from '../../../models/history_session/CharacterSessionState';
-import {
-  createLocationSessionState,
-} from '../../../models/history_session/LocationSessionState';
-import {
-  createObjectSessionState,
-} from '../../../models/history_session/ObjectSessionState';
+import { ISessionRepository } from '../../../interfaces';
+import type { HistorySessionWithRelations } from '../../../repositories/SessionRepository';
 
 describe('SessionInteractionService', () => {
-  let sessions: DeepMockProxy<IHistorySessionRepository>;
+  let sessions: DeepMockProxy<ISessionRepository>;
   let service: SessionInteractionService;
 
   const ownerId = 'user-owner';
   const intruderId = 'user-intruder';
   const sessionId = 'session-1';
 
-  let session: HistorySession;
+  const buildSession = (
+    overrides: Partial<HistorySessionWithRelations> = {}
+  ): HistorySessionWithRelations =>
+    ({
+      id: sessionId,
+      userId: ownerId,
+      characterStates: [],
+      objectStates: [],
+      locationStates: [],
+      ...overrides,
+    }) as unknown as HistorySessionWithRelations;
 
   beforeEach(() => {
-    sessions = mockDeep<IHistorySessionRepository>();
+    sessions = mockDeep<ISessionRepository>();
     service = new SessionInteractionService(sessions);
-
-    session = createHistorySession({
-      userId: ownerId,
-      historyId: 'history-1',
-      historyVersion: 1,
-    });
-    session.id = sessionId;
   });
 
   afterEach(() => {
@@ -43,7 +37,7 @@ describe('SessionInteractionService', () => {
 
   describe('session resolution', () => {
     it('throws 404 when the session does not exist', async () => {
-      sessions.findById.mockReturnValue(undefined);
+      sessions.findById.mockResolvedValue(null);
 
       await expect(
         service.interact(sessionId, ownerId, input)
@@ -54,7 +48,7 @@ describe('SessionInteractionService', () => {
     });
 
     it('throws 403 when the session belongs to another user', async () => {
-      sessions.findById.mockReturnValue(session);
+      sessions.findById.mockResolvedValue(buildSession({ userId: ownerId }));
 
       await expect(
         service.interact(sessionId, intruderId, input)
@@ -65,7 +59,7 @@ describe('SessionInteractionService', () => {
     });
 
     it('throws 404 when the state does not exist in the session', async () => {
-      sessions.findById.mockReturnValue(session);
+      sessions.findById.mockResolvedValue(buildSession());
 
       await expect(
         service.interact(sessionId, ownerId, input)
@@ -78,10 +72,11 @@ describe('SessionInteractionService', () => {
 
   describe('state type resolution', () => {
     it('returns stateType "character" for a character state id', async () => {
-      const state = createCharacterSessionState({ characterId: 'char-1' });
-      state.id = input.stateId;
-      session.characterStates = [state];
-      sessions.findById.mockReturnValue(session);
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          characterStates: [{ id: input.stateId }] as never,
+        })
+      );
 
       const result = await service.interact(sessionId, ownerId, input);
 
@@ -89,10 +84,11 @@ describe('SessionInteractionService', () => {
     });
 
     it('returns stateType "object" for an object state id', async () => {
-      const state = createObjectSessionState({ objectId: 'obj-1' });
-      state.id = input.stateId;
-      session.objectStates = [state];
-      sessions.findById.mockReturnValue(session);
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          objectStates: [{ id: input.stateId }] as never,
+        })
+      );
 
       const result = await service.interact(sessionId, ownerId, input);
 
@@ -100,10 +96,11 @@ describe('SessionInteractionService', () => {
     });
 
     it('returns stateType "location" for a location state id', async () => {
-      const state = createLocationSessionState({ locationId: 'loc-1' });
-      state.id = input.stateId;
-      session.locationStates = [state];
-      sessions.findById.mockReturnValue(session);
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          locationStates: [{ id: input.stateId }] as never,
+        })
+      );
 
       const result = await service.interact(sessionId, ownerId, input);
 

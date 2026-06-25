@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { IHistorySessionRepository } from '../../interfaces';
+import { ISessionRepository } from '../../interfaces';
 import { InteractBody } from '../../types/http/session.validation';
 import { HttpError } from '../../utils/http-error';
 import { ResolvedSessionState, resolveSessionState } from './session-state-resolver';
@@ -12,16 +12,14 @@ export interface InteractResult {
 }
 
 export class SessionInteractionService {
-  constructor(
-    private readonly sessions: IHistorySessionRepository
-  ) {}
+  constructor(private readonly sessions: ISessionRepository) {}
 
   async interact(
     sessionId: string,
     userId: string,
     input: InteractBody
   ): Promise<InteractResult> {
-    const session = this.sessions.findById(sessionId);
+    const session = await this.sessions.findById(sessionId);
     if (!session) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
