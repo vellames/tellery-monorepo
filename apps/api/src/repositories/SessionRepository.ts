@@ -2,6 +2,15 @@ import { PrismaClient, Prisma, HistorySession } from '@prisma/client';
 import { ISessionRepository } from '../interfaces';
 import { PrismaTransaction } from '../types/database.types';
 import { BaseRepository } from './base.repository';
+import type { HistoryWithDefinitions } from './HistoryDefinitionRepository';
+import {
+  buildCharacterStates,
+  buildEndingSnapshots,
+  buildLocationStates,
+  buildObjectStates,
+  buildSessionRootCreateData,
+  DefinitionIdMap,
+} from './session-snapshot.factory';
 
 export const historySessionInclude = {
   clues: true,
@@ -52,6 +61,70 @@ export class SessionRepository
     super(prisma);
   }
 
+  async create(
+    input: { userId: string; history: HistoryWithDefinitions },
+    tx?: PrismaTransaction
+  ): Promise<HistorySessionWithRelations> {
+    const run = async (
+      client: PrismaTransaction
+    ): Promise<HistorySessionWithRelations> => {
+      const session = await client.historySession.create({
+        data: buildSessionRootCreateData(input.history, input.userId),
+        include: { clues: true, intents: true },
+      });
+
+      const clueMap: DefinitionIdMap = Object.fromEntries(
+        session.clues.map((clue) => [clue.clueDefinitionId, clue.id])
+      );
+      const intentMap: DefinitionIdMap = Object.fromEntries(
+        session.intents.map((intent) => [intent.intentDefinitionId, intent.id])
+      );
+
+      for (const data of buildEndingSnapshots(
+        input.history,
+        session.id,
+        clueMap
+      )) {
+        await client.sessionEndingSnapshot.create({ data });
+      }
+      for (const data of buildLocationStates(
+        input.history,
+        session.id,
+        clueMap
+      )) {
+        await client.locationSessionState.create({ data });
+      }
+      for (const data of buildObjectStates(
+        input.history,
+        session.id,
+        clueMap,
+        intentMap
+      )) {
+        await client.objectSessionState.create({ data });
+      }
+      for (const data of buildCharacterStates(
+        input.history,
+        session.id,
+        clueMap,
+        intentMap
+      )) {
+        await client.characterSessionState.create({ data });
+      }
+
+      const full = await client.historySession.findFirst({
+        where: { id: session.id },
+        include: historySessionInclude,
+      });
+      if (!full) {
+        throw new Error(`Session ${session.id} not found after creation`);
+      }
+      return full;
+    };
+
+    if (tx) return run(tx);
+    return this.prisma.$transaction(run);
+  }
+
   async findById(
     sessionId: string,
     tx?: PrismaTransaction
@@ -68,9 +141,7 @@ export class SessionRepository
     tx?: PrismaTransaction
   ): Promise<HistorySession[]> {
     const client = tx ?? this.prisma;
-    const where = userId
-      ? { deletedAt: null, userId }
-      : { deletedAt: null };
+    const where = userId ? { deletedAt: null, userId } : { deletedAt: null };
 
     return client.historySession.findMany({
       where,

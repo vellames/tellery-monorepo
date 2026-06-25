@@ -1,14 +1,13 @@
-import { PrismaClient, HistorySession } from '@prisma/client';
+import { PrismaClient, Prisma, HistorySession } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
+import type { HistoryWithDefinitions } from '../HistoryDefinitionRepository';
 import {
   SessionRepository,
   historySessionInclude,
   HistorySessionWithRelations,
 } from '../SessionRepository';
 
-const mockSession = (
-  overrides: Partial<HistorySession> = {}
-): HistorySession =>
+const mockSession = (overrides: Partial<HistorySession> = {}): HistorySession =>
   ({
     id: 'session-1',
     createdAt: new Date('2026-01-01'),
@@ -120,6 +119,47 @@ describe('SessionRepository', () => {
       const result = await repo.list();
 
       expect(result).toEqual([]);
+    });
+  });
+
+  describe('create', () => {
+    it('creates the session snapshot in a transaction and returns the full session', async () => {
+      const history = {
+        id: 'history-1',
+        clues: [],
+        intentDefinitions: [],
+        characters: [],
+        locations: [],
+        objects: [],
+        endings: [],
+        conclusion: null,
+      } as unknown as HistoryWithDefinitions;
+      const fullSession = mockSessionWithRelations();
+
+      prisma.$transaction.mockImplementation(async (cb) =>
+        cb(prisma as unknown as Prisma.TransactionClient)
+      );
+      prisma.historySession.create.mockResolvedValue({
+        id: 'session-1',
+        clues: [],
+        intents: [],
+      } as never);
+      prisma.historySession.findFirst.mockResolvedValue(fullSession);
+
+      const result = await repo.create({ userId: 'user-1', history });
+
+      expect(result).toEqual(fullSession);
+      expect(prisma.historySession.create).toHaveBeenCalledWith({
+        data: expect.objectContaining({
+          userId: 'user-1',
+          historyId: 'history-1',
+        }),
+        include: { clues: true, intents: true },
+      });
+      expect(prisma.historySession.findFirst).toHaveBeenCalledWith({
+        where: { id: 'session-1' },
+        include: historySessionInclude,
+      });
     });
   });
 });
