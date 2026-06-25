@@ -38,16 +38,7 @@ describe('SessionController - interact', () => {
   const validBody = { stateId: 'state-1', interaction: 'hello there' };
 
   it('passes sessionId and the authenticated user id to the service', async () => {
-    const response = {
-      id: 'state-1',
-      reply: 'hi',
-      detectedIntents: [],
-      characterAgentResult: null,
-      objectAgentDiscoveredClues: [],
-      discoveredClues: [],
-      sessionStatus: 'active' as const,
-      session: {},
-    } as never;
+    const response = { id: 'state-1', stateType: 'character' as const };
     sessionInteractionService.interact.mockResolvedValue(response);
     req = {
       params: { sessionId: 'session-1' },

@@ -126,31 +126,10 @@ router.post('/start', authenticate, async (req, res) => {
  *                 id:
  *                   type: string
  *                   description: The state ID that was interacted with.
- *                 reply:
+ *                 stateType:
  *                   type: string
- *                   nullable: true
- *                   description: The character's reply (null for locations and objects).
- *                 detectedIntents:
- *                   type: array
- *                   items:
- *                     type: object
- *                 characterAgentResult:
- *                   type: object
- *                   nullable: true
- *                 objectAgentDiscoveredClues:
- *                   type: array
- *                   items:
- *                     type: object
- *                 discoveredClues:
- *                   type: array
- *                   items:
- *                     type: object
- *                 sessionStatus:
- *                   type: string
- *                   example: active
- *                 session:
- *                   type: object
- *                   description: The updated session state.
+ *                   enum: [character, object, location]
+ *                   description: The type of the resolved session state.
  *       400:
  *         description: Invalid request body
  *         content:
@@ -158,7 +137,7 @@ router.post('/start', authenticate, async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ValidationError"
  *       404:
- *         description: Session, state, or history not found
+ *         description: Session or state not found
  *         content:
  *           application/json:
  *             schema:
@@ -171,12 +150,6 @@ router.post('/start', authenticate, async (req, res) => {
  *               $ref: "#/components/schemas/ErrorResponse"
  *       403:
  *         description: The authenticated user does not own this session
- *         content:
- *           application/json:
- *             schema:
- *               $ref: "#/components/schemas/ErrorResponse"
- *       502:
- *         description: Intent detection or agent execution failed
  *         content:
  *           application/json:
  *             schema:

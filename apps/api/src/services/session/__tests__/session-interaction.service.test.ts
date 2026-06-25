@@ -1,15 +1,19 @@
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { StatusCodes } from 'http-status-codes';
 import { SessionInteractionService } from '../session-interaction.service';
-import {
-  IHistoryRepository,
-  IHistorySessionRepository,
-} from '../../../interfaces';
+import { IHistorySessionRepository } from '../../../interfaces';
 import { createHistorySession, HistorySession } from '../../../models';
-import { createLocationSessionState } from '../../../models/history_session/LocationSessionState';
+import {
+  createCharacterSessionState,
+} from '../../../models/history_session/CharacterSessionState';
+import {
+  createLocationSessionState,
+} from '../../../models/history_session/LocationSessionState';
+import {
+  createObjectSessionState,
+} from '../../../models/history_session/ObjectSessionState';
 
 describe('SessionInteractionService', () => {
-  let histories: DeepMockProxy<IHistoryRepository>;
   let sessions: DeepMockProxy<IHistorySessionRepository>;
   let service: SessionInteractionService;
 
@@ -20,9 +24,8 @@ describe('SessionInteractionService', () => {
   let session: HistorySession;
 
   beforeEach(() => {
-    histories = mockDeep<IHistoryRepository>();
     sessions = mockDeep<IHistorySessionRepository>();
-    service = new SessionInteractionService(histories, sessions);
+    service = new SessionInteractionService(sessions);
 
     session = createHistorySession({
       userId: ownerId,
@@ -30,20 +33,15 @@ describe('SessionInteractionService', () => {
       historyVersion: 1,
     });
     session.id = sessionId;
-    session.locationStates = [
-      createLocationSessionState({ locationId: 'location-1' }),
-    ];
-    session.locationStates[0].id = input.stateId;
   });
 
   afterEach(() => {
-    mockReset(histories);
     mockReset(sessions);
   });
 
   const input = { stateId: 'state-1', interaction: 'hello' };
 
-  describe('ownership validation', () => {
+  describe('session resolution', () => {
     it('throws 404 when the session does not exist', async () => {
       sessions.findById.mockReturnValue(undefined);
 
@@ -64,22 +62,52 @@ describe('SessionInteractionService', () => {
         statusCode: StatusCodes.FORBIDDEN,
         messageKey: 'session:errors.sessionNotOwned',
       });
-
-      expect(histories.findById).not.toHaveBeenCalled();
     });
 
-    it('proceeds past the ownership check when the user owns the session', async () => {
+    it('throws 404 when the state does not exist in the session', async () => {
       sessions.findById.mockReturnValue(session);
-      histories.findById.mockReturnValue(undefined);
 
       await expect(
         service.interact(sessionId, ownerId, input)
       ).rejects.toMatchObject({
         statusCode: StatusCodes.NOT_FOUND,
-        messageKey: 'session:errors.unknownHistory',
+        messageKey: 'session:errors.unknownSessionState',
       });
+    });
+  });
 
-      expect(histories.findById).toHaveBeenCalledWith(session.historyId);
+  describe('state type resolution', () => {
+    it('returns stateType "character" for a character state id', async () => {
+      const state = createCharacterSessionState({ characterId: 'char-1' });
+      state.id = input.stateId;
+      session.characterStates = [state];
+      sessions.findById.mockReturnValue(session);
+
+      const result = await service.interact(sessionId, ownerId, input);
+
+      expect(result).toEqual({ id: input.stateId, stateType: 'character' });
+    });
+
+    it('returns stateType "object" for an object state id', async () => {
+      const state = createObjectSessionState({ objectId: 'obj-1' });
+      state.id = input.stateId;
+      session.objectStates = [state];
+      sessions.findById.mockReturnValue(session);
+
+      const result = await service.interact(sessionId, ownerId, input);
+
+      expect(result).toEqual({ id: input.stateId, stateType: 'object' });
+    });
+
+    it('returns stateType "location" for a location state id', async () => {
+      const state = createLocationSessionState({ locationId: 'loc-1' });
+      state.id = input.stateId;
+      session.locationStates = [state];
+      sessions.findById.mockReturnValue(session);
+
+      const result = await service.interact(sessionId, ownerId, input);
+
+      expect(result).toEqual({ id: input.stateId, stateType: 'location' });
     });
   });
 });
