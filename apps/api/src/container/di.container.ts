@@ -24,6 +24,8 @@ import { SessionInteractionService } from '../services/session/session-interacti
 import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
 import { JwtTokenService } from '../services/user/jwt-token.service';
 import { UserService } from '../services/user/user.service';
+import { createAuthMiddleware } from '../middleware/auth.middleware';
+import type { RequestHandler } from 'express';
 
 export class DIContainer {
   private static instance: DIContainer;
@@ -49,6 +51,9 @@ export class DIContainer {
   private readonly tokenService: ITokenService = new JwtTokenService(
     appConfig.security.jwtSecret,
     appConfig.security.jwtExpiresIn
+  );
+  private readonly authMiddleware: RequestHandler = createAuthMiddleware(
+    this.tokenService
   );
   private readonly userService = new UserService(
     this.userRepository,
@@ -88,6 +93,10 @@ export class DIContainer {
 
   getUserController(): UserController {
     return this.userController;
+  }
+
+  getAuthMiddleware(): RequestHandler {
+    return this.authMiddleware;
   }
 
   getPrisma(): PrismaClient {

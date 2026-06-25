@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import {
   IUserRepository,
   IPasswordHasher,
@@ -44,6 +44,9 @@ jest.mock('../../container/di.container', () => ({
           res.status(StatusCodes.CREATED).json({}),
         interact: async (_req: Request, res: Response) => res.json({}),
       }),
+      getAuthMiddleware:
+        () => (_req: Request, _res: Response, next: NextFunction) =>
+          next(),
     }),
   },
 }));

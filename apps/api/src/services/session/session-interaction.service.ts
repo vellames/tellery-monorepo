@@ -22,13 +22,21 @@ export class SessionInteractionService {
     private readonly sessions: IHistorySessionRepository
   ) {}
 
-  async interact(sessionId: string, input: InteractBody) {
+  async interact(sessionId: string, userId: string, input: InteractBody) {
     const session = this.sessions.findById(sessionId);
     if (!session) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
         sessionId,
         'session:errors.unknownSession'
+      );
+    }
+
+    if (session.userId !== userId) {
+      throw new HttpError(
+        StatusCodes.FORBIDDEN,
+        sessionId,
+        'session:errors.sessionNotOwned'
       );
     }
 

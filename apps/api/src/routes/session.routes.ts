@@ -1,7 +1,11 @@
-import { Router } from 'express';
+import { Router, RequestHandler } from 'express';
 import { DIContainer } from '../container/di.container';
 
 const router = Router();
+
+const authenticate: RequestHandler = (req, res, next) => {
+  DIContainer.getInstance().getAuthMiddleware()(req, res, next);
+};
 
 /**
  * @openapi
@@ -9,7 +13,9 @@ const router = Router();
  *   post:
  *     tags: [Session]
  *     summary: Start a new history session
- *     description: Creates and persists a history session for a user.
+ *     description: Creates and persists a history session for the authenticated user.
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - $ref: '#/components/parameters/AcceptLanguage'
  *     requestBody:
@@ -18,11 +24,7 @@ const router = Router();
  *         application/json:
  *           schema:
  *             type: object
- *             required: [userId]
  *             properties:
- *               userId:
- *                 type: string
- *                 example: user_ana_teste
  *               historyId:
  *                 type: string
  *                 description: The history ID to start a session for. Either historyId or historySlug is required.
@@ -65,6 +67,12 @@ const router = Router();
  *           application/json:
  *             schema:
  *               $ref: "#/components/schemas/ValidationError"
+ *       401:
+ *         description: Missing or invalid authentication token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
  *       404:
  *         description: User or history not found
  *         content:
@@ -72,7 +80,7 @@ const router = Router();
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post('/start', async (req, res) => {
+router.post('/start', authenticate, async (req, res) => {
   await DIContainer.getInstance().getSessionController().start(req, res);
 });
 
@@ -83,6 +91,8 @@ router.post('/start', async (req, res) => {
  *     tags: [Session]
  *     summary: Interact with a session
  *     description: Interact with a character, object, or location in a session. Location interactions do not call the LLM; character and object interactions trigger intent detection and agent execution.
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - name: sessionId
  *         in: path
@@ -153,6 +163,18 @@ router.post('/start', async (req, res) => {
  *           application/json:
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
+ *       401:
+ *         description: Missing or invalid authentication token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ *       403:
+ *         description: The authenticated user does not own this session
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
  *       502:
  *         description: Intent detection or agent execution failed
  *         content:
@@ -160,7 +182,7 @@ router.post('/start', async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post('/:sessionId/interact', async (req, res) => {
+router.post('/:sessionId/interact', authenticate, async (req, res) => {
   await DIContainer.getInstance().getSessionController().interact(req, res);
 });
 

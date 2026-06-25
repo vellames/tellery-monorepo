@@ -6,6 +6,7 @@
     "unknownCharacter": "Unknown character: {{id}}",
     "unknownObject": "Unknown object: {{id}}",
     "noHistoryAvailable": "No history available to start",
-    "intentDetectionFailed": "Intent detection failed"
+    "intentDetectionFailed": "Intent detection failed",
+    "sessionNotOwned": "You do not have access to this session"
   }
 }

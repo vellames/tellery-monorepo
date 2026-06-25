@@ -14,12 +14,12 @@ export class HistorySessionService {
     private readonly sessions: ISessionRepository
   ) {}
 
-  async startSession(input: StartSessionBody) {
-    const user = await this.users.findById(input.userId);
+  async startSession(userId: string, input: StartSessionBody) {
+    const user = await this.users.findById(userId);
     if (!user) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
-        input.userId,
+        userId,
         'user:errors.unknownUser'
       );
     }

@@ -67,8 +67,7 @@ describe('HistorySessionService', () => {
       histories.findById.mockResolvedValue(history);
       sessions.create.mockResolvedValue(session);
 
-      const result = await service.startSession({
-        userId: 'user-1',
+      const result = await service.startSession('user-1', {
         historyId: 'history-1',
       });
 
@@ -94,7 +93,7 @@ describe('HistorySessionService', () => {
       users.findById.mockResolvedValue(null);
 
       await expect(
-        service.startSession({ userId: 'nope', historyId: 'history-1' })
+        service.startSession('nope', { historyId: 'history-1' })
       ).rejects.toMatchObject({ statusCode: 404 });
       expect(sessions.create).not.toHaveBeenCalled();
     });
@@ -104,7 +103,7 @@ describe('HistorySessionService', () => {
       histories.findById.mockResolvedValue(null);
 
       await expect(
-        service.startSession({ userId: 'user-1', historyId: 'missing' })
+        service.startSession('user-1', { historyId: 'missing' })
       ).rejects.toMatchObject({ statusCode: 404 });
       expect(sessions.create).not.toHaveBeenCalled();
     });
@@ -115,7 +114,7 @@ describe('HistorySessionService', () => {
       histories.findById.mockResolvedValue(history);
       sessions.create.mockResolvedValue(mockSession());
 
-      await service.startSession({ userId: 'user-1', historyId: 'history-1' });
+      await service.startSession('user-1', { historyId: 'history-1' });
 
       expect(histories.findById).toHaveBeenCalledWith('history-1');
       expect(histories.findBySlug).not.toHaveBeenCalled();
@@ -128,8 +127,7 @@ describe('HistorySessionService', () => {
       histories.findBySlug.mockResolvedValue(history);
       sessions.create.mockResolvedValue(mockSession());
 
-      await service.startSession({
-        userId: 'user-1',
+      await service.startSession('user-1', {
         historyId: 'missing',
         historySlug: 'o-bilhete-na-mesa-7',
       });

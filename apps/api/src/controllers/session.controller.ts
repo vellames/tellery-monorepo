@@ -35,6 +35,7 @@ export class SessionController {
 
     try {
       const response = await this.historySessionService.startSession(
+        req.user!.id,
         parsedBody.data
       );
       sendSuccess(res, response, undefined, StatusCodes.CREATED);
@@ -66,6 +67,7 @@ export class SessionController {
       const sessionId = String(req.params.sessionId);
       const response = await this.sessionInteractionService.interact(
         sessionId,
+        req.user!.id,
         parsedBody.data
       );
       sendSuccess(res, response);

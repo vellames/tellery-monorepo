@@ -6,6 +6,7 @@
     "unknownCharacter": "Personagem desconhecido: {{id}}",
     "unknownObject": "Objeto desconhecido: {{id}}",
     "noHistoryAvailable": "Nenhuma história disponível para iniciar",
-    "intentDetectionFailed": "Falha na detecção de intenção"
+    "intentDetectionFailed": "Falha na detecção de intenção",
+    "sessionNotOwned": "Você não tem acesso a esta sessão"
   }
 }

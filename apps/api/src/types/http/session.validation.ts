@@ -2,7 +2,6 @@ import { z } from 'zod';
 
 export const startSessionBodySchema = z
   .object({
-    userId: z.string().min(1),
     historyId: z.string().min(1).optional(),
     historySlug: z.string().min(1).optional(),
   })

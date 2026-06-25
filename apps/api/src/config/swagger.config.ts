@@ -15,6 +15,15 @@ const options: swaggerJsdoc.Options = {
       },
     ],
     components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          description:
+            'JWT bearer token obtained from `POST /users/login`. Use the `Authorize` button to set it.',
+        },
+      },
       parameters: {
         AcceptLanguage: {
           name: 'Accept-Language',

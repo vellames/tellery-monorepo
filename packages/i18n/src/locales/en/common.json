@@ -19,6 +19,7 @@
     "internalError": "An unexpected error occurred",
     "routeNotFound": "Route {{method}} {{path}} not found",
     "databaseError": "Database operation failed",
-    "internalServerError": "Internal server error"
+    "internalServerError": "Internal server error",
+    "authenticationRequired": "Authentication is required"
   }
 }
