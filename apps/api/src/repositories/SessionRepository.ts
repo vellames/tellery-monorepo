@@ -266,4 +266,41 @@ export class SessionRepository
     if (tx) return run(tx);
     return this.runTransaction(run);
   }
+
+  async recordLocationVisit(
+    input: {
+      locationStateId: string;
+      revealedAmbientClueIds: string[];
+      discoveredClueIds: string[];
+    },
+    tx?: PrismaTransaction
+  ): Promise<void> {
+    const run = async (client: PrismaTransaction): Promise<void> => {
+      const now = new Date();
+
+      await client.locationSessionState.update({
+        where: { id: input.locationStateId },
+        data: {
+          visited: true,
+          visitedAt: now,
+          revealedAmbientClues:
+            input.revealedAmbientClueIds.length > 0
+              ? {
+                  connect: input.revealedAmbientClueIds.map((id) => ({ id })),
+                }
+              : undefined,
+        },
+      });
+
+      if (input.discoveredClueIds.length > 0) {
+        await client.sessionClue.updateMany({
+          where: { id: { in: input.discoveredClueIds } },
+          data: { discovered: true, discoveredAt: now },
+        });
+      }
+    };
+
+    if (tx) return run(tx);
+    return this.runTransaction(run);
+  }
 }

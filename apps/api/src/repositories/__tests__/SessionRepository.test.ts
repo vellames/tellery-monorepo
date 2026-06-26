@@ -309,4 +309,56 @@ describe('SessionRepository', () => {
       expect(prisma.sessionClue.updateMany).not.toHaveBeenCalled();
     });
   });
+
+  describe('recordLocationVisit', () => {
+    beforeEach(() => {
+      prisma.$transaction.mockImplementation(async (cb) =>
+        cb(prisma as unknown as Prisma.TransactionClient)
+      );
+    });
+
+    it('marks the location visited, connects ambient clues and marks them discovered', async () => {
+      prisma.locationSessionState.update.mockResolvedValue({} as never);
+      prisma.sessionClue.updateMany.mockResolvedValue({ count: 2 } as never);
+
+      await repo.recordLocationVisit({
+        locationStateId: 'location-state-1',
+        revealedAmbientClueIds: ['clue-1', 'clue-2'],
+        discoveredClueIds: ['clue-1', 'clue-2'],
+      });
+
+      expect(prisma.locationSessionState.update).toHaveBeenCalledWith({
+        where: { id: 'location-state-1' },
+        data: expect.objectContaining({
+          visited: true,
+          revealedAmbientClues: {
+            connect: [{ id: 'clue-1' }, { id: 'clue-2' }],
+          },
+        }),
+      });
+      expect(prisma.sessionClue.updateMany).toHaveBeenCalledWith({
+        where: { id: { in: ['clue-1', 'clue-2'] } },
+        data: expect.objectContaining({ discovered: true }),
+      });
+    });
+
+    it('marks the location visited even when it has no ambient clues', async () => {
+      prisma.locationSessionState.update.mockResolvedValue({} as never);
+
+      await repo.recordLocationVisit({
+        locationStateId: 'location-state-1',
+        revealedAmbientClueIds: [],
+        discoveredClueIds: [],
+      });
+
+      expect(prisma.locationSessionState.update).toHaveBeenCalledWith({
+        where: { id: 'location-state-1' },
+        data: expect.objectContaining({
+          visited: true,
+          revealedAmbientClues: undefined,
+        }),
+      });
+      expect(prisma.sessionClue.updateMany).not.toHaveBeenCalled();
+    });
+  });
 });

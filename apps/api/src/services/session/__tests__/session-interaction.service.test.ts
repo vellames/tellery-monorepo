@@ -147,7 +147,9 @@ describe('SessionInteractionService', () => {
     it('skips intent detection for a location state', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
-          locationStates: [{ id: input.stateId }] as never,
+          locationStates: [
+            { id: input.stateId, visited: true, ambientClues: [] },
+          ] as never,
         })
       );
 
@@ -156,6 +158,84 @@ describe('SessionInteractionService', () => {
       expect(result.stateType).toBe('location');
       expect(intentDetection.detect).not.toHaveBeenCalled();
       expect(result.detectedIntents).toEqual([]);
+    });
+  });
+
+  describe('location visit', () => {
+    it('reveals ambient clues on first visit and marks the location visited', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          locationStates: [
+            {
+              id: input.stateId,
+              visited: false,
+              ambientClues: [
+                { id: 'clue-1', title: 'Cheiro cítrico', description: 'perfume', discovered: false },
+                { id: 'clue-2', title: 'Bilhete', description: 'papel', discovered: false },
+              ],
+            },
+          ] as never,
+        })
+      );
+
+      const result = await service.interact(sessionId, ownerId, input, language);
+
+      expect(sessions.recordLocationVisit).toHaveBeenCalledWith({
+        locationStateId: input.stateId,
+        revealedAmbientClueIds: ['clue-1', 'clue-2'],
+        discoveredClueIds: ['clue-1', 'clue-2'],
+      });
+      expect(result.discoveredClues.map((c) => c.id)).toEqual([
+        'clue-1',
+        'clue-2',
+      ]);
+    });
+
+    it('does nothing when the location was already visited', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          locationStates: [
+            {
+              id: input.stateId,
+              visited: true,
+              ambientClues: [
+                { id: 'clue-1', title: 'x', description: 'y', discovered: false },
+              ],
+            },
+          ] as never,
+        })
+      );
+
+      const result = await service.interact(sessionId, ownerId, input, language);
+
+      expect(sessions.recordLocationVisit).not.toHaveBeenCalled();
+      expect(result.discoveredClues).toEqual([]);
+    });
+
+    it('only marks undiscovered ambient clues as discovered', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          locationStates: [
+            {
+              id: input.stateId,
+              visited: false,
+              ambientClues: [
+                { id: 'clue-1', title: 'a', description: 'a', discovered: true },
+                { id: 'clue-2', title: 'b', description: 'b', discovered: false },
+              ],
+            },
+          ] as never,
+        })
+      );
+
+      const result = await service.interact(sessionId, ownerId, input, language);
+
+      expect(sessions.recordLocationVisit).toHaveBeenCalledWith({
+        locationStateId: input.stateId,
+        revealedAmbientClueIds: ['clue-1', 'clue-2'],
+        discoveredClueIds: ['clue-2'],
+      });
+      expect(result.discoveredClues.map((c) => c.id)).toEqual(['clue-2']);
     });
   });
 

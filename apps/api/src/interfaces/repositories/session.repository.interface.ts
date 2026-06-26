@@ -38,4 +38,12 @@ export interface ISessionRepository extends IBaseRepository {
     },
     tx?: PrismaTransaction
   ): Promise<void>;
+  recordLocationVisit(
+    input: {
+      locationStateId: string;
+      revealedAmbientClueIds: string[];
+      discoveredClueIds: string[];
+    },
+    tx?: PrismaTransaction
+  ): Promise<void>;
 }

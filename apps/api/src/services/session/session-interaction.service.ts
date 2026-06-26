@@ -20,8 +20,10 @@ export type SessionStateType = ResolvedSessionState['type'];
 
 type ObjectState = HistorySessionWithRelations['objectStates'][number];
 type CharacterState = HistorySessionWithRelations['characterStates'][number];
+type LocationState = HistorySessionWithRelations['locationStates'][number];
 
 const RECENT_CONVERSATION_LIMIT = 6;
+const LOCATION_VISIT_REASONING = 'Ambient clue revealed on first visit.';
 
 export interface InteractDiscoveredClue {
   id: string;
@@ -113,6 +115,8 @@ export class SessionInteractionService {
       );
       discoveredClues = characterResult.discoveredClues;
       reply = characterResult.reply;
+    } else if (resolvedState.type === 'location') {
+      discoveredClues = await this.runLocationVisit(resolvedState.state);
     }
 
     console.log('[interact] result', {
@@ -328,5 +332,31 @@ export class SessionInteractionService {
         reasoning: discovered.reasoning,
       };
     });
+  }
+
+  private async runLocationVisit(
+    locationState: LocationState
+  ): Promise<InteractDiscoveredClue[]> {
+    if (locationState.visited) {
+      return [];
+    }
+
+    const ambientClueIds = locationState.ambientClues.map((clue) => clue.id);
+    const newlyDiscovered = locationState.ambientClues.filter(
+      (clue) => !clue.discovered
+    );
+
+    await this.sessions.recordLocationVisit({
+      locationStateId: locationState.id,
+      revealedAmbientClueIds: ambientClueIds,
+      discoveredClueIds: newlyDiscovered.map((clue) => clue.id),
+    });
+
+    return newlyDiscovered.map((clue) => ({
+      id: clue.id,
+      title: clue.title,
+      description: clue.description,
+      reasoning: LOCATION_VISIT_REASONING,
+    }));
   }
 }
