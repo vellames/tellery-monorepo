@@ -41,6 +41,7 @@ describe('SessionController - interact', () => {
     const response = {
       id: 'state-1',
       stateType: 'character' as const,
+      reply: 'Não vi nada.',
       detectedIntents: [
         { intentId: 'intent-1', confidence: 0.9, reasoning: 'clear' },
       ],

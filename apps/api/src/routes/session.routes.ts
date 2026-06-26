@@ -130,6 +130,10 @@ router.post('/start', authenticate, async (req, res) => {
  *                   type: string
  *                   enum: [character, object, location]
  *                   description: The type of the resolved session state.
+ *                 reply:
+ *                   type: string
+ *                   nullable: true
+ *                   description: The character's dialogue reply (null for objects and locations).
  *                 detectedIntents:
  *                   type: array
  *                   description: Intents detected from the user's message (empty for location interactions).

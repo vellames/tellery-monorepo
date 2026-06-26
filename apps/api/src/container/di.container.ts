@@ -4,6 +4,7 @@ import { appConfig } from '../config/app.config';
 import { HealthController } from '../controllers/health.controller';
 import { SessionController } from '../controllers/session.controller';
 import { UserController } from '../controllers/user/user.controller';
+import { CharacterAgent } from '../engine/character/character-agent.service';
 import { IntentDetectionService } from '../engine/intent/intent-detection.service';
 import { ObjectAgent } from '../engine/object/object-agent.service';
 import { OpenRouterStructuredChatModel } from '../engine/llm/openrouter-structured-chat-model';
@@ -71,10 +72,15 @@ export class DIContainer {
     new OpenRouterStructuredChatModel(appConfig.openrouter.objectAgentModel),
     t
   );
+  private readonly characterAgent = new CharacterAgent(
+    new OpenRouterStructuredChatModel(appConfig.openrouter.characterAgentModel),
+    t
+  );
   private readonly sessionInteractionService = new SessionInteractionService(
     this.sessionRepository,
     this.intentDetectionService,
-    this.objectAgent
+    this.objectAgent,
+    this.characterAgent
   );
   private readonly sessionController = new SessionController(
     this.historySessionService,

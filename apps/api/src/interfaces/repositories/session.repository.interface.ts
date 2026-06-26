@@ -1,4 +1,5 @@
 import { HistorySession, InteractionRole } from '@prisma/client';
+import type { UpdatedSecretState } from '../../engine/character/character-agent.service';
 import type { HistoryWithDefinitions } from '../../repositories/HistoryDefinitionRepository';
 import type { HistorySessionWithRelations } from '../../repositories/SessionRepository';
 import { PrismaTransaction } from '../../types/database.types';
@@ -23,6 +24,16 @@ export interface ISessionRepository extends IBaseRepository {
     input: {
       objectStateId: string;
       discoveredClueIds: string[];
+      messages: SessionInteractionMessageInput[];
+    },
+    tx?: PrismaTransaction
+  ): Promise<void>;
+  recordCharacterInteraction(
+    input: {
+      characterStateId: string;
+      conversationSummary: string;
+      discoveredClueIds: string[];
+      updatedSecretStates: UpdatedSecretState[];
       messages: SessionInteractionMessageInput[];
     },
     tx?: PrismaTransaction

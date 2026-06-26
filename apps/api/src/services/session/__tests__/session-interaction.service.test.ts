@@ -1,6 +1,7 @@
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { SupportedLanguage } from '@ai-history/i18n';
 import { StatusCodes } from 'http-status-codes';
+import { CharacterAgent } from '../../../engine/character/character-agent.service';
 import { IntentDetectionService } from '../../../engine/intent/intent-detection.service';
 import { ObjectAgent } from '../../../engine/object/object-agent.service';
 import { SessionInteractionService } from '../session-interaction.service';
@@ -11,6 +12,7 @@ describe('SessionInteractionService', () => {
   let sessions: DeepMockProxy<ISessionRepository>;
   let intentDetection: DeepMockProxy<IntentDetectionService>;
   let objectAgent: DeepMockProxy<ObjectAgent>;
+  let characterAgent: DeepMockProxy<CharacterAgent>;
   let service: SessionInteractionService;
 
   const ownerId = 'user-owner';
@@ -43,14 +45,27 @@ describe('SessionInteractionService', () => {
     sessions = mockDeep<ISessionRepository>();
     intentDetection = mockDeep<IntentDetectionService>();
     objectAgent = mockDeep<ObjectAgent>();
+    characterAgent = mockDeep<CharacterAgent>();
     objectAgent.run.mockResolvedValue([]);
-    service = new SessionInteractionService(sessions, intentDetection, objectAgent);
+    characterAgent.run.mockResolvedValue({
+      reply: 'reply',
+      discoveredClues: [],
+      updatedConversationSummary: 'resumo',
+      updatedSecretStates: [],
+    });
+    service = new SessionInteractionService(
+      sessions,
+      intentDetection,
+      objectAgent,
+      characterAgent
+    );
   });
 
   afterEach(() => {
     mockReset(sessions);
     mockReset(intentDetection);
     mockReset(objectAgent);
+    mockReset(characterAgent);
   });
 
   const input = { stateId: 'state-1', interaction: 'hello' };
@@ -98,7 +113,25 @@ describe('SessionInteractionService', () => {
     it('detects intents for a character state', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
-          characterStates: [{ id: input.stateId }] as never,
+          characterStates: [
+            {
+              id: input.stateId,
+              name: 'Rafa',
+              role: 'garçom',
+              shortDescription: 'nervoso',
+              personality: 'ansioso',
+              speakingStyle: 'direto',
+              publicKnowledge: [],
+              privateKnowledge: [],
+              openingLine: 'oi',
+              conversationBoundaries: [],
+              conversationSummary: null,
+              clueRevealRules: [],
+              secrets: [],
+              revealedClues: [],
+              messages: [],
+            },
+          ] as never,
         })
       );
       intentDetection.detect.mockResolvedValue(detected);
@@ -108,6 +141,7 @@ describe('SessionInteractionService', () => {
       expect(result.stateType).toBe('character');
       expect(result.detectedIntents).toEqual(detected);
       expect(objectAgent.run).not.toHaveBeenCalled();
+      expect(characterAgent.run).toHaveBeenCalled();
     });
 
     it('skips intent detection for a location state', async () => {
@@ -225,6 +259,99 @@ describe('SessionInteractionService', () => {
 
       expect(objectAgent.run).toHaveBeenCalledWith(
         expect.objectContaining({ discoveredClueIds: ['clue-prev'] })
+      );
+    });
+  });
+
+  describe('character interaction', () => {
+    const detected = [
+      { intentId: 'intent-1', confidence: 0.9, reasoning: 'clear' },
+    ];
+
+    const characterState = {
+      id: input.stateId,
+      name: 'Rafa',
+      role: 'garçom',
+      shortDescription: 'nervoso',
+      personality: 'ansioso',
+      speakingStyle: 'direto',
+      publicKnowledge: [],
+      privateKnowledge: [],
+      openingLine: 'oi',
+      conversationBoundaries: [],
+      conversationSummary: null,
+      clueRevealRules: [],
+      secrets: [],
+      revealedClues: [],
+      messages: [],
+    };
+
+    it('runs the character agent, persists and returns the reply', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({ characterStates: [characterState] as never })
+      );
+      intentDetection.detect.mockResolvedValue(detected);
+      characterAgent.run.mockResolvedValue({
+        reply: 'Não vi nada não.',
+        discoveredClues: [{ clueId: 'clue-1', reasoning: 'mencionou' }],
+        updatedConversationSummary: 'novo resumo',
+        updatedSecretStates: [
+          {
+            secretId: 'secret-1',
+            currentStageLevel: 1,
+            revealedStageIds: ['stage-1'],
+            revealedClueIds: [],
+          },
+        ],
+      });
+
+      const result = await service.interact(sessionId, ownerId, input, language);
+
+      expect(sessions.recordCharacterInteraction).toHaveBeenCalledWith({
+        characterStateId: input.stateId,
+        conversationSummary: 'novo resumo',
+        discoveredClueIds: ['clue-1'],
+        updatedSecretStates: [
+          {
+            secretId: 'secret-1',
+            currentStageLevel: 1,
+            revealedStageIds: ['stage-1'],
+            revealedClueIds: [],
+          },
+        ],
+        messages: [
+          { role: 'user', content: 'hello' },
+          { role: 'character', content: 'Não vi nada não.' },
+        ],
+      });
+      expect(result.reply).toBe('Não vi nada não.');
+    });
+
+    it('passes recent conversation messages to the character agent', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          characterStates: [
+            {
+              ...characterState,
+              messages: [
+                { role: 'user', content: 'msg-1' },
+                { role: 'character', content: 'msg-2' },
+              ],
+            },
+          ] as never,
+        })
+      );
+      intentDetection.detect.mockResolvedValue(detected);
+
+      await service.interact(sessionId, ownerId, input, language);
+
+      expect(characterAgent.run).toHaveBeenCalledWith(
+        expect.objectContaining({
+          recentConversation: [
+            { role: 'user', content: 'msg-1' },
+            { role: 'character', content: 'msg-2' },
+          ],
+        })
       );
     });
   });

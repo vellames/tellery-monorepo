@@ -1,5 +1,6 @@
 import { PrismaClient, Prisma, HistorySession, InteractionRole } from '@prisma/client';
 import { ISessionRepository } from '../interfaces';
+import type { UpdatedSecretState } from '../engine/character/character-agent.service';
 import { PrismaTransaction } from '../types/database.types';
 import { BaseRepository } from './base.repository';
 import type { HistoryWithDefinitions } from './HistoryDefinitionRepository';
@@ -189,6 +190,75 @@ export class SessionRepository
             role: message.role,
             content: message.content,
           })),
+        });
+      }
+    };
+
+    if (tx) return run(tx);
+    return this.runTransaction(run);
+  }
+
+  async recordCharacterInteraction(
+    input: {
+      characterStateId: string;
+      conversationSummary: string;
+      discoveredClueIds: string[];
+      updatedSecretStates: UpdatedSecretState[];
+      messages: { role: InteractionRole; content: string }[];
+    },
+    tx?: PrismaTransaction
+  ): Promise<void> {
+    const run = async (client: PrismaTransaction): Promise<void> => {
+      const now = new Date();
+
+      await client.characterSessionState.update({
+        where: { id: input.characterStateId },
+        data: {
+          conversationSummary: input.conversationSummary,
+          revealedClues:
+            input.discoveredClueIds.length > 0
+              ? {
+                  connect: input.discoveredClueIds.map((id) => ({ id })),
+                }
+              : undefined,
+        },
+      });
+
+      for (const secret of input.updatedSecretStates) {
+        await client.characterSecretSessionState.update({
+          where: { id: secret.secretId },
+          data: {
+            currentStageLevel: secret.currentStageLevel,
+            revealStages:
+              secret.revealedStageIds.length > 0
+                ? {
+                    connect: secret.revealedStageIds.map((id) => ({ id })),
+                  }
+                : undefined,
+            revealedClues:
+              secret.revealedClueIds.length > 0
+                ? {
+                    connect: secret.revealedClueIds.map((id) => ({ id })),
+                  }
+                : undefined,
+          },
+        });
+      }
+
+      if (input.messages.length > 0) {
+        await client.characterConversationMessage.createMany({
+          data: input.messages.map((message) => ({
+            characterStateId: input.characterStateId,
+            role: message.role,
+            content: message.content,
+          })),
+        });
+      }
+
+      if (input.discoveredClueIds.length > 0) {
+        await client.sessionClue.updateMany({
+          where: { id: { in: input.discoveredClueIds } },
+          data: { discovered: true, discoveredAt: now },
         });
       }
     };

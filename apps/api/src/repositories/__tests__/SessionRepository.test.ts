@@ -227,4 +227,86 @@ describe('SessionRepository', () => {
       });
     });
   });
+
+  describe('recordCharacterInteraction', () => {
+    beforeEach(() => {
+      prisma.$transaction.mockImplementation(async (cb) =>
+        cb(prisma as unknown as Prisma.TransactionClient)
+      );
+    });
+
+    it('updates conversation summary, advances secrets, appends messages and marks clues discovered', async () => {
+      prisma.characterSessionState.update.mockResolvedValue({} as never);
+      prisma.characterSecretSessionState.update.mockResolvedValue({} as never);
+      prisma.characterConversationMessage.createMany.mockResolvedValue({
+        count: 2,
+      } as never);
+      prisma.sessionClue.updateMany.mockResolvedValue({ count: 1 } as never);
+
+      await repo.recordCharacterInteraction({
+        characterStateId: 'char-state-1',
+        conversationSummary: 'novo resumo',
+        discoveredClueIds: ['clue-1'],
+        updatedSecretStates: [
+          {
+            secretId: 'secret-1',
+            currentStageLevel: 1,
+            revealedStageIds: ['stage-1'],
+            revealedClueIds: ['clue-secret'],
+          },
+        ],
+        messages: [
+          { role: 'user', content: 'oi' },
+          { role: 'character', content: 'olá' },
+        ],
+      });
+
+      expect(prisma.characterSessionState.update).toHaveBeenCalledWith({
+        where: { id: 'char-state-1' },
+        data: expect.objectContaining({
+          conversationSummary: 'novo resumo',
+          revealedClues: { connect: [{ id: 'clue-1' }] },
+        }),
+      });
+      expect(prisma.characterSecretSessionState.update).toHaveBeenCalledWith({
+        where: { id: 'secret-1' },
+        data: expect.objectContaining({
+          currentStageLevel: 1,
+          revealStages: { connect: [{ id: 'stage-1' }] },
+          revealedClues: { connect: [{ id: 'clue-secret' }] },
+        }),
+      });
+      expect(prisma.characterConversationMessage.createMany).toHaveBeenCalledWith({
+        data: [
+          { characterStateId: 'char-state-1', role: 'user', content: 'oi' },
+          { characterStateId: 'char-state-1', role: 'character', content: 'olá' },
+        ],
+      });
+      expect(prisma.sessionClue.updateMany).toHaveBeenCalledWith({
+        where: { id: { in: ['clue-1'] } },
+        data: expect.objectContaining({ discovered: true }),
+      });
+    });
+
+    it('updates the conversation summary and messages even with no secret advancement', async () => {
+      prisma.characterSessionState.update.mockResolvedValue({} as never);
+      prisma.characterConversationMessage.createMany.mockResolvedValue({
+        count: 2,
+      } as never);
+
+      await repo.recordCharacterInteraction({
+        characterStateId: 'char-state-1',
+        conversationSummary: 'resumo',
+        discoveredClueIds: [],
+        updatedSecretStates: [],
+        messages: [
+          { role: 'user', content: 'oi' },
+          { role: 'character', content: 'olá' },
+        ],
+      });
+
+      expect(prisma.characterSecretSessionState.update).not.toHaveBeenCalled();
+      expect(prisma.sessionClue.updateMany).not.toHaveBeenCalled();
+    });
+  });
 });

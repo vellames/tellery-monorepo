@@ -1,6 +1,7 @@
 import { SupportedLanguage } from '@ai-history/i18n';
 import { InteractionRole } from '@prisma/client';
 import { StatusCodes } from 'http-status-codes';
+import { CharacterAgent } from '../../engine/character/character-agent.service';
 import {
   DetectedIntent,
   IntentDetectionService,
@@ -18,6 +19,9 @@ import { ResolvedSessionState, resolveSessionState } from './session-state-resol
 export type SessionStateType = ResolvedSessionState['type'];
 
 type ObjectState = HistorySessionWithRelations['objectStates'][number];
+type CharacterState = HistorySessionWithRelations['characterStates'][number];
+
+const RECENT_CONVERSATION_LIMIT = 6;
 
 export interface InteractDiscoveredClue {
   id: string;
@@ -29,6 +33,7 @@ export interface InteractDiscoveredClue {
 export interface InteractResult {
   id: string;
   stateType: SessionStateType;
+  reply: string | null;
   detectedIntents: DetectedIntent[];
   discoveredClues: InteractDiscoveredClue[];
 }
@@ -37,7 +42,8 @@ export class SessionInteractionService {
   constructor(
     private readonly sessions: ISessionRepository,
     private readonly intentDetection: IntentDetectionService,
-    private readonly objectAgent: ObjectAgent
+    private readonly objectAgent: ObjectAgent,
+    private readonly characterAgent: CharacterAgent
   ) {}
 
   async interact(
@@ -88,6 +94,7 @@ export class SessionInteractionService {
     );
 
     let discoveredClues: InteractDiscoveredClue[] = [];
+    let reply: string | null = null;
     if (resolvedState.type === 'object') {
       discoveredClues = await this.runObjectInspection(
         session,
@@ -96,6 +103,16 @@ export class SessionInteractionService {
         detectedIntents,
         language
       );
+    } else if (resolvedState.type === 'character') {
+      const characterResult = await this.runCharacterInteraction(
+        session,
+        resolvedState.state,
+        input,
+        detectedIntents,
+        language
+      );
+      discoveredClues = characterResult.discoveredClues;
+      reply = characterResult.reply;
     }
 
     console.log('[interact] result', {
@@ -103,11 +120,13 @@ export class SessionInteractionService {
       stateId: input.stateId,
       detectedIntentCount: detectedIntents.length,
       discoveredClueCount: discoveredClues.length,
+      hasReply: reply !== null,
     });
 
     return {
       id: input.stateId,
       stateType: resolvedState.type,
+      reply,
       detectedIntents,
       discoveredClues,
     };
@@ -205,6 +224,94 @@ export class SessionInteractionService {
     });
 
     return this.enrichDiscoveredClues(agentResult, session.clues);
+  }
+
+  private async runCharacterInteraction(
+    session: HistorySessionWithRelations,
+    characterState: CharacterState,
+    input: InteractBody,
+    detectedIntents: DetectedIntent[],
+    language: SupportedLanguage
+  ): Promise<{ reply: string; discoveredClues: InteractDiscoveredClue[] }> {
+    const discoveredClueIds = session.clues
+      .filter((clue) => clue.discovered)
+      .map((clue) => clue.id);
+
+    const recentConversation = characterState.messages
+      .slice(-RECENT_CONVERSATION_LIMIT)
+      .map((message) => ({
+        role: message.role,
+        content: message.content,
+      }));
+
+    const agentResult = await this.characterAgent.run({
+      character: {
+        id: characterState.id,
+        name: characterState.name,
+        role: characterState.role,
+        shortDescription: characterState.shortDescription,
+        personality: characterState.personality,
+        speakingStyle: characterState.speakingStyle,
+        publicKnowledge: characterState.publicKnowledge,
+        privateKnowledge: characterState.privateKnowledge,
+        openingLine: characterState.openingLine,
+        conversationBoundaries: characterState.conversationBoundaries,
+      },
+      conversationSummary: characterState.conversationSummary,
+      recentConversation,
+      interaction: input.interaction,
+      detectedIntents,
+      discoveredClueIds,
+      clueRules: characterState.clueRevealRules.map((rule) => ({
+        clueId: rule.clueId,
+        revealText: rule.revealText,
+        clueTitle: rule.clue.title,
+        clueDescription: rule.clue.description,
+        triggerIntentIds: rule.triggerIntents.map((intent) => intent.id),
+        requiredClueIds: rule.requiredClues.map((clue) => clue.id),
+      })),
+      secrets: characterState.secrets.map((secret) => ({
+        secretId: secret.id,
+        currentStageLevel: secret.currentStageLevel,
+        summary: secret.summary,
+        truth: secret.truth,
+        defaultStrategy: secret.defaultStrategy,
+        stages: secret.revealStages.map((stage) => ({
+          stageId: stage.id,
+          level: stage.level,
+          behavior: stage.behavior,
+          allowedToRevealTruth: stage.allowedToRevealTruth,
+          sampleResponses: stage.sampleResponses,
+          triggerIntentIds: stage.triggerIntents.map((intent) => intent.id),
+          requiredClueIds: stage.requiredClues.map((clue) => clue.id),
+          revealsClueIds: stage.revealsClues.map((clue) => clue.id),
+        })),
+      })),
+      language,
+    });
+
+    const newlyDiscoveredClueIds = agentResult.discoveredClues.map(
+      (result) => result.clueId
+    );
+
+    await this.sessions.recordCharacterInteraction({
+      characterStateId: characterState.id,
+      conversationSummary: agentResult.updatedConversationSummary,
+      discoveredClueIds: newlyDiscoveredClueIds,
+      updatedSecretStates: agentResult.updatedSecretStates,
+      messages: [
+        { role: InteractionRole.user, content: input.interaction },
+        { role: InteractionRole.character, content: agentResult.reply },
+      ],
+    });
+
+    return {
+      reply: agentResult.reply,
+      discoveredClues: this.enrichDiscoveredClues(
+        agentResult.discoveredClues,
+        session.clues
+      ),
+    };
   }
 
   private enrichDiscoveredClues(
