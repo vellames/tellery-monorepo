@@ -12,6 +12,8 @@ export const config = {
     login: '/',
     register: '/register',
     forgotPassword: '/forgot-password',
+    privacy: '/privacy',
+    terms: '/terms',
     loginApi: '/api/auth/login',
     logoutApi: '/api/auth/logout',
     registerApi: '/api/auth/register',

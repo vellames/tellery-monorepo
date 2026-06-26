@@ -62,7 +62,9 @@
   "common": {
     "logout": "Log out",
     "greeting": "Hello, {name}",
-    "backToLogin": "Back to login"
+    "backToLogin": "Back to login",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use"
   },
   "language": {
     "label": "Language",

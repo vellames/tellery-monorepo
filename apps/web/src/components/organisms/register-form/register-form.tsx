@@ -132,7 +132,12 @@ export function RegisterForm() {
             label={
               <>
                 {t('termsPrefix')}
-                <Link href="#" className="text-primary underline">
+                <Link
+                  href={config.routes.terms}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline"
+                >
                   {t('termsOfUse')}
                 </Link>
               </>
@@ -143,7 +148,12 @@ export function RegisterForm() {
             label={
               <>
                 {t('privacyPrefix')}
-                <Link href="#" className="text-primary underline">
+                <Link
+                  href={config.routes.privacy}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline"
+                >
                   {t('privacyPolicy')}
                 </Link>
               </>

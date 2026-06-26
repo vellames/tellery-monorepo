@@ -7,14 +7,20 @@ const AUTH_ROUTES: string[] = [
   appConfig.routes.forgotPassword,
 ];
 
+const PUBLIC_INFO_ROUTES: string[] = [
+  appConfig.routes.privacy,
+  appConfig.routes.terms,
+];
+
 export function proxy(req: NextRequest): NextResponse {
   const { pathname } = req.nextUrl;
   const isAuthRoute = AUTH_ROUTES.includes(pathname);
+  const isPublic = isAuthRoute || PUBLIC_INFO_ROUTES.includes(pathname);
   const hasSession = Boolean(
     req.cookies.get(appConfig.auth.sessionCookie)?.value
   );
 
-  if (!hasSession && !isAuthRoute) {
+  if (!hasSession && !isPublic) {
     const url = req.nextUrl.clone();
     url.pathname = appConfig.routes.login;
     url.searchParams.set('from', pathname);

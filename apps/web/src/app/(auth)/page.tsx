@@ -16,7 +16,7 @@ export default async function LoginPage() {
         <p className="text-muted-foreground text-sm">{t('subtitle')}</p>
       </div>
       <LoginForm />
-      <div className="bg-card border-border rounded-xl border p-4 text-center">
+      <div className="text-center">
         <p className="text-muted-foreground text-sm">{t('noAccount')}</p>
         <Button
           variant="outline"

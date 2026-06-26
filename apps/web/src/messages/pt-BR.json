@@ -62,7 +62,9 @@
   "common": {
     "logout": "Sair",
     "greeting": "Olá, {name}",
-    "backToLogin": "Voltar para o login"
+    "backToLogin": "Voltar para o login",
+    "privacyPolicy": "Política de Privacidade",
+    "termsOfUse": "Termos de Uso"
   },
   "language": {
     "label": "Idioma",
