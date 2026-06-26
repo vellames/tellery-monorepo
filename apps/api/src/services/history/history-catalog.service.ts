@@ -1,4 +1,4 @@
-import { IHistoryDefinitionRepository } from '../../interfaces';
+import { IHistoryDefinitionRepository, IImageUrlSigner } from '../../interfaces';
 import {
   PaginatedResult,
   PaginationQuery,
@@ -10,7 +10,8 @@ import {
 
 export class HistoryCatalogService {
   constructor(
-    private readonly histories: IHistoryDefinitionRepository
+    private readonly histories: IHistoryDefinitionRepository,
+    private readonly imageUrlSigner: IImageUrlSigner
   ) {}
 
   async listAvailable(
@@ -18,9 +19,16 @@ export class HistoryCatalogService {
     pagination: PaginationQuery
   ): Promise<PaginatedResult<HistoryCatalogItemDto>> {
     const result = await this.histories.listPublished(isFeatured, pagination);
-    return {
-      ...result,
-      items: result.items.map(toHistoryCatalogItemDto),
-    };
+    const items = await Promise.all(
+      result.items.map(async (history) => {
+        const dto = toHistoryCatalogItemDto(history);
+        const [coverImageUrl, thumbnailUrl] = await Promise.all([
+          this.imageUrlSigner.sign(dto.coverImageUrl),
+          this.imageUrlSigner.sign(dto.thumbnailUrl),
+        ]);
+        return { ...dto, coverImageUrl, thumbnailUrl };
+      })
+    );
+    return { ...result, items };
   }
 }

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { S3Client } from '@aws-sdk/client-s3';
 import { t } from '@ai-history/i18n';
 import { appConfig } from '../config/app.config';
 import { HealthController } from '../controllers/health.controller';
@@ -11,6 +12,7 @@ import { ObjectAgent } from '../engine/object/object-agent.service';
 import { OpenRouterStructuredChatModel } from '../engine/llm/openrouter-structured-chat-model';
 import {
   IHistoryDefinitionRepository,
+  IImageUrlSigner,
   ISessionRepository,
   IPasswordHasher,
   ITokenService,
@@ -24,6 +26,7 @@ import {
 import { HistorySessionService } from '../services/session/history-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
 import { HistoryCatalogService } from '../services/history/history-catalog.service';
+import { S3ImageUrlSigner } from '../services/image/s3-image-url-signer';
 import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
 import { JwtTokenService } from '../services/user/jwt-token.service';
 import { UserService } from '../services/user/user.service';
@@ -65,6 +68,20 @@ export class DIContainer {
     this.historyDefinitionRepository,
     this.sessionRepository
   );
+  private readonly s3Client = new S3Client({
+    region: appConfig.aws.region,
+    credentials: appConfig.aws.accessKeyId
+      ? {
+          accessKeyId: appConfig.aws.accessKeyId,
+          secretAccessKey: appConfig.aws.secretAccessKey as string,
+        }
+      : undefined,
+  });
+  private readonly imageUrlSigner: IImageUrlSigner = new S3ImageUrlSigner(
+    this.s3Client,
+    appConfig.aws.s3Bucket as string,
+    appConfig.aws.presignedExpirationSeconds
+  );
   private readonly intentDetectionService = new IntentDetectionService(
     new OpenRouterStructuredChatModel(appConfig.openrouter.intentDetectorModel),
     appConfig.openrouter.intentDetectorThreshold,
@@ -89,7 +106,8 @@ export class DIContainer {
     this.sessionInteractionService
   );
   private readonly historyCatalogService = new HistoryCatalogService(
-    this.historyDefinitionRepository
+    this.historyDefinitionRepository,
+    this.imageUrlSigner
   );
   private readonly historyController = new HistoryController(
     this.historyCatalogService

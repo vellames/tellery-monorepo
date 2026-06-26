@@ -1,5 +1,8 @@
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
-import { IHistoryDefinitionRepository } from '../../../interfaces';
+import {
+  IHistoryDefinitionRepository,
+  IImageUrlSigner,
+} from '../../../interfaces';
 import type { HistoryCatalogItem } from '../../../repositories/HistoryDefinitionRepository';
 import { HistoryCatalogService } from '../history-catalog.service';
 
@@ -15,29 +18,34 @@ const mockCatalogItem = (
     genre: 'mystery',
     estimatedDurationMinutes: 10,
     isFree: true,
-    coverImageUrl: null,
-    thumbnailUrl: null,
+    coverImageUrl: 'histories/o-bilhete-na-mesa-7/history/cover.png',
+    thumbnailUrl: 'histories/o-bilhete-na-mesa-7/history/thumbnail.png',
     ...overrides,
   }) as HistoryCatalogItem;
 
 describe('HistoryCatalogService', () => {
   let histories: DeepMockProxy<IHistoryDefinitionRepository>;
+  let imageUrlSigner: DeepMockProxy<IImageUrlSigner>;
   let service: HistoryCatalogService;
 
   beforeEach(() => {
     histories = mockDeep<IHistoryDefinitionRepository>();
-    service = new HistoryCatalogService(histories);
+    imageUrlSigner = mockDeep<IImageUrlSigner>();
+    imageUrlSigner.sign.mockImplementation(async (key: string | null) =>
+      key ? `https://signed.test/${key}` : null
+    );
+    service = new HistoryCatalogService(histories, imageUrlSigner);
   });
 
   afterEach(() => {
     mockReset(histories);
+    mockReset(imageUrlSigner);
   });
 
   describe('listAvailable', () => {
-    it('returns featured histories mapped to catalog dtos within a paginated result', async () => {
-      const items = [mockCatalogItem({ id: 'history-1' })];
+    it('returns featured histories with signed cover and thumbnail urls', async () => {
       histories.listPublished.mockResolvedValue({
-        items,
+        items: [mockCatalogItem()],
         total: 1,
         page: 1,
         limit: 20,
@@ -46,38 +54,38 @@ describe('HistoryCatalogService', () => {
 
       const result = await service.listAvailable(true, { page: 1, limit: 20 });
 
-      expect(histories.listPublished).toHaveBeenCalledWith(true, {
-        page: 1,
-        limit: 20,
-      });
-      expect(result).toEqual({
-        items: [
-          {
-            id: 'history-1',
-            slug: 'o-bilhete-na-mesa-7',
-            title: 'O Bilhete na Mesa 7',
-            subtitle: null,
-            teaser: 'teaser',
-            genre: 'mystery',
-            estimatedDurationMinutes: 10,
-            isFree: true,
-            coverImageUrl: null,
-            thumbnailUrl: null,
-          },
-        ],
+      expect(result.items[0].coverImageUrl).toBe(
+        'https://signed.test/histories/o-bilhete-na-mesa-7/history/cover.png'
+      );
+      expect(result.items[0].thumbnailUrl).toBe(
+        'https://signed.test/histories/o-bilhete-na-mesa-7/history/thumbnail.png'
+      );
+      expect(imageUrlSigner.sign).toHaveBeenCalledWith(
+        'histories/o-bilhete-na-mesa-7/history/cover.png'
+      );
+      expect(imageUrlSigner.sign).toHaveBeenCalledWith(
+        'histories/o-bilhete-na-mesa-7/history/thumbnail.png'
+      );
+    });
+
+    it('returns null image urls when the history has none', async () => {
+      histories.listPublished.mockResolvedValue({
+        items: [mockCatalogItem({ coverImageUrl: null, thumbnailUrl: null })],
         total: 1,
         page: 1,
         limit: 20,
         totalPages: 1,
       });
+
+      const result = await service.listAvailable(true, { page: 1, limit: 20 });
+
+      expect(result.items[0].coverImageUrl).toBeNull();
+      expect(result.items[0].thumbnailUrl).toBeNull();
     });
 
-    it('maps each item and preserves the pagination metadata', async () => {
+    it('preserves the pagination metadata', async () => {
       histories.listPublished.mockResolvedValue({
-        items: [
-          mockCatalogItem({ id: 'a' }),
-          mockCatalogItem({ id: 'b' }),
-        ],
+        items: [mockCatalogItem({ id: 'a' }), mockCatalogItem({ id: 'b' })],
         total: 5,
         page: 2,
         limit: 2,
@@ -89,10 +97,11 @@ describe('HistoryCatalogService', () => {
         limit: 2,
       });
 
-      expect(result.items).toHaveLength(2);
-      expect(result.items.map((i) => i.id)).toEqual(['a', 'b']);
       expect(result.total).toBe(5);
+      expect(result.page).toBe(2);
+      expect(result.limit).toBe(2);
       expect(result.totalPages).toBe(3);
+      expect(result.items.map((i) => i.id)).toEqual(['a', 'b']);
     });
   });
 });

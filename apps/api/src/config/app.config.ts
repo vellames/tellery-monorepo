@@ -18,6 +18,15 @@ const envSchema = z.object({
   BCRYPT_SALT_ROUNDS: z.coerce.number().int().min(8).max(15).default(10),
   JWT_SECRET: z.string().min(16),
   JWT_EXPIRES_IN: z.string().default('7d'),
+  AWS_REGION: z.string().optional(),
+  AWS_ACCESS_KEY_ID: z.string().optional(),
+  AWS_SECRET_ACCESS_KEY: z.string().optional(),
+  AWS_S3_BUCKET: z.string().optional(),
+  AWS_S3_PRESIGNED_EXPIRATION_SECONDS: z.coerce
+    .number()
+    .int()
+    .min(60)
+    .default(3600),
 });
 
 const parsed = envSchema.safeParse(process.env);
@@ -59,5 +68,13 @@ export const appConfig = {
     bcryptSaltRounds: env.BCRYPT_SALT_ROUNDS,
     jwtSecret: env.JWT_SECRET,
     jwtExpiresIn: env.JWT_EXPIRES_IN,
+  },
+
+  aws: {
+    region: env.AWS_REGION,
+    accessKeyId: env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+    s3Bucket: env.AWS_S3_BUCKET,
+    presignedExpirationSeconds: env.AWS_S3_PRESIGNED_EXPIRATION_SECONDS,
   },
 } as const;
