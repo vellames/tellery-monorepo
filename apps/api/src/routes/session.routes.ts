@@ -144,6 +144,20 @@ router.post('/start', authenticate, async (req, res) => {
  *                         maximum: 1
  *                       reasoning:
  *                         type: string
+ *                 discoveredClues:
+ *                   type: array
+ *                   description: Clues discovered during this interaction (object interactions only).
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       title:
+ *                         type: string
+ *                       description:
+ *                         type: string
+ *                       reasoning:
+ *                         type: string
  *       400:
  *         description: Invalid request body
  *         content:

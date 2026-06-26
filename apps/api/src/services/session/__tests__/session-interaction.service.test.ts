@@ -2,6 +2,7 @@ import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { SupportedLanguage } from '@ai-history/i18n';
 import { StatusCodes } from 'http-status-codes';
 import { IntentDetectionService } from '../../../engine/intent/intent-detection.service';
+import { ObjectAgent } from '../../../engine/object/object-agent.service';
 import { SessionInteractionService } from '../session-interaction.service';
 import { ISessionRepository } from '../../../interfaces';
 import type { HistorySessionWithRelations } from '../../../repositories/SessionRepository';
@@ -9,6 +10,7 @@ import type { HistorySessionWithRelations } from '../../../repositories/SessionR
 describe('SessionInteractionService', () => {
   let sessions: DeepMockProxy<ISessionRepository>;
   let intentDetection: DeepMockProxy<IntentDetectionService>;
+  let objectAgent: DeepMockProxy<ObjectAgent>;
   let service: SessionInteractionService;
 
   const ownerId = 'user-owner';
@@ -30,6 +32,7 @@ describe('SessionInteractionService', () => {
       id: sessionId,
       userId: ownerId,
       intents: [intent],
+      clues: [],
       characterStates: [],
       objectStates: [],
       locationStates: [],
@@ -39,12 +42,15 @@ describe('SessionInteractionService', () => {
   beforeEach(() => {
     sessions = mockDeep<ISessionRepository>();
     intentDetection = mockDeep<IntentDetectionService>();
-    service = new SessionInteractionService(sessions, intentDetection);
+    objectAgent = mockDeep<ObjectAgent>();
+    objectAgent.run.mockResolvedValue([]);
+    service = new SessionInteractionService(sessions, intentDetection, objectAgent);
   });
 
   afterEach(() => {
     mockReset(sessions);
     mockReset(intentDetection);
+    mockReset(objectAgent);
   });
 
   const input = { stateId: 'state-1', interaction: 'hello' };
@@ -89,7 +95,7 @@ describe('SessionInteractionService', () => {
       { intentId: 'intent-1', confidence: 0.9, reasoning: 'clear' },
     ];
 
-    it('detects intents for a character state and returns them', async () => {
+    it('detects intents for a character state', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
           characterStates: [{ id: input.stateId }] as never,
@@ -99,34 +105,12 @@ describe('SessionInteractionService', () => {
 
       const result = await service.interact(sessionId, ownerId, input, language);
 
-      expect(intentDetection.detect).toHaveBeenCalledWith({
-        message: input.interaction,
-        language,
-        intents: [intent],
-      });
-      expect(result).toEqual({
-        id: input.stateId,
-        stateType: 'character',
-        detectedIntents: detected,
-      });
-    });
-
-    it('detects intents for an object state and returns them', async () => {
-      sessions.findById.mockResolvedValue(
-        buildSession({
-          objectStates: [{ id: input.stateId }] as never,
-        })
-      );
-      intentDetection.detect.mockResolvedValue(detected);
-
-      const result = await service.interact(sessionId, ownerId, input, language);
-
-      expect(result.stateType).toBe('object');
-      expect(intentDetection.detect).toHaveBeenCalled();
+      expect(result.stateType).toBe('character');
       expect(result.detectedIntents).toEqual(detected);
+      expect(objectAgent.run).not.toHaveBeenCalled();
     });
 
-    it('skips intent detection for a location state (returns empty)', async () => {
+    it('skips intent detection for a location state', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
           locationStates: [{ id: input.stateId }] as never,
@@ -139,19 +123,104 @@ describe('SessionInteractionService', () => {
       expect(intentDetection.detect).not.toHaveBeenCalled();
       expect(result.detectedIntents).toEqual([]);
     });
+  });
 
-    it('skips intent detection when the session has no intents', async () => {
+  describe('object inspection', () => {
+    const detected = [
+      { intentId: 'intent-1', confidence: 0.9, reasoning: 'clear' },
+    ];
+
+    const objectState = {
+      id: input.stateId,
+      name: 'Bilhete',
+      shortDescription: 'um bilhete',
+      initialDescription: 'papel dobrado',
+      clueRevealRules: [
+        {
+          clueId: 'clue-1',
+          revealText: 'revela a tinta',
+          clue: { title: 'Tinta azul', description: 'tinta azulCaneta' },
+          triggerIntents: [{ id: 'intent-1' }],
+          requiredClues: [],
+        },
+      ],
+    };
+
+    const sessionClues = [
+      { id: 'clue-1', title: 'Tinta azul', description: 'tinta azul', discovered: false },
+    ];
+
+    it('runs the object agent, persists and returns enriched discovered clues', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
-          intents: [],
-          characterStates: [{ id: input.stateId }] as never,
+          objectStates: [objectState] as never,
+          clues: sessionClues as never,
         })
       );
+      intentDetection.detect.mockResolvedValue(detected);
+      objectAgent.run.mockResolvedValue([
+        { clueId: 'clue-1', reasoning: 'a tinta estava visível' },
+      ]);
 
       const result = await service.interact(sessionId, ownerId, input, language);
 
-      expect(intentDetection.detect).not.toHaveBeenCalled();
-      expect(result.detectedIntents).toEqual([]);
+      expect(objectAgent.run).toHaveBeenCalledWith(
+        expect.objectContaining({
+          object: expect.objectContaining({ id: input.stateId }),
+          detectedIntents: detected,
+          discoveredClueIds: [],
+        })
+      );
+      expect(sessions.recordObjectInspection).toHaveBeenCalledWith({
+        objectStateId: input.stateId,
+        discoveredClueIds: ['clue-1'],
+      });
+      expect(result.discoveredClues).toEqual([
+        {
+          id: 'clue-1',
+          title: 'Tinta azul',
+          description: 'tinta azul',
+          reasoning: 'a tinta estava visível',
+        },
+      ]);
+    });
+
+    it('marks the object inspected even when no clue is discovered', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          objectStates: [objectState] as never,
+          clues: sessionClues as never,
+        })
+      );
+      intentDetection.detect.mockResolvedValue(detected);
+      objectAgent.run.mockResolvedValue([]);
+
+      const result = await service.interact(sessionId, ownerId, input, language);
+
+      expect(sessions.recordObjectInspection).toHaveBeenCalledWith({
+        objectStateId: input.stateId,
+        discoveredClueIds: [],
+      });
+      expect(result.discoveredClues).toEqual([]);
+    });
+
+    it('passes already-discovered clue ids to the object agent', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          objectStates: [objectState] as never,
+          clues: [
+            { id: 'clue-prev', title: 'x', description: 'y', discovered: true },
+          ] as never,
+        })
+      );
+      intentDetection.detect.mockResolvedValue(detected);
+      objectAgent.run.mockResolvedValue([]);
+
+      await service.interact(sessionId, ownerId, input, language);
+
+      expect(objectAgent.run).toHaveBeenCalledWith(
+        expect.objectContaining({ discoveredClueIds: ['clue-prev'] })
+      );
     });
   });
 });

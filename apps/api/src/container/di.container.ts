@@ -5,6 +5,7 @@ import { HealthController } from '../controllers/health.controller';
 import { SessionController } from '../controllers/session.controller';
 import { UserController } from '../controllers/user/user.controller';
 import { IntentDetectionService } from '../engine/intent/intent-detection.service';
+import { ObjectAgent } from '../engine/object/object-agent.service';
 import { OpenRouterStructuredChatModel } from '../engine/llm/openrouter-structured-chat-model';
 import {
   IHistoryDefinitionRepository,
@@ -66,9 +67,14 @@ export class DIContainer {
     appConfig.openrouter.intentDetectorThreshold,
     t
   );
+  private readonly objectAgent = new ObjectAgent(
+    new OpenRouterStructuredChatModel(appConfig.openrouter.objectAgentModel),
+    t
+  );
   private readonly sessionInteractionService = new SessionInteractionService(
     this.sessionRepository,
-    this.intentDetectionService
+    this.intentDetectionService,
+    this.objectAgent
   );
   private readonly sessionController = new SessionController(
     this.historySessionService,

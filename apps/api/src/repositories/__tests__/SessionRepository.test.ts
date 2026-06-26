@@ -162,4 +162,54 @@ describe('SessionRepository', () => {
       });
     });
   });
+
+  describe('recordObjectInspection', () => {
+    beforeEach(() => {
+      prisma.$transaction.mockImplementation(async (cb) =>
+        cb(prisma as unknown as Prisma.TransactionClient)
+      );
+    });
+
+    it('marks the object inspected, connects revealed clues and marks them discovered', async () => {
+      prisma.objectSessionState.update.mockResolvedValue({} as never);
+      prisma.sessionClue.updateMany.mockResolvedValue({ count: 2 } as never);
+
+      await repo.recordObjectInspection({
+        objectStateId: 'object-state-1',
+        discoveredClueIds: ['clue-1', 'clue-2'],
+      });
+
+      expect(prisma.objectSessionState.update).toHaveBeenCalledWith({
+        where: { id: 'object-state-1' },
+        data: expect.objectContaining({
+          inspected: true,
+          revealedClues: {
+            connect: [{ id: 'clue-1' }, { id: 'clue-2' }],
+          },
+        }),
+      });
+      expect(prisma.sessionClue.updateMany).toHaveBeenCalledWith({
+        where: { id: { in: ['clue-1', 'clue-2'] } },
+        data: expect.objectContaining({ discovered: true }),
+      });
+    });
+
+    it('marks the object inspected even when no clue is discovered', async () => {
+      prisma.objectSessionState.update.mockResolvedValue({} as never);
+
+      await repo.recordObjectInspection({
+        objectStateId: 'object-state-1',
+        discoveredClueIds: [],
+      });
+
+      expect(prisma.objectSessionState.update).toHaveBeenCalledWith({
+        where: { id: 'object-state-1' },
+        data: expect.objectContaining({
+          inspected: true,
+          revealedClues: undefined,
+        }),
+      });
+      expect(prisma.sessionClue.updateMany).not.toHaveBeenCalled();
+    });
+  });
 });

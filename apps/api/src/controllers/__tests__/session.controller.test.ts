@@ -44,6 +44,7 @@ describe('SessionController - interact', () => {
       detectedIntents: [
         { intentId: 'intent-1', confidence: 0.9, reasoning: 'clear' },
       ],
+      discoveredClues: [],
     };
     sessionInteractionService.interact.mockResolvedValue(response);
     req = {

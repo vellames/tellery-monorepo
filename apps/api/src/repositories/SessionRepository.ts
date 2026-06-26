@@ -149,4 +149,37 @@ export class SessionRepository
       orderBy: { createdAt: 'desc' },
     });
   }
+
+  async recordObjectInspection(
+    input: { objectStateId: string; discoveredClueIds: string[] },
+    tx?: PrismaTransaction
+  ): Promise<void> {
+    const run = async (client: PrismaTransaction): Promise<void> => {
+      const now = new Date();
+
+      await client.objectSessionState.update({
+        where: { id: input.objectStateId },
+        data: {
+          inspected: true,
+          inspectedAt: now,
+          revealedClues:
+            input.discoveredClueIds.length > 0
+              ? {
+                  connect: input.discoveredClueIds.map((id) => ({ id })),
+                }
+              : undefined,
+        },
+      });
+
+      if (input.discoveredClueIds.length > 0) {
+        await client.sessionClue.updateMany({
+          where: { id: { in: input.discoveredClueIds } },
+          data: { discovered: true, discoveredAt: now },
+        });
+      }
+    };
+
+    if (tx) return run(tx);
+    return this.runTransaction(run);
+  }
 }
