@@ -91,5 +91,11 @@
     "label": "Idioma",
     "pt-BR": "Português",
     "en": "English"
+  },
+  "nav": {
+    "stories": "Histórias",
+    "journey": "Minha jornada",
+    "profile": "Perfil",
+    "openMenu": "Abrir menu"
   }
 }
