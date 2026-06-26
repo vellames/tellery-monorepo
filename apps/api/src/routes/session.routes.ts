@@ -238,6 +238,8 @@ router.post('/:sessionId/interact', authenticate, async (req, res) => {
  *                     subtitle:
  *                       type: string
  *                       nullable: true
+ *                     teaser:
+ *                       type: string
  *                     opening:
  *                       type: string
  *                     objective:

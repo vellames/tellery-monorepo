@@ -60,6 +60,7 @@ export interface SessionStateResponse {
     id: string;
     title: string;
     subtitle: string | null;
+    teaser: string;
     opening: string;
     objective: string;
     genre: string;
@@ -102,6 +103,7 @@ export function buildSessionStateResponse(
       id: session.historyId,
       title: session.title,
       subtitle: session.subtitle,
+      teaser: session.teaser,
       opening: session.opening,
       objective: session.objective,
       genre: session.genre,
