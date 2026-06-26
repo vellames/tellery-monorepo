@@ -187,4 +187,149 @@ router.post('/:sessionId/interact', authenticate, async (req, res) => {
   await DIContainer.getInstance().getSessionController().interact(req, res);
 });
 
+/**
+ * @openapi
+ * /session/{sessionId}:
+ *   get:
+ *     tags: [Session]
+ *     summary: Get the current session state
+ *     description: Returns the player-facing state of a session (discovered clues, inspected/visited states, conversation history). Hides game-master data such as reveal rules, secret truths and private knowledge.
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - name: sessionId
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The session ID.
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     responses:
+ *       200:
+ *         description: The current session state
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 status:
+ *                   type: string
+ *                   example: active
+ *                 startedAt:
+ *                   type: string
+ *                   format: date-time
+ *                 completedAt:
+ *                   type: string
+ *                   format: date-time
+ *                   nullable: true
+ *                 history:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     title:
+ *                       type: string
+ *                     subtitle:
+ *                       type: string
+ *                       nullable: true
+ *                     opening:
+ *                       type: string
+ *                     objective:
+ *                       type: string
+ *                     genre:
+ *                       type: string
+ *                 clues:
+ *                   type: array
+ *                   description: Only discovered clues.
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       title:
+ *                         type: string
+ *                       description:
+ *                         type: string
+ *                       importance:
+ *                         type: string
+ *                       discoveredAt:
+ *                         type: string
+ *                         format: date-time
+ *                         nullable: true
+ *                 characters:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       name:
+ *                         type: string
+ *                       role:
+ *                         type: string
+ *                       shortDescription:
+ *                         type: string
+ *                       conversationSummary:
+ *                         type: string
+ *                         nullable: true
+ *                       messages:
+ *                         type: array
+ *                         items:
+ *                           type: object
+ *                           properties:
+ *                             role:
+ *                               type: string
+ *                             content:
+ *                               type: string
+ *                 objects:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       name:
+ *                         type: string
+ *                       inspected:
+ *                         type: boolean
+ *                       messages:
+ *                         type: array
+ *                         items:
+ *                           type: object
+ *                 locations:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       name:
+ *                         type: string
+ *                       visited:
+ *                         type: boolean
+ *       401:
+ *         description: Missing or invalid authentication token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ *       403:
+ *         description: The authenticated user does not own this session
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ *       404:
+ *         description: Session not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ */
+router.get('/:sessionId', authenticate, async (req, res) => {
+  await DIContainer.getInstance().getSessionController().getSession(req, res);
+});
+
 export default router;

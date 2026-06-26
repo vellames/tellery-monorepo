@@ -6,6 +6,10 @@ import {
 import { HttpError } from '../../utils/http-error';
 import { StartSessionBody } from '../../types/http/session.validation';
 import { StatusCodes } from 'http-status-codes';
+import {
+  buildSessionStateResponse,
+  SessionStateResponse,
+} from './session-state.mapper';
 
 export class HistorySessionService {
   constructor(
@@ -57,5 +61,29 @@ export class HistorySessionService {
         objective: history.objective,
       },
     };
+  }
+
+  async getSessionState(
+    sessionId: string,
+    userId: string
+  ): Promise<SessionStateResponse> {
+    const session = await this.sessions.findById(sessionId);
+    if (!session) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        sessionId,
+        'session:errors.unknownSession'
+      );
+    }
+
+    if (session.userId !== userId) {
+      throw new HttpError(
+        StatusCodes.FORBIDDEN,
+        sessionId,
+        'session:errors.sessionNotOwned'
+      );
+    }
+
+    return buildSessionStateResponse(session);
   }
 }

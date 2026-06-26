@@ -228,3 +228,96 @@ describe('SessionController - start', () => {
     );
   });
 });
+
+describe('SessionController - getSession', () => {
+  let historySessionService: DeepMockProxy<HistorySessionService>;
+  let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
+  let controller: SessionController;
+  let req: Partial<Request>;
+  let res: Partial<Response>;
+  let json: jest.Mock;
+  let status: jest.Mock;
+  let t: TranslationFunction;
+
+  beforeEach(() => {
+    historySessionService = mockDeep<HistorySessionService>();
+    sessionInteractionService = mockDeep<SessionInteractionService>();
+    controller = new SessionController(
+      historySessionService,
+      sessionInteractionService
+    );
+    json = jest.fn();
+    status = jest.fn().mockReturnValue({ json });
+    res = { status };
+    t = jest.fn((key: string) => key) as unknown as TranslationFunction;
+  });
+
+  afterEach(() => {
+    mockReset(historySessionService);
+    mockReset(sessionInteractionService);
+  });
+
+  it('returns 200 with the session state for the authenticated user', async () => {
+    const response = { id: 'session-1', status: 'active', clues: [] } as never;
+    historySessionService.getSessionState.mockResolvedValue(response);
+    req = {
+      params: { sessionId: 'session-1' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.getSession(req as Request, res as Response);
+
+    expect(historySessionService.getSessionState).toHaveBeenCalledWith(
+      'session-1',
+      'user-1'
+    );
+    expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+    expect(json).toHaveBeenCalledWith({
+      success: true,
+      data: response,
+      message: undefined,
+    });
+  });
+
+  it('returns 404 when the session does not exist', async () => {
+    historySessionService.getSessionState.mockRejectedValue(
+      new HttpError(
+        StatusCodes.NOT_FOUND,
+        'session-1',
+        'session:errors.unknownSession'
+      )
+    );
+    req = {
+      params: { sessionId: 'session-1' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.getSession(req as Request, res as Response);
+
+    expect(status).toHaveBeenCalledWith(StatusCodes.NOT_FOUND);
+    expect(json).toHaveBeenCalledWith(
+      expect.objectContaining({ error: 'session:errors.unknownSession' })
+    );
+  });
+
+  it('returns 403 when the session is not owned by the user', async () => {
+    historySessionService.getSessionState.mockRejectedValue(
+      new HttpError(
+        StatusCodes.FORBIDDEN,
+        'session-1',
+        'session:errors.sessionNotOwned'
+      )
+    );
+    req = {
+      params: { sessionId: 'session-1' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.getSession(req as Request, res as Response);
+
+    expect(status).toHaveBeenCalledWith(StatusCodes.FORBIDDEN);
+  });
+});

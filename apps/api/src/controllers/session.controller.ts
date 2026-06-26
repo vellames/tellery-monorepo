@@ -51,6 +51,28 @@ export class SessionController {
     }
   };
 
+  getSession = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+
+    try {
+      const sessionId = String(req.params.sessionId);
+      const response = await this.historySessionService.getSessionState(
+        sessionId,
+        req.user!.id
+      );
+      sendSuccess(res, response);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey
+          ? t(error.messageKey, { id: error.message })
+          : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
+
   interact = async (req: Request, res: Response): Promise<void> => {
     const t = req.t as TranslationFunction;
     const parsedBody = interactBodySchema.safeParse(req.body);
