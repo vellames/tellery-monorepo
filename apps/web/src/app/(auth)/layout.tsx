@@ -14,6 +14,7 @@ export default function AuthLayout({
           fill
           priority
           className="object-cover"
+          sizes="(min-width: 1024px) 50vw, 100vw"
         />
       </div>
 
@@ -24,6 +25,7 @@ export default function AuthLayout({
           fill
           priority
           className="object-cover"
+          sizes="(min-width: 1024px) 50vw, 100vw"
         />
       </div>
 
