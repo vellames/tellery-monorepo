@@ -59,12 +59,33 @@
       "emailRequired": "Email is required"
     }
   },
+  "home": {
+    "howItWorks": {
+      "title": "How it works",
+      "steps": {
+        "enterStory": {
+          "title": "Enter a story",
+          "description": "Read the briefing and choose where to start."
+        },
+        "talkToCharacters": {
+          "title": "Talk to characters",
+          "description": "Type or speak your questions freely."
+        },
+        "findTheEnd": {
+          "title": "Find the ending",
+          "description": "Use the clues to reach your conclusion."
+        }
+      }
+    }
+  },
   "common": {
     "logout": "Log out",
     "greeting": "Hello, {name}",
     "backToLogin": "Back to login",
     "privacyPolicy": "Privacy Policy",
-    "termsOfUse": "Terms of Use"
+    "termsOfUse": "Terms of Use",
+    "tagline": "Stories you take part in",
+    "sessionsAvailable": "{count} sessions available"
   },
   "language": {
     "label": "Language",

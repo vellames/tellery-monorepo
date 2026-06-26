@@ -59,12 +59,33 @@
       "emailRequired": "E-mail é obrigatório"
     }
   },
+  "home": {
+    "howItWorks": {
+      "title": "Como funciona",
+      "steps": {
+        "enterStory": {
+          "title": "Entre em uma história",
+          "description": "Leia o briefing e escolha por onde começar."
+        },
+        "talkToCharacters": {
+          "title": "Converse com personagens",
+          "description": "Digite ou fale suas perguntas livremente."
+        },
+        "findTheEnd": {
+          "title": "Descubra o final",
+          "description": "Use as pistas para formar sua conclusão."
+        }
+      }
+    }
+  },
   "common": {
     "logout": "Sair",
     "greeting": "Olá, {name}",
     "backToLogin": "Voltar para o login",
     "privacyPolicy": "Política de Privacidade",
-    "termsOfUse": "Termos de Uso"
+    "termsOfUse": "Termos de Uso",
+    "tagline": "Histórias onde você participa",
+    "sessionsAvailable": "{count} sessões disponíveis"
   },
   "language": {
     "label": "Idioma",
