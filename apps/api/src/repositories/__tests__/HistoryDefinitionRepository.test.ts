@@ -134,6 +134,7 @@ describe('HistoryDefinitionRepository', () => {
           teaser: 'teaser',
           genre: 'mystery',
           estimatedDurationMinutes: 10,
+          isFree: true,
           coverImageUrl: null,
           thumbnailUrl: null,
         },

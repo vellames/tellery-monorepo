@@ -54,6 +54,8 @@ const authenticate: RequestHandler = (req, res, next) => {
  *                         type: string
  *                       estimatedDurationMinutes:
  *                         type: integer
+ *                       isFree:
+ *                         type: boolean
  *                       coverImageUrl:
  *                         type: string
  *                         nullable: true

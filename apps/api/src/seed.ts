@@ -139,6 +139,7 @@ interface HistorySeed {
   estimatedDurationMinutes: number;
   status: HistoryStatus;
   isFeatured?: boolean;
+  isFree?: boolean;
   coverImageUrl?: string | null;
   thumbnailUrl?: string | null;
   opening: OpeningSeed;
@@ -173,10 +174,11 @@ async function seedHistory(fileName: string): Promise<void> {
       data: {
         status: data.status,
         isFeatured: data.isFeatured ?? false,
+        isFree: data.isFree ?? false,
       },
     });
     console.log(
-      `History "${data.slug}" already seeded, updated status and isFeatured.`
+      `History "${data.slug}" already seeded, updated status, isFeatured and isFree.`
     );
     return;
   }
@@ -191,6 +193,7 @@ async function seedHistory(fileName: string): Promise<void> {
       estimatedDurationMinutes: data.estimatedDurationMinutes,
       status: data.status,
       isFeatured: data.isFeatured ?? false,
+      isFree: data.isFree ?? false,
       coverImageUrl: data.coverImageUrl ?? null,
       thumbnailUrl: data.thumbnailUrl ?? null,
       opening: joinText([

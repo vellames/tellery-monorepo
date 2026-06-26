@@ -8,6 +8,7 @@ export interface HistoryCatalogItemDto {
   teaser: string;
   genre: string;
   estimatedDurationMinutes: number;
+  isFree: boolean;
   coverImageUrl: string | null;
   thumbnailUrl: string | null;
 }
@@ -22,6 +23,7 @@ export const toHistoryCatalogItemDto = (
   teaser: history.teaser,
   genre: history.genre,
   estimatedDurationMinutes: history.estimatedDurationMinutes,
+  isFree: history.isFree,
   coverImageUrl: history.coverImageUrl,
   thumbnailUrl: history.thumbnailUrl,
 });

@@ -12,6 +12,7 @@
   "estimatedDurationMinutes": 10,
   "status": "published",
   "isFeatured": true,
+  "isFree": true,
   "version": 1,
   "coverImageUrl": null,
   "thumbnailUrl": null,

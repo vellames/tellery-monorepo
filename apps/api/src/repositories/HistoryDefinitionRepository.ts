@@ -48,6 +48,7 @@ export const historyCatalogSelect = {
   teaser: true,
   genre: true,
   estimatedDurationMinutes: true,
+  isFree: true,
   coverImageUrl: true,
   thumbnailUrl: true,
 } satisfies Prisma.HistorySelect;
