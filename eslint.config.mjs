@@ -11,6 +11,8 @@ export default tseslint.config(
       '.turbo/**',
       '**/coverage/**',
       '**/*.config.js',
+      '**/engine_old/**',
+      '**/*.old.ts',
     ],
   },
   js.configs.recommended,
