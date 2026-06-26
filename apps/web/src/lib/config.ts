@@ -8,8 +8,8 @@ export const config = {
     maxAgeSeconds: 60 * 60 * 24 * 7,
   },
   routes: {
-    home: '/',
-    login: '/login',
+    home: '/home',
+    login: '/',
     loginApi: '/api/auth/login',
     logoutApi: '/api/auth/logout',
   },
