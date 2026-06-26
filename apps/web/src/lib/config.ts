@@ -2,6 +2,9 @@ export const config = {
   api: {
     baseUrl: process.env.API_URL ?? 'http://localhost:3232',
   },
+  i18n: {
+    defaultLocale: 'pt-BR',
+  },
   auth: {
     sessionCookie: 'ai-history.session',
     userCookie: 'ai-history.user',

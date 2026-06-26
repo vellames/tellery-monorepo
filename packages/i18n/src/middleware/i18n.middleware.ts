@@ -36,7 +36,18 @@ export const i18nMiddleware = (
   req.language = detectedLanguage;
 
   req.t = (key: string, options?: TranslationOptions) => {
-    return i18next.t(key, { ...options, lng: detectedLanguage }) as string;
+    const translated = i18next.t(key, {
+      ...options,
+      lng: detectedLanguage,
+    }) as string;
+
+    if (!translated || translated === key) {
+      return i18next.t('common:errors.internalError', {
+        lng: detectedLanguage,
+      }) as string;
+    }
+
+    return translated;
   };
 
   i18next.changeLanguage(detectedLanguage);

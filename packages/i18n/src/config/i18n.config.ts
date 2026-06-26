@@ -7,7 +7,7 @@ import { SupportedLocale } from '../types/i18n.types';
 export const supportedLanguages: readonly SupportedLocale[] = ['en', 'pt-BR'];
 export type SupportedLanguage = SupportedLocale;
 
-export const defaultLanguage: SupportedLocale = 'en';
+export const defaultLanguage: SupportedLocale = 'pt-BR';
 
 export const initI18n = async () => {
   await i18next

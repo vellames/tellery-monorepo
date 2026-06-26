@@ -1,14 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { StatusCodes } from 'http-status-codes';
-import { config } from '@/lib/config';
 import { setSession } from '@/lib/auth/session';
+import { ApiError, apiFetch } from '@/lib/api/client';
 import type { AuthPayload, LoginPayload } from '@/lib/types/auth';
-
-interface ApiEnvelope {
-  success: boolean;
-  data?: AuthPayload;
-  error?: string;
-}
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   const body = (await req.json().catch(() => null)) as LoginPayload | null;
@@ -20,22 +14,22 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     );
   }
 
-  const res = await fetch(`${config.api.baseUrl}/users/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
+  try {
+    const { token, user } = await apiFetch<AuthPayload>('/users/login', {
+      method: 'POST',
+      body: JSON.stringify(body),
+    });
+    await setSession(token, user);
+    return NextResponse.json({ user });
+  } catch (error) {
+    const { message, status } =
+      error instanceof ApiError
+        ? error
+        : {
+            message: 'Falha ao entrar',
+            status: StatusCodes.INTERNAL_SERVER_ERROR,
+          };
 
-  const data = (await res.json().catch(() => null)) as ApiEnvelope | null;
-
-  if (!res.ok || !data?.success || !data.data) {
-    return NextResponse.json(
-      { error: data?.error ?? 'Falha ao entrar' },
-      { status: res.ok ? StatusCodes.INTERNAL_SERVER_ERROR : res.status }
-    );
+    return NextResponse.json({ error: message }, { status });
   }
-
-  const { token, user } = data.data;
-  await setSession(token, user);
-  return NextResponse.json({ user });
 }
