@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import {
   HistoryDefinitionRepository,
+  historyCatalogSelect,
   historyDefinitionInclude,
   HistoryWithDefinitions,
 } from '../HistoryDefinitionRepository';
@@ -117,6 +118,53 @@ describe('HistoryDefinitionRepository', () => {
       prisma.history.findMany.mockResolvedValue([]);
 
       const result = await repo.list();
+
+      expect(result).toEqual([]);
+    });
+  });
+
+  describe('listPublished', () => {
+    it('returns only published histories ordered by createdAt asc with catalog select', async () => {
+      const histories = [
+        {
+          id: 'history-1',
+          slug: 'o-bilhete-na-mesa-7',
+          title: 'O Bilhete na Mesa 7',
+          subtitle: null,
+          teaser: 'teaser',
+          genre: 'mystery',
+          estimatedDurationMinutes: 10,
+          coverImageUrl: null,
+          thumbnailUrl: null,
+        },
+        {
+          id: 'history-2',
+          slug: 'o-fantasma-do-rio',
+          title: 'O Fantasma do Rio',
+          subtitle: 'Uma lenda local',
+          teaser: 'teaser 2',
+          genre: 'mystery',
+          estimatedDurationMinutes: 15,
+          coverImageUrl: 'https://example.com/cover.png',
+          thumbnailUrl: null,
+        },
+      ];
+      prisma.history.findMany.mockResolvedValue(histories as never);
+
+      const result = await repo.listPublished();
+
+      expect(result).toEqual(histories);
+      expect(prisma.history.findMany).toHaveBeenCalledWith({
+        where: { status: 'published', deletedAt: null },
+        select: historyCatalogSelect,
+        orderBy: { createdAt: 'asc' },
+      });
+    });
+
+    it('returns empty array when no published histories exist', async () => {
+      prisma.history.findMany.mockResolvedValue([]);
+
+      const result = await repo.listPublished();
 
       expect(result).toEqual([]);
     });

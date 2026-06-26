@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { t } from '@ai-history/i18n';
 import { appConfig } from '../config/app.config';
 import { HealthController } from '../controllers/health.controller';
+import { HistoryController } from '../controllers/history.controller';
 import { SessionController } from '../controllers/session.controller';
 import { UserController } from '../controllers/user/user.controller';
 import { CharacterAgent } from '../engine/character/character-agent.service';
@@ -22,6 +23,7 @@ import {
 } from '../repositories';
 import { HistorySessionService } from '../services/session/history-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
+import { HistoryCatalogService } from '../services/history/history-catalog.service';
 import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
 import { JwtTokenService } from '../services/user/jwt-token.service';
 import { UserService } from '../services/user/user.service';
@@ -86,6 +88,12 @@ export class DIContainer {
     this.historySessionService,
     this.sessionInteractionService
   );
+  private readonly historyCatalogService = new HistoryCatalogService(
+    this.historyDefinitionRepository
+  );
+  private readonly historyController = new HistoryController(
+    this.historyCatalogService
+  );
 
   static getInstance(): DIContainer {
     if (!DIContainer.instance) {
@@ -101,6 +109,10 @@ export class DIContainer {
 
   getSessionController(): SessionController {
     return this.sessionController;
+  }
+
+  getHistoryController(): HistoryController {
+    return this.historyController;
   }
 
   getUserController(): UserController {

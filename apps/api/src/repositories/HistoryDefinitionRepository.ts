@@ -40,6 +40,22 @@ export type HistoryWithDefinitions = Prisma.HistoryGetPayload<{
   include: typeof historyDefinitionInclude;
 }>;
 
+export const historyCatalogSelect = {
+  id: true,
+  slug: true,
+  title: true,
+  subtitle: true,
+  teaser: true,
+  genre: true,
+  estimatedDurationMinutes: true,
+  coverImageUrl: true,
+  thumbnailUrl: true,
+} satisfies Prisma.HistorySelect;
+
+export type HistoryCatalogItem = Prisma.HistoryGetPayload<{
+  select: typeof historyCatalogSelect;
+}>;
+
 export class HistoryDefinitionRepository
   extends BaseRepository
   implements IHistoryDefinitionRepository
@@ -75,6 +91,14 @@ export class HistoryDefinitionRepository
     return client.history.findMany({
       where: { deletedAt: null },
       include: historyDefinitionInclude,
+      orderBy: { createdAt: 'asc' },
+    });
+  }
+
+  async listPublished(): Promise<HistoryCatalogItem[]> {
+    return this.prisma.history.findMany({
+      where: { status: 'published', deletedAt: null },
+      select: historyCatalogSelect,
       orderBy: { createdAt: 'asc' },
     });
   }

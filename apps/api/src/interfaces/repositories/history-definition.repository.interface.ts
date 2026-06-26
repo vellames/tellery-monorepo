@@ -1,4 +1,7 @@
-import type { HistoryWithDefinitions } from '../../repositories/HistoryDefinitionRepository';
+import type {
+  HistoryCatalogItem,
+  HistoryWithDefinitions,
+} from '../../repositories/HistoryDefinitionRepository';
 import { PrismaTransaction } from '../../types/database.types';
 import { IBaseRepository } from './base.repository.interface';
 
@@ -12,4 +15,5 @@ export interface IHistoryDefinitionRepository extends IBaseRepository {
     tx?: PrismaTransaction
   ): Promise<HistoryWithDefinitions | null>;
   list(tx?: PrismaTransaction): Promise<HistoryWithDefinitions[]>;
+  listPublished(): Promise<HistoryCatalogItem[]>;
 }
