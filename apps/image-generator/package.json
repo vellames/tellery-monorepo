@@ -1,0 +1,14 @@
+{
+  "name": "@ai-history/image-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0"
+  }
+}
