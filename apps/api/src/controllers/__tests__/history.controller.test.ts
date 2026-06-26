@@ -27,22 +27,21 @@ describe('HistoryController - list', () => {
     mockReset(historyCatalogService);
   });
 
-  it('returns 200 with featured histories when isFeatured=true', async () => {
-    const histories = [
-      {
-        id: 'history-1',
-        slug: 'o-bilhete-na-mesa-7',
-        title: 'O Bilhete na Mesa 7',
-        subtitle: null,
-        teaser: 'teaser',
-        genre: 'mystery',
-        estimatedDurationMinutes: 10,
-        isFree: true,
-        coverImageUrl: null,
-        thumbnailUrl: null,
-      },
-    ];
-    historyCatalogService.listAvailable.mockResolvedValue(histories);
+  it('returns 200 with a paginated result of featured histories', async () => {
+    const paginated = {
+      items: [
+        {
+          id: 'history-1',
+          slug: 'o-bilhete-na-mesa-7',
+          title: 'O Bilhete na Mesa 7',
+        },
+      ],
+      total: 1,
+      page: 1,
+      limit: 20,
+      totalPages: 1,
+    };
+    historyCatalogService.listAvailable.mockResolvedValue(paginated as never);
     req = {
       query: { isFeatured: 'true' },
       user: { id: 'user-1', email: 'ana@teste.local' },
@@ -51,32 +50,44 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(true);
+    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(true, {
+      page: 1,
+      limit: 20,
+    });
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
     expect(json).toHaveBeenCalledWith({
       success: true,
-      data: histories,
+      data: paginated,
       message: undefined,
     });
   });
 
-  it('passes isFeatured=false to the service when query is false', async () => {
-    historyCatalogService.listAvailable.mockResolvedValue([]);
+  it('passes through provided page and limit', async () => {
+    historyCatalogService.listAvailable.mockResolvedValue({
+      items: [],
+      total: 0,
+      page: 2,
+      limit: 5,
+      totalPages: 0,
+    });
     req = {
-      query: { isFeatured: 'false' },
+      query: { isFeatured: 'false', page: '2', limit: '5' },
       user: { id: 'user-1', email: 'ana@teste.local' },
       t,
     };
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(false);
+    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(false, {
+      page: 2,
+      limit: 5,
+    });
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
   });
 
   it('returns 422 when isFeatured query parameter is missing', async () => {
     req = {
-      query: {},
+      query: { page: '1' },
       user: { id: 'user-1', email: 'ana@teste.local' },
       t,
     };
@@ -90,6 +101,19 @@ describe('HistoryController - list', () => {
   it('returns 422 when isFeatured query parameter is invalid', async () => {
     req = {
       query: { isFeatured: 'yes' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.list(req as Request, res as Response);
+
+    expect(historyCatalogService.listAvailable).not.toHaveBeenCalled();
+    expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+  });
+
+  it('returns 422 when limit exceeds the maximum', async () => {
+    req = {
+      query: { isFeatured: 'true', limit: '999' },
       user: { id: 'user-1', email: 'ana@teste.local' },
       t,
     };

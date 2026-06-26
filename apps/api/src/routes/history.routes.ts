@@ -24,6 +24,23 @@ const authenticate: RequestHandler = (req, res, next) => {
  *         schema:
  *           type: boolean
  *         description: Filter histories by featured flag. Must be `true` or `false`.
+ *       - name: page
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *         description: Page number (1-based).
+ *       - name: limit
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 100
+ *           default: 20
+ *         description: Number of items per page.
  *     responses:
  *       200:
  *         description: Available histories
@@ -35,33 +52,45 @@ const authenticate: RequestHandler = (req, res, next) => {
  *                 success:
  *                   type: boolean
  *                 data:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: string
- *                       slug:
- *                         type: string
- *                       title:
- *                         type: string
- *                       subtitle:
- *                         type: string
- *                         nullable: true
- *                       teaser:
- *                         type: string
- *                       genre:
- *                         type: string
- *                       estimatedDurationMinutes:
- *                         type: integer
- *                       isFree:
- *                         type: boolean
- *                       coverImageUrl:
- *                         type: string
- *                         nullable: true
- *                       thumbnailUrl:
- *                         type: string
- *                         nullable: true
+ *                   type: object
+ *                   properties:
+ *                     items:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           id:
+ *                             type: string
+ *                           slug:
+ *                             type: string
+ *                           title:
+ *                             type: string
+ *                           subtitle:
+ *                             type: string
+ *                             nullable: true
+ *                           teaser:
+ *                             type: string
+ *                           genre:
+ *                             type: string
+ *                           estimatedDurationMinutes:
+ *                             type: integer
+ *                           isFree:
+ *                             type: boolean
+ *                           coverImageUrl:
+ *                             type: string
+ *                             nullable: true
+ *                           thumbnailUrl:
+ *                             type: string
+ *                             nullable: true
+ *                     total:
+ *                       type: integer
+ *                       description: Total number of matching histories.
+ *                     page:
+ *                       type: integer
+ *                     limit:
+ *                       type: integer
+ *                     totalPages:
+ *                       type: integer
  *       401:
  *         description: Missing or invalid authentication token
  *         content:
@@ -69,7 +98,7 @@ const authenticate: RequestHandler = (req, res, next) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  *       422:
- *         description: Invalid or missing isFeatured query parameter
+ *         description: Invalid or missing query parameter (isFeatured, page or limit)
  *         content:
  *           application/json:
  *             schema:

@@ -34,36 +34,65 @@ describe('HistoryCatalogService', () => {
   });
 
   describe('listAvailable', () => {
-    it('requests featured histories and maps them to catalog dtos', async () => {
-      histories.listPublished.mockResolvedValue([
-        mockCatalogItem({ id: 'history-1' }),
-      ]);
+    it('returns featured histories mapped to catalog dtos within a paginated result', async () => {
+      const items = [mockCatalogItem({ id: 'history-1' })];
+      histories.listPublished.mockResolvedValue({
+        items,
+        total: 1,
+        page: 1,
+        limit: 20,
+        totalPages: 1,
+      });
 
-      const result = await service.listAvailable(true);
+      const result = await service.listAvailable(true, { page: 1, limit: 20 });
 
-      expect(histories.listPublished).toHaveBeenCalledWith(true);
-      expect(result).toEqual([
-        {
-          id: 'history-1',
-          slug: 'o-bilhete-na-mesa-7',
-          title: 'O Bilhete na Mesa 7',
-          subtitle: null,
-          teaser: 'teaser',
-          genre: 'mystery',
-          estimatedDurationMinutes: 10,
-          isFree: true,
-          coverImageUrl: null,
-          thumbnailUrl: null,
-        },
-      ]);
+      expect(histories.listPublished).toHaveBeenCalledWith(true, {
+        page: 1,
+        limit: 20,
+      });
+      expect(result).toEqual({
+        items: [
+          {
+            id: 'history-1',
+            slug: 'o-bilhete-na-mesa-7',
+            title: 'O Bilhete na Mesa 7',
+            subtitle: null,
+            teaser: 'teaser',
+            genre: 'mystery',
+            estimatedDurationMinutes: 10,
+            isFree: true,
+            coverImageUrl: null,
+            thumbnailUrl: null,
+          },
+        ],
+        total: 1,
+        page: 1,
+        limit: 20,
+        totalPages: 1,
+      });
     });
 
-    it('requests non-featured histories when isFeatured is false', async () => {
-      histories.listPublished.mockResolvedValue([]);
+    it('maps each item and preserves the pagination metadata', async () => {
+      histories.listPublished.mockResolvedValue({
+        items: [
+          mockCatalogItem({ id: 'a' }),
+          mockCatalogItem({ id: 'b' }),
+        ],
+        total: 5,
+        page: 2,
+        limit: 2,
+        totalPages: 3,
+      });
 
-      await service.listAvailable(false);
+      const result = await service.listAvailable(false, {
+        page: 2,
+        limit: 2,
+      });
 
-      expect(histories.listPublished).toHaveBeenCalledWith(false);
+      expect(result.items).toHaveLength(2);
+      expect(result.items.map((i) => i.id)).toEqual(['a', 'b']);
+      expect(result.total).toBe(5);
+      expect(result.totalPages).toBe(3);
     });
   });
 });

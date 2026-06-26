@@ -124,7 +124,9 @@ describe('HistoryDefinitionRepository', () => {
   });
 
   describe('listPublished', () => {
-    it('returns only published, featured histories when isFeatured is true', async () => {
+    const pagination = { page: 1, limit: 20 };
+
+    it('returns a paginated result of published, featured histories', async () => {
       const histories = [
         {
           id: 'history-1',
@@ -140,26 +142,52 @@ describe('HistoryDefinitionRepository', () => {
         },
       ];
       prisma.history.findMany.mockResolvedValue(histories as never);
+      prisma.history.count.mockResolvedValue(1);
 
-      const result = await repo.listPublished(true);
+      const result = await repo.listPublished(true, pagination);
 
-      expect(result).toEqual(histories);
+      expect(result).toEqual({
+        items: histories,
+        total: 1,
+        page: 1,
+        limit: 20,
+        totalPages: 1,
+      });
       expect(prisma.history.findMany).toHaveBeenCalledWith({
         where: { status: 'published', isFeatured: true, deletedAt: null },
         select: historyCatalogSelect,
         orderBy: { createdAt: 'asc' },
+        skip: 0,
+        take: 20,
+      });
+      expect(prisma.history.count).toHaveBeenCalledWith({
+        where: { status: 'published', isFeatured: true, deletedAt: null },
       });
     });
 
-    it('returns only published, non-featured histories when isFeatured is false', async () => {
+    it('computes skip from page and limit', async () => {
       prisma.history.findMany.mockResolvedValue([] as never);
+      prisma.history.count.mockResolvedValue(0);
 
-      await repo.listPublished(false);
+      await repo.listPublished(false, { page: 3, limit: 10 });
 
-      expect(prisma.history.findMany).toHaveBeenCalledWith({
-        where: { status: 'published', isFeatured: false, deletedAt: null },
-        select: historyCatalogSelect,
-        orderBy: { createdAt: 'asc' },
+      expect(prisma.history.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({ skip: 20, take: 10 })
+      );
+    });
+
+    it('returns empty items and zero totalPages when there are no matches', async () => {
+      prisma.history.findMany.mockResolvedValue([] as never);
+      prisma.history.count.mockResolvedValue(0);
+
+      const result = await repo.listPublished(false, pagination);
+
+      expect(result).toEqual({
+        items: [],
+        total: 0,
+        page: 1,
+        limit: 20,
+        totalPages: 0,
       });
     });
   });

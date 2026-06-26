@@ -1,5 +1,11 @@
 import { PrismaClient, Prisma } from '@prisma/client';
 import { IHistoryDefinitionRepository } from '../interfaces';
+import {
+  buildPaginatedResult,
+  paginateSkip,
+  PaginatedResult,
+  PaginationQuery,
+} from '../types/pagination.types';
 import { PrismaTransaction } from '../types/database.types';
 import { BaseRepository } from './base.repository';
 
@@ -96,11 +102,30 @@ export class HistoryDefinitionRepository
     });
   }
 
-  async listPublished(isFeatured: boolean): Promise<HistoryCatalogItem[]> {
-    return this.prisma.history.findMany({
-      where: { status: 'published', isFeatured, deletedAt: null },
-      select: historyCatalogSelect,
-      orderBy: { createdAt: 'asc' },
-    });
+  async listPublished(
+    isFeatured: boolean,
+    pagination: PaginationQuery
+  ): Promise<PaginatedResult<HistoryCatalogItem>> {
+    const where: Prisma.HistoryWhereInput = {
+      status: 'published',
+      isFeatured,
+      deletedAt: null,
+    };
+    const [items, total] = await Promise.all([
+      this.prisma.history.findMany({
+        where,
+        select: historyCatalogSelect,
+        orderBy: { createdAt: 'asc' },
+        skip: paginateSkip(pagination),
+        take: pagination.limit,
+      }),
+      this.prisma.history.count({ where }),
+    ]);
+    return buildPaginatedResult(
+      items,
+      total,
+      pagination.page,
+      pagination.limit
+    );
   }
 }
