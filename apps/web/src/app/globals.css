@@ -1,11 +1,11 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: var(--font-heading), Georgia, "Times New Roman", serif;
+  --font-heading: var(--font-heading), Georgia, 'Times New Roman', serif;
   --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
 
   --color-background: var(--background);

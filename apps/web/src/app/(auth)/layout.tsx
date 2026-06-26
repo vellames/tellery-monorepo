@@ -27,7 +27,7 @@ export default function AuthLayout({
         />
       </div>
 
-      <div className="flex flex-1 items-center justify-center bg-background p-6 sm:p-10">
+      <div className="bg-background flex flex-1 items-center justify-center p-6 sm:p-10">
         <div className="w-full max-w-sm">
           <div className="mb-8 flex justify-center">
             <Image

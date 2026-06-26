@@ -32,7 +32,7 @@ export function FormikField({
       </Label>
       <div className="relative">
         {icon && (
-          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-faint">
+          <span className="text-faint pointer-events-none absolute top-1/2 left-3 -translate-y-1/2">
             {icon}
           </span>
         )}
@@ -46,7 +46,7 @@ export function FormikField({
           {...field}
         />
       </div>
-      {hasError && <p className="text-sm text-destructive">{meta.error}</p>}
+      {hasError && <p className="text-destructive text-sm">{meta.error}</p>}
     </div>
   );
 }

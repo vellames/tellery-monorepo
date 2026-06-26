@@ -6,7 +6,9 @@ const PUBLIC_ROUTES: string[] = [appConfig.routes.login];
 export function proxy(req: NextRequest): NextResponse {
   const { pathname } = req.nextUrl;
   const isPublic = PUBLIC_ROUTES.includes(pathname);
-  const hasSession = Boolean(req.cookies.get(appConfig.auth.sessionCookie)?.value);
+  const hasSession = Boolean(
+    req.cookies.get(appConfig.auth.sessionCookie)?.value
+  );
 
   if (!hasSession && !isPublic) {
     const url = req.nextUrl.clone();

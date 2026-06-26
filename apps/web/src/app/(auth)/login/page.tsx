@@ -4,10 +4,10 @@ export default function LoginPage() {
   return (
     <div className="space-y-8">
       <div className="space-y-1 text-center">
-        <h1 className="font-heading text-2xl font-bold tracking-tight text-primary">
+        <h1 className="font-heading text-primary text-2xl font-bold tracking-tight">
           Bem-vindo de volta
         </h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Continue sua próxima história.
         </p>
       </div>

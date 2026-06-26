@@ -8,7 +8,10 @@ export async function loginRequest(payload: LoginPayload): Promise<User> {
     body: JSON.stringify(payload),
   });
 
-  const body = (await res.json().catch(() => null)) as { user?: User; error?: string } | null;
+  const body = (await res.json().catch(() => null)) as {
+    user?: User;
+    error?: string;
+  } | null;
 
   if (!res.ok || !body?.user) {
     throw new Error(body?.error ?? 'Falha ao entrar');

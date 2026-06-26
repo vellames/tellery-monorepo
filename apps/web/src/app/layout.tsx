@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Inter, Fraunces } from "next/font/google";
-import { cn } from "@/lib/utils";
-import { Providers } from "@/components/providers";
+import type { Metadata } from 'next';
+import './globals.css';
+import { Inter, Fraunces } from 'next/font/google';
+import { cn } from '@/lib/utils';
+import { Providers } from '@/components/providers';
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-heading" });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-heading' });
 
 export const metadata: Metadata = {
-  title: "AI History",
-  description: "AI History",
+  title: 'AI History',
+  description: 'AI History',
 };
 
 export default function RootLayout({
