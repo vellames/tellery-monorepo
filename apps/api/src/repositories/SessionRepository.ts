@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma, HistorySession } from '@prisma/client';
+import { PrismaClient, Prisma, HistorySession, InteractionRole } from '@prisma/client';
 import { ISessionRepository } from '../interfaces';
 import { PrismaTransaction } from '../types/database.types';
 import { BaseRepository } from './base.repository';
@@ -151,7 +151,11 @@ export class SessionRepository
   }
 
   async recordObjectInspection(
-    input: { objectStateId: string; discoveredClueIds: string[] },
+    input: {
+      objectStateId: string;
+      discoveredClueIds: string[];
+      messages: { role: InteractionRole; content: string }[];
+    },
     tx?: PrismaTransaction
   ): Promise<void> {
     const run = async (client: PrismaTransaction): Promise<void> => {
@@ -175,6 +179,16 @@ export class SessionRepository
         await client.sessionClue.updateMany({
           where: { id: { in: input.discoveredClueIds } },
           data: { discovered: true, discoveredAt: now },
+        });
+      }
+
+      if (input.messages.length > 0) {
+        await client.objectInteractionMessage.createMany({
+          data: input.messages.map((message) => ({
+            objectStateId: input.objectStateId,
+            role: message.role,
+            content: message.content,
+          })),
         });
       }
     };

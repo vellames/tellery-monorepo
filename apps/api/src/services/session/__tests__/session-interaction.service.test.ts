@@ -174,6 +174,10 @@ describe('SessionInteractionService', () => {
       expect(sessions.recordObjectInspection).toHaveBeenCalledWith({
         objectStateId: input.stateId,
         discoveredClueIds: ['clue-1'],
+        messages: [
+          { role: 'user', content: 'hello' },
+          { role: 'object', content: 'revela a tinta' },
+        ],
       });
       expect(result.discoveredClues).toEqual([
         {
@@ -200,6 +204,7 @@ describe('SessionInteractionService', () => {
       expect(sessions.recordObjectInspection).toHaveBeenCalledWith({
         objectStateId: input.stateId,
         discoveredClueIds: [],
+        messages: [{ role: 'user', content: 'hello' }],
       });
       expect(result.discoveredClues).toEqual([]);
     });

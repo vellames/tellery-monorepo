@@ -173,10 +173,15 @@ describe('SessionRepository', () => {
     it('marks the object inspected, connects revealed clues and marks them discovered', async () => {
       prisma.objectSessionState.update.mockResolvedValue({} as never);
       prisma.sessionClue.updateMany.mockResolvedValue({ count: 2 } as never);
+      prisma.objectInteractionMessage.createMany.mockResolvedValue({ count: 3 } as never);
 
       await repo.recordObjectInspection({
         objectStateId: 'object-state-1',
         discoveredClueIds: ['clue-1', 'clue-2'],
+        messages: [
+          { role: 'user', content: 'olho o bilhete' },
+          { role: 'object', content: 'a tinta é azul' },
+        ],
       });
 
       expect(prisma.objectSessionState.update).toHaveBeenCalledWith({
@@ -192,14 +197,21 @@ describe('SessionRepository', () => {
         where: { id: { in: ['clue-1', 'clue-2'] } },
         data: expect.objectContaining({ discovered: true }),
       });
+      expect(prisma.objectInteractionMessage.createMany).toHaveBeenCalledWith({
+        data: [
+          { objectStateId: 'object-state-1', role: 'user', content: 'olho o bilhete' },
+          { objectStateId: 'object-state-1', role: 'object', content: 'a tinta é azul' },
+        ],
+      });
     });
 
-    it('marks the object inspected even when no clue is discovered', async () => {
+    it('marks the object inspected and records the user message even when no clue is discovered', async () => {
       prisma.objectSessionState.update.mockResolvedValue({} as never);
 
       await repo.recordObjectInspection({
         objectStateId: 'object-state-1',
         discoveredClueIds: [],
+        messages: [{ role: 'user', content: 'examinar' }],
       });
 
       expect(prisma.objectSessionState.update).toHaveBeenCalledWith({
@@ -210,6 +222,9 @@ describe('SessionRepository', () => {
         }),
       });
       expect(prisma.sessionClue.updateMany).not.toHaveBeenCalled();
+      expect(prisma.objectInteractionMessage.createMany).toHaveBeenCalledWith({
+        data: [{ objectStateId: 'object-state-1', role: 'user', content: 'examinar' }],
+      });
     });
   });
 });

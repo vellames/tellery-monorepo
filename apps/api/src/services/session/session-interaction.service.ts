@@ -1,4 +1,5 @@
 import { SupportedLanguage } from '@ai-history/i18n';
+import { InteractionRole } from '@prisma/client';
 import { StatusCodes } from 'http-status-codes';
 import {
   DetectedIntent,
@@ -91,6 +92,7 @@ export class SessionInteractionService {
       discoveredClues = await this.runObjectInspection(
         session,
         resolvedState.state,
+        input.interaction,
         detectedIntents,
         language
       );
@@ -151,6 +153,7 @@ export class SessionInteractionService {
   private async runObjectInspection(
     session: HistorySessionWithRelations,
     objectState: ObjectState,
+    interaction: string,
     detectedIntents: DetectedIntent[],
     language: SupportedLanguage
   ): Promise<InteractDiscoveredClue[]> {
@@ -180,9 +183,25 @@ export class SessionInteractionService {
 
     const newlyDiscoveredClueIds = agentResult.map((result) => result.clueId);
 
+    const revealTexts = newlyDiscoveredClueIds
+      .map(
+        (clueId) =>
+          objectState.clueRevealRules.find(
+            (rule) => rule.clueId === clueId
+          )?.revealText
+      )
+      .filter((text): text is string => Boolean(text));
+
     await this.sessions.recordObjectInspection({
       objectStateId: objectState.id,
       discoveredClueIds: newlyDiscoveredClueIds,
+      messages: [
+        { role: InteractionRole.user, content: interaction },
+        ...revealTexts.map((content) => ({
+          role: InteractionRole.object,
+          content,
+        })),
+      ],
     });
 
     return this.enrichDiscoveredClues(agentResult, session.clues);
