@@ -15,8 +15,8 @@ export default function PrivacyPage() {
           </h2>
           <p className="text-muted-foreground">
             Coletamos o nome e o e-mail informados no cadastro, além de dados de
-            uso (como as histórias e sessões que você inicia) necessários para
-            o funcionamento do serviço.
+            uso (como as histórias e sessões que você inicia) necessários para o
+            funcionamento do serviço.
           </p>
         </section>
 
@@ -54,7 +54,9 @@ export default function PrivacyPage() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-foreground text-base font-semibold">5. Contato</h2>
+          <h2 className="text-foreground text-base font-semibold">
+            5. Contato
+          </h2>
           <p className="text-muted-foreground">
             Em caso de dúvidas sobre esta política, escreva para
             privacidade@tellery.app.

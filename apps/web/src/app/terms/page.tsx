@@ -52,7 +52,9 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-foreground text-base font-semibold">5. Contato</h2>
+          <h2 className="text-foreground text-base font-semibold">
+            5. Contato
+          </h2>
           <p className="text-muted-foreground">
             Dúvidas sobre estes termos podem ser enviadas para
             juridico@tellery.app.
