@@ -1,5 +1,5 @@
 import { GameApiClient, SessionStateResponse } from './api-client';
-import { Investigator } from './investigator';
+import { Investigator, PastAction } from './investigator';
 
 export interface TurnLog {
   turn: number;
@@ -53,9 +53,10 @@ export async function runSession(
   let lastDiscoveredCount = state.clues.length;
   let stallTurns = 0;
   let stopReason = `max iterations (${maxIterations})`;
+  const pastActions: PastAction[] = [];
 
   for (let turn = 1; turn <= maxIterations; turn++) {
-    const action = await investigator.decide(state);
+    const action = await investigator.decide(state, pastActions);
 
     if (action.done) {
       console.log(`[turn ${turn}] investigator decided to stop: ${action.reasoning}`);
@@ -83,6 +84,7 @@ export async function runSession(
 
     if (!action.stateId || action.message === null) {
       turnLog.error = 'investigator returned an incomplete action';
+      console.error(`  ERROR: ${turnLog.error}`);
       turns.push(turnLog);
       break;
     }
@@ -108,6 +110,15 @@ export async function runSession(
           `  discovered: ${result.discoveredClues.map((c) => c.title).join(', ')}`
         );
       }
+
+      pastActions.push({
+        turn,
+        entityType: entity?.type ?? 'unknown',
+        entityName: entity?.name ?? 'unknown',
+        message: action.message,
+        reply: result.reply,
+        discoveredClues: result.discoveredClues.map((c) => c.title),
+      });
     } catch (error) {
       turnLog.error = error instanceof Error ? error.message : String(error);
       console.error(`  ERROR: ${turnLog.error}`);
