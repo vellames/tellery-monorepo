@@ -1,7 +1,7 @@
 'use client';
 
 import { Formik, Form } from 'formik';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Lock, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FormikField } from '@/components/molecules';
 import { useLogin } from '@/lib/hooks/use-auth';
@@ -24,8 +24,9 @@ export function LoginForm() {
             name="email"
             label="E-mail"
             type="email"
-            placeholder="voce@exemplo.com"
+            placeholder="seu@email.com"
             autoComplete="email"
+            icon={<Mail className="size-4" />}
           />
           <FormikField
             name="password"
@@ -33,15 +34,16 @@ export function LoginForm() {
             type="password"
             placeholder="••••••••"
             autoComplete="current-password"
+            icon={<Lock className="size-4" />}
           />
           <Button
             type="submit"
             size="lg"
-            className="w-full"
+            className="h-12 w-full text-base font-semibold"
             disabled={login.isPending || isSubmitting}
           >
             {(login.isPending || isSubmitting) && (
-              <Loader2 className="animate-spin" />
+              <Loader2 className="size-4 animate-spin" />
             )}
             Entrar
           </Button>
