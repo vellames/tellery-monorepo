@@ -98,7 +98,21 @@ describe('buildSessionStateResponse', () => {
               triggerIntents: [{ id: 'intent-gm' }],
             },
           ],
-          secrets: [{ truth: 'GM-SECRET' }],
+          secrets: [
+            {
+              truth: 'GM-SECRET',
+              revealStages: [
+                {
+                  level: 1,
+                  behavior: 'GM-ONLY',
+                  revealsClues: [
+                    { id: 'clue-c', title: 'C', description: 'c', importance: 'low', discovered: false, discoveredAt: null },
+                    { id: 'clue-d', title: 'D', description: 'd', importance: 'low', discovered: true, discoveredAt: null },
+                  ],
+                },
+              ],
+            },
+          ],
           messages: [
             { role: 'user', content: 'oi', createdAt: new Date('2026-01-01') },
             {
@@ -121,9 +135,10 @@ describe('buildSessionStateResponse', () => {
       shortDescription: 'nervoso',
       imageUrl: null,
       conversationSummary: 'resumo',
-      cluesTotal: 2,
+      cluesTotal: 4,
       discoveredClues: [
         { id: 'clue-a', title: 'A', description: 'a', importance: 'low', discoveredAt: null },
+        { id: 'clue-d', title: 'D', description: 'd', importance: 'low', discoveredAt: null },
       ],
       messages: [
         { role: 'user', content: 'oi', createdAt: new Date('2026-01-01') },

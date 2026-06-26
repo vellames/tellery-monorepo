@@ -74,6 +74,7 @@ export interface SessionStateResponse {
 }
 
 type SessionClue = HistorySessionWithRelations['clues'][number];
+type CharacterState = HistorySessionWithRelations['characterStates'][number];
 
 const toClueDto = (clue: SessionClue): SessionClueDto => ({
   id: clue.id,
@@ -82,6 +83,22 @@ const toClueDto = (clue: SessionClue): SessionClueDto => ({
   importance: clue.importance,
   discoveredAt: clue.discoveredAt,
 });
+
+function collectCharacterClues(character: CharacterState): SessionClue[] {
+  const ruleClues = character.clueRevealRules.map((rule) => rule.clue);
+  const secretClues = character.secrets.flatMap((secret) =>
+    secret.revealStages.flatMap((stage) => stage.revealsClues)
+  );
+
+  const seen = new Set<string>();
+  const distinct: SessionClue[] = [];
+  for (const clue of [...ruleClues, ...secretClues]) {
+    if (seen.has(clue.id)) continue;
+    seen.add(clue.id);
+    distinct.push(clue);
+  }
+  return distinct;
+}
 
 const mapMessage = (
   message: { role: string; content: string; createdAt: Date }
@@ -113,19 +130,22 @@ export function buildSessionStateResponse(
     clues: session.clues
       .filter((clue) => clue.discovered)
       .map(toClueDto),
-    characters: session.characterStates.map((character) => ({
-      id: character.id,
-      name: character.name,
-      role: character.role,
-      shortDescription: character.shortDescription,
-      imageUrl: character.imageUrl,
-      conversationSummary: character.conversationSummary,
-      cluesTotal: character.clueRevealRules.length,
-      discoveredClues: character.clueRevealRules
-        .filter((rule) => rule.clue.discovered)
-        .map((rule) => toClueDto(rule.clue)),
-      messages: character.messages.map(mapMessage),
-    })),
+    characters: session.characterStates.map((character) => {
+      const characterClues = collectCharacterClues(character);
+      return {
+        id: character.id,
+        name: character.name,
+        role: character.role,
+        shortDescription: character.shortDescription,
+        imageUrl: character.imageUrl,
+        conversationSummary: character.conversationSummary,
+        cluesTotal: characterClues.length,
+        discoveredClues: characterClues
+          .filter((clue) => clue.discovered)
+          .map(toClueDto),
+        messages: character.messages.map(mapMessage),
+      };
+    }),
     objects: session.objectStates.map((object) => ({
       id: object.id,
       name: object.name,
