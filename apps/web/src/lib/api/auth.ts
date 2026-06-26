@@ -14,7 +14,7 @@ export async function loginRequest(payload: LoginPayload): Promise<User> {
   } | null;
 
   if (!res.ok || !body?.user) {
-    throw new Error(body?.error ?? 'Falha ao entrar');
+    throw new Error(body?.error ?? '');
   }
 
   return body.user;

@@ -1,15 +1,17 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { StatusCodes } from 'http-status-codes';
+import { getTranslations } from 'next-intl/server';
 import { setSession } from '@/lib/auth/session';
 import { ApiError, apiFetch } from '@/lib/api/client';
 import type { AuthPayload, LoginPayload } from '@/lib/types/auth';
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
+  const t = await getTranslations('auth.errors');
   const body = (await req.json().catch(() => null)) as LoginPayload | null;
 
   if (!body?.email || !body?.password) {
     return NextResponse.json(
-      { error: 'E-mail e senha são obrigatórios' },
+      { error: t('required') },
       { status: StatusCodes.UNPROCESSABLE_ENTITY }
     );
   }
@@ -26,7 +28,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       error instanceof ApiError
         ? error
         : {
-            message: 'Falha ao entrar',
+            message: t('loginFailed'),
             status: StatusCodes.INTERNAL_SERVER_ERROR,
           };
 

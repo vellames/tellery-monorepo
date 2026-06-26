@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { LanguageSwitcher } from '@/components/molecules';
 
 export default function AuthLayout({
   children,
@@ -29,7 +30,10 @@ export default function AuthLayout({
         />
       </div>
 
-      <div className="bg-background flex flex-1 items-center justify-center p-6 sm:p-10">
+      <div className="bg-background relative flex flex-1 items-center justify-center p-6 sm:p-10">
+        <div className="absolute top-6 right-6">
+          <LanguageSwitcher />
+        </div>
         <div className="w-full max-w-sm">
           <div className="mb-8 flex justify-center">
             <Image

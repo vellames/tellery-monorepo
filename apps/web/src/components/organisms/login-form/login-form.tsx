@@ -1,16 +1,32 @@
 'use client';
 
+import { useMemo } from 'react';
 import { Formik, Form } from 'formik';
+import * as yup from 'yup';
 import { Loader2, Lock, Mail } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { FormikField } from '@/components/molecules';
 import { useLogin } from '@/lib/hooks/use-auth';
-import { loginSchema, type LoginFormValues } from '@/lib/validations/auth';
+import type { LoginFormValues } from '@/lib/validations/auth';
 
 const initialValues: LoginFormValues = { email: '', password: '' };
 
 export function LoginForm() {
   const login = useLogin();
+  const t = useTranslations('auth');
+
+  const loginSchema = useMemo(
+    () =>
+      yup.object({
+        email: yup
+          .string()
+          .email(t('errors.invalidEmail'))
+          .required(t('errors.emailRequired')),
+        password: yup.string().required(t('errors.passwordRequired')),
+      }),
+    [t]
+  );
 
   return (
     <Formik
@@ -25,7 +41,7 @@ export function LoginForm() {
       <Form className="space-y-4">
         <FormikField
           name="email"
-          label="E-mail"
+          label={t('email')}
           type="email"
           placeholder="seu@email.com"
           autoComplete="email"
@@ -33,7 +49,7 @@ export function LoginForm() {
         />
         <FormikField
           name="password"
-          label="Senha"
+          label={t('password')}
           type="password"
           placeholder="••••••••"
           autoComplete="current-password"
@@ -46,7 +62,7 @@ export function LoginForm() {
           disabled={login.isPending}
         >
           {login.isPending && <Loader2 className="size-4 animate-spin" />}
-          Entrar
+          {t('submit')}
         </Button>
       </Form>
     </Formik>

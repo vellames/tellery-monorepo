@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "title": "Bem-vindo de volta",
+    "subtitle": "Continue sua próxima história.",
+    "email": "E-mail",
+    "password": "Senha",
+    "submit": "Entrar",
+    "welcome": "Bem-vindo de volta!",
+    "errors": {
+      "required": "E-mail e senha são obrigatórios",
+      "loginFailed": "Falha ao entrar",
+      "invalidEmail": "E-mail inválido",
+      "emailRequired": "E-mail é obrigatório",
+      "passwordRequired": "Senha é obrigatória"
+    }
+  },
+  "common": {
+    "logout": "Sair",
+    "greeting": "Olá, {name}"
+  },
+  "language": {
+    "label": "Idioma",
+    "pt-BR": "Português",
+    "en": "English"
+  }
+}

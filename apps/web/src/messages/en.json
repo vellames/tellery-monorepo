@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "title": "Welcome back",
+    "subtitle": "Continue your next story.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log in",
+    "welcome": "Welcome back!",
+    "errors": {
+      "required": "Email and password are required",
+      "loginFailed": "Failed to sign in",
+      "invalidEmail": "Invalid email",
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required"
+    }
+  },
+  "common": {
+    "logout": "Log out",
+    "greeting": "Hello, {name}"
+  },
+  "language": {
+    "label": "Language",
+    "pt-BR": "Português",
+    "en": "English"
+  }
+}
