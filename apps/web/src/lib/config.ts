@@ -10,7 +10,10 @@ export const config = {
   routes: {
     home: '/home',
     login: '/',
+    register: '/register',
+    forgotPassword: '/forgot-password',
     loginApi: '/api/auth/login',
     logoutApi: '/api/auth/logout',
+    registerApi: '/api/auth/register',
   },
 } as const;

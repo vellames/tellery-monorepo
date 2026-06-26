@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import Link from 'next/link';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { Loader2, Lock, Mail } from 'lucide-react';
@@ -8,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { FormikField } from '@/components/molecules';
 import { useLogin } from '@/lib/hooks/use-auth';
+import { config } from '@/lib/config';
 import type { LoginFormValues } from '@/lib/validations/auth';
 
 const initialValues: LoginFormValues = { email: '', password: '' };
@@ -43,7 +45,7 @@ export function LoginForm() {
           name="email"
           label={t('email')}
           type="email"
-          placeholder="seu@email.com"
+          placeholder={t('emailPlaceholder')}
           autoComplete="email"
           icon={<Mail className="size-4" />}
         />
@@ -55,6 +57,14 @@ export function LoginForm() {
           autoComplete="current-password"
           icon={<Lock className="size-4" />}
         />
+        <div className="flex justify-end">
+          <Link
+            href={config.routes.forgotPassword}
+            className="text-muted-foreground hover:text-primary text-sm underline"
+          >
+            {t('forgotPassword')}
+          </Link>
+        </div>
         <Button
           type="submit"
           size="lg"

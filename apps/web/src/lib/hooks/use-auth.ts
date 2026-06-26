@@ -4,9 +4,9 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
-import { loginRequest, logoutRequest } from '@/lib/api/auth';
+import { loginRequest, logoutRequest, registerRequest } from '@/lib/api/auth';
 import { config } from '@/lib/config';
-import type { LoginPayload } from '@/lib/types/auth';
+import type { LoginPayload, RegisterPayload } from '@/lib/types/auth';
 
 export function useLogin() {
   const router = useRouter();
@@ -21,6 +21,16 @@ export function useLogin() {
     },
     onError: (error: Error) =>
       toast.error(error.message || t('errors.loginFailed')),
+  });
+}
+
+export function useRegister() {
+  const t = useTranslations('register');
+
+  return useMutation({
+    mutationFn: (payload: RegisterPayload) => registerRequest(payload),
+    onError: (error: Error) =>
+      toast.error(error.message || t('errors.registerFailed')),
   });
 }
 

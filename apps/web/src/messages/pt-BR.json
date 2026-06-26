@@ -3,9 +3,13 @@
     "title": "Bem-vindo de volta",
     "subtitle": "Continue sua próxima história.",
     "email": "E-mail",
+    "emailPlaceholder": "seu@email.com",
     "password": "Senha",
     "submit": "Entrar",
     "welcome": "Bem-vindo de volta!",
+    "forgotPassword": "Esqueci minha senha",
+    "noAccount": "Ainda não tem conta?",
+    "createAccount": "Criar conta",
     "errors": {
       "required": "E-mail e senha são obrigatórios",
       "loginFailed": "Falha ao entrar",
@@ -14,9 +18,51 @@
       "passwordRequired": "Senha é obrigatória"
     }
   },
+  "register": {
+    "title": "Criar sua conta",
+    "subtitle": "Comece sua primeira história em poucos minutos.",
+    "name": "Nome",
+    "email": "E-mail",
+    "emailPlaceholder": "seu@email.com",
+    "password": "Senha",
+    "confirmPassword": "Repita a senha",
+    "termsPrefix": "Li e aceito os ",
+    "termsOfUse": "Termos de Uso",
+    "privacyPrefix": "Li e aceito a ",
+    "privacyPolicy": "Política de Privacidade",
+    "submit": "Criar conta",
+    "successTitle": "Verifique seu e-mail",
+    "successMessage": "Enviamos um link de confirmação para {email}. Você precisa confirmar para ativar sua conta.",
+    "errors": {
+      "nameRequired": "Nome é obrigatório",
+      "nameMin": "Nome muito curto",
+      "invalidEmail": "E-mail inválido",
+      "emailRequired": "E-mail é obrigatório",
+      "passwordRequired": "Senha é obrigatória",
+      "passwordMin": "A senha deve ter ao menos 6 caracteres",
+      "passwordMismatch": "As senhas não conferem",
+      "termsRequired": "Você precisa aceitar os Termos de Uso",
+      "privacyRequired": "Você precisa aceitar a Política de Privacidade",
+      "registerFailed": "Falha ao criar conta"
+    }
+  },
+  "forgotPassword": {
+    "title": "Esqueceu sua senha?",
+    "subtitle": "Digite seu e-mail e enviaremos um link para redefini-la.",
+    "email": "E-mail",
+    "emailPlaceholder": "seu@email.com",
+    "submit": "Enviar link",
+    "successTitle": "Verifique seu e-mail",
+    "successMessage": "Se existir uma conta com esse e-mail, enviamos um link para redefinir sua senha.",
+    "errors": {
+      "invalidEmail": "E-mail inválido",
+      "emailRequired": "E-mail é obrigatório"
+    }
+  },
   "common": {
     "logout": "Sair",
-    "greeting": "Olá, {name}"
+    "greeting": "Olá, {name}",
+    "backToLogin": "Voltar para o login"
   },
   "language": {
     "label": "Idioma",
