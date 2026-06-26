@@ -9,7 +9,7 @@ import {
 export class OpenRouterStructuredChatModel implements IStructuredChatModel {
   private readonly chatModel: ChatOpenAI;
 
-  constructor(model: string) {
+  constructor(private readonly model: string) {
     this.chatModel = new ChatOpenAI({
       apiKey: appConfig.openrouter.apiKey,
       model,
@@ -23,6 +23,11 @@ export class OpenRouterStructuredChatModel implements IStructuredChatModel {
     messages: ChatMessage[],
     schema: z.ZodType<T>
   ): Promise<T> {
+    console.log('[llm] structured call', {
+      model: this.model,
+      messageCount: messages.length,
+    });
+
     const structured = this.chatModel.withStructuredOutput(schema);
     return (await structured.invoke(
       messages.map((message) => ({
