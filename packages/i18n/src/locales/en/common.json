@@ -16,6 +16,7 @@
   },
   "errors": {
     "invalidRequestBody": "Invalid request body",
+    "invalidRequestQuery": "Invalid request query",
     "internalError": "An unexpected error occurred",
     "routeNotFound": "Route {{method}} {{path}} not found",
     "databaseError": "Database operation failed",

@@ -15,5 +15,5 @@ export interface IHistoryDefinitionRepository extends IBaseRepository {
     tx?: PrismaTransaction
   ): Promise<HistoryWithDefinitions | null>;
   list(tx?: PrismaTransaction): Promise<HistoryWithDefinitions[]>;
-  listPublished(): Promise<HistoryCatalogItem[]>;
+  listPublished(isFeatured: boolean): Promise<HistoryCatalogItem[]>;
 }

@@ -18,6 +18,12 @@ const authenticate: RequestHandler = (req, res, next) => {
  *       - BearerAuth: []
  *     parameters:
  *       - $ref: '#/components/parameters/AcceptLanguage'
+ *       - name: isFeatured
+ *         in: query
+ *         required: true
+ *         schema:
+ *           type: boolean
+ *         description: Filter histories by featured flag. Must be `true` or `false`.
  *     responses:
  *       200:
  *         description: Available histories
@@ -60,6 +66,12 @@ const authenticate: RequestHandler = (req, res, next) => {
  *           application/json:
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
+ *       422:
+ *         description: Invalid or missing isFeatured query parameter
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ValidationError"
  */
 router.get('/', authenticate, async (req, res) => {
   await DIContainer.getInstance().getHistoryController().list(req, res);

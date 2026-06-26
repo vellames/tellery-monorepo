@@ -33,21 +33,14 @@ describe('HistoryCatalogService', () => {
   });
 
   describe('listAvailable', () => {
-    it('returns published histories mapped to catalog dtos', async () => {
+    it('requests featured histories and maps them to catalog dtos', async () => {
       histories.listPublished.mockResolvedValue([
         mockCatalogItem({ id: 'history-1' }),
-        mockCatalogItem({
-          id: 'history-2',
-          slug: 'o-fantasma-do-rio',
-          title: 'O Fantasma do Rio',
-          subtitle: 'Uma lenda local',
-          coverImageUrl: 'https://example.com/cover.png',
-        }),
       ]);
 
-      const result = await service.listAvailable();
+      const result = await service.listAvailable(true);
 
-      expect(histories.listPublished).toHaveBeenCalledWith();
+      expect(histories.listPublished).toHaveBeenCalledWith(true);
       expect(result).toEqual([
         {
           id: 'history-1',
@@ -60,26 +53,15 @@ describe('HistoryCatalogService', () => {
           coverImageUrl: null,
           thumbnailUrl: null,
         },
-        {
-          id: 'history-2',
-          slug: 'o-fantasma-do-rio',
-          title: 'O Fantasma do Rio',
-          subtitle: 'Uma lenda local',
-          teaser: 'teaser',
-          genre: 'mystery',
-          estimatedDurationMinutes: 10,
-          coverImageUrl: 'https://example.com/cover.png',
-          thumbnailUrl: null,
-        },
       ]);
     });
 
-    it('returns empty array when there are no published histories', async () => {
+    it('requests non-featured histories when isFeatured is false', async () => {
       histories.listPublished.mockResolvedValue([]);
 
-      const result = await service.listAvailable();
+      await service.listAvailable(false);
 
-      expect(result).toEqual([]);
+      expect(histories.listPublished).toHaveBeenCalledWith(false);
     });
   });
 });

@@ -85,6 +85,7 @@ model History {
 
   estimatedDurationMinutes Int
   status                   HistoryStatus @default(draft)
+  isFeatured               Boolean       @default(false)
 
   coverImageUrl String?
   thumbnailUrl  String?

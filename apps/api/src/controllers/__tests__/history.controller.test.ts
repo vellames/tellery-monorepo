@@ -27,7 +27,7 @@ describe('HistoryController - list', () => {
     mockReset(historyCatalogService);
   });
 
-  it('returns 200 with the available histories', async () => {
+  it('returns 200 with featured histories when isFeatured=true', async () => {
     const histories = [
       {
         id: 'history-1',
@@ -42,11 +42,15 @@ describe('HistoryController - list', () => {
       },
     ];
     historyCatalogService.listAvailable.mockResolvedValue(histories);
-    req = { user: { id: 'user-1', email: 'ana@teste.local' }, t };
+    req = {
+      query: { isFeatured: 'true' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith();
+    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(true);
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
     expect(json).toHaveBeenCalledWith({
       success: true,
@@ -55,23 +59,53 @@ describe('HistoryController - list', () => {
     });
   });
 
-  it('returns 200 with empty array when no histories exist', async () => {
+  it('passes isFeatured=false to the service when query is false', async () => {
     historyCatalogService.listAvailable.mockResolvedValue([]);
-    req = { user: { id: 'user-1', email: 'ana@teste.local' }, t };
+    req = {
+      query: { isFeatured: 'false' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
 
     await controller.list(req as Request, res as Response);
 
+    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(false);
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
-    expect(json).toHaveBeenCalledWith({
-      success: true,
-      data: [],
-      message: undefined,
-    });
+  });
+
+  it('returns 422 when isFeatured query parameter is missing', async () => {
+    req = {
+      query: {},
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.list(req as Request, res as Response);
+
+    expect(historyCatalogService.listAvailable).not.toHaveBeenCalled();
+    expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+  });
+
+  it('returns 422 when isFeatured query parameter is invalid', async () => {
+    req = {
+      query: { isFeatured: 'yes' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.list(req as Request, res as Response);
+
+    expect(historyCatalogService.listAvailable).not.toHaveBeenCalled();
+    expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
   });
 
   it('returns 500 on unexpected errors', async () => {
     historyCatalogService.listAvailable.mockRejectedValue(new Error('boom'));
-    req = { user: { id: 'user-1', email: 'ana@teste.local' }, t };
+    req = {
+      query: { isFeatured: 'true' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
 
     await controller.list(req as Request, res as Response);
 

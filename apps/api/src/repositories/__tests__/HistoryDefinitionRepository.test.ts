@@ -124,7 +124,7 @@ describe('HistoryDefinitionRepository', () => {
   });
 
   describe('listPublished', () => {
-    it('returns only published histories ordered by createdAt asc with catalog select', async () => {
+    it('returns only published, featured histories when isFeatured is true', async () => {
       const histories = [
         {
           id: 'history-1',
@@ -137,36 +137,29 @@ describe('HistoryDefinitionRepository', () => {
           coverImageUrl: null,
           thumbnailUrl: null,
         },
-        {
-          id: 'history-2',
-          slug: 'o-fantasma-do-rio',
-          title: 'O Fantasma do Rio',
-          subtitle: 'Uma lenda local',
-          teaser: 'teaser 2',
-          genre: 'mystery',
-          estimatedDurationMinutes: 15,
-          coverImageUrl: 'https://example.com/cover.png',
-          thumbnailUrl: null,
-        },
       ];
       prisma.history.findMany.mockResolvedValue(histories as never);
 
-      const result = await repo.listPublished();
+      const result = await repo.listPublished(true);
 
       expect(result).toEqual(histories);
       expect(prisma.history.findMany).toHaveBeenCalledWith({
-        where: { status: 'published', deletedAt: null },
+        where: { status: 'published', isFeatured: true, deletedAt: null },
         select: historyCatalogSelect,
         orderBy: { createdAt: 'asc' },
       });
     });
 
-    it('returns empty array when no published histories exist', async () => {
-      prisma.history.findMany.mockResolvedValue([]);
+    it('returns only published, non-featured histories when isFeatured is false', async () => {
+      prisma.history.findMany.mockResolvedValue([] as never);
 
-      const result = await repo.listPublished();
+      await repo.listPublished(false);
 
-      expect(result).toEqual([]);
+      expect(prisma.history.findMany).toHaveBeenCalledWith({
+        where: { status: 'published', isFeatured: false, deletedAt: null },
+        select: historyCatalogSelect,
+        orderBy: { createdAt: 'asc' },
+      });
     });
   });
 });

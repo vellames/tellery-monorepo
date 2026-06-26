@@ -9,8 +9,8 @@ export class HistoryCatalogService {
     private readonly histories: IHistoryDefinitionRepository
   ) {}
 
-  async listAvailable(): Promise<HistoryCatalogItemDto[]> {
-    const histories = await this.histories.listPublished();
+  async listAvailable(isFeatured: boolean): Promise<HistoryCatalogItemDto[]> {
+    const histories = await this.histories.listPublished(isFeatured);
     return histories.map(toHistoryCatalogItemDto);
   }
 }

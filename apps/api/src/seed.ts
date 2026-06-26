@@ -138,6 +138,7 @@ interface HistorySeed {
   genre: string;
   estimatedDurationMinutes: number;
   status: HistoryStatus;
+  isFeatured?: boolean;
   coverImageUrl?: string | null;
   thumbnailUrl?: string | null;
   opening: OpeningSeed;
@@ -167,7 +168,16 @@ async function seedHistory(fileName: string): Promise<void> {
     where: { slug: data.slug },
   });
   if (existing) {
-    console.log(`History "${data.slug}" already seeded, skipping.`);
+    await prisma.history.update({
+      where: { slug: data.slug },
+      data: {
+        status: data.status,
+        isFeatured: data.isFeatured ?? false,
+      },
+    });
+    console.log(
+      `History "${data.slug}" already seeded, updated status and isFeatured.`
+    );
     return;
   }
 
@@ -180,6 +190,7 @@ async function seedHistory(fileName: string): Promise<void> {
       genre: data.genre,
       estimatedDurationMinutes: data.estimatedDurationMinutes,
       status: data.status,
+      isFeatured: data.isFeatured ?? false,
       coverImageUrl: data.coverImageUrl ?? null,
       thumbnailUrl: data.thumbnailUrl ?? null,
       opening: joinText([

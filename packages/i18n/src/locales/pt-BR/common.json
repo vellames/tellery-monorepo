@@ -16,6 +16,7 @@
   },
   "errors": {
     "invalidRequestBody": "Corpo da requisição inválido",
+    "invalidRequestQuery": "Parâmetros de consulta inválidos",
     "internalError": "Ocorreu um erro inesperado",
     "routeNotFound": "Rota {{method}} {{path}} não encontrada",
     "databaseError": "Falha na operação do banco de dados",

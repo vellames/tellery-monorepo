@@ -95,9 +95,9 @@ export class HistoryDefinitionRepository
     });
   }
 
-  async listPublished(): Promise<HistoryCatalogItem[]> {
+  async listPublished(isFeatured: boolean): Promise<HistoryCatalogItem[]> {
     return this.prisma.history.findMany({
-      where: { status: 'published', deletedAt: null },
+      where: { status: 'published', isFeatured, deletedAt: null },
       select: historyCatalogSelect,
       orderBy: { createdAt: 'asc' },
     });
