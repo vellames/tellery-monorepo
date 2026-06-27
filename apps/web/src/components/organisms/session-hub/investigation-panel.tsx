@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import {
   Fingerprint,
@@ -14,12 +14,16 @@ import {
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import type {
+  InteractDiscoveredClue,
+  InteractResult,
   SessionCharacter,
   SessionClue,
   SessionLocation,
   SessionMessage,
   SessionObject,
 } from '@/lib/types/session';
+
+export type InvestigationTargetKind = 'character' | 'object' | 'location';
 
 export type InvestigationTarget =
   | { kind: 'character'; data: SessionCharacter }
@@ -35,16 +39,123 @@ const KIND_META = {
 };
 
 export interface InvestigationPanelProps {
+  sessionId: string;
   target: InvestigationTarget | null;
+  onInteracted: () => void;
   onClose: () => void;
 }
 
 export function InvestigationPanel({
+  sessionId,
   target,
+  onInteracted,
   onClose,
 }: InvestigationPanelProps) {
   const t = useTranslations('play');
   const tp = useTranslations('play.panel');
+
+  const [input, setInput] = useState('');
+  const [extraMessages, setExtraMessages] = useState<SessionMessage[]>([]);
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [discoveredClues, setDiscoveredClues] = useState<
+    InteractDiscoveredClue[]
+  >([]);
+  const [showClueOverlay, setShowClueOverlay] = useState(false);
+
+  const dataRef = useRef<unknown>(target?.data);
+
+  const handleSend = useCallback(
+    async (overrideInteraction?: string) => {
+      const interaction = (overrideInteraction ?? input).trim();
+      if (!target || !interaction || isSending) return;
+
+      const stateId = target.data.id;
+
+      if (!overrideInteraction) setInput('');
+      setError(null);
+      setIsSending(true);
+      setExtraMessages((prev) => [
+        ...prev,
+        {
+          role: USER_ROLE,
+          content: interaction,
+          createdAt: new Date().toISOString(),
+        },
+      ]);
+
+      try {
+        const res = await fetch(`/api/session/${sessionId}/interact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ stateId, interaction }),
+        });
+
+        const body = (await res.json().catch(() => null)) as
+          | (InteractResult & { error?: string })
+          | null;
+
+        if (!res.ok || !body || body.error) {
+          throw new Error(body?.error ?? tp('interactError'));
+        }
+
+        const result: InteractResult = body;
+
+        if (result.reply) {
+          const replyRole =
+            target.kind === 'character' ? 'character' : 'object';
+          setExtraMessages((prev) => [
+            ...prev,
+            {
+              role: replyRole,
+              content: result.reply!,
+              createdAt: new Date().toISOString(),
+            },
+          ]);
+        }
+
+        if (result.discoveredClues.length > 0) {
+          setDiscoveredClues(result.discoveredClues);
+          setShowClueOverlay(true);
+        } else {
+          onInteracted();
+        }
+      } catch {
+        setError(tp('interactError'));
+        setExtraMessages((prev) => prev.slice(0, -1));
+      } finally {
+        setIsSending(false);
+      }
+    },
+    [target, input, isSending, sessionId, onInteracted, tp]
+  );
+
+  // Sync local state when server data changes (after refresh)
+  useEffect(() => {
+    if (target && dataRef.current !== target.data) {
+      dataRef.current = target.data;
+      setExtraMessages([]);
+      setDiscoveredClues([]);
+      setShowClueOverlay(false);
+      setError(null);
+    }
+  }, [target]);
+
+  // Auto-inspect a location on first open (when not yet visited)
+  const autoInspectedRef = useRef(false);
+  useEffect(() => {
+    if (!target || target.kind !== 'location') return;
+    if (target.data.visited) return;
+    if (autoInspectedRef.current) return;
+    autoInspectedRef.current = true;
+    void handleSend(tp('autoInspectLocation'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target]);
+
+  // Reset the auto-inspect guard when the panel closes
+  useEffect(() => {
+    if (!target) autoInspectedRef.current = false;
+  }, [target]);
 
   useEffect(() => {
     if (!target) return;
@@ -59,6 +170,11 @@ export function InvestigationPanel({
     };
   }, [target, onClose]);
 
+  const handleClueOverlayContinue = useCallback(() => {
+    setShowClueOverlay(false);
+    onInteracted();
+  }, [onInteracted]);
+
   if (!target) return null;
 
   const { kind } = target;
@@ -72,9 +188,10 @@ export function InvestigationPanel({
     kind === 'character'
       ? target.data.shortDescription
       : target.data.initialDescription;
-  const clues: SessionClue[] = target.data.discoveredClues;
-  const messages: SessionMessage[] =
+  const serverClues: SessionClue[] = target.data.discoveredClues;
+  const serverMessages: SessionMessage[] =
     kind === 'location' ? [] : target.data.messages;
+  const allMessages = [...serverMessages, ...extraMessages];
 
   const placeholderKey =
     kind === 'character'
@@ -146,9 +263,9 @@ export function InvestigationPanel({
         <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto p-5 sm:p-6">
           <p className="leading-7 text-[#fff9ef]/80 italic">{description}</p>
 
-          {messages.length > 0 && (
+          {allMessages.length > 0 && (
             <div className="flex flex-col gap-3">
-              {messages.map((m, i) => {
+              {allMessages.map((m, i) => {
                 const isUser = m.role === USER_ROLE;
                 return (
                   <div
@@ -171,16 +288,34 @@ export function InvestigationPanel({
                   </div>
                 );
               })}
+
+              {isSending && (
+                <div className="flex justify-start">
+                  <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-[#fff9ef]/[0.07] px-4 py-3">
+                    {[0, 1, 2].map((dot) => (
+                      <span
+                        key={dot}
+                        className="bg-gold/70 scene-typing-dot size-1.5 rounded-full"
+                        style={{ animationDelay: `${dot * 0.15}s` }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
-          {clues.length > 0 && (
+          {error && (
+            <p className="text-center text-sm text-[#e57373]">{error}</p>
+          )}
+
+          {serverClues.length > 0 && (
             <div className="flex flex-col gap-2.5">
               <h3 className="text-gold inline-flex items-center gap-2 text-xs font-bold tracking-[0.12em] uppercase">
                 <KeyRound className="size-3.5" />
                 {tp('cluesFoundHere')}
               </h3>
-              {clues.map((clue) => (
+              {serverClues.map((clue) => (
                 <div
                   key={clue.id}
                   className="border-clue-border/25 relative overflow-hidden rounded-xl border bg-[#fff4d8]/[0.05] p-3.5 pl-4"
@@ -197,37 +332,111 @@ export function InvestigationPanel({
             </div>
           )}
 
-          {messages.length === 0 && clues.length === 0 && (
-            <div className="rounded-2xl border border-dashed border-[#fff9ef]/12 bg-[#fff9ef]/[0.02] px-5 py-7 text-center">
-              <Sparkles className="mx-auto size-6 text-[#fff9ef]/25" />
-              <p className="mt-2 text-sm text-[#fff9ef]/45">
-                {tp('noCluesHere')}
-              </p>
-            </div>
-          )}
+          {allMessages.length === 0 &&
+            serverClues.length === 0 &&
+            !isSending && (
+              <div className="rounded-2xl border border-dashed border-[#fff9ef]/12 bg-[#fff9ef]/[0.02] px-5 py-7 text-center">
+                <Sparkles className="mx-auto size-6 text-[#fff9ef]/25" />
+                <p className="mt-2 text-sm text-[#fff9ef]/45">
+                  {tp('noCluesHere')}
+                </p>
+              </div>
+            )}
         </div>
 
-        {/* input (prepared for /interact wiring) */}
-        <div className="shrink-0 border-t border-[#fff9ef]/10 bg-[#150508] p-3 sm:p-4">
-          <div className="flex items-center gap-2 rounded-2xl border border-[#fff9ef]/12 bg-[#fff9ef]/[0.04] px-3 py-1.5 opacity-60">
-            <input
-              disabled
-              placeholder={tp(placeholderKey, { name })}
-              className="flex-1 bg-transparent py-2 text-sm text-[#fff9ef] placeholder:text-[#fff9ef]/40 focus:outline-none"
-            />
-            <button
-              type="button"
-              disabled
-              aria-label={tp('send')}
-              className="text-gold-foreground grid size-9 shrink-0 cursor-not-allowed place-items-center rounded-xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7]"
+        {/* input — hidden for locations (auto-inspected on open) */}
+        {kind !== 'location' && (
+          <div className="shrink-0 border-t border-[#fff9ef]/10 bg-[#150508] p-3 sm:p-4">
+            <form
+              className="flex items-center gap-2 rounded-2xl border border-[#fff9ef]/12 bg-[#fff9ef]/[0.04] px-3 py-1.5"
+              onSubmit={(e) => {
+                e.preventDefault();
+                void handleSend();
+              }}
             >
-              <Send className="size-4" />
-            </button>
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                disabled={isSending}
+                placeholder={tp(placeholderKey, { name })}
+                className="flex-1 bg-transparent py-2 text-sm text-[#fff9ef] placeholder:text-[#fff9ef]/40 focus:outline-none disabled:opacity-50"
+              />
+              <button
+                type="submit"
+                disabled={isSending || !input.trim()}
+                aria-label={tp('send')}
+                className="text-gold-foreground grid size-9 shrink-0 cursor-pointer place-items-center rounded-xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] transition disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <Send className="size-4" />
+              </button>
+            </form>
           </div>
-          <p className="mt-2 text-center text-[11px] tracking-wide text-[#fff9ef]/35">
-            {tp('comingSoon')}
-          </p>
+        )}
+      </div>
+
+      {/* ── Clue discovery overlay ─────────────────────────────────── */}
+      {showClueOverlay && discoveredClues.length > 0 && (
+        <ClueDiscoveryOverlay
+          clues={discoveredClues}
+          heading={
+            discoveredClues.length === 1
+              ? tp('clueDiscovered')
+              : tp('clueDiscoveredPlural')
+          }
+          continueLabel={tp('continue')}
+          onContinue={handleClueOverlayContinue}
+        />
+      )}
+    </div>
+  );
+}
+
+function ClueDiscoveryOverlay({
+  clues,
+  heading,
+  continueLabel,
+  onContinue,
+}: {
+  clues: InteractDiscoveredClue[];
+  heading: string;
+  continueLabel: string;
+  onContinue: () => void;
+}) {
+  return (
+    <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-5 bg-[#0a0203]/95 p-6 backdrop-blur-sm">
+      <div className="scene-clue-flash bg-gold/30 pointer-events-none absolute inset-0" />
+
+      <div className="relative flex flex-col items-center gap-5">
+        <div className="text-gold flex items-center gap-2 text-sm font-bold tracking-[0.16em] uppercase">
+          <KeyRound className="size-5" />
+          {heading}
         </div>
+
+        <div className="flex max-w-md flex-col gap-3">
+          {clues.map((clue, i) => (
+            <div
+              key={clue.id}
+              className="border-clue-border scene-clue-card scene-clue-glow relative overflow-hidden rounded-2xl border bg-[#1b070b]/95 p-5 pl-6"
+              style={{ animationDelay: `${i * 0.25}s` }}
+            >
+              <div className="absolute top-0 left-0 h-full w-1.5 bg-gradient-to-b from-[#f4d78f] to-[#c49a4a]" />
+              <h3 className="font-heading text-xl font-semibold text-[#fff9ef]">
+                {clue.title}
+              </h3>
+              <p className="mt-1.5 text-sm leading-6 text-[#fff9ef]/70">
+                {clue.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={onContinue}
+          className="text-gold-foreground mt-2 cursor-pointer rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-8 py-3 text-sm font-bold transition hover:scale-[1.02]"
+        >
+          {continueLabel}
+        </button>
       </div>
     </div>
   );

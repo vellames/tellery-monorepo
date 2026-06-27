@@ -174,7 +174,14 @@
       "inspectPlaceholder": "Olhe de perto, procure, examine…",
       "explorePlaceholder": "Olhe ao redor, aproxime-se…",
       "send": "Enviar",
-      "comingSoon": "Investigação ao vivo em breve"
+      "sending": "Enviando…",
+      "interactError": "Algo deu errado. Tente novamente.",
+      "invalidPayload": "Uma mensagem é necessária.",
+      "clueDiscovered": "Evidência descoberta",
+      "clueDiscoveredPlural": "Novas evidências descobertas",
+      "continue": "Continuar",
+      "thinking": "{name} está pensando",
+      "autoInspectLocation": "Observar o local"
     }
   }
 }

@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -28,6 +29,7 @@ import type {
 import {
   InvestigationPanel,
   type InvestigationTarget,
+  type InvestigationTargetKind,
 } from './investigation-panel';
 
 export interface SessionHubProps {
@@ -39,10 +41,37 @@ const SESSION_STATUS_SOLVED = 'completed';
 export function SessionHub({ session }: SessionHubProps) {
   const t = useTranslations('play');
   const tGenre = useTranslations('common.genres');
-  const { history, clues, cluesTotal, characters, locations, objects } =
-    session;
+  const router = useRouter();
+  const {
+    id: sessionId,
+    history,
+    clues,
+    cluesTotal,
+    characters,
+    locations,
+    objects,
+  } = session;
 
-  const [target, setTarget] = useState<InvestigationTarget | null>(null);
+  const [targetRef, setTargetRef] = useState<{
+    kind: InvestigationTargetKind;
+    id: string;
+  } | null>(null);
+
+  const target = useMemo<InvestigationTarget | null>(() => {
+    if (!targetRef) return null;
+    if (targetRef.kind === 'character') {
+      const data = characters.find((c) => c.id === targetRef.id);
+      return data ? { kind: 'character', data } : null;
+    }
+    if (targetRef.kind === 'object') {
+      const data = objects.find((o) => o.id === targetRef.id);
+      return data ? { kind: 'object', data } : null;
+    }
+    const data = locations.find((l) => l.id === targetRef.id);
+    return data ? { kind: 'location', data } : null;
+  }, [targetRef, characters, objects, locations]);
+
+  const handleInteracted = useMemo(() => () => router.refresh(), [router]);
 
   const foundClues = clues.length;
   const progressPct =
@@ -195,7 +224,9 @@ export function SessionHub({ session }: SessionHubProps) {
                 pendingLabel={t('notVisited')}
                 ctaLabel={t('tapToInvestigate')}
                 accent="emerald"
-                onClick={() => setTarget({ kind: 'location', data: location })}
+                onClick={() =>
+                  setTargetRef({ kind: 'location', id: location.id })
+                }
               />
             ))}
           </BoardGroup>
@@ -224,7 +255,7 @@ export function SessionHub({ session }: SessionHubProps) {
                 accent="rose"
                 portrait
                 onClick={() =>
-                  setTarget({ kind: 'character', data: character })
+                  setTargetRef({ kind: 'character', id: character.id })
                 }
               />
             ))}
@@ -295,7 +326,12 @@ export function SessionHub({ session }: SessionHubProps) {
         </button>
       </div>
 
-      <InvestigationPanel target={target} onClose={() => setTarget(null)} />
+      <InvestigationPanel
+        sessionId={sessionId}
+        target={target}
+        onInteracted={handleInteracted}
+        onClose={() => setTargetRef(null)}
+      />
     </div>
   );
 }
@@ -462,7 +498,7 @@ function LeadCard({
 
         <span
           className={cn(
-            'absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase backdrop-blur',
+            'absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase backdrop-blur',
             done
               ? 'bg-success/25 text-[#b9e4c5] ring-1 ring-[#b9e4c5]/30'
               : 'bg-black/40 text-[#fff9ef]/70 ring-1 ring-[#fff9ef]/15'

@@ -8,6 +8,10 @@ vi.mock('next/image', () => ({
   ),
 }));
 
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ refresh: vi.fn() }),
+}));
+
 import { SessionHub } from '@/components/organisms/session-hub/session-hub';
 import { renderWithProviders } from '@/test-utils';
 import type { SessionState } from '@/lib/types/session';

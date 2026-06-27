@@ -75,3 +75,22 @@ export interface SessionState {
 export interface StartSessionResponse {
   sessionId: string;
 }
+
+export interface InteractPayload {
+  stateId: string;
+  interaction: string;
+}
+
+export interface InteractDiscoveredClue {
+  id: string;
+  title: string;
+  description: string;
+  reasoning: string;
+}
+
+export interface InteractResult {
+  id: string;
+  stateType: 'character' | 'object' | 'location';
+  reply: string | null;
+  discoveredClues: InteractDiscoveredClue[];
+}

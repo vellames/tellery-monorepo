@@ -174,7 +174,14 @@
       "inspectPlaceholder": "Look closer, search, or examine…",
       "explorePlaceholder": "Look around, move closer…",
       "send": "Send",
-      "comingSoon": "Live investigation coming soon"
+      "sending": "Sending…",
+      "interactError": "Something went wrong. Try again.",
+      "invalidPayload": "A message is required.",
+      "clueDiscovered": "Evidence discovered",
+      "clueDiscoveredPlural": "New evidence discovered",
+      "continue": "Continue",
+      "thinking": "{name} is thinking",
+      "autoInspectLocation": "Look around"
     }
   }
 }
