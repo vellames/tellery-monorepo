@@ -7,6 +7,7 @@ import {
   MapPin,
   MessageCircle,
   Mic,
+  Loader2,
   Search,
   Send,
   Sparkles,
@@ -71,6 +72,7 @@ export function InvestigationPanel({
   >([]);
   const [showClueOverlay, setShowClueOverlay] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [isTranscribing, setIsTranscribing] = useState(false);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
 
@@ -152,6 +154,7 @@ export function InvestigationPanel({
     formData.append('stateId', stateId);
 
     setError(null);
+    setIsTranscribing(true);
     setIsSending(true);
 
     try {
@@ -163,6 +166,8 @@ export function InvestigationPanel({
       const body = (await res.json().catch(() => null)) as
         | (InteractResult & { error?: string })
         | null;
+
+      setIsTranscribing(false);
 
       if (!res.ok || !body || body.error) {
         throw new Error(body?.error ?? tp('interactError'));
@@ -193,6 +198,7 @@ export function InvestigationPanel({
       setError(tp('audioError'));
     } finally {
       setIsSending(false);
+      setIsTranscribing(false);
       audioChunksRef.current = [];
     }
   }, [target, sessionId, onInteracted, tp]);
@@ -430,6 +436,11 @@ export function InvestigationPanel({
               {isSending && (
                 <div className="flex justify-start">
                   <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-[#fff9ef]/[0.07] px-4 py-3">
+                    {isTranscribing && (
+                      <span className="mr-1 text-xs text-[#fff9ef]/45">
+                        {tp('recording')}
+                      </span>
+                    )}
                     {[0, 1, 2].map((dot) => (
                       <span
                         key={dot}
@@ -440,6 +451,15 @@ export function InvestigationPanel({
                   </div>
                 </div>
               )}
+            </div>
+          )}
+
+          {isTranscribing && !allMessages.length && (
+            <div className="flex justify-start">
+              <div className="flex items-center gap-2 rounded-2xl rounded-bl-md bg-[#fff9ef]/[0.07] px-4 py-3 text-xs text-[#fff9ef]/45">
+                <Mic className="size-3.5 animate-pulse" />
+                {tp('recording')}
+              </div>
             </div>
           )}
 
@@ -559,6 +579,10 @@ export function InvestigationPanel({
                 >
                   <Square className="size-4" />
                 </button>
+              ) : isTranscribing ? (
+                <div className="text-gold/70 grid size-9 shrink-0 place-items-center rounded-xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04]">
+                  <Loader2 className="size-4 animate-spin" />
+                </div>
               ) : (
                 <button
                   type="button"
