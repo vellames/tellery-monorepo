@@ -50,6 +50,7 @@ enum InteractionRole {
   user
   character
   object
+  system
 }
 
 // ─── User ─────────────────────────────────────────────────────────────────────

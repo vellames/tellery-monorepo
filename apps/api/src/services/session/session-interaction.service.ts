@@ -1,4 +1,4 @@
-import { SupportedLanguage } from '@ai-history/i18n';
+import { SupportedLanguage, t } from '@ai-history/i18n';
 import { InteractionRole } from '@prisma/client';
 import { StatusCodes } from 'http-status-codes';
 import { CharacterAgent } from '../../engine/character/character-agent.service';
@@ -27,6 +27,8 @@ type LocationState = HistorySessionWithRelations['locationStates'][number];
 
 const RECENT_CONVERSATION_LIMIT = 6;
 const LOCATION_VISIT_REASONING = 'Ambient clue revealed on first visit.';
+const NO_CLUE_FOUND_KEY = 'interact.noClueFound';
+const SESSION_NAMESPACE = 'session';
 
 export interface InteractDiscoveredClue {
   id: string;
@@ -217,16 +219,25 @@ export class SessionInteractionService {
       )
       .filter((text): text is string => Boolean(text));
 
+    const messages: { role: InteractionRole; content: string }[] = [
+      { role: InteractionRole.user, content: interaction },
+      ...revealTexts.map((content) => ({
+        role: InteractionRole.object,
+        content,
+      })),
+    ];
+
+    if (newlyDiscoveredClueIds.length === 0) {
+      messages.push({
+        role: InteractionRole.system,
+        content: t(language, NO_CLUE_FOUND_KEY, {}, SESSION_NAMESPACE),
+      });
+    }
+
     await this.sessions.recordObjectInspection({
       objectStateId: objectState.id,
       discoveredClueIds: newlyDiscoveredClueIds,
-      messages: [
-        { role: InteractionRole.user, content: interaction },
-        ...revealTexts.map((content) => ({
-          role: InteractionRole.object,
-          content,
-        })),
-      ],
+      messages,
     });
 
     return this.enrichDiscoveredClues(agentResult, session.clues);
@@ -300,15 +311,24 @@ export class SessionInteractionService {
       (result) => result.clueId
     );
 
+    const messages: { role: InteractionRole; content: string }[] = [
+      { role: InteractionRole.user, content: input.interaction },
+      { role: InteractionRole.character, content: agentResult.reply },
+    ];
+
+    if (newlyDiscoveredClueIds.length === 0) {
+      messages.push({
+        role: InteractionRole.system,
+        content: t(language, NO_CLUE_FOUND_KEY, {}, SESSION_NAMESPACE),
+      });
+    }
+
     await this.sessions.recordCharacterInteraction({
       characterStateId: characterState.id,
       conversationSummary: agentResult.updatedConversationSummary,
       discoveredClueIds: newlyDiscoveredClueIds,
       updatedSecretStates: agentResult.updatedSecretStates,
-      messages: [
-        { role: InteractionRole.user, content: input.interaction },
-        { role: InteractionRole.character, content: agentResult.reply },
-      ],
+      messages,
     });
 
     return {

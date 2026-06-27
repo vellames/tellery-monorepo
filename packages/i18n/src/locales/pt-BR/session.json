@@ -8,5 +8,8 @@
     "noHistoryAvailable": "Nenhuma história disponível para iniciar",
     "intentDetectionFailed": "Falha na detecção de intenção",
     "sessionNotOwned": "Você não tem acesso a esta sessão"
+  },
+  "interact": {
+    "noClueFound": "Nenhuma pista nova desta vez."
   }
 }

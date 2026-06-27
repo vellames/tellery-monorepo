@@ -149,9 +149,7 @@ describe('InvestigationPanel', () => {
     await user.click(screen.getByLabelText('Enviar'));
 
     await waitFor(() => {
-      expect(
-        screen.getByText('Nenhuma pista nova desta vez.')
-      ).toBeInTheDocument();
+      expect(screen.getByText('Não sei de nada.')).toBeInTheDocument();
     });
   });
 

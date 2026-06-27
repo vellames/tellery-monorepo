@@ -8,6 +8,14 @@ import { SessionInteractionService } from '../session-interaction.service';
 import { ISessionRepository } from '../../../interfaces';
 import type { HistorySessionWithRelations } from '../../../repositories/SessionRepository';
 
+jest.mock('@ai-history/i18n', () => ({
+  ...jest.requireActual('@ai-history/i18n'),
+  t: jest.fn(
+    (_lang: string, key: string, _params?: Record<string, string>, ns?: string) =>
+      ns ? `${ns}:${key}` : key
+  ),
+}));
+
 describe('SessionInteractionService', () => {
   let sessions: DeepMockProxy<ISessionRepository>;
   let intentDetection: DeepMockProxy<IntentDetectionService>;
@@ -383,7 +391,10 @@ describe('SessionInteractionService', () => {
       expect(sessions.recordObjectInspection).toHaveBeenCalledWith({
         objectStateId: input.stateId,
         discoveredClueIds: [],
-        messages: [{ role: 'user', content: 'hello' }],
+        messages: [
+          { role: 'user', content: 'hello' },
+          { role: 'system', content: 'session:interact.noClueFound' },
+        ],
       });
       expect(result.discoveredClues).toEqual([]);
     });

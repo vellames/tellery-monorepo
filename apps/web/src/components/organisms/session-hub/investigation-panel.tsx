@@ -124,14 +124,6 @@ export function InvestigationPanel({
           setDiscoveredClues(result.discoveredClues);
           setShowClueOverlay(true);
         } else {
-          setExtraMessages((prev) => [
-            ...prev,
-            {
-              role: 'system',
-              content: tp('noClueFound'),
-              createdAt: new Date().toISOString(),
-            },
-          ]);
           onInteracted();
         }
       } catch {

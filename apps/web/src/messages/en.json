@@ -193,8 +193,7 @@
       "thinking": "{name} is thinking",
       "autoInspectLocation": "Look around",
       "objectsHere": "Objects to inspect",
-      "noObjectsHere": "There is nothing else to inspect here.",
-      "noClueFound": "No new clue this time."
+      "noObjectsHere": "There is nothing else to inspect here."
     }
   }
 }
