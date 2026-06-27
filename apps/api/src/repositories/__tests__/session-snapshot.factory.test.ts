@@ -235,14 +235,17 @@ describe('session-snapshot.factory', () => {
 
   describe('buildObjectStates', () => {
     it('maps objects with clueRevealRules wired via maps', () => {
+      const locationMap: DefinitionIdMap = { 'loc-1': 'session-loc-1' };
       const [object] = buildObjectStates(
         mockHistory(),
         'session-1',
         clueMap,
-        intentMap
+        intentMap,
+        locationMap
       );
 
       expect(object.objectDefinitionId).toBe('obj-1');
+      expect(object.locationStateId).toBe('session-loc-1');
       expect(object.clueRevealRules).toEqual({
         create: [
           {

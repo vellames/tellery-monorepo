@@ -94,18 +94,31 @@ export class SessionRepository
       )) {
         await client.sessionEndingSnapshot.create({ data });
       }
+      const createdLocations: { id: string; locationDefinitionId: string }[] =
+        [];
       for (const data of buildLocationStates(
         input.history,
         session.id,
         clueMap
       )) {
-        await client.locationSessionState.create({ data });
+        const created = await client.locationSessionState.create({
+          data,
+          select: { id: true, locationDefinitionId: true },
+        });
+        createdLocations.push(created);
       }
+      const locationMap: DefinitionIdMap = Object.fromEntries(
+        createdLocations.map((loc) => [
+          loc.locationDefinitionId,
+          loc.id,
+        ])
+      );
       for (const data of buildObjectStates(
         input.history,
         session.id,
         clueMap,
-        intentMap
+        intentMap,
+        locationMap
       )) {
         await client.objectSessionState.create({ data });
       }

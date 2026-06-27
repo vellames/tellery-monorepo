@@ -7,6 +7,7 @@ import {
   KeyRound,
   MapPin,
   MessageCircle,
+  Search,
   Send,
   Sparkles,
   X,
@@ -41,6 +42,8 @@ const KIND_META = {
 export interface InvestigationPanelProps {
   sessionId: string;
   target: InvestigationTarget | null;
+  objects: SessionObject[];
+  onSelectObject: (object: SessionObject) => void;
   onInteracted: () => void;
   onClose: () => void;
 }
@@ -48,6 +51,8 @@ export interface InvestigationPanelProps {
 export function InvestigationPanel({
   sessionId,
   target,
+  objects,
+  onSelectObject,
   onInteracted,
   onClose,
 }: InvestigationPanelProps) {
@@ -192,6 +197,10 @@ export function InvestigationPanel({
   const serverMessages: SessionMessage[] =
     kind === 'location' ? [] : target.data.messages;
   const allMessages = [...serverMessages, ...extraMessages];
+  const locationObjects =
+    kind === 'location'
+      ? objects.filter((o) => o.locationId === target.data.id)
+      : [];
 
   const placeholderKey =
     kind === 'character'
@@ -332,8 +341,68 @@ export function InvestigationPanel({
             </div>
           )}
 
+          {kind === 'location' && (
+            <div className="flex flex-col gap-3">
+              <h3 className="text-gold inline-flex items-center gap-2 text-xs font-bold tracking-[0.12em] uppercase">
+                <Search className="size-3.5" />
+                {tp('objectsHere')}
+              </h3>
+              {locationObjects.length === 0 ? (
+                <p className="text-sm text-[#fff9ef]/45">
+                  {tp('noObjectsHere')}
+                </p>
+              ) : (
+                <div className="flex flex-col gap-2.5">
+                  {locationObjects.map((object) => (
+                    <button
+                      key={object.id}
+                      type="button"
+                      onClick={() => onSelectObject(object)}
+                      className="group hover:border-gold/40 flex cursor-pointer items-center gap-3.5 rounded-xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] p-3 text-left transition hover:bg-[#fff9ef]/[0.06]"
+                    >
+                      {object.imageUrl ? (
+                        <div className="relative size-12 shrink-0 overflow-hidden rounded-lg">
+                          <Image
+                            src={object.imageUrl}
+                            alt={object.name}
+                            fill
+                            className="object-cover"
+                            sizes="48px"
+                          />
+                        </div>
+                      ) : (
+                        <div className="grid size-12 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-[#37050d] to-[#160a08]">
+                          <Fingerprint className="text-gold/60 size-5" />
+                        </div>
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-heading text-base font-semibold text-[#fff9ef]">
+                          {object.name}
+                        </h4>
+                        <p className="line-clamp-1 text-xs text-[#fff9ef]/55">
+                          {object.shortDescription}
+                        </p>
+                      </div>
+                      <span
+                        className={cn(
+                          'shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase',
+                          object.inspected
+                            ? 'bg-success/25 text-[#b9e4c5] ring-1 ring-[#b9e4c5]/30'
+                            : 'bg-black/40 text-[#fff9ef]/60 ring-1 ring-[#fff9ef]/15'
+                        )}
+                      >
+                        {object.inspected ? t('inspected') : t('notInspected')}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
           {allMessages.length === 0 &&
             serverClues.length === 0 &&
+            locationObjects.length === 0 &&
             !isSending && (
               <div className="rounded-2xl border border-dashed border-[#fff9ef]/12 bg-[#fff9ef]/[0.02] px-5 py-7 text-center">
                 <Sparkles className="mx-auto size-6 text-[#fff9ef]/25" />

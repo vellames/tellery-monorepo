@@ -94,11 +94,13 @@ export function buildObjectStates(
   history: HistoryWithDefinitions,
   sessionId: string,
   clueMap: DefinitionIdMap,
-  intentMap: DefinitionIdMap
+  intentMap: DefinitionIdMap,
+  locationMap: DefinitionIdMap
 ): Prisma.ObjectSessionStateUncheckedCreateInput[] {
   return history.objects.map((object) => ({
     sessionId,
     objectDefinitionId: object.id,
+    locationStateId: locationMap[object.locationId] ?? null,
     name: object.name,
     shortDescription: object.shortDescription,
     imageUrl: object.imageUrl,

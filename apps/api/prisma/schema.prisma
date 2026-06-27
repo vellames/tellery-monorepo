@@ -599,6 +599,8 @@ model LocationSessionState {
   ambientClues         SessionClue[] @relation("SessionLocationAmbientClues")
   revealedAmbientClues SessionClue[] @relation("LocationRevealedAmbientClues")
 
+  objects ObjectSessionState[]
+
   visited   Boolean   @default(false)
   visitedAt DateTime?
 
@@ -613,6 +615,9 @@ model ObjectSessionState {
 
   sessionId String
   session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  locationStateId String?
+  locationState   LocationSessionState? @relation(fields: [locationStateId], references: [id], onDelete: SetNull)
 
   objectDefinitionId String
 
@@ -629,6 +634,7 @@ model ObjectSessionState {
   inspectedAt DateTime?
 
   @@index([sessionId])
+  @@index([locationStateId])
 }
 
 model SessionObjectClueRevealRule {

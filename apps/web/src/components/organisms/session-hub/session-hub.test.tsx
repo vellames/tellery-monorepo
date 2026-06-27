@@ -62,6 +62,7 @@ const session: SessionState = {
       shortDescription: 'Um guardanapo amassado.',
       imageUrl: null,
       initialDescription: 'Está sobre a mesa.',
+      locationId: 'loc-1',
       inspected: false,
       inspectedAt: null,
       cluesTotal: 1,

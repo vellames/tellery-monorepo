@@ -30,6 +30,7 @@ export interface SessionObject {
   shortDescription: string;
   imageUrl: string | null;
   initialDescription: string;
+  locationId: string | null;
   inspected: boolean;
   inspectedAt: string | null;
   cluesTotal: number;

@@ -15,6 +15,7 @@ import type {
   InteractResult,
   SessionCharacter,
   SessionLocation,
+  SessionObject,
 } from '@/lib/types/session';
 
 const character: SessionCharacter = {
@@ -59,6 +60,8 @@ describe('InvestigationPanel', () => {
       <InvestigationPanel
         sessionId="s1"
         target={target}
+        objects={[]}
+        onSelectObject={vi.fn()}
         onInteracted={onInteracted}
         onClose={vi.fn()}
       />
@@ -97,6 +100,8 @@ describe('InvestigationPanel', () => {
       <InvestigationPanel
         sessionId="s1"
         target={target}
+        objects={[]}
+        onSelectObject={vi.fn()}
         onInteracted={onInteracted}
         onClose={vi.fn()}
       />
@@ -127,6 +132,8 @@ describe('InvestigationPanel', () => {
       <InvestigationPanel
         sessionId="s1"
         target={target}
+        objects={[]}
+        onSelectObject={vi.fn()}
         onInteracted={vi.fn()}
         onClose={vi.fn()}
       />
@@ -148,6 +155,8 @@ describe('InvestigationPanel', () => {
       <InvestigationPanel
         sessionId="s1"
         target={null}
+        objects={[]}
+        onSelectObject={vi.fn()}
         onInteracted={vi.fn()}
         onClose={vi.fn()}
       />
@@ -188,6 +197,8 @@ describe('InvestigationPanel', () => {
       <InvestigationPanel
         sessionId="s1"
         target={{ kind: 'location', data: location }}
+        objects={[]}
+        onSelectObject={vi.fn()}
         onInteracted={onInteracted}
         onClose={vi.fn()}
       />
@@ -216,11 +227,60 @@ describe('InvestigationPanel', () => {
       <InvestigationPanel
         sessionId="s1"
         target={{ kind: 'location', data: location }}
+        objects={[]}
+        onSelectObject={vi.fn()}
         onInteracted={vi.fn()}
         onClose={vi.fn()}
       />
     );
 
     expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it('shows objects belonging to a location and calls onSelectObject on click', async () => {
+    const user = userEvent.setup();
+    const onSelectObject = vi.fn();
+    const location: SessionLocation = {
+      id: 'loc-1',
+      name: 'Mesa 7',
+      shortDescription: 'Onde o bilhete foi encontrado.',
+      imageUrl: null,
+      initialDescription: 'perto da janela',
+      visited: true,
+      visitedAt: '2026-01-01T00:00:00.000Z',
+      cluesTotal: 0,
+      discoveredClues: [],
+    };
+    const objectInLocation: SessionObject = {
+      id: 'obj-1',
+      name: 'Guardanapo',
+      shortDescription: 'Um guardanapo amassado.',
+      imageUrl: null,
+      initialDescription: 'Está sobre a mesa.',
+      locationId: 'loc-1',
+      inspected: false,
+      inspectedAt: null,
+      cluesTotal: 1,
+      discoveredClues: [],
+      messages: [],
+    };
+
+    renderWithProviders(
+      <InvestigationPanel
+        sessionId="s1"
+        target={{ kind: 'location', data: location }}
+        objects={[objectInLocation]}
+        onSelectObject={onSelectObject}
+        onInteracted={vi.fn()}
+        onClose={vi.fn()}
+      />
+    );
+
+    expect(screen.getByText('Objetos para inspecionar')).toBeInTheDocument();
+    expect(screen.getByText('Guardanapo')).toBeInTheDocument();
+
+    await user.click(screen.getByText('Guardanapo'));
+
+    expect(onSelectObject).toHaveBeenCalledWith(objectInLocation);
   });
 });

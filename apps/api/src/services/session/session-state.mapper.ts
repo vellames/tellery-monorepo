@@ -154,6 +154,7 @@ export function buildSessionStateResponse(
       shortDescription: object.shortDescription,
       imageUrl: object.imageUrl,
       initialDescription: object.initialDescription,
+      locationId: object.locationStateId,
       inspected: object.inspected,
       inspectedAt: object.inspectedAt,
       cluesTotal: object.clueRevealRules.length,

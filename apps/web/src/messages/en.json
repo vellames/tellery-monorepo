@@ -181,7 +181,9 @@
       "clueDiscoveredPlural": "New evidence discovered",
       "continue": "Continue",
       "thinking": "{name} is thinking",
-      "autoInspectLocation": "Look around"
+      "autoInspectLocation": "Look around",
+      "objectsHere": "Objects to inspect",
+      "noObjectsHere": "There is nothing else to inspect here."
     }
   }
 }

@@ -329,6 +329,10 @@ export function SessionHub({ session }: SessionHubProps) {
       <InvestigationPanel
         sessionId={sessionId}
         target={target}
+        objects={objects}
+        onSelectObject={(object) =>
+          setTargetRef({ kind: 'object', id: object.id })
+        }
         onInteracted={handleInteracted}
         onClose={() => setTargetRef(null)}
       />
