@@ -32,6 +32,7 @@ export interface ObjectStateDto {
   shortDescription: string;
   imageUrl: string | null;
   initialDescription: string;
+  locationId: string | null;
   inspected: boolean;
   inspectedAt: Date | null;
   cluesTotal: number;
@@ -69,6 +70,7 @@ export interface SessionStateResponse {
   };
   clues: SessionClueDto[];
   cluesTotal: number;
+  requiredCluesTotal: number;
   characters: CharacterStateDto[];
   objects: ObjectStateDto[];
   locations: LocationStateDto[];
@@ -132,6 +134,9 @@ export function buildSessionStateResponse(
     },
     clues: session.clues.filter((clue) => clue.discovered).map(toClueDto),
     cluesTotal: session.clues.length,
+    requiredCluesTotal: session.clues.filter(
+      (clue) => clue.importance === 'required'
+    ).length,
     characters: session.characterStates.map((character) => {
       const characterClues = collectCharacterClues(character);
       return {

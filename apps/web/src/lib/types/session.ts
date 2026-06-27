@@ -68,6 +68,7 @@ export interface SessionState {
   };
   clues: SessionClue[];
   cluesTotal: number;
+  requiredCluesTotal: number;
   characters: SessionCharacter[];
   objects: SessionObject[];
   locations: SessionLocation[];

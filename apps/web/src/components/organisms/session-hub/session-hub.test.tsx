@@ -31,11 +31,12 @@ const session: SessionState = {
       id: 'clue-1',
       title: 'Tinta azul',
       description: 'desc',
-      importance: 'relevant',
+      importance: 'required',
       discoveredAt: '2026-01-02T00:00:00.000Z',
     },
   ],
   cluesTotal: 4,
+  requiredCluesTotal: 2,
   characters: [
     {
       id: 'char-1',
@@ -134,7 +135,31 @@ describe('SessionHub', () => {
 
     await user.click(screen.getByText('Revisar evidências'));
 
+    expect(screen.getByText('Pistas obrigatórias')).toBeInTheDocument();
     expect(screen.getByText('Tinta azul')).toBeInTheDocument();
+  });
+
+  it('locks solving until required clues are discovered', () => {
+    renderWithProviders(<SessionHub session={session} />);
+
+    expect(
+      screen.getByRole('button', { name: 'Resolver o caso' })
+    ).toBeDisabled();
+    expect(
+      screen.getByText(
+        '1/2 pistas obrigatórias descobertas. Descubra as demais para resolver o caso.'
+      )
+    ).toBeInTheDocument();
+  });
+
+  it('enables solving when all required clues are discovered', () => {
+    renderWithProviders(
+      <SessionHub session={{ ...session, requiredCluesTotal: 1 }} />
+    );
+
+    expect(
+      screen.getByRole('button', { name: 'Resolver o caso' })
+    ).not.toBeDisabled();
   });
 
   it('renders entity images when available', () => {

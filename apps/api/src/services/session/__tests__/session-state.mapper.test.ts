@@ -53,7 +53,7 @@ describe('buildSessionStateResponse', () => {
           id: 'clue-1',
           title: 'Tinta azul',
           description: 'desc',
-          importance: 'relevant',
+          importance: 'required',
           discovered: true,
           discoveredAt: new Date('2026-01-02'),
         },
@@ -61,7 +61,7 @@ describe('buildSessionStateResponse', () => {
           id: 'clue-2',
           title: 'Segredo',
           description: 'nao deve aparecer',
-          importance: 'crucial',
+          importance: 'supporting',
           discovered: false,
           discoveredAt: null,
         },
@@ -73,6 +73,7 @@ describe('buildSessionStateResponse', () => {
     expect(result.clues).toHaveLength(1);
     expect(result.clues[0].id).toBe('clue-1');
     expect(result.cluesTotal).toBe(2);
+    expect(result.requiredCluesTotal).toBe(1);
   });
 
   it('maps characters without leaking GM-only data', () => {
@@ -204,6 +205,7 @@ describe('buildSessionStateResponse', () => {
           shortDescription: 'papel',
           imageUrl: null,
           initialDescription: 'dobrado',
+          locationStateId: 'loc-1',
           inspected: true,
           inspectedAt: new Date('2026-01-02'),
           clueRevealRules: [
@@ -234,6 +236,7 @@ describe('buildSessionStateResponse', () => {
       shortDescription: 'papel',
       imageUrl: null,
       initialDescription: 'dobrado',
+      locationId: 'loc-1',
       inspected: true,
       inspectedAt: new Date('2026-01-02'),
       cluesTotal: 1,

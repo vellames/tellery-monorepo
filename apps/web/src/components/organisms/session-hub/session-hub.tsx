@@ -10,7 +10,6 @@ import {
   Gavel,
   KeyRound,
   MapPin,
-  MessageCircle,
   Search,
   Sparkles,
   Target,
@@ -48,6 +47,7 @@ export function SessionHub({ session }: SessionHubProps) {
     history,
     clues,
     cluesTotal,
+    requiredCluesTotal,
     characters,
     locations,
     objects,
@@ -78,6 +78,10 @@ export function SessionHub({ session }: SessionHubProps) {
   const handleInteracted = useMemo(() => () => router.refresh(), [router]);
 
   const foundClues = clues.length;
+  const requiredCluesFound = clues.filter(
+    (clue) => clue.importance === 'required'
+  ).length;
+  const canSolveCase = requiredCluesFound >= requiredCluesTotal;
   const progressPct =
     cluesTotal > 0 ? Math.round((foundClues / cluesTotal) * 100) : 0;
   const isSolved = session.status === SESSION_STATUS_SOLVED;
@@ -331,13 +335,29 @@ export function SessionHub({ session }: SessionHubProps) {
               </span>
             )}
           </button>
-          <button
-            className="shadow-button text-gold-foreground inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-4 py-2.5 text-sm font-bold transition hover:scale-[1.01] sm:flex-none"
-            type="button"
-          >
-            <Gavel className="size-4" />
-            {t('solveCase')}
-          </button>
+          <div className="group/solve relative flex flex-1 sm:flex-none">
+            <button
+              className={cn(
+                'inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition sm:flex-none',
+                canSolveCase
+                  ? 'shadow-button text-gold-foreground cursor-pointer bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] hover:scale-[1.01]'
+                  : 'cursor-not-allowed border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04] text-[#fff9ef]/35'
+              )}
+              type="button"
+              disabled={!canSolveCase}
+            >
+              <Gavel className="size-4" />
+              {t('solveCase')}
+            </button>
+            {!canSolveCase && (
+              <div className="pointer-events-none absolute right-0 bottom-full z-20 mb-2 w-72 translate-y-1 rounded-2xl border border-[#fff9ef]/12 bg-[#0a0203]/95 p-3 text-xs leading-5 text-[#fff9ef]/65 opacity-0 shadow-2xl backdrop-blur transition-all group-hover/solve:translate-y-0 group-hover/solve:opacity-100">
+                {t('solveLocked', {
+                  found: requiredCluesFound,
+                  total: requiredCluesTotal,
+                })}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -345,6 +365,8 @@ export function SessionHub({ session }: SessionHubProps) {
         <EvidenceModal
           clues={clues}
           cluesTotal={cluesTotal}
+          requiredCluesFound={requiredCluesFound}
+          requiredCluesTotal={requiredCluesTotal}
           questionedCount={questionedCount}
           questionedTotal={characters.length}
           exploredCount={exploredCount}
@@ -356,6 +378,8 @@ export function SessionHub({ session }: SessionHubProps) {
           statClues={t('statClues')}
           statPeople={t('statPeople')}
           statPlaces={t('statPlaces')}
+          requiredEvidenceLabel={t('requiredEvidence')}
+          optionalEvidenceLabel={t('optionalEvidence')}
           progressLabel={t('progress')}
           onClose={() => setShowEvidence(false)}
         />
@@ -533,6 +557,8 @@ export type { SessionCharacter, SessionLocation, SessionObject };
 function EvidenceModal({
   clues,
   cluesTotal,
+  requiredCluesFound,
+  requiredCluesTotal,
   questionedCount,
   questionedTotal,
   exploredCount,
@@ -544,11 +570,15 @@ function EvidenceModal({
   statClues,
   statPeople,
   statPlaces,
+  requiredEvidenceLabel,
+  optionalEvidenceLabel,
   progressLabel,
   onClose,
 }: {
   clues: SessionClue[];
   cluesTotal: number;
+  requiredCluesFound: number;
+  requiredCluesTotal: number;
   questionedCount: number;
   questionedTotal: number;
   exploredCount: number;
@@ -560,9 +590,14 @@ function EvidenceModal({
   statClues: string;
   statPeople: string;
   statPlaces: string;
+  requiredEvidenceLabel: string;
+  optionalEvidenceLabel: string;
   progressLabel: string;
   onClose: () => void;
 }) {
+  const requiredClues = clues.filter((clue) => clue.importance === 'required');
+  const optionalClues = clues.filter((clue) => clue.importance !== 'required');
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
@@ -627,6 +662,13 @@ function EvidenceModal({
                 {statClues}
               </span>
               <span className="inline-flex items-center gap-1.5">
+                <Gavel className="text-gold/70 size-3.5" />
+                <span className="font-semibold text-[#fff9ef]">
+                  {requiredCluesFound}/{requiredCluesTotal}
+                </span>{' '}
+                {requiredEvidenceLabel.toLowerCase()}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
                 <Users className="text-gold/70 size-3.5" />
                 <span className="font-semibold text-[#fff9ef]">
                   {questionedCount}/{questionedTotal}
@@ -652,26 +694,81 @@ function EvidenceModal({
               </p>
             </div>
           ) : (
-            <div className="grid gap-3 sm:grid-cols-2">
-              {clues.map((clue) => (
-                <article
-                  key={clue.id}
-                  className="group border-clue-border/30 relative overflow-hidden rounded-2xl border bg-[#fff4d8]/[0.05] p-4"
-                >
-                  <div className="bg-gold absolute top-0 left-0 h-full w-1" />
-                  <h3 className="font-heading pl-2 text-lg font-semibold tracking-tight text-[#fff9ef]">
-                    {clue.title}
-                  </h3>
-                  <p className="mt-1 pl-2 text-sm leading-6 text-[#fff9ef]/65">
-                    {clue.description}
-                  </p>
-                </article>
-              ))}
+            <div className="flex flex-col gap-5">
+              {requiredClues.length > 0 && (
+                <EvidenceSection
+                  title={requiredEvidenceLabel}
+                  clues={requiredClues}
+                  required
+                />
+              )}
+              {optionalClues.length > 0 && (
+                <EvidenceSection
+                  title={optionalEvidenceLabel}
+                  clues={optionalClues}
+                />
+              )}
             </div>
           )}
         </div>
       </div>
     </div>
+  );
+}
+
+function EvidenceSection({
+  title,
+  clues,
+  required = false,
+}: {
+  title: string;
+  clues: SessionClue[];
+  required?: boolean;
+}) {
+  return (
+    <section className="space-y-3">
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="font-heading text-lg font-semibold tracking-tight text-[#fff9ef]">
+          {title}
+        </h3>
+        <span
+          className={cn(
+            'rounded-full px-2 py-1 text-[11px] font-bold ring-1',
+            required
+              ? 'bg-gold/10 text-gold ring-gold/25'
+              : 'bg-[#fff9ef]/[0.04] text-[#fff9ef]/50 ring-[#fff9ef]/10'
+          )}
+        >
+          {clues.length}
+        </span>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {clues.map((clue) => (
+          <article
+            key={clue.id}
+            className={cn(
+              'group relative overflow-hidden rounded-2xl border p-4',
+              required
+                ? 'border-gold/25 bg-gold/[0.06]'
+                : 'border-clue-border/30 bg-[#fff4d8]/[0.05]'
+            )}
+          >
+            <div
+              className={cn(
+                'absolute top-0 left-0 h-full w-1',
+                required ? 'bg-gold' : 'bg-[#fff9ef]/30'
+              )}
+            />
+            <h4 className="font-heading pl-2 text-lg font-semibold tracking-tight text-[#fff9ef]">
+              {clue.title}
+            </h4>
+            <p className="mt-1 pl-2 text-sm leading-6 text-[#fff9ef]/65">
+              {clue.description}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 
