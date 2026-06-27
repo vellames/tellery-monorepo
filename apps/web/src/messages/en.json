@@ -194,6 +194,23 @@
       "autoInspectLocation": "Look around",
       "objectsHere": "Objects to inspect",
       "noObjectsHere": "There is nothing else to inspect here."
-    }
+    },
+    "conclusionTitle": "Solve the case",
+    "conclusionSubtitle": "Based on everything you discovered, answer:",
+    "conclusionSubmit": "Submit conclusion",
+    "conclusionSubmitting": "Submitting…",
+    "conclusionValidationError": "Select an answer for each question.",
+    "conclusionError": "Could not submit the conclusion. Try again.",
+    "conclusionSelectOption": "Select an option",
+    "endingFullTruth": "Full truth",
+    "endingPartialTruth": "Partial truth",
+    "endingWrongAccusation": "Wrong accusation",
+    "endingSummary": "Summary",
+    "endingEpilogue": "Epilogue",
+    "endingScore": "Score",
+    "endingPlayAgain": "Back to start",
+    "endingCorrectAnswers": "Correct answers",
+    "endingCluesDiscovered": "Clues discovered",
+    "endingRequiredClues": "Required clues"
   }
 }

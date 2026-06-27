@@ -31,6 +31,8 @@ import {
   type InvestigationTarget,
   type InvestigationTargetKind,
 } from './investigation-panel';
+import { ConclusionModal } from './conclusion-modal';
+import { EndingScreen } from './ending-screen';
 
 export interface SessionHubProps {
   session: SessionState;
@@ -51,6 +53,8 @@ export function SessionHub({ session }: SessionHubProps) {
     characters,
     locations,
     objects,
+    conclusionFields,
+    ending,
   } = session;
 
   const [targetRef, setTargetRef] = useState<{
@@ -60,6 +64,7 @@ export function SessionHub({ session }: SessionHubProps) {
   const [easyMode, setEasyMode] = useState(false);
   const [showEvidence, setShowEvidence] = useState(false);
   const [showCase, setShowCase] = useState(false);
+  const [showConclusion, setShowConclusion] = useState(false);
 
   const target = useMemo<InvestigationTarget | null>(() => {
     if (!targetRef) return null;
@@ -96,6 +101,26 @@ export function SessionHub({ session }: SessionHubProps) {
       objects.filter((o) => o.inspected).length,
     [locations, objects]
   );
+
+  if (isSolved && ending) {
+    return (
+      <EndingScreen
+        ending={ending}
+        playAgainLabel={t('endingPlayAgain')}
+        summaryLabel={t('endingSummary')}
+        epilogueLabel={t('endingEpilogue')}
+        scoreLabel={t('endingScore')}
+        correctAnswersLabel={t('endingCorrectAnswers')}
+        cluesDiscoveredLabel={t('endingCluesDiscovered')}
+        requiredCluesLabel={t('endingRequiredClues')}
+        endingTypeLabels={{
+          full_truth: t('endingFullTruth'),
+          partial_truth: t('endingPartialTruth'),
+          wrong_accusation: t('endingWrongAccusation'),
+        }}
+      />
+    );
+  }
 
   return (
     <div className="flex flex-col gap-10 pb-12">
@@ -223,6 +248,7 @@ export function SessionHub({ session }: SessionHubProps) {
                   (sum, o) => sum + o.discoveredClues.length,
                   0
                 );
+
               return (
                 <LeadCard
                   key={location.id}
@@ -345,6 +371,7 @@ export function SessionHub({ session }: SessionHubProps) {
               )}
               type="button"
               disabled={!canSolveCase}
+              onClick={() => canSolveCase && setShowConclusion(true)}
             >
               <Gavel className="size-4" />
               {t('solveCase')}
@@ -393,6 +420,25 @@ export function SessionHub({ session }: SessionHubProps) {
           objectiveLabel={t('objective')}
           closeLabel={t('close')}
           onClose={() => setShowCase(false)}
+        />
+      )}
+
+      {showConclusion && (
+        <ConclusionModal
+          fields={conclusionFields}
+          title={t('conclusionTitle')}
+          subtitle={t('conclusionSubtitle')}
+          submitLabel={t('conclusionSubmit')}
+          submittingLabel={t('conclusionSubmitting')}
+          selectOptionLabel={t('conclusionSelectOption')}
+          closeLabel={t('close')}
+          errorLabel={t('conclusionError')}
+          sessionId={sessionId}
+          onClose={() => setShowConclusion(false)}
+          onSubmitted={() => {
+            setShowConclusion(false);
+            router.refresh();
+          }}
         />
       )}
 

@@ -78,6 +78,8 @@ const session: SessionState = {
       discoveredClues: [],
     },
   ],
+  conclusionFields: [],
+  ending: null,
 };
 
 describe('SessionHub', () => {

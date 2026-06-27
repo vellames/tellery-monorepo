@@ -194,6 +194,23 @@
       "autoInspectLocation": "Observar o local",
       "objectsHere": "Objetos para inspecionar",
       "noObjectsHere": "Não há mais nada para inspecionar aqui."
-    }
+    },
+    "conclusionTitle": "Resolva o caso",
+    "conclusionSubtitle": "Com base em tudo o que você descobriu, responda:",
+    "conclusionSubmit": "Enviar conclusão",
+    "conclusionSubmitting": "Enviando…",
+    "conclusionValidationError": "Selecione uma resposta para cada pergunta.",
+    "conclusionError": "Não foi possível enviar a conclusão. Tente novamente.",
+    "conclusionSelectOption": "Selecione uma opção",
+    "endingFullTruth": "Verdade completa",
+    "endingPartialTruth": "Verdade parcial",
+    "endingWrongAccusation": "Acusação equivocada",
+    "endingSummary": "Resumo",
+    "endingEpilogue": "Epílogo",
+    "endingScore": "Pontuação",
+    "endingPlayAgain": "Voltar ao início",
+    "endingCorrectAnswers": "Respostas corretas",
+    "endingCluesDiscovered": "Pistas descobertas",
+    "endingRequiredClues": "Pistas obrigatórias"
   }
 }

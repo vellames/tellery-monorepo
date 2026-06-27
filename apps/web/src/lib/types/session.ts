@@ -72,6 +72,41 @@ export interface SessionState {
   characters: SessionCharacter[];
   objects: SessionObject[];
   locations: SessionLocation[];
+  conclusionFields: ConclusionField[];
+  ending: SessionEndingState | null;
+}
+
+export interface ConclusionField {
+  id: string;
+  label: string;
+  type: string;
+  options: ConclusionOption[];
+}
+
+export interface ConclusionOption {
+  id: string;
+  label: string;
+}
+
+export interface SessionEndingState {
+  snapshot: {
+    endingDefinitionId: string;
+    title: string;
+    type: string;
+    imageUrl: string | null;
+    summary: string;
+    epilogue: string;
+  };
+  score: SessionScore;
+}
+
+export interface SessionScore {
+  discoveredClues: number;
+  totalClues: number;
+  requiredCluesDiscovered: number;
+  totalRequiredClues: number;
+  correctAnswers: number;
+  totalAnswers: number;
 }
 
 export interface StartSessionResponse {
@@ -95,4 +130,17 @@ export interface InteractResult {
   stateType: 'character' | 'object' | 'location';
   reply: string | null;
   discoveredClues: InteractDiscoveredClue[];
+}
+
+export interface ConclusionResult {
+  ending: {
+    id: string;
+    endingDefinitionId: string;
+    title: string;
+    type: string;
+    imageUrl: string | null;
+    summary: string;
+    epilogue: string;
+  };
+  score: SessionScore;
 }
