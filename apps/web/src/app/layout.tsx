@@ -1,13 +1,17 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Inter, Fraunces } from 'next/font/google';
+import { Cormorant_Garamond, Mulish } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { Providers } from '@/components/providers';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages, getTimeZone } from 'next-intl/server';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
-const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-heading' });
+const mulish = Mulish({ subsets: ['latin'], variable: '--font-sans' });
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-heading',
+});
 
 export const metadata: Metadata = {
   title: 'AI History',
@@ -27,7 +31,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={cn(inter.variable, fraunces.variable)}
+      className={cn(mulish.variable, cormorant.variable)}
     >
       <body>
         <NextIntlClientProvider
