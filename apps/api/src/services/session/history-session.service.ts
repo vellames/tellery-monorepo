@@ -92,7 +92,7 @@ export class HistorySessionService {
   private async signImages(
     response: SessionStateResponse
   ): Promise<SessionStateResponse> {
-    const [historyImages, characterImages, objectImages, locationImages] =
+    const [historyImages, characterImages, objectImages, locationImages, endingImage] =
       await Promise.all([
         Promise.all([
           this.imageUrlSigner.sign(response.history.coverImageUrl),
@@ -107,6 +107,9 @@ export class HistorySessionService {
         Promise.all(
           response.locations.map((l) => this.imageUrlSigner.sign(l.imageUrl))
         ),
+        response.ending
+          ? this.imageUrlSigner.sign(response.ending.snapshot.imageUrl)
+          : Promise.resolve(null),
       ]);
 
     return {
@@ -128,6 +131,15 @@ export class HistorySessionService {
         ...l,
         imageUrl: locationImages[i],
       })),
+      ending: response.ending
+        ? {
+            ...response.ending,
+            snapshot: {
+              ...response.ending.snapshot,
+              imageUrl: endingImage,
+            },
+          }
+        : null,
     };
   }
 }
