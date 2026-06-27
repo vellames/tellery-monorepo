@@ -24,6 +24,65 @@ export interface RunResult {
 
 const STALL_LIMIT = 4;
 
+function countEntitiesWithHiddenClues(state: SessionStateResponse): number {
+  const chars = state.characters.filter(
+    (c) => c.cluesTotal > c.discoveredClues.length
+  ).length;
+  const objs = state.objects.filter(
+    (o) => o.cluesTotal > o.discoveredClues.length
+  ).length;
+  const locs = state.locations.filter(
+    (l) => l.cluesTotal > l.discoveredClues.length
+  ).length;
+  return chars + objs + locs;
+}
+
+function findEntityWithMostHiddenClues(
+  state: SessionStateResponse
+): { type: string; name: string; stateId: string; remaining: number } | null {
+  const candidates: Array<{
+    type: string;
+    name: string;
+    stateId: string;
+    remaining: number;
+  }> = [];
+
+  for (const c of state.characters) {
+    const remaining = c.cluesTotal - c.discoveredClues.length;
+    if (remaining > 0)
+      candidates.push({
+        type: 'character',
+        name: c.name,
+        stateId: c.id,
+        remaining,
+      });
+  }
+  for (const o of state.objects) {
+    const remaining = o.cluesTotal - o.discoveredClues.length;
+    if (remaining > 0)
+      candidates.push({
+        type: 'object',
+        name: o.name,
+        stateId: o.id,
+        remaining,
+      });
+  }
+  for (const l of state.locations) {
+    const remaining = l.cluesTotal - l.discoveredClues.length;
+    if (remaining > 0)
+      candidates.push({
+        type: 'location',
+        name: l.name,
+        stateId: l.id,
+        remaining,
+      });
+  }
+
+  if (candidates.length === 0) return null;
+  candidates.sort((a, b) => b.remaining - a.remaining);
+  return candidates[0];
+}
+
 function resolveEntity(
   state: SessionStateResponse,
   stateId: string | null
@@ -139,9 +198,22 @@ export async function runSession(
       stallTurns = 0;
     } else {
       stallTurns += 1;
+      const hiddenCount = countEntitiesWithHiddenClues(state);
       if (stallTurns >= STALL_LIMIT) {
-        stopReason = `no new clues for ${STALL_LIMIT} turns`;
-        break;
+        if (hiddenCount === 0) {
+          stopReason = `no new clues for ${STALL_LIMIT} turns and all entities exhausted`;
+          break;
+        }
+        const fallback = findEntityWithMostHiddenClues(state);
+        if (fallback) {
+          console.log(
+            `  stall detected but ${hiddenCount} entit(y/ies) still hide clues; forcing revisit of ${fallback.type}/${fallback.name} (${fallback.remaining} remaining)`
+          );
+          stallTurns = 0;
+        } else {
+          stopReason = `no new clues for ${STALL_LIMIT} turns`;
+          break;
+        }
       }
     }
   }

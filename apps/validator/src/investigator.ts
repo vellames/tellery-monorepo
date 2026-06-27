@@ -33,10 +33,22 @@ Strategy:
 - Visit every location first (cheap, deterministic ambient clues). Never revisit a location, it yields nothing after the first visit.
 - Then inspect every object at least once, and interrogate every character.
 - Cover entities you have NOT interacted with yet BEFORE revisiting anyone. Priority goes to entities with cluesTotal > discoveredClueCount (still hiding clues).
+
+CRITICAL — CLUES ARE GATED BEHIND PREREQUISITES:
+- Clues are frequently locked behind prerequisite clues discovered elsewhere. An object or character you ALREADY inspected may reveal NEW clues after you discover a prerequisite clue later in the investigation.
+- If an entity shows cluesTotal > discoveredClueCount (hasUndiscoveredClues: true), it STILL hides clues — even if you already visited/inspected it once. Re-approach it with a NEW angle, using what you have learned since your last interaction.
+- After every new clue you discover, mentally re-check which already-inspected entities still have hasUndiscoveredClues: true. New prerequisites may have unlocked new revelations there. Re-inspecting an object or re-pressing a character with fresh evidence is often the key to advancing.
+- Do NOT treat an entity as "exhausted" just because you inspected it once. It is only exhausted when discoveredClueCount equals cluesTotal.
+
+STOPPING:
+- Stop (done=true) ONLY when NO entity has cluesTotal > discoveredClueCount — i.e., every single entity is fully exhausted.
+- Do NOT stop just because recent turns stopped revealing clues. If any entity still hides clues, keep trying: re-inspect objects, re-interrogate characters, take new angles, reference newly discovered evidence.
+- If you feel stuck, revisit the entity with the most undiscovered clues and press it with the strongest evidence you have gathered so far.
+
+OTHER RULES:
 - Use your conversation memory: build on previous answers, press contradictions, ask follow-ups that a previous reply suggested.
 - NEVER repeat a message you already sent. If you revisit an entity, take a genuinely new angle based on what you learned.
 - Ask in Portuguese (the game language). Be specific and curious, referencing discovered clues when relevant.
-- Stop (done=true) only when every entity has been explored AND recent turns stop revealing new clues.
 
 You MUST reply with a single JSON object, nothing else, in this exact shape:
 {"done": boolean, "reasoning": string, "stateId": string, "message": string}
@@ -82,6 +94,8 @@ export class Investigator {
         explored: null,
         cluesTotal: c.cluesTotal,
         discoveredClueCount: c.discoveredClues.length,
+        remainingClues: c.cluesTotal - c.discoveredClues.length,
+        hasUndiscoveredClues: c.cluesTotal > c.discoveredClues.length,
       })),
       ...state.objects.map((o) => ({
         stateId: o.id,
@@ -92,6 +106,8 @@ export class Investigator {
         explored: o.inspected,
         cluesTotal: o.cluesTotal,
         discoveredClueCount: o.discoveredClues.length,
+        remainingClues: o.cluesTotal - o.discoveredClues.length,
+        hasUndiscoveredClues: o.cluesTotal > o.discoveredClues.length,
       })),
       ...state.locations.map((l) => ({
         stateId: l.id,
@@ -102,8 +118,14 @@ export class Investigator {
         explored: l.visited,
         cluesTotal: l.cluesTotal,
         discoveredClueCount: l.discoveredClues.length,
+        remainingClues: l.cluesTotal - l.discoveredClues.length,
+        hasUndiscoveredClues: l.cluesTotal > l.discoveredClues.length,
       })),
     ];
+
+    const entitiesWithHiddenClues = entities.filter(
+      (e) => e.hasUndiscoveredClues
+    ).length;
 
     return JSON.stringify(
       {
@@ -115,10 +137,11 @@ export class Investigator {
           objective: state.history.objective,
         },
         discoveredClueCount: state.clues.length,
-        discoveredClues: state.clues.map((c) => ({
-          title: c.title,
-          description: c.description,
-        })),
+        totalCluesAvailable: entities.reduce(
+          (sum, e) => sum + e.cluesTotal,
+          0
+        ),
+        entitiesWithHiddenClues,
         entities,
         pastActions: pastActions.map((a) => ({
           turn: a.turn,
