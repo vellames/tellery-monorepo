@@ -1,174 +1,499 @@
+'use client';
+
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, BookOpen, MapPin, Target, Users } from 'lucide-react';
+import {
+  ArrowLeft,
+  CheckCircle2,
+  Compass,
+  Gavel,
+  KeyRound,
+  MapPin,
+  MessageCircle,
+  Search,
+  Sparkles,
+  Target,
+  Users,
+} from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { config } from '@/lib/config';
-import type { SessionState } from '@/lib/types/session';
+import { cn } from '@/lib/utils';
+import type {
+  SessionCharacter,
+  SessionLocation,
+  SessionObject,
+  SessionState,
+} from '@/lib/types/session';
+import {
+  InvestigationPanel,
+  type InvestigationTarget,
+} from './investigation-panel';
 
 export interface SessionHubProps {
   session: SessionState;
 }
 
+const SESSION_STATUS_SOLVED = 'completed';
+
 export function SessionHub({ session }: SessionHubProps) {
   const t = useTranslations('play');
   const tGenre = useTranslations('common.genres');
-  const { history, clues, cluesTotal, characters, locations } = session;
+  const { history, clues, cluesTotal, characters, locations, objects } =
+    session;
+
+  const [target, setTarget] = useState<InvestigationTarget | null>(null);
 
   const foundClues = clues.length;
   const progressPct =
     cluesTotal > 0 ? Math.round((foundClues / cluesTotal) * 100) : 0;
+  const isSolved = session.status === SESSION_STATUS_SOLVED;
+
+  const questionedCount = useMemo(
+    () => characters.filter((c) => c.messages.length > 0).length,
+    [characters]
+  );
+  const exploredCount = useMemo(
+    () =>
+      locations.filter((l) => l.visited).length +
+      objects.filter((o) => o.inspected).length,
+    [locations, objects]
+  );
 
   return (
-    <div className="flex flex-col gap-8">
-      <header className="flex flex-col gap-4">
-        <Link
-          className="hover:text-gold inline-flex items-center gap-2 self-start text-sm font-semibold text-[#fff9ef]/60 transition"
-          href={config.routes.stories}
-        >
-          <ArrowLeft className="size-4" />
-          {t('back')}
-        </Link>
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex flex-col gap-1">
-            <h1 className="font-heading text-3xl leading-tight font-semibold tracking-tight sm:text-4xl">
+    <div className="flex flex-col gap-10 pb-12">
+      <Link
+        className="group inline-flex items-center gap-2 self-start text-sm font-semibold text-[#fff9ef]/55 transition hover:text-[#fff9ef]"
+        href={config.routes.stories}
+      >
+        <ArrowLeft className="size-4 transition group-hover:-translate-x-0.5" />
+        {t('back')}
+      </Link>
+
+      {/* ── Cinematic case header ─────────────────────────────────────── */}
+      <header className="scene-reveal scene-grain scene-vignette relative overflow-hidden rounded-[28px] border border-[#fff9ef]/10 sm:rounded-[36px]">
+        <div className="relative min-h-[340px] sm:min-h-[420px]">
+          {history.coverImageUrl ? (
+            <Image
+              src={history.coverImageUrl}
+              alt={history.title}
+              fill
+              priority
+              className="scale-105 object-cover"
+              sizes="(min-width: 1024px) 900px, 100vw"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] via-[#160a08] to-[#6e3d15]" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#120406] via-[#120406]/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#120406]/80 via-transparent to-transparent" />
+
+          <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-6 sm:p-10">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span
+                className={cn(
+                  'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold tracking-[0.14em] uppercase backdrop-blur',
+                  isSolved
+                    ? 'border-success/50 bg-success/15 text-[#b9e4c5]'
+                    : 'border-gold/40 text-gold bg-black/35'
+                )}
+              >
+                {isSolved ? (
+                  <CheckCircle2 className="size-3.5" />
+                ) : (
+                  <span className="scene-glow-breathe bg-gold size-1.5 rounded-full" />
+                )}
+                {isSolved ? t('statusSolved') : t('statusActive')}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#fff9ef]/15 bg-black/30 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-[#fff9ef]/80 uppercase backdrop-blur">
+                <Search className="size-3.5" />
+                {tGenre(history.genre)}
+              </span>
+            </div>
+
+            <h1 className="font-heading max-w-2xl text-4xl leading-[0.98] font-semibold tracking-tight text-[#fff9ef] drop-shadow-sm sm:text-6xl">
               {history.title}
             </h1>
-            <p className="text-sm font-medium text-[#fff9ef]/60">
-              {tGenre(history.genre)}
-            </p>
+            {history.subtitle && (
+              <p className="max-w-xl text-sm leading-relaxed text-[#fff9ef]/70 sm:text-base">
+                {history.subtitle}
+              </p>
+            )}
           </div>
-          <BookOpen className="text-gold mt-1 size-7 shrink-0" />
         </div>
       </header>
 
-      <p className="text-lg leading-8 text-[#fff9ef]/75 italic">
+      {/* ── Progress bar (under the banner) ───────────────────────────── */}
+      <ProgressBar
+        pct={progressPct}
+        foundClues={foundClues}
+        cluesTotal={cluesTotal}
+        questionedCount={questionedCount}
+        exploredCount={exploredCount}
+        cluesLabel={t('cluesUnit')}
+        progressLabel={t('progress')}
+      />
+
+      {/* ── Briefing (compact) ────────────────────────────────────────── */}
+      <p
+        className="scene-reveal text-sm leading-6 text-[#fff9ef]/60 italic"
+        style={{ animationDelay: '120ms' }}
+      >
         {history.opening}
       </p>
 
-      <section className="border-gold/25 rounded-3xl border bg-[#fff9ef]/[0.04] p-6">
-        <h2 className="text-gold mb-2 inline-flex items-center gap-2 text-sm font-bold tracking-[0.1em] uppercase">
-          <Target className="size-4" />
-          {t('objective')}
-        </h2>
-        <p className="leading-7 text-[#fff9ef]/85">{history.objective}</p>
+      {/* ── Objective ─────────────────────────────────────────────────── */}
+      <section
+        className="scene-reveal border-gold/30 relative overflow-hidden rounded-3xl border bg-gradient-to-br from-[#4a111b]/60 to-[#120406]/30 p-6 sm:p-7"
+        style={{ animationDelay: '140ms' }}
+      >
+        <div className="flex items-start gap-4">
+          <div className="border-gold/40 text-gold grid size-11 shrink-0 place-items-center rounded-2xl border bg-black/25">
+            <Target className="size-5" />
+          </div>
+          <div>
+            <h2 className="text-gold text-xs font-bold tracking-[0.16em] uppercase">
+              {t('objective')}
+            </h2>
+            <p className="mt-1.5 leading-7 text-[#fff9ef]/90">
+              {history.objective}
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section className="flex flex-col gap-3">
-        <div className="flex items-baseline justify-between gap-4">
-          <h2 className="font-heading text-xl font-semibold tracking-tight">
-            {t('progress')}
+      {/* ── Investigation board ───────────────────────────────────────── */}
+      <section
+        className="scene-reveal flex flex-col gap-6"
+        style={{ animationDelay: '200ms' }}
+      >
+        <div className="flex flex-col gap-1">
+          <h2 className="font-heading inline-flex items-center gap-2.5 text-2xl font-semibold tracking-tight sm:text-3xl">
+            <Compass className="text-gold size-6" />
+            {t('leadsHeading')}
           </h2>
-          <span className="text-sm font-medium text-[#fff9ef]/60">
-            {t('cluesFound', { found: foundClues, total: cluesTotal })}
-          </span>
+          <p className="text-sm text-[#fff9ef]/55">{t('leadsSubtitle')}</p>
         </div>
-        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#fff9ef]/10">
-          <div
-            className="bg-gold h-full rounded-full transition-all"
-            style={{ width: `${progressPct}%` }}
-          />
-        </div>
+
+        {locations.length > 0 && (
+          <BoardGroup
+            icon={MapPin}
+            title={t('places')}
+            count={locations.length}
+          >
+            {locations.map((location) => (
+              <LeadCard
+                key={location.id}
+                name={location.name}
+                description={location.shortDescription}
+                imageUrl={location.imageUrl}
+                cluesLabel={t('cluesHere', {
+                  count: location.discoveredClues.length,
+                })}
+                done={location.visited}
+                doneLabel={t('visited')}
+                pendingLabel={t('notVisited')}
+                ctaLabel={t('tapToInvestigate')}
+                accent="emerald"
+                onClick={() => setTarget({ kind: 'location', data: location })}
+              />
+            ))}
+          </BoardGroup>
+        )}
+
+        {characters.length > 0 && (
+          <BoardGroup
+            icon={Users}
+            title={t('people')}
+            count={characters.length}
+          >
+            {characters.map((character) => (
+              <LeadCard
+                key={character.id}
+                name={character.name}
+                meta={character.role}
+                description={character.shortDescription}
+                imageUrl={character.imageUrl}
+                cluesLabel={t('cluesHere', {
+                  count: character.discoveredClues.length,
+                })}
+                done={character.messages.length > 0}
+                doneLabel={t('questioned')}
+                pendingLabel={t('notQuestioned')}
+                ctaLabel={t('tapToQuestion')}
+                accent="rose"
+                portrait
+                onClick={() =>
+                  setTarget({ kind: 'character', data: character })
+                }
+              />
+            ))}
+          </BoardGroup>
+        )}
       </section>
 
-      {characters.length > 0 && (
-        <EntitySection
-          icon={Users}
-          title={t('people')}
-          items={characters.map((c) => ({
-            id: c.id,
-            name: c.name,
-            meta: c.role,
-            description: c.shortDescription,
-            imageUrl: c.imageUrl,
-          }))}
-        />
-      )}
+      {/* ── Evidence collected ────────────────────────────────────────── */}
+      <section
+        className="scene-reveal flex flex-col gap-4"
+        style={{ animationDelay: '260ms' }}
+      >
+        <h2 className="font-heading inline-flex items-center gap-2.5 text-2xl font-semibold tracking-tight sm:text-3xl">
+          <KeyRound className="text-gold size-6" />
+          {t('evidenceHeading')}
+          {foundClues > 0 && (
+            <span className="text-gold/90 bg-gold/10 ring-gold/20 rounded-full px-2.5 py-0.5 text-sm font-bold ring-1">
+              {foundClues}
+            </span>
+          )}
+        </h2>
 
-      {locations.length > 0 && (
-        <EntitySection
-          icon={MapPin}
-          title={t('places')}
-          items={locations.map((l) => ({
-            id: l.id,
-            name: l.name,
-            description: l.shortDescription,
-            imageUrl: l.imageUrl,
-          }))}
-        />
-      )}
+        {clues.length === 0 ? (
+          <div className="rounded-3xl border border-dashed border-[#fff9ef]/15 bg-[#fff9ef]/[0.02] px-6 py-10 text-center">
+            <Sparkles className="mx-auto size-7 text-[#fff9ef]/30" />
+            <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-[#fff9ef]/50">
+              {t('evidenceEmpty')}
+            </p>
+          </div>
+        ) : (
+          <div className="grid gap-3 sm:grid-cols-2">
+            {clues.map((clue) => (
+              <article
+                key={clue.id}
+                className="group border-clue-border/30 relative overflow-hidden rounded-2xl border bg-[#fff4d8]/[0.05] p-4"
+              >
+                <div className="bg-gold absolute top-0 left-0 h-full w-1" />
+                <h3 className="font-heading pl-2 text-lg font-semibold tracking-tight text-[#fff9ef]">
+                  {clue.title}
+                </h3>
+                <p className="mt-1 pl-2 text-sm leading-6 text-[#fff9ef]/65">
+                  {clue.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
 
-      <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+      {/* ── Actions ───────────────────────────────────────────────────── */}
+      <div
+        className="scene-reveal sticky bottom-4 z-10 flex flex-col gap-3 rounded-3xl border border-[#fff9ef]/10 bg-[#1b070b]/80 p-3 backdrop-blur-xl sm:flex-row"
+        style={{ animationDelay: '320ms' }}
+      >
         <button
-          className="border-gold/40 text-gold inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-2xl border px-6 py-4 text-sm font-bold transition hover:bg-[#fff9ef]/[0.04]"
+          className="inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-2xl border border-[#fff9ef]/15 px-6 py-4 text-sm font-bold text-[#fff9ef]/85 transition hover:bg-[#fff9ef]/[0.06]"
           type="button"
         >
+          <KeyRound className="size-4" />
           {t('viewClues')}
         </button>
         <button
-          className="inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-6 py-4 text-sm font-bold text-[#4a111b] transition hover:scale-[1.01]"
+          className="shadow-button scene-shimmer text-gold-foreground inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-6 py-4 text-sm font-bold transition hover:scale-[1.01]"
           type="button"
         >
+          <Gavel className="size-4" />
           {t('solveCase')}
         </button>
       </div>
+
+      <InvestigationPanel target={target} onClose={() => setTarget(null)} />
     </div>
   );
 }
 
-interface EntitySectionItem {
-  id: string;
-  name: string;
-  meta?: string;
-  description: string;
-  imageUrl?: string | null;
-}
+/* ───────────────────────────────────────────────────────────────────────── */
 
-function EntitySection({
-  icon: Icon,
-  title,
-  items,
+function ProgressBar({
+  pct,
+  foundClues,
+  cluesTotal,
+  questionedCount,
+  exploredCount,
+  cluesLabel,
+  progressLabel,
 }: {
-  icon: typeof Users;
-  title: string;
-  items: EntitySectionItem[];
+  pct: number;
+  foundClues: number;
+  cluesTotal: number;
+  questionedCount: number;
+  exploredCount: number;
+  cluesLabel: string;
+  progressLabel: string;
 }) {
   return (
-    <section className="flex flex-col gap-4">
-      <h2 className="font-heading inline-flex items-center gap-2 text-xl font-semibold tracking-tight text-[#fff9ef]">
-        <Icon className="text-gold size-5" />
-        {title}
-      </h2>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {items.map((item) => (
-          <article
-            className="flex gap-4 rounded-2xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04] p-4"
-            key={item.id}
-          >
-            {item.imageUrl && (
-              <Image
-                alt={item.name}
-                src={item.imageUrl}
-                width={72}
-                height={72}
-                className="size-18 shrink-0 rounded-xl border border-[#fff9ef]/10 object-cover"
-              />
-            )}
-            <div className="min-w-0">
-              <h3 className="font-heading text-lg font-semibold tracking-tight">
-                {item.name}
-              </h3>
-              {item.meta && (
-                <p className="text-gold mt-0.5 text-xs font-semibold tracking-wide uppercase">
-                  {item.meta}
-                </p>
-              )}
-              <p className="mt-1.5 text-sm leading-6 text-[#fff9ef]/65">
-                {item.description}
-              </p>
-            </div>
-          </article>
-        ))}
+    <section
+      className="scene-reveal -mt-4 flex flex-col gap-3 rounded-3xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04] px-5 py-4 sm:px-7 sm:py-5"
+      style={{ animationDelay: '60ms' }}
+    >
+      <div className="flex items-end justify-between gap-4">
+        <div className="flex items-baseline gap-2.5">
+          <span className="font-heading text-gold text-3xl leading-none font-semibold sm:text-4xl">
+            {pct}%
+          </span>
+          <span className="text-[11px] font-bold tracking-[0.14em] text-[#fff9ef]/45 uppercase">
+            {progressLabel}
+          </span>
+        </div>
+        <div className="flex items-center gap-4 text-sm sm:gap-5">
+          <Stat
+            icon={KeyRound}
+            value={`${foundClues}/${cluesTotal}`}
+            label={cluesLabel}
+          />
+          <span className="hidden items-center sm:inline-flex">
+            <Stat icon={MessageCircle} value={questionedCount} label="" />
+          </span>
+          <span className="hidden items-center sm:inline-flex">
+            <Stat icon={Compass} value={exploredCount} label="" />
+          </span>
+        </div>
+      </div>
+
+      <div className="relative h-2 w-full overflow-hidden rounded-full bg-[#fff9ef]/10">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-[#c49a4a] to-[#f4d78f] transition-[width] duration-1000 ease-out"
+          style={{ width: `${pct}%` }}
+        />
       </div>
     </section>
   );
 }
+
+function Stat({
+  icon: Icon,
+  value,
+  label,
+}: {
+  icon: typeof KeyRound;
+  value: number | string;
+  label: string;
+}) {
+  return (
+    <span className="inline-flex items-center gap-1.5 text-[#fff9ef]/70">
+      <Icon className="text-gold size-4" />
+      <span className="font-semibold text-[#fff9ef]">{value}</span>
+      {label && <span className="text-[#fff9ef]/55">{label}</span>}
+    </span>
+  );
+}
+
+function BoardGroup({
+  icon: Icon,
+  title,
+  count,
+  children,
+}: {
+  icon: typeof Users;
+  title: string;
+  count: number;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-3.5">
+      <h3 className="inline-flex items-center gap-2 text-sm font-bold tracking-[0.12em] text-[#fff9ef]/60 uppercase">
+        <Icon className="text-gold size-4" />
+        {title}
+        <span className="text-[#fff9ef]/35">· {count}</span>
+      </h3>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{children}</div>
+    </div>
+  );
+}
+
+const ACCENT_RING: Record<string, string> = {
+  emerald: 'group-hover:border-success/50',
+  amber: 'group-hover:border-gold/50',
+  rose: 'group-hover:border-[#e88a96]/50',
+};
+
+function LeadCard({
+  name,
+  meta,
+  description,
+  imageUrl,
+  cluesLabel,
+  done,
+  doneLabel,
+  pendingLabel,
+  ctaLabel,
+  accent,
+  portrait,
+  onClick,
+}: {
+  name: string;
+  meta?: string;
+  description: string;
+  imageUrl?: string | null;
+  cluesLabel: string;
+  done: boolean;
+  doneLabel: string;
+  pendingLabel: string;
+  ctaLabel: string;
+  accent: 'emerald' | 'amber' | 'rose';
+  portrait?: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        'group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] text-left transition duration-300 hover:-translate-y-1 hover:bg-[#fff9ef]/[0.06]',
+        ACCENT_RING[accent]
+      )}
+    >
+      <div
+        className={cn(
+          'relative w-full overflow-hidden',
+          portrait ? 'aspect-[4/3]' : 'aspect-video'
+        )}
+      >
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={name}
+            fill
+            className="object-cover transition duration-500 group-hover:scale-105"
+            sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 100vw"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] to-[#160a08]" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120406] via-[#120406]/20 to-transparent" />
+
+        <span
+          className={cn(
+            'absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase backdrop-blur',
+            done
+              ? 'bg-success/25 text-[#b9e4c5] ring-1 ring-[#b9e4c5]/30'
+              : 'bg-black/40 text-[#fff9ef]/70 ring-1 ring-[#fff9ef]/15'
+          )}
+        >
+          {done && <CheckCircle2 className="size-3" />}
+          {done ? doneLabel : pendingLabel}
+        </span>
+      </div>
+
+      <div className="flex flex-1 flex-col gap-1.5 p-4">
+        <h4 className="font-heading text-lg leading-tight font-semibold tracking-tight text-[#fff9ef]">
+          {name}
+        </h4>
+        {meta && (
+          <p className="text-gold text-[11px] font-semibold tracking-wide uppercase">
+            {meta}
+          </p>
+        )}
+        <p className="line-clamp-2 text-sm leading-6 text-[#fff9ef]/60">
+          {description}
+        </p>
+        <div className="mt-auto flex items-center justify-between gap-2 pt-2.5">
+          <span className="text-gold/80 text-xs font-medium">{cluesLabel}</span>
+          <span className="text-[11px] font-bold text-[#fff9ef]/0 transition group-hover:text-[#fff9ef]/80">
+            {ctaLabel} →
+          </span>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+export type { SessionCharacter, SessionLocation, SessionObject };

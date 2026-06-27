@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 vi.mock('next/image', () => ({
   default: ({ alt, src }: { alt: string; src: string }) => (
@@ -19,7 +20,7 @@ const session: SessionState = {
   history: {
     id: 'history-1',
     title: 'O Bilhete na Mesa 7',
-    subtitle: null,
+    subtitle: 'Um bilhete sem assinatura',
     teaser: 'teaser',
     opening: 'Uma chuva leve batia nos vidros do Café Aurora.',
     objective: 'Descobrir quem deixou o bilhete.',
@@ -50,7 +51,20 @@ const session: SessionState = {
       messages: [],
     },
   ],
-  objects: [],
+  objects: [
+    {
+      id: 'obj-1',
+      name: 'Guardanapo',
+      shortDescription: 'Um guardanapo amassado.',
+      imageUrl: null,
+      initialDescription: 'Está sobre a mesa.',
+      inspected: false,
+      inspectedAt: null,
+      cluesTotal: 1,
+      discoveredClues: [],
+      messages: [],
+    },
+  ],
   locations: [
     {
       id: 'loc-1',
@@ -82,20 +96,33 @@ describe('SessionHub', () => {
   it('renders the clue progress', () => {
     renderWithProviders(<SessionHub session={session} />);
 
-    expect(screen.getByText('1 de 4 pistas encontradas')).toBeInTheDocument();
+    expect(screen.getByText('1/4')).toBeInTheDocument();
   });
 
-  it('renders people and places sections', () => {
+  it('renders the investigation board entities', () => {
     renderWithProviders(<SessionHub session={session} />);
 
-    expect(screen.getByText('Pessoas')).toBeInTheDocument();
+    expect(screen.getByText('Suspeitos e testemunhas')).toBeInTheDocument();
     expect(screen.getByText('Elisa')).toBeInTheDocument();
     expect(screen.getByText('Dona do café')).toBeInTheDocument();
-    expect(screen.getByText('Lugares')).toBeInTheDocument();
+    expect(screen.getByText('Locais')).toBeInTheDocument();
     expect(screen.getByText('Mesa 7')).toBeInTheDocument();
   });
 
-  it('renders character images when available', () => {
+  it('does not list objects on the hub', () => {
+    renderWithProviders(<SessionHub session={session} />);
+
+    expect(screen.queryByText('Evidências no local')).not.toBeInTheDocument();
+    expect(screen.queryByText('Guardanapo')).not.toBeInTheDocument();
+  });
+
+  it('renders collected evidence', () => {
+    renderWithProviders(<SessionHub session={session} />);
+
+    expect(screen.getByText('Tinta azul')).toBeInTheDocument();
+  });
+
+  it('renders entity images when available', () => {
     const withImage: SessionState = {
       ...session,
       characters: [
@@ -112,5 +139,18 @@ describe('SessionHub', () => {
       'data-src',
       'https://example.com/elisa.png'
     );
+  });
+
+  it('opens the investigation panel when a lead card is clicked', async () => {
+    const user = userEvent.setup();
+    renderWithProviders(<SessionHub session={session} />);
+
+    await user.click(screen.getByText('Elisa'));
+
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText('Interrogatório')).toBeInTheDocument();
+    expect(
+      screen.getAllByText('Cuidadosa com o ambiente.').length
+    ).toBeGreaterThan(0);
   });
 });

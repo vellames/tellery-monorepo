@@ -182,3 +182,119 @@
     @apply font-sans;
   }
 }
+
+/* ===========================================================================
+   Investigation scene — immersive play experience
+   =========================================================================== */
+
+@keyframes scene-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scene-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scene-seal-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(196, 154, 74, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(196, 154, 74, 0);
+  }
+}
+
+@keyframes scene-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes scene-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.scene-reveal {
+  opacity: 0;
+  animation: scene-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.scene-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.scene-vignette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 90% at 50% 0%,
+    transparent 38%,
+    rgba(18, 4, 6, 0.55) 100%
+  );
+}
+
+.scene-seal-pulse {
+  animation: scene-seal-pulse 2.6s ease-out infinite;
+}
+
+.scene-glow-breathe {
+  animation: scene-glow-breathe 4s ease-in-out infinite;
+}
+
+.scene-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 249, 239, 0.18),
+    transparent
+  );
+  animation: scene-shimmer 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-reveal,
+  .scene-seal-pulse,
+  .scene-glow-breathe,
+  .scene-shimmer::after {
+    animation: none;
+  }
+  .scene-reveal {
+    opacity: 1;
+  }
+}
