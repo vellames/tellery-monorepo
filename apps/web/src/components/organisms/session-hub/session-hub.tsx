@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import {
   ArrowLeft,
@@ -104,13 +103,11 @@ export function SessionHub({ session }: SessionHubProps) {
       <header className="scene-reveal scene-grain scene-vignette relative overflow-hidden rounded-[28px] border border-[#fff9ef]/10 sm:rounded-[36px]">
         <div className="relative min-h-[340px] sm:min-h-[420px]">
           {history.coverImageUrl ? (
-            <Image
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
               src={history.coverImageUrl}
               alt={history.title}
-              fill
-              priority
-              className="scale-105 object-cover"
-              sizes="(min-width: 1024px) 900px, 100vw"
+              className="absolute inset-0 h-full w-full scale-105 object-cover"
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] via-[#160a08] to-[#6e3d15]" />
@@ -551,12 +548,11 @@ function LeadCard({
         )}
       >
         {imageUrl ? (
-          <Image
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
             src={imageUrl}
             alt={name}
-            fill
-            className="object-cover transition duration-500 group-hover:scale-105"
-            sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 100vw"
+            className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] to-[#160a08]" />

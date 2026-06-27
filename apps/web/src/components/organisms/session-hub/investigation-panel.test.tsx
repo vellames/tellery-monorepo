@@ -2,10 +2,6 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-vi.mock('next/image', () => ({
-  default: ({ alt }: { alt: string }) => <div role="img" aria-label={alt} />,
-}));
-
 import {
   InvestigationPanel,
   type InvestigationTarget,

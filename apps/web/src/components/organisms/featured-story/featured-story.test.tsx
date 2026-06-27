@@ -1,10 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-vi.mock('next/image', () => ({
-  default: ({ alt }: { alt: string }) => <div role="img" aria-label={alt} />,
-}));
 
 import { FeaturedStory } from '@/components/organisms/featured-story/featured-story';
 import { renderWithProviders } from '@/test-utils';

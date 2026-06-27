@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -39,13 +38,11 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
         {/* Right: cover image (renders first in DOM for layering on the left fade) */}
         <div className="relative order-1 min-h-[220px] lg:order-2 lg:col-span-3 lg:min-h-full">
           {story.coverImageUrl ? (
-            <Image
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
               src={story.coverImageUrl}
               alt={story.title}
-              fill
-              priority
-              className="object-cover"
-              sizes="(min-width: 1024px) 60vw, 100vw"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] via-[#160a08] to-[#6e3d15]" />

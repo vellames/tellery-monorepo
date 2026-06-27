@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { User } from '@/lib/types/auth';
@@ -15,12 +14,12 @@ export function AppHeader({ user }: AppHeaderProps) {
   return (
     <header className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-3">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/logo.png"
           alt="Tellery"
           width={178}
           height={72}
-          priority
           className="h-auto w-36 sm:w-44"
         />
         <div className="border-border hidden border-l pl-3 sm:block">

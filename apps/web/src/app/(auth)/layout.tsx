@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { LanguageSwitcher } from '@/components/molecules';
@@ -14,24 +13,20 @@ export default async function AuthLayout({
   return (
     <div className="flex min-h-svh flex-col lg:grid lg:grid-cols-2">
       <div className="relative h-44 shrink-0 lg:hidden">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/auth-cover.jpg"
           alt="Tellery"
-          fill
-          priority
-          className="object-cover"
-          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="h-full w-full object-cover"
         />
       </div>
 
       <div className="relative hidden bg-[linear-gradient(135deg,var(--primary)_0%,#3a1018_100%)] lg:block">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/auth-cover.jpg"
           alt="Tellery"
-          fill
-          priority
-          className="object-cover"
-          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
 
@@ -42,12 +37,12 @@ export default async function AuthLayout({
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-sm">
             <div className="mb-8 flex justify-center">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/logo.png"
                 alt="Tellery"
                 width={140}
                 height={56}
-                priority
                 className="dark:invert"
               />
             </div>

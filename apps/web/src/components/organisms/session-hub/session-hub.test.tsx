@@ -2,12 +2,6 @@ import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-vi.mock('next/image', () => ({
-  default: ({ alt, src }: { alt: string; src: string }) => (
-    <div role="img" aria-label={alt} data-src={src} />
-  ),
-}));
-
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ refresh: vi.fn() }),
 }));
@@ -140,8 +134,8 @@ describe('SessionHub', () => {
 
     renderWithProviders(<SessionHub session={withImage} />);
 
-    expect(screen.getByLabelText('Elisa')).toHaveAttribute(
-      'data-src',
+    expect(screen.getByAltText('Elisa')).toHaveAttribute(
+      'src',
       'https://example.com/elisa.png'
     );
   });

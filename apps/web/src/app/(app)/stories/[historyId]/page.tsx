@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Search, Target } from 'lucide-react';
 import { StatusCodes } from 'http-status-codes';
@@ -43,13 +42,11 @@ export default async function StoryStartPage({
 
       <section className="shadow-card relative aspect-[16/10] overflow-hidden rounded-[28px] bg-gradient-to-br from-stone-900 via-stone-700 to-zinc-500 sm:aspect-[2/1]">
         {history.coverImageUrl && (
-          <Image
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
             src={history.coverImageUrl}
             alt={history.title}
-            fill
-            priority
-            className="object-cover"
-            sizes="(min-width: 768px) 768px, 100vw"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />

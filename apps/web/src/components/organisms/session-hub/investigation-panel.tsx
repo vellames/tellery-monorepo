@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import {
   Fingerprint,
   KeyRound,
@@ -233,12 +232,11 @@ export function InvestigationPanel({
         {/* hero */}
         <div className="relative h-44 shrink-0 sm:h-52">
           {imageUrl ? (
-            <Image
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
               src={imageUrl}
               alt={name}
-              fill
-              className="object-cover"
-              sizes="640px"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] via-[#160a08] to-[#6e3d15]" />
@@ -351,13 +349,12 @@ export function InvestigationPanel({
                       className="group hover:border-gold/40 flex cursor-pointer items-center gap-3.5 rounded-xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] p-3 text-left transition hover:bg-[#fff9ef]/[0.06]"
                     >
                       {object.imageUrl ? (
-                        <div className="relative size-12 shrink-0 overflow-hidden rounded-lg">
-                          <Image
+                        <div className="size-12 shrink-0 overflow-hidden rounded-lg">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
                             src={object.imageUrl}
                             alt={object.name}
-                            fill
-                            className="object-cover"
-                            sizes="48px"
+                            className="h-full w-full object-cover"
                           />
                         </div>
                       ) : (

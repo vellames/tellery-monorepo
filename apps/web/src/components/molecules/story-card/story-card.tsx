@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Clock, Lock, MapPin, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -40,16 +39,11 @@ export function StoryCard({ history, featured = false }: StoryCardProps) {
       href={`/stories/${history.id}`}
     >
       {image && (
-        <Image
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
           src={image}
           alt={history.title}
-          fill
-          className="object-cover transition duration-500 group-hover:scale-105"
-          sizes={
-            featured
-              ? '(min-width: 768px) 50vw, 100vw'
-              : '(min-width: 768px) 33vw, 100vw'
-          }
+          className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />

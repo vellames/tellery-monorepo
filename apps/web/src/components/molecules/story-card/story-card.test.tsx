@@ -1,9 +1,5 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { screen } from '@testing-library/react';
-
-vi.mock('next/image', () => ({
-  default: ({ alt }: { alt: string }) => <div role="img" aria-label={alt} />,
-}));
 
 import { StoryCard } from '@/components/molecules/story-card/story-card';
 import { renderWithProviders } from '@/test-utils';
@@ -67,7 +63,7 @@ describe('StoryCard', () => {
   it('renders the thumbnail image when available', () => {
     renderWithProviders(<StoryCard history={premiumHistory} />);
 
-    expect(screen.getByLabelText('A Carta Sem Remetente')).toBeInTheDocument();
+    expect(screen.getByAltText('A Carta Sem Remetente')).toBeInTheDocument();
   });
 
   it('shows the featured badge when featured', () => {
