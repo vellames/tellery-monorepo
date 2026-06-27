@@ -56,6 +56,7 @@ export function SessionHub({ session }: SessionHubProps) {
     kind: InvestigationTargetKind;
     id: string;
   } | null>(null);
+  const [easyMode, setEasyMode] = useState(false);
 
   const target = useMemo<InvestigationTarget | null>(() => {
     if (!targetRef) return null;
@@ -116,6 +117,23 @@ export function SessionHub({ session }: SessionHubProps) {
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-[#120406] via-[#120406]/55 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#120406]/80 via-transparent to-transparent" />
+
+          <button
+            type="button"
+            onClick={() => setEasyMode((v) => !v)}
+            aria-pressed={easyMode}
+            aria-label={t('easyMode')}
+            title={t('easyMode')}
+            className={cn(
+              'absolute top-4 right-4 z-10 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-bold tracking-wide backdrop-blur transition',
+              easyMode
+                ? 'border-gold/50 bg-gold/20 text-gold'
+                : 'border-[#fff9ef]/15 bg-black/30 text-[#fff9ef]/60 hover:text-[#fff9ef]'
+            )}
+          >
+            <Sparkles className="size-3.5" />
+            {t('easyMode')}
+          </button>
 
           <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-6 sm:p-10">
             <div className="flex flex-wrap items-center gap-2.5">
@@ -210,25 +228,51 @@ export function SessionHub({ session }: SessionHubProps) {
             title={t('places')}
             count={locations.length}
           >
-            {locations.map((location) => (
-              <LeadCard
-                key={location.id}
-                name={location.name}
-                description={location.shortDescription}
-                imageUrl={location.imageUrl}
-                cluesLabel={t('cluesHere', {
-                  count: location.discoveredClues.length,
-                })}
-                done={location.visited}
-                doneLabel={t('visited')}
-                pendingLabel={t('notVisited')}
-                ctaLabel={t('tapToInvestigate')}
-                accent="emerald"
-                onClick={() =>
-                  setTargetRef({ kind: 'location', id: location.id })
-                }
-              />
-            ))}
+            {locations.map((location) => {
+              const locationObjects = objects.filter(
+                (o) => o.locationId === location.id
+              );
+              const effectiveCluesTotal =
+                location.cluesTotal +
+                locationObjects.reduce((sum, o) => sum + o.cluesTotal, 0);
+              const effectiveCluesFound =
+                location.discoveredClues.length +
+                locationObjects.reduce(
+                  (sum, o) => sum + o.discoveredClues.length,
+                  0
+                );
+              return (
+                <LeadCard
+                  key={location.id}
+                  name={location.name}
+                  description={location.shortDescription}
+                  imageUrl={location.imageUrl}
+                  cluesLabel={
+                    effectiveCluesTotal === 0
+                      ? t('noCluesAvailable')
+                      : easyMode
+                        ? t('cluesHereEasy', {
+                            found: effectiveCluesFound,
+                            total: effectiveCluesTotal,
+                          })
+                        : t('cluesHere', {
+                            count: effectiveCluesFound,
+                          })
+                  }
+                  easyMode={easyMode}
+                  cluesFound={effectiveCluesFound}
+                  cluesTotal={effectiveCluesTotal}
+                  done={location.visited}
+                  doneLabel={t('visited')}
+                  pendingLabel={t('notVisited')}
+                  ctaLabel={t('tapToInvestigate')}
+                  accent="emerald"
+                  onClick={() =>
+                    setTargetRef({ kind: 'location', id: location.id })
+                  }
+                />
+              );
+            })}
           </BoardGroup>
         )}
 
@@ -245,9 +289,21 @@ export function SessionHub({ session }: SessionHubProps) {
                 meta={character.role}
                 description={character.shortDescription}
                 imageUrl={character.imageUrl}
-                cluesLabel={t('cluesHere', {
-                  count: character.discoveredClues.length,
-                })}
+                cluesLabel={
+                  character.cluesTotal === 0
+                    ? t('noCluesAvailable')
+                    : easyMode
+                      ? t('cluesHereEasy', {
+                          found: character.discoveredClues.length,
+                          total: character.cluesTotal,
+                        })
+                      : t('cluesHere', {
+                          count: character.discoveredClues.length,
+                        })
+                }
+                easyMode={easyMode}
+                cluesFound={character.discoveredClues.length}
+                cluesTotal={character.cluesTotal}
                 done={character.messages.length > 0}
                 doneLabel={t('questioned')}
                 pendingLabel={t('notQuestioned')}
@@ -330,6 +386,7 @@ export function SessionHub({ session }: SessionHubProps) {
         sessionId={sessionId}
         target={target}
         objects={objects}
+        easyMode={easyMode}
         onSelectObject={(object) =>
           setTargetRef({ kind: 'object', id: object.id })
         }
@@ -451,6 +508,9 @@ function LeadCard({
   description,
   imageUrl,
   cluesLabel,
+  easyMode,
+  cluesFound,
+  cluesTotal,
   done,
   doneLabel,
   pendingLabel,
@@ -464,6 +524,9 @@ function LeadCard({
   description: string;
   imageUrl?: string | null;
   cluesLabel: string;
+  easyMode: boolean;
+  cluesFound: number;
+  cluesTotal: number;
   done: boolean;
   doneLabel: string;
   pendingLabel: string;
@@ -525,11 +588,25 @@ function LeadCard({
         <p className="line-clamp-2 text-sm leading-6 text-[#fff9ef]/60">
           {description}
         </p>
-        <div className="mt-auto flex items-center justify-between gap-2 pt-2.5">
-          <span className="text-gold/80 text-xs font-medium">{cluesLabel}</span>
-          <span className="text-[11px] font-bold text-[#fff9ef]/0 transition group-hover:text-[#fff9ef]/80">
-            {ctaLabel} →
-          </span>
+        <div className="mt-auto flex flex-col gap-2 pt-2.5">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-gold/80 text-xs font-medium">
+              {cluesLabel}
+            </span>
+            <span className="text-[11px] font-bold text-[#fff9ef]/0 transition group-hover:text-[#fff9ef]/80">
+              {ctaLabel} →
+            </span>
+          </div>
+          {easyMode && cluesTotal > 0 && (
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#fff9ef]/10">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#c49a4a] to-[#f4d78f] transition-[width] duration-700"
+                style={{
+                  width: `${Math.round((cluesFound / cluesTotal) * 100)}%`,
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </button>

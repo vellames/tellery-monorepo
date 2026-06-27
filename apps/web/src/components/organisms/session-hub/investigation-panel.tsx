@@ -43,6 +43,7 @@ export interface InvestigationPanelProps {
   sessionId: string;
   target: InvestigationTarget | null;
   objects: SessionObject[];
+  easyMode: boolean;
   onSelectObject: (object: SessionObject) => void;
   onInteracted: () => void;
   onClose: () => void;
@@ -52,6 +53,7 @@ export function InvestigationPanel({
   sessionId,
   target,
   objects,
+  easyMode,
   onSelectObject,
   onInteracted,
   onClose,
@@ -252,18 +254,29 @@ export function InvestigationPanel({
             <X className="size-4" />
           </button>
 
-          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-            <span className="text-gold mb-1.5 inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.14em] uppercase">
-              <Icon className="size-3.5" />
-              {tp(meta.labelKey)}
-            </span>
-            <h2 className="font-heading text-2xl font-semibold tracking-tight text-[#fff9ef] sm:text-3xl">
-              {name}
-            </h2>
-            {role && (
-              <p className="text-gold/90 text-xs font-semibold tracking-wide uppercase">
-                {role}
-              </p>
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 sm:p-6">
+            <div className="min-w-0">
+              <span className="text-gold mb-1.5 inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.14em] uppercase">
+                <Icon className="size-3.5" />
+                {tp(meta.labelKey)}
+              </span>
+              <h2 className="font-heading text-2xl font-semibold tracking-tight text-[#fff9ef] sm:text-3xl">
+                {name}
+              </h2>
+              {role && (
+                <p className="text-gold/90 text-xs font-semibold tracking-wide uppercase">
+                  {role}
+                </p>
+              )}
+            </div>
+            {serverClues.length > 0 && (
+              <CluePill
+                found={serverClues.length}
+                total={target.data.cluesTotal}
+                easyMode={easyMode}
+                clues={serverClues}
+                label={tp('cluesFoundHere')}
+              />
             )}
           </div>
         </div>
@@ -318,29 +331,6 @@ export function InvestigationPanel({
             <p className="text-center text-sm text-[#e57373]">{error}</p>
           )}
 
-          {serverClues.length > 0 && (
-            <div className="flex flex-col gap-2.5">
-              <h3 className="text-gold inline-flex items-center gap-2 text-xs font-bold tracking-[0.12em] uppercase">
-                <KeyRound className="size-3.5" />
-                {tp('cluesFoundHere')}
-              </h3>
-              {serverClues.map((clue) => (
-                <div
-                  key={clue.id}
-                  className="border-clue-border/25 relative overflow-hidden rounded-xl border bg-[#fff4d8]/[0.05] p-3.5 pl-4"
-                >
-                  <div className="bg-gold absolute top-0 left-0 h-full w-1" />
-                  <h4 className="font-heading text-base font-semibold text-[#fff9ef]">
-                    {clue.title}
-                  </h4>
-                  <p className="mt-0.5 text-sm leading-6 text-[#fff9ef]/65">
-                    {clue.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
-
           {kind === 'location' && (
             <div className="flex flex-col gap-3">
               <h3 className="text-gold inline-flex items-center gap-2 text-xs font-bold tracking-[0.12em] uppercase">
@@ -382,6 +372,19 @@ export function InvestigationPanel({
                         <p className="line-clamp-1 text-xs text-[#fff9ef]/55">
                           {object.shortDescription}
                         </p>
+                        {easyMode &&
+                          (object.cluesTotal === 0 ? (
+                            <p className="mt-0.5 text-[11px] font-medium text-[#fff9ef]/35">
+                              {t('noCluesAvailable')}
+                            </p>
+                          ) : (
+                            <p className="text-gold/80 mt-0.5 text-[11px] font-semibold">
+                              {t('cluesHereEasy', {
+                                found: object.discoveredClues.length,
+                                total: object.cluesTotal,
+                              })}
+                            </p>
+                          ))}
                       </div>
                       <span
                         className={cn(
@@ -506,6 +509,69 @@ function ClueDiscoveryOverlay({
         >
           {continueLabel}
         </button>
+      </div>
+    </div>
+  );
+}
+
+function CluePill({
+  found,
+  total,
+  easyMode,
+  clues,
+  label,
+}: {
+  found: number;
+  total: number;
+  easyMode: boolean;
+  clues: SessionClue[];
+  label: string;
+}) {
+  const pct = total > 0 ? Math.round((found / total) * 100) : 0;
+
+  return (
+    <div className="group/pill relative shrink-0">
+      <div className="flex items-center gap-2 rounded-full border border-[#fff9ef]/15 bg-black/40 px-3 py-1.5 backdrop-blur">
+        <KeyRound className="text-gold size-3.5" />
+        {easyMode ? (
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-bold text-[#fff9ef]/80">
+              {found}/{total}
+            </span>
+            <div className="h-1.5 w-12 overflow-hidden rounded-full bg-[#fff9ef]/15">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#c49a4a] to-[#f4d78f]"
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+          </div>
+        ) : (
+          <span className="text-[11px] font-bold text-[#fff9ef]/80">
+            {found}
+          </span>
+        )}
+      </div>
+
+      <div className="pointer-events-none absolute top-full right-0 z-20 mt-2 w-64 origin-top-right translate-y-1 opacity-0 transition-all duration-200 group-hover/pill:pointer-events-auto group-hover/pill:translate-y-0 group-hover/pill:opacity-100">
+        <div className="flex flex-col gap-2 rounded-2xl border border-[#fff9ef]/12 bg-[#0a0203]/95 p-3 shadow-2xl backdrop-blur">
+          <span className="text-gold text-[10px] font-bold tracking-[0.12em] uppercase">
+            {label}
+          </span>
+          {clues.map((clue) => (
+            <div
+              key={clue.id}
+              className="border-clue-border/20 relative overflow-hidden rounded-lg border bg-[#fff4d8]/[0.05] p-2.5 pl-3.5"
+            >
+              <div className="bg-gold absolute top-0 left-0 h-full w-1" />
+              <h4 className="text-sm font-semibold text-[#fff9ef]">
+                {clue.title}
+              </h4>
+              <p className="mt-0.5 text-xs leading-5 text-[#fff9ef]/60">
+                {clue.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
