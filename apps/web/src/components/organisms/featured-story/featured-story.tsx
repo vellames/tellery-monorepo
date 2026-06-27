@@ -54,7 +54,7 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
         </div>
 
         {/* Left: maroon text panel */}
-        <div className="relative z-10 order-2 flex flex-col justify-center p-7 sm:p-12 lg:order-1 lg:col-span-2">
+        <div className="relative z-10 order-2 flex flex-col justify-center p-7 sm:p-12 lg:order-1 lg:col-span-2 lg:pl-20">
           <div>
             <div className="border-gold/40 text-gold mb-6 inline-flex items-center gap-2 rounded-xl border bg-black/20 px-4 py-2 text-[11px] font-bold tracking-[0.12em] uppercase sm:text-xs">
               <Star className="fill-gold size-3.5" />
