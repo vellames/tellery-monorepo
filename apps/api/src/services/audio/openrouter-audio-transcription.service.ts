@@ -1,5 +1,6 @@
 import { appConfig } from '../../config/app.config';
 import { IAudioTranscriptionService } from '../../interfaces';
+import FormData from 'form-data';
 
 interface OpenRouterTranscriptionResponse {
   text: string;
@@ -23,14 +24,12 @@ export class OpenRouterAudioTranscriptionService
     contentType: string;
     filename: string;
   }): Promise<{ text: string }> {
-    const formData = new FormData();
-    const uint8 = new Uint8Array(input.buffer);
-    formData.append(
-      'file',
-      new Blob([uint8], { type: input.contentType }),
-      input.filename
-    );
-    formData.append('model', this.model);
+    const form = new FormData();
+    form.append('file', input.buffer, {
+      filename: input.filename,
+      contentType: input.contentType,
+    });
+    form.append('model', this.model);
 
     console.log('[audio-transcription] sending to openrouter', {
       model: this.model,
@@ -38,12 +37,16 @@ export class OpenRouterAudioTranscriptionService
       contentType: input.contentType,
     });
 
+    const formHeaders = form.getHeaders();
+    const formBuffer = form.getBuffer();
+
     const res = await fetch(`${this.baseUrl}/audio/transcriptions`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${this.apiKey}`,
+        ...formHeaders,
       },
-      body: formData,
+      body: formBuffer,
     });
 
     if (!res.ok) {
