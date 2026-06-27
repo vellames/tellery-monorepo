@@ -1,0 +1,83 @@
+{
+  "master": {
+    "prompt": "Create an image for Tellery, a premium interactive storytelling app. The image belongs to the story “A Corda Partida”, an elegant Brazilian-inspired literary mystery set inside Conservatório Villa-Lobos, a prestigious music conservatory, on the morning of the National Young Musicians Competition after a priceless Stradivarius has been found deliberately cracked. Art direction: premium cinematic editorial illustration, semi-realistic digital painting, refined adult mystery, intimate literary atmosphere, sophisticated but calm, inquisitive rather than frightening, not scary, no gore, no police aesthetics. The visual tone should feel like an interactive short story or a prestige streaming mystery. Setting identity: Conservatório Villa-Lobos is an elegant music school with warm honey-amber walls, deep crimson velvet curtains, polished dark walnut wood, brass music stands, felt-lined instrument cabinets, and a refined cultural-institution mood. Color palette: warm honey #C8A846, amber gold #D4A843, deep crimson #7A1F2B, dark walnut #2E1A10, ivory cream #F2EBD8, pale spruce wood #E8DCC4, slate gray shadows #3A3A3D, warm spotlight glow #D9A84A. Lighting: warm directional spotlights and lamp light, cinematic low-light, soft golden highlights on brass and polished wood, deep but elegant crimson and walnut shadows. Style: refined, polished, modern, premium, adult, literary, cinematic, semi-realistic, soft depth of field, subtle film grain. Recurring motifs: violins, violin cases, sheet music stands, instrument cabinets, rosin, bows, felt-lined drawers. Avoid horror, gore, blood, weapons, police aesthetics, skulls, monsters, childish illustration, cartoon, anime, fantasy RPG, game UI, neon cyberpunk, text overlays, logos, watermarks."
+  },
+  "history": {
+    "cover": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a wide cinematic cover image for the interactive mystery story 'A Corda Partida'. Show the interior of a small rehearsal room at a music conservatory early in the morning. The main focus is an open violin case on a chair, empty, with a cracked Stradivarius lying on a felt-lined table nearby — the soundboard split lengthwise. Two identical black violin cases sit side by side. Brass sheet music stands with sharp metal edges catch the warm golden spotlight. The room has honey-amber walls, dark walnut floors, crimson felt panels, and warm lamps. Composition: wide horizontal hero-card framing. Place the cracked violin and cases slightly right of center. Leave darker negative space on the left for app title overlay. No people. Mood: refined, melancholic, quietly mysterious, literary."
+    },
+    "thumbnail": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a cinematic close-up thumbnail for 'A Corda Partida'. Show a cracked violin soundboard in sharp detail — a clean straight crack running lengthwise through the spruce wood, lit by a warm golden spotlight. The crack is the clear focal point. Composition: square close-up, shallow depth of field, high contrast between warm honey light and dark walnut shadows. Mood: refined, quiet, devastating, elegant."
+    }
+  },
+  "location": {
+    "sala_ensaio": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for 'Sala de ensaio' at the conservatory. Show a small soundproofed rehearsal room with gray felt walls, a dark walnut floor, brass sheet music stands with sharp metal corners, two chairs, and an open instrument cabinet. Two identical black violin cases sit on a chair. The room is warm but tense. Composition: the cabinet and cases are the focal point. Mood: quiet, suspicious, refined, investigative."
+    },
+    "oficina": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for 'Oficina do luthier' at the conservatory. Show a warm workshop smelling of varnish and wood, with benches covered in precision tools, wood shavings on the floor, and instruments in various stages of repair hanging on the walls. Everything is organized with obsessive care. A single warm lamp lights the workspace. Mood: orderly, focused, refined, quietly sacred."
+    },
+    "concerto": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for 'Salão de concerto' at the conservatory. Show a grand concert hall with high ceilings, crimson velvet seats, a pale wood stage, and a crystal chandelier still off. The silence of the empty hall weighs heavily. Composition: wide shot facing the stage. Mood: grand, quiet, expectant, melancholic."
+    }
+  },
+  "object": {
+    "stradivarius": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for the damaged Stradivarius. Show a beautiful antique violin lying on a felt-lined surface, its spruce soundboard cracked lengthwise with a clean, deliberate split. Warm golden light reveals the grain of the wood and the devastating crack. The violin is the clear focal point. Composition: close-up still life, instrument detail. Mood: intimate, devastating, important, quiet wrongness."
+    },
+    "violino_marina": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for Marina's personal violin. Show a fine but clearly inferior violin inside an open black case, intact and well-cared-for. Warm light reveals the difference in craftsmanship from the Stradivarius. Composition: square close-up. Mood: personal, cared-for, a contrast to the Strad."
+    },
+    "estojos": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for two identical black violin cases. Show two black violin cases side by side on a chair, identical in size, shape, and brand. It is impossible to tell from the outside which contains which violin. Warm spotlight falls across both. Composition: square close-up. Mood: quiet, suspicious, the key to the wrong-target twist."
+    },
+    "bilhete_ameaca": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for anonymous threat notes. Show three small folded papers with cut-out letters pasted on them, found among sheet music inside a violin case. The messages are short and aggressive. Warm lamp light falls across the papers. Composition: square close-up. Mood: quiet, invasive, threatening, a red herring of motive."
+    },
+    "ferramentas": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the luthier's tools. Show precision hand tools — gouges, chisels, spatulas — organized neatly on a workbench, all clean and in place. No sign of misuse. Warm workshop light reveals the cared-for metal. Composition: square close-up. Mood: orderly, professional, clears the luthier of suspicion."
+    }
+  },
+  "characters": {
+    "decio": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Décio, director of the conservatory. Décio is a Brazilian adult man in his mid-50s. He is institutional, calm, diplomatic, and protective of the conservatory's reputation. Appearance: refined cultural manager, neat graying hair, small glasses, a dark blazer with a collared shirt, a conservatory lapel pin. His expression is composed, concerned, and carefully diplomatic. Composition: vertical bust portrait, the conservatory interior softly blurred behind him with honey-amber walls and brass details. Mood: institutional concern, diplomatic calm, quiet pressure."
+    },
+    "marina": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Marina, the favorite competitor. Marina is a Brazilian young adult woman in her early 20s. She is disciplined, intense, perfectionist, and hides vulnerability behind impeccable technique. Appearance: focused young musician, hair tied back precisely, a simple dark rehearsal dress, a violin bow subtly visible nearby. Her expression is controlled, intense, and quietly devastated. Composition: vertical bust portrait, the rehearsal room softly blurred behind her. Mood: disciplined intensity, hidden vulnerability, the weight of being the favorite."
+    },
+    "aurora": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Aurora, the second-favorite competitor. Aurora is a Brazilian young adult woman in her mid-20s. She is contained, ambitious, wounded by years of always placing second, and hides anger behind politeness. Appearance: refined young musician, neat hair, a dark elegant practice outfit, guarded eyes. Her expression is composed with a faint edge of bitterness. Composition: vertical bust portrait, the conservatory softly blurred behind her. Mood: contained ambition, quiet resentment, elegant composure cracking at the edges."
+    },
+    "sergio": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Sérgio, the resident luthier. Sérgio is a Brazilian adult man in his early 50s. He is methodical, quiet, devoted to instruments as sacred, and sees everything in the corridors. Appearance: craftsman with weathered hands, neat short hair, a workshop apron over a simple shirt, small magnifying glasses pushed up on his forehead. His expression is calm, observant, and quietly hurt. Composition: vertical bust portrait, the workshop softly blurred behind him with warm light and wood shavings. Mood: quiet devotion, professional pride, wounded silence."
+    }
+  },
+  "endings": {
+    "full_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the full truth ending of 'A Corda Partida'. Show the rehearsal room at the conservatory after the mystery is resolved. The cracked Stradivarius is in the luthier's hands being carried to the workshop for repair. The two identical black violin cases sit open and empty, side by side, symbolizing the wrong-target mistake. The room is calmer, with warm amber light and soft crimson shadows. Composition: wide horizontal, no people in focus, focus on the cases and the violin being carried away. Mood: reflective, resolved, bittersweet, elegant, literary."
+    },
+    "partial_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the partial truth ending of 'A Corda Partida'. Show the rehearsal room with the cracked Stradivarius still on the table, the two identical black cases still side by side but the connection between them not fully understood. The room is warm but uncertain, with deeper shadows at the edges. Composition: wide horizontal, focus on the cracked violin and the cases. No characters. Mood: ambiguous, elegant, unresolved."
+    },
+    "wrong_accusation": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the wrong accusation ending of 'A Corda Partida'. Show the luthier's workshop with the cracked Stradivarius on the bench, under repair, while the two identical cases remain in the empty rehearsal room down the hall, unexamined. The scene suggests the truth was missed. Composition: wide horizontal, focus on the cracked violin under repair. Mood: unresolved, quiet, regretful, elegant, literary."
+    }
+  }
+}

@@ -457,6 +457,7 @@ async function main(): Promise<void> {
     'o-quadro-trocado.json',
     'o-testamento-de-heitor.json',
     'o-hospede-do-quarto-12.json',
+    'a-corda-partida.json',
   ];
   for (const fileName of historyFiles) {
     await seedHistory(fileName);
