@@ -1,0 +1,71 @@
+{
+  "master": {
+    "prompt": "Create an image for Tellery, a premium interactive storytelling app. The image belongs to the story “O Hóspede do Quarto 12”, an elegant Brazilian-inspired literary mystery set inside Hotel Meridiano, a small boutique hotel in a quiet neighborhood, on the morning after a guest who checked in as Sr. Almeida has vanished from room 12 during the night. Art direction: premium cinematic editorial illustration, semi-realistic digital painting, refined adult mystery, intimate literary atmosphere, sophisticated but calm, inquisitive rather than frightening, not scary, no gore, no police aesthetics. The visual tone should feel like an interactive short story or a prestige streaming mystery, not like a traditional game. Setting identity: Hotel Meridiano is a small elegant boutique hotel with pale wood, dusty rose walls, soft brass details, vintage furniture, cream linens, a small reception desk, a quiet bar, and a refined urban-neighborhood mood. Color palette: dusty rose #C99A95, muted taupe #8A7268, soft gold #C49A4A, warm cream #F2EBD8, pale wood #E5D9C2, dark walnut #3E2418, slate gray shadows #3A3A3D, warm lamp glow #D9A84A. Lighting: warm soft lamp light, cinematic low-light, gentle golden highlights on brass and wood, soft rose and taupe shadows, subtle reflections on polished surfaces, gentle depth falloff. Style: refined, polished, modern, premium, adult, literary, cinematic, semi-realistic, soft depth of field, subtle film grain, elegant composition, believable materials, emotionally grounded realism. Recurring motifs: room keys, guest ledgers, handwritten letters, whiskey glasses, window latches, brass bells, lavender vases. Avoid horror, gore, blood, weapons, police crime-scene aesthetics, skulls, monsters, childish illustration, cartoon style, anime, fantasy RPG visuals, game UI, neon cyberpunk, text overlays, logos, and watermarks."
+  },
+  "history": {
+    "cover": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a wide cinematic cover image for the interactive mystery story “O Hóspede do Quarto 12”. Show the interior of room 12 at Hotel Meridiano early in the morning. The room is impossibly tidy — bed made too carefully, empty hangers, no personal items. On a small desk near the window, a half-finished handwritten letter lies next to a whiskey glass with residue. The window is slightly ajar, curtains barely moving. The room has dusty rose walls, pale wood furniture, soft brass lamp light, and cream linens. Composition: wide horizontal hero-card framing for a mobile storytelling app. Place the desk with the letter slightly right of center. Leave darker atmospheric negative space on the left side for future app title and CTA overlay, but do not render any text overlay. Use the depth of the room to create atmosphere. No people in the foreground. Mood: refined, quiet, melancholic, literary, quietly mysterious, inviting."
+    },
+    "thumbnail": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a cinematic close-up thumbnail for the interactive mystery story “O Hóspede do Quarto 12”. Show a pale wood desk surface with a half-finished handwritten letter and a brass room key with a tag reading '12'. A soft brass lamp casts warm golden light across the objects. The letter is the focal point — something left behind in a hurry. Composition: square close-up still life, the letter and key dominate the frame, strong focal hierarchy, shallow depth of field, high contrast between warm gold light and dusty rose shadows. Mood: refined, quiet, suspicious, elegant, literary."
+    }
+  },
+  "location": {
+    "quarto_12": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for “Quarto 12” at Hotel Meridiano. Show a boutique hotel room that is impossibly tidy — bed remade with care, empty hangers in the closet, no toiletries in the bathroom. On the desk near the window: a half-finished handwritten letter and a whiskey glass. The window is slightly ajar with the curtain barely moving. Composition: the desk and window are the focal point, centered slightly off-axis, with enough room context to establish the location. Mood: quiet, suspicious, refined, melancholic, investigative. Important visual clues: empty room, made bed, letter on desk, whiskey glass, ajar window."
+    },
+    "recepcao": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for “Recepção” at Hotel Meridiano. Show a small elegant hotel reception with a pale wood desk, an open guest ledger, a brass bell, and a vase of lavender. The ledger is open to the last page showing a handwritten entry. The space is warm and quiet, with dusty rose walls and soft brass lighting. Composition: medium-wide shot with the reception desk clearly visible, the open ledger noticeable enough to function as a clue. Mood: orderly, warm, refined, quietly suspicious. Important visual clues: reception desk, open guest ledger, brass bell, lavender vase."
+    }
+  },
+  "object": {
+    "carta_inacabada": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for “Carta inacabada”, a central clue in the mystery. Show a half-finished handwritten letter on cream paper, resting on a pale wood desk. The handwriting is small and hurried, ending mid-word as if interrupted. A brass lamp casts warm golden light across the page. The letter is the clear focal point, with paper texture and ink detail visible. Composition: close-up still life, the letter dominates the frame. Mood: intimate, suspicious, important, quiet urgency."
+    },
+    "copo_bar": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for “Copo de bar” from room 12. Show a short whiskey glass with amber residue, sitting on a small side table near the window of the hotel room. Warm lamplight reflects in the glass. The glass is the focal point, simple but connecting the room to the hotel bar. Composition: square close-up still life, the whiskey glass is the clear focal point. Mood: quiet, melancholic, a connecting thread."
+    },
+    "janela": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for “Janela do quarto 12”. Show a hotel window that is unlatched and slightly ajar, with recent friction marks on the sill — as if someone climbed through. A drainage pipe is visible outside. Dusty rose curtains barely move in the draft. Warm interior light contrasts with the dark alley outside. Composition: close-up still life, the window latch and sill marks are the focal point. Mood: quiet, suspicious, important, the escape route."
+    },
+    "livro_hospedes": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for “Livro de hóspedes”. Show an open guest ledger on a pale wood reception desk. The last entry shows a name, a time (21h), a cash payment notation, and a blank line where a document number should be. A brass lamp casts warm light across the page. Composition: square close-up still life, the open ledger is the focal point, with handwriting and blank document line visible. Mood: quiet, formal, suspicious, the record of a disappearance."
+    }
+  },
+  "characters": {
+    "helena": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Helena, the receptionist at Hotel Meridiano. Helena is a Brazilian adult woman in her early 40s. She is professional, observant, discreet, and hides compassion behind efficiency. She checked in the vanishing guest and knows more than she lets on. Appearance: experienced receptionist, practical elegant clothing, neat hair, small reading glasses, a brass key ring at her waist. Her expression is composed, watchful, and quietly empathetic. Composition: vertical bust or upper-body portrait, the hotel reception softly blurred behind her, with dusty rose walls and warm lamp light. She should look human, believable, and emotionally grounded. Mood: professional discretion, quiet empathy, careful observation."
+    },
+    "bruno": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Bruno, the night porter at Hotel Meridiano. Bruno is a Brazilian adult man in his late 30s. He is calm, methodical, proud of his routine, and takes the night shift seriously. He is certain no one passed through reception during the night. Appearance: calm man in a hotel uniform, neat short hair, a small notebook in hand, a brass key board behind him. His expression is composed, confident, and slightly proud. Composition: vertical bust or upper-body portrait, the hotel reception at night softly blurred behind him, with warm lamp light and deep shadows. He should look reliable, believable, and meticulous. Mood: professional calm, quiet pride, factual certainty."
+    },
+    "caio": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Caio, a guest at Hotel Meridiano. Caio is a Brazilian adult man in his early 30s. He is curious, sociable, slightly intrusive, and observant. He had a drink with the vanishing guest at the bar and noticed details others missed. Appearance: young man with a curious expression, smart-casual clothing, slightly tousled hair, a friendly half-smile. His eyes are alert and interested. Composition: vertical bust or upper-body portrait, the hotel bar softly blurred behind him, with warm lamp light and rose tones. He should look curious, sociable, and believable. Mood: curious sociability, quiet observation, friendly intrigue."
+    }
+  },
+  "endings": {
+    "full_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the full truth ending of “O Hóspede do Quarto 12”. Show room 12 at Hotel Meridiano after the mystery is resolved. The window is now closed, the letter still lies on the desk but is read and understood, and the room key rests beside it. The room is calm, with warm morning light replacing the night's tension. The bed is still made, the space still empty, but the emptiness now reads as escape rather than loss. Composition: wide horizontal image, no people, focus on the letter and key as symbols of a completed story. Mood: reflective, resolved, bittersweet, elegant, literary."
+    },
+    "partial_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the partial truth ending of “O Hóspede do Quarto 12”. Show room 12 with the letter still on the desk, partially read, and the window still slightly ajar. The truth was partially uncovered but the full story remains in shadow. The room is warm but the edges are darker and uncertain. Composition: wide horizontal image, focus on the letter and the ajar window, with deeper shadows. No characters. Mood: ambiguous, elegant, unresolved, quiet discomfort."
+    },
+    "wrong_accusation": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the wrong accusation ending of “O Hóspede do Quarto 12”. Show room 12 untouched and unexamined, with the letter still unread on the desk and the window still ajar. The morning light is warm but heavy with shadows. The scene suggests the truth was missed and the guest's story remains unknown. Composition: wide horizontal image, focus on the unread letter and the ajar window, no characters. Mood: unresolved, quiet, regretful, elegant, literary."
+    }
+  }
+}
