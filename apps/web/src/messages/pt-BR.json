@@ -86,6 +86,12 @@
           "description": "Use as pistas para formar sua conclusão."
         }
       }
+    },
+    "upcoming": {
+      "title": "Próximas histórias",
+      "seeAll": "Ver todas",
+      "premium": "Premium",
+      "duration": "{minutes} min"
     }
   },
   "common": {

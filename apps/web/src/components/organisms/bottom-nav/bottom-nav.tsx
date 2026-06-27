@@ -25,8 +25,8 @@ export function BottomNav() {
             key={labelKey}
             type="button"
           >
-            <Icon className={cn('size-6', active && 'fill-primary/10')} />
-            <span className="hidden sm:inline">{t(labelKey)}</span>
+            <Icon className={cn('size-5', active && 'fill-primary/10')} />
+            <span className="text-sm sm:text-base">{t(labelKey)}</span>
           </button>
         ))}
       </nav>
