@@ -8,6 +8,8 @@ import {
 const OFF_TOPIC_INTENT_ID = 'off_topic';
 const SYSTEM_PROMPT_KEY = 'intentDetectorSystemPrompt';
 const USER_PROMPT_KEY = 'intentDetectorUserPrompt';
+const KEYWORD_MATCH_REASON = 'Matched by keyword.';
+const KEYWORD_MATCH_CONFIDENCE = 1;
 
 export interface IntentDetectionTarget {
   id: string;
@@ -62,31 +64,106 @@ export class IntentDetectionService {
       ? OFF_TOPIC_INTENT_ID
       : input.intents[0].id;
 
-    const response = await this.llm.invokeStructured(
-      this.buildMessages(input, threshold),
-      IntentDetectorResponseSchema
-    );
+    // 1. Deterministic keyword matching
+    const keywordMatches = this.matchKeywords(input.message, input.intents);
+    const keywordIntentIds = new Set(keywordMatches.map((m) => m.intentId));
 
-    console.log('[intent-detection] raw llm response', {
+    console.log('[intent-detection] keyword matches', {
       message: input.message,
-      intentCount: input.intents.length,
-      threshold,
-      response,
+      matched: keywordMatches,
     });
 
-    const normalized = this.normalize(
-      response,
-      validIntentIds,
-      fallbackIntentId,
-      threshold
+    // 2. LLM fallback for intents that keywords didn't catch
+    const remainingIntents = input.intents.filter(
+      (intent) => !keywordIntentIds.has(intent.id)
     );
 
-    console.log('[intent-detection] normalized', {
+    let llmDetected: DetectedIntent[] = [];
+    if (remainingIntents.length > 0) {
+      const response = await this.llm.invokeStructured(
+        this.buildMessages({ ...input, intents: remainingIntents }, threshold),
+        IntentDetectorResponseSchema
+      );
+
+      console.log('[intent-detection] raw llm response', {
+        message: input.message,
+        intentCount: remainingIntents.length,
+        threshold,
+        response,
+      });
+
+      llmDetected = this.normalizeLlmResponse(
+        response,
+        new Set(remainingIntents.map((i) => i.id)),
+        threshold
+      );
+    }
+
+    // 3. Combine: keyword matches (confidence 1.0) + LLM matches
+    const combined = [...keywordMatches, ...llmDetected];
+
+    if (combined.length > 0) {
+      console.log('[intent-detection] combined', {
+        message: input.message,
+        combined,
+      });
+      return combined;
+    }
+
+    const fallback: DetectedIntent[] = [
+      {
+        intentId: fallbackIntentId,
+        confidence: 0,
+        reasoning: 'No intent reached the configured threshold.',
+      },
+    ];
+
+    console.log('[intent-detection] fallback', {
       message: input.message,
-      normalized,
+      fallback,
     });
 
-    return normalized;
+    return fallback;
+  }
+
+  private matchKeywords(
+    message: string,
+    intents: IntentDetectionTarget[]
+  ): DetectedIntent[] {
+    const normalized = this.normalizeText(message);
+    const matches: DetectedIntent[] = [];
+    const seen = new Set<string>();
+
+    for (const intent of intents) {
+      if (intent.id === OFF_TOPIC_INTENT_ID) continue;
+      if (seen.has(intent.id)) continue;
+
+      const matched = intent.keywords.some((keyword) => {
+        const normalizedKeyword = this.normalizeText(keyword);
+        return (
+          normalizedKeyword.length > 0 &&
+          normalized.includes(normalizedKeyword)
+        );
+      });
+
+      if (matched) {
+        seen.add(intent.id);
+        matches.push({
+          intentId: intent.id,
+          confidence: KEYWORD_MATCH_CONFIDENCE,
+          reasoning: KEYWORD_MATCH_REASON,
+        });
+      }
+    }
+
+    return matches;
+  }
+
+  private normalizeText(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
   }
 
   private buildMessages(
@@ -120,13 +197,12 @@ export class IntentDetectionService {
       .join('\n');
   }
 
-  private normalize(
+  private normalizeLlmResponse(
     response: IntentDetectorResponse,
     validIntentIds: Set<string>,
-    fallbackIntentId: string,
     threshold: number
   ): DetectedIntent[] {
-    const detected = response
+    return response
       .filter(
         (intent) =>
           validIntentIds.has(intent.intentId) && intent.confidence >= threshold
@@ -136,16 +212,6 @@ export class IntentDetectionService {
         confidence: intent.confidence,
         reasoning: intent.reasoning,
       }));
-
-    if (detected.length > 0) return detected;
-
-    return [
-      {
-        intentId: fallbackIntentId,
-        confidence: 0,
-        reasoning: 'No intent reached the configured threshold.',
-      },
-    ];
   }
 
   private normalizeThreshold(threshold: number): number {
