@@ -103,6 +103,7 @@
     "termsOfUse": "Terms of Use",
     "tagline": "Stories you take part in",
     "sessionsAvailable": "{count} sessions available",
+    "featured": "Featured",
     "genres": {
       "mystery": "Mystery",
       "suspense": "Suspense",
@@ -120,5 +121,10 @@
     "journey": "My journey",
     "profile": "Profile",
     "openMenu": "Open menu"
+  },
+  "stories": {
+    "title": "Stories",
+    "featuredSection": "Featured",
+    "allSection": "All stories"
   }
 }

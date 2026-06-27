@@ -9,6 +9,7 @@ export const config = {
   },
   routes: {
     home: '/home',
+    stories: '/stories',
     login: '/',
     register: '/register',
     forgotPassword: '/forgot-password',

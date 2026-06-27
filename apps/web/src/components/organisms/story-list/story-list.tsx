@@ -1,5 +1,7 @@
 import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { config } from '@/lib/config';
 import { StoryCard } from '@/components/molecules';
 import type { History } from '@/lib/types/history';
 
@@ -18,13 +20,13 @@ export function StoryList({ histories }: StoryListProps) {
         <h2 className="font-heading text-primary text-2xl font-semibold tracking-tight sm:text-3xl">
           {t('title')}
         </h2>
-        <button
+        <Link
           className="text-muted-foreground hover:text-primary inline-flex items-center gap-1.5 text-sm font-semibold transition"
-          type="button"
+          href={config.routes.stories}
         >
           {t('seeAll')}
           <ChevronRight className="size-4" />
-        </button>
+        </Link>
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">

@@ -1,5 +1,12 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
+
+const { pathname } = vi.hoisted(() => ({ pathname: { current: '/home' } }));
+
+vi.mock('next/navigation', () => ({
+  usePathname: () => pathname.current,
+}));
+
 import { BottomNav } from '@/components/organisms/bottom-nav/bottom-nav';
 import { renderWithProviders } from '@/test-utils';
 
@@ -22,10 +29,32 @@ describe('BottomNav', () => {
     expect(screen.getByText('Profile')).toBeInTheDocument();
   });
 
-  it('marks the active item with bold styling', () => {
+  it('marks the home item active on the home route', () => {
+    pathname.current = '/home';
     renderWithProviders(<BottomNav />, { locale: 'pt-BR' });
 
-    const homeButton = screen.getByText('Início').closest('button');
-    expect(homeButton).toHaveClass('font-bold', 'text-primary');
+    const homeLink = screen.getByText('Início').closest('a');
+    expect(homeLink).toHaveClass('font-bold', 'text-primary');
+  });
+
+  it('marks the stories item active on the stories route', () => {
+    pathname.current = '/stories';
+    renderWithProviders(<BottomNav />, { locale: 'pt-BR' });
+
+    const storiesLink = screen.getByText('Histórias').closest('a');
+    expect(storiesLink).toHaveClass('font-bold', 'text-primary');
+  });
+
+  it('renders the home and stories items as links', () => {
+    renderWithProviders(<BottomNav />, { locale: 'pt-BR' });
+
+    expect(screen.getByText('Início').closest('a')).toHaveAttribute(
+      'href',
+      '/home'
+    );
+    expect(screen.getByText('Histórias').closest('a')).toHaveAttribute(
+      'href',
+      '/stories'
+    );
   });
 });

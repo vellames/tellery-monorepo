@@ -62,4 +62,16 @@ describe('StoryCard', () => {
 
     expect(screen.getByLabelText('A Carta Sem Remetente')).toBeInTheDocument();
   });
+
+  it('shows the featured badge when featured', () => {
+    renderWithProviders(<StoryCard history={freeHistory} featured />);
+
+    expect(screen.getByText('Destaque')).toBeInTheDocument();
+  });
+
+  it('does not show the featured badge by default', () => {
+    renderWithProviders(<StoryCard history={freeHistory} />);
+
+    expect(screen.queryByText('Destaque')).not.toBeInTheDocument();
+  });
 });

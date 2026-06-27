@@ -40,10 +40,11 @@ describe('StoryList', () => {
     expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
   });
 
-  it('renders the see all button', () => {
+  it('renders the see all link to the stories page', () => {
     renderWithProviders(<StoryList histories={histories} />);
 
-    expect(screen.getByText('Ver todas')).toBeInTheDocument();
+    const seeAll = screen.getByText('Ver todas').closest('a');
+    expect(seeAll).toHaveAttribute('href', '/stories');
   });
 
   it('renders nothing when histories is empty', () => {
