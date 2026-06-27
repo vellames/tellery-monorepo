@@ -1,0 +1,935 @@
+{
+  "id": "history_o_relogio_parado",
+  "createdAt": "2026-06-26T00:00:00.000Z",
+  "updatedAt": "2026-06-26T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-relogio-parado",
+  "title": "O Relógio Parado",
+  "subtitle": "Um relógio raro desaparece da vitrine sem sinal de arrombamento",
+  "teaser": "Ao abrir a Relojoaria O Pêndulo na segunda de manhã, Hugo descobre que o Cronos, um relógio de bolso raro, sumiu da vitrine trancada. Aprendiz e único cliente da véspera estão na sala dos fundos. Um deles mentiu.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 8,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": true,
+  "version": 1,
+  "coverImageUrl": "histories/o-relogio-parado/history/cover.png",
+  "thumbnailUrl": "histories/o-relogio-parado/history/thumbnail.png",
+  "opening": {
+    "shortText": "O Cronos sumiu da vitrine trancada. Não há arrombamento. Só três pessoas estiveram na loja na véspera.",
+    "fullText": "São 8h da segunda-feira na Relojoaria O Pêndulo. Hugo, o relojoeiro dono da loja, abre a vitrine central para conferir o Cronos — um relógio de bolso antigo, peça mais valiosa do acervo — e encontra o estojo vazio. A fechadura não foi forçada, o vidro está intacto e não há sinal de entrada forçada na loja. Quem pegou o relógio tinha acesso legítimo. Na véspera, domingo à tarde, apenas duas pessoas circularam pela loja: Bia, a aprendiz, e Theo, um colecionador que veio avaliar justamente o Cronos. Hugo pede que ambos fiquem até a situação se esclarecer. Cabe a você examinar a vitrine, ouvir as três versões e descobrir quem pegou o Cronos, por quê e onde ele está agora.",
+    "callToAction": "Examine a vitrine, converse com Hugo, Bia e Theo, e reconstrua o que aconteceu no domingo à tarde."
+  },
+  "objective": {
+    "mainQuestion": "Quem pegou o Cronos da vitrine, por quê e onde ele está agora?",
+    "description": "Descubra a autoria do desaparecimento, o motivo real por trás dele e o paradeiro atual do relógio."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_watch",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o Cronos, seu valor, sua aparência ou seu paradeiro.",
+      "examples": [
+        "Como era o Cronos?",
+        "Quanto vale o relógio?",
+        "Onde o Cronos está agora?"
+      ],
+      "keywords": ["cronos", "relógio", "bolso", "raro", "peça"]
+    },
+    {
+      "id": "ask_about_breakin",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre arrombamento, portas, fechaduras ou sinais de invasão.",
+      "examples": [
+        "Houve arrombamento?",
+        "A porta estava trancada?",
+        "Tem sinal de entrada forçada?"
+      ],
+      "keywords": ["arrombamento", "fechadura", "porta", "forçada", "invasão"]
+    },
+    {
+      "id": "ask_about_vitrine",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a vitrine central, sua chave, suas marcas ou seu acesso.",
+      "examples": [
+        "Quem tem a chave da vitrine?",
+        "Tem arranhão na vitrine?",
+        "Como a vitrine abre?"
+      ],
+      "keywords": ["vitrine", "chave", "acesso", "vidro", "armário"]
+    },
+    {
+      "id": "ask_about_yesterday",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre os acontecimentos do domingo à tarde.",
+      "examples": [
+        "O que aconteceu ontem?",
+        "Quem esteve aqui domingo?",
+        "Como foi o domingo na loja?"
+      ],
+      "keywords": ["ontem", "domingo", "véspera", "tarde", "aconteceu"]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava, quando chegou ou saiu da loja.",
+      "examples": [
+        "Qual é o seu álibi?",
+        "A que horas você saiu?",
+        "Você pode provar onde estava?"
+      ],
+      "keywords": ["álibi", "horário", "saída", "chegada", "esteve"]
+    },
+    {
+      "id": "ask_about_key",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a chave reserva da vitrine e quem teve acesso a ela.",
+      "examples": [
+        "Onde fica a chave reserva?",
+        "Bia tinha acesso à chave?",
+        "A chave ficou na bancada?"
+      ],
+      "keywords": ["chave", "reserva", "acesso", "bancada", "gaveta"]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar por que alguém tiraria o relógio da vitrine.",
+      "examples": [
+        "Qual seria o motivo?",
+        "Por que alguém faria isso?",
+        "Quem ganharia com isso?"
+      ],
+      "keywords": ["motivo", "por quê", "ganharia", "razão", "interesse"]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono o estojo"
+      ],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+    },
+    {
+      "id": "ask_about_hugo",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Hugo, sua rotina ou como descobriu o sumiço.",
+      "examples": [
+        "Hugo, quando você notou?",
+        "Como você abriu a loja hoje?",
+        "Hugo trancou a vitrine ontem?"
+      ],
+      "keywords": ["Hugo", "dono", "relojoeiro", "abriu", "fechou"]
+    },
+    {
+      "id": "ask_about_bia",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Bia, seu nervosismo ou sua rotina de aprendiz.",
+      "examples": [
+        "Bia, por que você está nervosa?",
+        "O que Bia fazia na loja?",
+        "Bia esteve sozinha na vitrine?"
+      ],
+      "keywords": ["Bia", "aprendiz", "nervosa", "estagiária", "jovem"]
+    },
+    {
+      "id": "ask_about_theo",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Theo, sua visita como cliente ou seu interesse no Cronos.",
+      "examples": [
+        "Theo, a que horas você foi embora?",
+        "O que Theo queria com o Cronos?",
+        "Theo voltou à noite?"
+      ],
+      "keywords": ["Theo", "cliente", "colecionador", "visita", "interesse"]
+    },
+    {
+      "id": "accuse_bia",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Bia de ter pegado o Cronos.",
+      "examples": [
+        "Bia, foi você quem pegou o relógio",
+        "Confronto Bia sobre o sumiço",
+        "Acho que foi a Bia"
+      ],
+      "keywords": ["acusar Bia", "pegou", "sumiço", "responsável"]
+    },
+    {
+      "id": "accuse_theo",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Theo de ter pegado o Cronos.",
+      "examples": [
+        "Theo, foi você quem pegou o relógio",
+        "Confronto Theo sobre o sumiço",
+        "Acho que foi o Theo"
+      ],
+      "keywords": ["acusar Theo", "pegou", "sumiço", "responsável"]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair da relojoaria",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "hugo",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Hugo",
+      "role": "Dono da Relojoaria O Pêndulo",
+      "shortDescription": "Relojoeiro veterano, organizado e orgulhoso. Quer o Cronos de volta sem transformar o caso em escândalo policial.",
+      "imageUrl": "histories/o-relogio-parado/characters/hugo.png",
+      "personality": "Metódico, observador, dado a silêncios longos. Evita acusações precipitadas e prefere provas a palpites.",
+      "speakingStyle": "Fala devagar, com frases medidas e vocabulário técnico de ofício. Repete detalhes quando está tenso.",
+      "publicKnowledge": [
+        "Descobriu o sumiço do Cronos ao abrir a loja na segunda de manhã.",
+        "A fechadura não foi forçada e o vidro da vitrine está intacto.",
+        "Sabe que apenas Bia e Theo estiveram na loja no domingo à tarde."
+      ],
+      "privateKnowledge": [
+        "Confia em Bia e custa a acreditar que ela possa ter envolvimento.",
+        "Acredita que trancou a vitrine no sábado, mas admite ter sido o último a fechar.",
+        "Não fez seguro completo do Cronos e por isso prefere resolver internamente."
+      ],
+      "openingLine": "Eu abri a vitrine às oito em ponto, como sempre. O estojo estava lá. O relógio, não.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_cronos_missing",
+          "triggerIntents": ["ask_about_watch", "ask_about_hugo"],
+          "requiresClueIds": [],
+          "revealText": "Hugo confirma que o Cronos é um relógio de bolso de ouro, peça única do acervo, e que sumiu sem deixar rastro no estojo.",
+          "responseGuidance": "Manter Hugo controlado, mas visivelmente abalado pela perda."
+        },
+        {
+          "clueId": "clue_no_breakin",
+          "triggerIntents": ["ask_about_breakin", "ask_about_vitrine"],
+          "requiresClueIds": [],
+          "revealText": "Hugo afirma que a porta da loja estava trancada normalmente e que a vitrine não apresenta sinal de arrombamento.",
+          "responseGuidance": "Ele deve insistir que só quem tinha chave poderia ter aberto."
+        },
+        {
+          "clueId": "clue_vitrine_scratch",
+          "triggerIntents": ["ask_about_vitrine", "inspect_object"],
+          "requiresClueIds": ["clue_no_breakin"],
+          "revealText": "Hugo admite ter notado um arranhão recente na borda da fechadura da vitrine, como se a chave tivesse sido usada com pressa.",
+          "responseGuidance": "Ele deve tratar o arranhão como detalhe incômodo, não como prova contra alguém específico."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Não acusar diretamente Bia ou Theo sem evidências de chave, álibi ou motivo.",
+        "Não afirmar que já chamou a polícia — Hugo prefere resolver internamente.",
+        "Não revelar o valor exato do relógio além de 'peça única e valiosa'.",
+        "Manter o tom de mistério contido, sem drama policial pesado."
+      ]
+    },
+    {
+      "id": "bia",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bia",
+      "role": "Aprendiz de relojoeira",
+      "shortDescription": "Jovem aprendiz dedicada, visivelmente nervosa desde que o sumiço foi descoberto.",
+      "imageUrl": "histories/o-relogio-parado/characters/bia.png",
+      "personality": "Aplicada, sensível e propensa a se justificar demais quando pressionada.",
+      "speakingStyle": "Fala rápido, tropeça nas palavras quando nervosa e tenta antecipar o que o outro quer ouvir.",
+      "publicKnowledge": [
+        "É aprendiz de Hugo há oito meses.",
+        "Esteve na loja no domingo à tarde organizando peças na bancada.",
+        "Está nitidamente nervosa desde que o Cronos foi dado como sumido."
+      ],
+      "privateKnowledge": [
+        "Pegou o Cronos da vitrine no domingo usando a chave reserva que ficava na bancada.",
+        "Levou o relógio a uma casa de penhor para pagar um tratamento de saúde da mãe.",
+        "Planejava resgatar o relógio na sexta seguinte, com o salário.",
+        "Não pretendia roubar permanentemente; via o gesto como um empréstimo desesperado."
+      ],
+      "openingLine": "Eu sei que parecer nervosa não ajuda, mas eu juro que eu não faria isso com o Hugo. Não assim.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_bia_nervous",
+          "triggerIntents": ["ask_about_bia", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Bia admite que está nervosa, mas atribui o nervosismo ao medo de ser culpada por estar perto da vitrine.",
+          "responseGuidance": "Ela deve se justificar demais, o que soa suspeito sem provar nada."
+        },
+        {
+          "clueId": "clue_bia_near_vitrine",
+          "triggerIntents": ["ask_about_vitrine", "ask_about_alibi"],
+          "requiresClueIds": ["clue_vitrine_scratch"],
+          "revealText": "Bia reconhece que passou boa parte da tarde perto da vitrine, mas insiste que só limpava o vidro.",
+          "responseGuidance": "Ela deve minimizar a proximidade, mas sem conseguir explicar o arranhão."
+        },
+        {
+          "clueId": "clue_bia_debt_hint",
+          "triggerIntents": ["ask_about_motive", "ask_about_bia"],
+          "requiresClueIds": ["clue_bia_nervous"],
+          "revealText": "Bia deixa escapar que está com problemas financeiros em casa, mas corta o assunto rapidamente.",
+          "responseGuidance": "Ela deve mudar de assunto e negar qualquer relação com o relógio."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_bia_took_watch",
+          "createdAt": "2026-06-26T00:00:00.000Z",
+          "updatedAt": "2026-06-26T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Bia pegou o Cronos para penhorar e pagar um tratamento da mãe.",
+          "truth": "Bia usou a chave reserva da vitrine, deixada na bancada, para retirar o Cronos no domingo à tarde. Levou o relógio a uma casa de penhor para custear um tratamento de saúde da mãe, planejando resgatá-lo na sexta com o salário.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_bia_stage_0_deny",
+              "createdAt": "2026-06-26T00:00:00.000Z",
+              "updatedAt": "2026-06-26T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["ask_about_watch", "accuse_bia", "ask_about_alibi"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento e reagir com aflição controlada.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu nem encostei no Cronos, eu juro. Era responsabilidade do Hugo.",
+                "Por que todo mundo olha pra mim só porque sou a mais nova aqui?"
+              ]
+            },
+            {
+              "id": "secret_bia_stage_1_knew_spare_key",
+              "createdAt": "2026-06-26T00:00:00.000Z",
+              "updatedAt": "2026-06-26T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_key", "ask_about_vitrine"],
+              "requiresClueIds": ["clue_vitrine_scratch"],
+              "revealsClueIds": ["clue_bia_knew_spare_key"],
+              "behavior": "Admitir que sabia onde ficava a chave reserva da vitrine, mas negar tê-la usado.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu sabia que a chave reserva ficava na bancada. Todo mundo sabia. Não significa que eu usei.",
+                "O Hugo deixava ali para facilitar, eu nem precisava tocar."
+              ]
+            },
+            {
+              "id": "secret_bia_stage_2_financial_pressure",
+              "createdAt": "2026-06-26T00:00:00.000Z",
+              "updatedAt": "2026-06-26T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_motive", "ask_about_bia"],
+              "requiresClueIds": ["clue_bia_debt_hint", "clue_bia_knew_spare_key"],
+              "revealsClueIds": ["clue_bia_mother_treatment"],
+              "behavior": "Admitir que está com uma dívida séria ligada à saúde da mãe, mas ainda negar o roubo.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Minha mãe precisa de um tratamento e o dinheiro curto. Mas eu não faria isso com o Hugo.",
+                "Eu pensei em pedir emprestado, mas não cheguei a fazer nada."
+              ]
+            },
+            {
+              "id": "secret_bia_stage_3_partial_confession",
+              "createdAt": "2026-06-26T00:00:00.000Z",
+              "updatedAt": "2026-06-26T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["accuse_bia", "ask_about_motive"],
+              "requiresClueIds": [
+                "clue_vitrine_scratch",
+                "clue_bia_knew_spare_key",
+                "clue_bia_mother_treatment",
+                "clue_pawn_receipt"
+              ],
+              "revealsClueIds": ["clue_bia_took_watch"],
+              "behavior": "Admitir parcialmente que pegou o relógio, insistindo que ia devolver.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tá, eu peguei. Mas foi um empréstimo, eu ia resgatar na sexta com meu salário.",
+                "Eu sei que foi errado. Mas não foi pra ficar com ele."
+              ]
+            },
+            {
+              "id": "secret_bia_stage_4_full_confession",
+              "createdAt": "2026-06-26T00:00:00.000Z",
+              "updatedAt": "2026-06-26T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": ["accuse_bia"],
+              "requiresClueIds": [
+                "clue_vitrine_scratch",
+                "clue_bia_knew_spare_key",
+                "clue_bia_mother_treatment",
+                "clue_pawn_receipt"
+              ],
+              "revealsClueIds": ["clue_bia_took_watch", "clue_watch_at_pawn"],
+              "behavior": "Confessar completamente o que fez, onde o relógio está e por quê, propondo resgatá-lo.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu peguei o Cronos e penhorei pra pagar o tratamento da minha mãe. Ele tá numa casa de penhor a duas quadras. Eu ia resgatar na sexta.",
+                "Foi a pior decisão da minha vida. Mas eu juro que ia trazer de volta."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar o roubo antes do estágio 3, e só revelar o paradeiro no estágio 4.",
+        "Não afirmar que viu Theo fazer qualquer coisa — Bia não testemunhou Theo.",
+        "Manter o tom de culpa honesta, sem vilanização; o gesto deve soar humano e desesperado."
+      ]
+    },
+    {
+      "id": "theo",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Theo",
+      "role": "Cliente colecionador",
+      "shortDescription": "Colecionador experiente e articulado, interessado em comprar o Cronos abaixo do preço de mercado.",
+      "imageUrl": "histories/o-relogio-parado/characters/theo.png",
+      "personality": "Calmo, falante e ligeiramente presunçoso. Sabe que parece suspeito e usa a franqueza como escudo.",
+      "speakingStyle": "Fala com segurança e vocabulário de colecionador, frequentemente citando leilões e peças raras.",
+      "publicKnowledge": [
+        "Veio à loja no domingo à tarde para avaliar o Cronos.",
+        "Estava negociando comprar o relógio com Hugo.",
+        "Sabe que é suspeito natural do caso."
+      ],
+      "privateKnowledge": [
+        "Ofereceu um preço bem abaixo do mercado pelo Cronos e foi recusado.",
+        "Saiu da loja antes do fechamento e não voltou.",
+        "Não pegou o relógio, mas teme que a má vontade da negociação recaia sobre ele."
+      ],
+      "openingLine": "Eu sou o suspeito óbvio, eu sei. Colecionador interessado na peça sumida. Mas óbvio não é o mesmo que culpado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_theo_interest",
+          "triggerIntents": ["ask_about_theo", "ask_about_watch"],
+          "requiresClueIds": [],
+          "revealText": "Theo admite abertamente que queria comprar o Cronos e estava negociando com Hugo.",
+          "responseGuidance": "Ele deve tratar o interesse como fato público, sem constrangimento."
+        },
+        {
+          "clueId": "clue_theo_left_early",
+          "triggerIntents": ["ask_about_alibi", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Theo afirma ter saído da loja antes das 17h e ter ido direto para um leilão em outro bairro, onde outras pessoas o viram.",
+          "responseGuidance": "Ele deve oferecer o álibi de bom grado, como quem nada tem a esconder."
+        },
+        {
+          "clueId": "clue_theo_low_offer",
+          "triggerIntents": ["ask_about_motive", "ask_about_theo"],
+          "requiresClueIds": ["clue_theo_interest"],
+          "revealText": "Theo admite que fez uma oferta abaixo do mercado pelo Cronos e foi recusado por Hugo.",
+          "responseGuidance": "Ele deve reconhecer a recusa sem rancor e usar isso para reforçar que não faria sentido roubar quem ainda negociava com ele."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_theo_lowball",
+          "createdAt": "2026-06-26T00:00:00.000Z",
+          "updatedAt": "2026-06-26T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Theo fez uma oferta desonesta pelo Cronos e quer esconder a extensão do abaixo.",
+          "truth": "Theo ofereceu cerca de um terço do valor real do Cronos, esperando explorar a falta de seguro de Hugo. Foi recusado e saiu antes do fechamento. É inocente do roubo, mas não quer que Hugo saiba o quanto tentou aproveitar-se da situação.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_theo_stage_1_justify_offer",
+              "createdAt": "2026-06-26T00:00:00.000Z",
+              "updatedAt": "2026-06-26T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_motive", "accuse_theo"],
+              "requiresClueIds": ["clue_theo_interest"],
+              "revealsClueIds": ["clue_theo_low_offer"],
+              "behavior": "Reconhecer que a oferta foi baixa, mas justificar como prática comum em negociação entre colecionadores.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu ofereci menos, sim. Todo colecionador começa baixo. Não tem nada a ver com sumiço.",
+                "Negociação é negociação. Não vira roubo só porque o preço não agradou."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter pegado o Cronos, pois Theo é inocente do roubo.",
+        "Não revelar o valor exato da oferta antes de questionado sobre motivo.",
+        "Manter a confiança de quem colabora, sem arrogance que ofusque a investigação."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "vitrine",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Vitrine central",
+      "shortDescription": "Armário de vidro onde o Cronos ficava exposto.",
+      "imageUrl": "histories/o-relogio-parado/location/vitrine.png",
+      "initialDescription": "A vitrine central fica ao fundo da loja, em madeira escura e vidro grosso. O estojo do Cronos repousa aberto e vazio no centro do móvel. Perto da fechadura, há um arranhão recente.",
+      "ambientClueIds": ["clue_vitrine_scratch"],
+      "objectIds": ["estojo_vazio", "chave_reserva"]
+    },
+    {
+      "id": "bancada",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bancada de trabalho",
+      "shortDescription": "Bancada onde Bia organiza peças e onde ficava a chave reserva.",
+      "imageUrl": "histories/o-relogio-parado/location/bancada.png",
+      "initialDescription": "A bancada fica junto da parede lateral, repleta de ferramentas pequenas, lupas e gavetas. Ao canto, uma lixeira de metal esconde um papel amassado.",
+      "ambientClueIds": [],
+      "objectIds": ["agenda_hugo", "recibo_penhor"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "estojo_vazio",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Estojo do Cronos",
+      "shortDescription": "Estojo de veludo onde o Cronos deveria estar.",
+      "imageUrl": "histories/o-relogio-parado/object/estojo_vazio.png",
+      "locationId": "vitrine",
+      "initialDescription": "O estojo de veludo escuro está aberto e vazio no centro da vitrine, sem sinais de violência.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_cronos_missing",
+          "triggerIntents": ["inspect_object", "ask_about_watch"],
+          "requiresClueIds": [],
+          "revealText": "O estojo está intacto e vazio, confirmando que só o relógio foi levado, com cuidado para não danificar a peça."
+        }
+      ]
+    },
+    {
+      "id": "chave_reserva",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Chave reserva da vitrine",
+      "shortDescription": "Chave pequena deixada habitualmente sobre a bancada.",
+      "imageUrl": "histories/o-relogio-parado/object/chave_reserva.png",
+      "locationId": "vitrine",
+      "initialDescription": "Uma chave pequena e antiga repousa sobre um pano ao lado da vitrine, fora do lugar habitual.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_spare_key_misplaced",
+          "triggerIntents": ["inspect_object", "ask_about_key"],
+          "requiresClueIds": [],
+          "revealText": "A chave reserva não está na bancada, onde sempre ficava; foi encontrada perto da vitrine, como se alguém a tivesse usado às pressas e largado ali."
+        },
+        {
+          "clueId": "clue_vitrine_scratch",
+          "triggerIntents": ["inspect_object", "ask_about_vitrine"],
+          "requiresClueIds": ["clue_no_breakin"],
+          "revealText": "Há um arranhão recente na fechadura da vitrine, compatível com uma chave usada com pressa."
+        }
+      ]
+    },
+    {
+      "id": "agenda_hugo",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Agenda de visitantes",
+      "shortDescription": "Caderno onde Hugo anota quem entra e sai da loja.",
+      "imageUrl": "histories/o-relogio-parado/object/agenda_hugo.png",
+      "locationId": "bancada",
+      "initialDescription": "A agenda de capa gasta fica aberta sobre a bancada, com anotações recentes à caneta.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_visitors_sunday",
+          "triggerIntents": ["inspect_object", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "A agenda confirma que, no domingo à tarde, só Bia e Theo estiveram na loja, e que Theo saiu por volta das 16h40."
+        }
+      ]
+    },
+    {
+      "id": "recibo_penhor",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Recibo amassado",
+      "shortDescription": "Papel amassado jogado na lixeira da bancada.",
+      "imageUrl": "histories/o-relogio-parado/object/recibo_penhor.png",
+      "locationId": "bancada",
+      "initialDescription": "No fundo da lixeira há um papel amassado, com letras de um carimbo parcialmente legíveis.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_pawn_receipt",
+          "triggerIntents": ["inspect_object", "ask_about_motive"],
+          "requiresClueIds": ["clue_bia_debt_hint"],
+          "revealText": "O papel é um recibo de uma casa de penhor a duas quadras da loja, com data de domingo à noite, mas sem nome legível do penhorante."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_cronos_missing",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O Cronos sumiu",
+      "description": "O relógio de bolso de ouro foi levado, mas o estojo foi deixado intacto.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_no_breakin",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sem arrombamento",
+      "description": "A porta estava trancada e a vitrine não apresenta sinal de invasão forçada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_vitrine_scratch",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Arranhão na fechadura",
+      "description": "Há um arranhão recente na fechadura da vitrine, como se a chave fosse usada com pressa.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_spare_key_misplaced",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Chave reserva fora do lugar",
+      "description": "A chave reserva foi encontrada perto da vitrine em vez da bancada, onde sempre ficava.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_visitors_sunday",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Visitantes de domingo",
+      "description": "Apenas Bia e Theo estiveram na loja no domingo à tarde; Theo saiu por volta das 16h40.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bia_nervous",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bia está nervosa",
+      "description": "Bia está visivelmente nervosa e se justifica demais desde a descoberta do sumiço.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bia_near_vitrine",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bia perto da vitrine",
+      "description": "Bia passou boa parte da tarde perto da vitrine, segundo ela, limpando o vidro.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bia_debt_hint",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Problemas financeiros em casa",
+      "description": "Bia deixou escapar que está com problemas financeiros, mas cortou o assunto.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bia_knew_spare_key",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bia sabia da chave reserva",
+      "description": "Bia sabia que a chave reserva da vitrine ficava na bancada, ao alcance de todos.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bia_mother_treatment",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tratamento da mãe",
+      "description": "Bia admite ter uma dívida séria ligada ao tratamento de saúde da mãe.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_pawn_receipt",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Recibo de penhor",
+      "description": "Um recibo de casa de penhor a duas quadras foi encontrado amassado na lixeira da bancada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bia_took_watch",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bia pegou o relógio",
+      "description": "Bia admitiu ter pegado o Cronos usando a chave reserva.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_watch_at_pawn",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Relógio está no penhor",
+      "description": "Bia revelou que o Cronos está numa casa de penhor a duas quadras da loja.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_theo_interest",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Theo queria o Cronos",
+      "description": "Theo admitiu abertamente que queria comprar o Cronos e estava em negociação.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_theo_left_early",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Theo saiu cedo",
+      "description": "Theo saiu antes das 17h e tem álibi em um leilão em outro bairro.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_theo_low_offer",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Oferta baixa de Theo",
+      "description": "Theo fez uma oferta bem abaixo do mercado e foi recusado por Hugo.",
+      "importance": "red_herring"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_relogio_parado",
+    "createdAt": "2026-06-26T00:00:00.000Z",
+    "updatedAt": "2026-06-26T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_took_watch",
+        "createdAt": "2026-06-26T00:00:00.000Z",
+        "updatedAt": "2026-06-26T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem pegou o Cronos?",
+        "type": "character",
+        "options": [
+          {
+            "id": "hugo",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Hugo"
+          },
+          {
+            "id": "bia",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Bia"
+          },
+          {
+            "id": "theo",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Theo"
+          }
+        ]
+      },
+      {
+        "id": "why_watch_taken",
+        "createdAt": "2026-06-26T00:00:00.000Z",
+        "updatedAt": "2026-06-26T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Por que o relógio foi levado?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "mother_treatment",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para pagar um tratamento de saúde da mãe"
+          },
+          {
+            "id": "resell_profit",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para revender por lucro"
+          },
+          {
+            "id": "personal_collection",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para acrescentar a uma coleção pessoal"
+          },
+          {
+            "id": "insurance_fraud",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para simular um roubo e acionar seguro"
+          }
+        ]
+      },
+      {
+        "id": "where_watch_now",
+        "createdAt": "2026-06-26T00:00:00.000Z",
+        "updatedAt": "2026-06-26T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Onde o Cronos está agora?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "at_pawn",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Em uma casa de penhor a duas quadras"
+          },
+          {
+            "id": "with_thief_home",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Escondido na casa de quem pegou"
+          },
+          {
+            "id": "with_theo",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Com Theo, o colecionador"
+          },
+          {
+            "id": "hidden_in_shop",
+            "createdAt": "2026-06-26T00:00:00.000Z",
+            "updatedAt": "2026-06-26T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Escondido em algum canto da própria loja"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A hora certa de confessar",
+      "type": "full_truth",
+      "imageUrl": "histories/o-relogio-parado/endings/full_truth.png",
+      "condition": {
+        "conclusionMatches": {
+          "who_took_watch": "bia",
+          "why_watch_taken": "mother_treatment",
+          "where_watch_now": "at_pawn"
+        },
+        "requiresClueIds": [
+          "clue_bia_took_watch",
+          "clue_bia_mother_treatment",
+          "clue_watch_at_pawn"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Bia pegou o Cronos com a chave reserva, penhorou o relógio para pagar o tratamento da mãe e planejava resgatá-lo na sexta.",
+      "epilogue": "O silêncio na O Pêndulo se afrouxa. Bia desiste de sustentar a negação e conta tudo, sem ornamentação. Hugo fica em silêncio por um longo minuto, depois pega o casaco: ele mesmo vai à casa de penhor resgatar o Cronos antes que o prazo vença. Não há polícia, ainda. Há um aprendiz envergonhado, um mestre magoado e um relógio que voltará a bater — talvez mais compassado do que antes, marcando o tempo de uma confiança que ainda precisa ser consertada."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A peça que faltava",
+      "type": "partial_truth",
+      "condition": {
+        "conclusionMatches": {
+          "who_took_watch": "bia"
+        },
+        "requiresClueIds": ["clue_bia_took_watch"]
+      },
+      "imageUrl": "histories/o-relogio-parado/endings/partial_truth.png",
+      "summary": "Você identificou Bia como autora, mas não fechou o motivo real nem o paradeiro do Cronos.",
+      "epilogue": "Bia não consegue mais negar que pegou o relógio, mas o silêncio sobre o porquê pesa mais do que a confissão. Sem o paradeiro, o Cronos segue sumido entre uma casa de penhor, uma gaveta e uma promessa que ninguém confirmou. Hugo fecha a vitrine vazia e decide esperar mais um dia antes de qualquer decisão. O relógio, onde quer que esteja, continua marcando uma hora que ninguém ainda soube nomear."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O suspeito óbvio",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-relogio-parado/endings/wrong_accusation.png",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade fixa do caso. Hugo não sumiu com o próprio relógio e Theo, por mais conveniente que parecesse, tinha álibi.",
+      "epilogue": "A manhã termina com mais desconfiança do que resposta. Theo vai embora ofendido com a suspeita, Hugo permanece inquieto diante da vitrine e Bia sai aliviada por ninguém ter olhado direito para ela. O estojo do Cronos continua aberto sobre o veludo, esperando um relógio que, por enquanto, ninguém parece realmente disposto a procurar onde ele está."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 4,
+    "suggestConclusionAfterClues": 7,
+    "maxRecommendedInteractions": 12
+  }
+}
