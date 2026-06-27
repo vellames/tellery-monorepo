@@ -193,7 +193,8 @@
       "thinking": "{name} está pensando",
       "autoInspectLocation": "Observar o local",
       "objectsHere": "Objetos para inspecionar",
-      "noObjectsHere": "Não há mais nada para inspecionar aqui."
+      "noObjectsHere": "Não há mais nada para inspecionar aqui.",
+      "noClueFound": "Nenhuma pista nova desta vez."
     }
   }
 }

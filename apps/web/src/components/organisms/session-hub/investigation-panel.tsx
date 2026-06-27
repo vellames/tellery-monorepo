@@ -124,6 +124,14 @@ export function InvestigationPanel({
           setDiscoveredClues(result.discoveredClues);
           setShowClueOverlay(true);
         } else {
+          setExtraMessages((prev) => [
+            ...prev,
+            {
+              role: 'system',
+              content: tp('noClueFound'),
+              createdAt: new Date().toISOString(),
+            },
+          ]);
           onInteracted();
         }
       } catch {
@@ -302,6 +310,17 @@ export function InvestigationPanel({
             <div className="flex flex-col gap-3">
               {allMessages.map((m, i) => {
                 const isUser = m.role === USER_ROLE;
+                const isSystem = m.role === 'system';
+                if (isSystem) {
+                  return (
+                    <div key={i} className="flex justify-center">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] px-3 py-1 text-xs text-[#fff9ef]/45">
+                        <Search className="size-3" />
+                        {m.content}
+                      </span>
+                    </div>
+                  );
+                }
                 return (
                   <div
                     key={i}

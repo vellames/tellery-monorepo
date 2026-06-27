@@ -122,6 +122,39 @@ describe('InvestigationPanel', () => {
     expect(onInteracted).toHaveBeenCalled();
   });
 
+  it('shows a no-clue feedback when no clues are discovered', async () => {
+    const user = userEvent.setup();
+    const result: InteractResult = {
+      id: 'char-1',
+      stateType: 'character',
+      reply: 'Não sei de nada.',
+      discoveredClues: [],
+    };
+    mockFetchResponse(result);
+
+    renderWithProviders(
+      <InvestigationPanel
+        sessionId="s1"
+        target={target}
+        objects={[]}
+        easyMode={false}
+        onSelectObject={vi.fn()}
+        onInteracted={vi.fn()}
+        onClose={vi.fn()}
+      />
+    );
+
+    const input = screen.getByPlaceholderText('Pergunte algo a Elisa…');
+    await user.type(input, 'O que você viu?');
+    await user.click(screen.getByLabelText('Enviar'));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('Nenhuma pista nova desta vez.')
+      ).toBeInTheDocument();
+    });
+  });
+
   it('shows an error when the request fails', async () => {
     const user = userEvent.setup();
     mockFetchResponse({ error: 'fail' }, false);
