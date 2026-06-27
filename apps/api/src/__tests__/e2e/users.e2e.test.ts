@@ -128,7 +128,7 @@ describe('E2E: /users/register', () => {
     expect(response.body.success).toBe(false);
   });
 
-  it('should return 409 with English message by default', async () => {
+  it('should return 409 with Portuguese message by default', async () => {
     mockRepo.findByEmail.mockResolvedValue(mockUser());
 
     const response = await request(app).post('/users/register').send({
@@ -139,7 +139,7 @@ describe('E2E: /users/register', () => {
 
     expect(response.status).toBe(StatusCodes.CONFLICT);
     expect(response.body.success).toBe(false);
-    expect(response.body.error).toBe('Email already in use');
+    expect(response.body.error).toBe('E-mail já está em uso');
   });
 
   it('should return 409 with Portuguese message when Accept-Language is pt-BR', async () => {
@@ -216,10 +216,13 @@ describe('E2E: /users/login', () => {
   it('should return 401 when user is not found', async () => {
     mockRepo.findByEmail.mockResolvedValue(null);
 
-    const response = await request(app).post('/users/login').send({
-      email: 'unknown@teste.local',
-      password: 'password123',
-    });
+    const response = await request(app)
+      .post('/users/login')
+      .set('Accept-Language', 'en')
+      .send({
+        email: 'unknown@teste.local',
+        password: 'password123',
+      });
 
     expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
     expect(response.body.success).toBe(false);
@@ -230,10 +233,13 @@ describe('E2E: /users/login', () => {
     mockRepo.findByEmail.mockResolvedValue(mockUser());
     mockPasswordHasher.compare.mockResolvedValue(false);
 
-    const response = await request(app).post('/users/login').send({
-      email: 'ana@teste.local',
-      password: 'wrong-password',
-    });
+    const response = await request(app)
+      .post('/users/login')
+      .set('Accept-Language', 'en')
+      .send({
+        email: 'ana@teste.local',
+        password: 'wrong-password',
+      });
 
     expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
     expect(response.body.success).toBe(false);
