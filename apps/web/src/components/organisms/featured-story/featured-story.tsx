@@ -34,9 +34,9 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
 
   return (
     <section className="shadow-card relative overflow-hidden rounded-[28px] bg-[#3a0d16] sm:rounded-[36px]">
-      <div className="grid min-h-[460px] grid-cols-1 lg:min-h-[560px] lg:grid-cols-2">
+      <div className="grid min-h-[460px] grid-cols-1 lg:min-h-[560px] lg:grid-cols-5">
         {/* Right: cover image (renders first in DOM for layering on the left fade) */}
-        <div className="relative order-1 min-h-[220px] lg:order-2 lg:min-h-full">
+        <div className="relative order-1 min-h-[220px] lg:order-2 lg:col-span-3 lg:min-h-full">
           {story.coverImageUrl ? (
             <Image
               src={story.coverImageUrl}
@@ -44,7 +44,7 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
               fill
               priority
               className="object-cover"
-              sizes="(min-width: 1024px) 50vw, 100vw"
+              sizes="(min-width: 1024px) 60vw, 100vw"
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] via-[#160a08] to-[#6e3d15]" />
@@ -54,18 +54,18 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
         </div>
 
         {/* Left: maroon text panel */}
-        <div className="relative z-10 order-2 flex flex-col justify-center p-7 sm:p-12 lg:order-1">
+        <div className="relative z-10 order-2 flex flex-col justify-center p-7 sm:p-12 lg:order-1 lg:col-span-2">
           <div>
             <div className="border-gold/40 text-gold mb-6 inline-flex items-center gap-2 rounded-xl border bg-black/20 px-4 py-2 text-[11px] font-bold tracking-[0.12em] uppercase sm:text-xs">
               <Star className="fill-gold size-3.5" />
               {t('badge')}
             </div>
 
-            <h1 className="font-heading text-[2.75rem] leading-[0.98] font-semibold tracking-tight text-[#fff9ef] sm:text-6xl">
+            <h1 className="font-heading text-4xl leading-[0.98] font-semibold tracking-tight text-[#fff9ef] sm:text-5xl">
               {story.title}
             </h1>
 
-            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium text-[#fff9ef]/75 sm:text-base">
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-medium text-[#fff9ef]/75 sm:text-sm">
               <span className="inline-flex items-center gap-1.5">
                 <Search className="size-4" />
                 {tGenre(story.genre)}
@@ -86,12 +86,12 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
               </span>
             </div>
 
-            <p className="mt-6 max-w-md text-base leading-7 text-[#fff9ef]/85 sm:text-lg sm:leading-8">
+            <p className="mt-5 max-w-md text-sm leading-7 text-[#fff9ef]/85 sm:text-base sm:leading-7">
               {story.teaser}
             </p>
 
             <button
-              className="shadow-button mt-8 inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-8 py-4 text-base font-bold text-[#4a111b] transition hover:scale-[1.01] sm:w-auto sm:min-w-72"
+              className="shadow-button mt-7 inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-7 py-3.5 text-sm font-bold text-[#4a111b] transition hover:scale-[1.01] sm:w-auto sm:min-w-64"
               type="button"
             >
               {t('startButton')}

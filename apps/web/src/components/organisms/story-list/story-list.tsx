@@ -37,7 +37,7 @@ export function StoryList() {
   return (
     <section>
       <div className="mb-5 flex items-center justify-between gap-4">
-        <h2 className="font-heading text-primary text-3xl font-semibold tracking-tight sm:text-[2.25rem]">
+        <h2 className="font-heading text-primary text-2xl font-semibold tracking-tight sm:text-3xl">
           {t('title')}
         </h2>
         <button
@@ -62,10 +62,10 @@ export function StoryList() {
             </span>
 
             <div className="absolute inset-x-0 bottom-0 p-6">
-              <h3 className="font-heading text-2xl leading-tight font-semibold tracking-tight text-[#fff9ef]">
+              <h3 className="font-heading text-xl leading-tight font-semibold tracking-tight text-[#fff9ef]">
                 {story.title}
               </h3>
-              <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-[#fff9ef]/75">
+              <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-[#fff9ef]/75">
                 <span className="inline-flex items-center gap-1.5">
                   <MapPin className="size-4" /> {story.category}
                 </span>

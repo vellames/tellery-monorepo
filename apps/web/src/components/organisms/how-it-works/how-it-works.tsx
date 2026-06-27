@@ -18,7 +18,7 @@ export function HowItWorks() {
       <div className="mb-9 flex items-center justify-center gap-4 text-center sm:gap-5">
         <span className="bg-gold/40 hidden h-px w-20 sm:block" />
         <Sparkles className="fill-gold text-gold size-4" />
-        <h2 className="font-heading text-primary text-3xl font-semibold tracking-tight sm:text-[2.5rem]">
+        <h2 className="font-heading text-primary text-2xl font-semibold tracking-tight sm:text-3xl">
           {t('title')}
         </h2>
         <Sparkles className="fill-gold text-gold size-4" />
@@ -40,7 +40,7 @@ export function HowItWorks() {
                   {index + 1}
                 </span>
               </div>
-              <h3 className="font-heading text-primary text-[1.4rem] font-semibold tracking-tight">
+              <h3 className="font-heading text-primary text-xl font-semibold tracking-tight">
                 {t(`steps.${key}.title`)}
               </h3>
               <p className="text-muted-foreground mx-auto mt-3 max-w-60 leading-7">
