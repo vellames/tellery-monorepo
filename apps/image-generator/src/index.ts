@@ -58,6 +58,7 @@ async function main(): Promise<void> {
   }
 
   console.log(`[image-generator] input:     ${path.resolve(config.inputPath)}`);
+  console.log(`[image-generator] slug:      ${config.slug}`);
   console.log(`[image-generator] output:    ${path.resolve(config.outputDir)}`);
   console.log(`[image-generator] model:     ${config.model}`);
   console.log(`[image-generator] resolution: ${config.resolution}`);

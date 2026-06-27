@@ -4,3 +4,4 @@ apps/*/dist/
 packages/*/dist/
 .turbo/
 .env
+output/

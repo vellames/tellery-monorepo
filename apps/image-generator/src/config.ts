@@ -28,6 +28,7 @@ loadEnvFile(path.resolve(__dirname, '../../..', '.env'));
 
 export interface GeneratorConfig {
   inputPath: string;
+  slug: string;
   outputDir: string;
   model: string;
   resolution: string;
@@ -39,9 +40,18 @@ export interface GeneratorConfig {
 
 export const DEFAULT_MODEL = 'google/nano-banana-2/text-to-image';
 export const DEFAULT_RESOLUTION = '1k';
-export const DEFAULT_OUTPUT_DIR = 'output';
+export const DEFAULT_OUTPUT_BASE = 'output';
 export const DEFAULT_CONCURRENCY = 3;
 export const SUPPORTED_RESOLUTIONS = new Set(['0.5k', '1k', '2k', '4k']);
+const IMAGES_MAP_SUFFIX = '-images-map';
+
+export function deriveSlug(inputPath: string): string {
+  const base = path.basename(inputPath, path.extname(inputPath));
+  if (base.endsWith(IMAGES_MAP_SUFFIX)) {
+    return base.slice(0, -IMAGES_MAP_SUFFIX.length);
+  }
+  return base;
+}
 
 function required(name: string, source: string): string {
   const value = process.env[name];
@@ -53,6 +63,7 @@ function required(name: string, source: string): string {
 
 function parseArgs(argv: string[]): {
   inputPath: string;
+  slug: string;
   outputDir: string;
   model: string;
   resolution: string;
@@ -61,7 +72,7 @@ function parseArgs(argv: string[]): {
   force: boolean;
 } {
   const positional: string[] = [];
-  let outputDir = DEFAULT_OUTPUT_DIR;
+  let outputDir: string | undefined;
   let model = DEFAULT_MODEL;
   let resolution = DEFAULT_RESOLUTION;
   let prefixMaster = true;
@@ -118,6 +129,9 @@ function parseArgs(argv: string[]): {
     throw new Error('Missing required <input.json> path argument.');
   }
 
+  const slug = deriveSlug(inputPath);
+  const resolvedOutputDir = outputDir ?? path.join(DEFAULT_OUTPUT_BASE, slug);
+
   if (!SUPPORTED_RESOLUTIONS.has(resolution)) {
     throw new Error(
       `Unsupported resolution "${resolution}". Valid values: ${[...SUPPORTED_RESOLUTIONS].join(', ')}`
@@ -128,7 +142,7 @@ function parseArgs(argv: string[]): {
     throw new Error(`--concurrency must be a positive integer (got "${concurrency}")`);
   }
 
-  return { inputPath, outputDir, model, resolution, prefixMaster, concurrency, force };
+  return { inputPath, slug, outputDir: resolvedOutputDir, model, resolution, prefixMaster, concurrency, force };
 }
 
 function printHelp(): void {
@@ -139,13 +153,18 @@ Usage:
   npm start -w @ai-history/image-generator -- <input.json> [options]
 
 Options:
-  --output <dir>            Output directory (default: ${DEFAULT_OUTPUT_DIR})
+  --output <dir>            Output directory (default: ${DEFAULT_OUTPUT_BASE}/<slug>, derived from the input filename)
   --model <slug>            WaveSpeed model path (default: ${DEFAULT_MODEL})
   --resolution <res>        0.5k | 1k | 2k | 4k (default: ${DEFAULT_RESOLUTION})
   --concurrency <n>         Parallel generations (default: ${DEFAULT_CONCURRENCY})
   --no-prefix-master        Do not prepend the "master" prompt to every image
   --force                   Re-generate even if the output file already exists
   -h, --help                Show this help
+
+The slug is derived from the input filename by stripping the
+"-images-map" suffix and the extension. For example,
+"mocks/o-relogio-parado-images-map.json" resolves to slug
+"o-relogio-parado" and outputs to "${DEFAULT_OUTPUT_BASE}/o-relogio-parado".
 
 Environment:
   WAVESPEED_API_KEY         Required (loaded from the root .env file)
