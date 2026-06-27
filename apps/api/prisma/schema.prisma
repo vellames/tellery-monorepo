@@ -367,6 +367,8 @@ model EndingDefinition {
 
   type EndingType
 
+  imageUrl String?
+
   conclusionMatches Json
   requiredClues     ClueDefinition[] @relation("EndingRequiredClues")
 
@@ -759,6 +761,7 @@ model SessionEndingSnapshot {
 
   title    String
   type     EndingType
+  imageUrl String?
   summary  String
   epilogue String
 

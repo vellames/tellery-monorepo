@@ -133,6 +133,7 @@ const mockHistory = (): HistoryWithDefinitions =>
         id: 'ending-1',
         title: 'Ending',
         type: 'full_truth' as EndingType,
+        imageUrl: 'histories/o-bilhete-na-mesa-7/endings/full_truth.png',
         summary: 'sum',
         epilogue: 'epi',
         conclusionMatches: { field: 'opt' },
@@ -208,6 +209,9 @@ describe('session-snapshot.factory', () => {
 
       expect(ending.sessionId).toBe('session-1');
       expect(ending.endingDefinitionId).toBe('ending-1');
+      expect(ending.imageUrl).toBe(
+        'histories/o-bilhete-na-mesa-7/endings/full_truth.png'
+      );
       expect(ending.requiredClues).toEqual({
         connect: [{ id: 'session-clue-1' }],
       });

@@ -125,6 +125,7 @@ interface EndingConditionSeed {
 interface EndingSeed {
   title: string;
   type: EndingType;
+  imageUrl?: string | null;
   condition: EndingConditionSeed;
   summary: string;
   epilogue: string;
@@ -162,6 +163,39 @@ function joinText(parts: Array<string | undefined | null>): string {
   return parts.filter(Boolean).join('\n\n');
 }
 
+async function updateExistingImageUrls(
+  historyId: string,
+  data: HistorySeed
+): Promise<void> {
+  for (const character of data.characters) {
+    await prisma.characterDefinition.updateMany({
+      where: { historyId, name: character.name },
+      data: { imageUrl: character.imageUrl ?? null },
+    });
+  }
+
+  for (const location of data.locations) {
+    await prisma.locationDefinition.updateMany({
+      where: { historyId, name: location.name },
+      data: { imageUrl: location.imageUrl ?? null },
+    });
+  }
+
+  for (const object of data.objects) {
+    await prisma.objectDefinition.updateMany({
+      where: { historyId, name: object.name },
+      data: { imageUrl: object.imageUrl ?? null },
+    });
+  }
+
+  for (const ending of data.endings) {
+    await prisma.endingDefinition.updateMany({
+      where: { historyId, type: ending.type },
+      data: { imageUrl: ending.imageUrl ?? null },
+    });
+  }
+}
+
 async function seedHistory(fileName: string): Promise<void> {
   const data = readJson<HistorySeed>(fileName);
 
@@ -175,10 +209,15 @@ async function seedHistory(fileName: string): Promise<void> {
         status: data.status,
         isFeatured: data.isFeatured ?? false,
         isFree: data.isFree ?? false,
+        coverImageUrl: data.coverImageUrl ?? null,
+        thumbnailUrl: data.thumbnailUrl ?? null,
       },
     });
+
+    await updateExistingImageUrls(existing.id, data);
+
     console.log(
-      `History "${data.slug}" already seeded, updated status, isFeatured and isFree.`
+      `History "${data.slug}" already seeded, updated status, isFeatured, isFree and image urls.`
     );
     return;
   }
@@ -396,6 +435,7 @@ async function seedHistory(fileName: string): Promise<void> {
         historyId: history.id,
         title: ending.title,
         type: ending.type,
+        imageUrl: ending.imageUrl ?? null,
         conclusionMatches: remappedMatches,
         requiredClues: {
           connect: (ending.condition.requiresClueIds ?? []).map((id) => ({

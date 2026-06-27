@@ -62,6 +62,7 @@ export function buildEndingSnapshots(
     endingDefinitionId: ending.id,
     title: ending.title,
     type: ending.type,
+    imageUrl: ending.imageUrl,
     summary: ending.summary,
     epilogue: ending.epilogue,
     conclusionMatches: ending.conclusionMatches as Prisma.InputJsonValue,
