@@ -63,6 +63,16 @@ export type HistoryCatalogItem = Prisma.HistoryGetPayload<{
   select: typeof historyCatalogSelect;
 }>;
 
+export const historyCatalogDetailSelect = {
+  ...historyCatalogSelect,
+  opening: true,
+  objective: true,
+} satisfies Prisma.HistorySelect;
+
+export type HistoryCatalogDetailItem = Prisma.HistoryGetPayload<{
+  select: typeof historyCatalogDetailSelect;
+}>;
+
 export class HistoryDefinitionRepository
   extends BaseRepository
   implements IHistoryDefinitionRepository
@@ -99,6 +109,24 @@ export class HistoryDefinitionRepository
       where: { deletedAt: null },
       include: historyDefinitionInclude,
       orderBy: { createdAt: 'asc' },
+    });
+  }
+
+  async findPublishedById(
+    historyId: string
+  ): Promise<HistoryCatalogItem | null> {
+    return this.prisma.history.findFirst({
+      where: { id: historyId, status: 'published', deletedAt: null },
+      select: historyCatalogSelect,
+    });
+  }
+
+  async findPublishedDetailById(
+    historyId: string
+  ): Promise<HistoryCatalogDetailItem | null> {
+    return this.prisma.history.findFirst({
+      where: { id: historyId, status: 'published', deletedAt: null },
+      select: historyCatalogDetailSelect,
     });
   }
 

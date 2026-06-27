@@ -1,4 +1,7 @@
-import type { HistoryCatalogItem } from '../../repositories/HistoryDefinitionRepository';
+import type {
+  HistoryCatalogDetailItem,
+  HistoryCatalogItem,
+} from '../../repositories/HistoryDefinitionRepository';
 
 export interface HistoryCatalogItemDto {
   id: string;
@@ -11,6 +14,11 @@ export interface HistoryCatalogItemDto {
   isFree: boolean;
   coverImageUrl: string | null;
   thumbnailUrl: string | null;
+}
+
+export interface HistoryDetailDto extends HistoryCatalogItemDto {
+  opening: string;
+  objective: string;
 }
 
 export const toHistoryCatalogItemDto = (
@@ -26,4 +34,12 @@ export const toHistoryCatalogItemDto = (
   isFree: history.isFree,
   coverImageUrl: history.coverImageUrl,
   thumbnailUrl: history.thumbnailUrl,
+});
+
+export const toHistoryDetailDto = (
+  history: HistoryCatalogDetailItem
+): HistoryDetailDto => ({
+  ...toHistoryCatalogItemDto(history),
+  opening: history.opening,
+  objective: history.objective,
 });

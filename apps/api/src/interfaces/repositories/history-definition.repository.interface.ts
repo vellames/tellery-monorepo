@@ -1,4 +1,5 @@
 import type {
+  HistoryCatalogDetailItem,
   HistoryCatalogItem,
   HistoryWithDefinitions,
 } from '../../repositories/HistoryDefinitionRepository';
@@ -19,6 +20,10 @@ export interface IHistoryDefinitionRepository extends IBaseRepository {
     tx?: PrismaTransaction
   ): Promise<HistoryWithDefinitions | null>;
   list(tx?: PrismaTransaction): Promise<HistoryWithDefinitions[]>;
+  findPublishedById(historyId: string): Promise<HistoryCatalogItem | null>;
+  findPublishedDetailById(
+    historyId: string
+  ): Promise<HistoryCatalogDetailItem | null>;
   listPublished(
     isFeatured: boolean,
     pagination: PaginationQuery

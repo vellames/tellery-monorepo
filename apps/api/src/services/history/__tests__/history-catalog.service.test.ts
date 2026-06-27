@@ -3,7 +3,10 @@ import {
   IHistoryDefinitionRepository,
   IImageUrlSigner,
 } from '../../../interfaces';
-import type { HistoryCatalogItem } from '../../../repositories/HistoryDefinitionRepository';
+import type {
+  HistoryCatalogDetailItem,
+  HistoryCatalogItem,
+} from '../../../repositories/HistoryDefinitionRepository';
 import { HistoryCatalogService } from '../history-catalog.service';
 
 const mockCatalogItem = (
@@ -22,6 +25,16 @@ const mockCatalogItem = (
     thumbnailUrl: 'histories/o-bilhete-na-mesa-7/history/thumbnail.png',
     ...overrides,
   }) as HistoryCatalogItem;
+
+const mockCatalogDetailItem = (
+  overrides: Partial<HistoryCatalogDetailItem> = {}
+): HistoryCatalogDetailItem =>
+  ({
+    ...mockCatalogItem(),
+    opening: 'opening text',
+    objective: 'objective text',
+    ...overrides,
+  }) as HistoryCatalogDetailItem;
 
 describe('HistoryCatalogService', () => {
   let histories: DeepMockProxy<IHistoryDefinitionRepository>;
@@ -102,6 +115,36 @@ describe('HistoryCatalogService', () => {
       expect(result.limit).toBe(2);
       expect(result.totalPages).toBe(3);
       expect(result.items.map((i) => i.id)).toEqual(['a', 'b']);
+    });
+  });
+
+  describe('getById', () => {
+    it('returns the history with opening and objective and signed image urls', async () => {
+      histories.findPublishedDetailById.mockResolvedValue(
+        mockCatalogDetailItem()
+      );
+
+      const result = await service.getById('history-1');
+
+      expect(histories.findPublishedDetailById).toHaveBeenCalledWith(
+        'history-1'
+      );
+      expect(result.opening).toBe('opening text');
+      expect(result.objective).toBe('objective text');
+      expect(result.coverImageUrl).toBe(
+        'https://signed.test/histories/o-bilhete-na-mesa-7/history/cover.png'
+      );
+      expect(result.thumbnailUrl).toBe(
+        'https://signed.test/histories/o-bilhete-na-mesa-7/history/thumbnail.png'
+      );
+    });
+
+    it('throws 404 when the history is not found', async () => {
+      histories.findPublishedDetailById.mockResolvedValue(null);
+
+      await expect(service.getById('missing')).rejects.toMatchObject({
+        statusCode: 404,
+      });
     });
   });
 });

@@ -137,3 +137,83 @@ describe('HistoryController - list', () => {
     expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
   });
 });
+
+describe('HistoryController - getById', () => {
+  let historyCatalogService: DeepMockProxy<HistoryCatalogService>;
+  let controller: HistoryController;
+  let req: Partial<Request>;
+  let res: Partial<Response>;
+  let json: jest.Mock;
+  let status: jest.Mock;
+  let t: TranslationFunction;
+
+  beforeEach(() => {
+    historyCatalogService = mockDeep<HistoryCatalogService>();
+    controller = new HistoryController(historyCatalogService);
+    json = jest.fn();
+    status = jest.fn().mockReturnValue({ json });
+    res = { status };
+    t = jest.fn((key: string) => key) as unknown as TranslationFunction;
+  });
+
+  afterEach(() => {
+    mockReset(historyCatalogService);
+  });
+
+  it('returns 200 with the requested history', async () => {
+    const history = {
+      id: 'history-1',
+      slug: 'o-bilhete-na-mesa-7',
+      title: 'O Bilhete na Mesa 7',
+    };
+    historyCatalogService.getById.mockResolvedValue(history as never);
+    req = {
+      params: { historyId: 'history-1' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.getById(req as Request, res as Response);
+
+    expect(historyCatalogService.getById).toHaveBeenCalledWith('history-1');
+    expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+    expect(json).toHaveBeenCalledWith({
+      success: true,
+      data: history,
+      message: undefined,
+    });
+  });
+
+  it('returns 404 when the history does not exist', async () => {
+    const { HttpError } = await import('../../utils/http-error');
+    historyCatalogService.getById.mockRejectedValue(
+      new HttpError(
+        StatusCodes.NOT_FOUND,
+        'missing',
+        'session:errors.unknownHistory'
+      )
+    );
+    req = {
+      params: { historyId: 'missing' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.getById(req as Request, res as Response);
+
+    expect(status).toHaveBeenCalledWith(StatusCodes.NOT_FOUND);
+  });
+
+  it('returns 500 on unexpected errors', async () => {
+    historyCatalogService.getById.mockRejectedValue(new Error('boom'));
+    req = {
+      params: { historyId: 'history-1' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.getById(req as Request, res as Response);
+
+    expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+  });
+});
