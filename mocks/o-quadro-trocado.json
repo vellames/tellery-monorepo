@@ -1,0 +1,920 @@
+{
+  "id": "history_o_quadro_trocado",
+  "createdAt": "2026-06-27T00:00:00.000Z",
+  "updatedAt": "2026-06-27T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-quadro-trocado",
+  "title": "O Quadro Trocado",
+  "subtitle": "Uma falsificação perfeita demais para ser inocente",
+  "teaser": "Às 9h da manhã da visualização privada na Galeria Sereno, Otávio percebe que o quadro \"Vertigem\" foi trocado por uma cópia. A tinta da falsificação ainda está úmida. Sônia, a restauradora, e Dante, o colecionador, são os únicos que tiveram acesso. Um dos dois mentiu.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 8,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/o-quadro-trocado/history/cover.png",
+  "thumbnailUrl": "histories/o-quadro-trocado/history/thumbnail.png",
+  "opening": {
+    "shortText": "O quadro \"Vertigem\" foi trocado por uma falsificação durante a madrugada. A tinta ainda está úmida.",
+    "fullText": "São 9h da manhã na Galeria Sereno, uma pequena galeria de arte prestes a receber uma visualização privada. Otávio, o dono, levanta a luz do holofote sobre \"Vertigem\" — a peça central da noite — e percebe que algo está errado. A textura da tinta, o brilho do verniz, o peso do corpo: não é o original. É uma cópia convincente, feita por quem conhecia a peça de cor, e a tinta ainda está ligeiramente úmida sob o verniz apressado. A galeria não foi arrombada e o sistema de alarme não disparou. Quem trocou o quadro tinha acesso legítimo e sabia exatamente o que estava fazendo. Na noite anterior, apenas duas pessoas circularam pela galeria depois do fechamento: Sônia, a restauradora que trabalha há anos com o acervo, e Dante, um colecionador que veio avaliar justamente \"Vertigem\". Otávio pede que ambos fiquem até a situação se esclarecer. Cabe a você examinar a moldura, ouvir as três versões e descobrir quem trocou o quadro, por quê e onde o original está agora.",
+    "callToAction": "Examine a moldura e o atelier, converse com Otávio, Sônia e Dante, e reconstrua o que aconteceu na madrugada."
+  },
+  "objective": {
+    "mainQuestion": "Quem trocou o quadro \"Vertigem\" por uma falsificação, por quê e onde está o original?",
+    "description": "Descubra a autoria da troca, o motivo real por trás dela e o paradeiro atual da obra original."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_painting",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o quadro \"Vertigem\", seu valor, sua aparência ou seu paradeiro.",
+      "examples": [
+        "Como era o Vertigem?",
+        "Quanto vale o quadro?",
+        "Onde está o original?"
+      ],
+      "keywords": ["vertigem", "quadro", "pintura", "obra", "tela"]
+    },
+    {
+      "id": "ask_about_forgery",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a falsificação, a tinta úmida, o verniz apressado ou a qualidade da cópia.",
+      "examples": [
+        "Como sabem que é falsificação?",
+        "A tinta está úmida?",
+        "Quem teria skill para forjar?"
+      ],
+      "keywords": ["falsificação", "cópia", "tinta", "úmida", "verniz", "forjar"]
+    },
+    {
+      "id": "ask_about_frame",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a moldura, suas dobradiças, marcas ou seu mecanismo de abertura.",
+      "examples": [
+        "A moldura foi aberta?",
+        "Tem marca nas dobradiças?",
+        "Como a moldura abre?"
+      ],
+      "keywords": ["moldura", "dobradiça", "margem", "abrir", "mecanismo"]
+    },
+    {
+      "id": "ask_about_yesterday",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre os acontecimentos da noite anterior ao fechamento da galeria.",
+      "examples": [
+        "O que aconteceu ontem à noite?",
+        "Quem ficou depois do fechamento?",
+        "Como foi a madrugada na galeria?"
+      ],
+      "keywords": ["ontem", "noite", "madrugada", "véspera", "fechamento"]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava, quando chegou ou saiu da galeria.",
+      "examples": [
+        "Qual é o seu álibi?",
+        "A que horas você saiu?",
+        "Você pode provar onde estava?"
+      ],
+      "keywords": ["álibi", "horário", "saída", "chegada", "esteve"]
+    },
+    {
+      "id": "ask_about_crate",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a caixa de transporte de obras e seu fundo falso.",
+      "examples": [
+        "Onde fica a caixa de transporte?",
+        "A caixa tem fundo falso?",
+        "O que tem dentro da caixa?"
+      ],
+      "keywords": ["caixa", "transporte", "fundo falso", "obra", "embalagem"]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar por que alguém trocaria o quadro por uma falsificação.",
+      "examples": [
+        "Qual seria o motivo?",
+        "Por que alguém faria isso?",
+        "Quem ganharia com a troca?"
+      ],
+      "keywords": ["motivo", "por quê", "ganharia", "razão", "interesse"]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono a moldura"
+      ],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+    },
+    {
+      "id": "ask_about_otavio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Otávio, sua rotina ou como descobriu a troca.",
+      "examples": [
+        "Otávio, quando você notou?",
+        "Como você abriu a galeria hoje?",
+        "Otávio trancou ontem?"
+      ],
+      "keywords": ["Otávio", "dono", "galeria", "abriu", "fechou"]
+    },
+    {
+      "id": "ask_about_sonia",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Sônia, seu nervosismo ou sua rotina de restauradora.",
+      "examples": [
+        "Sônia, por que você está nervosa?",
+        "O que Sônia fazia na galeria?",
+        "Sônia esteve sozinha com o quadro?"
+      ],
+      "keywords": ["Sônia", "restauradora", "nervosa", "atelier", "tinta"]
+    },
+    {
+      "id": "ask_about_dante",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Dante, sua visita como colecionador ou seu interesse no Vertigem.",
+      "examples": [
+        "Dante, a que horas você foi embora?",
+        "O que Dante queria com o Vertigem?",
+        "Dante voltou à noite?"
+      ],
+      "keywords": ["Dante", "cliente", "colecionador", "visita", "interesse"]
+    },
+    {
+      "id": "accuse_sonia",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Sônia de ter trocado o quadro por uma falsificação.",
+      "examples": [
+        "Sônia, foi você quem trocou o quadro",
+        "Confronto Sônia sobre a falsificação",
+        "Acho que foi a Sônia"
+      ],
+      "keywords": ["acusar Sônia", "trocou", "falsificação", "responsável"]
+    },
+    {
+      "id": "accuse_dante",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Dante de ter trocado o quadro por uma falsificação.",
+      "examples": [
+        "Dante, foi você quem trocou o quadro",
+        "Confronto Dante sobre a falsificação",
+        "Acho que foi o Dante"
+      ],
+      "keywords": ["acusar Dante", "trocou", "falsificação", "responsável"]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair da galeria",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "otavio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Otávio",
+      "role": "Dono da Galeria Sereno",
+      "shortDescription": "Galerista veterano, refinado e protetor da reputação da casa. Quer o original de volta sem transformar o caso em escândalo público.",
+      "imageUrl": "histories/o-quadro-trocado/characters/otavio.png",
+      "personality": "Educado, metódico, orgulhoso do acervo. Evita exposição pública e prefere resolver internamente para preservar a confiança dos colecionadores.",
+      "speakingStyle": "Fala com calma medida, vocabulário de galerista, frases corteses que escondem nervosismo controlado.",
+      "publicKnowledge": [
+        "Descobriu a troca ao iluminar o quadro na manhã da visualização privada.",
+        "A galeria não foi arrombada e o alarme não disparou.",
+        "Sabe que apenas Sônia e Dante circularam pela galeria após o fechamento."
+      ],
+      "privateKnowledge": [
+        "Confia em Sônia e custa a acreditar que ela possa ter envolvimento.",
+        "Estava reestruturando a galeria e previa encerrar o contrato de Sônia no fim do mês.",
+        "Não fez seguro à parte do Vertigem e por isso prefere resolver sem polícia."
+      ],
+      "openingLine": "Eu liguei o holofote às nove em ponto, como sempre. A moldura estava lá. A pintura, não exatamente.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_painting_swapped",
+          "triggerIntents": ["ask_about_painting", "ask_about_otavio"],
+          "requiresClueIds": [],
+          "revealText": "Otávio confirma que o quadro \"Vertigem\" foi trocado por uma cópia muito bem feita durante a madrugada, sem sinal de arrombamento.",
+          "responseGuidance": "Manter Otávio controlado, mas visivelmente abalado pela quebra de confiança."
+        },
+        {
+          "clueId": "clue_visitors_sunday",
+          "triggerIntents": ["ask_about_yesterday", "ask_about_otavio"],
+          "requiresClueIds": [],
+          "revealText": "Otávio afirma que, após o fechamento, apenas Sônia (que finalizava um restauro) e Dante (que ficou avaliando o Vertigem) permaneceram na galeria.",
+          "responseGuidance": "Ele deve tratar ambos com educação, sem acusar ninguém diretamente."
+        },
+        {
+          "clueId": "clue_otavio_restructuring",
+          "triggerIntents": ["ask_about_motive", "ask_about_sonia", "ask_about_otavio"],
+          "requiresClueIds": ["clue_sonia_nervous"],
+          "revealText": "Otávio admite, constrangido, que está reestruturando a galeria e que o contrato de Sônia como restauradora seria encerrado no fim do mês.",
+          "responseGuidance": "Ele deve soar culpado pela decisão, mas sem ligá-la diretamente à troca do quadro."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Não acusar diretamente Sônia ou Dante sem evidências de moldura, atelier ou motivo.",
+        "Não afirmar que já chamou a polícia — Otávio prefere resolver internamente.",
+        "Não revelar o valor exato do quadro além de 'peça central da noite'.",
+        "Manter o tom de mistério contido, sem drama policial pesado."
+      ]
+    },
+    {
+      "id": "sonia",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sônia",
+      "role": "Restauradora da Galeria Sereno",
+      "shortDescription": "Restauradora experiente, nervosa desde a descoberta da troca. Conhece o Vertigem como ninguém.",
+      "imageUrl": "histories/o-quadro-trocado/characters/sonia.png",
+      "personality": "Aplicada, sensível e propensa a se justificar demais quando pressionada. Tem senso de proteção sobre o acervo.",
+      "speakingStyle": "Fala com cuidado técnico de restauração, tropeça nas palavras quando nervosa e tenta antecipar o que o outro quer ouvir.",
+      "publicKnowledge": [
+        "É restauradora da galeria há vários anos.",
+        "Finalizava um restauro no atelier na noite anterior.",
+        "Está nitidamente nervosa desde que a troca foi descoberta."
+      ],
+      "privateKnowledge": [
+        "Trocou o Vertigem por uma falsificação feita com seus próprios materiais no atelier.",
+        "Escondeu o original dentro de uma caixa de transporte com fundo falso, no atelier.",
+        "Motivo: Otávio estava prestes a vender o Vertigem a Dante abaixo do preço, quebrando uma promessa feita ao doador de que a obra ficaria no acervo permanente.",
+        "Não pretendia ficar com o quadro; planejava 'reencontrá-lo' assim que a venda fosse cancelada."
+      ],
+      "openingLine": "Eu sei que parecer nervosa não ajuda, mas eu dediquei anos a essa pintura. Eu não faria isso com o Vertigem. Não assim.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_sonia_nervous",
+          "triggerIntents": ["ask_about_sonia", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Sônia admite que está nervosa, mas atribui o nervosismo ao medo de ser culpada por ser quem mais conhece a pintura.",
+          "responseGuidance": "Ela deve se justificar demais, o que soa suspeito sem provar nada."
+        },
+        {
+          "clueId": "clue_sonia_near_frame",
+          "triggerIntents": ["ask_about_frame", "ask_about_alibi", "ask_about_sonia"],
+          "requiresClueIds": ["clue_frame_hinge_mark"],
+          "revealText": "Sônia reconhece que manuseou a moldura na noite anterior, mas insiste que foi para conferir a tensão da tela, como faz rotineiramente.",
+          "responseGuidance": "Ela deve minimizar a proximidade, mas sem conseguir explicar a pressa das marcas."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_sonia_swapped_painting",
+          "createdAt": "2026-06-27T00:00:00.000Z",
+          "updatedAt": "2026-06-27T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Sônia trocou o Vertigem por uma falsificação para impedir uma venda que quebrava a promessa ao doador.",
+          "truth": "Sônia forjou uma cópia com seus próprios materiais no atelier, trocou o original durante a madrugada e escondeu o Vertigem dentro de uma caixa de transporte com fundo falso. Agiu porque Otávio estava prestes a vender a obra a Dante abaixo do preço, rompendo a promessa de que ela permaneceria no acervo permanente. Não pretendia ficar com o quadro; planejava 'reencontrá-lo' assim que a venda fosse cancelada.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_sonia_stage_0_deny",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["ask_about_painting", "accuse_sonia", "ask_about_alibi"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento e reagir com aflição controlada.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu nem encostei no Vertigem ontem à noite, eu juro. Era responsabilidade do Otávio.",
+                "Por que todo mundo olha pra mim só porque sou a restauradora?"
+              ]
+            },
+            {
+              "id": "secret_sonia_stage_1_knew_frame",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_frame", "ask_about_alibi", "ask_about_sonia", "ask_about_forgery", "ask_about_yesterday"],
+              "requiresClueIds": ["clue_frame_hinge_mark"],
+              "revealsClueIds": ["clue_sonia_knew_frame"],
+              "behavior": "Admitir que conhecia o mecanismo da moldura, mas negar tê-la aberto para trocar a tela.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu conheço a moldura do Vertigem melhor que ninguém, sei como as dobradiças funcionam. Mas isso não significa que eu a tenha aberto ontem.",
+                "Qualquer restaurador daqui saberia abrir aquela moldura. Não é uma pista, é rotina."
+              ]
+            },
+            {
+              "id": "secret_sonia_stage_2_motive_sale",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_motive", "ask_about_sonia", "ask_about_yesterday", "ask_about_alibi"],
+              "requiresClueIds": ["clue_otavio_restructuring", "clue_sonia_knew_frame"],
+              "revealsClueIds": ["clue_sonia_motive_sale"],
+              "behavior": "Revelar que Otávio estava prestes a vender o Vertigem a Dante abaixo do preço, quebrando a promessa ao doador, mas ainda negar a troca.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "O Otávio ia vender o Vertigem pro Dante por uma miséria. Ele prometeu pro doador que a obra ficava no acervo. Mas eu não troquei nada, eu só achei errado.",
+                "Eu pensei em reclamar, em impedir. Mas não cheguei a fazer nada, juro."
+              ]
+            },
+            {
+              "id": "secret_sonia_stage_3_partial_confession",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["accuse_sonia", "ask_about_motive", "ask_about_sonia", "ask_about_forgery"],
+              "requiresClueIds": [
+                "clue_forge_materials",
+                "clue_sonia_motive_sale",
+                "clue_transport_crate_misplaced"
+              ],
+              "revealsClueIds": ["clue_sonia_took_painting"],
+              "behavior": "Admitir parcialmente que trocou o quadro, insistindo que ia devolver e que fez por princípio, não por ganância.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tá, eu troquei. Mas foi pra proteger a obra, não pra vender. Eu ia repor assim que a venda fosse cancelada.",
+                "Eu sei que foi errado. Mas o Vertigem não pertencia ao Dante, pertencia ao acervo. Eu ia devolver."
+              ]
+            },
+            {
+              "id": "secret_sonia_stage_4_full_confession",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": ["accuse_sonia", "ask_about_motive", "ask_about_sonia", "ask_about_crate"],
+              "requiresClueIds": [
+                "clue_forge_materials",
+                "clue_sonia_motive_sale",
+                "clue_transport_crate_misplaced",
+                "clue_sonia_took_painting"
+              ],
+              "revealsClueIds": ["clue_original_in_crate"],
+              "behavior": "Confessar completamente o que fez, onde o original está e por quê, propondo devolvê-lo imediatamente.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "O Vertigem tá dentro da caixa de transporte, no fundo falso do atelier. Eu não ia ficar com ele, eu juro. Posso trazer agora.",
+                "Foi a pior decisão da minha vida. Mas eu ia repor assim que o Otávio cancelasse a venda. O quadro tá lá, intacto."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar a troca antes do estágio 3, e só revelar o paradeiro no estágio 4.",
+        "Não afirmar que viu Dante fazer qualquer coisa — Sônia não testemunhou Dante.",
+        "Manter o tom de culpa principista, não vilanesca; o gesto deve soar como proteção equivocada, não roubo por ganância."
+      ]
+    },
+    {
+      "id": "dante",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dante",
+      "role": "Colecionador",
+      "shortDescription": "Colecionador articulado e confiante, interessado em comprar o Vertigem abaixo do preço de mercado.",
+      "imageUrl": "histories/o-quadro-trocado/characters/dante.png",
+      "personality": "Calmo, falante e ligeiramente presunçoso. Sabe que é suspeito óbvio e usa a franqueza como escudo.",
+      "speakingStyle": "Fala com segurança e vocabulão de colecionador, citando leilões e proveniência com naturalidade.",
+      "publicKnowledge": [
+        "Veio à galeria na noite anterior para avaliar o Vertigem.",
+        "Estava negociando a compra da obra com Otávio.",
+        "Sabe que é o suspeito natural da troca."
+      ],
+      "privateKnowledge": [
+        "Ofereceu um preço bem abaixo do mercado pelo Vertigem e foi aceito por Otávio.",
+        "Saiu da galeria antes das 22h e foi direto a um leilão em outro bairro, onde outras pessoas o viram.",
+        "Não participou da troca, mas teme que a má-fé da negociação recaia sobre ele."
+      ],
+      "openingLine": "Eu sou o suspeito óbvio, eu sei. Colecionador interessado na peça sumida. Mas óbvio não é o mesmo que culpado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_dante_interest",
+          "triggerIntents": ["ask_about_dante", "ask_about_painting"],
+          "requiresClueIds": [],
+          "revealText": "Dante admite abertamente que queria comprar o Vertigem e estava em negociação com Otávio.",
+          "responseGuidance": "Ele deve tratar o interesse como fato público, sem constrangimento."
+        },
+        {
+          "clueId": "clue_dante_alibi",
+          "triggerIntents": ["ask_about_alibi", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Dante afirma ter saído da galeria antes das 22h e ido direto a um leilão em outro bairro, onde foi visto por várias pessoas.",
+          "responseGuidance": "Ele deve oferecer o álibi de bom grado, como quem nada tem a esconder."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_dante_lowball",
+          "createdAt": "2026-06-27T00:00:00.000Z",
+          "updatedAt": "2026-06-27T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Dante fez uma oferta desonesta pelo Vertigem e quer esconder a extensão do abaixo.",
+          "truth": "Dante ofereceu cerca de um terço do valor real do Vertigem, explorando a pressão financeira de Otávio, e foi aceito. É inocente da troca, mas não quer que Sônia ou o doador saibam o quanto tentou se aproveitar da situação.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_dante_stage_1_justify_offer",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_motive", "accuse_dante", "ask_about_dante", "ask_about_painting", "ask_about_alibi"],
+              "requiresClueIds": ["clue_dante_interest"],
+              "revealsClueIds": ["clue_dante_low_offer"],
+              "behavior": "Reconhecer que a oferta foi baixa, mas justificar como prática comum em negociação entre colecionadores.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu ofereci menos, sim. Todo colecionador começa baixo. Não tem nada a ver com a troca.",
+                "Negociação é negociação. Não vira roubo só porque o preço não agradou."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter trocado o quadro, pois Dante é inocente da troca.",
+        "Não revelar o valor exato da oferta antes de questionado sobre motivo.",
+        "Manter a confiança de quem colabora, sem arrogância que ofusque a investigação."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "sala_principal",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sala principal",
+      "shortDescription": "Salão de exposição onde o Vertigem é (era) o centro.",
+      "imageUrl": "histories/o-quadro-trocado/location/sala_principal.png",
+      "initialDescription": "A sala principal da Galeria Sereno é um salão longo de paredes brancas, com holofotes direcionais e um silêncio de museu. No centro da parede maior, a moldura do Vertigem agora abriga uma cópia. Perto da moldura, as dobradiças têm um brilho diferente, como se tivessem sido manuseadas recentemente.",
+      "ambientClueIds": ["clue_frame_hinge_mark"],
+      "objectIds": ["quadro_falso", "moldura"]
+    },
+    {
+      "id": "atelier",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Atelier de restauração",
+      "shortDescription": "Cômodo dos fundas onde Sônia trabalha e onde fica a caixa de transporte.",
+      "imageUrl": "histories/o-quadro-trocado/location/atelier.png",
+      "initialDescription": "O atelier é um cômodo estreito nos fundos, com bancadas de trabalho, potes de tinta, pincéis, lupas e panos manchados. Ao fundo, encostada na parede, uma caixa de transporte de madeira parece fora do lugar habitual.",
+      "ambientClueIds": [],
+      "objectIds": ["caixa_transporte", "pincel_sonia"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "quadro_falso",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Quadro na parede",
+      "shortDescription": "A cópia que agora ocupa o lugar do Vertigem.",
+      "imageUrl": "histories/o-quadro-trocado/object/quadro_falso.png",
+      "locationId": "sala_principal",
+      "initialDescription": "A pintura na parede é, à primeira vista, o Vertigem. Mas a textura da tinta é levemente diferente e o verniz, apressado, ainda não secou por completo.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_painting_swapped",
+          "triggerIntents": ["inspect_object", "ask_about_painting"],
+          "requiresClueIds": [],
+          "revealText": "Examinando a obra, fica claro que não é o original: a pincelada é levemente mais nervosa e a composição tem uma mínima divergência nas sombras."
+        },
+        {
+          "clueId": "clue_tacky_paint",
+          "triggerIntents": ["inspect_object", "ask_about_forgery"],
+          "requiresClueIds": [],
+          "revealText": "A tinta da cópia ainda está ligeiramente úmida sob o verniz apressado, o que indica que a falsificação foi feita há poucas horas, por alguém que teve acesso recente ao atelier."
+        }
+      ]
+    },
+    {
+      "id": "moldura",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Moldura do Vertigem",
+      "shortDescription": "A moldura de madeira cujas dobradiças foram manuseadas.",
+      "imageUrl": "histories/o-quadro-trocado/object/moldura.png",
+      "locationId": "sala_principal",
+      "initialDescription": "A moldura é pesada, de madeira escura, com dobradiças de latão que permitem abrir o verso para retirar a tela. Nas dobradiças há um brilho de manuseio recente.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_frame_hinge_mark",
+          "triggerIntents": ["inspect_object", "ask_about_frame"],
+          "requiresClueIds": [],
+          "revealText": "As dobradiças da moldura apresentam marcas de uso recente, como se o verso tivesse sido aberto com cuidado e pressa durante a madrugada."
+        }
+      ]
+    },
+    {
+      "id": "caixa_transporte",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caixa de transporte",
+      "shortDescription": "Caixa de madeira para transporte de obras, fora do lugar habitual.",
+      "imageUrl": "histories/o-quadro-trocado/object/caixa_transporte.png",
+      "locationId": "atelier",
+      "initialDescription": "A caixa de transporte de obras está encostada na parede do atelier em posição incomum, como se tivesse sido movida e recolocada às pressas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_transport_crate_misplaced",
+          "triggerIntents": ["inspect_object", "ask_about_crate"],
+          "requiresClueIds": [],
+          "revealText": "A caixa de transporte está fora do lugar habitual e tem um fundo falso solto, sugerindo que foi usada para esconder algo durante a madrugada."
+        }
+      ]
+    },
+    {
+      "id": "pincel_sonia",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Pincel de Sônia",
+      "shortDescription": "Pincel usado por Sônia, com pigmento compatível com a cópia.",
+      "imageUrl": "histories/o-quadro-trocado/object/pincel_sonia.png",
+      "locationId": "atelier",
+      "initialDescription": "Entre os pincéis de Sônia, um deles ainda está úmido, com pigmento que combina com a paleta da cópia agora pendurada na sala principal.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_forge_materials",
+          "triggerIntents": ["inspect_object", "ask_about_forgery"],
+          "requiresClueIds": ["clue_tacky_paint"],
+          "revealText": "O pincel de Sônia tem pigmento ainda úmido compatível com a tinta da falsificação, ligando o atelier — e a restauradora — à confecção da cópia."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_painting_swapped",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O Vertigem foi trocado",
+      "description": "O quadro na parede é uma cópia, não o original Vertigem.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tacky_paint",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tinta úmida",
+      "description": "A tinta da falsificação ainda está úmida sob o verniz apressado, indicando confecção recente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_frame_hinge_mark",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Marcas nas dobradiças",
+      "description": "As dobradiças da moldura foram manuseadas recentemente, com cuidado e pressa.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_transport_crate_misplaced",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Caixa de transporte fora do lugar",
+      "description": "A caixa de transporte está em posição incomum e tem um fundo falso.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_visitors_sunday",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Visitantes da noite anterior",
+      "description": "Apenas Sônia e Dante permaneceram na galeria após o fechamento.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_sonia_nervous",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sônia está nervosa",
+      "description": "Sônia está visivelmente nervosa e se justifica demais desde a descoberta.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_sonia_near_frame",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sônia perto da moldura",
+      "description": "Sônia admite ter manuseado a moldura na noite anterior, por motivo de rotina.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_otavio_restructuring",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Otávio está reestruturando",
+      "description": "Otávio admitiu que encerraria o contrato de Sônia no fim do mês.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_sonia_knew_frame",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sônia conhecia a moldura",
+      "description": "Sônia sabia exatamente como abrir as dobradiças da moldura do Vertigem.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_sonia_motive_sale",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Venda quebrava promessa",
+      "description": "Otávio estava prestes a vender o Vertigem a Dante abaixo do preço, rompendo a promessa ao doador.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_forge_materials",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Materiais de falsificação",
+      "description": "O pincel de Sônia tem pigmento compatível com a tinta da cópia.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_sonia_took_painting",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sônia trocou o quadro",
+      "description": "Sônia admitiu ter trocado o Vertigem por uma falsificação.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_original_in_crate",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Original na caixa de transporte",
+      "description": "Sônia revelou que o Vertigem está escondido no fundo falso da caixa de transporte no atelier.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dante_interest",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante queria o Vertigem",
+      "description": "Dante admitiu abertamente que queria comprar a obra e estava em negociação.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_dante_alibi",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante tem álibi",
+      "description": "Dante saiu antes das 22h e foi visto em um leilão em outro bairro.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_dante_low_offer",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Oferta baixa de Dante",
+      "description": "Dante fez uma oferta bem abaixo do mercado e foi aceito por Otávio.",
+      "importance": "red_herring"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_quadro_trocado",
+    "createdAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_took_painting",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem trocou o Vertigem?",
+        "type": "character",
+        "options": [
+          {
+            "id": "otavio",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Otávio"
+          },
+          {
+            "id": "sonia",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Sônia"
+          },
+          {
+            "id": "dante",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Dante"
+          }
+        ]
+      },
+      {
+        "id": "why_painting_taken",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Por que o quadro foi trocado?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "protect_from_sale",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para proteger a obra de uma venda que quebrava a promessa ao doador"
+          },
+          {
+            "id": "resell_profit",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para revender o original por lucro"
+          },
+          {
+            "id": "personal_collection",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para guardar na coleção pessoal"
+          },
+          {
+            "id": "insurance_fraud",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para simular um roubo e acionar seguro"
+          }
+        ]
+      },
+      {
+        "id": "where_original_now",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Onde está o Vertigem original?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "in_transport_crate",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "No fundo falso da caixa de transporte, no atelier"
+          },
+          {
+            "id": "at_sonia_home",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Escondido na casa de Sônia"
+          },
+          {
+            "id": "with_dante",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Com Dante, o colecionador"
+          },
+          {
+            "id": "hidden_in_gallery",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Escondido em outro cômodo da própria galeria"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A moldura certa para a tela certa",
+      "type": "full_truth",
+      "imageUrl": "histories/o-quadro-trocado/endings/full_truth.png",
+      "condition": {
+        "conclusionMatches": {
+          "who_took_painting": "sonia",
+          "why_painting_taken": "protect_from_sale",
+          "where_original_now": "in_transport_crate"
+        },
+        "requiresClueIds": [
+          "clue_sonia_took_painting",
+          "clue_sonia_motive_sale",
+          "clue_original_in_crate"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Sônia forjou uma cópia com seus materiais, trocou o Vertigem durante a madrugada e escondeu o original no fundo falso da caixa de transporte, para impedir a venda a Dante que rompia a promessa ao doador.",
+      "epilogue": "O silêncio na Galeria Sereno muda de peso. Sônia desiste de sustentar a negação e caminha até o atelier, de onde volta com o Vertigem intacto, ainda enrolado em pano de manuseio. Otávio recebe a obra em mãos trêmulas e, por um longo momento, não diz nada. A visualização privada daquela noite acontece com o verdadeiro Vertigem na parede, e a cólia fica guardada no depósito como prova de uma confusão que quase custou à galeria algo mais valioso que uma pintura: a confiança entre quem cuida de uma obra e quem a vende."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Uma tela pela metade",
+      "type": "partial_truth",
+      "imageUrl": "histories/o-quadro-trocado/endings/partial_truth.png",
+      "condition": {
+        "conclusionMatches": {
+          "who_took_painting": "sonia"
+        },
+        "requiresClueIds": ["clue_sonia_took_painting"]
+      },
+      "summary": "Você identificou Sônia como autora da troca, mas não fechou o motivo real nem o paradeiro do Vertigem.",
+      "epilogue": "Sônia não consegue mais negar que trocou o quadro, mas o silêncio sobre o porquê pesa mais do que a confissão. Sem o paradeiro, o Vertigem segue sumido entre uma caixa de transporte, uma gaveta e uma promessa que ninguém confirmou. Otávio adia a visualização privada e decide esperar mais um dia antes de qualquer decisão. A moldura na parede permanece vazia, esperando uma obra que, onde quer que esteja, ainda não voltou ao lugar que lhe foi prometido."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O suspeito óbvio",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-quadro-trocado/endings/wrong_accusation.png",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade fixa do caso. Otávio não sumiu com a própria obra e Dante, por mais conveniente que parecesse, tinha álibi.",
+      "epilogue": "A manhã termina com mais desconfiança do que resposta. Dante vai embora ofendido com a suspeita, Otávio permanece inquieto diante da moldura vazia e Sônia sai aliviada por ninguém ter olhado direito para o atelier. A cópia segue na parede, disfarçada de original, e o Vertigem, onde quer que esteja, continua esperando alguém disposto a procurá-lo onde de fato está."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 4,
+    "suggestConclusionAfterClues": 7,
+    "maxRecommendedInteractions": 12
+  }
+}
