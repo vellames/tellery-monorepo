@@ -12,12 +12,12 @@ export default async function AppLayout({
   if (!user) redirect(config.routes.login);
 
   return (
-    <main className="text-foreground min-h-svh bg-[radial-gradient(circle_at_top_left,#fff9ef_0,#f7f1e7_38%,#f1e5d4_100%)] pb-28">
+    <main className="text-foreground min-h-svh bg-[radial-gradient(circle_at_top_left,#fff9ef_0,#f7f1e7_38%,#f1e5d4_100%)] pb-28 lg:pb-10">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-9 px-4 py-5 sm:px-6 lg:px-8">
         <AppHeader user={user} />
+        <BottomNav />
         {children}
       </div>
-      <BottomNav />
     </main>
   );
 }
