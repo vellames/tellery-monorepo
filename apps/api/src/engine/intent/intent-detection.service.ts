@@ -129,8 +129,7 @@ export class IntentDetectionService {
     const detected = response
       .filter(
         (intent) =>
-          validIntentIds.has(intent.intentId) &&
-          intent.confidence >= threshold
+          validIntentIds.has(intent.intentId) && intent.confidence >= threshold
       )
       .map((intent) => ({
         intentId: intent.intentId,

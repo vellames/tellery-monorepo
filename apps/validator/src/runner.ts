@@ -59,7 +59,9 @@ export async function runSession(
     const action = await investigator.decide(state, pastActions);
 
     if (action.done) {
-      console.log(`[turn ${turn}] investigator decided to stop: ${action.reasoning}`);
+      console.log(
+        `[turn ${turn}] investigator decided to stop: ${action.reasoning}`
+      );
       stopReason = 'investigator decided to stop';
       break;
     }

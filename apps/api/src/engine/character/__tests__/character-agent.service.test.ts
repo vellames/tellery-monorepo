@@ -206,7 +206,9 @@ describe('CharacterAgent', () => {
 
       const result = await agent.run({
         ...baseInput,
-        detectedIntents: [{ intentId: 'unrelated', confidence: 0.9, reasoning: '' }],
+        detectedIntents: [
+          { intentId: 'unrelated', confidence: 0.9, reasoning: '' },
+        ],
         clueRules: [],
         secrets: [buildSecret({})],
       });
@@ -240,7 +242,10 @@ describe('CharacterAgent', () => {
 
     await agent.run(baseInput);
 
-    expect(translate).toHaveBeenCalledWith(language, 'characterAgentSystemPrompt');
+    expect(translate).toHaveBeenCalledWith(
+      language,
+      'characterAgentSystemPrompt'
+    );
     expect(translate).toHaveBeenCalledWith(
       language,
       'characterAgentUserPrompt',

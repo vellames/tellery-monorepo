@@ -113,9 +113,9 @@ describe('IntentDetectionService', () => {
   });
 
   it('throws when no intents are provided', async () => {
-    await expect(
-      service.detect({ ...input, intents: [] })
-    ).rejects.toThrow('at least one intent');
+    await expect(service.detect({ ...input, intents: [] })).rejects.toThrow(
+      'at least one intent'
+    );
 
     expect(llm.invokeStructured).not.toHaveBeenCalled();
   });
@@ -135,7 +135,10 @@ describe('IntentDetectionService', () => {
       expect.anything()
     );
 
-    expect(translate).toHaveBeenCalledWith(language, 'intentDetectorSystemPrompt');
+    expect(translate).toHaveBeenCalledWith(
+      language,
+      'intentDetectorSystemPrompt'
+    );
     expect(translate).toHaveBeenCalledWith(
       language,
       'intentDetectorUserPrompt',

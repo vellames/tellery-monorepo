@@ -89,12 +89,26 @@ describe('buildSessionStateResponse', () => {
           clueRevealRules: [
             {
               clueId: 'clue-a',
-              clue: { id: 'clue-a', title: 'A', description: 'a', importance: 'low', discovered: true, discoveredAt: null },
+              clue: {
+                id: 'clue-a',
+                title: 'A',
+                description: 'a',
+                importance: 'low',
+                discovered: true,
+                discoveredAt: null,
+              },
               triggerIntents: [{ id: 'intent-gm' }],
             },
             {
               clueId: 'clue-b',
-              clue: { id: 'clue-b', title: 'B', description: 'b', importance: 'low', discovered: false, discoveredAt: null },
+              clue: {
+                id: 'clue-b',
+                title: 'B',
+                description: 'b',
+                importance: 'low',
+                discovered: false,
+                discoveredAt: null,
+              },
               triggerIntents: [{ id: 'intent-gm' }],
             },
           ],
@@ -106,8 +120,22 @@ describe('buildSessionStateResponse', () => {
                   level: 1,
                   behavior: 'GM-ONLY',
                   revealsClues: [
-                    { id: 'clue-c', title: 'C', description: 'c', importance: 'low', discovered: false, discoveredAt: null },
-                    { id: 'clue-d', title: 'D', description: 'd', importance: 'low', discovered: true, discoveredAt: null },
+                    {
+                      id: 'clue-c',
+                      title: 'C',
+                      description: 'c',
+                      importance: 'low',
+                      discovered: false,
+                      discoveredAt: null,
+                    },
+                    {
+                      id: 'clue-d',
+                      title: 'D',
+                      description: 'd',
+                      importance: 'low',
+                      discovered: true,
+                      discoveredAt: null,
+                    },
                   ],
                 },
               ],
@@ -137,12 +165,28 @@ describe('buildSessionStateResponse', () => {
       conversationSummary: 'resumo',
       cluesTotal: 4,
       discoveredClues: [
-        { id: 'clue-a', title: 'A', description: 'a', importance: 'low', discoveredAt: null },
-        { id: 'clue-d', title: 'D', description: 'd', importance: 'low', discoveredAt: null },
+        {
+          id: 'clue-a',
+          title: 'A',
+          description: 'a',
+          importance: 'low',
+          discoveredAt: null,
+        },
+        {
+          id: 'clue-d',
+          title: 'D',
+          description: 'd',
+          importance: 'low',
+          discoveredAt: null,
+        },
       ],
       messages: [
         { role: 'user', content: 'oi', createdAt: new Date('2026-01-01') },
-        { role: 'character', content: 'olá', createdAt: new Date('2026-01-01') },
+        {
+          role: 'character',
+          content: 'olá',
+          createdAt: new Date('2026-01-01'),
+        },
       ],
     });
     expect(JSON.stringify(character)).not.toContain('GM-ONLY');
@@ -164,7 +208,14 @@ describe('buildSessionStateResponse', () => {
           clueRevealRules: [
             {
               clueId: 'clue-a',
-              clue: { id: 'clue-a', title: 'A', description: 'a', importance: 'low', discovered: true, discoveredAt: null },
+              clue: {
+                id: 'clue-a',
+                title: 'A',
+                description: 'a',
+                importance: 'low',
+                discovered: true,
+                discoveredAt: null,
+              },
               revealText: 'GM-ONLY-TEXT',
             },
           ],
@@ -186,7 +237,13 @@ describe('buildSessionStateResponse', () => {
       inspectedAt: new Date('2026-01-02'),
       cluesTotal: 1,
       discoveredClues: [
-        { id: 'clue-a', title: 'A', description: 'a', importance: 'low', discoveredAt: null },
+        {
+          id: 'clue-a',
+          title: 'A',
+          description: 'a',
+          importance: 'low',
+          discoveredAt: null,
+        },
       ],
       messages: [],
     });
@@ -205,8 +262,22 @@ describe('buildSessionStateResponse', () => {
           visited: true,
           visitedAt: new Date('2026-01-02'),
           ambientClues: [
-            { id: 'clue-a', title: 'A', description: 'a', importance: 'low', discovered: true, discoveredAt: null },
-            { id: 'clue-b', title: 'B', description: 'b', importance: 'low', discovered: false, discoveredAt: null },
+            {
+              id: 'clue-a',
+              title: 'A',
+              description: 'a',
+              importance: 'low',
+              discovered: true,
+              discoveredAt: null,
+            },
+            {
+              id: 'clue-b',
+              title: 'B',
+              description: 'b',
+              importance: 'low',
+              discovered: false,
+              discoveredAt: null,
+            },
           ],
         },
       ] as never,
@@ -224,7 +295,13 @@ describe('buildSessionStateResponse', () => {
       visitedAt: new Date('2026-01-02'),
       cluesTotal: 2,
       discoveredClues: [
-        { id: 'clue-a', title: 'A', description: 'a', importance: 'low', discoveredAt: null },
+        {
+          id: 'clue-a',
+          title: 'A',
+          description: 'a',
+          importance: 'low',
+          discoveredAt: null,
+        },
       ],
     });
   });

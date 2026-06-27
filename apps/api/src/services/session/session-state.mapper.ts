@@ -100,9 +100,11 @@ function collectCharacterClues(character: CharacterState): SessionClue[] {
   return distinct;
 }
 
-const mapMessage = (
-  message: { role: string; content: string; createdAt: Date }
-): SessionMessageDto => ({
+const mapMessage = (message: {
+  role: string;
+  content: string;
+  createdAt: Date;
+}): SessionMessageDto => ({
   role: message.role,
   content: message.content,
   createdAt: message.createdAt,
@@ -127,9 +129,7 @@ export function buildSessionStateResponse(
       coverImageUrl: session.coverImageUrl,
       thumbnailUrl: session.thumbnailUrl,
     },
-    clues: session.clues
-      .filter((clue) => clue.discovered)
-      .map(toClueDto),
+    clues: session.clues.filter((clue) => clue.discovered).map(toClueDto),
     characters: session.characterStates.map((character) => {
       const characterClues = collectCharacterClues(character);
       return {

@@ -44,39 +44,51 @@ function reg(ctx, rule) {
     (revealers[id] = revealers[id] || []).push(ctx);
   });
   (rule.triggerIntents || []).forEach((id) => {
-    if (!intentIds.has(id)) problems.push(`[ref] ${ctx} usa intent inexistente: ${id}`);
+    if (!intentIds.has(id))
+      problems.push(`[ref] ${ctx} usa intent inexistente: ${id}`);
   });
 }
 
 h.characters.forEach((ch) => {
   (ch.clueRevealRules || []).forEach((r) => reg(`char ${ch.id}`, r));
   (ch.secrets || []).forEach((s) =>
-    s.revealStages.forEach((st) => reg(`char ${ch.id}/${s.id} L${st.level}`, st))
+    s.revealStages.forEach((st) =>
+      reg(`char ${ch.id}/${s.id} L${st.level}`, st)
+    )
   );
 });
-h.objects.forEach((o) => (o.clueRevealRules || []).forEach((r) => reg(`obj ${o.id}`, r)));
+h.objects.forEach((o) =>
+  (o.clueRevealRules || []).forEach((r) => reg(`obj ${o.id}`, r))
+);
 h.endings.forEach((e) =>
   (e.condition.requiresClueIds || []).forEach((id) => {
-    if (!clueIds.has(id)) problems.push(`[ref] ending ${e.id} requires pista inexistente ${id}`);
+    if (!clueIds.has(id))
+      problems.push(`[ref] ending ${e.id} requires pista inexistente ${id}`);
   })
 );
 
 // Orphans
 const orphan = h.clues.filter((c) => !revealers[c.id]).map((c) => c.id);
-if (orphan.length) problems.push(`[orfas] pistas declaradas mas nunca reveladas: ${orphan.join(', ')}`);
+if (orphan.length)
+  problems.push(
+    `[orfas] pistas declaradas mas nunca reveladas: ${orphan.join(', ')}`
+  );
 
 // Location/object/character refs
 h.objects.forEach((o) => {
-  if (!locIds.has(o.locationId)) problems.push(`[ref] obj ${o.id} locationId inexistente ${o.locationId}`);
+  if (!locIds.has(o.locationId))
+    problems.push(`[ref] obj ${o.id} locationId inexistente ${o.locationId}`);
 });
 h.locations.forEach((l) =>
   l.objectIds.forEach((id) => {
-    if (!objIds.has(id)) problems.push(`[ref] loc ${l.id} referencia obj inexistente ${id}`);
+    if (!objIds.has(id))
+      problems.push(`[ref] loc ${l.id} referencia obj inexistente ${id}`);
   })
 );
 h.locations.forEach((l) =>
   l.ambientClueIds.forEach((id) => {
-    if (!clueIds.has(id)) problems.push(`[ref] loc ${l.id} ambient inexistente ${id}`);
+    if (!clueIds.has(id))
+      problems.push(`[ref] loc ${l.id} ambient inexistente ${id}`);
   })
 );
 
@@ -97,8 +109,10 @@ function reachable(id, seen = new Set()) {
 h.endings.forEach((e) => {
   (e.condition.requiresClueIds || []).forEach((id) => {
     const r = reachable(id);
-    if (r === false) problems.push(`[inalc] ending ${e.id} exige pista nao-alcancavel: ${id}`);
-    if (r === null) problems.push(`[circ] ending ${e.id} cadeia circular via ${id}`);
+    if (r === false)
+      problems.push(`[inalc] ending ${e.id} exige pista nao-alcancavel: ${id}`);
+    if (r === null)
+      problems.push(`[circ] ending ${e.id} cadeia circular via ${id}`);
   });
 });
 
@@ -108,7 +122,9 @@ h.characters.forEach((ch) => {
     const stages = [...s.revealStages].sort((a, b) => a.level - b.level);
     stages.forEach((st, i) => {
       if (i > 0 && (st.requiresClueIds || []).length === 0) {
-        problems.push(`[segredo] ${ch.id}/${s.id} L${st.level} sem requires (quebra de cadeia)`);
+        problems.push(
+          `[segredo] ${ch.id}/${s.id} L${st.level} sem requires (quebra de cadeia)`
+        );
       }
     });
   });
@@ -118,7 +134,8 @@ h.characters.forEach((ch) => {
 const conclCharField = h.conclusion.fields.find((f) => f.type === 'character');
 if (conclCharField) {
   (conclCharField.options || []).forEach((o) => {
-    if (!charIds.has(o.id)) problems.push(`[concl] opcao sem personagem: ${o.id}`);
+    if (!charIds.has(o.id))
+      problems.push(`[concl] opcao sem personagem: ${o.id}`);
   });
 }
 
@@ -126,8 +143,12 @@ if (conclCharField) {
 const imgRefs = [];
 if (h.coverImageUrl) imgRefs.push(['history', h.coverImageUrl]);
 if (h.thumbnailUrl) imgRefs.push(['history', h.thumbnailUrl]);
-h.characters.forEach((c) => c.imageUrl && imgRefs.push(['characters', c.imageUrl]));
-h.locations.forEach((l) => l.imageUrl && imgRefs.push(['location', l.imageUrl]));
+h.characters.forEach(
+  (c) => c.imageUrl && imgRefs.push(['characters', c.imageUrl])
+);
+h.locations.forEach(
+  (l) => l.imageUrl && imgRefs.push(['location', l.imageUrl])
+);
 h.objects.forEach((o) => o.imageUrl && imgRefs.push(['object', o.imageUrl]));
 h.endings.forEach((e) => e.imageUrl && imgRefs.push(['endings', e.imageUrl]));
 const imgMapPath = inputPath.replace(/\.json$/, '-images-map.json');

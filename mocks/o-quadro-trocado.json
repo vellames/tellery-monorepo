@@ -50,7 +50,14 @@
         "A tinta está úmida?",
         "Quem teria skill para forjar?"
       ],
-      "keywords": ["falsificação", "cópia", "tinta", "úmida", "verniz", "forjar"]
+      "keywords": [
+        "falsificação",
+        "cópia",
+        "tinta",
+        "úmida",
+        "verniz",
+        "forjar"
+      ]
     },
     {
       "id": "ask_about_frame",
@@ -249,7 +256,11 @@
         },
         {
           "clueId": "clue_otavio_restructuring",
-          "triggerIntents": ["ask_about_motive", "ask_about_sonia", "ask_about_otavio"],
+          "triggerIntents": [
+            "ask_about_motive",
+            "ask_about_sonia",
+            "ask_about_otavio"
+          ],
           "requiresClueIds": ["clue_sonia_nervous"],
           "revealText": "Otávio admite, constrangido, que está reestruturando a galeria e que o contrato de Sônia como restauradora seria encerrado no fim do mês.",
           "responseGuidance": "Ele deve soar culpado pela decisão, mas sem ligá-la diretamente à troca do quadro."
@@ -296,7 +307,11 @@
         },
         {
           "clueId": "clue_sonia_near_frame",
-          "triggerIntents": ["ask_about_frame", "ask_about_alibi", "ask_about_sonia"],
+          "triggerIntents": [
+            "ask_about_frame",
+            "ask_about_alibi",
+            "ask_about_sonia"
+          ],
           "requiresClueIds": ["clue_frame_hinge_mark"],
           "revealText": "Sônia reconhece que manuseou a moldura na noite anterior, mas insiste que foi para conferir a tensão da tela, como faz rotineiramente.",
           "responseGuidance": "Ela deve minimizar a proximidade, mas sem conseguir explicar a pressa das marcas."
@@ -318,7 +333,11 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 0,
-              "triggerIntents": ["ask_about_painting", "accuse_sonia", "ask_about_alibi"],
+              "triggerIntents": [
+                "ask_about_painting",
+                "accuse_sonia",
+                "ask_about_alibi"
+              ],
               "requiresClueIds": [],
               "revealsClueIds": [],
               "behavior": "Negar qualquer envolvimento e reagir com aflição controlada.",
@@ -334,7 +353,13 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 1,
-              "triggerIntents": ["ask_about_frame", "ask_about_alibi", "ask_about_sonia", "ask_about_forgery", "ask_about_yesterday"],
+              "triggerIntents": [
+                "ask_about_frame",
+                "ask_about_alibi",
+                "ask_about_sonia",
+                "ask_about_forgery",
+                "ask_about_yesterday"
+              ],
               "requiresClueIds": ["clue_frame_hinge_mark"],
               "revealsClueIds": ["clue_sonia_knew_frame"],
               "behavior": "Admitir que conhecia o mecanismo da moldura, mas negar tê-la aberto para trocar a tela.",
@@ -350,8 +375,16 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 2,
-              "triggerIntents": ["ask_about_motive", "ask_about_sonia", "ask_about_yesterday", "ask_about_alibi"],
-              "requiresClueIds": ["clue_otavio_restructuring", "clue_sonia_knew_frame"],
+              "triggerIntents": [
+                "ask_about_motive",
+                "ask_about_sonia",
+                "ask_about_yesterday",
+                "ask_about_alibi"
+              ],
+              "requiresClueIds": [
+                "clue_otavio_restructuring",
+                "clue_sonia_knew_frame"
+              ],
               "revealsClueIds": ["clue_sonia_motive_sale"],
               "behavior": "Revelar que Otávio estava prestes a vender o Vertigem a Dante abaixo do preço, quebrando a promessa ao doador, mas ainda negar a troca.",
               "allowedToRevealTruth": false,
@@ -366,7 +399,12 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 3,
-              "triggerIntents": ["accuse_sonia", "ask_about_motive", "ask_about_sonia", "ask_about_forgery"],
+              "triggerIntents": [
+                "accuse_sonia",
+                "ask_about_motive",
+                "ask_about_sonia",
+                "ask_about_forgery"
+              ],
               "requiresClueIds": [
                 "clue_forge_materials",
                 "clue_sonia_motive_sale",
@@ -386,7 +424,12 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_sonia", "ask_about_motive", "ask_about_sonia", "ask_about_crate"],
+              "triggerIntents": [
+                "accuse_sonia",
+                "ask_about_motive",
+                "ask_about_sonia",
+                "ask_about_crate"
+              ],
               "requiresClueIds": [
                 "clue_forge_materials",
                 "clue_sonia_motive_sale",
@@ -464,7 +507,13 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 1,
-              "triggerIntents": ["ask_about_motive", "accuse_dante", "ask_about_dante", "ask_about_painting", "ask_about_alibi"],
+              "triggerIntents": [
+                "ask_about_motive",
+                "accuse_dante",
+                "ask_about_dante",
+                "ask_about_painting",
+                "ask_about_alibi"
+              ],
               "requiresClueIds": ["clue_dante_interest"],
               "revealsClueIds": ["clue_dante_low_offer"],
               "behavior": "Reconhecer que a oferta foi baixa, mas justificar como prática comum em negociação entre colecionadores.",

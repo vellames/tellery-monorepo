@@ -15,7 +15,7 @@ do not invent new top-level keys.
 
 ## Phase 1 — Author the history JSON
 
-**File:** `mocks/<slug>.json`  (slug = lowercase-hyphenated, e.g. `o-relogio-parado`)
+**File:** `mocks/<slug>.json` (slug = lowercase-hyphenated, e.g. `o-relogio-parado`)
 
 Required top-level sections (see existing mocks for full shapes):
 
@@ -38,13 +38,13 @@ Required top-level sections (see existing mocks for full shapes):
 All `imageUrl` fields use relative S3 keys (NOT URLs). Match the section name
 exactly as the existing mocks do — note the mixed singular/plural:
 
-| Section in JSON field | S3 path segment |
-|---|---|
-| cover / thumbnail | `histories/<slug>/history/<file>.png` |
-| location `imageUrl` | `histories/<slug>/location/<file>.png` (singular) |
-| object `imageUrl` | `histories/<slug>/object/<file>.png` (singular) |
-| character `imageUrl` | `histories/<slug>/characters/<file>.png` (plural) |
-| ending `imageUrl` | `histories/<slug>/endings/<file>.png` (plural) |
+| Section in JSON field | S3 path segment                                   |
+| --------------------- | ------------------------------------------------- |
+| cover / thumbnail     | `histories/<slug>/history/<file>.png`             |
+| location `imageUrl`   | `histories/<slug>/location/<file>.png` (singular) |
+| object `imageUrl`     | `histories/<slug>/object/<file>.png` (singular)   |
+| character `imageUrl`  | `histories/<slug>/characters/<file>.png` (plural) |
+| ending `imageUrl`     | `histories/<slug>/endings/<file>.png` (plural)    |
 
 ### Clue reveal mechanics
 
@@ -125,15 +125,15 @@ Structure (mirror `mocks/o-bilhete-na-mesa-7-images-map.json`):
 
 ### Aspect ratios
 
-| Section | Ratio | Notes |
-|---|---|---|
-| history/cover | 16:9 | hero card, leave negative space for title overlay |
-| history/thumbnail | 1:1 | close-up focal object, readable at small size |
-| location | 16:9 | establishing shot |
-| object (central clue) | 4:3 | needs space for legible detail |
-| object (secondary) | 1:1 | |
-| characters | 4:5 | portrait |
-| endings | 16:9 | cinematic |
+| Section               | Ratio | Notes                                             |
+| --------------------- | ----- | ------------------------------------------------- |
+| history/cover         | 16:9  | hero card, leave negative space for title overlay |
+| history/thumbnail     | 1:1   | close-up focal object, readable at small size     |
+| location              | 16:9  | establishing shot                                 |
+| object (central clue) | 4:3   | needs space for legible detail                    |
+| object (secondary)    | 1:1   |                                                   |
+| characters            | 4:5   | portrait                                          |
+| endings               | 16:9  | cinematic                                         |
 
 ### Art direction rules
 
@@ -211,6 +211,7 @@ The validator logs in, starts a session, runs an LLM investigator (default
 `deepseek/deepseek-v4-pro`) for up to 50 turns, and writes a report.
 
 **Success criteria:**
+
 - All clues discovered (`<n>/<n> clues`)
 - `stopReason: investigator decided to stop` (resolved) — NOT hitting `maxIterations`
 - Every entity shows `<n>/<n>` in the ENTITY PROGRESS section
@@ -218,6 +219,7 @@ The validator logs in, starts a session, runs an LLM investigator (default
 Report lands at `apps/validator/validator-output.txt`.
 
 If the investigator gets stuck or mis-accuses, the problem is usually:
+
 - A clue unreachable (re-run the audit)
 - A secret stage with missing/too-strict `requiresClueIds` (the LLM can't unlock the confession)
 - A red herring without an exculpatory alibi clue (LLM accuses the wrong person)

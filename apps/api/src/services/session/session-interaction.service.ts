@@ -14,7 +14,10 @@ import { ISessionRepository } from '../../interfaces';
 import type { HistorySessionWithRelations } from '../../repositories/SessionRepository';
 import { InteractBody } from '../../types/http/session.validation';
 import { HttpError } from '../../utils/http-error';
-import { ResolvedSessionState, resolveSessionState } from './session-state-resolver';
+import {
+  ResolvedSessionState,
+  resolveSessionState,
+} from './session-state-resolver';
 
 export type SessionStateType = ResolvedSessionState['type'];
 
@@ -209,9 +212,8 @@ export class SessionInteractionService {
     const revealTexts = newlyDiscoveredClueIds
       .map(
         (clueId) =>
-          objectState.clueRevealRules.find(
-            (rule) => rule.clueId === clueId
-          )?.revealText
+          objectState.clueRevealRules.find((rule) => rule.clueId === clueId)
+            ?.revealText
       )
       .filter((text): text is string => Boolean(text));
 

@@ -10,9 +10,7 @@ import {
 import { TranslationFunction } from '../types/i18n.types';
 
 export class HistoryController {
-  constructor(
-    private readonly historyCatalogService: HistoryCatalogService
-  ) {}
+  constructor(private readonly historyCatalogService: HistoryCatalogService) {}
 
   list = async (req: Request, res: Response): Promise<void> => {
     const t = req.t as TranslationFunction;

@@ -52,7 +52,9 @@ export function writeReport(result: RunResult, outputPath: string): void {
   sections.push('SUMMARY');
   sections.push(line());
   sections.push(`Clues discovered: ${result.discoveredClueCount}`);
-  sections.push(`Clue reveal slots: ${totalClues} (sum of per-entity cluesTotal)`);
+  sections.push(
+    `Clue reveal slots: ${totalClues} (sum of per-entity cluesTotal)`
+  );
   sections.push(`Turns played: ${result.turns.length}`);
   sections.push('');
 
@@ -62,7 +64,9 @@ export function writeReport(result: RunResult, outputPath: string): void {
     sections.push('(none)');
   } else {
     for (const clue of result.finalState.clues) {
-      sections.push(`- [${clue.importance}] ${clue.title}: ${clue.description}`);
+      sections.push(
+        `- [${clue.importance}] ${clue.title}: ${clue.description}`
+      );
     }
   }
   sections.push('');

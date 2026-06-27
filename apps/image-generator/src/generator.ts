@@ -18,7 +18,10 @@ export function buildJobs(
   const prefixed = (prompt: string): string =>
     prefixMaster && masterPrompt ? `${masterPrompt}\n\n${prompt}` : prompt;
 
-  const groups: Array<{ category: keyof HistorySpecFile; spec: Record<string, { prompt: string; aspectRatio?: string }> | undefined }> = [
+  const groups: Array<{
+    category: keyof HistorySpecFile;
+    spec: Record<string, { prompt: string; aspectRatio?: string }> | undefined;
+  }> = [
     { category: 'history', spec: spec.history },
     { category: 'location', spec: spec.location },
     { category: 'object', spec: spec.object },
@@ -34,7 +37,11 @@ export function buildJobs(
         key,
         prompt: prefixed(item.prompt),
         aspectRatio: item.aspectRatio ?? MASTER_DEFAULT_ASPECT,
-        outputPath: path.join(outputDir, group.category as string, `${key}.${OUTPUT_FORMAT}`),
+        outputPath: path.join(
+          outputDir,
+          group.category as string,
+          `${key}.${OUTPUT_FORMAT}`
+        ),
       });
     }
   }
@@ -55,7 +62,9 @@ export async function runJobs(
       const currentIndex = index++;
       const job = jobs[currentIndex];
       const label = `[${currentIndex + 1}/${total}] ${job.category}/${job.key}`;
-      console.log(`${label} → generating (${job.aspectRatio}) [worker ${workerId}]`);
+      console.log(
+        `${label} → generating (${job.aspectRatio}) [worker ${workerId}]`
+      );
 
       if (!config.force && fs.existsSync(job.outputPath)) {
         console.log(`${label} → skipped (already exists)`);
@@ -75,7 +84,12 @@ export async function runJobs(
         console.log(
           `${label} → saved ${job.outputPath}${formatInference(result)}`
         );
-        results[currentIndex] = toResult(job, 'generated', result.outputs[0], null);
+        results[currentIndex] = toResult(
+          job,
+          'generated',
+          result.outputs[0],
+          null
+        );
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
         console.error(`${label} → FAILED: ${message}`);
@@ -86,16 +100,23 @@ export async function runJobs(
 
   const results: JobResult[] = new Array(jobs.length);
   const workerCount = Math.min(config.concurrency, jobs.length);
-  await Promise.all(Array.from({ length: workerCount }, (_, i) => worker(i + 1)));
+  await Promise.all(
+    Array.from({ length: workerCount }, (_, i) => worker(i + 1))
+  );
 
   return results;
 }
 
-async function download(result: GenerateResult, outputPath: string): Promise<void> {
+async function download(
+  result: GenerateResult,
+  outputPath: string
+): Promise<void> {
   const url = result.outputs[0];
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`Failed to download image (${response.status}) from ${url}`);
+    throw new Error(
+      `Failed to download image (${response.status}) from ${url}`
+    );
   }
   const buffer = Buffer.from(await response.arrayBuffer());
   fs.writeFileSync(outputPath, buffer);

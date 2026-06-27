@@ -20,9 +20,7 @@ describe('ObjectAgent', () => {
     initialDescription: 'Um papel dobrado',
   };
 
-  const buildRule = (
-    overrides: Partial<ObjectAgentRule>
-  ): ObjectAgentRule => ({
+  const buildRule = (overrides: Partial<ObjectAgentRule>): ObjectAgentRule => ({
     clueId: 'clue-1',
     revealText: 'O bilhete revela a tinta',
     clueTitle: 'Tinta azul',
@@ -47,7 +45,9 @@ describe('ObjectAgent', () => {
   const baseInput = {
     object,
     rules: [buildRule({})],
-    detectedIntents: [{ intentId: 'intent-ink', confidence: 0.9, reasoning: 'ok' }],
+    detectedIntents: [
+      { intentId: 'intent-ink', confidence: 0.9, reasoning: 'ok' },
+    ],
     discoveredClueIds: [],
     language,
   };
@@ -55,7 +55,9 @@ describe('ObjectAgent', () => {
   it('returns [] and skips the LLM when no rule is eligible', async () => {
     const result = await agent.run({
       ...baseInput,
-      detectedIntents: [{ intentId: 'unrelated', confidence: 0.9, reasoning: '' }],
+      detectedIntents: [
+        { intentId: 'unrelated', confidence: 0.9, reasoning: '' },
+      ],
     });
 
     expect(result).toEqual([]);

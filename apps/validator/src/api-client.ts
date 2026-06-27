@@ -77,7 +77,11 @@ export interface InteractResponse {
   id: string;
   stateType: 'character' | 'object' | 'location';
   reply: string | null;
-  detectedIntents: { intentId: string; confidence: number; reasoning: string }[];
+  detectedIntents: {
+    intentId: string;
+    confidence: number;
+    reasoning: string;
+  }[];
   discoveredClues: {
     id: string;
     title: string;
@@ -100,11 +104,10 @@ export class GameApiClient {
   ) {}
 
   async login(email: string, password: string): Promise<void> {
-    const body = await this.request<{ token: string }>(
-      'POST',
-      '/users/login',
-      { email, password }
-    );
+    const body = await this.request<{ token: string }>('POST', '/users/login', {
+      email,
+      password,
+    });
     this.token = body.token;
   }
 

@@ -7,8 +7,7 @@ import {
 
 export const paginationQuerySchema = z.object({
   page: z.coerce.number().int().min(FIRST_PAGE).default(FIRST_PAGE),
-  limit: z
-    .coerce
+  limit: z.coerce
     .number()
     .int()
     .min(FIRST_PAGE)

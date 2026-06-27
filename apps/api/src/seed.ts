@@ -450,7 +450,11 @@ async function seedHistory(fileName: string): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  const historyFiles = ['o-bilhete-na-mesa-7.json', 'o-relogio-parado.json', 'o-quadro-trocado.json'];
+  const historyFiles = [
+    'o-bilhete-na-mesa-7.json',
+    'o-relogio-parado.json',
+    'o-quadro-trocado.json',
+  ];
   for (const fileName of historyFiles) {
     await seedHistory(fileName);
   }

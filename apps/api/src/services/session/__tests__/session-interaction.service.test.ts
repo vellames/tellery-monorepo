@@ -136,7 +136,12 @@ describe('SessionInteractionService', () => {
       );
       intentDetection.detect.mockResolvedValue(detected);
 
-      const result = await service.interact(sessionId, ownerId, input, language);
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
 
       expect(result.stateType).toBe('character');
       expect(result.detectedIntents).toEqual(detected);
@@ -153,7 +158,12 @@ describe('SessionInteractionService', () => {
         })
       );
 
-      const result = await service.interact(sessionId, ownerId, input, language);
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
 
       expect(result.stateType).toBe('location');
       expect(intentDetection.detect).not.toHaveBeenCalled();
@@ -170,15 +180,30 @@ describe('SessionInteractionService', () => {
               id: input.stateId,
               visited: false,
               ambientClues: [
-                { id: 'clue-1', title: 'Cheiro cítrico', description: 'perfume', discovered: false },
-                { id: 'clue-2', title: 'Bilhete', description: 'papel', discovered: false },
+                {
+                  id: 'clue-1',
+                  title: 'Cheiro cítrico',
+                  description: 'perfume',
+                  discovered: false,
+                },
+                {
+                  id: 'clue-2',
+                  title: 'Bilhete',
+                  description: 'papel',
+                  discovered: false,
+                },
               ],
             },
           ] as never,
         })
       );
 
-      const result = await service.interact(sessionId, ownerId, input, language);
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
 
       expect(sessions.recordLocationVisit).toHaveBeenCalledWith({
         locationStateId: input.stateId,
@@ -199,14 +224,24 @@ describe('SessionInteractionService', () => {
               id: input.stateId,
               visited: true,
               ambientClues: [
-                { id: 'clue-1', title: 'x', description: 'y', discovered: false },
+                {
+                  id: 'clue-1',
+                  title: 'x',
+                  description: 'y',
+                  discovered: false,
+                },
               ],
             },
           ] as never,
         })
       );
 
-      const result = await service.interact(sessionId, ownerId, input, language);
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
 
       expect(sessions.recordLocationVisit).not.toHaveBeenCalled();
       expect(result.discoveredClues).toEqual([]);
@@ -220,15 +255,30 @@ describe('SessionInteractionService', () => {
               id: input.stateId,
               visited: false,
               ambientClues: [
-                { id: 'clue-1', title: 'a', description: 'a', discovered: true },
-                { id: 'clue-2', title: 'b', description: 'b', discovered: false },
+                {
+                  id: 'clue-1',
+                  title: 'a',
+                  description: 'a',
+                  discovered: true,
+                },
+                {
+                  id: 'clue-2',
+                  title: 'b',
+                  description: 'b',
+                  discovered: false,
+                },
               ],
             },
           ] as never,
         })
       );
 
-      const result = await service.interact(sessionId, ownerId, input, language);
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
 
       expect(sessions.recordLocationVisit).toHaveBeenCalledWith({
         locationStateId: input.stateId,
@@ -261,7 +311,12 @@ describe('SessionInteractionService', () => {
     };
 
     const sessionClues = [
-      { id: 'clue-1', title: 'Tinta azul', description: 'tinta azul', discovered: false },
+      {
+        id: 'clue-1',
+        title: 'Tinta azul',
+        description: 'tinta azul',
+        discovered: false,
+      },
     ];
 
     it('runs the object agent, persists and returns enriched discovered clues', async () => {
@@ -276,7 +331,12 @@ describe('SessionInteractionService', () => {
         { clueId: 'clue-1', reasoning: 'a tinta estava visível' },
       ]);
 
-      const result = await service.interact(sessionId, ownerId, input, language);
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
 
       expect(objectAgent.run).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -313,7 +373,12 @@ describe('SessionInteractionService', () => {
       intentDetection.detect.mockResolvedValue(detected);
       objectAgent.run.mockResolvedValue([]);
 
-      const result = await service.interact(sessionId, ownerId, input, language);
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
 
       expect(sessions.recordObjectInspection).toHaveBeenCalledWith({
         objectStateId: input.stateId,
@@ -385,7 +450,12 @@ describe('SessionInteractionService', () => {
         ],
       });
 
-      const result = await service.interact(sessionId, ownerId, input, language);
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
 
       expect(sessions.recordCharacterInteraction).toHaveBeenCalledWith({
         characterStateId: input.stateId,

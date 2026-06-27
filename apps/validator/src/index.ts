@@ -27,7 +27,12 @@ async function main(): Promise<void> {
   const investigator = new Investigator(llm);
 
   console.log('[validator] running investigation...');
-  const result = await runSession(api, investigator, sessionId, config.maxIterations);
+  const result = await runSession(
+    api,
+    investigator,
+    sessionId,
+    config.maxIterations
+  );
 
   console.log(
     `[validator] done — ${result.discoveredClueCount} clues in ${result.turns.length} turns (${result.stopReason})`

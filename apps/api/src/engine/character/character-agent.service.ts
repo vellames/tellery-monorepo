@@ -144,9 +144,8 @@ export class CharacterAgent {
       eligibleClueRules,
       eligibleSecretStages
     );
-    const updatedSecretStates = this.computeUpdatedSecretStates(
-      eligibleSecretStages
-    );
+    const updatedSecretStates =
+      this.computeUpdatedSecretStates(eligibleSecretStages);
 
     console.log('[character-agent] result', {
       characterId: input.character.id,
@@ -276,9 +275,7 @@ export class CharacterAgent {
           ),
           conversationSummary:
             input.conversationSummary ?? NO_CONVERSATION_SUMMARY,
-          recentConversation: this.formatConversation(
-            input.recentConversation
-          ),
+          recentConversation: this.formatConversation(input.recentConversation),
           interaction: input.interaction,
           detectedIntents: JSON.stringify(input.detectedIntents, null, 2),
           discoveredClueIds: JSON.stringify(input.discoveredClueIds),

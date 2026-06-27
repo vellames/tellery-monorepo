@@ -173,7 +173,9 @@ describe('SessionRepository', () => {
     it('marks the object inspected, connects revealed clues and marks them discovered', async () => {
       prisma.objectSessionState.update.mockResolvedValue({} as never);
       prisma.sessionClue.updateMany.mockResolvedValue({ count: 2 } as never);
-      prisma.objectInteractionMessage.createMany.mockResolvedValue({ count: 3 } as never);
+      prisma.objectInteractionMessage.createMany.mockResolvedValue({
+        count: 3,
+      } as never);
 
       await repo.recordObjectInspection({
         objectStateId: 'object-state-1',
@@ -199,8 +201,16 @@ describe('SessionRepository', () => {
       });
       expect(prisma.objectInteractionMessage.createMany).toHaveBeenCalledWith({
         data: [
-          { objectStateId: 'object-state-1', role: 'user', content: 'olho o bilhete' },
-          { objectStateId: 'object-state-1', role: 'object', content: 'a tinta é azul' },
+          {
+            objectStateId: 'object-state-1',
+            role: 'user',
+            content: 'olho o bilhete',
+          },
+          {
+            objectStateId: 'object-state-1',
+            role: 'object',
+            content: 'a tinta é azul',
+          },
         ],
       });
     });
@@ -223,7 +233,13 @@ describe('SessionRepository', () => {
       });
       expect(prisma.sessionClue.updateMany).not.toHaveBeenCalled();
       expect(prisma.objectInteractionMessage.createMany).toHaveBeenCalledWith({
-        data: [{ objectStateId: 'object-state-1', role: 'user', content: 'examinar' }],
+        data: [
+          {
+            objectStateId: 'object-state-1',
+            role: 'user',
+            content: 'examinar',
+          },
+        ],
       });
     });
   });
@@ -276,10 +292,16 @@ describe('SessionRepository', () => {
           revealedClues: { connect: [{ id: 'clue-secret' }] },
         }),
       });
-      expect(prisma.characterConversationMessage.createMany).toHaveBeenCalledWith({
+      expect(
+        prisma.characterConversationMessage.createMany
+      ).toHaveBeenCalledWith({
         data: [
           { characterStateId: 'char-state-1', role: 'user', content: 'oi' },
-          { characterStateId: 'char-state-1', role: 'character', content: 'olá' },
+          {
+            characterStateId: 'char-state-1',
+            role: 'character',
+            content: 'olá',
+          },
         ],
       });
       expect(prisma.sessionClue.updateMany).toHaveBeenCalledWith({

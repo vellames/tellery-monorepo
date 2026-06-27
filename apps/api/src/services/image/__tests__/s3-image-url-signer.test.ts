@@ -31,10 +31,13 @@ describe('S3ImageUrlSigner', () => {
   });
 
   it('builds a presigned url for the given key, bucket and expiration', async () => {
-    const signed = 'https://s3.us-east-1.amazonaws.com/my-bucket/cover.png?X-Amz-...';
+    const signed =
+      'https://s3.us-east-1.amazonaws.com/my-bucket/cover.png?X-Amz-...';
     mockedGetSignedUrl.mockResolvedValue(signed);
 
-    const result = await signer.sign('histories/o-bilhete-na-mesa-7/history/cover.png');
+    const result = await signer.sign(
+      'histories/o-bilhete-na-mesa-7/history/cover.png'
+    );
 
     expect(result).toBe(signed);
     expect(mockedGetSignedUrl).toHaveBeenCalledTimes(1);

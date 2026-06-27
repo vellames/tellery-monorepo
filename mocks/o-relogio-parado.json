@@ -325,7 +325,11 @@
               "updatedAt": "2026-06-26T00:00:00.000Z",
               "deletedAt": null,
               "level": 0,
-              "triggerIntents": ["ask_about_watch", "accuse_bia", "ask_about_alibi"],
+              "triggerIntents": [
+                "ask_about_watch",
+                "accuse_bia",
+                "ask_about_alibi"
+              ],
               "requiresClueIds": [],
               "revealsClueIds": [],
               "behavior": "Negar qualquer envolvimento e reagir com aflição controlada.",
@@ -358,7 +362,10 @@
               "deletedAt": null,
               "level": 2,
               "triggerIntents": ["ask_about_motive", "ask_about_bia"],
-              "requiresClueIds": ["clue_bia_debt_hint", "clue_bia_knew_spare_key"],
+              "requiresClueIds": [
+                "clue_bia_debt_hint",
+                "clue_bia_knew_spare_key"
+              ],
               "revealsClueIds": ["clue_bia_mother_treatment"],
               "behavior": "Admitir que está com uma dívida séria ligada à saúde da mãe, mas ainda negar o roubo.",
               "allowedToRevealTruth": false,

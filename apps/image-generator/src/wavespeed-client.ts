@@ -101,13 +101,17 @@ export class WavespeedClient {
     const id = payload.data?.id;
 
     if (!id) {
-      throw new Error(`WaveSpeed submit response is missing a prediction id: ${JSON.stringify(payload)}`);
+      throw new Error(
+        `WaveSpeed submit response is missing a prediction id: ${JSON.stringify(payload)}`
+      );
     }
 
     return id;
   }
 
-  private async poll(id: string): Promise<{ outputs: string[]; inferenceTime: number | null }> {
+  private async poll(
+    id: string
+  ): Promise<{ outputs: string[]; inferenceTime: number | null }> {
     const deadline = Date.now() + this.timeoutMs;
     const url = `${BASE_URL}/predictions/${id}/result`;
 
@@ -119,7 +123,9 @@ export class WavespeedClient {
 
       if (!response.ok) {
         const error = await response.text();
-        throw new Error(`WaveSpeed poll failed (${response.status}) for prediction ${id}: ${error}`);
+        throw new Error(
+          `WaveSpeed poll failed (${response.status}) for prediction ${id}: ${error}`
+        );
       }
 
       const payload = (await response.json()) as Envelope<{
@@ -140,13 +146,17 @@ export class WavespeedClient {
       }
 
       if (data.status === 'failed') {
-        throw new Error(`WaveSpeed prediction ${id} failed: ${data.error ?? 'unknown error'}`);
+        throw new Error(
+          `WaveSpeed prediction ${id} failed: ${data.error ?? 'unknown error'}`
+        );
       }
 
       await sleep(this.pollIntervalMs);
     }
 
-    throw new Error(`WaveSpeed prediction ${id} timed out after ${this.timeoutMs}ms.`);
+    throw new Error(
+      `WaveSpeed prediction ${id} timed out after ${this.timeoutMs}ms.`
+    );
   }
 }
 

@@ -56,7 +56,9 @@ export function deriveSlug(inputPath: string): string {
 function required(name: string, source: string): string {
   const value = process.env[name];
   if (!value) {
-    throw new Error(`Missing required environment variable: ${name} (set it in ${source})`);
+    throw new Error(
+      `Missing required environment variable: ${name} (set it in ${source})`
+    );
   }
   return value;
 }
@@ -139,10 +141,21 @@ function parseArgs(argv: string[]): {
   }
 
   if (!Number.isFinite(concurrency) || concurrency < 1) {
-    throw new Error(`--concurrency must be a positive integer (got "${concurrency}")`);
+    throw new Error(
+      `--concurrency must be a positive integer (got "${concurrency}")`
+    );
   }
 
-  return { inputPath, slug, outputDir: resolvedOutputDir, model, resolution, prefixMaster, concurrency, force };
+  return {
+    inputPath,
+    slug,
+    outputDir: resolvedOutputDir,
+    model,
+    resolution,
+    prefixMaster,
+    concurrency,
+    force,
+  };
 }
 
 function printHelp(): void {

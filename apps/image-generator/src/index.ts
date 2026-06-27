@@ -38,8 +38,10 @@ function summarize(results: JobResult[]): void {
   );
 
   console.log('');
-  console.log(`[image-generator] done — ${results.length} jobs: ` +
-    `${counts.generated} generated, ${counts.skipped} skipped, ${counts.failed} failed`);
+  console.log(
+    `[image-generator] done — ${results.length} jobs: ` +
+      `${counts.generated} generated, ${counts.skipped} skipped, ${counts.failed} failed`
+  );
 
   const failures = results.filter((r) => r.status === 'failed');
   for (const failure of failures) {
@@ -70,12 +72,17 @@ async function main(): Promise<void> {
   const results = await runJobs(client, jobs, config);
 
   writeManifest(results, config.outputDir);
-  console.log(`[image-generator] manifest:  ${path.join(config.outputDir, 'manifest.json')}`);
+  console.log(
+    `[image-generator] manifest:  ${path.join(config.outputDir, 'manifest.json')}`
+  );
 
   summarize(results);
 }
 
 main().catch((error) => {
-  console.error('[image-generator] fatal error:', error instanceof Error ? error.message : error);
+  console.error(
+    '[image-generator] fatal error:',
+    error instanceof Error ? error.message : error
+  );
   process.exit(1);
 });

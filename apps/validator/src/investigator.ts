@@ -56,7 +56,9 @@ export class Investigator {
       { role: 'user', content: this.buildUserPrompt(state, pastActions) },
     ];
 
-    const raw = (await this.llm.complete(messages)) as Partial<InvestigatorAction>;
+    const raw = (await this.llm.complete(
+      messages
+    )) as Partial<InvestigatorAction>;
 
     return {
       done: Boolean(raw.done),

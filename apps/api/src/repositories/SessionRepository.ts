@@ -1,4 +1,9 @@
-import { PrismaClient, Prisma, HistorySession, InteractionRole } from '@prisma/client';
+import {
+  PrismaClient,
+  Prisma,
+  HistorySession,
+  InteractionRole,
+} from '@prisma/client';
 import { ISessionRepository } from '../interfaces';
 import type { UpdatedSecretState } from '../engine/character/character-agent.service';
 import { PrismaTransaction } from '../types/database.types';
