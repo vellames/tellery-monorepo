@@ -2,7 +2,9 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { HistorySessionService } from '../services/session/history-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
+import { SessionConclusionService } from '../services/session/session-conclusion.service';
 import {
+  conclusionBodySchema,
   interactBodySchema,
   startSessionBodySchema,
 } from '../types/http/session.validation';
@@ -17,7 +19,8 @@ import { TranslationFunction } from '../types/i18n.types';
 export class SessionController {
   constructor(
     private readonly historySessionService: HistorySessionService,
-    private readonly sessionInteractionService: SessionInteractionService
+    private readonly sessionInteractionService: SessionInteractionService,
+    private readonly sessionConclusionService: SessionConclusionService
   ) {}
 
   start = async (req: Request, res: Response): Promise<void> => {
@@ -92,6 +95,38 @@ export class SessionController {
         req.user!.id,
         parsedBody.data,
         req.language
+      );
+      sendSuccess(res, response);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey
+          ? t(error.messageKey, { id: error.message })
+          : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
+
+  submitConclusion = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+    const parsedBody = conclusionBodySchema.safeParse(req.body);
+    if (!parsedBody.success) {
+      sendValidationError(
+        res,
+        t('common:errors.invalidRequestBody'),
+        parsedBody.error.issues
+      );
+      return;
+    }
+
+    try {
+      const sessionId = String(req.params.sessionId);
+      const response = await this.sessionConclusionService.submit(
+        sessionId,
+        req.user!.id,
+        parsedBody.data
       );
       sendSuccess(res, response);
     } catch (error) {

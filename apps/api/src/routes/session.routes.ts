@@ -341,4 +341,111 @@ router.get('/:sessionId', authenticate, async (req, res) => {
   await DIContainer.getInstance().getSessionController().getSession(req, res);
 });
 
+/**
+ * @openapi
+ * /session/{sessionId}/conclusion:
+ *   post:
+ *     tags: [Session]
+ *     summary: Submit the case conclusion
+ *     description: Submits the player's answers to the conclusion fields, resolves the ending, computes the score, and marks the session as completed.
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - name: sessionId
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The session ID.
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               answers:
+ *                 type: array
+ *                 minItems: 1
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     fieldId:
+ *                       type: string
+ *                       description: The session conclusion field ID.
+ *                     optionId:
+ *                       type: string
+ *                       description: The session conclusion option ID selected by the player.
+ *                   required:
+ *                     - fieldId
+ *                     - optionId
+ *             required:
+ *               - answers
+ *     responses:
+ *       200:
+ *         description: The resolved ending and score
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     ending:
+ *                       type: object
+ *                       properties:
+ *                         id:
+ *                           type: string
+ *                         endingDefinitionId:
+ *                           type: string
+ *                         title:
+ *                           type: string
+ *                         type:
+ *                           type: string
+ *                           enum: [full_truth, partial_truth, wrong_accusation]
+ *                         imageUrl:
+ *                           type: string
+ *                           nullable: true
+ *                         summary:
+ *                           type: string
+ *                         epilogue:
+ *                           type: string
+ *                     score:
+ *                       type: object
+ *                       properties:
+ *                         discoveredClues:
+ *                           type: integer
+ *                         totalClues:
+ *                           type: integer
+ *                         requiredCluesDiscovered:
+ *                           type: integer
+ *                         totalRequiredClues:
+ *                           type: integer
+ *                         correctAnswers:
+ *                           type: integer
+ *                         totalAnswers:
+ *                           type: integer
+ *       422:
+ *         description: Required clues not discovered or validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ *       409:
+ *         description: Session already completed
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ */
+router.post('/:sessionId/conclusion', authenticate, async (req, res) => {
+  await DIContainer.getInstance()
+    .getSessionController()
+    .submitConclusion(req, res);
+});
+
 export default router;

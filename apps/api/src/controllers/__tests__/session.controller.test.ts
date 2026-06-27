@@ -4,12 +4,14 @@ import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { SessionController } from '../session.controller';
 import { HistorySessionService } from '../../services/session/history-session.service';
 import { SessionInteractionService } from '../../services/session/session-interaction.service';
+import { SessionConclusionService } from '../../services/session/session-conclusion.service';
 import { HttpError } from '../../utils/http-error';
 import { TranslationFunction } from '../../types/i18n.types';
 
 describe('SessionController - interact', () => {
   let historySessionService: DeepMockProxy<HistorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
+  let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
   let controller: SessionController;
   let req: Partial<Request>;
   let res: Partial<Response>;
@@ -20,9 +22,11 @@ describe('SessionController - interact', () => {
   beforeEach(() => {
     historySessionService = mockDeep<HistorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
+    sessionConclusionService = mockDeep<SessionConclusionService>();
     controller = new SessionController(
       historySessionService,
-      sessionInteractionService
+      sessionInteractionService,
+      sessionConclusionService
     );
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });
@@ -33,6 +37,7 @@ describe('SessionController - interact', () => {
   afterEach(() => {
     mockReset(historySessionService);
     mockReset(sessionInteractionService);
+    mockReset(sessionConclusionService);
   });
 
   const validBody = { stateId: 'state-1', interaction: 'hello there' };
@@ -147,6 +152,7 @@ describe('SessionController - interact', () => {
 describe('SessionController - start', () => {
   let historySessionService: DeepMockProxy<HistorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
+  let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
   let controller: SessionController;
   let req: Partial<Request>;
   let res: Partial<Response>;
@@ -157,9 +163,11 @@ describe('SessionController - start', () => {
   beforeEach(() => {
     historySessionService = mockDeep<HistorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
+    sessionConclusionService = mockDeep<SessionConclusionService>();
     controller = new SessionController(
       historySessionService,
-      sessionInteractionService
+      sessionInteractionService,
+      sessionConclusionService
     );
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });
@@ -170,6 +178,7 @@ describe('SessionController - start', () => {
   afterEach(() => {
     mockReset(historySessionService);
     mockReset(sessionInteractionService);
+    mockReset(sessionConclusionService);
   });
 
   it('starts a session for the authenticated user and returns 201', async () => {
@@ -233,6 +242,7 @@ describe('SessionController - start', () => {
 describe('SessionController - getSession', () => {
   let historySessionService: DeepMockProxy<HistorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
+  let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
   let controller: SessionController;
   let req: Partial<Request>;
   let res: Partial<Response>;
@@ -243,9 +253,11 @@ describe('SessionController - getSession', () => {
   beforeEach(() => {
     historySessionService = mockDeep<HistorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
+    sessionConclusionService = mockDeep<SessionConclusionService>();
     controller = new SessionController(
       historySessionService,
-      sessionInteractionService
+      sessionInteractionService,
+      sessionConclusionService
     );
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });
@@ -256,6 +268,7 @@ describe('SessionController - getSession', () => {
   afterEach(() => {
     mockReset(historySessionService);
     mockReset(sessionInteractionService);
+    mockReset(sessionConclusionService);
   });
 
   it('returns 200 with the session state for the authenticated user', async () => {

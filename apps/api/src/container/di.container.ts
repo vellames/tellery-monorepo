@@ -25,6 +25,7 @@ import {
 } from '../repositories';
 import { HistorySessionService } from '../services/session/history-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
+import { SessionConclusionService } from '../services/session/session-conclusion.service';
 import { HistoryCatalogService } from '../services/history/history-catalog.service';
 import { S3ImageUrlSigner } from '../services/image/s3-image-url-signer';
 import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
@@ -102,9 +103,13 @@ export class DIContainer {
     this.objectAgent,
     this.characterAgent
   );
+  private readonly sessionConclusionService = new SessionConclusionService(
+    this.sessionRepository
+  );
   private readonly sessionController = new SessionController(
     this.historySessionService,
-    this.sessionInteractionService
+    this.sessionInteractionService,
+    this.sessionConclusionService
   );
   private readonly historyCatalogService = new HistoryCatalogService(
     this.historyDefinitionRepository,

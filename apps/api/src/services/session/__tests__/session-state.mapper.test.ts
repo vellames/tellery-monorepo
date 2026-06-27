@@ -24,6 +24,10 @@ const buildSession = (
     characterStates: [],
     objectStates: [],
     locationStates: [],
+    conclusionFields: [],
+    endingSnapshots: [],
+    conclusion: null,
+    ending: null,
     ...overrides,
   }) as unknown as HistorySessionWithRelations;
 

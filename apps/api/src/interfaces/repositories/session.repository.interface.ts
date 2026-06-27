@@ -46,4 +46,20 @@ export interface ISessionRepository extends IBaseRepository {
     },
     tx?: PrismaTransaction
   ): Promise<void>;
+  submitConclusion(
+    input: {
+      sessionId: string;
+      endingSnapshotId: string;
+      answers: { fieldId: string; optionId: string }[];
+      score: {
+        discoveredClues: number;
+        totalClues: number;
+        requiredCluesDiscovered: number;
+        totalRequiredClues: number;
+        correctAnswers: number;
+        totalAnswers: number;
+      };
+    },
+    tx?: PrismaTransaction
+  ): Promise<void>;
 }

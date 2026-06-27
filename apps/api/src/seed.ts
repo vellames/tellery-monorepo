@@ -401,7 +401,7 @@ async function seedHistory(fileName: string): Promise<void> {
   });
 
   const fieldIdMap: Record<string, string> = {};
-  const optionIdMap: Record<string, string> = {};
+  const optionIdMap: Record<string, Record<string, string>> = {};
 
   for (const field of data.conclusion.fields) {
     const createdField = await prisma.conclusionField.create({
@@ -412,12 +412,13 @@ async function seedHistory(fileName: string): Promise<void> {
       },
     });
     fieldIdMap[field.id] = createdField.id;
+    optionIdMap[field.id] = {};
 
     for (const option of field.options) {
       const createdOption = await prisma.conclusionOption.create({
         data: { fieldId: createdField.id, label: option.label },
       });
-      optionIdMap[option.id] = createdOption.id;
+      optionIdMap[field.id][option.id] = createdOption.id;
     }
   }
 
@@ -427,7 +428,7 @@ async function seedHistory(fileName: string): Promise<void> {
       ending.condition.conclusionMatches ?? {}
     )) {
       remappedMatches[fieldIdMap[fieldId] ?? fieldId] =
-        optionIdMap[optionId] ?? optionId;
+        optionIdMap[fieldId]?.[optionId] ?? optionId;
     }
 
     await prisma.endingDefinition.create({

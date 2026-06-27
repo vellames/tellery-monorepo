@@ -54,6 +54,21 @@ export const historySessionInclude = {
       messages: true,
     },
   },
+  conclusionFields: {
+    include: { options: true, answers: true },
+  },
+  endingSnapshots: {
+    include: { requiredClues: true },
+  },
+  conclusion: {
+    include: { answers: true },
+  },
+  ending: {
+    include: {
+      endingSnapshot: true,
+      score: true,
+    },
+  },
 } satisfies Prisma.HistorySessionInclude;
 
 export type HistorySessionWithRelations = Prisma.HistorySessionGetPayload<{
@@ -316,6 +331,70 @@ export class SessionRepository
           data: { discovered: true, discoveredAt: now },
         });
       }
+    };
+
+    if (tx) return run(tx);
+    return this.runTransaction(run);
+  }
+
+  async submitConclusion(
+    input: {
+      sessionId: string;
+      endingSnapshotId: string;
+      answers: { fieldId: string; optionId: string }[];
+      score: {
+        discoveredClues: number;
+        totalClues: number;
+        requiredCluesDiscovered: number;
+        totalRequiredClues: number;
+        correctAnswers: number;
+        totalAnswers: number;
+      };
+    },
+    tx?: PrismaTransaction
+  ): Promise<void> {
+    const run = async (client: PrismaTransaction): Promise<void> => {
+      const now = new Date();
+
+      const _conclusion = await client.sessionConclusion.create({
+        data: {
+          sessionId: input.sessionId,
+          submittedAt: now,
+          answers: {
+            create: input.answers.map((answer) => ({
+              fieldId: answer.fieldId,
+              optionId: answer.optionId,
+            })),
+          },
+        },
+      });
+
+      const ending = await client.sessionEnding.create({
+        data: {
+          sessionId: input.sessionId,
+          endingSnapshotId: input.endingSnapshotId,
+        },
+      });
+
+      await client.sessionScore.create({
+        data: {
+          sessionEndingId: ending.id,
+          discoveredClues: input.score.discoveredClues,
+          totalClues: input.score.totalClues,
+          requiredCluesDiscovered: input.score.requiredCluesDiscovered,
+          totalRequiredClues: input.score.totalRequiredClues,
+          correctAnswers: input.score.correctAnswers,
+          totalAnswers: input.score.totalAnswers,
+        },
+      });
+
+      await client.historySession.update({
+        where: { id: input.sessionId },
+        data: {
+          status: 'completed',
+          completedAt: now,
+        },
+      });
     };
 
     if (tx) return run(tx);

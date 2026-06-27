@@ -38,6 +38,11 @@ const mockSession = (
   ({
     id: 'session-1',
     status: 'active',
+    clues: [],
+    conclusionFields: [],
+    endingSnapshots: [],
+    conclusion: null,
+    ending: null,
     ...overrides,
   }) as unknown as HistorySessionWithRelations;
 

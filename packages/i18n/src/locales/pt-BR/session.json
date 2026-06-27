@@ -7,7 +7,12 @@
     "unknownObject": "Objeto desconhecido: {{id}}",
     "noHistoryAvailable": "Nenhuma história disponível para iniciar",
     "intentDetectionFailed": "Falha na detecção de intenção",
-    "sessionNotOwned": "Você não tem acesso a esta sessão"
+    "sessionNotOwned": "Você não tem acesso a esta sessão",
+    "sessionAlreadyCompleted": "Esta sessão já foi concluída",
+    "requiredCluesNotDiscovered": "Você ainda não descobriu todas as pistas obrigatórias",
+    "unknownConclusionField": "Campo de conclusão desconhecido: {{id}}",
+    "unknownConclusionOption": "Opção de conclusão desconhecida: {{id}}",
+    "noEndingMatched": "Nenhum final corresponde às respostas fornecidas"
   },
   "interact": {
     "noClueFound": "Nenhuma pista nova desta vez."

@@ -7,7 +7,12 @@
     "unknownObject": "Unknown object: {{id}}",
     "noHistoryAvailable": "No history available to start",
     "intentDetectionFailed": "Intent detection failed",
-    "sessionNotOwned": "You do not have access to this session"
+    "sessionNotOwned": "You do not have access to this session",
+    "sessionAlreadyCompleted": "This session has already been completed",
+    "requiredCluesNotDiscovered": "You have not discovered all required clues yet",
+    "unknownConclusionField": "Unknown conclusion field: {{id}}",
+    "unknownConclusionOption": "Unknown conclusion option: {{id}}",
+    "noEndingMatched": "No ending matches the provided answers"
   },
   "interact": {
     "noClueFound": "No new clue this time."

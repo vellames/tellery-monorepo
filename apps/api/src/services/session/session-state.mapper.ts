@@ -52,6 +52,31 @@ export interface LocationStateDto {
   discoveredClues: SessionClueDto[];
 }
 
+export interface ConclusionFieldDto {
+  id: string;
+  label: string;
+  type: string;
+  options: { id: string; label: string }[];
+}
+
+export interface SessionEndingDto {
+  endingDefinitionId: string;
+  title: string;
+  type: string;
+  imageUrl: string | null;
+  summary: string;
+  epilogue: string;
+}
+
+export interface SessionScoreDto {
+  discoveredClues: number;
+  totalClues: number;
+  requiredCluesDiscovered: number;
+  totalRequiredClues: number;
+  correctAnswers: number;
+  totalAnswers: number;
+}
+
 export interface SessionStateResponse {
   id: string;
   status: string;
@@ -74,6 +99,11 @@ export interface SessionStateResponse {
   characters: CharacterStateDto[];
   objects: ObjectStateDto[];
   locations: LocationStateDto[];
+  conclusionFields: ConclusionFieldDto[];
+  ending: {
+    snapshot: SessionEndingDto;
+    score: SessionScoreDto;
+  } | null;
 }
 
 type SessionClue = HistorySessionWithRelations['clues'][number];
@@ -181,5 +211,51 @@ export function buildSessionStateResponse(
         .filter((clue) => clue.discovered)
         .map(toClueDto),
     })),
+    conclusionFields: session.conclusionFields.map((field) => ({
+      id: field.id,
+      label: field.label,
+      type: field.type,
+      options: field.options.map((option) => ({
+        id: option.id,
+        label: option.label,
+      })),
+    })),
+    ending: session.ending
+      ? {
+          snapshot: {
+            endingDefinitionId:
+              session.ending.endingSnapshot.endingDefinitionId,
+            title: session.ending.endingSnapshot.title,
+            type: session.ending.endingSnapshot.type,
+            imageUrl: session.ending.endingSnapshot.imageUrl,
+            summary: session.ending.endingSnapshot.summary,
+            epilogue: session.ending.endingSnapshot.epilogue,
+          },
+          score: session.ending.score
+            ? {
+                discoveredClues: session.ending.score.discoveredClues,
+                totalClues: session.ending.score.totalClues,
+                requiredCluesDiscovered:
+                  session.ending.score.requiredCluesDiscovered,
+                totalRequiredClues:
+                  session.ending.score.totalRequiredClues,
+                correctAnswers: session.ending.score.correctAnswers,
+                totalAnswers: session.ending.score.totalAnswers,
+              }
+            : {
+                discoveredClues: session.clues.filter((c) => c.discovered)
+                  .length,
+                totalClues: session.clues.length,
+                requiredCluesDiscovered: session.clues.filter(
+                  (c) => c.importance === 'required' && c.discovered
+                ).length,
+                totalRequiredClues: session.clues.filter(
+                  (c) => c.importance === 'required'
+                ).length,
+                correctAnswers: 0,
+                totalAnswers: session.conclusionFields.length,
+              },
+        }
+      : null,
   };
 }
