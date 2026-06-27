@@ -60,6 +60,16 @@
     }
   },
   "home": {
+    "featured": {
+      "badge": "Comece por aqui",
+      "startButton": "Começar história",
+      "free": "Grátis",
+      "premium": "Premium",
+      "duration": "{minutes} min",
+      "previous": "Anterior",
+      "next": "Próximo",
+      "slide": "Slide {number}"
+    },
     "howItWorks": {
       "title": "Como funciona",
       "steps": {
@@ -85,7 +95,12 @@
     "privacyPolicy": "Política de Privacidade",
     "termsOfUse": "Termos de Uso",
     "tagline": "Histórias onde você participa",
-    "sessionsAvailable": "{count} sessões disponíveis"
+    "sessionsAvailable": "{count} sessões disponíveis",
+    "genres": {
+      "mystery": "Mistério",
+      "suspense": "Suspense",
+      "drama": "Drama"
+    }
   },
   "language": {
     "label": "Idioma",

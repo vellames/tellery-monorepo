@@ -3,7 +3,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 vi.mock('next/headers', () => ({
   cookies: vi.fn(async () => ({
     get: (name: string) =>
-      name === 'NEXT_LOCALE' ? { value: 'pt-BR' } : undefined,
+      name === 'NEXT_LOCALE'
+        ? { value: 'pt-BR' }
+        : name === 'ai-history.session'
+          ? { value: 'mock-token' }
+          : undefined,
   })),
 }));
 
@@ -51,5 +55,19 @@ describe('apiFetch', () => {
     );
 
     await expect(apiFetch('/x')).rejects.toMatchObject({ status: 500 });
+  });
+
+  it('sends the Authorization header when a session token exists', async () => {
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response(JSON.stringify({ success: true, data: {} }), {
+        status: 200,
+      })
+    );
+
+    await apiFetch('/histories');
+
+    const init = fetchMock.mock.calls[0][1]!;
+    const headers = init.headers as Record<string, string>;
+    expect(headers['Authorization']).toBe('Bearer mock-token');
   });
 });

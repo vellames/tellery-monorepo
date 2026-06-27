@@ -24,13 +24,16 @@ export async function apiFetch<T>(
   path: string,
   init: RequestInit = {}
 ): Promise<T> {
-  const locale = (await cookies()).get(LOCALE_COOKIE)?.value ?? defaultLocale;
+  const store = await cookies();
+  const locale = store.get(LOCALE_COOKIE)?.value ?? defaultLocale;
+  const token = store.get(config.auth.sessionCookie)?.value;
 
   const res = await fetch(`${config.api.baseUrl}${path}`, {
     ...init,
     headers: {
       'Content-Type': 'application/json',
       'Accept-Language': locale,
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...init.headers,
     },
   });

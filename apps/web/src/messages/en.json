@@ -60,6 +60,16 @@
     }
   },
   "home": {
+    "featured": {
+      "badge": "Start here",
+      "startButton": "Start story",
+      "free": "Free",
+      "premium": "Premium",
+      "duration": "{minutes} min",
+      "previous": "Previous",
+      "next": "Next",
+      "slide": "Slide {number}"
+    },
     "howItWorks": {
       "title": "How it works",
       "steps": {
@@ -85,7 +95,12 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfUse": "Terms of Use",
     "tagline": "Stories you take part in",
-    "sessionsAvailable": "{count} sessions available"
+    "sessionsAvailable": "{count} sessions available",
+    "genres": {
+      "mystery": "Mystery",
+      "suspense": "Suspense",
+      "drama": "Drama"
+    }
   },
   "language": {
     "label": "Language",
