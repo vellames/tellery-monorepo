@@ -15,12 +15,14 @@ import {
   Sparkles,
   Target,
   Users,
+  X,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { config } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import type {
   SessionCharacter,
+  SessionClue,
   SessionLocation,
   SessionObject,
   SessionState,
@@ -56,6 +58,7 @@ export function SessionHub({ session }: SessionHubProps) {
     id: string;
   } | null>(null);
   const [easyMode, setEasyMode] = useState(false);
+  const [showEvidence, setShowEvidence] = useState(false);
 
   const target = useMemo<InvestigationTarget | null>(() => {
     if (!targetRef) return null;
@@ -316,59 +319,23 @@ export function SessionHub({ session }: SessionHubProps) {
         )}
       </section>
 
-      {/* ── Evidence collected ────────────────────────────────────────── */}
-      <section
-        className="scene-reveal flex flex-col gap-4"
-        style={{ animationDelay: '260ms' }}
-      >
-        <h2 className="font-heading inline-flex items-center gap-2.5 text-2xl font-semibold tracking-tight sm:text-3xl">
-          <KeyRound className="text-gold size-6" />
-          {t('evidenceHeading')}
-          {foundClues > 0 && (
-            <span className="text-gold/90 bg-gold/10 ring-gold/20 rounded-full px-2.5 py-0.5 text-sm font-bold ring-1">
-              {foundClues}
-            </span>
-          )}
-        </h2>
-
-        {clues.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-[#fff9ef]/15 bg-[#fff9ef]/[0.02] px-6 py-10 text-center">
-            <Sparkles className="mx-auto size-7 text-[#fff9ef]/30" />
-            <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-[#fff9ef]/50">
-              {t('evidenceEmpty')}
-            </p>
-          </div>
-        ) : (
-          <div className="grid gap-3 sm:grid-cols-2">
-            {clues.map((clue) => (
-              <article
-                key={clue.id}
-                className="group border-clue-border/30 relative overflow-hidden rounded-2xl border bg-[#fff4d8]/[0.05] p-4"
-              >
-                <div className="bg-gold absolute top-0 left-0 h-full w-1" />
-                <h3 className="font-heading pl-2 text-lg font-semibold tracking-tight text-[#fff9ef]">
-                  {clue.title}
-                </h3>
-                <p className="mt-1 pl-2 text-sm leading-6 text-[#fff9ef]/65">
-                  {clue.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        )}
-      </section>
-
       {/* ── Actions ───────────────────────────────────────────────────── */}
       <div
         className="scene-reveal sticky bottom-4 z-10 flex flex-col gap-3 rounded-3xl border border-[#fff9ef]/10 bg-[#1b070b]/80 p-3 backdrop-blur-xl sm:flex-row"
-        style={{ animationDelay: '320ms' }}
+        style={{ animationDelay: '260ms' }}
       >
         <button
+          onClick={() => setShowEvidence(true)}
           className="inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-2xl border border-[#fff9ef]/15 px-6 py-4 text-sm font-bold text-[#fff9ef]/85 transition hover:bg-[#fff9ef]/[0.06]"
           type="button"
         >
           <KeyRound className="size-4" />
           {t('viewClues')}
+          {foundClues > 0 && (
+            <span className="text-gold/90 bg-gold/10 ring-gold/20 rounded-full px-2 py-0.5 text-xs font-bold ring-1">
+              {foundClues}
+            </span>
+          )}
         </button>
         <button
           className="shadow-button scene-shimmer text-gold-foreground inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-6 py-4 text-sm font-bold transition hover:scale-[1.01]"
@@ -378,6 +345,16 @@ export function SessionHub({ session }: SessionHubProps) {
           {t('solveCase')}
         </button>
       </div>
+
+      {showEvidence && (
+        <EvidenceModal
+          clues={clues}
+          heading={t('evidenceHeading')}
+          emptyText={t('evidenceEmpty')}
+          closeLabel={t('close')}
+          onClose={() => setShowEvidence(false)}
+        />
+      )}
 
       <InvestigationPanel
         sessionId={sessionId}
@@ -610,3 +587,86 @@ function LeadCard({
 }
 
 export type { SessionCharacter, SessionLocation, SessionObject };
+
+function EvidenceModal({
+  clues,
+  heading,
+  emptyText,
+  closeLabel,
+  onClose,
+}: {
+  clues: SessionClue[];
+  heading: string;
+  emptyText: string;
+  closeLabel: string;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
+      role="dialog"
+      aria-modal="true"
+      aria-label={heading}
+    >
+      <button
+        type="button"
+        aria-label={closeLabel}
+        onClick={onClose}
+        style={{ animation: 'scene-fade-in 0.25s ease forwards' }}
+        className="absolute inset-0 cursor-default bg-[#0a0203]/80 backdrop-blur-sm"
+      />
+      <div
+        className="scene-grain relative flex h-[80svh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[28px] border border-[#fff9ef]/12 bg-[#1b070b] shadow-2xl sm:rounded-[28px]"
+        style={{ animation: 'scene-fade-up 0.4s cubic-bezier(0.16,1,0.3,1)' }}
+      >
+        <div className="flex shrink-0 items-center justify-between gap-4 border-b border-[#fff9ef]/10 px-5 py-4 sm:px-6">
+          <h2 className="font-heading inline-flex items-center gap-2.5 text-xl font-semibold tracking-tight sm:text-2xl">
+            <KeyRound className="text-gold size-5" />
+            {heading}
+            {clues.length > 0 && (
+              <span className="text-gold/90 bg-gold/10 ring-gold/20 rounded-full px-2 py-0.5 text-sm font-bold ring-1">
+                {clues.length}
+              </span>
+            )}
+          </h2>
+          <button
+            type="button"
+            aria-label={closeLabel}
+            onClick={onClose}
+            className="grid size-9 shrink-0 cursor-pointer place-items-center rounded-full border border-[#fff9ef]/15 bg-black/40 text-[#fff9ef]/80 backdrop-blur transition hover:bg-black/60 hover:text-[#fff9ef]"
+          >
+            <X className="size-4" />
+          </button>
+        </div>
+
+        <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-5 sm:p-6">
+          {clues.length === 0 ? (
+            <div className="flex flex-1 flex-col items-center justify-center gap-3 py-10">
+              <Sparkles className="size-8 text-[#fff9ef]/25" />
+              <p className="max-w-sm text-center text-sm leading-6 text-[#fff9ef]/45">
+                {emptyText}
+              </p>
+            </div>
+          ) : (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {clues.map((clue) => (
+                <article
+                  key={clue.id}
+                  className="group border-clue-border/30 relative overflow-hidden rounded-2xl border bg-[#fff4d8]/[0.05] p-4"
+                >
+                  <div className="bg-gold absolute top-0 left-0 h-full w-1" />
+                  <h3 className="font-heading pl-2 text-lg font-semibold tracking-tight text-[#fff9ef]">
+                    {clue.title}
+                  </h3>
+                  <p className="mt-1 pl-2 text-sm leading-6 text-[#fff9ef]/65">
+                    {clue.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

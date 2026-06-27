@@ -115,8 +115,14 @@ describe('SessionHub', () => {
     expect(screen.queryByText('Guardanapo')).not.toBeInTheDocument();
   });
 
-  it('renders collected evidence', () => {
+  it('shows collected evidence in the review modal', async () => {
+    const user = userEvent.setup();
     renderWithProviders(<SessionHub session={session} />);
+
+    // Evidence is not visible on the main screen
+    expect(screen.queryByText('Tinta azul')).not.toBeInTheDocument();
+
+    await user.click(screen.getByText('Revisar evidências'));
 
     expect(screen.getByText('Tinta azul')).toBeInTheDocument();
   });
