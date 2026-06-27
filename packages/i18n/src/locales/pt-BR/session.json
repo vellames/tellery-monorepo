@@ -15,6 +15,7 @@
     "noEndingMatched": "Nenhum final corresponde às respostas fornecidas"
   },
   "interact": {
-    "noClueFound": "Nenhuma pista nova desta vez."
+    "noClueFound": "Nenhuma pista nova desta vez.",
+    "audioEmpty": "Não consegui entender o áudio. Tente novamente."
   }
 }

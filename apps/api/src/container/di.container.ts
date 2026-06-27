@@ -17,6 +17,8 @@ import {
   IPasswordHasher,
   ITokenService,
   IUserRepository,
+  IAudioStorage,
+  IAudioTranscriptionService,
 } from '../interfaces';
 import {
   HistoryDefinitionRepository,
@@ -28,6 +30,8 @@ import { SessionInteractionService } from '../services/session/session-interacti
 import { SessionConclusionService } from '../services/session/session-conclusion.service';
 import { HistoryCatalogService } from '../services/history/history-catalog.service';
 import { S3ImageUrlSigner } from '../services/image/s3-image-url-signer';
+import { S3AudioStorage } from '../services/audio/s3-audio-storage';
+import { OpenRouterAudioTranscriptionService } from '../services/audio/openrouter-audio-transcription.service';
 import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
 import { JwtTokenService } from '../services/user/jwt-token.service';
 import { UserService } from '../services/user/user.service';
@@ -106,10 +110,18 @@ export class DIContainer {
   private readonly sessionConclusionService = new SessionConclusionService(
     this.sessionRepository
   );
+  private readonly audioStorage: IAudioStorage = new S3AudioStorage(
+    this.s3Client,
+    appConfig.aws.s3Bucket as string
+  );
+  private readonly audioTranscription: IAudioTranscriptionService =
+    new OpenRouterAudioTranscriptionService();
   private readonly sessionController = new SessionController(
     this.historySessionService,
     this.sessionInteractionService,
-    this.sessionConclusionService
+    this.sessionConclusionService,
+    this.audioStorage,
+    this.audioTranscription
   );
   private readonly historyCatalogService = new HistoryCatalogService(
     this.historyDefinitionRepository,

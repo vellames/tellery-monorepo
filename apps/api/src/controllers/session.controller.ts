@@ -4,6 +4,10 @@ import { HistorySessionService } from '../services/session/history-session.servi
 import { SessionInteractionService } from '../services/session/session-interaction.service';
 import { SessionConclusionService } from '../services/session/session-conclusion.service';
 import {
+  IAudioStorage,
+  IAudioTranscriptionService,
+} from '../interfaces';
+import {
   conclusionBodySchema,
   interactBodySchema,
   startSessionBodySchema,
@@ -20,7 +24,9 @@ export class SessionController {
   constructor(
     private readonly historySessionService: HistorySessionService,
     private readonly sessionInteractionService: SessionInteractionService,
-    private readonly sessionConclusionService: SessionConclusionService
+    private readonly sessionConclusionService: SessionConclusionService,
+    private readonly audioStorage: IAudioStorage,
+    private readonly audioTranscription: IAudioTranscriptionService
   ) {}
 
   start = async (req: Request, res: Response): Promise<void> => {
@@ -78,22 +84,73 @@ export class SessionController {
 
   interact = async (req: Request, res: Response): Promise<void> => {
     const t = req.t as TranslationFunction;
-    const parsedBody = interactBodySchema.safeParse(req.body);
-    if (!parsedBody.success) {
-      sendValidationError(
-        res,
-        t('common:errors.invalidRequestBody'),
-        parsedBody.error.issues
-      );
-      return;
-    }
+    const sessionId = String(req.params.sessionId);
 
     try {
-      const sessionId = String(req.params.sessionId);
+      let stateId: string;
+      let interaction: string;
+
+      // Audio path: multipart with file + stateId field
+      const file = (req as Request & { file?: Express.Multer.File }).file;
+      if (file) {
+        stateId = String(req.body.stateId ?? '');
+
+        if (!stateId) {
+          sendValidationError(
+            res,
+            t('common:errors.invalidRequestBody'),
+            [{ message: 'stateId is required' }]
+          );
+          return;
+        }
+
+        const extension = file.originalname.split('.').pop() ?? 'webm';
+        const { key } = await this.audioStorage.upload({
+          sessionId,
+          buffer: file.buffer,
+          contentType: file.mimetype,
+          extension,
+        });
+
+        const { text } = await this.audioTranscription.transcribe({
+          buffer: file.buffer,
+          contentType: file.mimetype,
+          filename: file.originalname,
+        });
+
+        if (!text.trim()) {
+          sendValidationError(res, t('session:interact.audioEmpty'), [
+            { message: 'Audio transcription returned empty text' },
+          ]);
+          return;
+        }
+
+        console.log('[interact] audio transcribed', {
+          sessionId,
+          audioKey: key,
+          text: text.slice(0, 80),
+        });
+
+        interaction = text;
+      } else {
+        // Text path: JSON body
+        const parsedBody = interactBodySchema.safeParse(req.body);
+        if (!parsedBody.success) {
+          sendValidationError(
+            res,
+            t('common:errors.invalidRequestBody'),
+            parsedBody.error.issues
+          );
+          return;
+        }
+        stateId = parsedBody.data.stateId;
+        interaction = parsedBody.data.interaction;
+      }
+
       const response = await this.sessionInteractionService.interact(
         sessionId,
         req.user!.id,
-        parsedBody.data,
+        { stateId, interaction },
         req.language
       );
       sendSuccess(res, response);

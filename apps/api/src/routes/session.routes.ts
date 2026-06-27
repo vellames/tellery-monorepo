@@ -1,7 +1,13 @@
 import { Router, RequestHandler } from 'express';
+import multer from 'multer';
 import { DIContainer } from '../container/di.container';
 
 const router = Router();
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 25 * 1024 * 1024 },
+});
 
 const authenticate: RequestHandler = (req, res, next) => {
   DIContainer.getInstance().getAuthMiddleware()(req, res, next);
@@ -187,7 +193,7 @@ router.post('/start', authenticate, async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post('/:sessionId/interact', authenticate, async (req, res) => {
+router.post('/:sessionId/interact', authenticate, upload.single('audio'), async (req, res) => {
   await DIContainer.getInstance().getSessionController().interact(req, res);
 });
 

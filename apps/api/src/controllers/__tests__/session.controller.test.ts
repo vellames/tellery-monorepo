@@ -5,6 +5,10 @@ import { SessionController } from '../session.controller';
 import { HistorySessionService } from '../../services/session/history-session.service';
 import { SessionInteractionService } from '../../services/session/session-interaction.service';
 import { SessionConclusionService } from '../../services/session/session-conclusion.service';
+import {
+  IAudioStorage,
+  IAudioTranscriptionService,
+} from '../../interfaces';
 import { HttpError } from '../../utils/http-error';
 import { TranslationFunction } from '../../types/i18n.types';
 
@@ -12,6 +16,8 @@ describe('SessionController - interact', () => {
   let historySessionService: DeepMockProxy<HistorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
   let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
+  let audioStorage: DeepMockProxy<IAudioStorage>;
+  let audioTranscription: DeepMockProxy<IAudioTranscriptionService>;
   let controller: SessionController;
   let req: Partial<Request>;
   let res: Partial<Response>;
@@ -23,10 +29,14 @@ describe('SessionController - interact', () => {
     historySessionService = mockDeep<HistorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
     sessionConclusionService = mockDeep<SessionConclusionService>();
+    audioStorage = mockDeep<IAudioStorage>();
+    audioTranscription = mockDeep<IAudioTranscriptionService>();
     controller = new SessionController(
       historySessionService,
       sessionInteractionService,
-      sessionConclusionService
+      sessionConclusionService,
+      audioStorage,
+      audioTranscription
     );
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });
@@ -153,6 +163,8 @@ describe('SessionController - start', () => {
   let historySessionService: DeepMockProxy<HistorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
   let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
+  let audioStorage: DeepMockProxy<IAudioStorage>;
+  let audioTranscription: DeepMockProxy<IAudioTranscriptionService>;
   let controller: SessionController;
   let req: Partial<Request>;
   let res: Partial<Response>;
@@ -164,10 +176,14 @@ describe('SessionController - start', () => {
     historySessionService = mockDeep<HistorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
     sessionConclusionService = mockDeep<SessionConclusionService>();
+    audioStorage = mockDeep<IAudioStorage>();
+    audioTranscription = mockDeep<IAudioTranscriptionService>();
     controller = new SessionController(
       historySessionService,
       sessionInteractionService,
-      sessionConclusionService
+      sessionConclusionService,
+      audioStorage,
+      audioTranscription
     );
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });
@@ -243,6 +259,8 @@ describe('SessionController - getSession', () => {
   let historySessionService: DeepMockProxy<HistorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
   let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
+  let audioStorage: DeepMockProxy<IAudioStorage>;
+  let audioTranscription: DeepMockProxy<IAudioTranscriptionService>;
   let controller: SessionController;
   let req: Partial<Request>;
   let res: Partial<Response>;
@@ -254,10 +272,14 @@ describe('SessionController - getSession', () => {
     historySessionService = mockDeep<HistorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
     sessionConclusionService = mockDeep<SessionConclusionService>();
+    audioStorage = mockDeep<IAudioStorage>();
+    audioTranscription = mockDeep<IAudioTranscriptionService>();
     controller = new SessionController(
       historySessionService,
       sessionInteractionService,
-      sessionConclusionService
+      sessionConclusionService,
+      audioStorage,
+      audioTranscription
     );
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });

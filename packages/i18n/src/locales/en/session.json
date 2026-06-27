@@ -15,6 +15,7 @@
     "noEndingMatched": "No ending matches the provided answers"
   },
   "interact": {
-    "noClueFound": "No new clue this time."
+    "noClueFound": "No new clue this time.",
+    "audioEmpty": "Could not understand the audio. Try again."
   }
 }

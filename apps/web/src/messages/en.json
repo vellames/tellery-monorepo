@@ -193,7 +193,11 @@
       "thinking": "{name} is thinking",
       "autoInspectLocation": "Look around",
       "objectsHere": "Objects to inspect",
-      "noObjectsHere": "There is nothing else to inspect here."
+      "noObjectsHere": "There is nothing else to inspect here.",
+      "audioEmpty": "Could not understand the audio. Try again.",
+      "audioError": "Failed to process audio. Try again.",
+      "recording": "Recording…",
+      "tapToRecord": "Tap to record"
     },
     "conclusionTitle": "Solve the case",
     "conclusionSubtitle": "Based on everything you discovered, answer:",

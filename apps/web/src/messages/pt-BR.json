@@ -193,7 +193,11 @@
       "thinking": "{name} está pensando",
       "autoInspectLocation": "Observar o local",
       "objectsHere": "Objetos para inspecionar",
-      "noObjectsHere": "Não há mais nada para inspecionar aqui."
+      "noObjectsHere": "Não há mais nada para inspecionar aqui.",
+      "audioEmpty": "Não consegui entender o áudio. Tente novamente.",
+      "audioError": "Falha ao processar o áudio. Tente novamente.",
+      "recording": "Gravando…",
+      "tapToRecord": "Toque para gravar"
     },
     "conclusionTitle": "Resolva o caso",
     "conclusionSubtitle": "Com base em tudo o que você descobriu, responda:",
