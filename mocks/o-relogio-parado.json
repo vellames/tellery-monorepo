@@ -11,7 +11,7 @@
   "language": "pt-BR",
   "estimatedDurationMinutes": 8,
   "status": "published",
-  "isFeatured": false,
+  "isFeatured": true,
   "isFree": true,
   "version": 1,
   "coverImageUrl": "histories/o-relogio-parado/history/cover.png",
