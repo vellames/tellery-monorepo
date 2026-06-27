@@ -226,22 +226,22 @@ export function InvestigationPanel({
       />
 
       <div
-        className="scene-grain relative flex max-h-[92svh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[28px] border border-[#fff9ef]/12 bg-[#1b070b] shadow-2xl sm:max-h-[88svh] sm:rounded-[28px]"
+        className="scene-grain relative flex h-[90svh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[28px] border border-[#fff9ef]/12 bg-[#1b070b] shadow-2xl sm:rounded-[28px]"
         style={{ animation: 'scene-fade-up 0.4s cubic-bezier(0.16,1,0.3,1)' }}
       >
         {/* hero */}
-        <div className="relative h-44 shrink-0 sm:h-52">
+        <div className="relative h-40 shrink-0 sm:h-44">
           {imageUrl ? (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
               src={imageUrl}
               alt={name}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover brightness-[0.6]"
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] via-[#160a08] to-[#6e3d15]" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1b070b] via-[#1b070b]/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1b070b] via-[#1b070b]/60 to-[#1b070b]/20" />
 
           <button
             type="button"
@@ -251,32 +251,47 @@ export function InvestigationPanel({
           >
             <X className="size-4" />
           </button>
+        </div>
 
-          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 sm:p-6">
-            <div className="min-w-0">
-              <span className="text-gold mb-1.5 inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.14em] uppercase">
-                <Icon className="size-3.5" />
-                {tp(meta.labelKey)}
-              </span>
-              <h2 className="font-heading text-2xl font-semibold tracking-tight text-[#fff9ef] sm:text-3xl">
-                {name}
-              </h2>
-              {role && (
-                <p className="text-gold/90 text-xs font-semibold tracking-wide uppercase">
-                  {role}
-                </p>
-              )}
-            </div>
-            {serverClues.length > 0 && (
-              <CluePill
-                found={serverClues.length}
-                total={target.data.cluesTotal}
-                easyMode={easyMode}
-                clues={serverClues}
-                label={tp('cluesFoundHere')}
+        {/* portrait + title (overlapping hero) */}
+        <div className="relative z-10 -mt-12 flex items-end gap-4 px-5 sm:px-6">
+          {imageUrl ? (
+            <div className="border-gold/30 size-24 shrink-0 overflow-hidden rounded-2xl border-2 shadow-xl sm:size-28">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={imageUrl}
+                alt={name}
+                className="h-full w-full object-cover"
               />
+            </div>
+          ) : (
+            <div className="border-gold/30 grid size-24 shrink-0 place-items-center rounded-2xl border-2 bg-gradient-to-br from-[#37050d] to-[#160a08] shadow-xl sm:size-28">
+              <Icon className="text-gold/50 size-8" />
+            </div>
+          )}
+          <div className="min-w-0 flex-1 pb-1">
+            <span className="text-gold mb-0.5 inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.14em] uppercase">
+              <Icon className="size-3.5" />
+              {tp(meta.labelKey)}
+            </span>
+            <h2 className="font-heading text-2xl leading-tight font-semibold tracking-tight text-[#fff9ef] sm:text-3xl">
+              {name}
+            </h2>
+            {role && (
+              <p className="text-gold/90 text-xs font-semibold tracking-wide uppercase">
+                {role}
+              </p>
             )}
           </div>
+          {serverClues.length > 0 && (
+            <CluePill
+              found={serverClues.length}
+              total={target.data.cluesTotal}
+              easyMode={easyMode}
+              clues={serverClues}
+              label={tp('cluesFoundHere')}
+            />
+          )}
         </div>
 
         {/* body */}
