@@ -2,37 +2,35 @@ import { appConfig } from '../../config/app.config';
 import { IAudioTranscriptionService } from '../../interfaces';
 import FormData from 'form-data';
 
-interface OpenRouterTranscriptionResponse {
+interface TranscriptionResponse {
   text: string;
 }
 
 export class OpenRouterAudioTranscriptionService
   implements IAudioTranscriptionService
 {
-  private readonly apiKey: string;
-  private readonly model: string;
-  private readonly baseUrl: string;
-
-  constructor() {
-    this.apiKey = appConfig.openrouter.apiKey;
-    this.model = appConfig.openrouter.audioModel;
-    this.baseUrl = appConfig.openrouter.baseUrl;
-  }
-
   async transcribe(input: {
     buffer: Buffer;
     contentType: string;
     filename: string;
   }): Promise<{ text: string }> {
+    const apiKey = appConfig.openai.apiKey;
+    const model = appConfig.openrouter.audioModel;
+
+    if (!apiKey) {
+      throw new Error('OPENAI_API_KEY is not configured for audio transcription');
+    }
+
     const form = new FormData();
     form.append('file', input.buffer, {
       filename: input.filename,
       contentType: input.contentType,
     });
-    form.append('model', this.model);
+    form.append('model', model);
+    form.append('language', 'pt');
 
-    console.log('[audio-transcription] sending to openrouter', {
-      model: this.model,
+    console.log('[audio-transcription] sending to openai', {
+      model,
       bufferSize: input.buffer.length,
       contentType: input.contentType,
     });
@@ -40,10 +38,10 @@ export class OpenRouterAudioTranscriptionService
     const formHeaders = form.getHeaders();
     const formBuffer = form.getBuffer();
 
-    const res = await fetch(`${this.baseUrl}/audio/transcriptions`, {
+    const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${this.apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         ...formHeaders,
       },
       body: formBuffer,
@@ -51,7 +49,7 @@ export class OpenRouterAudioTranscriptionService
 
     if (!res.ok) {
       const errorBody = await res.text().catch(() => 'unknown');
-      console.error('[audio-transcription] openrouter error', {
+      console.error('[audio-transcription] openai error', {
         status: res.status,
         body: errorBody,
       });
@@ -60,7 +58,7 @@ export class OpenRouterAudioTranscriptionService
       );
     }
 
-    const data = (await res.json()) as OpenRouterTranscriptionResponse;
+    const data = (await res.json()) as TranscriptionResponse;
     const text = data.text?.trim() ?? '';
 
     console.log('[audio-transcription] result', {

@@ -9,6 +9,7 @@ const envSchema = z.object({
   OPENROUTER_OBJECT_MODEL: z.string().optional(),
   OPENROUTER_CHARACTER_MODEL: z.string().optional(),
   OPENROUTER_AUDIO_MODEL: z.string().optional(),
+  OPENAI_API_KEY: z.string().optional(),
   INTENT_DETECTOR_THRESHOLD: z.coerce.number().min(0).max(1).default(0.5),
   DEFAULT_LANGUAGE: z.enum(['en', 'pt-BR']).default('pt-BR'),
   PORT: z.coerce.number().default(3232),
@@ -62,8 +63,12 @@ export const appConfig = {
     intentDetectorModel: env.OPENROUTER_INTENT_MODEL ?? env.OPENROUTER_MODEL,
     objectAgentModel: env.OPENROUTER_OBJECT_MODEL ?? env.OPENROUTER_MODEL,
     characterAgentModel: env.OPENROUTER_CHARACTER_MODEL ?? env.OPENROUTER_MODEL,
-    audioModel: env.OPENROUTER_AUDIO_MODEL ?? 'openai/whisper-large-3',
+    audioModel: env.OPENROUTER_AUDIO_MODEL ?? 'whisper-1',
     intentDetectorThreshold: env.INTENT_DETECTOR_THRESHOLD,
+  },
+
+  openai: {
+    apiKey: env.OPENAI_API_KEY,
   },
 
   security: {
