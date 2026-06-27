@@ -1,0 +1,1192 @@
+{
+  "id": "history_o_testamento_de_heitor",
+  "createdAt": "2026-06-27T00:00:00.000Z",
+  "updatedAt": "2026-06-27T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-testamento-de-heitor",
+  "title": "O Testamento de Heitor",
+  "subtitle": "Um patriarca morto, um testamento prestes a mudar, cinco herdeiros em silêncio",
+  "teaser": "Heitor Vargas é encontrado morto em seu escritório na manhã em que mudaria o testamento. Sem sinais de violência. Cinco beneficiários jantaram com ele na noite anterior. Um deles silenciou o patriarca antes do amanhecer.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 15,
+  "status": "published",
+  "isFeatured": true,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/o-testamento-de-heitor/history/cover.png",
+  "thumbnailUrl": "histories/o-testamento-de-heitor/history/thumbnail.png",
+  "opening": {
+    "shortText": "Heitor Vargas morreu na noite anterior, aparentemente de causas naturais. Mas a mudança do testamento ficou pronta para a manhã que não chegou.",
+    "fullText": "São 7h da manhã na Estância Almir. Nora, a governanta, encontrou Heitor Vargas — 78 anos, patriarca e dono de tudo — caído em sua poltrona no escritório, sem sinais de violência e sem vida. O Dr. Vasco, médico de família, confirmou o que parecia óbvio: falência do coração, algo esperado dado o histórico cardíaco de Heitor. Mas há um detalhe que pertuba. O advogado de Heitor deveria chegar às 9h para registrar um novo testamento — um que cortava herdeiros, reduzia legados e reescrevia a distribuição da fortuna. Cinco pessoas jantaram com Heitor na noite anterior: Raul, o filho mais velho prestes a ser deserdado; Beatriz, a jovem segunda esposa que herda quase tudo; Dr. Vasco, que receitou a medicação cardíaca; Lia, a secretária que administra as contas; e Téo, o filho caçula que já esbanjou sua parte. Cada um tinha um motivo. Cada um esteve na estância. Cabe a você examinar o escritório, ouvir as cinco versões e descobrir quem, se alguém, silenciou Heitor Vargas antes que o testamento mudasse.",
+    "callToAction": "Examine o escritório e a estância, converse com os cinco herdeiros e a governanta, e reconstrua a última noite de Heitor Vargas."
+  },
+  "objective": {
+    "mainQuestion": "Quem causou a morte de Heitor Vargas, como e por quê?",
+    "description": "Descubra se a morte foi natural ou provocada, quem foi o responsável, qual foi o método e o motivo real, e onde está a evidência que confirma a verdade."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_death",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a morte de Heitor, o corpo, a cena ou as circunstâncias.",
+      "examples": ["Como Heitor morreu?", "Quem encontrou o corpo?", "Houve violência?"],
+      "keywords": ["morte", "morreu", "corpo", "cadáver", "morta", "causas naturais"]
+    },
+    {
+      "id": "ask_about_medication",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a medicação cardíaca, o frasco, a dosagem ou quem manuseia.",
+      "examples": ["Que remédio ele tomava?", "Quem prepara a medicação?", "O frasco está certo?"],
+      "keywords": ["remédio", "medicação", "frasco", "pílulas", "coração", "dose"]
+    },
+    {
+      "id": "ask_about_will",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o testamento, a mudança planejada, herdeiros e legados.",
+      "examples": ["O que diz o testamento?", "Quem herda o quê?", "A mudança era confirmada?"],
+      "keywords": ["testamento", "herança", "herdeiro", "legado", "mudança", "advogado"]
+    },
+    {
+      "id": "ask_about_dinner",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o jantar da noite anterior, quem esteve presente e o que aconteceu.",
+      "examples": ["Como foi o jantar?", "Quem jantou com Heitor?", "Teve briga no jantar?"],
+      "keywords": ["jantar", "ceia", "mesa", "noite anterior", "presentes"]
+    },
+    {
+      "id": "ask_about_yesterday",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre os acontecimentos da noite anterior de forma geral.",
+      "examples": ["O que aconteceu ontem?", "Como foi a noite?", "O que se passou na madrugada?"],
+      "keywords": ["ontem", "noite", "madrugada", "véspera", "aconteceu"]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava, quando chegou, saiu ou o que fazia na noite.",
+      "examples": ["Qual é o seu álibi?", "Onde você estava ontem à noite?", "A que horas saiu?"],
+      "keywords": ["álibi", "horário", "saída", "chegada", "esteve", "onde"]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar por que alguém se beneficiaria com a morte de Heitor.",
+      "examples": ["Qual seria o motivo?", "Quem ganha com a morte?", "Por que fariam isso?"],
+      "keywords": ["motivo", "por quê", "ganharia", "beneficia", "razão", "interesse"]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": ["Quero examinar este objeto", "Olho isso com atenção", "Inspeciono o frasco"],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+    },
+    {
+      "id": "ask_about_nora",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Nora, a governanta, sua rotina ou o que testemunhou.",
+      "examples": ["Nora, o que você viu?", "Que horas Nora chegou?", "Nora notou algo estranho?"],
+      "keywords": ["Nora", "governanta", "rotina", "testemunhou", "viu"]
+    },
+    {
+      "id": "ask_about_raul",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Raul, seu comportamento, relação com Heitor ou álibi.",
+      "examples": ["Raul, onde você estava?", "O que Raul fez ontem?", "Raul sabia do testamento?"],
+      "keywords": ["Raul", "filho mais velho", "deserdado", "herdeiro"]
+    },
+    {
+      "id": "ask_about_beatriz",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Beatriz, seu casamento, herança ou álibi.",
+      "examples": ["Beatriz, como era o casamento?", "Beatriz herda tudo?", "Onde Beatriz estava?"],
+      "keywords": ["Beatriz", "esposa", "viúva", "herda", "casamento"]
+    },
+    {
+      "id": "ask_about_vasco",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Dr. Vasco, seu papel como médico ou relação com Heitor.",
+      "examples": ["Doutor, o que ele receitou?", "Vasco estava sendo chantageado?", "O médico saiu cedo?"],
+      "keywords": ["Vasco", "doutor", "médico", "receita", "chantagem"]
+    },
+    {
+      "id": "ask_about_lia",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Lia, a secretária, seu trabalho ou finanças da estância.",
+      "examples": ["Lia, o que você fazia?", "Lia tinha acesso às contas?", "Lia estava na copa?"],
+      "keywords": ["Lia", "secretária", "contas", "finanças", "copa"]
+    },
+    {
+      "id": "ask_about_teo",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Téo, o filho caçula, suas dívidas ou relação com o pai.",
+      "examples": ["Téo, você pediu dinheiro?", "Téo tem dívidas?", "Onde Téo estava?"],
+      "keywords": ["Téo", "caçula", "dívidas", "dinheiro", "esbanjou"]
+    },
+    {
+      "id": "ask_about_heitor",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Heitor Vargas, seu histórico, rotina ou personalidade.",
+      "examples": ["Como Heitor era?", "Heitor tinha inimigos?", "Qual era a rotina dele?"],
+      "keywords": ["Heitor", "Vargas", "patriarca", "rotina", "personalidade"]
+    },
+    {
+      "id": "ask_about_inheritance",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a herança, quem recebe o quê e como a mudança afeta cada um.",
+      "examples": ["Quem herda a estância?", "Raul perde tudo?", "Beatriz fica com quanto?"],
+      "keywords": ["herança", "herdeiro", "legado", "estância", "fortuna"]
+    },
+    {
+      "id": "ask_about_embezzlement",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre desvio de dinheiro, recibos suspeitos ou irregularidades nas contas.",
+      "examples": ["Houve desvio?", "Alguém desviava dinheiro?", "As contas batem?"],
+      "keywords": ["desvio", "embezzlement", "roubo", "contas", "recibos", "irregular"]
+    },
+    {
+      "id": "ask_about_blackmail",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre chantagem, segredos ocultos ou pressão sobre alguém.",
+      "examples": ["Alguém era chantageado?", "Vasco escondia o quê?", "Heitor pressiona alguém?"],
+      "keywords": ["chantagem", "segredo", "pressão", "oculto", "ameaça"]
+    },
+    {
+      "id": "accuse_raul",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Raul de ter causado a morte de Heitor.",
+      "examples": ["Raul, foi você", "Confronto Raul sobre a morte", "Acho que foi o Raul"],
+      "keywords": ["acusar Raul", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "accuse_beatriz",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Beatriz de ter causado a morte de Heitor.",
+      "examples": ["Beatriz, foi você", "Confronto Beatriz sobre a morte", "Acho que foi a Beatriz"],
+      "keywords": ["acusar Beatriz", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "accuse_vasco",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Dr. Vasco de ter causado a morte de Heitor.",
+      "examples": ["Doutor, foi você", "Confronto Vasco sobre a morte", "Acho que foi o Vasco"],
+      "keywords": ["acusar Vasco", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "accuse_lia",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Lia de ter causado a morte de Heitor.",
+      "examples": ["Lia, foi você", "Confronto Lia sobre a morte", "Acho que foi a Lia"],
+      "keywords": ["acusar Lia", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "accuse_teo",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Téo de ter causado a morte de Heitor.",
+      "examples": ["Téo, foi você", "Confronto Téo sobre a morte", "Acho que foi o Téo"],
+      "keywords": ["acusar Téo", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": ["Vamos sair da estância", "Quero uma cena de ação", "Revele tudo sem investigar"],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "nora",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Nora",
+      "role": "Governanta da Estância Almir",
+      "shortDescription": "Governanta fiel há trinta anos, encontrou o corpo de Heitor e conhece os movimentos de todos na casa.",
+      "imageUrl": "histories/o-testamento-de-heitor/characters/nora.png",
+      "personality": "Sóbria, observadora, leal à memória de Heitor. Fala com economy de palavras e nunca dramatiza.",
+      "speakingStyle": "Frases curtas e precisas, vocabulão de casa antiga, evita fofoca mas cede quando confrontada com fatos.",
+      "publicKnowledge": [
+        "Encontrou Heitor morto na poltrona do escritório às 6h da manhã.",
+        "Não havia sinais de violência no corpo.",
+        "Todos os cinco herdeiros jantaram com Heitor na noite anterior.",
+        "Heitor tomava medicação cardíaca todas as noites."
+      ],
+      "privateKnowledge": [
+        "Viu Raul perto do escritório após o jantar.",
+        "Viu Beatriz manuseando o frasco de remédio na copa antes de levá-lo ao escritório.",
+        "Viu Lia na copa trabalhando tarde.",
+        "Ouviu Téo exigir dinheiro de Heitor durante o jantar.",
+        "Sabe que Téo tem dívidas enormes de jogo.",
+        "Sabe que Beatriz era quem preparava e levava a medicação noturna de Heitor."
+      ],
+      "openingLine": "Trinta anos nesta casa. Eu nunca vi o patrão sentado tão quieto. Nem vivo, nem morto, ele nunca foi um homem parado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_heitor_dead",
+          "triggerIntents": ["ask_about_death", "ask_about_nora"],
+          "requiresClueIds": [],
+          "revealText": "Nora confirma que encontrou Heitor morto na poltrona do escritório às 6h da manhã, como se tivesse adormecido ali.",
+          "responseGuidance": "Manter Nora sóbria e controlada, sem drama."
+        },
+        {
+          "clueId": "clue_no_violence",
+          "triggerIntents": ["ask_about_death", "ask_about_nora"],
+          "requiresClueIds": [],
+          "revealText": "Nora afirma que não havia marcas, sangue ou qualquer sinal de violência no corpo de Heitor.",
+          "responseGuidance": "Ela deve tratar a ausência de violência como fato, não como prova de morte natural."
+        },
+        {
+          "clueId": "clue_medication_nightly",
+          "triggerIntents": ["ask_about_medication", "ask_about_nora", "ask_about_heitor"],
+          "requiresClueIds": [],
+          "revealText": "Nora explica que Heitor tomava um comprimido cardíaco todas as noites às 22h, sempre levado por alguém da casa ao escritório.",
+          "responseGuidance": "Ela deve enfatizar que era uma rotina fixa, sem exceções."
+        },
+        {
+          "clueId": "clue_family_dinner",
+          "triggerIntents": ["ask_about_dinner", "ask_about_nora", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Nora descreve o jantar da noite anterior: todos os cinco herdeiros estavam presentes, a refeição foi tensa e terminou por volta das 22h.",
+          "responseGuidance": "Ela deve mencionar a tensão sem apontar culpados."
+        },
+        {
+          "clueId": "clue_raul_in_study",
+          "triggerIntents": ["ask_about_raul", "ask_about_alibi", "ask_about_nora"],
+          "requiresClueIds": ["clue_will_change_pending"],
+          "revealText": "Nora admite ter visto Raul caminhando em direção ao escritório após o jantar, quando o corredor deveria estar vazio.",
+          "responseGuidance": "Ela deve soar cautelosa, como quem não quer acusar mas não pode omitir."
+        },
+        {
+          "clueId": "clue_beatriz_near_medication",
+          "triggerIntents": ["ask_about_beatriz", "ask_about_medication", "ask_about_nora"],
+          "requiresClueIds": ["clue_medication_nightly"],
+          "revealText": "Nora conta que, antes do jantar, viu Beatriz manuseando o frasco de remédio na copa — algo que normalmente só Nora ou Lia faziam.",
+          "responseGuidance": "Ela deve tratar isso como incomum, mas não necessariamente suspeito."
+        },
+        {
+          "clueId": "clue_lia_in_office",
+          "triggerIntents": ["ask_about_lia", "ask_about_alibi", "ask_about_nora"],
+          "requiresClueIds": ["clue_lia_manages_finances"],
+          "revealText": "Nora revela que Lia ficou trabalhando na copa até tarde, bem depois de todos se recolherem.",
+          "responseGuidance": "Ela deve soar levemente desconfortável ao revelar isso."
+        },
+        {
+          "clueId": "clue_teo_demanded_money",
+          "triggerIntents": ["ask_about_teo", "ask_about_dinner", "ask_about_nora"],
+          "requiresClueIds": ["clue_family_dinner"],
+          "revealText": "Nora conta que ouviu Téo exigir dinheiro de Heitor durante o jantar, em voz alta, e que Heitor se recusou.",
+          "responseGuidance": "Ela deve relatar a cena com constrangimento de quem ouviu algo íntimo."
+        },
+        {
+          "clueId": "clue_beatriz_handles_medication",
+          "triggerIntents": ["ask_about_beatriz", "ask_about_medication", "ask_about_nora"],
+          "requiresClueIds": ["clue_medication_wrong_count"],
+          "revealText": "Nora confirma que, na noite anterior, foi Beatriz quem preparou e levou a medicação ao escritório de Heitor — tarefa que Nora costumava fazer.",
+          "responseGuidance": "Ela deve soar surpresa por ter sido dispensada da tarefa naquela noite."
+        },
+        {
+          "clueId": "clue_nora_saw_movements",
+          "triggerIntents": ["ask_about_alibi", "ask_about_nora", "ask_about_yesterday"],
+          "requiresClueIds": ["clue_family_dinner"],
+          "revealText": "Nora descreve movimentos na casa durante a madrugada: passos no corredor, uma luz acesa na copa e o escritório iluminado muito depois da meia-noite.",
+          "responseGuidance": "Ela deve listar os movimentos sem atribuí-los a pessoas específicas, deixando a investigação seguir."
+        },
+        {
+          "clueId": "clue_teo_debt",
+          "triggerIntents": ["ask_about_teo", "ask_about_motive", "ask_about_nora"],
+          "requiresClueIds": ["clue_teo_demanded_money"],
+          "revealText": "Nora revela que Téo tem dívidas enormes de jogo e que Heitor já pagou suas dívidas duas vezes, recusando-se a fazê-lo uma terceira.",
+          "responseGuidance": "Ela deve tratar isso como fato conhecido na casa, não como fofoca."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Não acusar nenhum herdeiro diretamente.",
+        "Não revelar quem viu no corredor antes de ser perguntada sobre a pessoa certa.",
+        "Manter o tom de testemunha fiel, sem tomar partido.",
+        "Não afirmar que a morte foi provocada — ela não sabe, apenas observa."
+      ]
+    },
+    {
+      "id": "raul",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Raul",
+      "role": "Filho mais velho de Heitor",
+      "shortDescription": "Filho mais velho, austero e orgulhoso. Seria deserdado pela mudança do testamento.",
+      "imageUrl": "histories/o-testamento-de-heitor/characters/raul.png",
+      "personality": "Seco, controlado, ressentido. Esconde vergonha atrás de formalidade.",
+      "speakingStyle": "Fala em frases medidas, vocabulão formal, evita emoção mas transborda quando acuado.",
+      "publicKnowledge": [
+        "É o filho mais velho e administrava os negócios da estância.",
+        "Sabia que o testamento seria mudado e que ele seria praticamente cortado.",
+        "Esteve no jantar da noite anterior."
+      ],
+      "privateKnowledge": [
+        "Esteve no escritório após o jantar, mas não para matar Heitor — foi para levar o testamento antigo antes que fosse substituído.",
+        "Heitor estava vivo quando Raul entrou e saiu do escritório.",
+        "Pegou o testamento antigo da gaveta para garantir seus direitos legais."
+      ],
+      "openingLine": "Eu não vou fingir tristeza. Meu pai já tinha me enterrado em vida quando decidiu me cortar do testamento.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_raul_disinherited",
+          "triggerIntents": ["ask_about_raul", "ask_about_inheritance", "ask_about_will"],
+          "requiresClueIds": [],
+          "revealText": "Raul admite, com amargura, que sabia que seria praticamente deserdado pela mudança do testamento.",
+          "responseGuidance": "Ele deve soar magoado, não ameaçador."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_raul_stole_will",
+          "createdAt": "2026-06-27T00:00:00.000Z",
+          "updatedAt": "2026-06-27T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Raul entrou no escritório após o jantar para levar o testamento antigo, não para matar.",
+          "truth": "Raul foi ao escritório após o jantar e pegou a cópia do testamento antigo da gaveta, para garantir seus direitos legais antes que o novo substituísse. Heitor estava vivo quando Raul entrou e saiu. Raul não causou a morte de ninguém.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_raul_stage_1_admit_presence",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_alibi", "accuse_raul", "ask_about_raul"],
+              "requiresClueIds": ["clue_raul_in_study"],
+              "revealsClueIds": ["clue_raul_stole_document"],
+              "behavior": "Admitir que esteve no escritório após o jantar, mas justificar como visita rotineira.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Sim, eu estive no escritório. Fui verificar uns papéis da estância, como faço sempre.",
+                "Entrar no escritório do meu pai não é crime. Eu trabalho aqui há vinte anos."
+              ]
+            },
+            {
+              "id": "secret_raul_stage_2_admit_theft",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_raul", "ask_about_will", "accuse_raul"],
+              "requiresClueIds": ["clue_raul_stole_document"],
+              "revealsClueIds": ["clue_raul_stole_old_will"],
+              "behavior": "Admitir que pegou o testamento antigo da gaveta para proteger seus direitos, insistindo que Heitor estava vivo.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Tá, eu peguei o testamento antigo. Eu sabia que ele ia me cortar. Quis garantir ao menos o que era meu por direito.",
+                "Quando saí do escritório, meu pai estava vivo. Bebia o conhaque. Eu não toquei nele."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter causado a morte de Heitor, pois é inocente disso.",
+        "Admitir a presença no escritório apenas quando confrontado com a testemunha de Nora.",
+        "Manter o tom de ressentimento contido, não de agressão."
+      ]
+    },
+    {
+      "id": "beatriz",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Beatriz",
+      "role": "Segunda esposa de Heitor",
+      "shortDescription": "Jovem segunda esposa de Heitor, herda quase tudo pelo testamento atual. Elegante e contida.",
+      "imageUrl": "histories/o-testamento-de-heitor/characters/beatriz.png",
+      "personality": "Composta, vaidosa, calculista por trás de fragilidade aparente. Esconde desespero atrás de elegância.",
+      "speakingStyle": "Fala com suavidade controlada, frases educadas que se tornam cortantes quando pressionada.",
+      "publicKnowledge": [
+        "É a segunda esposa de Heitor, casada há quatro anos.",
+        "Herda a estância e a maior parte da fortuna pelo testamento atual.",
+        "Sabia que a mudança do testamento a reduziria drasticamente.",
+        "Esteve no jantar da noite anterior."
+      ],
+      "privateKnowledge": [
+        "Na noite anterior, trocou os comprimidos cardíacos de Heitor por placebos no frasco, antes de levar a medicação ao escritório.",
+        "Heitor ameaçava deixá-la sem nada e a tratava com desprezo público.",
+        "Agiu para impedir a mudança do testamento e para escapar de um casamento que a sufocava.",
+        "Não pretendia confessar; esperava que a morte passasse por natural."
+      ],
+      "openingLine": "Eu perdi meu marido esta manhã. Sei que todos aqui pensam que eu tenho motivos. Talvez tenham. Mas motivos não são provas.",
+      "clueRevealRules": [],
+      "secrets": [
+        {
+          "id": "secret_beatriz_killed_heitor",
+          "createdAt": "2026-06-27T00:00:00.000Z",
+          "updatedAt": "2026-06-27T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Beatriz trocou a medicação cardíaca de Heitor por placebos para impedir a mudança do testamento.",
+          "truth": "Beatriz substituiu os comprimidos cardíacos do frasco por placebos na noite anterior, antes de levar a medicação ao escritório. Sem a medicação, o coração de Heitor cedeu durante a madrugada. Agiu porque a mudança do testamento a deixaria sem nada e porque Heitor a tratava com desprezo crescente, ameaçando substituí-la por alguém mais jovem. Não previu que a troca seria descoberta.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_beatriz_stage_0_deny",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["accuse_beatriz", "ask_about_beatriz", "ask_about_motive"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento e reagir com indignação ofendida.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu era a esposa dele. Herdar não é crime. Vocês deveriam ter vergonha.",
+                "Se meu marido morreu de coração, foi o coração dele, não eu."
+              ]
+            },
+            {
+              "id": "secret_beatriz_stage_1_admit_threat",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_beatriz", "ask_about_medication", "ask_about_alibi", "ask_about_motive"],
+              "requiresClueIds": ["clue_beatriz_near_medication", "clue_beatriz_inherits"],
+              "revealsClueIds": ["clue_beatriz_threatened"],
+              "behavior": "Admitir que Heitor a ameaçava com a mudança do testamento e a tratava com desprezo, mas negar a troca.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Ele me dizia que eu ia ficar sem nada. Que eu era descartável. Isso não faz de mim assassina.",
+                "Eu sabia que a mudança do testamento ia me deixar na rua. Qualquer esposa ficaria desesperada."
+              ]
+            },
+            {
+              "id": "secret_beatriz_stage_2_admit_motive",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_motive", "ask_about_beatriz", "accuse_beatriz"],
+              "requiresClueIds": ["clue_beatriz_threatened", "clue_beatriz_fingerprints"],
+              "revealsClueIds": ["clue_beatriz_motive_stop_will"],
+              "behavior": "Admitir que tinha motivo para impedir a mudança do testamento, mas ainda negar a ação.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Sim, eu queria que o testamento não mudasse. Isso é diferente de matar alguém.",
+                "Minhas impressões no frasco? Eu levava o remédio dele. Sempre levei. Isso não prova nada."
+              ]
+            },
+            {
+              "id": "secret_beatriz_stage_3_partial_confession",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["accuse_beatriz", "ask_about_motive"],
+              "requiresClueIds": [
+                "clue_placebo_different_brand",
+                "clue_beatriz_motive_stop_will",
+                "clue_beatriz_fingerprints"
+              ],
+              "revealsClueIds": ["clue_beatriz_swapped_medication"],
+              "behavior": "Admitir parcialmente que trocou os comprimidos, insistindo que não previu que ele morreria.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu troquei as pílulas. Mas eu não sabia que ele ia morrer. Eu só queria que ele sentisse que precisava de mim.",
+                "Foi um impulso. Eu pensava que ele ia notar, que ia me procurar. Eu não previa isto."
+              ]
+            },
+            {
+              "id": "secret_beatriz_stage_4_full_confession",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": ["accuse_beatriz"],
+              "requiresClueIds": ["clue_beatriz_swapped_medication"],
+              "revealsClueIds": ["clue_beatriz_full_confession", "clue_heitor_abusive"],
+              "behavior": "Confessar completamente, revelar o paradeiro das pílulas originais e o tratamento que sofria de Heitor.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu troquei os comprimidos por placebos. As pílulas originais estão dentro do frasco, embaixo dos placebos — eu não tive coragem de jogá-las fora. Ele me tratava como enfeite, me dizia que eu era substituível. Eu não aguentava mais.",
+                "Fui eu. As pílulas verdadeiras estão no frasco, debaixo das falsas. Eu sabia que sem o remédio o coração dele podia ceder. Eu sabia. E mesmo assim eu fiz."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar a troca antes do estágio 3.",
+        "Não revelar o paradeiro das pílulas originais antes do estágio 4.",
+        "Negar sempre que sabia que ele morreria, até a confissão completa.",
+        "Manter o tom de dor contida, não de frieza vilanesca."
+      ]
+    },
+    {
+      "id": "vasco",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dr. Vasco",
+      "role": "Médico de família",
+      "shortDescription": "Médico de família há décadas, sereno por fora, esconde um segredo que Heitor conhecia.",
+      "imageUrl": "histories/o-testamento-de-heitor/characters/vasco.png",
+      "personality": "Profissional, calmo, evasivo quando pressionado sobre si mesmo. Fala de medicina com segurança e sobre seu passado com reticência.",
+      "speakingStyle": "Vocabulão clínico, frases pausadas, muda de assunto com perguntas sobre a saúde dos outros.",
+      "publicKnowledge": [
+        "É médico de família há trinta anos.",
+        "Receitou a medicação cardíaca de Heitor.",
+        "Confirmou a morte como falência cardíaca natural.",
+        "Esteve no jantar e diz ter saído cedo."
+      ],
+      "privateKnowledge": [
+        "Heitor sabia de um caso de malpráxis antigo de Vasco e o mantinha sob pressão.",
+        "Não causou a morte de Heitor.",
+        "Teme que o segredo venha à tona e manche sua reputação."
+      ],
+      "openingLine": "Como médico, posso afirmar: o coração de Heitor estava cansado há anos. Às vezes, o coração simplesmente pára.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_heart_condition",
+          "triggerIntents": ["ask_about_death", "ask_about_vasco", "ask_about_medication"],
+          "requiresClueIds": [],
+          "revealText": "Dr. Vasco confirma que Heitor tinha uma cardiopatia grave e controlada por medicação diária, sem a qual o risco de falência era alto.",
+          "responseGuidance": "Ele deve soar profissional, como se a morte fosse esperada."
+        },
+        {
+          "clueId": "clue_vasco_prescribed",
+          "triggerIntents": ["ask_about_medication", "ask_about_vasco"],
+          "requiresClueIds": [],
+          "revealText": "Dr. Vasco afirma ter sido ele quem receitou a medicação cardíaca e que a dosagem estava correta.",
+          "responseGuidance": "Ele deve defender a prescrição com segurança clínica."
+        },
+        {
+          "clueId": "clue_vasco_left_early",
+          "triggerIntents": ["ask_about_alibi", "ask_about_vasco", "ask_about_dinner"],
+          "requiresClueIds": [],
+          "revealText": "Dr. Vasco afirma ter saído do jantar por volta das 21h30, antes de todos os outros, e ido direto para casa.",
+          "responseGuidance": "Ele deve oferecer o álibi com naturalidade, como quem nada tem a esconender."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_vasco_blackmail",
+          "createdAt": "2026-06-27T00:00:00.000Z",
+          "updatedAt": "2026-06-27T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Vasco era chantageado por Heitor por um caso antigo de malpráxis.",
+          "truth": "Heitor sabia que Vasco cometera um erro médico grave décadas atrás, abafado com ajuda da família. Heitor usava isso para manter Vasco sob controle e forçar favores. Vasco não causou a morte de Heitor, mas teme que o segredo venha à tona.",
+          "defaultStrategy": "avoid",
+          "revealStages": [
+            {
+              "id": "secret_vasco_stage_1_admit_pressure",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_motive", "ask_about_vasco", "ask_about_blackmail", "accuse_vasco"],
+              "requiresClueIds": ["clue_vasco_left_early"],
+              "revealsClueIds": ["clue_vasco_blackmailed"],
+              "behavior": "Admitir que Heitor exercia pressão sobre ele, mas sem detalhar o quê.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Heitor tinha… uma forma de manter as pessoas perto. Eu não era exceção.",
+                "Digamos que ele sabia de coisas sobre mim. Isso não me faz assassino."
+              ]
+            },
+            {
+              "id": "secret_vasco_stage_2_admit_malpractice",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_vasco", "ask_about_blackmail", "accuse_vasco"],
+              "requiresClueIds": ["clue_vasco_blackmailed"],
+              "revealsClueIds": ["clue_vasco_malpractice"],
+              "behavior": "Admitir o caso de malpráxis antigo que Heitor usava como alavanca de chantagem.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Houve um paciente, há muitos anos. Eu errei. A família abafou. Heitor soube e nunca me deixou esquecer.",
+                "Eu cometi um erro médico grave. Heitor sabia. Eu pagava favores pra ele ficar quieto. Mas eu não o matei."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter causado a morte de Heitor, pois é inocente disso.",
+        "Não revelar a malpráxis antes de confrontado com a chantagem.",
+        "Manter o tom profissional, sem nervosismo visível."
+      ]
+    },
+    {
+      "id": "lia",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Lia",
+      "role": "Secretária e administradora da estância",
+      "shortDescription": "Secretária eficiente que administra as contas. Esconde desvio e um plano de fuga.",
+      "imageUrl": "histories/o-testamento-de-heitor/characters/lia.png",
+      "personality": "Prática, discreta, controlada. Esconde pânico atrás de eficiência.",
+      "speakingStyle": "Fala com clareza administrativa, números e prazos. Fica evasiva quando o assunto se aproxima do desvio.",
+      "publicKnowledge": [
+        "Administra as finanças e contas da estância há oito anos.",
+        "Esteve no jantar e diz ter trabalhado na copa depois.",
+        "Tinha acesso a todas as contas e documentos de Heitor."
+      ],
+      "privateKnowledge": [
+        "Desviava pequenas quantias das contas da estância há meses.",
+        "Heitor descobriu o desvio no dia anterior e a confrontou durante a tarde.",
+        "Planejava fugir na madrugada com o dinheiro desviado, mas a morte de Heitor a fez hesitar.",
+        "Não causou a morte de Heitor."
+      ],
+      "openingLine": "Eu cuido das contas desta casa há oito anos. Se alguém precisa saber onde o dinheiro vai, esse alguém sou eu.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lia_manages_finances",
+          "triggerIntents": ["ask_about_lia", "ask_about_inheritance", "ask_about_embezzlement"],
+          "requiresClueIds": [],
+          "revealText": "Lia confirma que administra todas as contas, recibos e pagamentos da estância, com acesso direto às contas de Heitor.",
+          "responseGuidance": "Ela deve tratar o acesso como parte normal do trabalho."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_lia_embezzlement_flight",
+          "createdAt": "2026-06-27T00:00:00.000Z",
+          "updatedAt": "2026-06-27T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Lia desviava dinheiro e planejava fugir na madrugada da morte.",
+          "truth": "Lia desviava quantias das contas da estância há meses. Heitor descobriu no dia anterior e a confrontou. Lia planejava fugir na madrugada com o dinheiro desviado, mas a morte de Heitor a fez hesitar. Não causou a morte de Heitor.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_lia_stage_1_admit_flight",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_lia", "ask_about_alibi", "ask_about_motive", "accuse_lia"],
+              "requiresClueIds": ["clue_lia_embezzling"],
+              "revealsClueIds": ["clue_lia_planned_flight"],
+              "behavior": "Admitir que planejava fugir, mas insistir que não matou Heitor.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Sim, eu ia embora. Eu tinha uma mala pronta na copa. Mas eu não matei ninguém. Eu ia fugir, não matar.",
+                "Eu sabia que ele tinha descoberto o desvio. Eu ia partir de madrugada. Quando cheguei na copa, ele já estava morto."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter causado a morte de Heitor, pois é inocente disso.",
+        "Admitir a fuga apenas depois que o desvio for descoberto.",
+        "Manter o tom de eficiência que se desfaz em pânico quando confrontada."
+      ]
+    },
+    {
+      "id": "teo",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Téo",
+      "role": "Filho caçula de Heitor",
+      "shortDescription": "Filho caçula, endividado por jogo. Já esbanjou sua herança e voltou pedindo mais.",
+      "imageUrl": "histories/o-testamento-de-heitor/characters/teo.png",
+      "personality": "Indolente, charmoso, vergonhoso. Esconde desespero atrás de humor amargo.",
+      "speakingStyle": "Fala com ironia despreocupada, frases curtas, desvia perguntas com piadas até ser encurralado.",
+      "publicKnowledge": [
+        "Já recebeu a herança antecipada e esbanjou tudo.",
+        "Voltou à estância pedendo mais dinheiro, que Heitor recusou.",
+        "Esteve no jantar e diz ter ido dormir cedo."
+      ],
+      "privateKnowledge": [
+        "Tem dívidas enormes de jogo com credores perigosos.",
+        "Heitor recusou pagar pela terceira vez no jantar.",
+        "Não causou a morte de Heitor."
+      ],
+      "openingLine": "Eu sei que sou o irresponsável da família. Isso não me faz assassino. Só me faz quebrado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_teo_squandered",
+          "triggerIntents": ["ask_about_teo", "ask_about_inheritance"],
+          "requiresClueIds": [],
+          "revealText": "Téo admite, com amargura irônica, que já gastou toda a herança antecipada que recebeu e voltou pedindo mais.",
+          "responseGuidance": "Ele deve tratar isso com humor defensivo."
+        },
+        {
+          "clueId": "clue_teo_alibi",
+          "triggerIntents": ["ask_about_teo", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "Téo afirma ter ido dormir logo após o jantar, embora admita não ter testemunhas de ter ficado no quarto.",
+          "responseGuidance": "Ele deve soar relaxado demais, como quem não percebe a gravidade."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar ter causado a morte de Heitor, pois é inocente.",
+        "Manter o tom de humor defensivo, sem soar ameaçador.",
+        "Não revelar o valor exato das dívidas além de 'enormes'."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "escritorio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Escritório",
+      "shortDescription": "O escritório onde Heitor foi encontrado morto.",
+      "imageUrl": "histories/o-testamento-de-heitor/location/escritorio.png",
+      "initialDescription": "O escritório de Heitor é uma sala ampla de paredes escuras, com estantes de mogno, uma grande poltrona de couro onde o corpo foi encontrado, uma mesa de trabalho coberta de papéis e um cálice de conhaque ainda sobre a bandeja. O ar pesa com silêncio de biblioteca antiga.",
+      "ambientClueIds": [],
+      "objectIds": ["frasco_remedio", "testamento", "calice_conhaque", "carta_advogado", "pilula_placebo", "agenda_heitor"]
+    },
+    {
+      "id": "sala_jantar",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sala de jantar",
+      "shortDescription": "A sala onde a família jantou na noite anterior.",
+      "imageUrl": "histories/o-testamento-de-heitor/location/sala_jantar.png",
+      "initialDescription": "A sala de jantar ainda tem os restos da ceia da noite anterior: taças, talheres e marcas de conversa interrompida. A mesa é longa, escura, com lugares para todos os cinco herdeiros e Heitor na cabeceira.",
+      "ambientClueIds": ["clue_family_dinner"],
+      "objectIds": []
+    },
+    {
+      "id": "adega",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Adega",
+      "shortDescription": "Adega subterrânea onde Heitor guardava o conhaque e vinhos.",
+      "imageUrl": "histories/o-testamento-de-heitor/location/adega.png",
+      "initialDescription": "A adega é um cômodo fresco e escuro sob a casa, com prateleiras de garrafas empoeiradas e um barril antigo. O ar cheira a madeira e tempo guardado. Há marcas de passos recentes no pó do chão.",
+      "ambientClueIds": [],
+      "objectIds": []
+    },
+    {
+      "id": "copa",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Copa",
+      "shortDescription": "Cômodo dos fundos onde Lia trabalha e onde a medicação era preparada.",
+      "imageUrl": "histories/o-testamento-de-heitor/location/copa.png",
+      "initialDescription": "A copa é um cômodo estreito com uma escrivaninha coberta de livros de contabilidade, uma prateleira com frascos de remédio e material de escritório. Há uma gaveta entreaberta e um receipt amassado parcialmente visível.",
+      "ambientClueIds": [],
+      "objectIds": ["recibo_embezzlement", "receita_medica"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "frasco_remedio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Frasco de remédio",
+      "shortDescription": "Frasco de medicação cardíaca de Heitor, no escritório.",
+      "imageUrl": "histories/o-testamento-de-heitor/object/frasco_remedio.png",
+      "locationId": "escritorio",
+      "initialDescription": "O frasco de medicação cardíaca de Heitor está sobre a mesa do escritório, perto do cálice de conhaque. Parece comum, mas algo no peso ou na quantidade de pílulas pode estar errado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_medication_wrong_count",
+          "triggerIntents": ["inspect_object", "ask_about_medication"],
+          "requiresClueIds": ["clue_medication_nightly"],
+          "revealText": "Examinando o frasco, nota-se que a contagem de pílulas não bate com o tempo de uso — há placebos onde deveria haver comprimidos ativos."
+        },
+        {
+          "clueId": "clue_beatriz_fingerprints",
+          "triggerIntents": ["inspect_object", "ask_about_medication", "ask_about_beatriz"],
+          "requiresClueIds": ["clue_beatriz_handles_medication"],
+          "revealText": "O frasco tem impressões digitais de Beatriz em posições que indicam que ela abriu e manipulou o conteúdo na noite anterior."
+        }
+      ]
+    },
+    {
+      "id": "testamento",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Testamento",
+      "shortDescription": "O testamento atual de Heitor, ainda válido.",
+      "imageUrl": "histories/o-testamento-de-heitor/object/testamento.png",
+      "locationId": "escritorio",
+      "initialDescription": "O testamento atual repousa numa gaveta entreaberta da mesa. O documento ainda é válido e favorece fortemente Beatriz.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_beatriz_inherits",
+          "triggerIntents": ["inspect_object", "ask_about_will", "ask_about_inheritance"],
+          "requiresClueIds": [],
+          "revealText": "O testamento atual deixa a estância e a maior parte da fortuna para Beatriz, com legados menores para os filhos."
+        },
+        {
+          "clueId": "clue_raul_disinherited",
+          "triggerIntents": ["inspect_object", "ask_about_will", "ask_about_inheritance"],
+          "requiresClueIds": [],
+          "revealText": "O testamento atual ainda contempla Raul como administrador, mas a mudança planejada o reduziria a quase nada."
+        }
+      ]
+    },
+    {
+      "id": "calice_conhaque",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cálice de conhaque",
+      "shortDescription": "Cálice de conhaque encontrado ao lado de Heitor.",
+      "imageUrl": "histories/o-testamento-de-heitor/object/calice_conhaque.png",
+      "locationId": "escritorio",
+      "initialDescription": "Um cálice de conhaque pela metade ainda está sobre a bandeja ao lado da poltrona onde Heitor foi encontrado. O líquido cheira normal.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_cognac_glass",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": [],
+          "revealText": "O cálice de conhaque estava ao lado de Heitor quando ele morreu, sugerindo que ele bebia antes de adormecer."
+        },
+        {
+          "clueId": "clue_cognac_clean",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": ["clue_cognac_glass"],
+          "revealText": "O conhaque no cálice não apresenta traços de veneno ou substâncias estranhas — a via de morte não foi o conhaque."
+        }
+      ]
+    },
+    {
+      "id": "carta_advogado",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Carta do advogado",
+      "shortDescription": "Carta do advogado confirmando a mudança do testamento.",
+      "imageUrl": "histories/o-testamento-de-heitor/object/carta_advogado.png",
+      "locationId": "escritorio",
+      "initialDescription": "Uma carta do advogado de Heitor, sobre a mesa, confirma a visita marcada para a manhã seguinte, para registrar a mudança do testamento.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_will_change_pending",
+          "triggerIntents": ["inspect_object", "ask_about_will"],
+          "requiresClueIds": [],
+          "revealText": "A carta confirma que o advogado viria às 9h da manhã para registrar um novo testamento que cortava herdeiros e reescrevia a distribuição."
+        }
+      ]
+    },
+    {
+      "id": "pilula_placebo",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Pílula no chão",
+      "shortDescription": "Pílula encontrada no chão do escritório.",
+      "imageUrl": "histories/o-testamento-de-heitor/object/pilula_placebo.png",
+      "locationId": "escritorio",
+      "initialDescription": "No chão do escritório, perto da mesa, há uma pílula que não combina com o frasco de medicação — a cor e o brilho são ligeiramente diferentes.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_placebo_pill_found",
+          "triggerIntents": ["inspect_object", "ask_about_medication"],
+          "requiresClueIds": ["clue_no_violence"],
+          "revealText": "A pílula no chão é um placebo — sem princípio ativo — que não pertence à receita de Heitor, sugerindo que alguém trocou os comprimidos."
+        },
+        {
+          "clueId": "clue_placebo_different_brand",
+          "triggerIntents": ["inspect_object", "ask_about_medication"],
+          "requiresClueIds": ["clue_placebo_pill_found"],
+          "revealText": "Examinando com atenção, o placebo é de uma marca diferente dos comprimidos legítimos de Heitor — alguém comprou ou tinha placebos para a troca."
+        }
+      ]
+    },
+    {
+      "id": "agenda_heitor",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Agenda de Heitor",
+      "shortDescription": "Diário pessoal de Heitor com sua rotina.",
+      "imageUrl": "histories/o-testamento-de-heitor/object/agenda_heitor.png",
+      "locationId": "escritorio",
+      "initialDescription": "A agenda de Heitor está aberta sobre a mesa, com anotações da rotina diária, incluindo a medicação noturna.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_medication_nightly",
+          "triggerIntents": ["inspect_object", "ask_about_heitor"],
+          "requiresClueIds": [],
+          "revealText": "A agenda confirma que Heitor tomava medicação cardíaca todas as noites às 22h, sem falta."
+        }
+      ]
+    },
+    {
+      "id": "recibo_embezzlement",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Recibo suspeito",
+      "shortDescription": "Recibo amassado na gaveta da copa.",
+      "imageUrl": "histories/o-testamento-de-heitor/object/recibo_embezzlement.png",
+      "locationId": "copa",
+      "initialDescription": "Na gaveta entreaberta da copa, um recibo amassado mostra transferências que não constam nos livros oficiais da estância.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lia_embezzling",
+          "triggerIntents": ["inspect_object", "ask_about_embezzlement", "ask_about_lia"],
+          "requiresClueIds": ["clue_lia_in_office"],
+          "revealText": "O recibo documenta transferências para uma conta externa que Lia não registrou nos livros oficiais — evidência de desvio de dinheiro."
+        }
+      ]
+    },
+    {
+      "id": "receita_medica",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Receita médica",
+      "shortDescription": "Receita da medicação cardíaca de Heitor.",
+      "imageUrl": "histories/o-testamento-de-heitor/object/receita_medica.png",
+      "locationId": "copa",
+      "initialDescription": "A receita médica da medicação de Heitor está arquivada na copa, assinada pelo Dr. Vasco, com a dosagem correta.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_vasco_prescribed",
+          "triggerIntents": ["inspect_object", "ask_about_medication", "ask_about_vasco"],
+          "requiresClueIds": [],
+          "revealText": "A receita confirma que Dr. Vasco prescreveu a medicação cardíaca na dosagem correta — o problema não está na prescrição, mas no que estava no frasco."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    { "id": "clue_heitor_dead", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Heitor está morto", "description": "Heitor Vargas foi encontrado morto na poltrona do escritório às 6h da manhã.", "importance": "required" },
+    { "id": "clue_no_violence", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Sem sinais de violência", "description": "O corpo não apresentava marcas, sangue ou qualquer sinal de agressão.", "importance": "required" },
+    { "id": "clue_heart_condition", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Cardiopatia de Heitor", "description": "Heitor tinha cardiopatia grave controlada por medicação diária.", "importance": "required" },
+    { "id": "clue_medication_nightly", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Medicação noturna", "description": "Heitor tomava medicação cardíaca todas as noites às 22h, levada por alguém da casa.", "importance": "required" },
+    { "id": "clue_will_change_pending", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Mudança do testamento", "description": "O advogado viria às 9h para registrar um novo testamento que cortava herdeiros.", "importance": "required" },
+    { "id": "clue_beatriz_inherits", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Beatriz herda quase tudo", "description": "O testamento atual deixa a estância e a maior parte da fortuna para Beatriz.", "importance": "required" },
+    { "id": "clue_raul_disinherited", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Raul seria deserdado", "description": "A mudança do testamento reduziria Raul a quase nada.", "importance": "supporting" },
+    { "id": "clue_teo_squandered", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Téo esbanjou a herança", "description": "Téo já recebeu sua parte antecipada e gastou tudo.", "importance": "supporting" },
+    { "id": "clue_lia_manages_finances", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Lia administra as contas", "description": "Lia tem acesso a todas as contas e documentos financeiros de Heitor.", "importance": "supporting" },
+    { "id": "clue_family_dinner", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Jantar da noite anterior", "description": "Todos os cinco herdeiros jantaram com Heitor na noite anterior, em atmosfera tensa.", "importance": "supporting" },
+    { "id": "clue_vasco_prescribed", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Vasco receitou a medicação", "description": "Dr. Vasco prescreveu a medicação cardíaca na dosagem correta.", "importance": "supporting" },
+    { "id": "clue_cognac_glass", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Cálice de conhaque", "description": "Havia um cálice de conhaque ao lado de Heitor quando ele morreu.", "importance": "supporting" },
+    { "id": "clue_cognac_clean", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Conhaque não envenenado", "description": "O conhaque no cálice não tinha traços de veneno — a morte não foi pelo conhaque.", "importance": "supporting" },
+    { "id": "clue_medication_wrong_count", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Frasco com contagem errada", "description": "O frasco de medicação tem placebos onde deveria haver comprimidos ativos.", "importance": "required" },
+    { "id": "clue_raul_in_study", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Raul no escritório", "description": "Nora viu Raul caminhando em direção ao escritório após o jantar.", "importance": "supporting" },
+    { "id": "clue_beatriz_near_medication", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Beatriz perto da medicação", "description": "Nora viu Beatriz manuseando o frasco de remédio na copa antes do jantar.", "importance": "supporting" },
+    { "id": "clue_lia_in_office", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Lia na copa tarde", "description": "Lia ficou trabalhando na copa bem depois de todos se recolherem.", "importance": "supporting" },
+    { "id": "clue_teo_demanded_money", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Téo exigiu dinheiro", "description": "Téo exigiu dinheiro de Heitor durante o jantar, em voz alta, e foi recusado.", "importance": "supporting" },
+    { "id": "clue_vasco_left_early", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Vasco saiu cedo", "description": "Dr. Vasco afirma ter saído do jantar por volta das 21h30.", "importance": "supporting" },
+    { "id": "clue_beatriz_handles_medication", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Beatriz preparou a medicação", "description": "Na noite anterior, foi Beatriz quem preparou e levou a medicação ao escritório.", "importance": "required" },
+    { "id": "clue_placebo_pill_found", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Pílula placebo no chão", "description": "Uma pílula placebo sem princípio ativo foi encontrada no chão do escritório.", "importance": "required" },
+    { "id": "clue_nora_saw_movements", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Movimentos na madrugada", "description": "Nora ouviu passos e viu luzes acesas na casa muito depois da meia-noite.", "importance": "supporting" },
+    { "id": "clue_teo_alibi", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Álibi de Téo", "description": "Téo alega ter ido dormir após o jantar, sem testemunhas.", "importance": "supporting" },
+    { "id": "clue_teo_debt", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Dívidas de Téo", "description": "Téo tem dívidas enormes de jogo e Heitor já pagara duas vezes, recusando uma terceira.", "importance": "supporting" },
+    { "id": "clue_lia_embezzling", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Lia desviava dinheiro", "description": "Há evidência de transferências para uma conta externa não registrada nos livros.", "importance": "required" },
+    { "id": "clue_vasco_blackmailed", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Vasco era chantageado", "description": "Heitor exercia pressão sobre Vasco por um segredo do passado.", "importance": "required" },
+    { "id": "clue_raul_stole_document", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Raul pegou um documento", "description": "Raul admite ter entrado no escritório e levado um documento da gaveta.", "importance": "required" },
+    { "id": "clue_placebo_different_brand", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Placebo de marca diferente", "description": "O placebo é de uma marca diferente dos comprimidos legítimos de Heitor.", "importance": "required" },
+    { "id": "clue_beatriz_threatened", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Heitor ameaçava Beatriz", "description": "Heitor dizia a Beatriz que a deixaria sem nada e a tratava com desprezo.", "importance": "required" },
+    { "id": "clue_beatriz_fingerprints", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Impressões de Beatriz no frasco", "description": "O frasco tem impressões digitais de Beatriz indicando que ela abriu e manipulou o conteúdo.", "importance": "required" },
+    { "id": "clue_lia_planned_flight", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Lia planejava fugir", "description": "Lia tinha uma mala pronta na copa e planejava partir na madrugada.", "importance": "supporting" },
+    { "id": "clue_vasco_malpractice", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Malpráxis de Vasco", "description": "Vasco cometera um erro médico grave décadas atrás, abafado com ajuda da família.", "importance": "supporting" },
+    { "id": "clue_raul_stole_old_will", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Raul pegou o testamento antigo", "description": "O documento que Raul levou era o testamento antigo, para garantir seus direitos.", "importance": "required" },
+    { "id": "clue_beatriz_motive_stop_will", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Beatriz queria impedir a mudança", "description": "Beatriz admitiu que tinha motivo para impedir a mudança do testamento.", "importance": "required" },
+    { "id": "clue_beatriz_swapped_medication", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Beatriz trocou os comprimidos", "description": "Beatriz admitiu ter trocado os comprimidos cardíacos por placebos.", "importance": "required" },
+    { "id": "clue_beatriz_full_confession", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Confissão completa de Beatriz", "description": "Beatriz confessou completamente e revelou onde estão as pílulas originais.", "importance": "required" },
+    { "id": "clue_heitor_abusive", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Heitor era abusivo", "description": "Heitor tratava Beatriz com desprezo e a ameaçava de substituição.", "importance": "supporting" }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_testamento_de_heitor",
+    "createdAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_killed_heitor",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem causou a morte de Heitor?",
+        "type": "character",
+        "options": [
+          { "id": "raul", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Raul" },
+          { "id": "beatriz", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Beatriz" },
+          { "id": "vasco", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Dr. Vasco" },
+          { "id": "lia", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Lia" },
+          { "id": "teo", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Téo" }
+        ]
+      },
+      {
+        "id": "how_killed",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Como Heitor foi morto?",
+        "type": "choice",
+        "options": [
+          { "id": "medication_swap", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Troca da medicação por placebos" },
+          { "id": "cognac_poison", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Veneno no conhaque" },
+          { "id": "natural_death", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Morte natural, sem crime" },
+          { "id": "smothered", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Sufocamento durante o sono" }
+        ]
+      },
+      {
+        "id": "why_killed",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+        "label": "Por que Heitor foi morto?",
+        "type": "choice",
+        "options": [
+          { "id": "stop_will_change", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Para impedir a mudança do testamento" },
+          { "id": "hide_embezzlement", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Para esconder desvio de dinheiro" },
+          { "id": "silence_blackmail", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Para silenciar uma chantagem" },
+          { "id": "escape_abuse", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Para escapar de um casamento abusivo" }
+        ]
+      },
+      {
+        "id": "where_evidence",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+        "label": "Onde está a evidência que confirma a verdade?",
+        "type": "choice",
+        "options": [
+          { "id": "in_medication_bottle", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Dentro do frasco de remédio, sob os placebos" },
+          { "id": "in_study_drawer", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Na gaveta do escritório" },
+          { "id": "in_lia_office", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Na copa, com a secretária" },
+          { "id": "in_wine_cellar", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Escondida na adega" }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O testamento que nunca foi assinado",
+      "type": "full_truth",
+      "imageUrl": "histories/o-testamento-de-heitor/endings/full_truth.png",
+      "condition": {
+        "conclusionMatches": {
+          "who_killed_heitor": "beatriz",
+          "how_killed": "medication_swap",
+          "why_killed": "stop_will_change",
+          "where_evidence": "in_medication_bottle"
+        },
+        "requiresClueIds": [
+          "clue_beatriz_full_confession",
+          "clue_beatriz_motive_stop_will",
+          "clue_beatriz_swapped_medication"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Beatriz trocou a medicação cardíaca de Heitor por placebos para impedir a mudança do testamento, e as pílulas originais estão dentro do frasco, sob os placebos.",
+      "epilogue": "O silêncio da Estância Almir muda de peso. Beatriz deixa de sustentar a postura de viúva ofendida e indica o frasco sobre a mesa do escritório. As pílulas originais estão lá, sob os placebos, como quem guardou a prova do próprio erro. Nora as recolhe com mãos firmes e as entrega ao advogado, que chega tarde demais para o testamento, mas a tempo de registrar a verdade. A estância fica de pé, mas a família que a habitava se desfaz em silêncio. Cada herdeiro carrega sua culpa menor, mas só uma pessoa carrega a maior."
+    },
+    {
+      "id": "ending_partial_truth_a",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A viúva certa, o motivo errado",
+      "type": "partial_truth",
+      "imageUrl": "histories/o-testamento-de-heitor/endings/partial_truth_a.png",
+      "condition": {
+        "conclusionMatches": {
+          "who_killed_heitor": "beatriz",
+          "how_killed": "medication_swap"
+        },
+        "requiresClueIds": ["clue_beatriz_swapped_medication"]
+      },
+      "summary": "Você identificou Beatriz e o método da troca de medicação, mas não fechou o motivo real nem o paradeiro das pílulas originais.",
+      "epilogue": "Beatriz não consegue mais negar a troca, mas o silêncio sobre o porquê pesa mais do que a confissão. Sem as pílulas originais, a prova física segue dentro do frasco, esperando alguém que olhe com atenção. O advogado chega, mas não há testamento novo a registrar — apenas uma viúva, um frasco e uma verdade que ainda não foi inteiramente nomeada."
+    },
+    {
+      "id": "ending_partial_truth_b",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O método certo, a mão errada",
+      "type": "partial_truth",
+      "imageUrl": "histories/o-testamento-de-heitor/endings/partial_truth_b.png",
+      "condition": {
+        "conclusionMatches": {
+          "how_killed": "medication_swap"
+        },
+        "requiresClueIds": ["clue_placebo_different_brand", "clue_medication_wrong_count"]
+      },
+      "summary": "Você descobriu que a morte foi causada pela troca de medicação, mas apontou a pessoa errada.",
+      "epilogue": "A troca de medicação está provada, mas a acusação recai sobre quem não foi o autor. Raul, Vasco ou Lia pode parecer conveniente — cada um esteve na casa, cada um tinha um motivo — mas nenhum deles abriu o frasco naquela noite. Beatriz permanece atrás da postura de viúva, e o frasco sobre a mesa continua guardando, em silêncio, as pílulas que faltam."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Morte natural, convenientemente",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-testamento-de-heitor/endings/wrong_accusation.png",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade fixa do caso. A morte passou por natural e ninguém foi responsabilizado.",
+      "epilogue": "A manhã termina com a conclusão de que Heitor morreu de causas naturais, como o Dr. Vasco atestou. Cada herdeiro sai com sua herança intacta e sua culpa privada. Beatriz herda a estância. Raul guarda o testamento antigo num prosa. Lia cancela a fuga. Téo continua devendo. E o frasco de remédio sobre a mesa do escritório permanece onde sempre esteve, guardando, sob os placebos, as pílulas que ninguém pensou em procurar."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 8,
+    "suggestConclusionAfterClues": 15,
+    "maxRecommendedInteractions": 25
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "master": {
+    "prompt": "Create an image for Tellery, a premium interactive storytelling app. The image belongs to the story “O Testamento de Heitor”, an elegant Brazilian-inspired literary mystery set inside Estância Almir, a grand old rural estate, on the morning after a wealthy patriarch has been found dead in his study. Art direction: premium cinematic editorial illustration, semi-realistic digital painting, refined adult mystery, intimate literary atmosphere, sophisticated but calm, inquisitive rather than frightening, not scary, no gore, no police aesthetics. The visual tone should feel like an interactive short story or a prestige streaming period mystery, not like a traditional game. Setting identity: Estância Almir is a grand old Brazilian estate with dark mahogany wood, deep forest-green walls, aged brass details, leather furniture, candlelight and oil lamps, heavy curtains, bookshelves, and a melancholic rural-patriarch mood. Color palette: deep forest green #1B3A2E, dark wine #4A111B, aged brass #B08A3E, warm gold #C49A4A, mahogany brown #3E2418, dark polished wood #2A1810, ivory cream #F2EBD8, slate gray shadows #3A3A3D, warm candlelight glow #D9A84A. Lighting: warm candlelight and oil lamps, cinematic low-light, soft golden highlights on brass and leather, deep but elegant green and wine shadows, subtle reflections on polished wood, gentle depth falloff. Style: refined, polished, modern, premium, adult, literary, cinematic, semi-realistic, soft depth of field, subtle film grain, elegant composition, believable materials, emotionally grounded realism. Recurring motifs: heavy wooden furniture, oil lamps, medical bottles, legal documents, cognac glasses, leather-bound books, curtains, brass keys. Avoid horror, gore, blood, weapons, police crime-scene aesthetics, skulls, monsters, childish illustration, cartoon style, anime, fantasy RPG visuals, game UI, neon cyberpunk, text overlays, logos, and watermarks."
+  },
+  "history": {
+    "cover": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a wide cinematic cover image for the interactive mystery story “O Testamento de Heitor”. Show the interior of the study at Estância Almir early in the morning. The main focus is a large leather armchair where the patriarch Heitor Vargas was found — the chair is empty now, but a cognac glass sits on a tray beside it, and an open medication bottle rests on the dark mahogany desk. A lawyer's letter about a will change lies unfolded on the desk. The room has deep forest-green walls, tall bookshelves, heavy curtains drawn half-closed, brass oil lamps with warm glow, and a melancholic atmosphere of a grand house now silent. Composition: wide horizontal hero-card framing for a mobile storytelling app. Place the armchair and desk slightly right of center. Leave darker atmospheric negative space on the left side for future app title and CTA overlay, but do not render any text overlay. Use the depth of the study behind the desk to create atmosphere, with softly blurred bookshelves and candlelight. No people in the foreground. Mood: refined, melancholic, literary, quietly mysterious, inviting."
+    },
+    "thumbnail": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a cinematic close-up thumbnail for the interactive mystery story “O Testamento de Heitor”. Show a dark mahogany desk surface with an open medication bottle, a few loose pills, and a folded lawyer's letter about a will. The brass oil lamp casts warm golden light across the objects. The medication bottle is the focal point — something about its contents is subtly wrong. Composition: square close-up still life, the medication bottle and letter dominate the frame, strong focal hierarchy, shallow depth of field, high contrast between warm brass light and dark wood. The image should remain instantly readable as “something is wrong with this bottle” even at small mobile thumbnail size. Mood: refined, quiet, suspicious, elegant, literary."
+    }
+  },
+  "location": {
+    "escritorio": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for “Escritório” at Estância Almir. Show a grand study with deep forest-green walls, tall mahogany bookshelves, a large leather armchair, a heavy desk covered with papers, a cognac glass on a tray, and an open medication bottle. Brass oil lamps cast warm golden light. The chair is empty but everything else is undisturbed, as if the occupant just stepped away. Composition: the desk and armchair are the focal point, centered slightly off-axis, with enough surrounding study context to establish the location. Mood: quiet, melancholic, suspicious, refined, investigative. Important visual clues: empty armchair, medication bottle on desk, cognac glass, lawyer's letter, oil lamps, bookshelves."
+    },
+    "sala_jantar": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for “Sala de jantar” at Estância Almir. Show a long dark dining table still set with the remains of the previous night's dinner: wine glasses, used plates, silverware, and a half-empty cognac decanter. The room has forest-green walls, a heavy chandelier dimmed to candlelight, and chairs pushed back as if everyone left abruptly. Composition: medium-wide horizontal shot down the length of the table, with the patriarch's chair at the far end empty and slightly larger than the rest. Mood: tense, quiet, melancholic, the aftermath of an interrupted evening. Important visual clues: table set for six, used dinner setting, patriarch's empty chair, decanter."
+    },
+    "adega": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for “Adega” at Estância Almir. Show an underground wine cellar with dusty bottle racks on the walls, an old barrel, and a stone floor with recent footprints in the dust. The room is cool and dim, with a single oil lamp casting long shadows. Composition: medium-wide shot looking down the narrow cellar, with the footprints leading partway in and back out. Mood: secretive, cool, quiet, suspicious. Important visual clues: dusty bottles, old barrel, footprints in dust, single lamp."
+    },
+    "copa": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for “Copa” at Estância Almir. Show a narrow back room with a desk covered in ledgers and accounting books, a shelf with medication bottles and medical supplies, and a drawer left slightly open. An oil lamp lights the workspace warmly while the rest fades into shadow. A small packed suitcase may be faintly visible under the desk. Composition: medium-wide horizontal shot with the desk and shelf clearly visible, the open drawer noticeable enough to function as a clue. Mood: orderly, secretive, quietly suspicious. Important visual clues: ledgers, medication shelf, open drawer, faint suitcase under desk."
+    }
+  },
+  "object": {
+    "frasco_remedio": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for “Frasco de remédio”, a central clue in the mystery. Show a small amber glass medication bottle on a dark mahogany desk, open, with a few loose pills beside it. The pills inside look slightly different from the ones that spilled out — subtle in color and finish. A brass oil lamp casts warm golden light across the bottle. The bottle is the clear focal point, with its contents being subtly wrong. Composition: close-up still life, the medication bottle dominates the frame, with glass texture and pill detail clearly visible. Mood: intimate, suspicious, important, quiet wrongness."
+    },
+    "testamento": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for “Testamento”, the current will of Heitor Vargas. Show a formal legal document on aged paper, partly unfolded on a dark mahogany desk, with a brass paperweight and an oil lamp casting warm light. The document looks official and binding. Composition: close-up still life, the document is the focal point, with paper texture and formal handwriting visible. Mood: important, formal, quietly suspicious."
+    },
+    "calice_conhaque": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for “Cálice de conhaque” from the study. Show a crystal cognac glass, half-full, sitting on a silver tray beside an empty leather armchair. The liquid is amber and clean — nothing wrong with it. Warm candlelight reflects in the crystal. Composition: square close-up still life, the cognac glass is the focal point, with crystal detail and amber liquid visible. Mood: quiet, melancholic, a red herring that seems important but is innocent."
+    },
+    "carta_advogado": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for “Carta do advogado”. Show a formal letter on a lawyer's letterhead, unfolded on a dark mahogany desk, confirming an appointment to change a will. An oil lamp casts warm light across the page. Composition: square close-up still life, the letter is the focal point, with formal text and paper texture visible. Mood: important, formal, quietly ominous."
+    },
+    "pilula_placebo": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for “Pílula no chão”. Show a single pill lying on the dark wooden floor of a study, near a desk leg. The pill is a slightly different color and finish from what would be expected — a subtle placebo. Warm lamplight falls across it. Composition: square close-up still life, the single pill is the clear focal point, with floor wood grain and subtle pill detail visible. Mood: quiet, suspicious, important, small but decisive."
+    },
+    "agenda_heitor": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for “Agenda de Heitor”. Show a leather-bound personal diary open on a dark mahogany desk, with handwritten daily notes including a medication reminder. An oil lamp casts warm light across the pages. Composition: square close-up still life, the open diary is the focal point, with leather texture and handwriting visible. Mood: quiet, personal, melancholic, informative."
+    },
+    "recibo_embezzlement": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for “Recibo suspeito”. Show a crumpled receipt partially smoothed on a wooden desk surface, showing transfer amounts and an external account number. The paper looks hastily hidden and slightly worn. Warm lamplight falls across the page. Composition: square close-up still life, the crumpled receipt is the focal point, with paper texture and financial detail visible. Mood: quiet, suspicious, secretive, important."
+    },
+    "receita_medica": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for “Receita médica”. Show a formal medical prescription on a doctor's pad, signed by Dr. Vasco, with the correct dosage for a cardiac medication. The paper is clean and professional. Composition: square close-up still life, the prescription is the focal point, with medical pad detail and signature visible. Mood: clinical, formal, clears the doctor of prescription error."
+    }
+  },
+  "characters": {
+    "nora": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Nora, the housekeeper of Estância Almir. Nora is a Brazilian adult woman in her late 50s. She is sober, observant, and fiercely loyal to the memory of the patriarch. She found the body and knows everyone's movements. Appearance: dignified older woman, practical dark dress with a housekeeper's key ring at the waist, neat gray hair pulled back, small reading glasses on a chain. Her expression is composed, watchful, and quietly grief-stricken. Composition: vertical bust or upper-body portrait, the estate interior softly blurred behind her, with green walls, brass lamps, and warm candlelight. She should look human, believable, and emotionally grounded. Mood: sober loyalty, quiet grief, careful observation."
+    },
+    "raul": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Raul, the eldest son of Heitor Vargas. Raul is a Brazilian adult man in his early 50s. He is austere, proud, and resentful about being disinherited. He is not the killer but he was in the study that night, stealing the old will. Appearance: stern man in a formal dark suit, neat graying hair, hard eyes, a thin gold watch. His expression is controlled, bitter, and defensive. Composition: vertical bust or upper-body portrait, the estate interior softly blurred behind him, with mahogany and green tones. He should look proud, wounded, and not villainous. Mood: restrained resentment, wounded pride, defensive dignity."
+    },
+    "beatriz": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Beatriz, the young second wife of Heitor Vargas. Beatriz is a Brazilian adult woman in her mid-30s. She is elegant, composed, and calculating behind apparent fragility. She is the true culprit — she swapped the medication — but acted out of desperation and abuse, not cold greed. Appearance: stylish young woman, refined dark dress, subtle jewelry, well-kept hair, an expression that balances poise with hidden fear. Her eyes betray tension her posture conceals. Composition: vertical bust or upper-body portrait, the estate interior softly blurred behind her, with candlelight and deep shadows. She should look sophisticated, believable, and morally complex, not cartoonishly villainous. Mood: elegant composure, hidden desperation, quiet guilt."
+    },
+    "vasco": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Dr. Vasco, the family physician. Dr. Vasco is a Brazilian adult man in his early 60s. He is professional, calm, and evasive about his own past. He prescribed the cardiac medication and is being blackmailed by Heitor over an old malpractice case. He is innocent of the death. Appearance: dignified older doctor, gray hair, small round glasses, a dark vest with a white shirt, a stethoscope or medical bag subtly visible. His expression is composed, professional, and quietly anxious. Composition: vertical bust or upper-body portrait, the estate interior softly blurred behind him, with warm lamplight. He should look professional, believable, and guarded. Mood: professional calm, hidden anxiety, evasive dignity."
+    },
+    "lia": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Lia, the secretary and estate manager. Lia is a Brazilian adult woman in her early 40s. She is practical, discreet, and efficient, hiding panic behind competence. She was embezzling and planned to flee the night of the death. She is innocent of the killing. Appearance: practical woman in professional attire, neat hair, glasses, a ledger or pen in hand. Her expression is controlled, alert, and barely concealing fear. Composition: vertical bust or upper-body portrait, the copa office softly blurred behind her, with warm lamplight and green shadows. She should look competent, believable, and frightened. Mood: efficient control, hidden panic, guilt of theft not murder."
+    },
+    "teo": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Téo, the prodigal younger son of Heitor Vargas. Téo is a Brazilian adult man in his early 30s. He is indolent, charming, and ashamed, hiding desperation behind bitter humor. He has gambling debts and squandered his inheritance. He is innocent of the death. Appearance: young man with a charming but worn look, rumpled elegant-casual clothing, slightly disheveled hair, a tired expression behind a half-smile. His eyes show exhaustion and shame. Composition: vertical bust or upper-body portrait, the estate interior softly blurred behind him, with warm tones. He should look human, sympathetic, and broke. Mood: defensive humor, hidden shame, desperation without menace."
+    }
+  },
+  "endings": {
+    "full_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the full truth ending of “O Testamento de Heitor”. Show the study at Estância Almir after the mystery is resolved. The leather armchair sits empty, but on the desk the medication bottle is open and the original pills have been found beneath the placebos — the evidence that confirmed the truth. The lawyer's letter and the cognac glass sit nearby, no longer threatening. The room is calmer, with warm candlelight and deep green shadows softened by resolution. Composition: wide horizontal image, no people, focus on the open medication bottle with the original pills revealed as the symbol of the solved case. Mood: reflective, resolved, melancholic, elegant, literary."
+    },
+    "partial_truth_a": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for a partial truth ending of “O Testamento de Heitor”. Show the study with the medication bottle on the desk, open but not fully examined — the original pills beneath the placebos remain undiscovered. The room is warm and elegant but the edges are darker and more uncertain, suggesting the truth was partially uncovered but the proof was missed. Composition: wide horizontal image, focus on the medication bottle, with deeper shadows around the frame. No characters. Mood: ambiguous, elegant, unresolved, quiet discomfort."
+    },
+    "partial_truth_b": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for another partial truth ending of “O Testamento de Heitor”. Show the study with the placebo pill on the floor and the medication bottle on the desk, suggesting the method was discovered but the wrong person was accused. The room is warm but heavy with shadows, and an empty chair in the corner suggests someone was wrongly blamed. Composition: wide horizontal image, focus on the pill on the floor and the bottle on the desk, with an empty chair in shadow. No specific characters. Mood: unjust, melancholic, unresolved, quiet regret."
+    },
+    "wrong_accusation": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the wrong accusation ending of “O Testamento de Heitor”. Show the study at Estância Almir after the morning, with the medication bottle still on the desk, unopened and unexamined. The death was ruled natural and no one was held responsible. The room is warm but heavier with shadows, and the empty armchair suggests the patriarch is gone without justice. The scene should feel quietly regretful and unresolved. Composition: wide horizontal image, focus on the untouched medication bottle and the empty armchair, no characters. Mood: unresolved, quiet, regretful, elegant, literary."
+    }
+  }
+}
