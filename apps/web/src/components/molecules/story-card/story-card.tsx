@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Clock, Lock, MapPin, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
@@ -31,11 +32,12 @@ export function StoryCard({ history, featured = false }: StoryCardProps) {
   );
 
   return (
-    <article
+    <Link
       className={cn(
-        'group shadow-card relative cursor-pointer overflow-hidden rounded-3xl bg-gradient-to-br from-stone-900 via-stone-700 to-zinc-500',
+        'group shadow-card relative block cursor-pointer overflow-hidden rounded-3xl bg-gradient-to-br from-stone-900 via-stone-700 to-zinc-500',
         featured ? 'aspect-[4/3]' : 'aspect-[4/5]'
       )}
+      href={`/stories/${history.id}`}
     >
       {image && (
         <Image
@@ -82,6 +84,6 @@ export function StoryCard({ history, featured = false }: StoryCardProps) {
           </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

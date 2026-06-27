@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   ArrowRight,
   ChevronLeft,
@@ -90,13 +91,13 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
               {story.teaser}
             </p>
 
-            <button
-              className="shadow-button mt-7 inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-7 py-3.5 text-sm font-bold text-[#4a111b] transition hover:scale-[1.01] sm:w-auto sm:min-w-64"
-              type="button"
+            <Link
+              className="shadow-button mt-7 inline-flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-7 py-3.5 text-sm font-bold text-[#4a111b] transition hover:scale-[1.01] sm:w-auto sm:min-w-64"
+              href={`/stories/${story.id}`}
             >
               {t('startButton')}
               <ArrowRight className="size-5" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

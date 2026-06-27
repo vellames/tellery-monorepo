@@ -11,6 +11,11 @@ export interface History {
   thumbnailUrl: string | null;
 }
 
+export interface HistoryDetail extends History {
+  opening: string;
+  objective: string;
+}
+
 export interface PaginatedResponse<T> {
   items: T[];
   total: number;

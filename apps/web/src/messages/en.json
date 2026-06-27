@@ -125,6 +125,9 @@
   "stories": {
     "title": "Stories",
     "featuredSection": "Featured",
-    "allSection": "All stories"
+    "allSection": "All stories",
+    "objective": "Objective",
+    "startButton": "Start story",
+    "backToStories": "Back to stories"
   }
 }

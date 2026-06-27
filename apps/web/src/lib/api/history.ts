@@ -1,6 +1,10 @@
 import 'server-only';
 import { apiFetch } from '@/lib/api/client';
-import type { History, PaginatedResponse } from '@/lib/types/history';
+import type {
+  History,
+  HistoryDetail,
+  PaginatedResponse,
+} from '@/lib/types/history';
 
 const UPCOMING_LIMIT = 3;
 
@@ -26,4 +30,8 @@ export function fetchUpcomingHistories(): Promise<History[]> {
 
 export function fetchNonFeaturedHistories(): Promise<History[]> {
   return fetchByFeaturedFlag(false);
+}
+
+export async function fetchHistory(historyId: string): Promise<HistoryDetail> {
+  return apiFetch<HistoryDetail>(`/histories/${historyId}`);
 }

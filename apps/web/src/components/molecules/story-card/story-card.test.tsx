@@ -44,6 +44,13 @@ describe('StoryCard', () => {
     expect(screen.getByText('15 min')).toBeInTheDocument();
   });
 
+  it('links to the story start page', () => {
+    renderWithProviders(<StoryCard history={freeHistory} />);
+
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('href', '/stories/1');
+  });
+
   it('shows the free label for free stories', () => {
     renderWithProviders(<StoryCard history={freeHistory} />);
 
