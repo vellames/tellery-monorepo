@@ -11,7 +11,6 @@ export interface ConclusionModalProps {
   subtitle: string;
   submitLabel: string;
   submittingLabel: string;
-  selectOptionLabel: string;
   closeLabel: string;
   errorLabel: string;
   sessionId: string;
@@ -25,7 +24,6 @@ export function ConclusionModal({
   subtitle,
   submitLabel,
   submittingLabel,
-  selectOptionLabel: _selectOptionLabel,
   closeLabel,
   errorLabel,
   sessionId,

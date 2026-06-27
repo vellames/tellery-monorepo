@@ -6,9 +6,11 @@ import {
   KeyRound,
   MapPin,
   MessageCircle,
+  Mic,
   Search,
   Send,
   Sparkles,
+  Square,
   X,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -68,6 +70,9 @@ export function InvestigationPanel({
     InteractDiscoveredClue[]
   >([]);
   const [showClueOverlay, setShowClueOverlay] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
 
   const dataRef = useRef<unknown>(target?.data);
 
@@ -108,13 +113,14 @@ export function InvestigationPanel({
         const result: InteractResult = body;
 
         if (result.reply) {
+          const reply = result.reply;
           const replyRole =
             target.kind === 'character' ? 'character' : 'object';
           setExtraMessages((prev) => [
             ...prev,
             {
               role: replyRole,
-              content: result.reply!,
+              content: reply,
               createdAt: new Date().toISOString(),
             },
           ]);
@@ -135,6 +141,92 @@ export function InvestigationPanel({
     },
     [target, input, isSending, sessionId, onInteracted, tp]
   );
+
+  const handleSendAudio = useCallback(async () => {
+    if (!target || audioChunksRef.current.length === 0) return;
+
+    const stateId = target.data.id;
+    const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+    const formData = new FormData();
+    formData.append('audio', blob, 'recording.webm');
+    formData.append('stateId', stateId);
+
+    setError(null);
+    setIsSending(true);
+
+    try {
+      const res = await fetch(`/api/session/${sessionId}/interact`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const body = (await res.json().catch(() => null)) as
+        | (InteractResult & { error?: string })
+        | null;
+
+      if (!res.ok || !body || body.error) {
+        throw new Error(body?.error ?? tp('interactError'));
+      }
+
+      const result: InteractResult = body;
+
+      if (result.reply) {
+        const reply = result.reply;
+        const replyRole = target.kind === 'character' ? 'character' : 'object';
+        setExtraMessages((prev) => [
+          ...prev,
+          {
+            role: replyRole,
+            content: reply,
+            createdAt: new Date().toISOString(),
+          },
+        ]);
+      }
+
+      if (result.discoveredClues.length > 0) {
+        setDiscoveredClues(result.discoveredClues);
+        setShowClueOverlay(true);
+      } else {
+        onInteracted();
+      }
+    } catch {
+      setError(tp('audioError'));
+    } finally {
+      setIsSending(false);
+      audioChunksRef.current = [];
+    }
+  }, [target, sessionId, onInteracted, tp]);
+
+  const handleStartRecording = useCallback(async () => {
+    if (!target || isRecording || isSending) return;
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+      audioChunksRef.current = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) audioChunksRef.current.push(e.data);
+      };
+
+      recorder.onstop = () => {
+        stream.getTracks().forEach((track) => track.stop());
+        void handleSendAudio();
+      };
+
+      mediaRecorderRef.current = recorder;
+      recorder.start();
+      setIsRecording(true);
+    } catch {
+      setError(tp('audioError'));
+    }
+  }, [target, isRecording, isSending, tp, handleSendAudio]);
+
+  const handleStopRecording = useCallback(() => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+    }
+  }, [isRecording]);
 
   // Sync local state when server data changes (after refresh)
   useEffect(() => {
@@ -452,13 +544,35 @@ export function InvestigationPanel({
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                disabled={isSending}
-                placeholder={tp(placeholderKey, { name })}
+                disabled={isSending || isRecording}
+                placeholder={
+                  isRecording ? tp('recording') : tp(placeholderKey, { name })
+                }
                 className="flex-1 bg-transparent py-2 text-sm text-[#fff9ef] placeholder:text-[#fff9ef]/40 focus:outline-none disabled:opacity-50"
               />
+              {isRecording ? (
+                <button
+                  type="button"
+                  onClick={handleStopRecording}
+                  aria-label={tp('recording')}
+                  className="grid size-9 shrink-0 animate-pulse cursor-pointer place-items-center rounded-xl bg-[#e57373]/20 text-[#e57373] ring-1 ring-[#e57373]/30 transition"
+                >
+                  <Square className="size-4" />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleStartRecording}
+                  disabled={isSending}
+                  aria-label={tp('tapToRecord')}
+                  className="grid size-9 shrink-0 cursor-pointer place-items-center rounded-xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04] text-[#fff9ef]/60 transition hover:text-[#fff9ef] disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <Mic className="size-4" />
+                </button>
+              )}
               <button
                 type="submit"
-                disabled={isSending || !input.trim()}
+                disabled={isSending || isRecording || !input.trim()}
                 aria-label={tp('send')}
                 className="text-gold-foreground grid size-9 shrink-0 cursor-pointer place-items-center rounded-xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] transition disabled:cursor-not-allowed disabled:opacity-40"
               >

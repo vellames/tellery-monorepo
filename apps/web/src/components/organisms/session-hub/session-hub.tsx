@@ -430,7 +430,6 @@ export function SessionHub({ session }: SessionHubProps) {
           subtitle={t('conclusionSubtitle')}
           submitLabel={t('conclusionSubmit')}
           submittingLabel={t('conclusionSubmitting')}
-          selectOptionLabel={t('conclusionSelectOption')}
           closeLabel={t('close')}
           errorLabel={t('conclusionError')}
           sessionId={sessionId}
