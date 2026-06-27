@@ -1,10 +1,20 @@
 import { appConfig } from '../../config/app.config';
 import { IAudioTranscriptionService } from '../../interfaces';
-import FormData from 'form-data';
 
 interface TranscriptionResponse {
   text: string;
 }
+
+const FORMAT_FROM_CONTENT_TYPE: Record<string, string> = {
+  'audio/webm': 'webm',
+  'audio/wav': 'wav',
+  'audio/mpeg': 'mp3',
+  'audio/mp3': 'mp3',
+  'audio/mp4': 'm4a',
+  'audio/ogg': 'ogg',
+  'audio/aac': 'aac',
+  'audio/flac': 'flac',
+};
 
 export class OpenRouterAudioTranscriptionService
   implements IAudioTranscriptionService
@@ -14,42 +24,41 @@ export class OpenRouterAudioTranscriptionService
     contentType: string;
     filename: string;
   }): Promise<{ text: string }> {
-    const apiKey = appConfig.openai.apiKey;
+    const apiKey = appConfig.openrouter.apiKey;
     const model = appConfig.openrouter.audioModel;
+    const baseUrl = appConfig.openrouter.baseUrl;
 
-    if (!apiKey) {
-      throw new Error('OPENAI_API_KEY is not configured for audio transcription');
-    }
+    const base64Audio = input.buffer.toString('base64');
+    const format =
+      FORMAT_FROM_CONTENT_TYPE[input.contentType] ??
+      input.filename.split('.').pop() ??
+      'webm';
 
-    const form = new FormData();
-    form.append('file', input.buffer, {
-      filename: input.filename,
-      contentType: input.contentType,
-    });
-    form.append('model', model);
-    form.append('language', 'pt');
-
-    console.log('[audio-transcription] sending to openai', {
+    console.log('[audio-transcription] sending to openrouter', {
       model,
       bufferSize: input.buffer.length,
-      contentType: input.contentType,
+      format,
     });
 
-    const formHeaders = form.getHeaders();
-    const formBuffer = form.getBuffer();
-
-    const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+    const res = await fetch(`${baseUrl}/audio/transcriptions`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
-        ...formHeaders,
+        'Content-Type': 'application/json',
       },
-      body: formBuffer,
+      body: JSON.stringify({
+        model,
+        input_audio: {
+          data: base64Audio,
+          format,
+        },
+        language: 'pt',
+      }),
     });
 
     if (!res.ok) {
       const errorBody = await res.text().catch(() => 'unknown');
-      console.error('[audio-transcription] openai error', {
+      console.error('[audio-transcription] openrouter error', {
         status: res.status,
         body: errorBody,
       });
