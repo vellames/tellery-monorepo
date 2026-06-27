@@ -54,7 +54,7 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
         </div>
 
         {/* Left: maroon text panel */}
-        <div className="relative z-10 order-2 flex flex-col justify-center p-7 sm:p-12 lg:order-1 lg:col-span-2 lg:pl-20">
+        <div className="relative z-10 order-2 flex flex-col justify-center p-7 pb-16 sm:p-12 lg:order-1 lg:col-span-2 lg:pb-12 lg:pl-20">
           <div>
             <div className="border-gold/40 text-gold mb-6 inline-flex items-center gap-2 rounded-xl border bg-black/20 px-4 py-2 text-[11px] font-bold tracking-[0.12em] uppercase sm:text-xs">
               <Star className="fill-gold size-3.5" />
@@ -104,7 +104,7 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
       {hasMultiple && (
         <>
           <button
-            className="border-gold/30 text-gold absolute top-1/2 left-4 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border bg-black/30 backdrop-blur transition hover:bg-black/50"
+            className="border-gold/30 text-gold absolute top-[88px] left-4 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border bg-black/30 backdrop-blur transition hover:bg-black/50 lg:top-1/2"
             onClick={() => goTo(current - 1)}
             type="button"
             aria-label={t('previous')}
@@ -112,7 +112,7 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
             <ChevronLeft className="size-5" />
           </button>
           <button
-            className="border-gold/30 text-gold absolute top-1/2 right-4 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border bg-black/30 backdrop-blur transition hover:bg-black/50"
+            className="border-gold/30 text-gold absolute top-[88px] right-4 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border bg-black/30 backdrop-blur transition hover:bg-black/50 lg:top-1/2"
             onClick={() => goTo(current + 1)}
             type="button"
             aria-label={t('next')}
