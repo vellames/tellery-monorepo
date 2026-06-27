@@ -59,6 +59,7 @@ export function SessionHub({ session }: SessionHubProps) {
   } | null>(null);
   const [easyMode, setEasyMode] = useState(false);
   const [showEvidence, setShowEvidence] = useState(false);
+  const [showCase, setShowCase] = useState(false);
 
   const target = useMemo<InvestigationTarget | null>(() => {
     if (!targetRef) return null;
@@ -170,44 +171,21 @@ export function SessionHub({ session }: SessionHubProps) {
         </div>
       </header>
 
-      {/* ── Progress bar (under the banner) ───────────────────────────── */}
-      <ProgressBar
-        pct={progressPct}
-        foundClues={foundClues}
-        cluesTotal={cluesTotal}
-        questionedCount={questionedCount}
-        exploredCount={exploredCount}
-        cluesLabel={t('cluesUnit')}
-        progressLabel={t('progress')}
-      />
-
-      {/* ── Briefing (compact) ────────────────────────────────────────── */}
-      <p
-        className="scene-reveal text-sm leading-6 text-[#fff9ef]/60 italic"
-        style={{ animationDelay: '120ms' }}
+      {/* ── Review case button ────────────────────────────────────────── */}
+      <button
+        onClick={() => setShowCase(true)}
+        className="scene-reveal hover:border-gold/30 flex w-full cursor-pointer items-center gap-3 rounded-2xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] px-5 py-3 text-left transition hover:bg-[#fff9ef]/[0.06]"
+        style={{ animationDelay: '80ms' }}
+        type="button"
       >
-        {history.opening}
-      </p>
-
-      {/* ── Objective ─────────────────────────────────────────────────── */}
-      <section
-        className="scene-reveal border-gold/30 relative overflow-hidden rounded-3xl border bg-gradient-to-br from-[#4a111b]/60 to-[#120406]/30 p-6 sm:p-7"
-        style={{ animationDelay: '140ms' }}
-      >
-        <div className="flex items-start gap-4">
-          <div className="border-gold/40 text-gold grid size-11 shrink-0 place-items-center rounded-2xl border bg-black/25">
-            <Target className="size-5" />
-          </div>
-          <div>
-            <h2 className="text-gold text-xs font-bold tracking-[0.16em] uppercase">
-              {t('objective')}
-            </h2>
-            <p className="mt-1.5 leading-7 text-[#fff9ef]/90">
-              {history.objective}
-            </p>
-          </div>
-        </div>
-      </section>
+        <Target className="text-gold/70 size-4 shrink-0" />
+        <span className="line-clamp-1 flex-1 text-sm text-[#fff9ef]/60">
+          {history.opening}
+        </span>
+        <span className="text-gold shrink-0 text-xs font-bold tracking-wide uppercase">
+          {t('reviewCase')}
+        </span>
+      </button>
 
       {/* ── Investigation board ───────────────────────────────────────── */}
       <section
@@ -319,40 +297,78 @@ export function SessionHub({ session }: SessionHubProps) {
         )}
       </section>
 
-      {/* ── Actions ───────────────────────────────────────────────────── */}
-      <div
-        className="scene-reveal sticky bottom-4 z-10 flex flex-col gap-3 rounded-3xl border border-[#fff9ef]/10 bg-[#1b070b]/80 p-3 backdrop-blur-xl sm:flex-row"
-        style={{ animationDelay: '260ms' }}
-      >
-        <button
-          onClick={() => setShowEvidence(true)}
-          className="inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-2xl border border-[#fff9ef]/15 px-6 py-4 text-sm font-bold text-[#fff9ef]/85 transition hover:bg-[#fff9ef]/[0.06]"
-          type="button"
-        >
-          <KeyRound className="size-4" />
-          {t('viewClues')}
-          {foundClues > 0 && (
-            <span className="text-gold/90 bg-gold/10 ring-gold/20 rounded-full px-2 py-0.5 text-xs font-bold ring-1">
-              {foundClues}
+      {/* ── Fixed bottom action bar ───────────────────────────────────── */}
+      <div className="h-24" />
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#fff9ef]/10 bg-[#1b070b]/90 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-2.5 sm:px-6">
+          {/* compact progress */}
+          <div className="hidden flex-1 items-center gap-2.5 sm:flex">
+            <span className="text-gold font-heading text-lg leading-none font-semibold">
+              {progressPct}%
             </span>
-          )}
-        </button>
-        <button
-          className="shadow-button scene-shimmer text-gold-foreground inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-6 py-4 text-sm font-bold transition hover:scale-[1.01]"
-          type="button"
-        >
-          <Gavel className="size-4" />
-          {t('solveCase')}
-        </button>
+            <div className="h-1.5 max-w-32 flex-1 overflow-hidden rounded-full bg-[#fff9ef]/10">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#c49a4a] to-[#f4d78f] transition-[width] duration-700"
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
+            <span className="text-xs font-medium text-[#fff9ef]/45">
+              {foundClues}/{cluesTotal}
+            </span>
+          </div>
+
+          <button
+            onClick={() => setShowEvidence(true)}
+            className="inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#fff9ef]/15 px-4 py-2.5 text-sm font-bold text-[#fff9ef]/85 transition hover:bg-[#fff9ef]/[0.06] sm:flex-none"
+            type="button"
+          >
+            <KeyRound className="size-4" />
+            {t('viewClues')}
+            {foundClues > 0 && (
+              <span className="text-gold/90 bg-gold/10 ring-gold/20 rounded-full px-1.5 py-0.5 text-[11px] font-bold ring-1">
+                {foundClues}
+              </span>
+            )}
+          </button>
+          <button
+            className="shadow-button text-gold-foreground inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-4 py-2.5 text-sm font-bold transition hover:scale-[1.01] sm:flex-none"
+            type="button"
+          >
+            <Gavel className="size-4" />
+            {t('solveCase')}
+          </button>
+        </div>
       </div>
 
       {showEvidence && (
         <EvidenceModal
           clues={clues}
+          cluesTotal={cluesTotal}
+          questionedCount={questionedCount}
+          questionedTotal={characters.length}
+          exploredCount={exploredCount}
+          exploredTotal={locations.length + objects.length}
+          progressPct={progressPct}
           heading={t('evidenceHeading')}
           emptyText={t('evidenceEmpty')}
           closeLabel={t('close')}
+          statClues={t('statClues')}
+          statPeople={t('statPeople')}
+          statPlaces={t('statPlaces')}
+          progressLabel={t('progress')}
           onClose={() => setShowEvidence(false)}
+        />
+      )}
+
+      {showCase && (
+        <CaseModal
+          opening={history.opening}
+          objective={history.objective}
+          briefingLabel={t('briefing')}
+          objectiveLabel={t('objective')}
+          closeLabel={t('close')}
+          onClose={() => setShowCase(false)}
         />
       )}
 
@@ -372,80 +388,6 @@ export function SessionHub({ session }: SessionHubProps) {
 }
 
 /* ───────────────────────────────────────────────────────────────────────── */
-
-function ProgressBar({
-  pct,
-  foundClues,
-  cluesTotal,
-  questionedCount,
-  exploredCount,
-  cluesLabel,
-  progressLabel,
-}: {
-  pct: number;
-  foundClues: number;
-  cluesTotal: number;
-  questionedCount: number;
-  exploredCount: number;
-  cluesLabel: string;
-  progressLabel: string;
-}) {
-  return (
-    <section
-      className="scene-reveal -mt-4 flex flex-col gap-3 rounded-3xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04] px-5 py-4 sm:px-7 sm:py-5"
-      style={{ animationDelay: '60ms' }}
-    >
-      <div className="flex items-end justify-between gap-4">
-        <div className="flex items-baseline gap-2.5">
-          <span className="font-heading text-gold text-3xl leading-none font-semibold sm:text-4xl">
-            {pct}%
-          </span>
-          <span className="text-[11px] font-bold tracking-[0.14em] text-[#fff9ef]/45 uppercase">
-            {progressLabel}
-          </span>
-        </div>
-        <div className="flex items-center gap-4 text-sm sm:gap-5">
-          <Stat
-            icon={KeyRound}
-            value={`${foundClues}/${cluesTotal}`}
-            label={cluesLabel}
-          />
-          <span className="hidden items-center sm:inline-flex">
-            <Stat icon={MessageCircle} value={questionedCount} label="" />
-          </span>
-          <span className="hidden items-center sm:inline-flex">
-            <Stat icon={Compass} value={exploredCount} label="" />
-          </span>
-        </div>
-      </div>
-
-      <div className="relative h-2 w-full overflow-hidden rounded-full bg-[#fff9ef]/10">
-        <div
-          className="h-full rounded-full bg-gradient-to-r from-[#c49a4a] to-[#f4d78f] transition-[width] duration-1000 ease-out"
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-    </section>
-  );
-}
-
-function Stat({
-  icon: Icon,
-  value,
-  label,
-}: {
-  icon: typeof KeyRound;
-  value: number | string;
-  label: string;
-}) {
-  return (
-    <span className="inline-flex items-center gap-1.5 text-[#fff9ef]/70">
-      <Icon className="text-gold size-4" />
-      <span className="font-semibold text-[#fff9ef]">{value}</span>
-      {label && <span className="text-[#fff9ef]/55">{label}</span>}
-    </span>
-  );
-}
 
 function BoardGroup({
   icon: Icon,
@@ -590,15 +532,35 @@ export type { SessionCharacter, SessionLocation, SessionObject };
 
 function EvidenceModal({
   clues,
+  cluesTotal,
+  questionedCount,
+  questionedTotal,
+  exploredCount,
+  exploredTotal,
+  progressPct,
   heading,
   emptyText,
   closeLabel,
+  statClues,
+  statPeople,
+  statPlaces,
+  progressLabel,
   onClose,
 }: {
   clues: SessionClue[];
+  cluesTotal: number;
+  questionedCount: number;
+  questionedTotal: number;
+  exploredCount: number;
+  exploredTotal: number;
+  progressPct: number;
   heading: string;
   emptyText: string;
   closeLabel: string;
+  statClues: string;
+  statPeople: string;
+  statPlaces: string;
+  progressLabel: string;
   onClose: () => void;
 }) {
   return (
@@ -616,7 +578,7 @@ function EvidenceModal({
         className="absolute inset-0 cursor-default bg-[#0a0203]/80 backdrop-blur-sm"
       />
       <div
-        className="scene-grain relative flex h-[80svh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[28px] border border-[#fff9ef]/12 bg-[#1b070b] shadow-2xl sm:rounded-[28px]"
+        className="scene-grain relative flex h-[85svh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[28px] border border-[#fff9ef]/12 bg-[#1b070b] shadow-2xl sm:rounded-[28px]"
         style={{ animation: 'scene-fade-up 0.4s cubic-bezier(0.16,1,0.3,1)' }}
       >
         <div className="flex shrink-0 items-center justify-between gap-4 border-b border-[#fff9ef]/10 px-5 py-4 sm:px-6">
@@ -639,7 +601,49 @@ function EvidenceModal({
           </button>
         </div>
 
-        <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-5 sm:p-6">
+        <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-5 sm:p-6">
+          {/* progress summary */}
+          <div className="flex flex-col gap-3.5 rounded-2xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] p-4">
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="text-gold font-heading text-2xl leading-none font-semibold">
+                {progressPct}%
+              </span>
+              <span className="text-[11px] font-bold tracking-[0.12em] text-[#fff9ef]/40 uppercase">
+                {progressLabel}
+              </span>
+            </div>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-[#fff9ef]/10">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#c49a4a] to-[#f4d78f] transition-[width] duration-700"
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
+            <div className="flex flex-wrap gap-x-5 gap-y-1.5 pt-0.5 text-xs text-[#fff9ef]/55">
+              <span className="inline-flex items-center gap-1.5">
+                <KeyRound className="text-gold/70 size-3.5" />
+                <span className="font-semibold text-[#fff9ef]">
+                  {clues.length}/{cluesTotal}
+                </span>{' '}
+                {statClues}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Users className="text-gold/70 size-3.5" />
+                <span className="font-semibold text-[#fff9ef]">
+                  {questionedCount}/{questionedTotal}
+                </span>{' '}
+                {statPeople}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Compass className="text-gold/70 size-3.5" />
+                <span className="font-semibold text-[#fff9ef]">
+                  {exploredCount}/{exploredTotal}
+                </span>{' '}
+                {statPlaces}
+              </span>
+            </div>
+          </div>
+
+          {/* clues list */}
           {clues.length === 0 ? (
             <div className="flex flex-1 flex-col items-center justify-center gap-3 py-10">
               <Sparkles className="size-8 text-[#fff9ef]/25" />
@@ -665,6 +669,80 @@ function EvidenceModal({
               ))}
             </div>
           )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CaseModal({
+  opening,
+  objective,
+  briefingLabel,
+  objectiveLabel,
+  closeLabel,
+  onClose,
+}: {
+  opening: string;
+  objective: string;
+  briefingLabel: string;
+  objectiveLabel: string;
+  closeLabel: string;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
+      role="dialog"
+      aria-modal="true"
+      aria-label={briefingLabel}
+    >
+      <button
+        type="button"
+        aria-label={closeLabel}
+        onClick={onClose}
+        style={{ animation: 'scene-fade-in 0.25s ease forwards' }}
+        className="absolute inset-0 cursor-default bg-[#0a0203]/80 backdrop-blur-sm"
+      />
+      <div
+        className="relative flex max-h-[80svh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[28px] border border-[#fff9ef]/12 bg-[#1b070b] shadow-2xl sm:rounded-[28px]"
+        style={{ animation: 'scene-fade-up 0.4s cubic-bezier(0.16,1,0.3,1)' }}
+      >
+        <button
+          type="button"
+          aria-label={closeLabel}
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 grid size-9 cursor-pointer place-items-center rounded-full border border-[#fff9ef]/15 bg-black/40 text-[#fff9ef]/80 backdrop-blur transition hover:bg-black/60 hover:text-[#fff9ef]"
+        >
+          <X className="size-4" />
+        </button>
+
+        <div className="flex flex-col gap-6 overflow-y-auto p-6 sm:p-8">
+          <section>
+            <h2 className="text-gold mb-3 inline-flex items-center gap-2 text-xs font-bold tracking-[0.16em] uppercase">
+              <Sparkles className="size-3.5" />
+              {briefingLabel}
+            </h2>
+            <p className="font-heading text-lg leading-8 text-[#fff9ef]/85 italic sm:text-xl sm:leading-9">
+              {opening}
+            </p>
+          </section>
+
+          <div className="border-gold/25 relative overflow-hidden rounded-2xl border bg-gradient-to-br from-[#4a111b]/60 to-[#120406]/30 p-5 sm:p-6">
+            <div className="flex items-start gap-3.5">
+              <div className="border-gold/40 text-gold grid size-10 shrink-0 place-items-center rounded-xl border bg-black/25">
+                <Target className="size-5" />
+              </div>
+              <div>
+                <h3 className="text-gold text-xs font-bold tracking-[0.16em] uppercase">
+                  {objectiveLabel}
+                </h3>
+                <p className="mt-1.5 leading-7 text-[#fff9ef]/90">
+                  {objective}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

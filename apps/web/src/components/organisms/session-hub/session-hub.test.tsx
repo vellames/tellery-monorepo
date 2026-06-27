@@ -80,13 +80,23 @@ const session: SessionState = {
 };
 
 describe('SessionHub', () => {
-  it('renders the title, opening and objective', () => {
+  it('renders the title and shows opening and objective in review modal', async () => {
+    const user = userEvent.setup();
     renderWithProviders(<SessionHub session={session} />);
 
     expect(screen.getByText('O Bilhete na Mesa 7')).toBeInTheDocument();
+
+    // Not visible on the main screen
     expect(
-      screen.getByText('Uma chuva leve batia nos vidros do Café Aurora.')
-    ).toBeInTheDocument();
+      screen.queryByText('Descobrir quem deixou o bilhete.')
+    ).not.toBeInTheDocument();
+
+    await user.click(screen.getByText('Revisar caso'));
+
+    expect(
+      screen.getAllByText('Uma chuva leve batia nos vidros do Café Aurora.')
+        .length
+    ).toBeGreaterThan(0);
     expect(
       screen.getByText('Descobrir quem deixou o bilhete.')
     ).toBeInTheDocument();
