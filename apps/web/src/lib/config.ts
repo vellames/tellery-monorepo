@@ -10,6 +10,7 @@ export const config = {
   routes: {
     home: '/home',
     stories: '/stories',
+    session: (sessionId: string) => `/sessions/${sessionId}`,
     login: '/',
     register: '/register',
     forgotPassword: '/forgot-password',

@@ -1,12 +1,14 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Clock, Search, Target } from 'lucide-react';
+import { ArrowLeft, Clock, Search, Target } from 'lucide-react';
 import { StatusCodes } from 'http-status-codes';
 import { getTranslations } from 'next-intl/server';
 import { fetchHistory } from '@/lib/api/history';
 import { ApiError } from '@/lib/api/client';
 import { config } from '@/lib/config';
+import { startSessionAction } from '@/lib/actions/session';
+import { StartSessionButton } from '@/components/molecules';
 
 export default async function StoryStartPage({
   params,
@@ -82,13 +84,9 @@ export default async function StoryStartPage({
         <p className="text-foreground/80 leading-7">{history.objective}</p>
       </section>
 
-      <button
-        className="shadow-button mt-2 inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-8 py-5 text-base font-bold text-[#4a111b] transition hover:scale-[1.01]"
-        type="button"
-      >
-        {tObj('startButton')}
-        <ArrowRight className="size-5" />
-      </button>
+      <form action={startSessionAction.bind(null, history.id)}>
+        <StartSessionButton />
+      </form>
     </div>
   );
 }

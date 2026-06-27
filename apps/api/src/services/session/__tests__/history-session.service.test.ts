@@ -2,6 +2,7 @@ import { User } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import {
   IHistoryDefinitionRepository,
+  IImageUrlSigner,
   ISessionRepository,
   IUserRepository,
 } from '../../../interfaces';
@@ -44,19 +45,30 @@ describe('HistorySessionService', () => {
   let users: DeepMockProxy<IUserRepository>;
   let histories: DeepMockProxy<IHistoryDefinitionRepository>;
   let sessions: DeepMockProxy<ISessionRepository>;
+  let imageUrlSigner: DeepMockProxy<IImageUrlSigner>;
   let service: HistorySessionService;
 
   beforeEach(() => {
     users = mockDeep<IUserRepository>();
     histories = mockDeep<IHistoryDefinitionRepository>();
     sessions = mockDeep<ISessionRepository>();
-    service = new HistorySessionService(users, histories, sessions);
+    imageUrlSigner = mockDeep<IImageUrlSigner>();
+    imageUrlSigner.sign.mockImplementation(async (key: string | null) =>
+      key ? `https://signed.test/${key}` : null
+    );
+    service = new HistorySessionService(
+      users,
+      histories,
+      sessions,
+      imageUrlSigner
+    );
   });
 
   afterEach(() => {
     mockReset(users);
     mockReset(histories);
     mockReset(sessions);
+    mockReset(imageUrlSigner);
   });
 
   describe('startSession', () => {
@@ -134,6 +146,75 @@ describe('HistorySessionService', () => {
 
       expect(histories.findById).toHaveBeenCalledWith('missing');
       expect(histories.findBySlug).toHaveBeenCalledWith('o-bilhete-na-mesa-7');
+    });
+  });
+
+  describe('getSessionState', () => {
+    it('returns the session state with signed image urls', async () => {
+      const session = mockSession({
+        userId: 'user-1',
+        coverImageUrl: 'histories/cover.png',
+        thumbnailUrl: 'histories/thumb.png',
+        characterStates: [
+          {
+            id: 'char-1',
+            name: 'Elisa',
+            role: 'Dona do café',
+            shortDescription: 'desc',
+            imageUrl: 'characters/elisa.png',
+            conversationSummary: null,
+            clueRevealRules: [],
+            secrets: [],
+            messages: [],
+          },
+        ],
+        objectStates: [],
+        locationStates: [
+          {
+            id: 'loc-1',
+            name: 'Mesa 7',
+            shortDescription: 'desc',
+            imageUrl: 'locations/mesa7.png',
+            initialDescription: 'init',
+            visited: false,
+            visitedAt: null,
+            ambientClues: [],
+          },
+        ],
+        clues: [],
+      } as unknown as HistorySessionWithRelations);
+      sessions.findById.mockResolvedValue(session);
+
+      const result = await service.getSessionState('session-1', 'user-1');
+
+      expect(result.history.coverImageUrl).toBe(
+        'https://signed.test/histories/cover.png'
+      );
+      expect(result.history.thumbnailUrl).toBe(
+        'https://signed.test/histories/thumb.png'
+      );
+      expect(result.characters[0].imageUrl).toBe(
+        'https://signed.test/characters/elisa.png'
+      );
+      expect(result.locations[0].imageUrl).toBe(
+        'https://signed.test/locations/mesa7.png'
+      );
+    });
+
+    it('throws 404 when the session is not found', async () => {
+      sessions.findById.mockResolvedValue(null);
+
+      await expect(
+        service.getSessionState('missing', 'user-1')
+      ).rejects.toMatchObject({ statusCode: 404 });
+    });
+
+    it('throws 403 when the session belongs to another user', async () => {
+      sessions.findById.mockResolvedValue(mockSession({ userId: 'other' }));
+
+      await expect(
+        service.getSessionState('session-1', 'user-1')
+      ).rejects.toMatchObject({ statusCode: 403 });
     });
   });
 });

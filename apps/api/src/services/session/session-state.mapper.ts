@@ -68,6 +68,7 @@ export interface SessionStateResponse {
     thumbnailUrl: string | null;
   };
   clues: SessionClueDto[];
+  cluesTotal: number;
   characters: CharacterStateDto[];
   objects: ObjectStateDto[];
   locations: LocationStateDto[];
@@ -130,6 +131,7 @@ export function buildSessionStateResponse(
       thumbnailUrl: session.thumbnailUrl,
     },
     clues: session.clues.filter((clue) => clue.discovered).map(toClueDto),
+    cluesTotal: session.clues.length,
     characters: session.characterStates.map((character) => {
       const characterClues = collectCharacterClues(character);
       return {

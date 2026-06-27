@@ -1,5 +1,6 @@
 import {
   IHistoryDefinitionRepository,
+  IImageUrlSigner,
   ISessionRepository,
   IUserRepository,
 } from '../../interfaces';
@@ -15,7 +16,8 @@ export class HistorySessionService {
   constructor(
     private readonly users: IUserRepository,
     private readonly histories: IHistoryDefinitionRepository,
-    private readonly sessions: ISessionRepository
+    private readonly sessions: ISessionRepository,
+    private readonly imageUrlSigner: IImageUrlSigner
   ) {}
 
   async startSession(userId: string, input: StartSessionBody) {
@@ -84,6 +86,48 @@ export class HistorySessionService {
       );
     }
 
-    return buildSessionStateResponse(session);
+    return this.signImages(buildSessionStateResponse(session));
+  }
+
+  private async signImages(
+    response: SessionStateResponse
+  ): Promise<SessionStateResponse> {
+    const [historyImages, characterImages, objectImages, locationImages] =
+      await Promise.all([
+        Promise.all([
+          this.imageUrlSigner.sign(response.history.coverImageUrl),
+          this.imageUrlSigner.sign(response.history.thumbnailUrl),
+        ]),
+        Promise.all(
+          response.characters.map((c) => this.imageUrlSigner.sign(c.imageUrl))
+        ),
+        Promise.all(
+          response.objects.map((o) => this.imageUrlSigner.sign(o.imageUrl))
+        ),
+        Promise.all(
+          response.locations.map((l) => this.imageUrlSigner.sign(l.imageUrl))
+        ),
+      ]);
+
+    return {
+      ...response,
+      history: {
+        ...response.history,
+        coverImageUrl: historyImages[0],
+        thumbnailUrl: historyImages[1],
+      },
+      characters: response.characters.map((c, i) => ({
+        ...c,
+        imageUrl: characterImages[i],
+      })),
+      objects: response.objects.map((o, i) => ({
+        ...o,
+        imageUrl: objectImages[i],
+      })),
+      locations: response.locations.map((l, i) => ({
+        ...l,
+        imageUrl: locationImages[i],
+      })),
+    };
   }
 }

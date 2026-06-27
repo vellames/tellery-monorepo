@@ -264,6 +264,9 @@ router.post('/:sessionId/interact', authenticate, async (req, res) => {
  *                         type: string
  *                         format: date-time
  *                         nullable: true
+ *                 cluesTotal:
+ *                   type: integer
+ *                   description: Total number of clues in the history.
  *                 characters:
  *                   type: array
  *                   items:

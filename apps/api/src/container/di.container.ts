@@ -63,11 +63,6 @@ export class DIContainer {
     this.tokenService
   );
   private readonly userController = new UserController(this.userService);
-  private readonly historySessionService = new HistorySessionService(
-    this.userRepository,
-    this.historyDefinitionRepository,
-    this.sessionRepository
-  );
   private readonly s3Client = new S3Client({
     region: appConfig.aws.region,
     credentials: appConfig.aws.accessKeyId
@@ -81,6 +76,12 @@ export class DIContainer {
     this.s3Client,
     appConfig.aws.s3Bucket as string,
     appConfig.aws.presignedExpirationSeconds
+  );
+  private readonly historySessionService = new HistorySessionService(
+    this.userRepository,
+    this.historyDefinitionRepository,
+    this.sessionRepository,
+    this.imageUrlSigner
   );
   private readonly intentDetectionService = new IntentDetectionService(
     new OpenRouterStructuredChatModel(appConfig.openrouter.intentDetectorModel),

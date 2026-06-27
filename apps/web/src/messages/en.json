@@ -128,6 +128,17 @@
     "allSection": "All stories",
     "objective": "Objective",
     "startButton": "Start story",
+    "starting": "Starting…",
     "backToStories": "Back to stories"
+  },
+  "play": {
+    "back": "Back",
+    "objective": "Objective",
+    "progress": "Progress",
+    "cluesFound": "{found} of {total} clues found",
+    "people": "People",
+    "places": "Places",
+    "viewClues": "View clues",
+    "solveCase": "Solve case"
   }
 }

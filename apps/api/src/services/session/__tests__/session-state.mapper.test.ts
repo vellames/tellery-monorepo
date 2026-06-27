@@ -72,6 +72,7 @@ describe('buildSessionStateResponse', () => {
 
     expect(result.clues).toHaveLength(1);
     expect(result.clues[0].id).toBe('clue-1');
+    expect(result.cluesTotal).toBe(2);
   });
 
   it('maps characters without leaking GM-only data', () => {
