@@ -115,7 +115,7 @@ export class HistoryDefinitionRepository
       this.prisma.history.findMany({
         where,
         select: historyCatalogSelect,
-        orderBy: { createdAt: 'asc' },
+        orderBy: { updatedAt: 'desc' },
         skip: paginateSkip(pagination),
         take: pagination.limit,
       }),

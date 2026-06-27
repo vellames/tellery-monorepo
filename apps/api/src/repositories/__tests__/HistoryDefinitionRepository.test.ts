@@ -156,7 +156,7 @@ describe('HistoryDefinitionRepository', () => {
       expect(prisma.history.findMany).toHaveBeenCalledWith({
         where: { status: 'published', isFeatured: true, deletedAt: null },
         select: historyCatalogSelect,
-        orderBy: { createdAt: 'asc' },
+        orderBy: { updatedAt: 'desc' },
         skip: 0,
         take: 20,
       });
