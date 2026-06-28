@@ -1,0 +1,95 @@
+{
+  "master": {
+    "prompt": "Create an image for Tellery, a premium interactive storytelling app. The image belongs to the story 'O Expresso Almirante', an elegant spy-vs-spy literary mystery set aboard a luxury night train crossing a fictional country, during a diplomatic gala dinner where a briefcase containing a secret treaty vanishes. Art direction: premium cinematic editorial illustration, semi-realistic digital painting, refined adult mystery, intimate literary atmosphere, sophisticated but with dry humor beneath the tension, inquisitive rather than frightening, not scary, no gore, no police aesthetics. The visual tone should feel like a prestige streaming spy mystery on rails. Setting identity: the Expresso Almirante is an Art Deco luxury night train with deep navy blue walls, polished walnut wood, brass and gold details, deep red velvet seats, ivory tablecloths, crystal glasses, brass lamps, narrow corridors, and an elegant dining car. Color palette: deep navy #1A2840, midnight #0D1726, brass #B8923A, warm gold #C49A4A, deep red velvet #5A1820, polished walnut #2A1810, ivory cream #F2EBD8, amber lamp glow #D9A84A, slate blue shadows #2A3850. Lighting: warm brass lamps in a dark moving train, cinematic low-light, golden highlights on brass and crystal, deep navy shadows outside windows reflecting the lit interior, gentle motion blur suggestion outside. Style: refined, polished, modern, premium, adult, literary, cinematic, semi-realistic, soft depth of field, subtle film grain. Recurring motifs: brass lamps, crystal glasses, velvet seats, narrow corridors, briefcases, dining tables, train windows reflecting night. Avoid horror, gore, blood, weapons, police aesthetics, skulls, monsters, childish illustration, cartoon, anime, fantasy RPG, game UI, neon cyberpunk, text overlays, logos, watermarks."
+  },
+  "history": {
+    "cover": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a wide cinematic cover image for 'O Expresso Almirante'. Show the interior of an Art Deco luxury dining car at night, during a gala dinner. The main focus: an elegant ambassador's seat with an empty space beside it where a briefcase should be. The dining car has deep navy walls, polished walnut panels, brass lamps casting warm golden light, deep red velvet seats, ivory tablecloths with crystal glasses, and large windows showing dark countryside rushing by with reflection of the warm interior. Five passengers' seats are visible around the table. One seat is notably empty — the briefcase is gone. A maintenance panel on the wall near the ambassador's seat looks slightly crooked. Composition: wide horizontal hero-card framing. Place the empty briefcase space and the table slightly right of center. Leave darker atmospheric negative space on the left for app title overlay. No people in foreground. Mood: refined, tense, elegant, quietly mysterious, with a hint of dry humor in the absurdity of five spies at one table."
+    },
+    "thumbnail": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a cinematic close-up thumbnail for 'O Expresso Almirante'. Show a polished walnut armrest of a train seat with a clear rectangular mark where a briefcase sat — now empty. A brass lamp casts warm golden light. The red velvet seat and a navy wall are softly blurred behind. The empty space is the focal point. Composition: square close-up, shallow depth of field, high contrast between warm brass and deep navy. Mood: refined, quiet, suspicious, elegant."
+    }
+  },
+  "location": {
+    "restaurante": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for the 'Carruagem-restaurante' of the Expresso Almirante. Show a long elegant Art Deco dining car after the gala dinner: tables with remnants of the meal, crystal glasses, ivory tablecloths, deep red velvet seats. The ambassador's seat is prominent, with an empty space where the briefcase was. A maintenance panel on the navy wall near the seat looks slightly crooked. Brass lamps cast warm golden light. Large windows reflect the interior against the dark moving night outside. Composition: the ambassador's seat and panel are the focal point, centered slightly off-axis. Mood: quiet, suspicious, elegant, the aftermath of a diplomatic dinner gone wrong."
+    },
+    "cabines": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for the 'Corredor de cabines' of the Expresso Almirante. Show a narrow train corridor with dark walnut doors, brass nameplates, brass wall lamps casting warm pools of light, and a small bench where a child's sketchbook lies open. Two cabin doors are slightly ajar. The corridor feels intimate and conspiratorial. Composition: medium-wide shot down the corridor, the bench with the sketchbook is noticeable. Mood: narrow, conspiratorial, quietly suspicious, the intimate backstage of a luxury train."
+    },
+    "plataforma": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for the 'Plataforma entre vagões' of the Expresso Almirante. Show the articulated connection between train cars: a narrow metal platform with accordion walls, vibrating floor, and heavy articulation doors. The night rushes by through gaps. It feels exposed, noisy, and like a boundary between worlds. Composition: medium shot showing the connection and both doors. Mood: exposed, mechanical, the threshold between safe and dangerous."
+    }
+  },
+  "object": {
+    "assento_embaixador": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for the 'Assento do embaixador'. Show a deep red velvet train seat with a clear rectangular impression on the walnut armrest where a briefcase sat — now empty. A brass lamp casts warm light. The impression is the focal point: something was here, and now it isn't. Composition: close-up still life, the empty armrest mark dominates the frame. Mood: quiet, suspicious, important, the scene of the crime."
+    },
+    "painel_parede": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the 'Painel de manutenção'. Show a maintenance access panel on a navy train wall, slightly crooked, with fresh finger marks on the edges and a scratch from a fingernail. A dark fiber from an evening dress is caught on the edge. A brass lamp reveals the marks. Composition: square close-up, the panel and its evidence are the focal point. Mood: quiet, suspicious, decisive, the hidden route."
+    },
+    "cardapio_jantar": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the 'Cardápio do jantar'. Show an elegant printed dinner menu on heavy ivory cardstock, listing courses in formal typography with timestamps. A brass lamp casts warm light. The menu establishes the timeline of the evening. Composition: square close-up still life. Mood: formal, precise, quietly establishing chronology."
+    },
+    "caderno_bento": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the 'Caderno do Bento'. Show a child's sketchbook open on a train corridor bench, filled with crayon and pencil drawings of train passengers — stick figures in elegant clothes, with childish annotations about who moved where. The drawings are surprisingly detailed and observant. Warm brass lamplight falls on the pages. Composition: square close-up, the open sketchbook dominates the frame. Mood: innocent, devastating, the hidden witness in crayon."
+    },
+    "dispositivo_vicente": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the 'Dispositivo de comunicação'. Show a compact military-grade encrypted communicator on a train cabin bed, matte black with a small antenna and a single indicator light. It looks utterly out of place among the walnut and brass of the luxury cabin. Composition: square close-up, the device is the clear focal point. Mood: incongruous, suspicious, the spy's mistake."
+    },
+    "cartao_iris": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the 'Cartão de embarque de Íris'. Show a train boarding card on ivory cardstock with a printed name that doesn't match the press credential lying beside it. Two different names, one person. A brass lamp reveals the discrepancy. Composition: square close-up, the two documents side by side are the focal point. Mood: quiet, decisive, the identity crack."
+    }
+  },
+  "characters": {
+    "pessoa": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Sr. Pessoa, the head conductor of the Expresso Almirante. Pessoa is a Brazilian adult man in his late 50s. He is professional, calm under pressure, proud of the train's reputation, and wants the incident resolved before the border. Appearance: dignified train conductor, neat gray hair, a navy uniform with brass buttons and gold braid, a conductor's cap, a pocket watch chain. His expression is composed, professionally embarrassed, and quietly determined. Composition: vertical bust portrait, the dining car softly blurred behind him with brass and navy tones. Mood: professional concern, quiet pride, the authority of the train."
+    },
+    "vicente": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Vicente, who claims to be a tech CEO but is actually a field intelligence agent. Vicente is a Brazilian adult man in his late 30s. He is composed, sharp, observant, and uncomfortable when asked about his own cover story. Appearance: polished man in an immaculate tailored suit, neat hair, an expensive watch, alert eyes that scan the room. His expression is controlled, confident on the surface, with tension underneath. Composition: vertical bust portrait, the dining car softly blurred behind him with warm brass light. Mood: controlled confidence masking professional failure, the spy who lost his asset."
+    },
+    "iris": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Íris, who claims to be a society journalist but is actually an information thief. Íris is a Brazilian adult woman in her mid-30s. She is charming, observant, controlled, and uses warmth as a weapon. Appearance: elegant woman in an evening dress and subtle jewelry, perfectly styled hair, a warm smile that doesn't fully reach the eyes. Her expression is charming, engaged, and calculating beneath the surface. Composition: vertical bust portrait, the dining car softly blurred behind her with warm golden light and navy shadows. Mood: charm as a tool, warmth as a disguise, the professional charmer."
+    },
+    "volkov": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Sra. Volkov, who claims to be a diplomat's widow but is actually a double agent. Volkov is a woman in her early 50s of indeterminate Eastern European origin. She is reserved, dignified, mysterious, and precise with every word. Appearance: elegant woman in restrained mourning attire — a dark dress with a cameo brooch, a small hat or veil, immaculate posture. Her expression is composed, guarded, and quietly amused by the chaos around her. Composition: vertical bust portrait, the dining car softly blurred behind her with deep navy tones. Mood: controlled dignity, hidden amusement, the professional observer."
+    },
+    "felix": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Félix, who is ostensibly a dining car waiter but actually a clandestine courier. Félix is a Brazilian adult man in his early 40s. He is discreet, professional, and hides deep knowledge behind the simplicity of service. Appearance: a man in a crisp waiter's uniform with a white towel over the arm, neat short hair, calm eyes that miss nothing. His expression is professionally attentive with a flicker of sharp intelligence. Composition: vertical bust portrait, the dining car softly blurred behind him with warm light. Mood: professional service hiding professional espionage, the hiding-in-plain-sight courier."
+    },
+    "bento": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Bento, a 12-year-old boy who draws everything he sees and notices what adults miss. Bento is a Brazilian boy, bright-eyed, curious, and disarmingly honest. Appearance: kid in slightly rumpled casual clothes, messy hair, holding a sketchbook and colored pencils, an alert and amused expression that says he knows more than the adults think. Composition: vertical bust portrait, the train corridor softly blurred behind him with warm brass light. Mood: innocent devastation, honest observation, the child who sees through everyone."
+    }
+  },
+  "endings": {
+    "full_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the full truth ending of 'O Expresso Almirante'. Show the dining car as the train approaches the border at dawn. The briefcase has been recovered from behind the wall panel and sits on the ambassador's seat, open, treaty intact. The maintenance panel is now properly closed. Outside the windows, the first pale light of dawn replaces the night. The dining car is calm, with the remnants of the evening cleared. Composition: wide horizontal, no people, focus on the recovered briefcase and the dawn light through the windows. Mood: resolved, bittersweet, dawn-after-the-night, elegant, literary."
+    },
+    "partial_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the partial truth ending of 'O Expresso Almirante'. Show the dining car at night with the maintenance panel still slightly open and the briefcase still hidden behind the wall. The truth was partially uncovered but the briefcase remains hidden. The dining car is warm but uncertain, with deeper shadows. Composition: wide horizontal, focus on the open panel and the hint of something behind it. No characters. Mood: ambiguous, elegant, unresolved, the truth still in the walls."
+    },
+    "wrong_accusation": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the wrong accusation ending of 'O Expresso Almirante'. Show the train arriving at the border station at dawn. The dining car is empty. The maintenance panel is untouched and unexamined. On a bench in the corridor, Bento's sketchbook lies open to a drawing of Íris near the panel — evidence that was never examined. Composition: wide horizontal, focus on the open sketchbook showing the crucial drawing. Mood: missed opportunity, quiet regret, elegant, literary."
+    }
+  }
+}

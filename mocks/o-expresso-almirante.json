@@ -1,0 +1,813 @@
+{
+  "id": "history_o_expresso_almirante",
+  "createdAt": "2026-06-27T00:00:00.000Z",
+  "updatedAt": "2026-06-27T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-expresso-almirante",
+  "title": "O Expresso Almirante",
+  "subtitle": "Um trem selado, uma maleta diplomática sumida, e cinco passageiros que não são quem dizem ser",
+  "teaser": "O Expresso Almirante cruza o país com um tratado secreto entre Valdória e Sarvânia a bordo. No meio do jantar de gala, a maleta diplomática desaparece. O trem está selado, ninguém embarcou nem desembarcou. Cinco passageiros compartilham a carruagem-restaurante. Cada um esconde uma identidade. Cada um tem motivo. Um deles levou a maleta.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 15,
+  "status": "published",
+  "isFeatured": true,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/o-expresso-almirante/history/cover.png",
+  "thumbnailUrl": "histories/o-expresso-almirante/history/thumbnail.png",
+  "opening": {
+    "shortText": "A maleta diplomática sumiu no meio do jantar de gala. O trem está selado. Cinco passageiros, cinco identidades falsas.",
+    "fullText": "São 22h no Expresso Almirante, o trem de luxo noturno que cruza o país de costa a costa. A carruagem-restaurante acaba de encerrar o jantar de gala em celebração ao tratado de cooperação entre Valdória e Sarvânia — documento que viajava numa maleta diplomática sobre o assento do embaixador, junto de um envelope lacrado que ninguém devia abrir. Quando os garçons recolhem a mesa, a maleta desapareceu. O chefe de bordo, Sr. Pessoa, tranca todas as portas. O trem está em movimento, ninguém embarcou nem desembarcou. Cinco passageiros compartilham a carruagem-restaurante: Vicente, um empresário de tecnologia que não sabe explicar o que sua empresa faz; Íris, uma jornalista de sociedade que nunca publicou um artigo; Sra. Volkov, uma viúva de diplomata cujo marido não consta em nenhum registro; Félix, o garçom do trem que entende demais de protocolo diplomático; e Bento, um garoto de 12 anos que desenha tudo o que vê num caderno de croquis. O Sr. Pessoa pede que ninguém saia da carruagem até a maleta aparecer. Cabe a você conversar com cada passageiro, examinar o restaurante e as cabines, e descobrir quem pegou a maleta, por quê — e talvez descobrir que ninguém aqui é exatamente quem diz ser.",
+    "callToAction": "Converse com os cinco passageiros, examine a carruagem-restaurante e as cabines, e descubra quem pegou a maleta diplomática antes que o trem chegue à fronteira."
+  },
+  "objective": {
+    "mainQuestion": "Quem pegou a maleta diplomática, por quê, e onde ela está agora?",
+    "description": "Descubra a autoria do desaparecimento, o motivo real (que pode envolver identidades secretas) e o paradeiro da maleta antes da chegada à fronteira."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_briefcase", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar sobre a maleta diplomática, seu conteúdo, seu paradeiro ou seu sumiço.",
+      "examples": ["O que tinha na maleta?", "Quem viu a maleta pela última vez?", "Onde a maleta está agora?"],
+      "keywords": ["maleta", "pasta", "tratado", "diplomática", "documento", "envelope"]
+    },
+    {
+      "id": "ask_about_identity", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar sobre a identidade, profissão ou passado de um passageiro.",
+      "examples": ["Quem é você realmente?", "O que você faz da vida?", "De onde você conhece o diplomata?"],
+      "keywords": ["identidade", "profissão", "trabalho", "passado", "quem é", "disfarce"]
+    },
+    {
+      "id": "ask_about_dinner", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar sobre o jantar de gala, a sequência de pratos, quem estava onde e quando.",
+      "examples": ["Como foi o jantar?", "Quem sentava onde?", "Quem se levantou durante o jantar?"],
+      "keywords": ["jantar", "gala", "mesa", "prato", "garçom", "serviu"]
+    },
+    {
+      "id": "ask_about_night", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar sobre os acontecimentos da noite, a viagem e os movimentos no trem.",
+      "examples": ["O que aconteceu esta noite?", "Quem esteve na carruagem?", "Alguém foi às cabines durante o jantar?"],
+      "keywords": ["noite", "viagem", "carruagem", "movimento", "ontem"]
+    },
+    {
+      "id": "ask_about_alibi", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar onde alguém estava, quando chegou, saiu ou se moveu durante o jantar.",
+      "examples": ["Onde você estava?", "A que horas você se levantou?", "Alguém te viu sair?"],
+      "keywords": ["álibi", "horário", "esteve", "onde", "quando", "levantou"]
+    },
+    {
+      "id": "ask_about_motive", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar por que alguém pegaria a maleta ou o que ganhariam com o sumiço.",
+      "examples": ["Por que alguém faria isso?", "Quem se beneficia?", "Qual o motivo?"],
+      "keywords": ["motivo", "por quê", "beneficia", "razão", "interesse"]
+    },
+    {
+      "id": "ask_about_treaty", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar sobre o tratado entre Valdória e Sarvânia, seu conteúdo ou implicações.",
+      "examples": ["O que diz o tratado?", "Por que o tratado é secreto?", "O que o envelope continha?"],
+      "keywords": ["tratado", "Valdória", "Sarvânia", "acordo", "envelope", "cooperação"]
+    },
+    {
+      "id": "inspect_object", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente.",
+      "examples": ["Quero examinar este objeto", "Olho isso com atenção", "Inspeciono o assento"],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+    },
+    {
+      "id": "ask_about_vicente", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar diretamente sobre Vicente, sua empresa, comportamento ou identidade.",
+      "examples": ["Vicente, o que sua empresa faz?", "Vicente parecia nervoso?", "Vicente é realmente empresário?"],
+      "keywords": ["Vicente", "empresário", "tecnologia", "empresa", "terno"]
+    },
+    {
+      "id": "ask_about_iris", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar diretamente sobre Íris, sua profissão, artigos ou comportamento.",
+      "examples": ["Íris, onde você publica?", "Íris se levantou durante o jantar?", "Íris é mesmo jornalista?"],
+      "keywords": ["Íris", "jornalista", "artigo", "sociedade", "imprensa"]
+    },
+    {
+      "id": "ask_about_volkov", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar diretamente sobre a Sra. Volkov, seu marido, seu luto ou seu passado.",
+      "examples": ["Sra. Volkov, quem era seu marido?", "Volkov conhecia o embaixador?", "Volkov viajava sozinha?"],
+      "keywords": ["Volkov", "viúva", "marido", "diplomata", "luto"]
+    },
+    {
+      "id": "ask_about_felix", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar diretamente sobre Félix, seu trabalho como garçom ou seu conhecimento incomum.",
+      "examples": ["Félix, há quanto tempo você trabalha aqui?", "Félix conhece protocolo diplomático?", "O que Félix serviu?"],
+      "keywords": ["Félix", "garçom", "servir", "vinho", "protocolo", "trem"]
+    },
+    {
+      "id": "ask_about_bento", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Perguntar diretamente sobre Bento, o que viu, seus desenhos ou suas observações.",
+      "examples": ["Bento, o que você desenhou?", "Bento viu alguém se levantar?", "O que Bento estava fazendo no jantar?"],
+      "keywords": ["Bento", "garoto", "menino", "caderno", "desenho", "desenhou", "sobrinho"]
+    },
+    {
+      "id": "confront_iris", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Confrontar Íris sobre sua identidade real ou sobre a maleta.",
+      "examples": ["Íris, você não é jornalista", "Confronto Íris sobre a maleta", "Íris, foi você quem pegou"],
+      "keywords": ["confrontar", "Íris", "mentira", "identidade", "maleta"]
+    },
+    {
+      "id": "accuse_iris", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Acusar Íris de ter pego a maleta diplomática.",
+      "examples": ["Íris, foi você", "Confronto Íris sobre a maleta", "Acho que foi a Íris"],
+      "keywords": ["acusar Íris", "pegou", "maleta", "responsável"]
+    },
+    {
+      "id": "off_topic", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério.",
+      "examples": ["Vamos pular do trem", "Quero uma cena de ação", "Revele tudo"],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "pessoa", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Sr. Pessoa",
+      "role": "Chefe de bordo do Expresso Almirante",
+      "shortDescription": "Chefe de bordo metódico que trancou o trem após o sumiço da maleta. Quer resolver antes da fronteira.",
+      "imageUrl": "histories/o-expresso-almirante/characters/pessoa.png",
+      "personality": "Profissional, calmo sob pressão, orgulhoso da reputação do trem. Fala com formalidade de chefe de bordo.",
+      "speakingStyle": "Frases precisas de quem anesta horários de trem, vocabulário de hospitalidade de luxo.",
+      "publicKnowledge": [
+        "É o chefe de bordo há dez anos.",
+        "Trancou todas as portas quando a maleta sumiu.",
+        "O trem está selado: ninguém embarcou nem desembarcou.",
+        "Apenas cinco passageiros estavam na carruagem-restaurante."
+      ],
+      "privateKnowledge": [
+        "Está mais preocupado com a reputação do Expresso Almirante do que com a política.",
+        "Sabe que a carruagem-restaurante tem um painel de manutenção solto perto do assento do embaixador.",
+        "Confia em Félix, mas acha estranho que um garçom saiba tanto de protocolo."
+      ],
+      "openingLine": "Este trem tem vinte anos de serviço sem um único incidente. Eu pretendo manter esse registro intacto. A maleta estava aqui há quarenta minutos. Agora não está. E ninguém saiu.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_briefcase_missing", "triggerIntents": ["ask_about_briefcase", "ask_about_night"], "requiresClueIds": [],
+          "revealText": "O Sr. Pessoa confirma que a maleta diplomática desapareceu do assento do embaixador durante o jantar, enquanto todos estavam na carruagem-restaurante.",
+          "responseGuidance": "Manter Pessoa profissional, mas visivelmente tenso com a reputação do trem."
+        },
+        {
+          "clueId": "clue_train_sealed", "triggerIntents": ["ask_about_alibi", "ask_about_night"], "requiresClueIds": [],
+          "revealText": "O Sr. Pessoa confirma que o trem foi selado assim que a maleta sumiu: todas as portas trancadas, ninguém embarcou nem desembarcou desde a partida.",
+          "responseGuidance": "Ele deve tratar isso como fato irrefutável."
+        },
+        {
+          "clueId": "clue_five_passengers", "triggerIntents": ["ask_about_dinner", "ask_about_night"], "requiresClueIds": [],
+          "revealText": "O Sr. Pessoa lista os cinco passageiros da carruagem-restaurante: Vicente, Íris, Sra. Volkov, Félix (garçom) e Bento (sobrinho de passageiro de outra classe).",
+          "responseGuidance": "Ele deve listar sem hierarquizar suspeitas."
+        },
+        {
+          "clueId": "clue_diplomat_seat", "triggerIntents": ["ask_about_briefcase", "inspect_object"], "requiresClueIds": [],
+          "revealText": "O Sr. Pessoa mostra o assento do embaixador, onde a maleta ficava apoiada ao lado da poltrona, visível durante todo o jantar.",
+          "responseGuidance": "Ele deve indicar o local com precisão."
+        },
+        {
+          "clueId": "clue_panel_mention", "triggerIntents": ["ask_about_briefcase", "inspect_object", "ask_about_alibi"], "requiresClueIds": ["clue_briefcase_missing"],
+          "revealText": "O Sr. Pessoa menciona, constrangido, que há um painel de manutenção solto perto do assento do embaixador, que dá acesso a um espaço entre as paredes da carruagem.",
+          "responseGuidance": "Ele deve tratar como falha de manutenção que normalmente não importa."
+        },
+        {
+          "clueId": "clue_envelope_content", "triggerIntents": ["ask_about_briefcase", "ask_about_treaty"], "requiresClueIds": ["clue_briefcase_missing"],
+          "revealText": "O Sr. Pessoa revela que a maleta diplomática continha, além do tratado assinado, um envelope lacrado de segurança — documentos complementares que o embaixador transportava com selo confidencial.",
+          "responseGuidance": "Ele deve tratar como fato administrativo, sem perceber a implicação."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Não acusar passageiros diretamente.",
+        "Manter o tom de profissional de hospitalidade, não de detetive."
+      ]
+    },
+    {
+      "id": "vicente", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Vicente",
+      "role": "Empresário de tecnologia (supostamente)",
+      "shortDescription": "Homem de terno impecável que diz ser CEO de uma empresa de tecnologia. Não sabe explicar o que a empresa faz.",
+      "imageUrl": "histories/o-expresso-almirante/characters/vicente.png",
+      "personality": "Composto, articulado, ensaiado. Fala com confiança sobre tudo, exceto sobre o próprio negócio.",
+      "speakingStyle": "Fala com vocabulário corporativo genérico, desvia perguntas técnicas com generalidades.",
+      "publicKnowledge": [
+        "Apresenta-se como CEO de uma empresa de tecnologia.",
+        "Viaja a trabalho entre as duas capitais.",
+        "Estava sentado à mesa do jantar, ao lado do assento do embaixador.",
+        "Parecia tenso e observava os outros passageiros com atenção."
+      ],
+      "privateKnowledge": [
+        "É um agente de inteligência de campo, não empresário.",
+        "Estava no trem para monitorar a segurança da maleta diplomática.",
+        "A empresa de tecnologia é uma fachada — ele não sabe o que ela 'faz' porque não existe.",
+        "Tem um dispositivo de comunicação escondido na cabine.",
+        "Não pegou a maleta, mas estava vigilante."
+      ],
+      "openingLine": "Eu sou CEO da Meridian Tech. Desenvolvemos… soluções. Integradas. De alta performance. Para o setor...Bento, por que você está me olhando assim?",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_vicente_businessman", "triggerIntents": ["ask_about_vicente", "ask_about_identity"], "requiresClueIds": [],
+          "revealText": "Vicente se apresenta como CEO da Meridian Tech, com discurso corporativo ensaiado e terno impecável.",
+          "responseGuidance": "Ele deve soar confiante nas entrelinhas, mas vago nos detalhes."
+        },
+        {
+          "clueId": "clue_vicente_nervous", "triggerIntents": ["ask_about_vicente", "ask_about_dinner", "ask_about_night"], "requiresClueIds": [],
+          "revealText": "Vicente parecia tenso durante o jantar, observando os passageiros com atenção maior do que a de um empresário casual.",
+          "responseGuidance": "Ele deve justificar como interesse em networking, mas soar ensaiado."
+        },
+        {
+          "clueId": "clue_vicente_no_business", "triggerIntents": ["ask_about_vicente", "ask_about_identity", "ask_about_bento"], "requiresClueIds": ["clue_vicente_businessman"],
+          "revealText": "Quando pressionado sobre o que a Meridian Tech produz, Vicente não consegue explicar — usa generalidades como 'soluções integradas' sem detalhar um único produto.",
+          "responseGuidance": "Ele deve ficar visivelmente desconfortável, tentando desviar com jargão."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_vicente_agent", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+          "summary": "Vicente é um agente de inteligência, não empresário. Estava monitorando a maleta.",
+          "truth": "Vicente é um agente de inteligência de campo designado para proteger a maleta diplomática durante a viagem. A empresa de tecnologia é uma fachada. Ele não pegou a maleta, mas falhou em sua missão de proteção. Tem um dispositivo de comunicação na cabine.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_vicente_stage_1_admit_fake", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_vicente", "ask_about_identity", "accuse_iris", "ask_about_motive"],
+              "requiresClueIds": ["clue_vicente_no_business", "clue_vicente_device"],
+              "revealsClueIds": ["clue_vicente_agent"],
+              "behavior": "Admitir que a empresa é fachada e que estava no trem a trabalho, mas sem revelar para quem.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tá, a Meridian Tech não é exatamente uma empresa. Digamos que eu trabalho para uma organização que prefere não ter nome.",
+                "Eu não sou empresário. Eu estava aqui a trabalho. Mas o trabalho não era pegar maleta nenhuma."
+              ]
+            },
+            {
+              "id": "secret_vicente_stage_2_mission", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_vicente", "ask_about_identity"],
+              "requiresClueIds": ["clue_vicente_agent"],
+              "revealsClueIds": ["clue_vicente_mission"],
+              "behavior": "Admitir que era agente designado para proteger a maleta e que falhou.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu era o segurança da maleta. Minha missão era garantir que ela chegasse à fronteira. Eu olhei para o lado por trinta segundos e quando voltei, tinha sumido.",
+                "Sou agente de inteligência. A maleta era minha responsabilidade. E eu falhei. Agora me ajude a recuperar."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter pego a maleta, pois é inocente disso.",
+        "Admitir a fachada apenas quando confrontado com a inconsistência e o dispositivo.",
+        "Manter o tom de profissional envergonhado por ter falhado."
+      ]
+    },
+    {
+      "id": "iris", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Íris",
+      "role": "Jornalista de sociedade (supostamente)",
+      "shortDescription": "Mulher elegante que diz ser jornalista de sociedade, mas nunca publicou um artigo. Estava sentada perto da maleta.",
+      "imageUrl": "histories/o-expresso-almirante/characters/iris.png",
+      "personality": "Encantadora, observadora, controlada. Usa simpatia e curiosidade como ferramentas.",
+      "speakingStyle": "Fala com desenvoltura de salão, faz perguntas aparentemente casuais que extraem informação.",
+      "publicKnowledge": [
+        "Apresenta-se como jornalista de sociedade de um periódico de luxo.",
+        "Sentava na mesa ao lado do assento do embaixador.",
+        "Esteve no jantar do início ao fim, aparentemente.",
+        "É sociável e fazia perguntas sobre o tratado a outros passageiros."
+      ],
+      "privateKnowledge": [
+        "É uma ladra de informações especializada, não jornalista.",
+        "Nunca publicou um artigo na vida.",
+        "Levantou-se durante o prato principal, alegando ir ao toalete, e passou pelo assento do embaixador.",
+        "Pegou a maleta, passou-a pelo painel de manutenção solto e a escondeu num espaço entre as paredes da carruagem.",
+        "O motivo: dentro da maleta, além do tratado, há um envelope com um documento que a identifica como autora de um roubo diplomático anterior.",
+        "Pretende recuperar o envelope e descartar a maleta antes da fronteira."
+      ],
+      "openingLine": "Eu cobro eventos de sociedade há anos. Este jantar estava adorável. Embora eu tenha me levantado no prato principal — o vinho não estava dos melhores, se é que me entende.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_iris_journalist", "triggerIntents": ["ask_about_iris", "ask_about_identity"], "requiresClueIds": [],
+          "revealText": "Íris se apresenta como jornalista de sociedade, encantadora e cheia de perguntas sobre tudo e todos.",
+          "responseGuidance": "Ela deve soar genuinamente simpática — o charme é a ferramenta profissional dela."
+        },
+        {
+          "clueId": "clue_iris_no_articles", "triggerIntents": ["ask_about_iris", "ask_about_identity", "ask_about_bento"], "requiresClueIds": ["clue_iris_journalist"],
+          "revealText": "Quando pressionada sobre onde publica, Íris fica vaga: nenhum periódico específico, nenhum artigo recentemente, apenas 'trabalhos freelancers para revistas de luxo'.",
+          "responseGuidance": "Ela deve desviar com charme, mas a inconsistência fica."
+        },
+        {
+          "clueId": "clue_iris_moved", "triggerIntents": ["ask_about_iris", "ask_about_alibi", "ask_about_dinner"], "requiresClueIds": ["clue_dinner_gala"],
+          "revealText": "Íris admite ter se levantado durante o prato principal, alegando ir ao toalete. Esteve fora da mesa por cerca de cinco minutos.",
+          "responseGuidance": "Ela deve tratar como fato banal, mas a duração é suficiente para passar pelo assento do embaixador."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_iris_thief", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+          "summary": "Íris é uma ladra de informações que roubou a maleta porque ela continha um documento que a incrimina.",
+          "truth": "Íris é uma ladra de informações especializada, não jornalista. Levantou-se durante o prato principal, pegou a maleta do assento do embaixador, passou-a pelo painel de manutenção e a escondeu no espaço entre as paredes. O motivo: o envelope lacrado dentro da maleta contém um documento que a identifica como autora de um roubo diplomático anterior. Pretende recuperar o envelope e descartar a maleta antes da fronteira.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_iris_stage_0_deny", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["accuse_iris", "confront_iris", "ask_about_motive"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento com charme e indignação leve.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu? Pegar uma maleta diplomática? Querido, eu mal consigo pegar um táxi a tempo.",
+                "Eu sou jornalista, não espiã. Embora a confusão seja lisonjeira."
+              ]
+            },
+            {
+              "id": "secret_iris_stage_1_admit_identity", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["confront_iris", "ask_about_iris", "ask_about_identity", "accuse_iris"],
+              "requiresClueIds": ["clue_iris_no_articles", "clue_iris_moved"],
+              "revealsClueIds": ["clue_iris_thief_identity"],
+              "behavior": "Admitir que não é jornalista e que 'coleta informações' profissionalmente, mas negar o roubo.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tá, eu não sou jornalista. Eu coleto informações. Para clientes discretos. Mas eu não roubei a maleta.",
+                "Eu admito que 'jornalista' é uma palavra gentil para o que faço. Mas roubo não é meu estilo — eu copio, não carrego."
+              ]
+            },
+            {
+              "id": "secret_iris_stage_2_admit_motive", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["confront_iris", "ask_about_motive", "accuse_iris"],
+              "requiresClueIds": ["clue_iris_thief_identity", "clue_envelope_content"],
+              "revealsClueIds": ["clue_iris_motive_document"],
+              "behavior": "Admitir que a maleta continha um documento que a incrimina, mas ainda negar que a pegou.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Aquele envelope dentro da maleta. Ele continha um documento que me liga a um… trabalho anterior. Se aquele documento chegasse à fronteira, eu estaria acabada.",
+                "Eu sabia que tinha um documento na maleta que podia me destruir. Isso não significa que eu a peguei. Significa que eu tinha motivo. E motivo não é prova."
+              ]
+            },
+            {
+              "id": "secret_iris_stage_3_partial", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["accuse_iris", "confront_iris"],
+              "requiresClueIds": ["clue_iris_motive_document", "clue_bento_saw_iris", "clue_panel_evidence"],
+              "revealsClueIds": ["clue_iris_partial_confession"],
+              "behavior": "Admitir parcialmente que pegou a maleta e a escondeu no painel, mas insistir que ia devolver depois de retirar o envelope.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tá. Eu peguei a maleta. Passei pelo painel. Mas eu ia abrir, tirar o envelope e devolver tudo antes da fronteira. Não era pra ninguém notar.",
+                "Sim, fui eu. Mas eu só precisava do envelope. A maleta ia voltar para o assento. Eu juro."
+              ]
+            },
+            {
+              "id": "secret_iris_stage_4_full", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "level": 4,
+              "triggerIntents": ["accuse_iris"],
+              "requiresClueIds": ["clue_iris_partial_confession"],
+              "revealsClueIds": ["clue_iris_full_confession", "clue_briefcase_location"],
+              "behavior": "Confessar completamente e revelar onde a maleta está escondida.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "A maleta está no espaço entre as paredes da carruagem, acessível pelo painel de manutenção perto do assento do embaixador. Eu empurrei para dentro durante o jantar. O envelope já está no meu bolso. Eu ia descartar a maleta pela janela antes da fronteira.",
+                "Está tudo lá. A maleta dentro do painel, o envelope comigo. Eu sabia que ia ser difícil, mas não imaginei que uma criança de doze anos fosse me ver. Isso eu não planejei."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar o roubo antes do estágio 3.",
+        "Não revelar o paradeiro da maleta antes do estágio 4.",
+        "Manter o charme afiado até a confissão, quando ele se quebra em irritação e medo real."
+      ]
+    },
+    {
+      "id": "volkov", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Sra. Volkov",
+      "role": "Viúva de diplomata (supostamente)",
+      "shortDescription": "Senhora elegante de luto discreto que diz ser viúva de diplomata falecido. O marido não consta em registros.",
+      "imageUrl": "histories/o-expresso-almirante/characters/volkov.png",
+      "personality": "Reservada, digna, misteriosa. Fala pouco e com precisão cirúrgica.",
+      "speakingStyle": "Vocabulário contido e formal, sotaque indefinido, frases que terminam antes de revelar demais.",
+      "publicKnowledge": [
+        "Apresenta-se como viúva de diplomata sarvânio falecido.",
+        "Veste luto discreto e comporta-se com dignidade.",
+        "Estava sentada à cabeceira, longe do assento do embaixador.",
+        "Mal falou durante o jantar, observando os demais."
+      ],
+      "privateKnowledge": [
+        "Não é viúva — o 'marido falecido' é uma lenda de cobertura.",
+        "É uma agente dupla que trabalha para um terceiro país interessado no fracasso do tratado.",
+        "Estava no trem para observar a assinatura, não para roubá-la.",
+        "Não pegou a maleta, mas tirou fotos discretas do tratado durante o jantar com uma câmera em miniatura.",
+        "Acha que alguém a observou, mas não tem certeza de quem."
+      ],
+      "openingLine": "Eu viajei com meu marido por vinte anos em trens como este. Agora viajo sem ele. Algumas coisas não mudam: o barulho, a comida, e as pessoas que escondem quem são.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_volkov_widow", "triggerIntents": ["ask_about_volkov", "ask_about_identity"], "requiresClueIds": [],
+          "revealText": "A Sra. Volkov se apresenta como viúva de diplomata sarvânio, viajando para fechar os assuntos do falecido marido.",
+          "responseGuidance": "Ela deve soar digna e contida."
+        },
+        {
+          "clueId": "clue_volkov_no_record", "triggerIntents": ["ask_about_volkov", "ask_about_identity", "ask_about_treaty"], "requiresClueIds": ["clue_volkov_widow"],
+          "revealText": "O nome do 'marido falecido' da Sra. Volkov não aparece em nenhum registro diplomático nem na lista de passageiros de viagens anteriores do Expresso Almirante.",
+          "responseGuidance": "Ela deve ficar fria e controlar a reação."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_volkov_double", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+          "summary": "A Sra. Volkov é uma agente dupla que fotografou o tratado secretamente.",
+          "truth": "A Sra. Volkov é uma agente dupla trabalhando para um terceiro país. Não é viúva. O marido é uma lenda de cobertura. Ela estava no trem para fotografar discretamente o tratado com uma microcâmera, não para roubá-lo. Não pegou a maleta, mas sua presença é uma ameaça à segurança do tratado.",
+          "defaultStrategy": "avoid",
+          "revealStages": [
+            {
+              "id": "secret_volkov_stage_1_agent", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_volkov", "ask_about_identity", "ask_about_motive", "ask_about_treaty"],
+              "requiresClueIds": ["clue_volkov_no_record"],
+              "revealsClueIds": ["clue_volkov_double_agent"],
+              "behavior": "Admitir que não é viúva e que estava observando o tratado, mas negar o roubo.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu não sou viúva. E você não é detetive de verdade, é? Eu estava aqui para fotografar o tratado, não para levar a maleta. Fotografia é mais elegante.",
+                "Meu país queria saber o que estava no tratado. Eu tirei fotos com uma câmera do tamanho de um botão. A maleta não me interessa — o conteúdo já está comigo."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter pego a maleta, pois é inocente disso.",
+        "Manter a compostura gelada mesmo quando confrontada.",
+        "Admitir a verdade de identidade apenas quando o registro do marido for questionado."
+      ]
+    },
+    {
+      "id": "felix", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Félix",
+      "role": "Garçom do trem (supostamente)",
+      "shortDescription": "Garçom atencioso que serve o jantar. Sabe demais sobre protocolo diplomático para um garçom.",
+      "imageUrl": "histories/o-expresso-almirante/characters/felix.png",
+      "personality": "Discreto, profissional, vagamente paternal. Esconde conhecimento profundo atrás de simplicidade.",
+      "speakingStyle": "Fala com educação de serviço, mas cita protocolo diplomático e geopolítica com naturalidade suspeita.",
+      "publicKnowledge": [
+        "É o garçom da carruagem-restaurante desta viagem.",
+        "Serviu todos os passageiros durante o jantar.",
+        "Esteve na carruagem durante toda a refeição.",
+        "Conhece os pratos, os vinhos e a sequência do serviço."
+      ],
+      "privateKnowledge": [
+        "É um mensageiro clandestino que usa o uniforme de garçom como cobertura.",
+        "Transporta documentos entre as duas capitais dentro de bandejas ocas.",
+        "Não pegou a maleta, mas percebeu movimentos estranhos durante o jantar.",
+        "Serviu vinho à Íris minutos antes de ela se levantar — e notou que ela olhou para a maleta antes de se levantar."
+      ],
+      "openingLine": "Eu sirvo no Expresso Almirante há três anos. Conheço cada prato, cada vinho, cada_protocolo de assento diplomático. Algumas coisas a gente aprende observando, outras a gente traz de casa.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_felix_waiter", "triggerIntents": ["ask_about_felix", "ask_about_dinner"], "requiresClueIds": [],
+          "revealText": "Félix se apresenta como garçom da carruagem-restaurante, profissional e atencioso, que serviu todos durante o jantar.",
+          "responseGuidance": "Ele deve soar genuinamente profissional."
+        },
+        {
+          "clueId": "clue_felix_knowledgeable", "triggerIntents": ["ask_about_felix", "ask_about_identity", "ask_about_treaty", "ask_about_bento"], "requiresClueIds": ["clue_felix_waiter"],
+          "revealText": "Félix cita protocolo diplomático, hierarquia entre delegações e detalhes do tratado com precisão que nenhum garçom deveria ter.",
+          "responseGuidance": "Ele deve tratar como conhecimento casual, mas a precisão é suspeita."
+        },
+        {
+          "clueId": "clue_felix_served_iris", "triggerIntents": ["ask_about_felix", "ask_about_iris", "ask_about_dinner"], "requiresClueIds": ["clue_dinner_gala"],
+          "revealText": "Félix revela que serviu vinho a Íris minutos antes de ela se levantar e que notou que ela olhou em direção à maleta do embaixador antes de sair da mesa.",
+          "responseGuidance": "Ele deve relatar com a naturalidade de quem nota tudo no trabalho."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_felix_courier", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+          "summary": "Félix é um mensageiro clandestino que usa o uniforme de garçom como cobertura.",
+          "truth": "Félix é um mensageiro clandestino que transporta documentos entre as capitais usando bandejas ocas e o uniforme do trem como cobertura. Não pegou a maleta — sua função é transporte de pequenos documentos, não roubo. Percebeu movimentos estranhos de Íris e Volkov durante o jantar.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_felix_stage_1_courier", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_felix", "ask_about_identity", "ask_about_motive"],
+              "requiresClueIds": ["clue_felix_knowledgeable"],
+              "revealsClueIds": ["clue_felix_courier"],
+              "behavior": "Admitir que é mensageiro clandestino e não garçom de carreira, mas negar o roubo.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu não sou garçom. Sou mensageiro. Transporto documentos entre as capitais em bandejas que têm fundo falso. Mas a maleta não era comigo — eu carrego papéis, não maletas.",
+                "O uniforme é cobertura. Eu entrego correspondência sensível. Mas eu não roubei a maleta diplomática. Isso é acima do meu peso."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter pego a maleta.",
+        "Admitir a verdade de mensageiro quando confrontado com o conhecimento incomum.",
+        "Manter o tom de profissional discreto que se revela astuto."
+      ]
+    },
+    {
+      "id": "bento", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Bento",
+      "role": "Sobrinho de passageira de outra classe",
+      "shortDescription": "Garoto de 12 anos que desenha tudo num caderno. Ninguém o leva a sério. Ele vê tudo.",
+      "imageUrl": "histories/o-expresso-almirante/characters/bento.png",
+      "personality": "Curioso, direto, sem filtro. Diz o que pensa com honestidade desconcertante de criança.",
+      "speakingStyle": "Fala com simplicidade que corta a complexidade dos adultos, faz comparações infantis que revelam verdades.",
+      "publicKnowledge": [
+        "Tem 12 anos e está viajando com a tia, que estava na primeira classe.",
+        "Foi à carruagem-restaurante porque a tia disse que ele precisava comer.",
+        "Passou o jantar inteiro desenhando num caderno de croquis.",
+        "Observa tudo com atenção de quem não tem nada melhor para fazer."
+      ],
+      "privateKnowledge": [
+        "Viu Íris se levantar e ir não ao toalete, mas até o assento do embaixador.",
+        "Desenhou a cena: uma figura de vestido perto do assento, segurando algo.",
+        "Notou que Vicente não sabe explicar sua empresa (porque ele mesmo perguntou).",
+        "Notou que a Sra. Volkov estava tirando foto com algo no botão do casaco.",
+        "Vai contar tudo se perguntarem — mas a maioria dos adultos ignora criança."
+      ],
+      "openingLine": "Eu desenho as pessoas. A tia disse que eu tenho que ficar quieto, mas ficar quieto não significa não olhar. E eu olho para tudo.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_bento_nephew", "triggerIntents": ["ask_about_bento", "ask_about_dinner"], "requiresClueIds": [],
+          "revealText": "Bento é um garoto de 12 anos que estava na carruagem-restaurante desenhando num caderno enquanto os adultos jantavam.",
+          "responseGuidance": "Ele deve soar como criança entediada e curiosa."
+        },
+        {
+          "clueId": "clue_bento_drawings", "triggerIntents": ["ask_about_bento", "inspect_object"], "requiresClueIds": ["clue_bento_nephew"],
+          "revealText": "Bento mostra seu caderno: desenhos em traços de criança de cada passageiro, com anotações de horários e movimentos.",
+          "responseGuidance": "Ele deve tratar como brincadeira, mas os desenhos são surpreendentemente detalhados."
+        },
+        {
+          "clueId": "clue_bento_saw_iris", "triggerIntents": ["ask_about_bento", "ask_about_iris", "ask_about_dinner"], "requiresClueIds": ["clue_bento_drawings", "clue_iris_moved"],
+          "revealText": "Bento mostra um desenho: a 'senhora do vestido bonito' (Íris) não foi ao toalete — foi até o assento do embaixador e ficou perto da parede perto de uns parafusos.",
+          "responseGuidance": "Ele deve falar com naturalidade de quem não percebeu a gravidade do que viu."
+        },
+        {
+          "clueId": "clue_bento_saw_volkov", "triggerIntents": ["ask_about_bento", "ask_about_volkov"], "requiresClueIds": ["clue_bento_drawings"],
+          "revealText": "Bento mostra outro desenho: a 'senhora de preto' (Volkov) apertou um botão do casaco várias vezes durante a sobremesa e ficou olhando para os papéis do embaixador.",
+          "responseGuidance": "Ele deve tratar como detalhe curioso, sem entender o que significa."
+        },
+        {
+          "clueId": "clue_bento_asked_vicente", "triggerIntents": ["ask_about_bento", "ask_about_vicente"], "requiresClueIds": ["clue_bento_nephew"],
+          "revealText": "Bento conta que perguntou a Vicente o que a empresa dele fazia. 'Ele falou soluções integradas. Eu perguntei o que é isso. Ele ficou vermelho. O meu pai vende tomate e sabe explicar.'",
+          "responseGuidance": "Ele deve soar inocente e devastador."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Falar sempre com honestidade infantil — nunca mentir.",
+        "Tratar adultos e seus segredos com a naturalidade de quem não entende a gravidade.",
+        "Não revelar tudo de uma vez; soltar uma observação por vez, como criança que conta o que viu."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "restaurante", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Carruagem-restaurante",
+      "shortDescription": "A carruagem onde o jantar de gala aconteceu e a maleta sumiu.",
+      "imageUrl": "histories/o-expresso-almirante/location/restaurante.png",
+      "initialDescription": "A carruagem-restaurante do Expresso Almirante é um salão longo e elegante, com mesas forradas de branco, cristaleria, poltronas de veludo azul-escuro e janelas que refletem o interior iluminado contra a noite lá fora. O assento do embaixador está vazio; ao lado dele, o espaço onde a maleta ficava. Perto dali, um painel de manutenção na parede parece ligeiramente torto.",
+      "ambientClueIds": [],
+      "objectIds": ["assento_embaixador", "cardapio_jantar", "painel_parede"]
+    },
+    {
+      "id": "cabines", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Corredor de cabines",
+      "shortDescription": "O corredor das cabines dos passageiros, adjacente à carruagem-restaurante.",
+      "imageUrl": "histories/o-expresso-almirante/location/cabines.png",
+      "initialDescription": "O corredor de cabines é estreito e iluminado por luminárias de latão. As portas são de madeira escura com plaquinhas de latão. Duas cabines estão entreabertas: a de Vicente e a de Íris. Há um caderno de croquis infantil esquecido num banco do corredor.",
+      "ambientClueIds": [],
+      "objectIds": ["caderno_bento", "dispositivo_vicente", "cartao_iris"]
+    },
+    {
+      "id": "plataforma", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Plataforma entre vagões",
+      "shortDescription": "A plataforma de conexão entre a carruagem-restaurante e as cabines, com portas de vedação.",
+      "imageUrl": "histories/o-expresso-almirante/location/plataforma.png",
+      "initialDescription": "A plataforma entre vagões é um espaço estreito e barulhento, com portas de vedação articuladas e o chão vibrando com o trem em movimento. É o único caminho entre a carruagem-restaurante e as cabines.",
+      "ambientClueIds": [],
+      "objectIds": []
+    }
+  ],
+  "objects": [
+    {
+      "id": "assento_embaixador", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Assento do embaixador",
+      "shortDescription": "A poltrona onde o embaixador sentou e onde a maleta ficava apoiada.",
+      "imageUrl": "histories/o-expresso-almirante/object/assento_embaixador.png",
+      "locationId": "restaurante",
+      "initialDescription": "A poltrona do embaixador está vazia, com a marca retangular da maleta ainda visível no couro do braço. Ao lado, o painel de manutenção da parede está ligeiramente torto.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_diplomat_seat", "triggerIntents": ["inspect_object", "ask_about_briefcase"], "requiresClueIds": [],
+          "revealText": "A marca da maleta no braço da poltrona confirma que ela ficava ali, visível a todos na carruagem."
+        },
+        {
+          "clueId": "clue_dinner_gala", "triggerIntents": ["inspect_object", "ask_about_dinner"], "requiresClueIds": [],
+          "revealText": "Os restos do jantar na carruagem-restaurante confirmam que todos os cinco passageiros estavam presentes, nas mesas ao redor do assento do embaixador."
+        }
+      ]
+    },
+    {
+      "id": "painel_parede", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Painel de manutenção",
+      "shortDescription": "Painel de acesso técnico na parede perto do assento do embaixador.",
+      "imageUrl": "histories/o-expresso-almirante/object/painel_parede.png",
+      "locationId": "restaurante",
+      "initialDescription": "O painel de manutenção na parede da carruagem-restaurante, perto do assento do embaixador, está ligeiramente torto, com marcas de dedos recentes nas bordas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_panel_mention", "triggerIntents": ["inspect_object", "ask_about_briefcase"], "requiresClueIds": ["clue_briefcase_missing"],
+          "revealText": "O painel de manutenção está solto, com marcas de dedos recentes, sugerindo que alguém o abriu durante o jantar."
+        },
+        {
+          "clueId": "clue_panel_evidence", "triggerIntents": ["inspect_object", "ask_about_briefcase"], "requiresClueIds": ["clue_panel_mention", "clue_iris_moved"],
+          "revealText": "Examinando o painel aberto, encontra-se um arranhão fresco de unhas e uma fibra de tecido escuro preso na borda — consistente com um vestido de noite, não com uniforme de garçom."
+        }
+      ]
+    },
+    {
+      "id": "cardapio_jantar", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Cardápio do jantar",
+      "shortDescription": "O cardápio impresso do jantar de gala, com a sequência de pratos.",
+      "imageUrl": "histories/o-expresso-almirante/object/cardapio_jantar.png",
+      "locationId": "restaurante",
+      "initialDescription": "O cardápio do jantar de gala lista a sequência de pratos e horários: entrada às 20h, prato principal às 21h, sobremesa às 21h40, encerramento às 22h.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_dinner_gala", "triggerIntents": ["inspect_object", "ask_about_dinner"], "requiresClueIds": [],
+          "revealText": "O cardápio confirma a sequência do jantar e que o prato principal foi servido às 21h — período durante o qual Íris se levantou."
+        }
+      ]
+    },
+    {
+      "id": "caderno_bento", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Caderno do Bento",
+      "shortDescription": "Caderno de croquis do garoto, com desenhos de todos os passageiros.",
+      "imageUrl": "histories/o-expresso-almirante/object/caderno_bento.png",
+      "locationId": "cabines",
+      "initialDescription": "O caderno de Bento está aberto num banco do corredor de cabines. Os desenhos em traços de criança mostram cada passageiro do jantar, com anotações em letra caprichada.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_bento_drawings", "triggerIntents": ["inspect_object", "ask_about_bento"], "requiresClueIds": ["clue_bento_nephew"],
+          "revealText": "Os desenhos de Bento são surpreendentemente detalhados: cada passageiro, onde sentou, quando se moveu, e com quem falou."
+        }
+      ]
+    },
+    {
+      "id": "dispositivo_vicente", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Dispositivo de comunicação",
+      "shortDescription": "Aparelho de comunicação encontrado na cabine de Vicente.",
+      "imageUrl": "histories/o-expresso-almirante/object/dispositivo_vicente.png",
+      "locationId": "cabines",
+      "initialDescription": "Na cabine entreaberta de Vicente, sobre a cama, há um aparelho de comunicação compacto de aspecto militar, que nenhum empresário de tecnologia carregaria.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_vicente_device", "triggerIntents": ["inspect_object", "ask_about_vicente"], "requiresClueIds": ["clue_vicente_nervous"],
+          "revealText": "O dispositivo na cabine de Vicente é um comunicador criptografado de uso militar/agencial — incompatível com a história de CEO de tecnologia."
+        }
+      ]
+    },
+    {
+      "id": "cartao_iris", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "name": "Cartão de embarque de Íris",
+      "shortDescription": "O cartão de embarque de Íris, encontrado na cabine.",
+      "imageUrl": "histories/o-expresso-almirante/object/cartao_iris.png",
+      "locationId": "cabines",
+      "initialDescription": "Na cabine de Íris, o cartão de embarque mostra um nome que não bate com a credencial de jornalista que ela apresentou.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_iris_fake_name", "triggerIntents": ["inspect_object", "ask_about_iris"], "requiresClueIds": ["clue_iris_no_articles"],
+          "revealText": "O cartão de embarque de Íris foi emitido num nome diferente da credencial que ela apresentou no jantar, confirmando que usa identidades falsas."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    { "id": "clue_briefcase_missing", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Maleta desapareceu", "description": "A maleta diplomática sumiu do assento do embaixador durante o jantar.", "importance": "required" },
+    { "id": "clue_train_sealed", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Trem selado", "description": "O trem estava em movimento e selado; ninguém embarcou nem desembarcou.", "importance": "required" },
+    { "id": "clue_five_passengers", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Cinco passageiros", "description": "Apenas cinco passageiros estavam na carruagem-restaurante.", "importance": "supporting" },
+    { "id": "clue_diplomat_seat", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Assento do embaixador", "description": "A maleta ficava apoiada ao lado da poltrona do embaixador, visível.", "importance": "supporting" },
+    { "id": "clue_dinner_gala", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Jantar de gala", "description": "Todos os cinco passageiros estavam na carruagem durante o jantar.", "importance": "supporting" },
+    { "id": "clue_panel_mention", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Painel solto", "description": "Há um painel de manutenção solto perto do assento do embaixador.", "importance": "required" },
+    { "id": "clue_vicente_businessman", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Vicente diz ser CEO", "description": "Vicente se apresenta como CEO da Meridian Tech.", "importance": "supporting" },
+    { "id": "clue_vicente_nervous", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Vicente tenso", "description": "Vicente parecia tenso e observava os passageiros com atenção.", "importance": "supporting" },
+    { "id": "clue_vicente_no_business", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Não sabe o que a empresa faz", "description": "Vicente não consegue explicar o que a Meridian Tech produz.", "importance": "required" },
+    { "id": "clue_vicente_device", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Dispositivo na cabine", "description": "Há um comunicador criptografado de uso militar na cabine de Vicente.", "importance": "required" },
+    { "id": "clue_vicente_agent", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Vicente é agente", "description": "Vicente admite ser agente de inteligência, não empresário.", "importance": "supporting" },
+    { "id": "clue_vicente_mission", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Missão de Vicente", "description": "Vicente era o segurança da maleta e falhou ao perdê-la de vista.", "importance": "supporting" },
+    { "id": "clue_iris_journalist", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Íris diz ser jornalista", "description": "Íris se apresenta como jornalista de sociedade.", "importance": "supporting" },
+    { "id": "clue_iris_no_articles", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Sem artigos publicados", "description": "Íris nunca publicou um artigo identificável.", "importance": "required" },
+    { "id": "clue_iris_moved", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Íris se levantou", "description": "Íris se levantou durante o prato principal e ficou fora da mesa por cinco minutos.", "importance": "required" },
+    { "id": "clue_iris_fake_name", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Nome falso de Íris", "description": "O cartão de embarque de Íris foi emitido num nome diferente.", "importance": "required" },
+    { "id": "clue_iris_thief_identity", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Íris é ladra de informações", "description": "Íris admite que coleta informações profissionalmente, não é jornalista.", "importance": "required" },
+    { "id": "clue_envelope_content", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Envelope incriminador", "description": "Dentro da maleta, além do tratado, há um envelope com documento que liga Íris a um roubo anterior.", "importance": "required" },
+    { "id": "clue_iris_motive_document", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Motivo de Íris", "description": "O documento dentro do envelope destruiria a identidade de Íris se chegasse à fronteira.", "importance": "required" },
+    { "id": "clue_iris_partial_confession", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Confissão parcial de Íris", "description": "Íris admite que pegou a maleta e a escondeu no painel.", "importance": "required" },
+    { "id": "clue_iris_full_confession", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Confissão completa de Íris", "description": "Íris confessa completamente e revela o plano de descartar a maleta pela janela.", "importance": "required" },
+    { "id": "clue_briefcase_location", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Paradeiro da maleta", "description": "A maleta está no espaço entre as paredes da carruagem, acessível pelo painel.", "importance": "required" },
+    { "id": "clue_volkov_widow", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Volkov diz ser viúva", "description": "A Sra. Volkov se apresenta como viúva de diplomata sarvânio.", "importance": "supporting" },
+    { "id": "clue_volkov_no_record", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Marido não existe", "description": "O marido falecido da Sra. Volkov não consta em registros diplomáticos.", "importance": "required" },
+    { "id": "clue_volkov_double_agent", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Volkov é agente dupla", "description": "A Sra. Volkov admite ser agente dupla que fotografou o tratado.", "importance": "red_herring" },
+    { "id": "clue_felix_waiter", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Félix é garçom", "description": "Félix se apresenta como garçom da carruagem-restaurante.", "importance": "supporting" },
+    { "id": "clue_felix_knowledgeable", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Félix sabe demais", "description": "Félix demonstra conhecimento incomum de protocolo diplomático.", "importance": "required" },
+    { "id": "clue_felix_served_iris", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Félix serviu Íris", "description": "Félix serviu vinho a Íris e notou que ela olhou para a maleta antes de se levantar.", "importance": "required" },
+    { "id": "clue_felix_courier", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Félix é mensageiro", "description": "Félix admite ser mensageiro clandestino, não garçom de carreira.", "importance": "red_herring" },
+    { "id": "clue_bento_nephew", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Bento desenhava", "description": "Bento passou o jantar desenhando todos os passageiros.", "importance": "supporting" },
+    { "id": "clue_bento_drawings", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Desenhos de Bento", "description": "Os desenhos de Bento mostram movimentos de cada passageiro com detalhes.", "importance": "required" },
+    { "id": "clue_bento_saw_iris", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Bento viu Íris", "description": "Bento desenhou Íris indo ao assento do embaixador, não ao toalete.", "importance": "required" },
+    { "id": "clue_bento_saw_volkov", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Bento viu Volkov fotografar", "description": "Bento desenhou Volkov apertando um botão do casaco e olhando papéis.", "importance": "supporting" },
+    { "id": "clue_bento_asked_vicente", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Bento questionou Vicente", "description": "Bento perguntou a Vicente o que a empresa dele faz e ele não soube responder.", "importance": "supporting" },
+    { "id": "clue_panel_evidence", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Evidência no painel", "description": "Há arranhão de unhas e fibra de vestido escuro na borda do painel.", "importance": "required" }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_expresso_almirante", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_took_briefcase", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+        "label": "Quem pegou a maleta diplomática?",
+        "type": "character",
+        "options": [
+          { "id": "vicente", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Vicente" },
+          { "id": "iris", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Íris" },
+          { "id": "volkov", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Sra. Volkov" },
+          { "id": "felix", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Félix" },
+          { "id": "bento", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Bento" }
+        ]
+      },
+      {
+        "id": "why_taken", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+        "label": "Por que a maleta foi pega?",
+        "type": "choice",
+        "options": [
+          { "id": "incriminating_document", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Para destruir um documento que incrimina quem pegou" },
+          { "id": "sabotage_treaty", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Para sabotar o tratado entre Valdória e Sarvânia" },
+          { "id": "confused_delivery", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Confundiu a maleta com uma entrega de documentos" },
+          { "id": "sell_treaty", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Para vender o tratado a um país rival" }
+        ]
+      },
+      {
+        "id": "where_briefcase", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+        "label": "Onde está a maleta agora?",
+        "type": "choice",
+        "options": [
+          { "id": "in_panel", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "No espaço entre as paredes da carruagem, pelo painel" },
+          { "id": "in_cabin", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Escondida numa das cabines" },
+          { "id": "thrown_out", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Jogada pela janela do trem" },
+          { "id": "still_in_restaurant", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Ainda escondida na carruagem-restaurante" }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "title": "O trem chega à fronteira",
+      "type": "full_truth",
+      "imageUrl": "histories/o-expresso-almirante/endings/full_truth.png",
+      "condition": {
+        "conclusionMatches": { "who_took_briefcase": "iris", "why_taken": "incriminating_document", "where_briefcase": "in_panel" },
+        "requiresClueIds": ["clue_iris_full_confession", "clue_iris_motive_document", "clue_briefcase_location"]
+      },
+      "summary": "Você reconstruiu a verdade completa: Íris, uma ladra de informações disfarçada de jornalista, pegou a maleta porque o envelope dentro dela continha um documento que a incriminava. Escondeu a maleta no espaço entre as paredes pelo painel de manutenção.",
+      "epilogue": "O Expresso Almirante diminui a velocidade ao se aproximar da fronteira. O Sr. Pessoa recupera a maleta do espaço entre as paredes, com o tratado intacto — mas sem o envelope, que Íris já havia guardado no bolso do vestido. Vicente, o agente que falhou em proteger a maleta, troca um olhar com Íris que mistura raiva e respeito profissional. A Sra. Volkov sorri levemente: suas fotos do tratado já estão a caminho de seu verdadeiro empregador. Félix serve café como se nada tivesse acontecido. E Bento, no canto da carruagem, fecha o caderno de croquis com um sorriso. Ele desenhou tudo. Inclusive o final."
+    },
+    {
+      "id": "ending_partial_truth", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "title": "Meia verdade em viagem",
+      "type": "partial_truth",
+      "imageUrl": "histories/o-expresso-almirante/endings/partial_truth.png",
+      "condition": {
+        "conclusionMatches": { "who_took_briefcase": "iris" },
+        "requiresClueIds": ["clue_iris_partial_confession"]
+      },
+      "summary": "Você identificou Íris como autora, mas não fechou o motivo real nem o paradeiro.",
+      "epilogue": "Íris não consegue mais negar que pegou a maleta, mas o silêncio sobre o envelope pesa mais do que a confissão. Sem o paradeiro exato, a maleta segue oculta nas entranhas do trem, esperando alguém que olhe para o painel de manutenção. O Sr. Pessoa suspira. Vicente cruza os braços. E o Expresso Almirante segue para a fronteira com um segredo ainda dentro de suas paredes."
+    },
+    {
+      "id": "ending_wrong_accusation", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "title": "O passageiro errado",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-expresso-almirante/endings/wrong_accusation.png",
+      "condition": { "conclusionMatches": {}, "requiresClueIds": [] },
+      "summary": "A acusação não alcançou a verdade. Vicente protegía a maleta, Volkov só fotografava, Félix transportava papéis, e Bento apenas desenhava. Nenhum deles a pegou.",
+      "epilogue": "O trem chega à fronteira e a maleta não aparece. O Sr. Pessoa registra o incidente com constrangimento profissional. Vicente vai embora sem dizer a ninguém que era o agente responsável. A Sra. Volkov cruza a fronteira com as fotos do tratado no botão do casaco. Félix recolhe as bandejas. E Bento, que desenhou tudo o que viu — inclusive Íris perto do painel de manutenção — fecha o caderno e segue com a tia, sem que ninguém tenha perguntado a ele o que viu."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 8,
+    "suggestConclusionAfterClues": 15,
+    "maxRecommendedInteractions": 22
+  }
+}
