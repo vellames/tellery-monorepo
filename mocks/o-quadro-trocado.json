@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/o-quadro-trocado/history/cover.png",
-  "thumbnailUrl": "histories/o-quadro-trocado/history/thumbnail.png",
+  "coverImageUrl": "histories/o-quadro-trocado/history/cover.jpg",
+  "thumbnailUrl": "histories/o-quadro-trocado/history/thumbnail.jpg",
   "opening": {
     "shortText": "O quadro \"Vertigem\" foi trocado por uma falsificação durante a madrugada. A tinta ainda está úmida.",
     "fullText": "São 9h da manhã na Galeria Sereno, uma pequena galeria de arte prestes a receber uma visualização privada. Otávio, o dono, levanta a luz do holofote sobre \"Vertigem\" — a peça central da noite — e percebe que algo está errado. A textura da tinta, o brilho do verniz, o peso do corpo: não é o original. É uma cópia convincente, feita por quem conhecia a peça de cor, e a tinta ainda está ligeiramente úmida sob o verniz apressado. A galeria não foi arrombada e o sistema de alarme não disparou. Quem trocou o quadro tinha acesso legítimo e sabia exatamente o que estava fazendo. Na noite anterior, apenas duas pessoas circularam pela galeria depois do fechamento: Sônia, a restauradora que trabalha há anos com o acervo, e Dante, um colecionador que veio avaliar justamente \"Vertigem\". Otávio pede que ambos fiquem até a situação se esclarecer. Cabe a você examinar a moldura, ouvir as três versões e descobrir quem trocou o quadro, por quê e onde o original está agora.",
@@ -225,7 +225,7 @@
       "name": "Otávio",
       "role": "Dono da Galeria Sereno",
       "shortDescription": "Galerista veterano, refinado e protetor da reputação da casa. Quer o original de volta sem transformar o caso em escândalo público.",
-      "imageUrl": "histories/o-quadro-trocado/characters/otavio.png",
+      "imageUrl": "histories/o-quadro-trocado/characters/otavio.jpg",
       "personality": "Educado, metódico, orgulhoso do acervo. Evita exposição pública e prefere resolver internamente para preservar a confiança dos colecionadores.",
       "speakingStyle": "Fala com calma medida, vocabulário de galerista, frases corteses que escondem nervosismo controlado.",
       "publicKnowledge": [
@@ -282,7 +282,7 @@
       "name": "Sônia",
       "role": "Restauradora da Galeria Sereno",
       "shortDescription": "Restauradora experiente, nervosa desde a descoberta da troca. Conhece o Vertigem como ninguém.",
-      "imageUrl": "histories/o-quadro-trocado/characters/sonia.png",
+      "imageUrl": "histories/o-quadro-trocado/characters/sonia.jpg",
       "personality": "Aplicada, sensível e propensa a se justificar demais quando pressionada. Tem senso de proteção sobre o acervo.",
       "speakingStyle": "Fala com cuidado técnico de restauração, tropeça nas palavras quando nervosa e tenta antecipar o que o outro quer ouvir.",
       "publicKnowledge": [
@@ -461,7 +461,7 @@
       "name": "Dante",
       "role": "Colecionador",
       "shortDescription": "Colecionador articulado e confiante, interessado em comprar o Vertigem abaixo do preço de mercado.",
-      "imageUrl": "histories/o-quadro-trocado/characters/dante.png",
+      "imageUrl": "histories/o-quadro-trocado/characters/dante.jpg",
       "personality": "Calmo, falante e ligeiramente presunçoso. Sabe que é suspeito óbvio e usa a franqueza como escudo.",
       "speakingStyle": "Fala com segurança e vocabulão de colecionador, citando leilões e proveniência com naturalidade.",
       "publicKnowledge": [
@@ -541,7 +541,7 @@
       "deletedAt": null,
       "name": "Sala principal",
       "shortDescription": "Salão de exposição onde o Vertigem é (era) o centro.",
-      "imageUrl": "histories/o-quadro-trocado/location/sala_principal.png",
+      "imageUrl": "histories/o-quadro-trocado/location/sala_principal.jpg",
       "initialDescription": "A sala principal da Galeria Sereno é um salão longo de paredes brancas, com holofotes direcionais e um silêncio de museu. No centro da parede maior, a moldura do Vertigem agora abriga uma cópia. Perto da moldura, as dobradiças têm um brilho diferente, como se tivessem sido manuseadas recentemente.",
       "ambientClueIds": ["clue_frame_hinge_mark"],
       "objectIds": ["quadro_falso", "moldura"]
@@ -553,7 +553,7 @@
       "deletedAt": null,
       "name": "Atelier de restauração",
       "shortDescription": "Cômodo dos fundas onde Sônia trabalha e onde fica a caixa de transporte.",
-      "imageUrl": "histories/o-quadro-trocado/location/atelier.png",
+      "imageUrl": "histories/o-quadro-trocado/location/atelier.jpg",
       "initialDescription": "O atelier é um cômodo estreito nos fundos, com bancadas de trabalho, potes de tinta, pincéis, lupas e panos manchados. Ao fundo, encostada na parede, uma caixa de transporte de madeira parece fora do lugar habitual.",
       "ambientClueIds": [],
       "objectIds": ["caixa_transporte", "pincel_sonia"]
@@ -567,7 +567,7 @@
       "deletedAt": null,
       "name": "Quadro na parede",
       "shortDescription": "A cópia que agora ocupa o lugar do Vertigem.",
-      "imageUrl": "histories/o-quadro-trocado/object/quadro_falso.png",
+      "imageUrl": "histories/o-quadro-trocado/object/quadro_falso.jpg",
       "locationId": "sala_principal",
       "initialDescription": "A pintura na parede é, à primeira vista, o Vertigem. Mas a textura da tinta é levemente diferente e o verniz, apressado, ainda não secou por completo.",
       "clueRevealRules": [
@@ -592,7 +592,7 @@
       "deletedAt": null,
       "name": "Moldura do Vertigem",
       "shortDescription": "A moldura de madeira cujas dobradiças foram manuseadas.",
-      "imageUrl": "histories/o-quadro-trocado/object/moldura.png",
+      "imageUrl": "histories/o-quadro-trocado/object/moldura.jpg",
       "locationId": "sala_principal",
       "initialDescription": "A moldura é pesada, de madeira escura, com dobradiças de latão que permitem abrir o verso para retirar a tela. Nas dobradiças há um brilho de manuseio recente.",
       "clueRevealRules": [
@@ -611,7 +611,7 @@
       "deletedAt": null,
       "name": "Caixa de transporte",
       "shortDescription": "Caixa de madeira para transporte de obras, fora do lugar habitual.",
-      "imageUrl": "histories/o-quadro-trocado/object/caixa_transporte.png",
+      "imageUrl": "histories/o-quadro-trocado/object/caixa_transporte.jpg",
       "locationId": "atelier",
       "initialDescription": "A caixa de transporte de obras está encostada na parede do atelier em posição incomum, como se tivesse sido movida e recolocada às pressas.",
       "clueRevealRules": [
@@ -630,7 +630,7 @@
       "deletedAt": null,
       "name": "Pincel de Sônia",
       "shortDescription": "Pincel usado por Sônia, com pigmento compatível com a cópia.",
-      "imageUrl": "histories/o-quadro-trocado/object/pincel_sonia.png",
+      "imageUrl": "histories/o-quadro-trocado/object/pincel_sonia.jpg",
       "locationId": "atelier",
       "initialDescription": "Entre os pincéis de Sônia, um deles ainda está úmido, com pigmento que combina com a paleta da cópia agora pendurada na sala principal.",
       "clueRevealRules": [
@@ -912,7 +912,7 @@
       "deletedAt": null,
       "title": "A moldura certa para a tela certa",
       "type": "full_truth",
-      "imageUrl": "histories/o-quadro-trocado/endings/full_truth.png",
+      "imageUrl": "histories/o-quadro-trocado/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_took_painting": "sonia",
@@ -935,7 +935,7 @@
       "deletedAt": null,
       "title": "Uma tela pela metade",
       "type": "partial_truth",
-      "imageUrl": "histories/o-quadro-trocado/endings/partial_truth.png",
+      "imageUrl": "histories/o-quadro-trocado/endings/partial_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_took_painting": "sonia"
@@ -952,7 +952,7 @@
       "deletedAt": null,
       "title": "O suspeito óbvio",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-quadro-trocado/endings/wrong_accusation.png",
+      "imageUrl": "histories/o-quadro-trocado/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []
