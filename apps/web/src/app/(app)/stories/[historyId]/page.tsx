@@ -1,9 +1,18 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Clock, Search, Target } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Clock,
+  Info,
+  Play,
+  Search,
+  Target,
+} from 'lucide-react';
 import { StatusCodes } from 'http-status-codes';
 import { getTranslations } from 'next-intl/server';
 import { fetchHistory } from '@/lib/api/history';
+import { fetchSessions } from '@/lib/api/session';
 import { ApiError } from '@/lib/api/client';
 import { config } from '@/lib/config';
 import { startSessionAction } from '@/lib/actions/session';
@@ -29,6 +38,15 @@ export default async function StoryStartPage({
   const tObj = await getTranslations('stories');
   const tGenre = await getTranslations('common.genres');
   const tUpcoming = await getTranslations('home.upcoming');
+
+  let activeSessionId: string | null = null;
+  try {
+    const sessions = await fetchSessions(1, 50, 'active');
+    const active = sessions.items.find((s) => s.historyId === historyId);
+    activeSessionId = active?.id ?? null;
+  } catch {
+    // ignore — treat as no active session
+  }
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8">
@@ -81,9 +99,27 @@ export default async function StoryStartPage({
         <p className="text-foreground/80 leading-7">{history.objective}</p>
       </section>
 
-      <form action={startSessionAction.bind(null, history.id)}>
-        <StartSessionButton />
-      </form>
+      {activeSessionId ? (
+        <div className="flex flex-col gap-3">
+          <div className="border-gold/20 bg-clue/40 flex items-start gap-3 rounded-2xl border p-4">
+            <Info className="text-gold mt-0.5 size-5 shrink-0" />
+            <p className="text-foreground/70 text-sm leading-6">
+              {tObj('activeSessionDisclaimer')}
+            </p>
+          </div>
+          <Link
+            href={config.routes.session(activeSessionId)}
+            className="shadow-button mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-8 py-5 text-base font-bold text-[#4a111b] transition hover:scale-[1.01]"
+          >
+            <Play className="size-5 fill-current" />
+            {tObj('continueButton')}
+          </Link>
+        </div>
+      ) : (
+        <form action={startSessionAction.bind(null, history.id)}>
+          <StartSessionButton />
+        </form>
+      )}
     </div>
   );
 }

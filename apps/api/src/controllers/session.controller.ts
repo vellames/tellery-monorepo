@@ -53,7 +53,11 @@ export class SessionController {
         const message = error.messageKey
           ? t(error.messageKey, { id: error.message })
           : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        res.status(error.statusCode).json({
+          success: false,
+          error: message,
+          ...error.details,
+        });
         return;
       }
       handleError(res, new Error(t('common:errors.internalError')));

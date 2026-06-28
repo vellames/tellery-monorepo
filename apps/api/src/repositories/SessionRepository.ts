@@ -1,6 +1,7 @@
 import {
   PrismaClient,
   Prisma,
+  HistorySession,
   InteractionRole,
 } from '@prisma/client';
 import { ISessionRepository } from '../interfaces';
@@ -175,6 +176,22 @@ export class SessionRepository
     return client.historySession.findFirst({
       where: { id: sessionId, deletedAt: null },
       include: historySessionInclude,
+    });
+  }
+
+  async findActiveByHistory(
+    userId: string,
+    historyId: string,
+    tx?: PrismaTransaction
+  ): Promise<HistorySession | null> {
+    const client = tx ?? this.prisma;
+    return client.historySession.findFirst({
+      where: {
+        userId,
+        historyId,
+        status: 'active',
+        deletedAt: null,
+      },
     });
   }
 

@@ -23,9 +23,11 @@ export async function fetchSession(sessionId: string): Promise<SessionState> {
 
 export async function fetchSessions(
   page = 1,
-  limit = 10
+  limit = 10,
+  status?: string
 ): Promise<PaginatedSessions> {
-  return apiFetch<PaginatedSessions>(`/session?page=${page}&limit=${limit}`);
+  const qs = `page=${page}&limit=${limit}${status ? `&status=${status}` : ''}`;
+  return apiFetch<PaginatedSessions>(`/session?${qs}`);
 }
 
 export async function fetchCompletedHistoryMap(): Promise<CompletedHistoryMap> {

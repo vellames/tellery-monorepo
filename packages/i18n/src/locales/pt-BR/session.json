@@ -9,6 +9,7 @@
     "intentDetectionFailed": "Falha na detecção de intenção",
     "sessionNotOwned": "Você não tem acesso a esta sessão",
     "sessionAlreadyCompleted": "Esta sessão já foi concluída",
+    "sessionAlreadyActive": "Você já tem uma sessão em andamento para esta história",
     "requiredCluesNotDiscovered": "Você ainda não descobriu todas as pistas obrigatórias",
     "unknownConclusionField": "Campo de conclusão desconhecido: {{id}}",
     "unknownConclusionOption": "Opção de conclusão desconhecida: {{id}}",

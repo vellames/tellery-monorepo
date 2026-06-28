@@ -13,7 +13,8 @@ interface ApiEnvelope<T> {
 export class ApiError extends Error {
   constructor(
     message: string,
-    public readonly status: number
+    public readonly status: number,
+    public readonly body?: Record<string, unknown>
   ) {
     super(message);
     this.name = 'ApiError';
@@ -43,7 +44,8 @@ export async function apiFetch<T>(
   if (!res.ok || !body?.success || body.data === undefined) {
     throw new ApiError(
       body?.error ?? 'Falha na requisição',
-      res.ok ? StatusCodes.INTERNAL_SERVER_ERROR : res.status
+      res.ok ? StatusCodes.INTERNAL_SERVER_ERROR : res.status,
+      body ? (body as unknown as Record<string, unknown>) : undefined
     );
   }
 

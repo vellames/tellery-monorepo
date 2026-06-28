@@ -1,4 +1,4 @@
-import { InteractionRole } from '@prisma/client';
+import { HistorySession, InteractionRole } from '@prisma/client';
 import type { UpdatedSecretState } from '../../engine/character/character-agent.service';
 import type { HistoryWithDefinitions } from '../../repositories/HistoryDefinitionRepository';
 import type {
@@ -22,6 +22,11 @@ export interface ISessionRepository extends IBaseRepository {
     sessionId: string,
     tx?: PrismaTransaction
   ): Promise<HistorySessionWithRelations | null>;
+  findActiveByHistory(
+    userId: string,
+    historyId: string,
+    tx?: PrismaTransaction
+  ): Promise<HistorySession | null>;
   list(
     userId?: string,
     page?: number,

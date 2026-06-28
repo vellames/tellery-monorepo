@@ -2,7 +2,7 @@ import {
   fetchFeaturedHistories,
   fetchUpcomingHistories,
 } from '@/lib/api/history';
-import { fetchSessions } from '@/lib/api/session';
+import { fetchCompletedHistoryMap, fetchSessions } from '@/lib/api/session';
 import {
   FeaturedStory,
   HowItWorks,
@@ -11,10 +11,11 @@ import {
 } from '@/components/organisms';
 
 export default async function HomePage() {
-  const [histories, upcoming, sessions] = await Promise.all([
+  const [histories, upcoming, sessions, completedMap] = await Promise.all([
     fetchFeaturedHistories(),
     fetchUpcomingHistories(),
     fetchSessions(1, 1),
+    fetchCompletedHistoryMap(),
   ]);
 
   const hasSessions = sessions.total > 0;
@@ -24,7 +25,7 @@ export default async function HomePage() {
       <FeaturedStory histories={histories} showBadge={!hasSessions} />
       <SessionHistory activeOnly />
       <HowItWorks />
-      <StoryList histories={upcoming} />
+      <StoryList histories={upcoming} completedMap={completedMap} />
     </>
   );
 }

@@ -144,7 +144,9 @@
     "objective": "Objetivo",
     "startButton": "Iniciar história",
     "starting": "Iniciando…",
-    "backToStories": "Voltar para histórias"
+    "backToStories": "Voltar para histórias",
+    "continueButton": "Continuar investigação",
+    "activeSessionDisclaimer": "Você já tem uma investigação em andamento desta história. Continue de onde parou."
   },
   "play": {
     "back": "Sair da investigação",

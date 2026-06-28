@@ -1,4 +1,5 @@
 import { User } from '@prisma/client';
+import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import {
   IHistoryDefinitionRepository,
@@ -82,6 +83,7 @@ describe('HistorySessionService', () => {
       const session = mockSession();
       users.findById.mockResolvedValue(mockUser());
       histories.findById.mockResolvedValue(history);
+      sessions.findActiveByHistory.mockResolvedValue(null);
       sessions.create.mockResolvedValue(session);
 
       const result = await service.startSession('user-1', {
@@ -104,6 +106,22 @@ describe('HistorySessionService', () => {
           objective: 'objective text',
         },
       });
+    });
+
+    it('throws 409 when an active session already exists for the same history', async () => {
+      users.findById.mockResolvedValue(mockUser());
+      histories.findById.mockResolvedValue(mockHistory());
+      sessions.findActiveByHistory.mockResolvedValue(
+        mockSession({ id: 'existing-session' })
+      );
+
+      await expect(
+        service.startSession('user-1', { historyId: 'history-1' })
+      ).rejects.toMatchObject({
+        statusCode: StatusCodes.CONFLICT,
+        messageKey: 'session:errors.sessionAlreadyActive',
+      });
+      expect(sessions.create).not.toHaveBeenCalled();
     });
 
     it('throws 404 when the user does not exist', async () => {
@@ -129,6 +147,7 @@ describe('HistorySessionService', () => {
       const history = mockHistory();
       users.findById.mockResolvedValue(mockUser());
       histories.findById.mockResolvedValue(history);
+      sessions.findActiveByHistory.mockResolvedValue(null);
       sessions.create.mockResolvedValue(mockSession());
 
       await service.startSession('user-1', { historyId: 'history-1' });
@@ -142,6 +161,7 @@ describe('HistorySessionService', () => {
       users.findById.mockResolvedValue(mockUser());
       histories.findById.mockResolvedValue(null);
       histories.findBySlug.mockResolvedValue(history);
+      sessions.findActiveByHistory.mockResolvedValue(null);
       sessions.create.mockResolvedValue(mockSession());
 
       await service.startSession('user-1', {

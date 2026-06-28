@@ -69,6 +69,19 @@ export class HistorySessionService {
       );
     }
 
+    const existingSession = await this.sessions.findActiveByHistory(
+      user.id,
+      history.id
+    );
+    if (existingSession) {
+      throw new HttpError(
+        StatusCodes.CONFLICT,
+        existingSession.id,
+        'session:errors.sessionAlreadyActive',
+        { sessionId: existingSession.id }
+      );
+    }
+
     const session = await this.sessions.create({
       userId: user.id,
       history,
