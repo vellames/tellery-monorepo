@@ -2,35 +2,49 @@
 
 import { useCallback, useState } from 'react';
 import Link from 'next/link';
-import { CheckCircle2, Clock, Loader2, Play, Search } from 'lucide-react';
+import { CheckCircle2, Loader2, Play } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { cn } from '@/lib/utils';
 import { config } from '@/lib/config';
 import type { PaginatedSessions, SessionListItem } from '@/lib/types/session';
 
-async function fetchPage(page: number): Promise<PaginatedSessions> {
-  const res = await fetch(`/api/sessions?page=${page}&limit=6`);
-  const json = await res.json();
-  return json as PaginatedSessions;
+async function fetchPage(
+  page: number,
+  status: string
+): Promise<PaginatedSessions> {
+  const qs = `page=${page}&limit=6&status=${status}`;
+  const res = await fetch(`/api/sessions?${qs}`);
+  return (await res.json()) as PaginatedSessions;
 }
 
 export function SessionHistory() {
+  return (
+    <div className="flex flex-col gap-12">
+      <SessionSection status="active" />
+      <SessionSection status="completed" />
+    </div>
+  );
+}
+
+function SessionSection({ status }: { status: 'active' | 'completed' }) {
   const t = useTranslations('home.history');
   const tGenre = useTranslations('common.genres');
   const queryClient = useQueryClient();
   const [page, setPage] = useState(1);
 
+  const isActive = status === 'active';
+
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: ['sessions', page],
-    queryFn: () => fetchPage(page),
+    queryKey: ['sessions', status, page],
+    queryFn: () => fetchPage(page, status),
   });
 
   const accumulated = data
     ? Array.from({ length: page }, (_, i) => i + 1).flatMap(
         (p) =>
-          queryClient.getQueryData<PaginatedSessions>(['sessions', p])?.items ??
-          []
+          queryClient.getQueryData<PaginatedSessions>(['sessions', status, p])
+            ?.items ?? []
       )
     : [];
 
@@ -42,33 +56,39 @@ export function SessionHistory() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <Loader2 className="text-muted-foreground size-6 animate-spin" />
-      </div>
-    );
-  }
-
-  if (!data || data.items.length === 0) {
-    return (
       <section>
-        <h2 className="font-heading text-primary mb-1 text-2xl font-semibold tracking-tight sm:text-3xl">
-          {t('title')}
+        <h2 className="font-heading text-primary mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+          {isActive ? t('continueTitle') : t('completedTitle')}
         </h2>
-        <p className="text-muted-foreground mb-6 text-sm">{t('subtitle')}</p>
-        <div className="border-muted rounded-2xl border border-dashed py-12 text-center">
-          <Search className="text-muted-foreground/50 mx-auto mb-3 size-8" />
-          <p className="text-muted-foreground text-sm">{t('empty')}</p>
+        <div className="flex items-center justify-center py-8">
+          <Loader2 className="text-muted-foreground size-6 animate-spin" />
         </div>
       </section>
     );
   }
 
+  if (!data || accumulated.length === 0) {
+    if (isActive) {
+      return (
+        <section>
+          <h2 className="font-heading text-primary mb-1 text-2xl font-semibold tracking-tight sm:text-3xl">
+            {t('continueTitle')}
+          </h2>
+          <p className="text-muted-foreground text-sm">{t('continueEmpty')}</p>
+        </section>
+      );
+    }
+    return null;
+  }
+
   return (
     <section>
       <h2 className="font-heading text-primary mb-1 text-2xl font-semibold tracking-tight sm:text-3xl">
-        {t('title')}
+        {isActive ? t('continueTitle') : t('completedTitle')}
       </h2>
-      <p className="text-muted-foreground mb-6 text-sm">{t('subtitle')}</p>
+      <p className="text-muted-foreground mb-5 text-sm">
+        {isActive ? t('continueSubtitle') : t('completedSubtitle')}
+      </p>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {accumulated.map((session) => (
@@ -82,18 +102,14 @@ export function SessionHistory() {
       </div>
 
       {hasMore && (
-        <div className="mt-6 flex justify-center">
+        <div className="mt-5 flex justify-center">
           <button
             type="button"
             onClick={handleLoadMore}
             disabled={isFetching}
             className="hover:bg-primary/5 text-muted-foreground inline-flex cursor-pointer items-center gap-2 rounded-xl border px-6 py-2.5 text-sm font-semibold transition disabled:opacity-50"
           >
-            {isFetching ? (
-              <Loader2 className="size-4 animate-spin" />
-            ) : (
-              <Clock className="size-4" />
-            )}
+            {isFetching && <Loader2 className="size-4 animate-spin" />}
             {t('more')}
           </button>
         </div>
@@ -131,39 +147,21 @@ function SessionCard({
           <div className="absolute inset-0 bg-gradient-to-br from-stone-900 to-stone-700" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-        <div className="absolute top-3 right-3">
-          <span
-            className={cn(
-              'inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase backdrop-blur',
-              isCompleted
-                ? 'border-success/40 bg-black/40 text-[#b9e4c5]'
-                : 'border-gold/40 bg-black/40 text-[#f4d78f]'
-            )}
-          >
-            {isCompleted ? (
-              <CheckCircle2 className="size-3" />
-            ) : (
-              <Play className="size-3" />
-            )}
-            {isCompleted ? t('statusCompleted') : t('statusActive')}
-          </span>
-        </div>
       </div>
 
       <div className="p-4">
         <h3 className="font-heading text-lg leading-tight font-semibold tracking-tight">
           {session.title}
         </h3>
-        <div className="text-muted-foreground mt-1.5 flex items-center gap-2 text-xs">
-          <span>{tGenre(session.genre)}</span>
-        </div>
+        <p className="text-muted-foreground mt-1 text-xs">
+          {tGenre(session.genre)}
+        </p>
         <div className="mt-3">
           <span
             className={cn(
               'inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition',
               isCompleted
-                ? 'bg-muted text-muted-foreground'
+                ? 'bg-foreground/5 text-foreground/60'
                 : 'bg-primary text-primary-foreground'
             )}
           >

@@ -102,7 +102,12 @@
       "replay": "Revisar conclusão",
       "statusActive": "Em andamento",
       "statusCompleted": "Resolvido",
-      "more": "Carregar mais"
+      "more": "Carregar mais",
+      "continueTitle": "Continue de onde parou",
+      "continueSubtitle": "Investigações em andamento.",
+      "continueEmpty": "Nenhuma investigação em andamento.",
+      "completedTitle": "Casos resolvidos",
+      "completedSubtitle": "Suas investigações concluídas."
     }
   },
   "common": {

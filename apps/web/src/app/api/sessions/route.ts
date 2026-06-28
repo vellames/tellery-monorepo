@@ -7,11 +7,11 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const url = new URL(req.url);
   const page = url.searchParams.get('page') ?? '1';
   const limit = url.searchParams.get('limit') ?? '6';
+  const status = url.searchParams.get('status') ?? '';
 
   try {
-    const data = await apiFetch<PaginatedSessions>(
-      `/session?page=${page}&limit=${limit}`
-    );
+    const qs = `page=${page}&limit=${limit}${status ? `&status=${status}` : ''}`;
+    const data = await apiFetch<PaginatedSessions>(`/session?${qs}`);
     return NextResponse.json(data);
   } catch (error) {
     const { message, status } =

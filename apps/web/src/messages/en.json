@@ -102,7 +102,12 @@
       "replay": "Review conclusion",
       "statusActive": "In progress",
       "statusCompleted": "Solved",
-      "more": "Load more"
+      "more": "Load more",
+      "continueTitle": "Pick up where you left off",
+      "continueSubtitle": "Ongoing investigations.",
+      "continueEmpty": "No ongoing investigations.",
+      "completedTitle": "Solved cases",
+      "completedSubtitle": "Your completed investigations."
     }
   },
   "common": {
