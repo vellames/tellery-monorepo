@@ -1,11 +1,15 @@
 import fs from 'fs';
 import path from 'path';
+import sharp from 'sharp';
 import { GenerateResult, WavespeedClient } from './wavespeed-client';
 import { GeneratorConfig } from './config';
 import { GenerationJob, HistorySpecFile, JobResult, JobStatus } from './types';
 
 const MASTER_DEFAULT_ASPECT = '16:9';
-const OUTPUT_FORMAT = 'png';
+const SOURCE_FORMAT = 'png';
+const OUTPUT_FORMAT = 'jpg';
+const JPEG_QUALITY_STEPS = [85, 75, 65, 55, 45, 35];
+const DEFAULT_FALLDOWN_WIDTH = 1280;
 
 export function buildJobs(
   spec: HistorySpecFile,
@@ -78,9 +82,9 @@ export async function runJobs(
           prompt: job.prompt,
           aspectRatio: job.aspectRatio,
           resolution: config.resolution,
-          outputFormat: OUTPUT_FORMAT,
+          outputFormat: SOURCE_FORMAT,
         });
-        await download(result, job.outputPath);
+        await download(result, job.outputPath, config);
         console.log(
           `${label} → saved ${job.outputPath}${formatInference(result)}`
         );
@@ -109,7 +113,8 @@ export async function runJobs(
 
 async function download(
   result: GenerateResult,
-  outputPath: string
+  outputPath: string,
+  config: GeneratorConfig
 ): Promise<void> {
   const url = result.outputs[0];
   const response = await fetch(url);
@@ -118,8 +123,56 @@ async function download(
       `Failed to download image (${response.status}) from ${url}`
     );
   }
-  const buffer = Buffer.from(await response.arrayBuffer());
-  fs.writeFileSync(outputPath, buffer);
+  const source = Buffer.from(await response.arrayBuffer());
+  const compressed = await compressToJpeg(source, config);
+  fs.writeFileSync(outputPath, compressed.buffer);
+  console.log(
+    `    → ${(source.length / 1024).toFixed(0)}KB → ${(compressed.buffer.length / 1024).toFixed(0)}KB (q=${compressed.quality}${compressed.resized ? `, w=${compressed.resized}` : ''})`
+  );
+}
+
+interface CompressedImage {
+  buffer: Buffer;
+  quality: number;
+  resized: number | null;
+}
+
+async function compressToJpeg(
+  source: Buffer,
+  config: GeneratorConfig
+): Promise<CompressedImage> {
+  const pipeline = (quality: number, width?: number) => {
+    let s = sharp(source, { failOn: 'none' }).rotate();
+    if (config.maxDimension) {
+      s = s.resize({ width: config.maxDimension, withoutEnlargement: true });
+    } else if (width) {
+      s = s.resize({ width, withoutEnlargement: true });
+    }
+    return s.jpeg({ quality, mozjpeg: true });
+  };
+
+  for (const quality of JPEG_QUALITY_STEPS) {
+    const buffer = await pipeline(quality).toBuffer();
+    if (buffer.length <= config.maxSizeBytes) {
+      return { buffer, quality, resized: config.maxDimension ?? null };
+    }
+  }
+
+  for (const width of [1600, DEFAULT_FALLDOWN_WIDTH, 1024, 800]) {
+    for (const quality of JPEG_QUALITY_STEPS) {
+      const buffer = await pipeline(quality, width).toBuffer();
+      if (buffer.length <= config.maxSizeBytes) {
+        return { buffer, quality, resized: width };
+      }
+    }
+  }
+
+  const fallback = await pipeline(JPEG_QUALITY_STEPS[JPEG_QUALITY_STEPS.length - 1], 800).toBuffer();
+  return {
+    buffer: fallback,
+    quality: JPEG_QUALITY_STEPS[JPEG_QUALITY_STEPS.length - 1],
+    resized: 800,
+  };
 }
 
 function toResult(

@@ -36,12 +36,15 @@ export interface GeneratorConfig {
   prefixMaster: boolean;
   concurrency: number;
   force: boolean;
+  maxSizeBytes: number;
+  maxDimension: number | null;
 }
 
 export const DEFAULT_MODEL = 'google/nano-banana-2/text-to-image';
 export const DEFAULT_RESOLUTION = '1k';
 export const DEFAULT_OUTPUT_BASE = 'output';
 export const DEFAULT_CONCURRENCY = 3;
+export const DEFAULT_MAX_SIZE_KB = 200;
 export const SUPPORTED_RESOLUTIONS = new Set(['0.5k', '1k', '2k', '4k']);
 const IMAGES_MAP_SUFFIX = '-images-map';
 
@@ -72,6 +75,8 @@ function parseArgs(argv: string[]): {
   prefixMaster: boolean;
   concurrency: number;
   force: boolean;
+  maxSizeBytes: number;
+  maxDimension: number | null;
 } {
   const positional: string[] = [];
   let outputDir: string | undefined;
@@ -80,6 +85,8 @@ function parseArgs(argv: string[]): {
   let prefixMaster = true;
   let concurrency = DEFAULT_CONCURRENCY;
   let force = false;
+  let maxSizeKb = DEFAULT_MAX_SIZE_KB;
+  let maxDimension: number | null = null;
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
@@ -100,6 +107,14 @@ function parseArgs(argv: string[]): {
         break;
       case '--concurrency':
         concurrency = Number(next);
+        i++;
+        break;
+      case '--max-size':
+        maxSizeKb = Number(next);
+        i++;
+        break;
+      case '--max-dimension':
+        maxDimension = Number(next);
         i++;
         break;
       case '--no-prefix-master':
@@ -146,6 +161,18 @@ function parseArgs(argv: string[]): {
     );
   }
 
+  if (!Number.isFinite(maxSizeKb) || maxSizeKb <= 0) {
+    throw new Error(
+      `--max-size must be a positive number in KB (got "${maxSizeKb}")`
+    );
+  }
+
+  if (maxDimension !== null && (!Number.isFinite(maxDimension) || maxDimension <= 0)) {
+    throw new Error(
+      `--max-dimension must be a positive integer (got "${maxDimension}")`
+    );
+  }
+
   return {
     inputPath,
     slug,
@@ -155,6 +182,8 @@ function parseArgs(argv: string[]): {
     prefixMaster,
     concurrency,
     force,
+    maxSizeBytes: Math.round(maxSizeKb * 1024),
+    maxDimension,
   };
 }
 
@@ -170,6 +199,8 @@ Options:
   --model <slug>            WaveSpeed model path (default: ${DEFAULT_MODEL})
   --resolution <res>        0.5k | 1k | 2k | 4k (default: ${DEFAULT_RESOLUTION})
   --concurrency <n>         Parallel generations (default: ${DEFAULT_CONCURRENCY})
+  --max-size <kb>           Target JPEG size in KB (default: ${DEFAULT_MAX_SIZE_KB}). Quality and dimensions are auto-reduced to stay under this.
+  --max-dimension <px>      Optional cap on the output's longest side in pixels (no cap by default)
   --no-prefix-master        Do not prepend the "master" prompt to every image
   --force                   Re-generate even if the output file already exists
   -h, --help                Show this help
