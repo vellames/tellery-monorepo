@@ -16,7 +16,10 @@ import { fetchSessions } from '@/lib/api/session';
 import { ApiError } from '@/lib/api/client';
 import { config } from '@/lib/config';
 import { startSessionAction } from '@/lib/actions/session';
-import { StartSessionButton } from '@/components/molecules';
+import {
+  StartSessionButton,
+  AbandonSessionButton,
+} from '@/components/molecules';
 
 export default async function StoryStartPage({
   params,
@@ -114,6 +117,9 @@ export default async function StoryStartPage({
             <Play className="size-5 fill-current" />
             {tObj('continueButton')}
           </Link>
+          <div className="mt-1 flex justify-center">
+            <AbandonSessionButton sessionId={activeSessionId} />
+          </div>
         </div>
       ) : (
         <form action={startSessionAction.bind(null, history.id)}>

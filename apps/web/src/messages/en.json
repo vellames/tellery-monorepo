@@ -146,7 +146,14 @@
     "starting": "Starting…",
     "backToStories": "Back to stories",
     "continueButton": "Continue investigation",
-    "activeSessionDisclaimer": "You already have an ongoing investigation for this story. Pick up where you left off."
+    "activeSessionDisclaimer": "You already have an ongoing investigation for this story. Pick up where you left off.",
+    "abandonButton": "Abandon investigation",
+    "abandonTitle": "Abandon investigation?",
+    "abandonDescription": "This action is irreversible. You will no longer be able to progress in this session. If you want to play again, you'll start from scratch.",
+    "abandonConfirm": "Yes, abandon",
+    "abandonCancel": "Cancel",
+    "abandonedFeedback": "Investigation abandoned. You can start a new one below.",
+    "abandonedToast": "Investigation successfully abandoned."
   },
   "play": {
     "back": "Leave investigation",

@@ -146,7 +146,14 @@
     "starting": "Iniciando…",
     "backToStories": "Voltar para histórias",
     "continueButton": "Continuar investigação",
-    "activeSessionDisclaimer": "Você já tem uma investigação em andamento desta história. Continue de onde parou."
+    "activeSessionDisclaimer": "Você já tem uma investigação em andamento desta história. Continue de onde parou.",
+    "abandonButton": "Abandonar investigação",
+    "abandonTitle": "Abandonar investigação?",
+    "abandonDescription": "Esta ação é irreversível. Você não poderá mais progredir nesta sessão. Se quiser jogar novamente, começará do zero.",
+    "abandonConfirm": "Sim, abandonar",
+    "abandonCancel": "Cancelar",
+    "abandonedFeedback": "Investigação abandonada. Você pode iniciar uma nova abaixo.",
+    "abandonedToast": "Investigação abandonada com sucesso."
   },
   "play": {
     "back": "Sair da investigação",
