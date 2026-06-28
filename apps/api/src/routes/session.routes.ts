@@ -13,6 +13,10 @@ const authenticate: RequestHandler = (req, res, next) => {
   DIContainer.getInstance().getAuthMiddleware()(req, res, next);
 };
 
+const checkSessionOwnership: RequestHandler = (req, res, next) => {
+  DIContainer.getInstance().getSessionOwnershipMiddleware()(req, res, next);
+};
+
 /**
  * @openapi
  * /session/start:
@@ -282,7 +286,7 @@ router.get('/', authenticate, async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post('/:sessionId/interact', authenticate, upload.single('audio'), async (req, res) => {
+router.post('/:sessionId/interact', authenticate, checkSessionOwnership, upload.single('audio'), async (req, res) => {
   await DIContainer.getInstance().getSessionController().interact(req, res);
 });
 
@@ -330,7 +334,7 @@ router.post('/:sessionId/interact', authenticate, upload.single('audio'), async 
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post('/:sessionId/abandon', authenticate, async (req, res) => {
+router.post('/:sessionId/abandon', authenticate, checkSessionOwnership, async (req, res) => {
   await DIContainer.getInstance().getSessionController().abandonSession(req, res);
 });
 
@@ -480,7 +484,7 @@ router.post('/:sessionId/abandon', authenticate, async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.get('/:sessionId', authenticate, async (req, res) => {
+router.get('/:sessionId', authenticate, checkSessionOwnership, async (req, res) => {
   await DIContainer.getInstance().getSessionController().getSession(req, res);
 });
 
@@ -585,7 +589,7 @@ router.get('/:sessionId', authenticate, async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post('/:sessionId/conclusion', authenticate, async (req, res) => {
+router.post('/:sessionId/conclusion', authenticate, checkSessionOwnership, async (req, res) => {
   await DIContainer.getInstance()
     .getSessionController()
     .submitConclusion(req, res);

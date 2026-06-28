@@ -36,6 +36,7 @@ import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
 import { JwtTokenService } from '../services/user/jwt-token.service';
 import { UserService } from '../services/user/user.service';
 import { createAuthMiddleware } from '../middleware/auth.middleware';
+import { createSessionOwnershipMiddleware } from '../middleware/session-ownership.middleware';
 import type { RequestHandler } from 'express';
 
 export class DIContainer {
@@ -62,6 +63,8 @@ export class DIContainer {
   private readonly authMiddleware: RequestHandler = createAuthMiddleware(
     this.tokenService
   );
+  private readonly sessionOwnershipMiddleware: RequestHandler =
+    createSessionOwnershipMiddleware(this.sessionRepository);
   private readonly userService = new UserService(
     this.userRepository,
     this.passwordHasher,
@@ -157,6 +160,10 @@ export class DIContainer {
 
   getAuthMiddleware(): RequestHandler {
     return this.authMiddleware;
+  }
+
+  getSessionOwnershipMiddleware(): RequestHandler {
+    return this.sessionOwnershipMiddleware;
   }
 
   getPrisma(): PrismaClient {
