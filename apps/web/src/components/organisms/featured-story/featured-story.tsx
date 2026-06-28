@@ -16,9 +16,10 @@ import type { History } from '@/lib/types/history';
 
 export interface FeaturedStoryProps {
   histories: History[];
+  showBadge?: boolean;
 }
 
-export function FeaturedStory({ histories }: FeaturedStoryProps) {
+export function FeaturedStory({ histories, showBadge = true }: FeaturedStoryProps) {
   const t = useTranslations('home.featured');
   const tGenre = useTranslations('common.genres');
   const [current, setCurrent] = useState(0);
@@ -54,10 +55,12 @@ export function FeaturedStory({ histories }: FeaturedStoryProps) {
         {/* Left: maroon text panel */}
         <div className="relative z-10 order-2 flex flex-col justify-center p-7 pb-16 sm:p-12 lg:order-1 lg:col-span-2 lg:pb-12 lg:pl-20">
           <div>
-            <div className="border-gold/40 text-gold mb-6 inline-flex items-center gap-2 rounded-xl border bg-black/20 px-4 py-2 text-[11px] font-bold tracking-[0.12em] uppercase sm:text-xs">
-              <Star className="fill-gold size-3.5" />
-              {t('badge')}
-            </div>
+            {showBadge && (
+              <div className="border-gold/40 text-gold mb-6 inline-flex items-center gap-2 rounded-xl border bg-black/20 px-4 py-2 text-[11px] font-bold tracking-[0.12em] uppercase sm:text-xs">
+                <Star className="fill-gold size-3.5" />
+                {t('badge')}
+              </div>
+            )}
 
             <h1 className="font-heading text-4xl leading-[0.98] font-semibold tracking-tight text-[#fff9ef] sm:text-5xl">
               {story.title}
