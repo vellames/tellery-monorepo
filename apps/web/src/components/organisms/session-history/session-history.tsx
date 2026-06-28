@@ -18,7 +18,15 @@ async function fetchPage(
   return (await res.json()) as PaginatedSessions;
 }
 
-export function SessionHistory() {
+export function SessionHistory({
+  activeOnly = false,
+}: {
+  activeOnly?: boolean;
+}) {
+  if (activeOnly) {
+    return <SessionSection status="active" compact />;
+  }
+
   return (
     <div className="flex flex-col gap-12">
       <SessionSection status="active" />
@@ -27,7 +35,13 @@ export function SessionHistory() {
   );
 }
 
-function SessionSection({ status }: { status: 'active' | 'completed' }) {
+function SessionSection({
+  status,
+  compact = false,
+}: {
+  status: 'active' | 'completed';
+  compact?: boolean;
+}) {
   const t = useTranslations('home.history');
   const tGenre = useTranslations('common.genres');
   const queryClient = useQueryClient();
@@ -55,6 +69,7 @@ function SessionSection({ status }: { status: 'active' | 'completed' }) {
   }, []);
 
   if (isLoading) {
+    if (compact) return null;
     return (
       <section>
         <h2 className="font-heading text-primary mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -68,6 +83,7 @@ function SessionSection({ status }: { status: 'active' | 'completed' }) {
   }
 
   if (!data || accumulated.length === 0) {
+    if (compact) return null;
     if (isActive) {
       return (
         <section>

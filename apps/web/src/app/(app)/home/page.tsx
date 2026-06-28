@@ -2,7 +2,12 @@ import {
   fetchFeaturedHistories,
   fetchUpcomingHistories,
 } from '@/lib/api/history';
-import { FeaturedStory, HowItWorks, StoryList } from '@/components/organisms';
+import {
+  FeaturedStory,
+  HowItWorks,
+  SessionHistory,
+  StoryList,
+} from '@/components/organisms';
 
 export default async function HomePage() {
   const [histories, upcoming] = await Promise.all([
@@ -13,6 +18,7 @@ export default async function HomePage() {
   return (
     <>
       <FeaturedStory histories={histories} />
+      <SessionHistory activeOnly />
       <HowItWorks />
       <StoryList histories={upcoming} />
     </>
