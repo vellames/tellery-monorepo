@@ -121,6 +121,8 @@ export interface SessionListItem {
   thumbnailUrl: string | null;
   startedAt: string;
   completedAt: string | null;
+  historyId: string;
+  endingType: string | null;
 }
 
 export interface PaginatedSessions {
@@ -130,6 +132,8 @@ export interface PaginatedSessions {
   limit: number;
   totalPages: number;
 }
+
+export type CompletedHistoryMap = Record<string, string>;
 
 export interface InteractPayload {
   stateId: string;

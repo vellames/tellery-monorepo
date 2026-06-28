@@ -1,7 +1,6 @@
 import {
   PrismaClient,
   Prisma,
-  HistorySession,
   InteractionRole,
 } from '@prisma/client';
 import { ISessionRepository } from '../interfaces';
@@ -73,6 +72,14 @@ export const historySessionInclude = {
 
 export type HistorySessionWithRelations = Prisma.HistorySessionGetPayload<{
   include: typeof historySessionInclude;
+}>;
+
+export type SessionListItemWithEnding = Prisma.HistorySessionGetPayload<{
+  include: {
+    ending: {
+      include: { endingSnapshot: { select: { type: true } } };
+    };
+  };
 }>;
 
 export class SessionRepository
@@ -177,7 +184,7 @@ export class SessionRepository
     limit = 10,
     status?: string,
     tx?: PrismaTransaction
-  ): Promise<{ items: HistorySession[]; total: number }> {
+  ): Promise<{ items: SessionListItemWithEnding[]; total: number }> {
     const client = tx ?? this.prisma;
     const where: Record<string, unknown> = { deletedAt: null };
     if (userId) where.userId = userId;
@@ -190,6 +197,11 @@ export class SessionRepository
         orderBy: { createdAt: 'desc' },
         skip,
         take: limit,
+        include: {
+          ending: {
+            include: { endingSnapshot: { select: { type: true } } },
+          },
+        },
       }),
       client.historySession.count({ where }),
     ]);

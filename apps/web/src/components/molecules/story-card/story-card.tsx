@@ -1,20 +1,39 @@
 import Link from 'next/link';
-import { Clock, Lock, MapPin, Star } from 'lucide-react';
+import { CheckCircle2, Clock, Lock, MapPin, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import type { History } from '@/lib/types/history';
 
+const ENDING_LABEL_KEY: Record<string, string> = {
+  full_truth: 'endingFullTruth',
+  partial_truth: 'endingPartialTruth',
+  wrong_accusation: 'endingWrongAccusation',
+};
+
+const ENDING_BADGE_STYLES: Record<string, string> = {
+  full_truth: 'border-gold/40 bg-gold/15 text-[#f4d78f]',
+  partial_truth: 'border-amber-600/40 bg-amber-600/15 text-amber-400',
+  wrong_accusation: 'border-red-600/40 bg-red-600/15 text-red-400',
+};
+
 export interface StoryCardProps {
   history: History;
   featured?: boolean;
+  endingType?: string | null;
 }
 
-export function StoryCard({ history, featured = false }: StoryCardProps) {
+export function StoryCard({
+  history,
+  featured = false,
+  endingType = null,
+}: StoryCardProps) {
   const t = useTranslations('home.upcoming');
   const tGenre = useTranslations('common.genres');
   const tCommon = useTranslations('common');
+  const tEnding = useTranslations('play');
 
   const image = history.thumbnailUrl ?? history.coverImageUrl;
+  const endingLabelKey = endingType ? ENDING_LABEL_KEY[endingType] : null;
 
   const accessBadge = (
     <span
@@ -29,6 +48,19 @@ export function StoryCard({ history, featured = false }: StoryCardProps) {
       {history.isFree ? t('free') : t('premium')}
     </span>
   );
+
+  const endingBadge = endingLabelKey ? (
+    <span
+      className={cn(
+        'inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-bold tracking-wide uppercase backdrop-blur',
+        ENDING_BADGE_STYLES[endingType!] ??
+          'border-success/40 bg-black/30 text-[#b9e4c5]'
+      )}
+    >
+      <CheckCircle2 className="size-3.5" />
+      {tEnding(endingLabelKey)}
+    </span>
+  ) : null;
 
   return (
     <Link
@@ -60,7 +92,10 @@ export function StoryCard({ history, featured = false }: StoryCardProps) {
             {tCommon('featured')}
           </span>
         )}
-        {accessBadge}
+        <div className="flex flex-wrap gap-2">
+          {accessBadge}
+          {endingBadge}
+        </div>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 p-6">

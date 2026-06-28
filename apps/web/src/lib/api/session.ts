@@ -1,6 +1,7 @@
 import 'server-only';
 import { apiFetch } from '@/lib/api/client';
 import type {
+  CompletedHistoryMap,
   PaginatedSessions,
   SessionState,
   StartSessionResponse,
@@ -25,4 +26,25 @@ export async function fetchSessions(
   limit = 10
 ): Promise<PaginatedSessions> {
   return apiFetch<PaginatedSessions>(`/session?page=${page}&limit=${limit}`);
+}
+
+export async function fetchCompletedHistoryMap(): Promise<CompletedHistoryMap> {
+  const map: CompletedHistoryMap = {};
+  let page = 1;
+  let totalPages = 1;
+
+  while (page <= totalPages) {
+    const data = await apiFetch<PaginatedSessions>(
+      `/session?page=${page}&limit=50&status=completed`
+    );
+    totalPages = data.totalPages;
+    for (const item of data.items) {
+      if (item.endingType) {
+        map[item.historyId] = item.endingType;
+      }
+    }
+    page++;
+  }
+
+  return map;
 }

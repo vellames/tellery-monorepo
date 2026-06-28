@@ -1,7 +1,10 @@
-import { HistorySession, InteractionRole } from '@prisma/client';
+import { InteractionRole } from '@prisma/client';
 import type { UpdatedSecretState } from '../../engine/character/character-agent.service';
 import type { HistoryWithDefinitions } from '../../repositories/HistoryDefinitionRepository';
-import type { HistorySessionWithRelations } from '../../repositories/SessionRepository';
+import type {
+  HistorySessionWithRelations,
+  SessionListItemWithEnding,
+} from '../../repositories/SessionRepository';
 import { PrismaTransaction } from '../../types/database.types';
 import { IBaseRepository } from './base.repository.interface';
 
@@ -25,7 +28,7 @@ export interface ISessionRepository extends IBaseRepository {
     limit?: number,
     status?: string,
     tx?: PrismaTransaction
-  ): Promise<{ items: HistorySession[]; total: number }>;
+  ): Promise<{ items: SessionListItemWithEnding[]; total: number }>;
   recordObjectInspection(
     input: {
       objectStateId: string;

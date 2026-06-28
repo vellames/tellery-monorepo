@@ -2,14 +2,16 @@ import {
   fetchFeaturedHistories,
   fetchNonFeaturedHistories,
 } from '@/lib/api/history';
+import { fetchCompletedHistoryMap } from '@/lib/api/session';
 import { StoryCard } from '@/components/molecules';
 import { getTranslations } from 'next-intl/server';
 
 export default async function StoriesPage() {
-  const [t, featured, rest] = await Promise.all([
+  const [t, featured, rest, completedMap] = await Promise.all([
     getTranslations('stories'),
     fetchFeaturedHistories(),
     fetchNonFeaturedHistories(),
+    fetchCompletedHistoryMap(),
   ]);
 
   return (
@@ -25,7 +27,12 @@ export default async function StoriesPage() {
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
             {featured.map((history) => (
-              <StoryCard history={history} featured key={history.id} />
+              <StoryCard
+                history={history}
+                featured
+                key={history.id}
+                endingType={completedMap[history.id] ?? null}
+              />
             ))}
           </div>
         </section>
@@ -38,7 +45,11 @@ export default async function StoriesPage() {
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
             {rest.map((history) => (
-              <StoryCard history={history} key={history.id} />
+              <StoryCard
+                history={history}
+                key={history.id}
+                endingType={completedMap[history.id] ?? null}
+              />
             ))}
           </div>
         </section>

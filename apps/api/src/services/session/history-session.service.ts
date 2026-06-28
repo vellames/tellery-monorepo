@@ -23,6 +23,8 @@ export interface SessionListItem {
   thumbnailUrl: string | null;
   startedAt: Date;
   completedAt: Date | null;
+  historyId: string;
+  endingType: string | null;
 }
 
 export interface PaginatedSessions {
@@ -138,6 +140,8 @@ export class HistorySessionService {
         thumbnailUrl: await this.imageUrlSigner.sign(session.thumbnailUrl),
         startedAt: session.startedAt,
         completedAt: session.completedAt,
+        historyId: session.historyId,
+        endingType: session.ending?.endingSnapshot.type ?? null,
       }))
     );
 

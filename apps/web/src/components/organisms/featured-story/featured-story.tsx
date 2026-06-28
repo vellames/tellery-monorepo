@@ -19,7 +19,10 @@ export interface FeaturedStoryProps {
   showBadge?: boolean;
 }
 
-export function FeaturedStory({ histories, showBadge = true }: FeaturedStoryProps) {
+export function FeaturedStory({
+  histories,
+  showBadge = true,
+}: FeaturedStoryProps) {
   const t = useTranslations('home.featured');
   const tGenre = useTranslations('common.genres');
   const [current, setCurrent] = useState(0);
