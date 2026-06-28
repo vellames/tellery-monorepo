@@ -113,7 +113,8 @@ export class HistorySessionService {
   async listSessions(
     userId: string,
     page?: number,
-    limit?: number
+    limit?: number,
+    status?: string
   ): Promise<PaginatedSessions> {
     const normalizedPage = Math.max(1, page ?? 1);
     const normalizedLimit = Math.min(
@@ -124,7 +125,8 @@ export class HistorySessionService {
     const { items, total } = await this.sessions.list(
       userId,
       normalizedPage,
-      normalizedLimit
+      normalizedLimit,
+      status
     );
 
     const signedItems = await Promise.all(

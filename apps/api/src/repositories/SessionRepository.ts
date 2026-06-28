@@ -175,10 +175,13 @@ export class SessionRepository
     userId?: string,
     page = 1,
     limit = 10,
+    status?: string,
     tx?: PrismaTransaction
   ): Promise<{ items: HistorySession[]; total: number }> {
     const client = tx ?? this.prisma;
-    const where = userId ? { deletedAt: null, userId } : { deletedAt: null };
+    const where: Record<string, unknown> = { deletedAt: null };
+    if (userId) where.userId = userId;
+    if (status) where.status = status;
     const skip = (page - 1) * limit;
 
     const [items, total] = await Promise.all([

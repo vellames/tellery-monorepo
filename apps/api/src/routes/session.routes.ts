@@ -117,6 +117,13 @@ router.post('/start', authenticate, async (req, res) => {
  *           maximum: 50
  *           default: 10
  *         description: Items per page.
+ *       - name: status
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: string
+ *           enum: [active, completed, abandoned]
+ *         description: Filter sessions by status.
  *       - $ref: '#/components/parameters/AcceptLanguage'
  *     responses:
  *       200:

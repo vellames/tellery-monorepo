@@ -90,11 +90,15 @@ export class SessionController {
       const limit = req.query.limit
         ? parseInt(String(req.query.limit), 10)
         : 10;
+      const status = req.query.status
+        ? String(req.query.status)
+        : undefined;
 
       const response = await this.historySessionService.listSessions(
         req.user!.id,
         page,
-        limit
+        limit,
+        status
       );
       sendSuccess(res, response);
     } catch (error) {
