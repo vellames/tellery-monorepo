@@ -10,6 +10,7 @@
     "sessionNotOwned": "You do not have access to this session",
     "sessionAlreadyCompleted": "This session has already been completed",
     "sessionAlreadyActive": "You already have an active session for this history",
+    "sessionNotActive": "This session is no longer active",
     "requiredCluesNotDiscovered": "You have not discovered all required clues yet",
     "unknownConclusionField": "Unknown conclusion field: {{id}}",
     "unknownConclusionOption": "Unknown conclusion option: {{id}}",

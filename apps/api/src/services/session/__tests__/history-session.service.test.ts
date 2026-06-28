@@ -39,6 +39,7 @@ const mockSession = (
   ({
     id: 'session-1',
     status: 'active',
+    userId: 'user-1',
     clues: [],
     conclusionFields: [],
     endingSnapshots: [],
@@ -240,6 +241,46 @@ describe('HistorySessionService', () => {
       await expect(
         service.getSessionState('session-1', 'user-1')
       ).rejects.toMatchObject({ statusCode: 403 });
+    });
+  });
+
+  describe('abandonSession', () => {
+    it('abandons an active session', async () => {
+      sessions.findById.mockResolvedValue(mockSession());
+
+      await service.abandonSession('session-1', 'user-1');
+
+      expect(sessions.abandon).toHaveBeenCalledWith('session-1');
+    });
+
+    it('throws 404 when the session does not exist', async () => {
+      sessions.findById.mockResolvedValue(null);
+
+      await expect(
+        service.abandonSession('missing', 'user-1')
+      ).rejects.toMatchObject({ statusCode: 404 });
+    });
+
+    it('throws 403 when the session belongs to another user', async () => {
+      sessions.findById.mockResolvedValue(mockSession({ userId: 'other' }));
+
+      await expect(
+        service.abandonSession('session-1', 'user-1')
+      ).rejects.toMatchObject({ statusCode: 403 });
+    });
+
+    it('throws 409 when the session is not active', async () => {
+      sessions.findById.mockResolvedValue(
+        mockSession({ status: 'completed' })
+      );
+
+      await expect(
+        service.abandonSession('session-1', 'user-1')
+      ).rejects.toMatchObject({
+        statusCode: StatusCodes.CONFLICT,
+        messageKey: 'session:errors.sessionNotActive',
+      });
+      expect(sessions.abandon).not.toHaveBeenCalled();
     });
   });
 });

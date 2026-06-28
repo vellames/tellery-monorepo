@@ -125,6 +125,35 @@ export class HistorySessionService {
     return this.signImages(buildSessionStateResponse(session));
   }
 
+  async abandonSession(sessionId: string, userId: string): Promise<void> {
+    const session = await this.sessions.findById(sessionId);
+    if (!session) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        sessionId,
+        'session:errors.unknownSession'
+      );
+    }
+
+    if (session.userId !== userId) {
+      throw new HttpError(
+        StatusCodes.FORBIDDEN,
+        sessionId,
+        'session:errors.sessionNotOwned'
+      );
+    }
+
+    if (session.status !== 'active') {
+      throw new HttpError(
+        StatusCodes.CONFLICT,
+        sessionId,
+        'session:errors.sessionNotActive'
+      );
+    }
+
+    await this.sessions.abandon(sessionId);
+  }
+
   async listSessions(
     userId: string,
     page?: number,

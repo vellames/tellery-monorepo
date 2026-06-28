@@ -195,6 +195,17 @@ export class SessionRepository
     });
   }
 
+  async abandon(
+    sessionId: string,
+    tx?: PrismaTransaction
+  ): Promise<void> {
+    const client = tx ?? this.prisma;
+    await client.historySession.update({
+      where: { id: sessionId },
+      data: { status: 'abandoned' },
+    });
+  }
+
   async list(
     userId?: string,
     page = 1,

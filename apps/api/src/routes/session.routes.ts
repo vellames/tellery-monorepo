@@ -288,6 +288,54 @@ router.post('/:sessionId/interact', authenticate, upload.single('audio'), async 
 
 /**
  * @openapi
+ * /session/{sessionId}/abandon:
+ *   post:
+ *     tags: [Session]
+ *     summary: Abandon an active session
+ *     description: Marks an active session as abandoned. Only sessions with status "active" can be abandoned.
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - name: sessionId
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     responses:
+ *       200:
+ *         description: Session abandoned successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     sessionId:
+ *                       type: string
+ *       409:
+ *         description: Session is not active (already completed or abandoned)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ *       404:
+ *         description: Session not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ */
+router.post('/:sessionId/abandon', authenticate, async (req, res) => {
+  await DIContainer.getInstance().getSessionController().abandonSession(req, res);
+});
+
+/**
+ * @openapi
  * /session/{sessionId}:
  *   get:
  *     tags: [Session]

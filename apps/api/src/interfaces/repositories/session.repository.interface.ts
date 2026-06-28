@@ -27,6 +27,10 @@ export interface ISessionRepository extends IBaseRepository {
     historyId: string,
     tx?: PrismaTransaction
   ): Promise<HistorySession | null>;
+  abandon(
+    sessionId: string,
+    tx?: PrismaTransaction
+  ): Promise<void>;
   list(
     userId?: string,
     page?: number,
