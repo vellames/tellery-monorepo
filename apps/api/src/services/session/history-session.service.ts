@@ -12,6 +12,27 @@ import {
   SessionStateResponse,
 } from './session-state.mapper';
 
+const DEFAULT_PAGE_SIZE = 10;
+const MAX_PAGE_SIZE = 50;
+
+export interface SessionListItem {
+  id: string;
+  status: string;
+  title: string;
+  genre: string;
+  thumbnailUrl: string | null;
+  startedAt: Date;
+  completedAt: Date | null;
+}
+
+export interface PaginatedSessions {
+  items: SessionListItem[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
 export class HistorySessionService {
   constructor(
     private readonly users: IUserRepository,
@@ -87,6 +108,44 @@ export class HistorySessionService {
     }
 
     return this.signImages(buildSessionStateResponse(session));
+  }
+
+  async listSessions(
+    userId: string,
+    page?: number,
+    limit?: number
+  ): Promise<PaginatedSessions> {
+    const normalizedPage = Math.max(1, page ?? 1);
+    const normalizedLimit = Math.min(
+      MAX_PAGE_SIZE,
+      Math.max(1, limit ?? DEFAULT_PAGE_SIZE)
+    );
+
+    const { items, total } = await this.sessions.list(
+      userId,
+      normalizedPage,
+      normalizedLimit
+    );
+
+    const signedItems = await Promise.all(
+      items.map(async (session) => ({
+        id: session.id,
+        status: session.status,
+        title: session.title,
+        genre: session.genre,
+        thumbnailUrl: await this.imageUrlSigner.sign(session.thumbnailUrl),
+        startedAt: session.startedAt,
+        completedAt: session.completedAt,
+      }))
+    );
+
+    return {
+      items: signedItems,
+      total,
+      page: normalizedPage,
+      limit: normalizedLimit,
+      totalPages: Math.ceil(total / normalizedLimit),
+    };
   }
 
   private async signImages(

@@ -92,7 +92,89 @@ router.post('/start', authenticate, async (req, res) => {
 
 /**
  * @openapi
- * /session/{sessionId}/interact:
+ * /session:
+ *   get:
+ *     tags: [Session]
+ *     summary: List the authenticated user's sessions
+ *     description: Returns a paginated list of the user's sessions, newest first.
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - name: page
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *         description: Page number.
+ *       - name: limit
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 50
+ *           default: 10
+ *         description: Items per page.
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     responses:
+ *       200:
+ *         description: A paginated list of sessions
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     items:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           id:
+ *                             type: string
+ *                           status:
+ *                             type: string
+ *                             enum: [active, completed, abandoned]
+ *                           title:
+ *                             type: string
+ *                           genre:
+ *                             type: string
+ *                           thumbnailUrl:
+ *                             type: string
+ *                             nullable: true
+ *                           startedAt:
+ *                             type: string
+ *                             format: date-time
+ *                           completedAt:
+ *                             type: string
+ *                             format: date-time
+ *                             nullable: true
+ *                     total:
+ *                       type: integer
+ *                     page:
+ *                       type: integer
+ *                     limit:
+ *                       type: integer
+ *                     totalPages:
+ *                       type: integer
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ */
+router.get('/', authenticate, async (req, res) => {
+  await DIContainer.getInstance().getSessionController().listSessions(req, res);
+});
+
+/**
  *   post:
  *     tags: [Session]
  *     summary: Interact with a session

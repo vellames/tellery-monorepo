@@ -82,6 +82,33 @@ export class SessionController {
     }
   };
 
+  listSessions = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+
+    try {
+      const page = req.query.page ? parseInt(String(req.query.page), 10) : 1;
+      const limit = req.query.limit
+        ? parseInt(String(req.query.limit), 10)
+        : 10;
+
+      const response = await this.historySessionService.listSessions(
+        req.user!.id,
+        page,
+        limit
+      );
+      sendSuccess(res, response);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey
+          ? t(error.messageKey, { id: error.message })
+          : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
+
   interact = async (req: Request, res: Response): Promise<void> => {
     const t = req.t as TranslationFunction;
     const sessionId = String(req.params.sessionId);

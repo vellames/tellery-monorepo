@@ -173,15 +173,25 @@ export class SessionRepository
 
   async list(
     userId?: string,
+    page = 1,
+    limit = 10,
     tx?: PrismaTransaction
-  ): Promise<HistorySession[]> {
+  ): Promise<{ items: HistorySession[]; total: number }> {
     const client = tx ?? this.prisma;
     const where = userId ? { deletedAt: null, userId } : { deletedAt: null };
+    const skip = (page - 1) * limit;
 
-    return client.historySession.findMany({
-      where,
-      orderBy: { createdAt: 'desc' },
-    });
+    const [items, total] = await Promise.all([
+      client.historySession.findMany({
+        where,
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take: limit,
+      }),
+      client.historySession.count({ where }),
+    ]);
+
+    return { items, total };
   }
 
   async recordObjectInspection(

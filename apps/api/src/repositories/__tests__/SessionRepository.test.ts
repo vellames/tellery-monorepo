@@ -84,41 +84,66 @@ describe('SessionRepository', () => {
   });
 
   describe('list', () => {
-    it('returns all non-deleted sessions ordered by createdAt desc when no userId', async () => {
+    it('returns paginated sessions ordered by createdAt desc when no userId', async () => {
       const sessions = [
         mockSession({ id: 'session-1' }),
         mockSession({ id: 'session-2' }),
       ];
       prisma.historySession.findMany.mockResolvedValue(sessions);
+      prisma.historySession.count.mockResolvedValue(2);
 
       const result = await repo.list();
 
-      expect(result).toEqual(sessions);
-      expect(prisma.historySession.findMany).toHaveBeenCalledWith({
-        where: { deletedAt: null },
-        orderBy: { createdAt: 'desc' },
-      });
+      expect(result.items).toEqual(sessions);
+      expect(result.total).toBe(2);
+      expect(prisma.historySession.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { deletedAt: null },
+          orderBy: { createdAt: 'desc' },
+          skip: 0,
+          take: 10,
+        })
+      );
     });
 
     it('filters by userId when provided', async () => {
       const sessions = [mockSession({ id: 'session-1', userId: 'user-1' })];
       prisma.historySession.findMany.mockResolvedValue(sessions);
+      prisma.historySession.count.mockResolvedValue(1);
 
       const result = await repo.list('user-1');
 
-      expect(result).toEqual(sessions);
-      expect(prisma.historySession.findMany).toHaveBeenCalledWith({
-        where: { deletedAt: null, userId: 'user-1' },
-        orderBy: { createdAt: 'desc' },
-      });
+      expect(result.items).toEqual(sessions);
+      expect(prisma.historySession.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { deletedAt: null, userId: 'user-1' },
+          orderBy: { createdAt: 'desc' },
+        })
+      );
     });
 
-    it('returns empty array when no sessions exist', async () => {
+    it('returns empty items when no sessions exist', async () => {
       prisma.historySession.findMany.mockResolvedValue([]);
+      prisma.historySession.count.mockResolvedValue(0);
 
       const result = await repo.list();
 
-      expect(result).toEqual([]);
+      expect(result.items).toEqual([]);
+      expect(result.total).toBe(0);
+    });
+
+    it('respects page and limit for pagination', async () => {
+      prisma.historySession.findMany.mockResolvedValue([]);
+      prisma.historySession.count.mockResolvedValue(25);
+
+      await repo.list(undefined, 3, 5);
+
+      expect(prisma.historySession.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          skip: 10,
+          take: 5,
+        })
+      );
     });
   });
 

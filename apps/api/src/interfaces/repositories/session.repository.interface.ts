@@ -19,7 +19,12 @@ export interface ISessionRepository extends IBaseRepository {
     sessionId: string,
     tx?: PrismaTransaction
   ): Promise<HistorySessionWithRelations | null>;
-  list(userId?: string, tx?: PrismaTransaction): Promise<HistorySession[]>;
+  list(
+    userId?: string,
+    page?: number,
+    limit?: number,
+    tx?: PrismaTransaction
+  ): Promise<{ items: HistorySession[]; total: number }>;
   recordObjectInspection(
     input: {
       objectStateId: string;
