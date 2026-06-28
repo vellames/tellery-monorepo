@@ -93,6 +93,16 @@
       "premium": "Premium",
       "free": "Grátis",
       "duration": "{minutes} min"
+    },
+    "history": {
+      "title": "Minhas investigações",
+      "subtitle": "Continue de onde parou.",
+      "empty": "Você ainda não iniciou nenhuma investigação.",
+      "continue": "Continuar",
+      "replay": "Revisar conclusão",
+      "statusActive": "Em andamento",
+      "statusCompleted": "Resolvido",
+      "more": "Carregar mais"
     }
   },
   "common": {

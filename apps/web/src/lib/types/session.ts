@@ -113,6 +113,24 @@ export interface StartSessionResponse {
   sessionId: string;
 }
 
+export interface SessionListItem {
+  id: string;
+  status: string;
+  title: string;
+  genre: string;
+  thumbnailUrl: string | null;
+  startedAt: string;
+  completedAt: string | null;
+}
+
+export interface PaginatedSessions {
+  items: SessionListItem[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
 export interface InteractPayload {
   stateId: string;
   interaction: string;

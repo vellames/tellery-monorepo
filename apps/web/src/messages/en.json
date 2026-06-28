@@ -93,6 +93,16 @@
       "premium": "Premium",
       "free": "Free",
       "duration": "{minutes} min"
+    },
+    "history": {
+      "title": "My investigations",
+      "subtitle": "Pick up where you left off.",
+      "empty": "You haven't started any investigations yet.",
+      "continue": "Continue",
+      "replay": "Review conclusion",
+      "statusActive": "In progress",
+      "statusCompleted": "Solved",
+      "more": "Load more"
     }
   },
   "common": {
