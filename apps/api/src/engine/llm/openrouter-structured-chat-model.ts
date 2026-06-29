@@ -9,13 +9,19 @@ import {
 export class OpenRouterStructuredChatModel implements IStructuredChatModel {
   private readonly chatModel: ChatOpenAI;
 
-  constructor(private readonly model: string) {
+  constructor(
+    private readonly model: string,
+    reasoningEffort?: string
+  ) {
     this.chatModel = new ChatOpenAI({
       apiKey: appConfig.openrouter.apiKey,
       model,
       configuration: {
         baseURL: appConfig.openrouter.baseUrl,
       },
+      ...(reasoningEffort
+        ? { modelKwargs: { reasoning_effort: reasoningEffort } }
+        : {}),
     });
   }
 

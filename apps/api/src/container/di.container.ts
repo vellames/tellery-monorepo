@@ -101,7 +101,10 @@ export class DIContainer {
     t
   );
   private readonly characterAgent = new CharacterAgent(
-    new OpenRouterStructuredChatModel(appConfig.openrouter.characterAgentModel),
+    new OpenRouterStructuredChatModel(
+      appConfig.openrouter.characterAgentModel,
+      appConfig.openrouter.reasoningEffort
+    ),
     t
   );
   private readonly sessionInteractionService = new SessionInteractionService(

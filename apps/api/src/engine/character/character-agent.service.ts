@@ -251,109 +251,86 @@ export class CharacterAgent {
       stage: CharacterSecretStage;
     }>
   ): { messages: ChatMessage[]; currentSystemMessages: string[] } {
+    const baseContent = this.translate(input.language, SYSTEM_PROMPT_KEY, {
+      character: JSON.stringify(
+        {
+          id: input.character.id,
+          name: input.character.name,
+          role: input.character.role,
+          shortDescription: input.character.shortDescription,
+          personality: input.character.personality,
+          speakingStyle: input.character.speakingStyle,
+          publicKnowledge: input.character.publicKnowledge,
+          privateKnowledge: input.character.privateKnowledge,
+          openingLine: input.character.openingLine,
+          conversationBoundaries: input.character.conversationBoundaries,
+        },
+        null,
+        2
+      ),
+      secretBaselines: JSON.stringify(
+        input.secrets.map((secret) => ({
+          secretId: secret.secretId,
+          summary: secret.summary,
+          defaultStrategy: secret.defaultStrategy,
+        })),
+        null,
+        2
+      ),
+    });
+
+    const turnContent = this.translate(input.language, TURN_STATE_PROMPT_KEY, {
+      discoveredClues: JSON.stringify(
+        input.discoveredClues.map((clue) => clue.title)
+      ),
+      currentProgress: JSON.stringify(
+        input.secrets.map((secret) => ({
+          secretId: secret.secretId,
+          currentStageLevel: secret.currentStageLevel,
+        })),
+        null,
+        2
+      ),
+      turnReveals: JSON.stringify(
+        {
+          clueReveals: eligibleClueRules.map((rule) => ({
+            clue: rule.clueTitle,
+            reveal: rule.revealText,
+          })),
+          secretAdvances: eligibleSecretStages.map(({ secret, stage }) => ({
+            secretId: secret.secretId,
+            advanceToLevel: stage.level,
+            behavior: stage.behavior,
+            allowedToRevealTruth: stage.allowedToRevealTruth,
+            ...(stage.allowedToRevealTruth ? { truth: secret.truth } : {}),
+            sampleResponses: stage.sampleResponses,
+          })),
+        },
+        null,
+        2
+      ),
+    });
+
+    const consolidatedSystem = `${baseContent}\n\n---\n\n${turnContent}`;
     const history = this.toChatHistory(input.recentConversation);
-    const shouldSendBasePrompt = !history.some(
-      (message) => message.role === 'system' && this.isBasePrompt(message.content)
-    );
-    const baseSystemMessage: ChatMessage = {
-      role: 'system',
-      content: this.translate(input.language, SYSTEM_PROMPT_KEY, {
-        character: JSON.stringify(
-          {
-            id: input.character.id,
-            name: input.character.name,
-            role: input.character.role,
-            shortDescription: input.character.shortDescription,
-            personality: input.character.personality,
-            speakingStyle: input.character.speakingStyle,
-            publicKnowledge: input.character.publicKnowledge,
-            privateKnowledge: input.character.privateKnowledge,
-            openingLine: input.character.openingLine,
-            conversationBoundaries: input.character.conversationBoundaries,
-          },
-          null,
-          2
-        ),
-        secretBaselines: JSON.stringify(
-          input.secrets.map((secret) => ({
-            secretId: secret.secretId,
-            summary: secret.summary,
-            defaultStrategy: secret.defaultStrategy,
-          })),
-          null,
-          2
-        ),
-      }),
-    };
-    const turnSystemMessage: ChatMessage = {
-      role: 'system',
-      content: this.translate(input.language, TURN_STATE_PROMPT_KEY, {
-        discoveredClues: JSON.stringify(
-          input.discoveredClues.map((clue) => clue.title)
-        ),
-        currentProgress: JSON.stringify(
-          input.secrets.map((secret) => ({
-            secretId: secret.secretId,
-            currentStageLevel: secret.currentStageLevel,
-          })),
-          null,
-          2
-        ),
-        turnReveals: JSON.stringify(
-          {
-            clueReveals: eligibleClueRules.map((rule) => ({
-              clue: rule.clueTitle,
-              reveal: rule.revealText,
-            })),
-            secretAdvances: eligibleSecretStages.map(({ secret, stage }) => ({
-              secretId: secret.secretId,
-              advanceToLevel: stage.level,
-              behavior: stage.behavior,
-              allowedToRevealTruth: stage.allowedToRevealTruth,
-              ...(stage.allowedToRevealTruth ? { truth: secret.truth } : {}),
-              sampleResponses: stage.sampleResponses,
-            })),
-          },
-          null,
-          2
-        ),
-      }),
-    };
-    const currentSystemMessages = [
-      ...(shouldSendBasePrompt ? [baseSystemMessage.content] : []),
-      turnSystemMessage.content,
-    ];
 
     return {
       messages: [
-        ...(shouldSendBasePrompt ? [baseSystemMessage] : []),
+        { role: 'system', content: consolidatedSystem },
         ...history,
-        turnSystemMessage,
         { role: 'user', content: input.interaction },
       ],
-      currentSystemMessages,
+      currentSystemMessages: [baseContent, turnContent],
     };
   }
 
-  private isBasePrompt(content: string): boolean {
-    return (
-      content.includes('Baseline dos segredos') ||
-      content.includes('Secrets baseline')
-    );
-  }
-
   private toChatHistory(messages: ConversationMessage[]): ChatMessage[] {
-    return messages.map((message) => ({
-      role: this.toChatRole(message.role),
-      content: message.content,
-    }));
-  }
-
-  private toChatRole(role: string): ChatMessage['role'] {
-    if (role === 'system') return 'system';
-    if (role === 'user') return 'user';
-
-    return 'assistant';
+    return messages
+      .filter((message) => message.role !== 'system')
+      .map((message) => ({
+        role: message.role === 'user' ? 'user' : 'assistant',
+        content: message.content,
+      }));
   }
 
   private collectDiscoveredClues(

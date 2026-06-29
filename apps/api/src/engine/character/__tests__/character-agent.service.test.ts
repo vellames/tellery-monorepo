@@ -188,63 +188,43 @@ describe('CharacterAgent', () => {
     });
   });
 
-  it('builds messages with system context and conversation history', async () => {
+  it('builds a single consolidated system message and filters system from history', async () => {
     llm.invoke.mockResolvedValue('...');
 
     const result = await agent.run({
       ...baseInput,
       recentConversation: [
+        { role: 'system', content: 'old-base-prompt' },
         { role: 'user', content: 'msg-1' },
         { role: 'character', content: 'msg-2' },
-        { role: 'system', content: 'meta-ignored' },
+        { role: 'system', content: 'old-turn-prompt' },
       ],
     });
-
-    expect(translate).toHaveBeenCalledWith(
-      language,
-      'characterAgentSystemPrompt',
-      expect.objectContaining({ character: expect.any(String) })
-    );
 
     const messages = llm.invoke.mock.calls[0][0] as Array<{
       role: string;
       content: string;
     }>;
-    // base system, then all persisted history (including system), then current
-    // turn system, then the current interaction as the final user message.
-    expect(messages[0].role).toBe('system');
+
+    // Single consolidated system at top, system messages filtered from history
+    const systemMessages = messages.filter((m) => m.role === 'system');
+    expect(systemMessages).toHaveLength(1);
+    expect(systemMessages[0].content).toContain('characterAgentSystemPrompt');
+    expect(systemMessages[0].content).toContain('characterAgentTurnStatePrompt');
+
+    // History: only user/assistant, no system
     expect(messages[1]).toEqual({ role: 'user', content: 'msg-1' });
     expect(messages[2]).toEqual({ role: 'assistant', content: 'msg-2' });
-    expect(messages[3]).toEqual({ role: 'system', content: 'meta-ignored' });
-    expect(messages[4].role).toBe('system');
+
+    // Final message is the current interaction
     expect(messages[messages.length - 1]).toEqual({
       role: 'user',
       content: baseInput.interaction,
     });
+
+    // systemMessages for persistence: always BASE + TURN
     expect(result.systemMessages).toHaveLength(2);
-    expect(result.systemMessages).not.toContain('meta-ignored');
-  });
-
-  it('does not generate a new base prompt when one already exists in history', async () => {
-    llm.invoke.mockResolvedValue('...');
-
-    const result = await agent.run({
-      ...baseInput,
-      recentConversation: [
-        { role: 'system', content: 'Baseline dos segredos anterior' },
-      ],
-    });
-
-    const messages = llm.invoke.mock.calls[0][0] as Array<{
-      role: string;
-      content: string;
-    }>;
-
-    expect(messages[0]).toEqual({
-      role: 'system',
-      content: 'Baseline dos segredos anterior',
-    });
-    expect(result.systemMessages).toHaveLength(1);
-    expect(result.systemMessages[0]).toBe('characterAgentTurnStatePrompt');
+    expect(result.systemMessages[0]).toBe('characterAgentSystemPrompt');
+    expect(result.systemMessages[1]).toBe('characterAgentTurnStatePrompt');
   });
 });

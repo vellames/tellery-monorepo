@@ -8,6 +8,9 @@ const envSchema = z.object({
   OPENROUTER_INTENT_MODEL: z.string().optional(),
   OPENROUTER_OBJECT_MODEL: z.string().optional(),
   OPENROUTER_CHARACTER_MODEL: z.string().optional(),
+  OPENROUTER_REASONING_EFFORT: z
+    .enum(['max', 'xhigh', 'high', 'medium', 'low', 'minimal', 'none'])
+    .optional(),
   OPENROUTER_AUDIO_MODEL: z.string().optional(),
   INTENT_DETECTOR_THRESHOLD: z.coerce.number().min(0).max(1).default(0.5),
   DEFAULT_LANGUAGE: z.enum(['en', 'pt-BR']).default('pt-BR'),
@@ -62,6 +65,7 @@ export const appConfig = {
     intentDetectorModel: env.OPENROUTER_INTENT_MODEL ?? env.OPENROUTER_MODEL,
     objectAgentModel: env.OPENROUTER_OBJECT_MODEL ?? env.OPENROUTER_MODEL,
     characterAgentModel: env.OPENROUTER_CHARACTER_MODEL ?? env.OPENROUTER_MODEL,
+    reasoningEffort: env.OPENROUTER_REASONING_EFFORT ?? 'medium',
     audioModel: env.OPENROUTER_AUDIO_MODEL ?? 'openai/whisper-1',
     intentDetectorThreshold: env.INTENT_DETECTOR_THRESHOLD,
   },
