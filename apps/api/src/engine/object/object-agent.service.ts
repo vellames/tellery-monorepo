@@ -33,6 +33,7 @@ export interface RunObjectAgentInput {
   detectedIntents: DetectedIntent[];
   discoveredClueIds: string[];
   language: SupportedLanguage;
+  sessionId?: string;
 }
 
 export interface ObjectAgentDiscoveredClue {
@@ -78,7 +79,8 @@ export class ObjectAgent {
 
     const response = await this.llm.invokeStructured(
       this.buildMessages(input, eligibleRules),
-      ObjectAgentResponseSchema
+      ObjectAgentResponseSchema,
+      { sessionId: input.sessionId }
     );
 
     console.log('[object-agent] raw llm response', {

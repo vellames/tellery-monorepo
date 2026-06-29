@@ -71,6 +71,7 @@ export interface RunCharacterAgentInput {
   clueRules: CharacterClueRule[];
   secrets: CharacterSecret[];
   language: SupportedLanguage;
+  sessionId?: string;
 }
 
 export interface CharacterAgentDiscoveredClue {
@@ -133,7 +134,9 @@ export class CharacterAgent {
       })),
     });
 
-    const reply = await this.llm.invoke(messages);
+    const reply = await this.llm.invoke(messages, {
+      sessionId: input.sessionId,
+    });
 
     console.log('[character-agent] raw llm response', {
       characterId: input.character.id,

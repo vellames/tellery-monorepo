@@ -28,6 +28,7 @@ export interface DetectIntentInput {
   message: string;
   intents: IntentDetectionTarget[];
   language: SupportedLanguage;
+  sessionId?: string;
 }
 
 export type IntentTranslationFn = (
@@ -67,7 +68,8 @@ export class IntentDetectionService {
     // 1. LLM scores EVERY intent — always runs, guarantees all are evaluated
     const response = await this.llm.invokeStructured(
       this.buildMessages(input, threshold),
-      IntentDetectorResponseSchema
+      IntentDetectorResponseSchema,
+      { sessionId: input.sessionId }
     );
 
     console.log('[intent-detection] raw llm response', {

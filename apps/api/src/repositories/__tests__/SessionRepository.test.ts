@@ -363,6 +363,100 @@ describe('SessionRepository', () => {
     });
   });
 
+  describe('recordLlmCall', () => {
+    it('persists a single LLM usage row with nano-dollar cost', async () => {
+      prisma.llmCall.create.mockResolvedValue({} as never);
+
+      await repo.recordLlmCall({
+        sessionId: 'session-1',
+        purpose: 'character',
+        model: 'deepseek/deepseek-v4-pro',
+        promptTokens: 1200,
+        completionTokens: 80,
+        totalTokens: 1280,
+        costUsdNanos: 100_000n,
+        latencyMs: 540,
+      });
+
+      expect(prisma.llmCall.create).toHaveBeenCalledWith({
+        data: {
+          sessionId: 'session-1',
+          purpose: 'character',
+          model: 'deepseek/deepseek-v4-pro',
+          promptTokens: 1200,
+          completionTokens: 80,
+          totalTokens: 1280,
+          costUsdNanos: 100_000n,
+          latencyMs: 540,
+        },
+      });
+    });
+
+    it('persists without latency when omitted', async () => {
+      prisma.llmCall.create.mockResolvedValue({} as never);
+
+      await repo.recordLlmCall({
+        sessionId: 'session-1',
+        purpose: 'intent',
+        model: 'google/gemini-2.5-flash-lite',
+        promptTokens: 100,
+        completionTokens: 5,
+        totalTokens: 105,
+        costUsdNanos: 0n,
+      });
+
+      expect(prisma.llmCall.create).toHaveBeenCalledWith({
+        data: {
+          sessionId: 'session-1',
+          purpose: 'intent',
+          model: 'google/gemini-2.5-flash-lite',
+          promptTokens: 100,
+          completionTokens: 5,
+          totalTokens: 105,
+          costUsdNanos: 0n,
+        },
+      });
+    });
+  });
+
+  describe('getSessionCost', () => {
+    it('aggregates nano-dollar totals and groups per purpose', async () => {
+      (prisma.llmCall.aggregate as jest.Mock).mockResolvedValue({
+        _sum: { costUsdNanos: 250_000n },
+      });
+      (prisma.llmCall.groupBy as jest.Mock).mockResolvedValue([
+        {
+          purpose: 'character',
+          _sum: { costUsdNanos: 200_000n },
+          _count: { id: 2 },
+        },
+        {
+          purpose: 'intent',
+          _sum: { costUsdNanos: 50_000n },
+          _count: { id: 1 },
+        },
+      ]);
+
+      const result = await repo.getSessionCost('session-1');
+
+      expect(prisma.llmCall.aggregate).toHaveBeenCalledWith({
+        where: { sessionId: 'session-1' },
+        _sum: { costUsdNanos: true },
+      });
+      expect(prisma.llmCall.groupBy).toHaveBeenCalledWith({
+        by: ['purpose'],
+        where: { sessionId: 'session-1' },
+        _sum: { costUsdNanos: true },
+        _count: { id: true },
+      });
+      expect(result.totalCostUsdNanos).toBe(250_000n);
+      expect(result.breakdown).toEqual([
+        { purpose: 'character', costUsdNanos: 200_000n, calls: 2 },
+        { purpose: 'intent', costUsdNanos: 50_000n, calls: 1 },
+      ]);
+    });
+  });
+
   describe('recordLocationVisit', () => {
     beforeEach(() => {
       prisma.$transaction.mockImplementation(async (cb) =>

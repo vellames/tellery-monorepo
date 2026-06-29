@@ -281,4 +281,51 @@ describe('HistorySessionService', () => {
       expect(sessions.abandon).not.toHaveBeenCalled();
     });
   });
+
+  describe('getSessionCost', () => {
+    it('returns the total cost and per-purpose breakdown converted to USD', async () => {
+      sessions.findById.mockResolvedValue(mockSession());
+      sessions.getSessionCost.mockResolvedValue({
+        totalCostUsdNanos: 250_000n,
+        breakdown: [
+          { purpose: 'character', costUsdNanos: 200_000n, calls: 2 },
+          { purpose: 'intent', costUsdNanos: 50_000n, calls: 1 },
+        ],
+      });
+
+      const result = await service.getSessionCost('session-1', 'user-1');
+
+      expect(sessions.getSessionCost).toHaveBeenCalledWith('session-1');
+      expect(result.totalCostUsd).toBeCloseTo(0.00025, 9);
+      expect(result.totalCalls).toBe(3);
+      expect(result.breakdown).toEqual([
+        { purpose: 'character', costUsd: expect.closeTo(0.0002, 9), calls: 2 },
+        { purpose: 'intent', costUsd: expect.closeTo(0.00005, 9), calls: 1 },
+      ]);
+    });
+
+    it('throws 404 when the session does not exist', async () => {
+      sessions.findById.mockResolvedValue(null);
+
+      await expect(
+        service.getSessionCost('session-1', 'user-1')
+      ).rejects.toMatchObject({
+        statusCode: StatusCodes.NOT_FOUND,
+        messageKey: 'session:errors.unknownSession',
+      });
+      expect(sessions.getSessionCost).not.toHaveBeenCalled();
+    });
+
+    it('throws 403 when the session belongs to another user', async () => {
+      sessions.findById.mockResolvedValue(mockSession({ userId: 'user-1' }));
+
+      await expect(
+        service.getSessionCost('session-1', 'user-intruder')
+      ).rejects.toMatchObject({
+        statusCode: StatusCodes.FORBIDDEN,
+        messageKey: 'session:errors.sessionNotOwned',
+      });
+      expect(sessions.getSessionCost).not.toHaveBeenCalled();
+    });
+  });
 });

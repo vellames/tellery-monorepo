@@ -7,6 +7,7 @@ import {
 import { HttpError } from '../../utils/http-error';
 import { StartSessionBody } from '../../types/http/session.validation';
 import { StatusCodes } from 'http-status-codes';
+import { fromNanos } from '../../engine/llm/cost';
 import {
   buildSessionStateResponse,
   SessionStateResponse,
@@ -33,6 +34,18 @@ export interface PaginatedSessions {
   page: number;
   limit: number;
   totalPages: number;
+}
+
+export interface SessionCostBreakdownItemResponse {
+  purpose: string;
+  costUsd: number;
+  calls: number;
+}
+
+export interface SessionCostResponse {
+  totalCostUsd: number;
+  totalCalls: number;
+  breakdown: SessionCostBreakdownItemResponse[];
 }
 
 export class HistorySessionService {
@@ -152,6 +165,40 @@ export class HistorySessionService {
     }
 
     await this.sessions.abandon(sessionId);
+  }
+
+  async getSessionCost(
+    sessionId: string,
+    userId: string
+  ): Promise<SessionCostResponse> {
+    const session = await this.sessions.findById(sessionId);
+    if (!session) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        sessionId,
+        'session:errors.unknownSession'
+      );
+    }
+
+    if (session.userId !== userId) {
+      throw new HttpError(
+        StatusCodes.FORBIDDEN,
+        sessionId,
+        'session:errors.sessionNotOwned'
+      );
+    }
+
+    const summary = await this.sessions.getSessionCost(sessionId);
+
+    return {
+      totalCostUsd: fromNanos(summary.totalCostUsdNanos),
+      totalCalls: summary.breakdown.reduce((sum, item) => sum + item.calls, 0),
+      breakdown: summary.breakdown.map((item) => ({
+        purpose: item.purpose,
+        costUsd: fromNanos(item.costUsdNanos),
+        calls: item.calls,
+      })),
+    };
   }
 
   async listSessions(

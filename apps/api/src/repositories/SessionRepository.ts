@@ -9,6 +9,10 @@ import type { UpdatedSecretState } from '../engine/character/character-agent.ser
 import { PrismaTransaction } from '../types/database.types';
 import { BaseRepository } from './base.repository';
 import type { HistoryWithDefinitions } from './HistoryDefinitionRepository';
+import type {
+  LlmCallRecordInput,
+  SessionCostSummary,
+} from '../interfaces/repositories/session.repository.interface';
 import {
   buildCharacterStates,
   buildEndingSnapshots,
@@ -350,9 +354,7 @@ export class SessionRepository
   }
 
   private messageCreatedAt(base: Date, index: number): Date {
-    return new Date(
-      base.getTime() + index * MESSAGE_TIMESTAMP_INCREMENT_MS
-    );
+    return new Date(base.getTime() + index * MESSAGE_TIMESTAMP_INCREMENT_MS);
   }
 
   async recordLocationVisit(
@@ -454,5 +456,41 @@ export class SessionRepository
 
     if (tx) return run(tx);
     return this.runTransaction(run);
+  }
+
+  async recordLlmCall(
+    input: LlmCallRecordInput,
+    tx?: PrismaTransaction
+  ): Promise<void> {
+    const client = tx ?? this.prisma;
+    await client.llmCall.create({ data: input });
+  }
+
+  async getSessionCost(
+    sessionId: string,
+    tx?: PrismaTransaction
+  ): Promise<SessionCostSummary> {
+    const client = tx ?? this.prisma;
+    const [total, groups] = await Promise.all([
+      client.llmCall.aggregate({
+        where: { sessionId },
+        _sum: { costUsdNanos: true },
+      }),
+      client.llmCall.groupBy({
+        by: ['purpose'],
+        where: { sessionId },
+        _sum: { costUsdNanos: true },
+        _count: { id: true },
+      }),
+    ]);
+
+    return {
+      totalCostUsdNanos: total._sum.costUsdNanos ?? 0n,
+      breakdown: groups.map((group) => ({
+        purpose: group.purpose,
+        costUsdNanos: group._sum.costUsdNanos ?? 0n,
+        calls: group._count.id,
+      })),
+    };
   }
 }

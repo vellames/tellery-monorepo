@@ -45,6 +45,11 @@ if (!parsed.success) {
 
 const env = parsed.data;
 
+export interface ModelPricing {
+  promptPerMillion: number;
+  completionPerMillion: number;
+}
+
 export const appConfig = {
   port: env.PORT,
   nodeEnv: env.NODE_ENV,
@@ -68,6 +73,20 @@ export const appConfig = {
     reasoningEffort: env.OPENROUTER_REASONING_EFFORT ?? 'medium',
     audioModel: env.OPENROUTER_AUDIO_MODEL ?? 'openai/whisper-1',
     intentDetectorThreshold: env.INTENT_DETECTOR_THRESHOLD,
+    pricing: {
+      'deepseek/deepseek-v4-flash': {
+        promptPerMillion: 0.09,
+        completionPerMillion: 0.18,
+      },
+      'deepseek/deepseek-v4-pro': {
+        promptPerMillion: 0.435,
+        completionPerMillion: 0.87,
+      },
+      'google/gemini-2.5-flash-lite': {
+        promptPerMillion: 0.1,
+        completionPerMillion: 0.4,
+      },
+    } satisfies Record<string, ModelPricing>,
   },
 
   security: {

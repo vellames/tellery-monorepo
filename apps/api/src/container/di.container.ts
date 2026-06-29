@@ -22,6 +22,7 @@ import {
 } from '../interfaces';
 import {
   HistoryDefinitionRepository,
+  LlmCallRecorder,
   SessionRepository,
   UserRepository,
 } from '../repositories';
@@ -51,6 +52,9 @@ export class DIContainer {
     new HistoryDefinitionRepository(this.prisma);
   private readonly sessionRepository: ISessionRepository =
     new SessionRepository(this.prisma);
+  private readonly llmCallRecorder = new LlmCallRecorder(
+    this.sessionRepository
+  );
 
   private readonly healthController = new HealthController(this.prisma);
   private readonly passwordHasher: IPasswordHasher = new BcryptPasswordHasher(
@@ -92,17 +96,27 @@ export class DIContainer {
     this.imageUrlSigner
   );
   private readonly intentDetectionService = new IntentDetectionService(
-    new OpenRouterStructuredChatModel(appConfig.openrouter.intentDetectorModel),
+    new OpenRouterStructuredChatModel(
+      appConfig.openrouter.intentDetectorModel,
+      'intent',
+      this.llmCallRecorder
+    ),
     appConfig.openrouter.intentDetectorThreshold,
     t
   );
   private readonly objectAgent = new ObjectAgent(
-    new OpenRouterStructuredChatModel(appConfig.openrouter.objectAgentModel),
+    new OpenRouterStructuredChatModel(
+      appConfig.openrouter.objectAgentModel,
+      'object',
+      this.llmCallRecorder
+    ),
     t
   );
   private readonly characterAgent = new CharacterAgent(
     new OpenRouterStructuredChatModel(
       appConfig.openrouter.characterAgentModel,
+      'character',
+      this.llmCallRecorder,
       appConfig.openrouter.reasoningEffort
     ),
     t

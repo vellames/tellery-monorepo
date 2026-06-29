@@ -76,6 +76,18 @@ describe('ObjectAgent', () => {
     ]);
   });
 
+  it('forwards the sessionId to the LLM for cost tracking', async () => {
+    llm.invokeStructured.mockResolvedValue([]);
+
+    await agent.run({ ...baseInput, sessionId: 'session-1' });
+
+    expect(llm.invokeStructured).toHaveBeenCalledWith(
+      expect.any(Array),
+      expect.anything(),
+      expect.objectContaining({ sessionId: 'session-1' })
+    );
+  });
+
   it('enforces eligible clues the LLM omitted with a default reasoning', async () => {
     const rules = [
       buildRule({ clueId: 'clue-1' }),

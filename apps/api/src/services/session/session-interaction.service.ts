@@ -154,7 +154,8 @@ export class SessionInteractionService {
       session.intents,
       input,
       characterState,
-      language
+      language,
+      session.id
     );
     const { reply, discoveredClues } = await this.runCharacterInteraction(
       session,
@@ -194,7 +195,8 @@ export class SessionInteractionService {
     intents: HistorySessionWithRelations['intents'],
     input: InteractBody,
     characterState: CharacterState,
-    language: SupportedLanguage
+    language: SupportedLanguage,
+    sessionId: string
   ): Promise<DetectedIntent[]> {
     if (intents.length === 0) {
       console.log('[interact] skipping intent detection', {
@@ -221,6 +223,7 @@ export class SessionInteractionService {
     const detected = await this.intentDetection.detect({
       message: input.interaction,
       language,
+      sessionId,
       intents: scopedIntents.map((intent) => ({
         id: intent.id,
         description: intent.description,
@@ -338,6 +341,7 @@ export class SessionInteractionService {
       interaction: input.interaction,
       detectedIntents,
       discoveredClues,
+      sessionId: session.id,
       clueRules: characterState.clueRevealRules.map((rule) => ({
         clueId: rule.clueId,
         revealText: rule.revealText,

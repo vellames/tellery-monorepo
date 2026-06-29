@@ -7,10 +7,15 @@ export interface ChatMessage {
   content: string;
 }
 
+export interface ChatInvokeContext {
+  sessionId?: string;
+}
+
 export interface IStructuredChatModel {
-  invoke(messages: ChatMessage[]): Promise<string>;
+  invoke(messages: ChatMessage[], context?: ChatInvokeContext): Promise<string>;
   invokeStructured<T>(
     messages: ChatMessage[],
-    schema: z.ZodType<T>
+    schema: z.ZodType<T>,
+    context?: ChatInvokeContext
   ): Promise<T>;
 }

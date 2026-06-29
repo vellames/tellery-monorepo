@@ -694,5 +694,21 @@ describe('SessionInteractionService', () => {
         })
       );
     });
+
+    it('forwards the session id to the agents for cost tracking', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({ characterStates: [characterState] as never })
+      );
+      intentDetection.detect.mockResolvedValue(detected);
+
+      await service.interact(sessionId, ownerId, input, language);
+
+      expect(intentDetection.detect).toHaveBeenCalledWith(
+        expect.objectContaining({ sessionId })
+      );
+      expect(characterAgent.run).toHaveBeenCalledWith(
+        expect.objectContaining({ sessionId })
+      );
+    });
   });
 });

@@ -354,3 +354,107 @@ describe('SessionController - getSession', () => {
     expect(status).toHaveBeenCalledWith(StatusCodes.FORBIDDEN);
   });
 });
+
+describe('SessionController - getCost', () => {
+  let historySessionService: DeepMockProxy<HistorySessionService>;
+  let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
+  let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
+  let audioStorage: DeepMockProxy<IAudioStorage>;
+  let audioTranscription: DeepMockProxy<IAudioTranscriptionService>;
+  let controller: SessionController;
+  let req: Partial<Request>;
+  let res: Partial<Response>;
+  let json: jest.Mock;
+  let status: jest.Mock;
+  let t: TranslationFunction;
+
+  beforeEach(() => {
+    historySessionService = mockDeep<HistorySessionService>();
+    sessionInteractionService = mockDeep<SessionInteractionService>();
+    sessionConclusionService = mockDeep<SessionConclusionService>();
+    audioStorage = mockDeep<IAudioStorage>();
+    audioTranscription = mockDeep<IAudioTranscriptionService>();
+    controller = new SessionController(
+      historySessionService,
+      sessionInteractionService,
+      sessionConclusionService,
+      audioStorage,
+      audioTranscription
+    );
+    json = jest.fn();
+    status = jest.fn().mockReturnValue({ json });
+    res = { status };
+    t = jest.fn((key: string) => key) as unknown as TranslationFunction;
+  });
+
+  afterEach(() => {
+    mockReset(historySessionService);
+    mockReset(sessionInteractionService);
+    mockReset(sessionConclusionService);
+  });
+
+  it('returns 200 with the session cost summary', async () => {
+    const cost = {
+      totalCostUsd: 0.00025,
+      totalCalls: 3,
+      breakdown: [{ purpose: 'character', costUsd: 0.0002, calls: 2 }],
+    };
+    historySessionService.getSessionCost.mockResolvedValue(cost);
+    req = {
+      params: { sessionId: 'session-1' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.getCost(req as Request, res as Response);
+
+    expect(historySessionService.getSessionCost).toHaveBeenCalledWith(
+      'session-1',
+      'user-1'
+    );
+    expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+    expect(json).toHaveBeenCalledWith({
+      success: true,
+      data: cost,
+      message: undefined,
+    });
+  });
+
+  it('returns 404 when the session does not exist', async () => {
+    historySessionService.getSessionCost.mockRejectedValue(
+      new HttpError(
+        StatusCodes.NOT_FOUND,
+        'session-1',
+        'session:errors.unknownSession'
+      )
+    );
+    req = {
+      params: { sessionId: 'session-1' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.getCost(req as Request, res as Response);
+
+    expect(status).toHaveBeenCalledWith(StatusCodes.NOT_FOUND);
+  });
+
+  it('returns 403 when the session is not owned by the user', async () => {
+    historySessionService.getSessionCost.mockRejectedValue(
+      new HttpError(
+        StatusCodes.FORBIDDEN,
+        'session-1',
+        'session:errors.sessionNotOwned'
+      )
+    );
+    req = {
+      params: { sessionId: 'session-1' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.getCost(req as Request, res as Response);
+
+    expect(status).toHaveBeenCalledWith(StatusCodes.FORBIDDEN);
+  });
+});

@@ -249,6 +249,18 @@ describe('IntentDetectionService', () => {
     expect(llm.invokeStructured).toHaveBeenCalledTimes(1);
   });
 
+  it('forwards the sessionId to the LLM for cost tracking', async () => {
+    llm.invokeStructured.mockResolvedValue([]);
+
+    await service.detect({ ...baseInput, sessionId: 'session-1' });
+
+    expect(llm.invokeStructured).toHaveBeenCalledWith(
+      expect.any(Array),
+      expect.anything(),
+      expect.objectContaining({ sessionId: 'session-1' })
+    );
+  });
+
   // ── Fallback ──────────────────────────────────────────────────────────
 
   it('falls back to first intent when off_topic is unavailable and nothing matches', async () => {
@@ -311,6 +323,7 @@ describe('IntentDetectionService', () => {
         expect.objectContaining({ role: 'system' }),
         expect.objectContaining({ role: 'user' }),
       ]),
+      expect.anything(),
       expect.anything()
     );
   });

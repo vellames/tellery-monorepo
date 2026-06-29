@@ -508,6 +508,85 @@ router.get(
 
 /**
  * @openapi
+ * /session/{sessionId}/cost:
+ *   get:
+ *     tags: [Session]
+ *     summary: Get the LLM cost summary for a session
+ *     description: Returns the total USD cost, total call count and a per-purpose breakdown (intent / character / object) of every LLM call recorded for the session. Cost is derived from the authoritative usage.cost reported by OpenRouter per response.
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - name: sessionId
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The session ID.
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     responses:
+ *       200:
+ *         description: The session cost summary
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     totalCostUsd:
+ *                       type: number
+ *                       format: float
+ *                       description: Total cost in USD across all LLM calls for the session.
+ *                     totalCalls:
+ *                       type: integer
+ *                       description: Total number of LLM calls recorded for the session.
+ *                     breakdown:
+ *                       type: array
+ *                       description: Cost grouped by agent purpose.
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           purpose:
+ *                             type: string
+ *                             enum: [intent, character, object]
+ *                           costUsd:
+ *                             type: number
+ *                             format: float
+ *                           calls:
+ *                             type: integer
+ *       401:
+ *         description: Missing or invalid authentication token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ *       403:
+ *         description: The authenticated user does not own this session
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ *       404:
+ *         description: Session not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ */
+router.get(
+  '/:sessionId/cost',
+  authenticate,
+  checkSessionOwnership,
+  async (req, res) => {
+    await DIContainer.getInstance().getSessionController().getCost(req, res);
+  }
+);
+
+/**
+ * @openapi
  * /session/{sessionId}/conclusion:
  *   post:
  *     tags: [Session]

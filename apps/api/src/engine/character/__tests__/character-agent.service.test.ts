@@ -73,6 +73,17 @@ describe('CharacterAgent', () => {
     expect(result.reply).toBe('Não vi nada não.');
   });
 
+  it('forwards the sessionId to the LLM for cost tracking', async () => {
+    llm.invoke.mockResolvedValue('...');
+
+    await agent.run({ ...baseInput, sessionId: 'session-1' });
+
+    expect(llm.invoke).toHaveBeenCalledWith(
+      expect.any(Array),
+      expect.objectContaining({ sessionId: 'session-1' })
+    );
+  });
+
   it('reveals clues from eligible clue rules', async () => {
     llm.invoke.mockResolvedValue('...');
 
@@ -210,7 +221,9 @@ describe('CharacterAgent', () => {
     const systemMessages = messages.filter((m) => m.role === 'system');
     expect(systemMessages).toHaveLength(1);
     expect(systemMessages[0].content).toContain('characterAgentSystemPrompt');
-    expect(systemMessages[0].content).toContain('characterAgentTurnStatePrompt');
+    expect(systemMessages[0].content).toContain(
+      'characterAgentTurnStatePrompt'
+    );
 
     // History: only user/assistant, no system
     expect(messages[1]).toEqual({ role: 'user', content: 'msg-1' });

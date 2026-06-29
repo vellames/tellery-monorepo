@@ -53,6 +53,12 @@ enum InteractionRole {
   system
 }
 
+enum LlmCallPurpose {
+  intent
+  character
+  object
+}
+
 // ─── User ─────────────────────────────────────────────────────────────────────
 
 model User {
@@ -418,6 +424,8 @@ model HistorySession {
 
   conclusion SessionConclusion?
   ending     SessionEnding?
+
+  llmCalls LlmCall[]
 
   @@index([userId])
   @@index([historyId])
@@ -811,4 +819,27 @@ model SessionScore {
   totalRequiredClues      Int
   correctAnswers          Int
   totalAnswers            Int
+}
+
+// ─── LLM usage / cost tracking ────────────────────────────────────────────────
+
+model LlmCall {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  sessionId String
+  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  purpose LlmCallPurpose
+  model   String
+
+  promptTokens     Int
+  completionTokens Int
+  totalTokens      Int
+
+  costUsdNanos BigInt
+  latencyMs    Int?
+
+  @@index([sessionId])
+  @@index([createdAt])
 }
