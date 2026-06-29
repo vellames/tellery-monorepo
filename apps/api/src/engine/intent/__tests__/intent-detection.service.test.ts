@@ -222,6 +222,33 @@ describe('IntentDetectionService', () => {
     ]);
   });
 
+  // ── Completeness ─────────────────────────────────────────────────────
+
+  it('scores every intent even when the LLM omits some', async () => {
+    llm.invokeStructured.mockResolvedValue([
+      { intentId: 'accuse', confidence: 0.9, reasoning: 'clear' },
+    ]);
+
+    const result = await service.detect(baseInput);
+
+    // Only the above-threshold intent is returned; the omitted intents were
+    // filled with 0 internally and filtered out, but no error was thrown.
+    expect(result.map((r) => r.intentId)).toEqual(['accuse']);
+    // The LLM is always invoked — no intent is skipped.
+    expect(llm.invokeStructured).toHaveBeenCalledTimes(1);
+  });
+
+  it('always calls the LLM even when keywords match', async () => {
+    llm.invokeStructured.mockResolvedValue([]);
+
+    await service.detect({
+      ...baseInput,
+      message: 'I want to accuse you!',
+    });
+
+    expect(llm.invokeStructured).toHaveBeenCalledTimes(1);
+  });
+
   // ── Fallback ──────────────────────────────────────────────────────────
 
   it('falls back to first intent when off_topic is unavailable and nothing matches', async () => {

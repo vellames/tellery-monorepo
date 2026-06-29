@@ -29,6 +29,7 @@ const RECENT_CONVERSATION_LIMIT = 6;
 const LOCATION_VISIT_REASONING = 'Ambient clue revealed on first visit.';
 const NO_CLUE_FOUND_KEY = 'interact.noClueFound';
 const SESSION_NAMESPACE = 'session';
+const OFF_TOPIC_INTENT_ID = 'off_topic';
 
 export interface InteractDiscoveredClue {
   id: string;
@@ -147,11 +148,11 @@ export class SessionInteractionService {
     resolvedState: ResolvedSessionState,
     language: SupportedLanguage
   ): Promise<DetectedIntent[]> {
-    if (resolvedState.type === 'location' || intents.length === 0) {
+    if (resolvedState.type !== 'character' || intents.length === 0) {
       console.log('[interact] skipping intent detection', {
         reason:
-          resolvedState.type === 'location'
-            ? 'location-state'
+          resolvedState.type !== 'character'
+            ? `${resolvedState.type}-state`
             : 'no-session-intents',
         stateType: resolvedState.type,
         intentCount: intents.length,
@@ -159,10 +160,27 @@ export class SessionInteractionService {
       return [];
     }
 
+    const scopedIntents = this.resolveRelevantIntents(
+      intents,
+      resolvedState.state
+    );
+
+    if (scopedIntents.length === 0) {
+      console.log('[interact] no relevant intents for character', {
+        total: intents.length,
+      });
+      return [];
+    }
+
+    console.log('[interact] scoped intents', {
+      total: intents.length,
+      scoped: scopedIntents.length,
+    });
+
     const detected = await this.intentDetection.detect({
       message: input.interaction,
       language,
-      intents: intents.map((intent) => ({
+      intents: scopedIntents.map((intent) => ({
         id: intent.id,
         description: intent.description,
         examples: intent.examples,
@@ -176,6 +194,31 @@ export class SessionInteractionService {
     });
 
     return detected;
+  }
+
+  private resolveRelevantIntents(
+    allIntents: HistorySessionWithRelations['intents'],
+    characterState: CharacterState
+  ): HistorySessionWithRelations['intents'] {
+    const relevantIntentIds = new Set<string>([OFF_TOPIC_INTENT_ID]);
+
+    for (const rule of characterState.clueRevealRules) {
+      if (rule.clue.discovered) continue;
+      for (const intent of rule.triggerIntents) {
+        relevantIntentIds.add(intent.id);
+      }
+    }
+
+    for (const secret of characterState.secrets) {
+      for (const stage of secret.revealStages) {
+        if (stage.level < secret.currentStageLevel) continue;
+        for (const intent of stage.triggerIntents) {
+          relevantIntentIds.add(intent.id);
+        }
+      }
+    }
+
+    return allIntents.filter((intent) => relevantIntentIds.has(intent.id));
   }
 
   private async runObjectInspection(

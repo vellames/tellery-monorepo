@@ -64,43 +64,42 @@ export class IntentDetectionService {
       ? OFF_TOPIC_INTENT_ID
       : input.intents[0].id;
 
-    // 1. Deterministic keyword matching
-    const keywordMatches = this.matchKeywords(input.message, input.intents);
-    const keywordIntentIds = new Set(keywordMatches.map((m) => m.intentId));
+    // 1. LLM scores EVERY intent — always runs, guarantees all are evaluated
+    const response = await this.llm.invokeStructured(
+      this.buildMessages(input, threshold),
+      IntentDetectorResponseSchema
+    );
+
+    console.log('[intent-detection] raw llm response', {
+      message: input.message,
+      intentCount: input.intents.length,
+      threshold,
+      response,
+    });
+
+    const llmScored = this.normalizeLlmResponse(response, validIntentIds);
+
+    // 2. Deterministic keyword verification, concatenated on top of the LLM
+    //    scores (overrides to confidence 1.0 when matched).
+    const merged = new Map<string, DetectedIntent>();
+    for (const scored of llmScored) {
+      merged.set(scored.intentId, scored);
+    }
+    for (const keyword of this.matchKeywords(input.message, input.intents)) {
+      merged.set(keyword.intentId, keyword);
+    }
 
     console.log('[intent-detection] keyword matches', {
       message: input.message,
-      matched: keywordMatches,
+      matched: Array.from(merged.values()).filter(
+        (intent) => intent.reasoning === KEYWORD_MATCH_REASON
+      ),
     });
 
-    // 2. LLM fallback for intents that keywords didn't catch
-    const remainingIntents = input.intents.filter(
-      (intent) => !keywordIntentIds.has(intent.id)
+    // 3. Filter by threshold
+    const combined = Array.from(merged.values()).filter(
+      (intent) => intent.confidence >= threshold
     );
-
-    let llmDetected: DetectedIntent[] = [];
-    if (remainingIntents.length > 0) {
-      const response = await this.llm.invokeStructured(
-        this.buildMessages({ ...input, intents: remainingIntents }, threshold),
-        IntentDetectorResponseSchema
-      );
-
-      console.log('[intent-detection] raw llm response', {
-        message: input.message,
-        intentCount: remainingIntents.length,
-        threshold,
-        response,
-      });
-
-      llmDetected = this.normalizeLlmResponse(
-        response,
-        new Set(remainingIntents.map((i) => i.id)),
-        threshold
-      );
-    }
-
-    // 3. Combine: keyword matches (confidence 1.0) + LLM matches
-    const combined = [...keywordMatches, ...llmDetected];
 
     if (combined.length > 0) {
       console.log('[intent-detection] combined', {
@@ -198,19 +197,32 @@ export class IntentDetectionService {
 
   private normalizeLlmResponse(
     response: IntentDetectorResponse,
-    validIntentIds: Set<string>,
-    threshold: number
+    validIntentIds: Set<string>
   ): DetectedIntent[] {
-    return response
-      .filter(
-        (intent) =>
-          validIntentIds.has(intent.intentId) && intent.confidence >= threshold
-      )
-      .map((intent) => ({
-        intentId: intent.intentId,
-        confidence: intent.confidence,
-        reasoning: intent.reasoning,
-      }));
+    const byId = new Map<string, DetectedIntent>();
+
+    for (const entry of response) {
+      if (!validIntentIds.has(entry.intentId)) continue;
+      byId.set(entry.intentId, {
+        intentId: entry.intentId,
+        confidence: entry.confidence,
+        reasoning: entry.reasoning,
+      });
+    }
+
+    // Guarantee every intent is scored: fill any the model omitted with 0
+    // so nothing can be silently skipped.
+    for (const id of validIntentIds) {
+      if (!byId.has(id)) {
+        byId.set(id, {
+          intentId: id,
+          confidence: 0,
+          reasoning: 'Not scored by the model.',
+        });
+      }
+    }
+
+    return Array.from(byId.values());
   }
 
   private normalizeThreshold(threshold: number): number {

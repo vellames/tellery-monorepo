@@ -39,13 +39,20 @@ describe('SessionInteractionService', () => {
     keywords: ['accuse'],
   };
 
+  const offTopicIntent = {
+    id: 'off_topic',
+    description: 'off topic',
+    examples: ['lets leave'],
+    keywords: ['leave'],
+  };
+
   const buildSession = (
     overrides: Partial<HistorySessionWithRelations> = {}
   ): HistorySessionWithRelations =>
     ({
       id: sessionId,
       userId: ownerId,
-      intents: [intent],
+      intents: [intent, offTopicIntent],
       clues: [],
       characterStates: [],
       objectStates: [],
@@ -142,7 +149,14 @@ describe('SessionInteractionService', () => {
               openingLine: 'oi',
               conversationBoundaries: [],
               conversationSummary: null,
-              clueRevealRules: [],
+              clueRevealRules: [
+                {
+                  clueId: 'clue-1',
+                  clue: { discovered: false },
+                  triggerIntents: [intent],
+                  requiredClues: [],
+                },
+              ],
               secrets: [],
               revealedClues: [],
               messages: [],
@@ -160,9 +174,151 @@ describe('SessionInteractionService', () => {
       );
 
       expect(result.stateType).toBe('character');
+      expect(intentDetection.detect).toHaveBeenCalledWith(
+        expect.objectContaining({
+          intents: expect.arrayContaining([
+            expect.objectContaining({ id: 'intent-1' }),
+            expect.objectContaining({ id: 'off_topic' }),
+          ]),
+        })
+      );
       expect(result.detectedIntents).toEqual(detected);
       expect(objectAgent.run).not.toHaveBeenCalled();
       expect(characterAgent.run).toHaveBeenCalled();
+    });
+
+    it('scopes intents to undiscovered clue rules and secret stages', async () => {
+      const discoveredSecretIntent = { id: 'secret-discovered' };
+      const pendingSecretIntent = { id: 'secret-pending' };
+      const discoveredClueIntent = { id: 'clue-discovered' };
+      const pendingClueIntent = { id: 'clue-pending' };
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          intents: [
+            intent,
+            offTopicIntent,
+            discoveredSecretIntent,
+            pendingSecretIntent,
+            discoveredClueIntent,
+            pendingClueIntent,
+          ] as never,
+          characterStates: [
+            {
+              id: input.stateId,
+              name: 'Rafa',
+              role: 'garçom',
+              shortDescription: 'nervoso',
+              personality: 'ansioso',
+              speakingStyle: 'direto',
+              publicKnowledge: [],
+              privateKnowledge: [],
+              openingLine: 'oi',
+              conversationBoundaries: [],
+              conversationSummary: null,
+              clueRevealRules: [
+                {
+                  clueId: 'clue-done',
+                  clue: { discovered: true },
+                  triggerIntents: [discoveredClueIntent],
+                  requiredClues: [],
+                },
+                {
+                  clueId: 'clue-pending',
+                  clue: { discovered: false },
+                  triggerIntents: [pendingClueIntent],
+                  requiredClues: [],
+                },
+              ],
+              secrets: [
+                {
+                  id: 'secret-1',
+                  currentStageLevel: 2,
+                  summary: 's',
+                  truth: 't',
+                  defaultStrategy: 'deny',
+                  revealStages: [
+                    {
+                      level: 0,
+                      triggerIntents: [discoveredSecretIntent],
+                      requiredClues: [],
+                      revealsClues: [],
+                      behavior: 'b',
+                      allowedToRevealTruth: false,
+                      sampleResponses: [],
+                    },
+                    {
+                      level: 2,
+                      triggerIntents: [pendingSecretIntent],
+                      requiredClues: [],
+                      revealsClues: [],
+                      behavior: 'b',
+                      allowedToRevealTruth: false,
+                      sampleResponses: [],
+                    },
+                  ],
+                },
+              ],
+              revealedClues: [],
+              messages: [],
+            },
+          ] as never,
+        })
+      );
+      intentDetection.detect.mockResolvedValue(detected);
+
+      await service.interact(sessionId, ownerId, input, language);
+
+      const call = intentDetection.detect.mock.calls[0][0];
+      const sentIds = call.intents.map((i: { id: string }) => i.id);
+      expect(sentIds).toEqual(
+        expect.arrayContaining(['off_topic', 'clue-pending', 'secret-pending'])
+      );
+      expect(sentIds).not.toContain('clue-discovered');
+      expect(sentIds).not.toContain('secret-discovered');
+    });
+
+    it('skips intent detection when no relevant intents remain', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          intents: [intent] as never,
+          characterStates: [
+            {
+              id: input.stateId,
+              name: 'Rafa',
+              role: 'garçom',
+              shortDescription: 'nervoso',
+              personality: 'ansioso',
+              speakingStyle: 'direto',
+              publicKnowledge: [],
+              privateKnowledge: [],
+              openingLine: 'oi',
+              conversationBoundaries: [],
+              conversationSummary: null,
+              clueRevealRules: [
+                {
+                  clueId: 'clue-done',
+                  clue: { discovered: true },
+                  triggerIntents: [intent],
+                  requiredClues: [],
+                },
+              ],
+              secrets: [],
+              revealedClues: [],
+              messages: [],
+            },
+          ] as never,
+        })
+      );
+
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
+
+      expect(intentDetection.detect).not.toHaveBeenCalled();
+      expect(result.detectedIntents).toEqual([]);
     });
 
     it('skips intent detection for a location state', async () => {

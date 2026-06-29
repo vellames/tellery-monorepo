@@ -158,7 +158,7 @@ router.get('/', authenticate, async (req, res) => {
  *                     coverImageUrl:
  *                       type: string
  *                       nullable: true
- *                   thumbnailUrl:
+ *                     thumbnailUrl:
  *                       type: string
  *                       nullable: true
  *                     opening:
