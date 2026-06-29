@@ -94,76 +94,119 @@ export class SessionInteractionService {
       language,
     });
 
-    const detectedIntents =
-      resolvedState.type === 'object'
-        ? []
-        : await this.detectIntents(
-            session.intents,
-            input,
-            resolvedState,
-            language
-          );
-
-    let discoveredClues: InteractDiscoveredClue[] = [];
-    let reply: string | null = null;
-    if (resolvedState.type === 'object') {
-      discoveredClues = await this.runObjectInspection(
-        session,
-        resolvedState.state
-      );
-    } else if (resolvedState.type === 'character') {
-      const characterResult = await this.runCharacterInteraction(
-        session,
-        resolvedState.state,
-        input,
-        detectedIntents,
-        language
-      );
-      discoveredClues = characterResult.discoveredClues;
-      reply = characterResult.reply;
-    } else if (resolvedState.type === 'location') {
-      discoveredClues = await this.runLocationVisit(resolvedState.state);
-    }
+    const result = await this.resolveInteraction(
+      session,
+      resolvedState,
+      input,
+      language
+    );
 
     console.log('[interact] result', {
       sessionId: session.id,
       stateId: input.stateId,
-      detectedIntentCount: detectedIntents.length,
-      discoveredClueCount: discoveredClues.length,
-      hasReply: reply !== null,
+      detectedIntentCount: result.detectedIntents.length,
+      discoveredClueCount: result.discoveredClues.length,
+      hasReply: result.reply !== null,
     });
 
     return {
       id: input.stateId,
       stateType: resolvedState.type,
-      reply,
-      detectedIntents,
-      discoveredClues,
+      reply: result.reply,
+      detectedIntents: result.detectedIntents,
+      discoveredClues: result.discoveredClues,
     };
+  }
+
+  private async resolveInteraction(
+    session: HistorySessionWithRelations,
+    resolvedState: ResolvedSessionState,
+    input: InteractBody,
+    language: SupportedLanguage
+  ): Promise<{
+    reply: string | null;
+    discoveredClues: InteractDiscoveredClue[];
+    detectedIntents: DetectedIntent[];
+  }> {
+    switch (resolvedState.type) {
+      case 'character':
+        return this.resolveCharacterState(
+          session,
+          resolvedState.state,
+          input,
+          language
+        );
+      case 'object':
+        return this.resolveObjectState(session, resolvedState.state);
+      case 'location':
+        return this.resolveLocationState(resolvedState.state);
+    }
+  }
+
+  private async resolveCharacterState(
+    session: HistorySessionWithRelations,
+    characterState: CharacterState,
+    input: InteractBody,
+    language: SupportedLanguage
+  ): Promise<{
+    reply: string | null;
+    discoveredClues: InteractDiscoveredClue[];
+    detectedIntents: DetectedIntent[];
+  }> {
+    const detectedIntents = await this.detectIntents(
+      session.intents,
+      input,
+      characterState,
+      language
+    );
+    const { reply, discoveredClues } = await this.runCharacterInteraction(
+      session,
+      characterState,
+      input,
+      detectedIntents,
+      language
+    );
+    return { reply, discoveredClues, detectedIntents };
+  }
+
+  private async resolveObjectState(
+    session: HistorySessionWithRelations,
+    objectState: ObjectState
+  ): Promise<{
+    reply: string | null;
+    discoveredClues: InteractDiscoveredClue[];
+    detectedIntents: DetectedIntent[];
+  }> {
+    const discoveredClues = await this.runObjectInspection(session, objectState);
+    return { reply: null, discoveredClues, detectedIntents: [] };
+  }
+
+  private async resolveLocationState(
+    locationState: LocationState
+  ): Promise<{
+    reply: string | null;
+    discoveredClues: InteractDiscoveredClue[];
+    detectedIntents: DetectedIntent[];
+  }> {
+    const discoveredClues = await this.runLocationVisit(locationState);
+    return { reply: null, discoveredClues, detectedIntents: [] };
   }
 
   private async detectIntents(
     intents: HistorySessionWithRelations['intents'],
     input: InteractBody,
-    resolvedState: ResolvedSessionState,
+    characterState: CharacterState,
     language: SupportedLanguage
   ): Promise<DetectedIntent[]> {
-    if (resolvedState.type !== 'character' || intents.length === 0) {
+    if (intents.length === 0) {
       console.log('[interact] skipping intent detection', {
-        reason:
-          resolvedState.type !== 'character'
-            ? `${resolvedState.type}-state`
-            : 'no-session-intents',
-        stateType: resolvedState.type,
+        reason: 'no-session-intents',
         intentCount: intents.length,
       });
       return [];
     }
 
-    const scopedIntents = this.resolveRelevantIntents(
-      intents,
-      resolvedState.state
-    );
+    const scopedIntents = this.resolveRelevantIntents(intents, characterState);
 
     if (scopedIntents.length === 0) {
       console.log('[interact] no relevant intents for character', {
