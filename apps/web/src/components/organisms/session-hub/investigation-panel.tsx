@@ -392,15 +392,14 @@ export function InvestigationPanel({
               </p>
             )}
           </div>
-          {serverClues.length > 0 && (
-            <CluePill
-              found={serverClues.length}
-              total={target.data.cluesTotal}
-              easyMode={easyMode}
-              clues={serverClues}
-              label={tp('cluesFoundHere')}
-            />
-          )}
+          <CluePill
+            found={serverClues.length}
+            total={target.data.cluesTotal}
+            easyMode={easyMode}
+            clues={serverClues}
+            label={tp('cluesFoundHere')}
+            emptyLabel={tp('noCluesFoundHere')}
+          />
         </div>
 
         {/* body */}
@@ -746,14 +745,17 @@ function CluePill({
   easyMode,
   clues,
   label,
+  emptyLabel,
 }: {
   found: number;
   total: number;
   easyMode: boolean;
   clues: SessionClue[];
   label: string;
+  emptyLabel: string;
 }) {
   const pct = total > 0 ? Math.round((found / total) * 100) : 0;
+  const hasClues = clues.length > 0;
 
   return (
     <div className="group/pill relative shrink-0">
@@ -783,20 +785,24 @@ function CluePill({
           <span className="text-gold text-[10px] font-bold tracking-[0.12em] uppercase">
             {label}
           </span>
-          {clues.map((clue) => (
-            <div
-              key={clue.id}
-              className="border-clue-border/20 relative overflow-hidden rounded-lg border bg-[#fff4d8]/[0.05] p-2.5 pl-3.5"
-            >
-              <div className="bg-gold absolute top-0 left-0 h-full w-1" />
-              <h4 className="text-sm font-semibold text-[#fff9ef]">
-                {clue.title}
-              </h4>
-              <p className="mt-0.5 text-xs leading-5 text-[#fff9ef]/60">
-                {clue.description}
-              </p>
-            </div>
-          ))}
+          {hasClues ? (
+            clues.map((clue) => (
+              <div
+                key={clue.id}
+                className="border-clue-border/20 relative overflow-hidden rounded-lg border bg-[#fff4d8]/[0.05] p-2.5 pl-3.5"
+              >
+                <div className="bg-gold absolute top-0 left-0 h-full w-1" />
+                <h4 className="text-sm font-semibold text-[#fff9ef]">
+                  {clue.title}
+                </h4>
+                <p className="mt-0.5 text-xs leading-5 text-[#fff9ef]/60">
+                  {clue.description}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p className="text-xs leading-5 text-[#fff9ef]/50">{emptyLabel}</p>
+          )}
         </div>
       </div>
     </div>

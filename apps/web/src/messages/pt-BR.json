@@ -204,6 +204,7 @@
       "explore": "Cena",
       "cluesFoundHere": "Pistas encontradas aqui",
       "noCluesHere": "Nada surgiu por aqui ainda.",
+      "noCluesFoundHere": "Nenhuma pista encontrada aqui ainda.",
       "askPlaceholder": "Pergunte algo a {name}…",
       "inspectPlaceholder": "Olhe de perto, procure, examine…",
       "explorePlaceholder": "Olhe ao redor, aproxime-se…",

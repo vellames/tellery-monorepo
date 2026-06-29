@@ -204,6 +204,7 @@
       "explore": "Scene",
       "cluesFoundHere": "Clues found here",
       "noCluesHere": "Nothing has surfaced here yet.",
+      "noCluesFoundHere": "No clue found here yet.",
       "askPlaceholder": "Ask {name} something…",
       "inspectPlaceholder": "Look closer, search, or examine…",
       "explorePlaceholder": "Look around, move closer…",
