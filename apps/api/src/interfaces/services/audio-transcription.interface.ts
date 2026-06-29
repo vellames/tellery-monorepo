@@ -3,11 +3,9 @@ export interface AudioTranscriptionResult {
 }
 
 export interface IAudioTranscriptionService {
-  transcribe(
-    input: {
-      buffer: Buffer;
-      contentType: string;
-      filename: string;
-    }
-  ): Promise<AudioTranscriptionResult>;
+  transcribe(input: {
+    buffer: Buffer;
+    contentType: string;
+    filename: string;
+  }): Promise<AudioTranscriptionResult>;
 }

@@ -80,10 +80,7 @@ describe('SessionConclusionService', () => {
         'field-def-1': 'opt-def-1',
         'field-def-2': 'opt-def-3',
       },
-      requiredClues: [
-        { id: 'clue-1' },
-        { id: 'clue-2' },
-      ],
+      requiredClues: [{ id: 'clue-1' }, { id: 'clue-2' }],
     },
     {
       id: 'ending-2',

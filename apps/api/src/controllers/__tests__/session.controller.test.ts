@@ -5,10 +5,7 @@ import { SessionController } from '../session.controller';
 import { HistorySessionService } from '../../services/session/history-session.service';
 import { SessionInteractionService } from '../../services/session/session-interaction.service';
 import { SessionConclusionService } from '../../services/session/session-conclusion.service';
-import {
-  IAudioStorage,
-  IAudioTranscriptionService,
-} from '../../interfaces';
+import { IAudioStorage, IAudioTranscriptionService } from '../../interfaces';
 import { HttpError } from '../../utils/http-error';
 import { TranslationFunction } from '../../types/i18n.types';
 

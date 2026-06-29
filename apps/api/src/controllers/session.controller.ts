@@ -3,10 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { HistorySessionService } from '../services/session/history-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
 import { SessionConclusionService } from '../services/session/session-conclusion.service';
-import {
-  IAudioStorage,
-  IAudioTranscriptionService,
-} from '../interfaces';
+import { IAudioStorage, IAudioTranscriptionService } from '../interfaces';
 import {
   conclusionBodySchema,
   interactBodySchema,
@@ -91,10 +88,7 @@ export class SessionController {
 
     try {
       const sessionId = String(req.params.sessionId);
-      await this.historySessionService.abandonSession(
-        sessionId,
-        req.user!.id
-      );
+      await this.historySessionService.abandonSession(sessionId, req.user!.id);
       sendSuccess(res, { sessionId });
     } catch (error) {
       if (error instanceof HttpError) {
@@ -116,9 +110,7 @@ export class SessionController {
       const limit = req.query.limit
         ? parseInt(String(req.query.limit), 10)
         : 10;
-      const status = req.query.status
-        ? String(req.query.status)
-        : undefined;
+      const status = req.query.status ? String(req.query.status) : undefined;
 
       const response = await this.historySessionService.listSessions(
         req.user!.id,
@@ -153,11 +145,9 @@ export class SessionController {
         stateId = String(req.body.stateId ?? '');
 
         if (!stateId) {
-          sendValidationError(
-            res,
-            t('common:errors.invalidRequestBody'),
-            [{ message: 'stateId is required' }]
-          );
+          sendValidationError(res, t('common:errors.invalidRequestBody'), [
+            { message: 'stateId is required' },
+          ]);
           return;
         }
 

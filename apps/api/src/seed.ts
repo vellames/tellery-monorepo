@@ -196,7 +196,10 @@ async function updateExistingImageUrls(
   }
 }
 
-async function seedHistory(fileName: string, force: boolean = false): Promise<void> {
+async function seedHistory(
+  fileName: string,
+  force: boolean = false
+): Promise<void> {
   const data = readJson<HistorySeed>(fileName);
 
   const existing = await prisma.history.findUnique({

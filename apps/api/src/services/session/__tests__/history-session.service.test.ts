@@ -270,9 +270,7 @@ describe('HistorySessionService', () => {
     });
 
     it('throws 409 when the session is not active', async () => {
-      sessions.findById.mockResolvedValue(
-        mockSession({ status: 'completed' })
-      );
+      sessions.findById.mockResolvedValue(mockSession({ status: 'completed' }));
 
       await expect(
         service.abandonSession('session-1', 'user-1')

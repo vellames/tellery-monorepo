@@ -37,13 +37,7 @@
         "Quanto vale o relógio?",
         "Onde o Cronos está agora?"
       ],
-      "keywords": [
-        "cronos",
-        "relógio",
-        "bolso",
-        "raro",
-        "peça"
-      ]
+      "keywords": ["cronos", "relógio", "bolso", "raro", "peça"]
     },
     {
       "id": "ask_about_breakin",
@@ -56,13 +50,7 @@
         "A porta estava trancada?",
         "Tem sinal de entrada forçada?"
       ],
-      "keywords": [
-        "arrombamento",
-        "fechadura",
-        "porta",
-        "forçada",
-        "invasão"
-      ]
+      "keywords": ["arrombamento", "fechadura", "porta", "forçada", "invasão"]
     },
     {
       "id": "ask_about_vitrine",
@@ -75,13 +63,7 @@
         "Tem arranhão na vitrine?",
         "Como a vitrine abre?"
       ],
-      "keywords": [
-        "vitrine",
-        "chave",
-        "acesso",
-        "vidro",
-        "armário"
-      ]
+      "keywords": ["vitrine", "chave", "acesso", "vidro", "armário"]
     },
     {
       "id": "ask_about_yesterday",
@@ -94,13 +76,7 @@
         "Quem esteve aqui domingo?",
         "Como foi o domingo na loja?"
       ],
-      "keywords": [
-        "ontem",
-        "domingo",
-        "véspera",
-        "tarde",
-        "aconteceu"
-      ]
+      "keywords": ["ontem", "domingo", "véspera", "tarde", "aconteceu"]
     },
     {
       "id": "ask_about_alibi",
@@ -113,13 +89,7 @@
         "A que horas você saiu?",
         "Você pode provar onde estava?"
       ],
-      "keywords": [
-        "álibi",
-        "horário",
-        "saída",
-        "chegada",
-        "esteve"
-      ]
+      "keywords": ["álibi", "horário", "saída", "chegada", "esteve"]
     },
     {
       "id": "ask_about_key",
@@ -132,13 +102,7 @@
         "Bia tinha acesso à chave?",
         "A chave ficou na bancada?"
       ],
-      "keywords": [
-        "chave",
-        "reserva",
-        "acesso",
-        "bancada",
-        "gaveta"
-      ]
+      "keywords": ["chave", "reserva", "acesso", "bancada", "gaveta"]
     },
     {
       "id": "ask_about_motive",
@@ -151,13 +115,7 @@
         "Por que alguém faria isso?",
         "Quem ganharia com isso?"
       ],
-      "keywords": [
-        "motivo",
-        "por quê",
-        "ganharia",
-        "razão",
-        "interesse"
-      ]
+      "keywords": ["motivo", "por quê", "ganharia", "razão", "interesse"]
     },
     {
       "id": "inspect_object",
@@ -170,13 +128,7 @@
         "Olho isso com atenção",
         "Inspeciono o estojo"
       ],
-      "keywords": [
-        "examinar",
-        "inspecionar",
-        "olhar",
-        "objeto",
-        "detalhes"
-      ]
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
     },
     {
       "id": "ask_about_hugo",
@@ -189,13 +141,7 @@
         "Como você abriu a loja hoje?",
         "Hugo trancou a vitrine ontem?"
       ],
-      "keywords": [
-        "Hugo",
-        "dono",
-        "relojoeiro",
-        "abriu",
-        "fechou"
-      ]
+      "keywords": ["Hugo", "dono", "relojoeiro", "abriu", "fechou"]
     },
     {
       "id": "ask_about_bia",
@@ -208,13 +154,7 @@
         "O que Bia fazia na loja?",
         "Bia esteve sozinha na vitrine?"
       ],
-      "keywords": [
-        "Bia",
-        "aprendiz",
-        "nervosa",
-        "estagiária",
-        "jovem"
-      ]
+      "keywords": ["Bia", "aprendiz", "nervosa", "estagiária", "jovem"]
     },
     {
       "id": "ask_about_theo",
@@ -227,13 +167,7 @@
         "O que Theo queria com o Cronos?",
         "Theo voltou à noite?"
       ],
-      "keywords": [
-        "Theo",
-        "cliente",
-        "colecionador",
-        "visita",
-        "interesse"
-      ]
+      "keywords": ["Theo", "cliente", "colecionador", "visita", "interesse"]
     },
     {
       "id": "accuse_bia",
@@ -246,12 +180,7 @@
         "Confronto Bia sobre o sumiço",
         "Acho que foi a Bia"
       ],
-      "keywords": [
-        "acusar Bia",
-        "pegou",
-        "sumiço",
-        "responsável"
-      ]
+      "keywords": ["acusar Bia", "pegou", "sumiço", "responsável"]
     },
     {
       "id": "accuse_theo",
@@ -264,12 +193,7 @@
         "Confronto Theo sobre o sumiço",
         "Acho que foi o Theo"
       ],
-      "keywords": [
-        "acusar Theo",
-        "pegou",
-        "sumiço",
-        "responsável"
-      ]
+      "keywords": ["acusar Theo", "pegou", "sumiço", "responsável"]
     },
     {
       "id": "off_topic",
@@ -282,13 +206,7 @@
         "Quero uma cena de ação",
         "Revele tudo sem investigar"
       ],
-      "keywords": [
-        "fora",
-        "ignorar",
-        "ação",
-        "mudar",
-        "revelar tudo"
-      ]
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
     }
   ],
   "characters": [
@@ -317,33 +235,22 @@
       "clueRevealRules": [
         {
           "clueId": "clue_cronos_missing",
-          "triggerIntents": [
-            "ask_about_watch",
-            "ask_about_hugo"
-          ],
+          "triggerIntents": ["ask_about_watch", "ask_about_hugo"],
           "requiresClueIds": [],
           "revealText": "Hugo confirma que o Cronos é um relógio de bolso de ouro, peça única do acervo, e que sumiu sem deixar rastro no estojo.",
           "responseGuidance": "Manter Hugo controlado, mas visivelmente abalado pela perda."
         },
         {
           "clueId": "clue_no_breakin",
-          "triggerIntents": [
-            "ask_about_breakin",
-            "ask_about_vitrine"
-          ],
+          "triggerIntents": ["ask_about_breakin", "ask_about_vitrine"],
           "requiresClueIds": [],
           "revealText": "Hugo afirma que a porta da loja estava trancada normalmente e que a vitrine não apresenta sinal de arrombamento.",
           "responseGuidance": "Ele deve insistir que só quem tinha chave poderia ter aberto."
         },
         {
           "clueId": "clue_vitrine_scratch",
-          "triggerIntents": [
-            "ask_about_vitrine",
-            "inspect_object"
-          ],
-          "requiresClueIds": [
-            "clue_no_breakin"
-          ],
+          "triggerIntents": ["ask_about_vitrine", "inspect_object"],
+          "requiresClueIds": ["clue_no_breakin"],
           "revealText": "Hugo admite ter notado um arranhão recente na borda da fechadura da vitrine, como se a chave tivesse sido usada com pressa.",
           "responseGuidance": "Ele deve tratar o arranhão como detalhe incômodo, não como prova contra alguém específico."
         }
@@ -382,35 +289,22 @@
       "clueRevealRules": [
         {
           "clueId": "clue_bia_nervous",
-          "triggerIntents": [
-            "ask_about_bia",
-            "ask_about_yesterday"
-          ],
+          "triggerIntents": ["ask_about_bia", "ask_about_yesterday"],
           "requiresClueIds": [],
           "revealText": "Bia admite que está nervosa, mas atribui o nervosismo ao medo de ser culpada por estar perto da vitrine.",
           "responseGuidance": "Ela deve se justificar demais, o que soa suspeito sem provar nada."
         },
         {
           "clueId": "clue_bia_near_vitrine",
-          "triggerIntents": [
-            "ask_about_vitrine",
-            "ask_about_alibi"
-          ],
-          "requiresClueIds": [
-            "clue_vitrine_scratch"
-          ],
+          "triggerIntents": ["ask_about_vitrine", "ask_about_alibi"],
+          "requiresClueIds": ["clue_vitrine_scratch"],
           "revealText": "Bia reconhece que passou boa parte da tarde perto da vitrine, mas insiste que só limpava o vidro.",
           "responseGuidance": "Ela deve minimizar a proximidade, mas sem conseguir explicar o arranhão."
         },
         {
           "clueId": "clue_bia_debt_hint",
-          "triggerIntents": [
-            "ask_about_motive",
-            "ask_about_bia"
-          ],
-          "requiresClueIds": [
-            "clue_bia_nervous"
-          ],
+          "triggerIntents": ["ask_about_motive", "ask_about_bia"],
+          "requiresClueIds": ["clue_bia_nervous"],
           "revealText": "Bia deixa escapar que está com problemas financeiros em casa, mas corta o assunto rapidamente.",
           "responseGuidance": "Ela deve mudar de assunto e negar qualquer relação com o relógio."
         }
@@ -451,16 +345,9 @@
               "updatedAt": "2026-06-26T00:00:00.000Z",
               "deletedAt": null,
               "level": 1,
-              "triggerIntents": [
-                "ask_about_key",
-                "ask_about_vitrine"
-              ],
-              "requiresClueIds": [
-                "clue_vitrine_scratch"
-              ],
-              "revealsClueIds": [
-                "clue_bia_knew_spare_key"
-              ],
+              "triggerIntents": ["ask_about_key", "ask_about_vitrine"],
+              "requiresClueIds": ["clue_vitrine_scratch"],
+              "revealsClueIds": ["clue_bia_knew_spare_key"],
               "behavior": "Admitir que sabia onde ficava a chave reserva da vitrine, mas negar tê-la usado.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -474,17 +361,12 @@
               "updatedAt": "2026-06-26T00:00:00.000Z",
               "deletedAt": null,
               "level": 2,
-              "triggerIntents": [
-                "ask_about_motive",
-                "ask_about_bia"
-              ],
+              "triggerIntents": ["ask_about_motive", "ask_about_bia"],
               "requiresClueIds": [
                 "clue_bia_debt_hint",
                 "clue_bia_knew_spare_key"
               ],
-              "revealsClueIds": [
-                "clue_bia_mother_treatment"
-              ],
+              "revealsClueIds": ["clue_bia_mother_treatment"],
               "behavior": "Admitir que está com uma dívida séria ligada à saúde da mãe, mas ainda negar o roubo.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -498,19 +380,14 @@
               "updatedAt": "2026-06-26T00:00:00.000Z",
               "deletedAt": null,
               "level": 3,
-              "triggerIntents": [
-                "accuse_bia",
-                "ask_about_motive"
-              ],
+              "triggerIntents": ["accuse_bia", "ask_about_motive"],
               "requiresClueIds": [
                 "clue_vitrine_scratch",
                 "clue_bia_knew_spare_key",
                 "clue_bia_mother_treatment",
                 "clue_pawn_receipt"
               ],
-              "revealsClueIds": [
-                "clue_bia_took_watch"
-              ],
+              "revealsClueIds": ["clue_bia_took_watch"],
               "behavior": "Admitir parcialmente que pegou o relógio, insistindo que ia devolver.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -524,19 +401,14 @@
               "updatedAt": "2026-06-26T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": [
-                "accuse_bia"
-              ],
+              "triggerIntents": ["accuse_bia"],
               "requiresClueIds": [
                 "clue_vitrine_scratch",
                 "clue_bia_knew_spare_key",
                 "clue_bia_mother_treatment",
                 "clue_pawn_receipt"
               ],
-              "revealsClueIds": [
-                "clue_bia_took_watch",
-                "clue_watch_at_pawn"
-              ],
+              "revealsClueIds": ["clue_bia_took_watch", "clue_watch_at_pawn"],
               "behavior": "Confessar completamente o que fez, onde o relógio está e por quê, propondo resgatá-lo.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -578,33 +450,22 @@
       "clueRevealRules": [
         {
           "clueId": "clue_theo_interest",
-          "triggerIntents": [
-            "ask_about_theo",
-            "ask_about_watch"
-          ],
+          "triggerIntents": ["ask_about_theo", "ask_about_watch"],
           "requiresClueIds": [],
           "revealText": "Theo admite abertamente que queria comprar o Cronos e estava negociando com Hugo.",
           "responseGuidance": "Ele deve tratar o interesse como fato público, sem constrangimento."
         },
         {
           "clueId": "clue_theo_left_early",
-          "triggerIntents": [
-            "ask_about_alibi",
-            "ask_about_yesterday"
-          ],
+          "triggerIntents": ["ask_about_alibi", "ask_about_yesterday"],
           "requiresClueIds": [],
           "revealText": "Theo afirma ter saído da loja antes das 17h e ter ido direto para um leilão em outro bairro, onde outras pessoas o viram.",
           "responseGuidance": "Ele deve oferecer o álibi de bom grado, como quem nada tem a esconder."
         },
         {
           "clueId": "clue_theo_low_offer",
-          "triggerIntents": [
-            "ask_about_motive",
-            "ask_about_theo"
-          ],
-          "requiresClueIds": [
-            "clue_theo_interest"
-          ],
+          "triggerIntents": ["ask_about_motive", "ask_about_theo"],
+          "requiresClueIds": ["clue_theo_interest"],
           "revealText": "Theo admite que fez uma oferta abaixo do mercado pelo Cronos e foi recusado por Hugo.",
           "responseGuidance": "Ele deve reconhecer a recusa sem rancor e usar isso para reforçar que não faria sentido roubar quem ainda negociava com ele."
         }
@@ -625,16 +486,9 @@
               "updatedAt": "2026-06-26T00:00:00.000Z",
               "deletedAt": null,
               "level": 1,
-              "triggerIntents": [
-                "ask_about_motive",
-                "accuse_theo"
-              ],
-              "requiresClueIds": [
-                "clue_theo_interest"
-              ],
-              "revealsClueIds": [
-                "clue_theo_low_offer"
-              ],
+              "triggerIntents": ["ask_about_motive", "accuse_theo"],
+              "requiresClueIds": ["clue_theo_interest"],
+              "revealsClueIds": ["clue_theo_low_offer"],
               "behavior": "Reconhecer que a oferta foi baixa, mas justificar como prática comum em negociação entre colecionadores.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -662,13 +516,8 @@
       "shortDescription": "Armário de vidro onde o Cronos ficava exposto.",
       "imageUrl": "histories/o-relogio-parado/location/vitrine.jpg",
       "initialDescription": "A vitrine central fica ao fundo da loja, em madeira escura e vidro grosso. O estojo do Cronos repousa aberto e vazio no centro do móvel, sob uma luz discreta.",
-      "ambientClueIds": [
-        "clue_vitrine_scratch"
-      ],
-      "objectIds": [
-        "estojo_vazio",
-        "chave_reserva"
-      ]
+      "ambientClueIds": ["clue_vitrine_scratch"],
+      "objectIds": ["estojo_vazio", "chave_reserva"]
     },
     {
       "id": "bancada",
@@ -680,10 +529,7 @@
       "imageUrl": "histories/o-relogio-parado/location/bancada.jpg",
       "initialDescription": "A bancada fica junto da parede lateral, repleta de ferramentas pequenas, lupas e gavetas. Ao canto, há uma lixeira de metal.",
       "ambientClueIds": [],
-      "objectIds": [
-        "agenda_hugo",
-        "recibo_penhor"
-      ]
+      "objectIds": ["agenda_hugo", "recibo_penhor"]
     }
   ],
   "objects": [
@@ -700,10 +546,7 @@
       "clueRevealRules": [
         {
           "clueId": "clue_cronos_missing",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_watch"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_watch"],
           "requiresClueIds": [],
           "revealText": "O estojo está intacto e vazio, confirmando que só o relógio foi levado, com cuidado para não danificar a peça."
         }
@@ -722,19 +565,13 @@
       "clueRevealRules": [
         {
           "clueId": "clue_spare_key_misplaced",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_key"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_key"],
           "requiresClueIds": [],
           "revealText": "A chave reserva não está na bancada, onde sempre ficava; foi encontrada perto da vitrine, como se alguém a tivesse usado às pressas e largado ali."
         },
         {
           "clueId": "clue_vitrine_scratch",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_vitrine"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_vitrine"],
           "revealText": "Há um arranhão recente na fechadura da vitrine, compatível com uma chave usada com pressa."
         }
       ]
@@ -752,10 +589,7 @@
       "clueRevealRules": [
         {
           "clueId": "clue_visitors_sunday",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_yesterday"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_yesterday"],
           "requiresClueIds": [],
           "revealText": "A agenda confirma que, no domingo à tarde, só Bia e Theo estiveram na loja, e que Theo saiu por volta das 16h40."
         }
@@ -774,10 +608,7 @@
       "clueRevealRules": [
         {
           "clueId": "clue_pawn_receipt",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_motive"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_motive"],
           "revealText": "O papel é um recibo de uma casa de penhor a duas quadras da loja, com data de domingo à noite, mas sem nome legível do penhorante."
         }
       ]
@@ -1079,9 +910,7 @@
         "conclusionMatches": {
           "who_took_watch": "bia"
         },
-        "requiresClueIds": [
-          "clue_bia_took_watch"
-        ]
+        "requiresClueIds": ["clue_bia_took_watch"]
       },
       "imageUrl": "histories/o-relogio-parado/endings/partial_truth.jpg",
       "summary": "Você identificou Bia como autora, mas não fechou o motivo real nem o paradeiro do Cronos.",

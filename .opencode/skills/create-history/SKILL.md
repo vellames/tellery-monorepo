@@ -39,31 +39,32 @@ Player-facing description fields must describe **what the player sees** (appeara
 
 **Fields that the player sees and must be spoiler-free:**
 
-| Field | Rule |
-| --- | --- |
-| `teaser`, `subtitle` | Set the mood; do NOT reveal the twist, the culprit's nature, or structural hints |
-| `opening.shortText`, `opening.fullText` | Describe the scene and the crime; list characters by their facade only ("um empresário"), never by their secret ("um empresário que não sabe explicar o que faz") |
-| `opening.callToAction` | Tell the player what to investigate; do NOT hint at what they'll discover |
-| `objective.description` | State the goal; remove parenthetical hints about the mystery's nature |
-| `characters[].shortDescription` | Describe the visible facade only. Do NOT hint the facade is fake, reveal guilt, or describe secrets |
-| `characters[].openingLine` | Can show personality; must NOT state secrets or clues outright |
-| `objects[].shortDescription` | Describe what the object IS, not what it PROVES |
-| `objects[].initialDescription` | Describe visual appearance ONLY. No interpretations ("a rachadura indica força"), no conclusions ("sem sinal de uso indevido"), no pre-revealing what examination would find |
-| `locations[].shortDescription` | Brief factual description of the place |
-| `locations[].initialDescription` | Atmosphere and decor; do NOT highlight specific evidence in the scene description |
+| Field                                   | Rule                                                                                                                                                                         |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `teaser`, `subtitle`                    | Set the mood; do NOT reveal the twist, the culprit's nature, or structural hints                                                                                             |
+| `opening.shortText`, `opening.fullText` | Describe the scene and the crime; list characters by their facade only ("um empresário"), never by their secret ("um empresário que não sabe explicar o que faz")            |
+| `opening.callToAction`                  | Tell the player what to investigate; do NOT hint at what they'll discover                                                                                                    |
+| `objective.description`                 | State the goal; remove parenthetical hints about the mystery's nature                                                                                                        |
+| `characters[].shortDescription`         | Describe the visible facade only. Do NOT hint the facade is fake, reveal guilt, or describe secrets                                                                          |
+| `characters[].openingLine`              | Can show personality; must NOT state secrets or clues outright                                                                                                               |
+| `objects[].shortDescription`            | Describe what the object IS, not what it PROVES                                                                                                                              |
+| `objects[].initialDescription`          | Describe visual appearance ONLY. No interpretations ("a rachadura indica força"), no conclusions ("sem sinal de uso indevido"), no pre-revealing what examination would find |
+| `locations[].shortDescription`          | Brief factual description of the place                                                                                                                                       |
+| `locations[].initialDescription`        | Atmosphere and decor; do NOT highlight specific evidence in the scene description                                                                                            |
 
 **Examples of what to fix:**
 
-| Bad (spoils clue) | Good (spoiler-free) |
-| --- | --- |
-| "jornalista que nunca publicou um artigo" | "que se apresenta como jornalista" |
-| "o painel está torto, com marcas de dedos recentes" | "um painel de manutenção na parede" |
-| "a tinta ainda está úmida" | (remove — this is a clueRevealRule discovery) |
-| "talvez descubra que ninguém é quem diz ser" | (remove — structural hint) |
-| "ferramentas sem sinal de uso indevido" | "ferramentas de precisão na bancada" |
-| "cinco identidades falsas" | "cinco passageiros no mesmo vagão" |
+| Bad (spoils clue)                                   | Good (spoiler-free)                           |
+| --------------------------------------------------- | --------------------------------------------- |
+| "jornalista que nunca publicou um artigo"           | "que se apresenta como jornalista"            |
+| "o painel está torto, com marcas de dedos recentes" | "um painel de manutenção na parede"           |
+| "a tinta ainda está úmida"                          | (remove — this is a clueRevealRule discovery) |
+| "talvez descubra que ninguém é quem diz ser"        | (remove — structural hint)                    |
+| "ferramentas sem sinal de uso indevido"             | "ferramentas de precisão na bancada"          |
+| "cinco identidades falsas"                          | "cinco passageiros no mesmo vagão"            |
 
 **Fields that are safe to include detail** (not player-facing or only shown post-resolution):
+
 - `personality`, `speakingStyle` — used by the LLM character model, not shown directly
 - `publicKnowledge`, `privateKnowledge` — internal context for the character model
 - `conversationBoundaries` — internal guardrails

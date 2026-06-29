@@ -237,8 +237,7 @@ export function buildSessionStateResponse(
                 totalClues: session.ending.score.totalClues,
                 requiredCluesDiscovered:
                   session.ending.score.requiredCluesDiscovered,
-                totalRequiredClues:
-                  session.ending.score.totalRequiredClues,
+                totalRequiredClues: session.ending.score.totalRequiredClues,
                 correctAnswers: session.ending.score.correctAnswers,
                 totalAnswers: session.ending.score.totalAnswers,
               }

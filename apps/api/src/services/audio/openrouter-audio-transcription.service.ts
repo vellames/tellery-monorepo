@@ -16,9 +16,7 @@ const FORMAT_FROM_CONTENT_TYPE: Record<string, string> = {
   'audio/flac': 'flac',
 };
 
-export class OpenRouterAudioTranscriptionService
-  implements IAudioTranscriptionService
-{
+export class OpenRouterAudioTranscriptionService implements IAudioTranscriptionService {
   async transcribe(input: {
     buffer: Buffer;
     contentType: string;

@@ -199,25 +199,30 @@ export class HistorySessionService {
   private async signImages(
     response: SessionStateResponse
   ): Promise<SessionStateResponse> {
-    const [historyImages, characterImages, objectImages, locationImages, endingImage] =
-      await Promise.all([
-        Promise.all([
-          this.imageUrlSigner.sign(response.history.coverImageUrl),
-          this.imageUrlSigner.sign(response.history.thumbnailUrl),
-        ]),
-        Promise.all(
-          response.characters.map((c) => this.imageUrlSigner.sign(c.imageUrl))
-        ),
-        Promise.all(
-          response.objects.map((o) => this.imageUrlSigner.sign(o.imageUrl))
-        ),
-        Promise.all(
-          response.locations.map((l) => this.imageUrlSigner.sign(l.imageUrl))
-        ),
-        response.ending
-          ? this.imageUrlSigner.sign(response.ending.snapshot.imageUrl)
-          : Promise.resolve(null),
-      ]);
+    const [
+      historyImages,
+      characterImages,
+      objectImages,
+      locationImages,
+      endingImage,
+    ] = await Promise.all([
+      Promise.all([
+        this.imageUrlSigner.sign(response.history.coverImageUrl),
+        this.imageUrlSigner.sign(response.history.thumbnailUrl),
+      ]),
+      Promise.all(
+        response.characters.map((c) => this.imageUrlSigner.sign(c.imageUrl))
+      ),
+      Promise.all(
+        response.objects.map((o) => this.imageUrlSigner.sign(o.imageUrl))
+      ),
+      Promise.all(
+        response.locations.map((l) => this.imageUrlSigner.sign(l.imageUrl))
+      ),
+      response.ending
+        ? this.imageUrlSigner.sign(response.ending.snapshot.imageUrl)
+        : Promise.resolve(null),
+    ]);
 
     return {
       ...response,

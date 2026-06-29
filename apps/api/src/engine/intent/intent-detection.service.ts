@@ -141,8 +141,7 @@ export class IntentDetectionService {
       const matched = intent.keywords.some((keyword) => {
         const normalizedKeyword = this.normalizeText(keyword);
         return (
-          normalizedKeyword.length > 0 &&
-          normalized.includes(normalizedKeyword)
+          normalizedKeyword.length > 0 && normalized.includes(normalizedKeyword)
         );
       });
 

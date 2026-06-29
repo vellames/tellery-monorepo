@@ -94,11 +94,7 @@ export class SessionConclusionService {
       discoveredClueIds
     );
 
-    const score = this.computeScore(
-      session,
-      chosenEnding,
-      answersByFieldDefId
-    );
+    const score = this.computeScore(session, chosenEnding, answersByFieldDefId);
 
     await this.sessions.submitConclusion({
       sessionId: session.id,
@@ -187,9 +183,7 @@ export class SessionConclusionService {
       return fallback;
     }
 
-    eligible.sort(
-      (a, b) => ENDING_PRIORITY[b.type] - ENDING_PRIORITY[a.type]
-    );
+    eligible.sort((a, b) => ENDING_PRIORITY[b.type] - ENDING_PRIORITY[a.type]);
     return eligible[0];
   }
 

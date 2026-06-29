@@ -93,12 +93,15 @@ export class SessionInteractionService {
       language,
     });
 
-    const detectedIntents = resolvedState.type === 'object' ? [] : await this.detectIntents(
-      session.intents,
-      input,
-      resolvedState,
-      language
-    );
+    const detectedIntents =
+      resolvedState.type === 'object'
+        ? []
+        : await this.detectIntents(
+            session.intents,
+            input,
+            resolvedState,
+            language
+          );
 
     let discoveredClues: InteractDiscoveredClue[] = [];
     let reply: string | null = null;
@@ -207,9 +210,7 @@ export class SessionInteractionService {
     });
 
     return newlyDiscoveredClueIds.map((clueId) => {
-      const rule = objectState.clueRevealRules.find(
-        (r) => r.clueId === clueId
-      );
+      const rule = objectState.clueRevealRules.find((r) => r.clueId === clueId);
       const clue = session.clues.find((c) => c.id === clueId);
       return {
         id: clueId,

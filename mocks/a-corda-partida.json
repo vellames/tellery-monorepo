@@ -77,13 +77,7 @@
         "Quem ficou até tarde?",
         "Teve ensaio noturno?"
       ],
-      "keywords": [
-        "ontem",
-        "noite",
-        "ensaio",
-        "véspera",
-        "madrugada"
-      ]
+      "keywords": ["ontem", "noite", "ensaio", "véspera", "madrugada"]
     },
     {
       "id": "ask_about_alibi",
@@ -96,13 +90,7 @@
         "A que horas você saiu?",
         "Alguém te viu?"
       ],
-      "keywords": [
-        "álibi",
-        "horário",
-        "esteve",
-        "onde",
-        "quando"
-      ]
+      "keywords": ["álibi", "horário", "esteve", "onde", "quando"]
     },
     {
       "id": "ask_about_motive",
@@ -115,13 +103,7 @@
         "Quem se beneficia?",
         "Qual o motivo?"
       ],
-      "keywords": [
-        "motivo",
-        "por quê",
-        "beneficia",
-        "razão",
-        "interesse"
-      ]
+      "keywords": ["motivo", "por quê", "beneficia", "razão", "interesse"]
     },
     {
       "id": "ask_about_threats",
@@ -134,13 +116,7 @@
         "Alguém recebeu bilhetes?",
         "Marina foi intimidada?"
       ],
-      "keywords": [
-        "ameaça",
-        "bilhete",
-        "anônimo",
-        "intimidação",
-        "recado"
-      ]
+      "keywords": ["ameaça", "bilhete", "anônimo", "intimidação", "recado"]
     },
     {
       "id": "inspect_object",
@@ -153,13 +129,7 @@
         "Olho isso com atenção",
         "Inspeciono o violino"
       ],
-      "keywords": [
-        "examinar",
-        "inspecionar",
-        "olhar",
-        "objeto",
-        "detalhes"
-      ]
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
     },
     {
       "id": "ask_about_decio",
@@ -171,13 +141,7 @@
         "Décio, quem decidiu emprestar?",
         "Como Décio gerencia o conservatório?"
       ],
-      "keywords": [
-        "Décio",
-        "diretor",
-        "emprestar",
-        "conservatório",
-        "gestão"
-      ]
+      "keywords": ["Décio", "diretor", "emprestar", "conservatório", "gestão"]
     },
     {
       "id": "ask_about_marina",
@@ -190,13 +154,7 @@
         "Onde Marina ensaiou?",
         "Marina notou algo?"
       ],
-      "keywords": [
-        "Marina",
-        "favorita",
-        "violino pessoal",
-        "aluna",
-        "ensaio"
-      ]
+      "keywords": ["Marina", "favorita", "violino pessoal", "aluna", "ensaio"]
     },
     {
       "id": "ask_about_aurora",
@@ -209,13 +167,7 @@
         "Aurora estava no corredor?",
         "Aurora é a segunda colocada?"
       ],
-      "keywords": [
-        "Aurora",
-        "rival",
-        "segunda",
-        "competidora",
-        "relação"
-      ]
+      "keywords": ["Aurora", "rival", "segunda", "competidora", "relação"]
     },
     {
       "id": "ask_about_sergio",
@@ -228,13 +180,7 @@
         "O luthier notou algo?",
         "Sérgio reparou no dano?"
       ],
-      "keywords": [
-        "Sérgio",
-        "luthier",
-        "oficina",
-        "reparo",
-        "instrumentos"
-      ]
+      "keywords": ["Sérgio", "luthier", "oficina", "reparo", "instrumentos"]
     },
     {
       "id": "accuse_aurora",
@@ -247,12 +193,7 @@
         "Confronto Aurora sobre o dano",
         "Acho que foi a Aurora"
       ],
-      "keywords": [
-        "acusar Aurora",
-        "rachou",
-        "danificou",
-        "responsável"
-      ]
+      "keywords": ["acusar Aurora", "rachou", "danificou", "responsável"]
     },
     {
       "id": "accuse_sergio",
@@ -265,12 +206,7 @@
         "Confronto Sérgio sobre o dano",
         "Acho que foi o Sérgio"
       ],
-      "keywords": [
-        "acusar Sérgio",
-        "rachou",
-        "danificou",
-        "responsável"
-      ]
+      "keywords": ["acusar Sérgio", "rachou", "danificou", "responsável"]
     },
     {
       "id": "off_topic",
@@ -283,13 +219,7 @@
         "Quero uma cena de ação",
         "Revele tudo"
       ],
-      "keywords": [
-        "fora",
-        "ignorar",
-        "ação",
-        "mudar",
-        "revelar tudo"
-      ]
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
     }
   ],
   "characters": [
@@ -319,10 +249,7 @@
       "clueRevealRules": [
         {
           "clueId": "clue_strad_damaged",
-          "triggerIntents": [
-            "ask_about_strad",
-            "ask_about_decio"
-          ],
+          "triggerIntents": ["ask_about_strad", "ask_about_decio"],
           "requiresClueIds": [],
           "revealText": "Décio confirma que o Stradivarius foi encontrado com o harmônico rachado de cima a baixo, dentro do estojo, na sala de ensaio de Marina.",
           "responseGuidance": "Manter Décio controlado, mas visivelmente preocupado com a reputação."
@@ -411,9 +338,7 @@
             "ask_about_strad",
             "inspect_object"
           ],
-          "requiresClueIds": [
-            "clue_marina_entrusted"
-          ],
+          "requiresClueIds": ["clue_marina_entrusted"],
           "revealText": "Marina mostra seu violino pessoal — um instrumento fino, muito inferior ao Stradivarius, guardado num estojo preto idêntico.",
           "responseGuidance": "Ela deve tratar o violino pessoal com carinho, mas sem disfarçar a diferença de qualidade."
         },
@@ -451,12 +376,8 @@
                 "ask_about_motive",
                 "accuse_sergio"
               ],
-              "requiresClueIds": [
-                "clue_threats_found"
-              ],
-              "revealsClueIds": [
-                "clue_marina_hid_threats"
-              ],
+              "requiresClueIds": ["clue_threats_found"],
+              "revealsClueIds": ["clue_marina_hid_threats"],
               "behavior": "Admitir que recebeu bilhetes anônimos mas justificar por que não denunciou.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -505,9 +426,7 @@
             "ask_about_motive",
             "ask_about_competition"
           ],
-          "requiresClueIds": [
-            "clue_aurora_rival"
-          ],
+          "requiresClueIds": ["clue_aurora_rival"],
           "revealText": "Aurora admite, com amargura contida, que há anos fica em segundo lugar atrás de Marina e que isso pesa mais do que ela demonstra.",
           "responseGuidance": "Ela deve soar magoada, não ameaçadora."
         }
@@ -534,13 +453,8 @@
                 "ask_about_night",
                 "accuse_aurora"
               ],
-              "requiresClueIds": [
-                "clue_aurora_jealousy",
-                "clue_room_dark"
-              ],
-              "revealsClueIds": [
-                "clue_aurora_near_room"
-              ],
+              "requiresClueIds": ["clue_aurora_jealousy", "clue_room_dark"],
+              "revealsClueIds": ["clue_aurora_near_room"],
               "behavior": "Admitir que passou pelo corredor dos ensaios mais tarde do que disse, mas negar ter entrado na sala.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -559,13 +473,8 @@
                 "ask_about_aurora",
                 "ask_about_motive"
               ],
-              "requiresClueIds": [
-                "clue_aurora_near_room",
-                "clue_wrong_target"
-              ],
-              "revealsClueIds": [
-                "clue_aurora_intended"
-              ],
+              "requiresClueIds": ["clue_aurora_near_room", "clue_wrong_target"],
+              "revealsClueIds": ["clue_aurora_intended"],
               "behavior": "Admitir que entrou na sala com a intenção de danificar algo, mas insistir que não era o Stradivarius.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -589,9 +498,7 @@
                 "clue_crack_pattern",
                 "clue_wrong_target"
               ],
-              "revealsClueIds": [
-                "clue_aurora_cracked"
-              ],
+              "revealsClueIds": ["clue_aurora_cracked"],
               "behavior": "Admitir que pegou o estojo errado e rachou o violino, insistindo que foi erro, não intenção.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -605,15 +512,9 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": [
-                "accuse_aurora"
-              ],
-              "requiresClueIds": [
-                "clue_aurora_cracked"
-              ],
-              "revealsClueIds": [
-                "clue_aurora_full_confession"
-              ],
+              "triggerIntents": ["accuse_aurora"],
+              "requiresClueIds": ["clue_aurora_cracked"],
+              "revealsClueIds": ["clue_aurora_full_confession"],
               "behavior": "Confessar completamente, detalhar como fez e expressar horror com a escala do próprio gesto.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -674,9 +575,7 @@
             "ask_about_sergio",
             "inspect_object"
           ],
-          "requiresClueIds": [
-            "clue_crack_deliberate"
-          ],
+          "requiresClueIds": ["clue_crack_deliberate"],
           "revealText": "Sérgio explica que o padrão da rachadura corresponde exatamente à quina metálica das estantes de partitura do conservatório, não às bancadas da oficina.",
           "responseGuidance": "Ele deve tratar como evidência técnica, não como acusação."
         },
@@ -698,9 +597,7 @@
             "ask_about_sergio",
             "ask_about_alibi"
           ],
-          "requiresClueIds": [
-            "clue_room_access"
-          ],
+          "requiresClueIds": ["clue_room_access"],
           "revealText": "Sérgio revela que na noite anterior as luzes do corredor dos ensaios estavam desligadas e que viu uma luz fraca vindo de uma das salas por volta da meia-noite.",
           "responseGuidance": "Ele deve tratar como detalhe que o incomodou, mas que não investigou."
         }
@@ -727,12 +624,8 @@
                 "ask_about_threats",
                 "accuse_sergio"
               ],
-              "requiresClueIds": [
-                "clue_crack_deliberate"
-              ],
-              "revealsClueIds": [
-                "clue_sergio_warned"
-              ],
+              "requiresClueIds": ["clue_crack_deliberate"],
+              "revealsClueIds": ["clue_sergio_warned"],
               "behavior": "Admitir que notou a tensão crescente e alertou Décio, mas sem detalhar.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -751,12 +644,8 @@
                 "ask_about_decio",
                 "accuse_sergio"
               ],
-              "requiresClueIds": [
-                "clue_sergio_warned"
-              ],
-              "revealsClueIds": [
-                "clue_sergio_ignored"
-              ],
+              "requiresClueIds": ["clue_sergio_warned"],
+              "revealsClueIds": ["clue_sergio_ignored"],
               "behavior": "Admitir que Décio ignorou o aviso e expressar frustração contida.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -802,9 +691,7 @@
       "imageUrl": "histories/a-corda-partida/location/oficina.jpg",
       "initialDescription": "A oficina do Sérgio é um cômodo cheiroso de verniz e madeira, com bancadas cobertas de ferramentas de precisão, cavacos no chão e instrumentos em vários estágios de reparo pendurados na parede. Tudo está organizado com mania e cuidado.",
       "ambientClueIds": [],
-      "objectIds": [
-        "ferramentas"
-      ]
+      "objectIds": ["ferramentas"]
     },
     {
       "id": "concerto",
@@ -833,28 +720,19 @@
       "clueRevealRules": [
         {
           "clueId": "clue_strad_damaged",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_strad"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_strad"],
           "requiresClueIds": [],
           "revealText": "O Stradivarius está com o harmônico rachado de cima a baixo — um dano grave que pode ser irreparável."
         },
         {
           "clueId": "clue_crack_deliberate",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_strad"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_strad"],
           "requiresClueIds": [],
           "revealText": "O padrão da rachadura — reto, limpo, sem marcas de queda — indica força deliberada contra uma quina, não acidente."
         },
         {
           "clueId": "clue_crack_pattern",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_strad"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_strad"],
           "revealText": "A largura e o ângulo da rachadura correspondem exatamente à quina metálica das estantes de partitura, não às bancadas de madeira da oficina."
         }
       ]
@@ -872,10 +750,7 @@
       "clueRevealRules": [
         {
           "clueId": "clue_marina_personal_violin",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_marina"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_marina"],
           "revealText": "O violino pessoal de Marina é um instrumento fino, mas visivelmente inferior ao Stradivarius. Está intacto, num estojo preto idêntico ao do Strad."
         }
       ]
@@ -957,10 +832,7 @@
       "clueRevealRules": [
         {
           "clueId": "clue_tools_untouched",
-          "triggerIntents": [
-            "inspect_object",
-            "ask_about_sergio"
-          ],
+          "triggerIntents": ["inspect_object", "ask_about_sergio"],
           "requiresClueIds": [],
           "revealText": "As ferramentas de Sérgio estão todas no lugar, sem sinal de uso indevido — a rachadura não foi feita com ferramentas de oficina, mas com a quina de uma estante."
         }
@@ -1343,9 +1215,7 @@
         "conclusionMatches": {
           "who_cracked_strad": "aurora"
         },
-        "requiresClueIds": [
-          "clue_aurora_cracked"
-        ]
+        "requiresClueIds": ["clue_aurora_cracked"]
       },
       "summary": "Você identificou Aurora como autora do dano, mas não fechou se a mira era certa nem o motivo real.",
       "epilogue": "Aurora não consegue mais negar que esteve na sala e que rachou o violino, mas o silêncio sobre a intenção pesa mais do que a confissão. Sem a mira errada explicada, o gesto parece pior do que foi — um ataque frio a um Stradivarius, não um erro desesperado de competidora exausta. O Stradivarius segue na oficina. Sérgio trabalha em silêncio. E Aurora carrega uma culpa que não corresponde exatamente ao que fez, mas que ela não consegue corrigir sem contar toda a verdade."

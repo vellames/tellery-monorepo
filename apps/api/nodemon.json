@@ -1,6 +1,6 @@
 {
-  "watch": ["src"],
+  "watch": ["src", "../../packages/i18n/src/locales"],
   "ext": "ts,json",
   "ignore": ["src/**/*.spec.ts", "src/**/*.test.ts"],
-  "exec": "ts-node --transpile-only src/index.ts"
+  "exec": "npm run copy-locales -w @ai-history/i18n && ts-node --transpile-only src/index.ts"
 }

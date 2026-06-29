@@ -11,8 +11,12 @@ import type { HistorySessionWithRelations } from '../../../repositories/SessionR
 jest.mock('@ai-history/i18n', () => ({
   ...jest.requireActual('@ai-history/i18n'),
   t: jest.fn(
-    (_lang: string, key: string, _params?: Record<string, string>, ns?: string) =>
-      ns ? `${ns}:${key}` : key
+    (
+      _lang: string,
+      key: string,
+      _params?: Record<string, string>,
+      ns?: string
+    ) => (ns ? `${ns}:${key}` : key)
   ),
 }));
 

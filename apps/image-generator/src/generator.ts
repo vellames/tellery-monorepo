@@ -167,7 +167,10 @@ async function compressToJpeg(
     }
   }
 
-  const fallback = await pipeline(JPEG_QUALITY_STEPS[JPEG_QUALITY_STEPS.length - 1], 800).toBuffer();
+  const fallback = await pipeline(
+    JPEG_QUALITY_STEPS[JPEG_QUALITY_STEPS.length - 1],
+    800
+  ).toBuffer();
   return {
     buffer: fallback,
     quality: JPEG_QUALITY_STEPS[JPEG_QUALITY_STEPS.length - 1],

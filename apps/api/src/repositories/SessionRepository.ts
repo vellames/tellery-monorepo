@@ -131,10 +131,7 @@ export class SessionRepository
         createdLocations.push(created);
       }
       const locationMap: DefinitionIdMap = Object.fromEntries(
-        createdLocations.map((loc) => [
-          loc.locationDefinitionId,
-          loc.id,
-        ])
+        createdLocations.map((loc) => [loc.locationDefinitionId, loc.id])
       );
       for (const data of buildObjectStates(
         input.history,
@@ -195,10 +192,7 @@ export class SessionRepository
     });
   }
 
-  async abandon(
-    sessionId: string,
-    tx?: PrismaTransaction
-  ): Promise<void> {
+  async abandon(sessionId: string, tx?: PrismaTransaction): Promise<void> {
     const client = tx ?? this.prisma;
     await client.historySession.update({
       where: { id: sessionId },

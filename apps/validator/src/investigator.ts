@@ -137,10 +137,7 @@ export class Investigator {
           objective: state.history.objective,
         },
         discoveredClueCount: state.clues.length,
-        totalCluesAvailable: entities.reduce(
-          (sum, e) => sum + e.cluesTotal,
-          0
-        ),
+        totalCluesAvailable: entities.reduce((sum, e) => sum + e.cluesTotal, 0),
         entitiesWithHiddenClues,
         entities,
         pastActions: pastActions.map((a) => ({

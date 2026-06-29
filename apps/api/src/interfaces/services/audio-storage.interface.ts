@@ -4,12 +4,10 @@ export interface AudioUploadResult {
 }
 
 export interface IAudioStorage {
-  upload(
-    input: {
-      sessionId: string;
-      buffer: Buffer;
-      contentType: string;
-      extension: string;
-    }
-  ): Promise<AudioUploadResult>;
+  upload(input: {
+    sessionId: string;
+    buffer: Buffer;
+    contentType: string;
+    extension: string;
+  }): Promise<AudioUploadResult>;
 }

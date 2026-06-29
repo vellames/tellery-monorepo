@@ -286,9 +286,15 @@ router.get('/', authenticate, async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post('/:sessionId/interact', authenticate, checkSessionOwnership, upload.single('audio'), async (req, res) => {
-  await DIContainer.getInstance().getSessionController().interact(req, res);
-});
+router.post(
+  '/:sessionId/interact',
+  authenticate,
+  checkSessionOwnership,
+  upload.single('audio'),
+  async (req, res) => {
+    await DIContainer.getInstance().getSessionController().interact(req, res);
+  }
+);
 
 /**
  * @openapi
@@ -334,9 +340,16 @@ router.post('/:sessionId/interact', authenticate, checkSessionOwnership, upload.
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post('/:sessionId/abandon', authenticate, checkSessionOwnership, async (req, res) => {
-  await DIContainer.getInstance().getSessionController().abandonSession(req, res);
-});
+router.post(
+  '/:sessionId/abandon',
+  authenticate,
+  checkSessionOwnership,
+  async (req, res) => {
+    await DIContainer.getInstance()
+      .getSessionController()
+      .abandonSession(req, res);
+  }
+);
 
 /**
  * @openapi
@@ -484,9 +497,14 @@ router.post('/:sessionId/abandon', authenticate, checkSessionOwnership, async (r
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.get('/:sessionId', authenticate, checkSessionOwnership, async (req, res) => {
-  await DIContainer.getInstance().getSessionController().getSession(req, res);
-});
+router.get(
+  '/:sessionId',
+  authenticate,
+  checkSessionOwnership,
+  async (req, res) => {
+    await DIContainer.getInstance().getSessionController().getSession(req, res);
+  }
+);
 
 /**
  * @openapi
@@ -589,10 +607,15 @@ router.get('/:sessionId', authenticate, checkSessionOwnership, async (req, res) 
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.post('/:sessionId/conclusion', authenticate, checkSessionOwnership, async (req, res) => {
-  await DIContainer.getInstance()
-    .getSessionController()
-    .submitConclusion(req, res);
-});
+router.post(
+  '/:sessionId/conclusion',
+  authenticate,
+  checkSessionOwnership,
+  async (req, res) => {
+    await DIContainer.getInstance()
+      .getSessionController()
+      .submitConclusion(req, res);
+  }
+);
 
 export default router;

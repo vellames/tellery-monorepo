@@ -167,7 +167,10 @@ function parseArgs(argv: string[]): {
     );
   }
 
-  if (maxDimension !== null && (!Number.isFinite(maxDimension) || maxDimension <= 0)) {
+  if (
+    maxDimension !== null &&
+    (!Number.isFinite(maxDimension) || maxDimension <= 0)
+  ) {
     throw new Error(
       `--max-dimension must be a positive integer (got "${maxDimension}")`
     );
