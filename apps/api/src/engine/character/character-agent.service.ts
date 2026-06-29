@@ -1,5 +1,4 @@
 import { SupportedLanguage } from '@ai-history/i18n';
-import { z } from 'zod';
 import { DetectedIntent } from '../intent/intent-detection.service';
 import {
   ChatMessage,
@@ -7,10 +6,8 @@ import {
 } from '../llm/structured-chat-model.interface';
 
 const SYSTEM_PROMPT_KEY = 'characterAgentSystemPrompt';
-const USER_PROMPT_KEY = 'characterAgentUserPrompt';
-const ENFORCEMENT_REASONING =
-  'Automatically included because the character reveal rule or secret stage was eligible for this interaction.';
-const NO_CONVERSATION_SUMMARY = 'Sem resumo ainda.';
+const ELIGIBLE_REVEAL_REASONING =
+  'Revealed by an eligible clue rule or secret stage for this interaction.';
 
 export interface CharacterAgentCharacter {
   id: string;
@@ -61,7 +58,6 @@ export interface ConversationMessage {
 
 export interface RunCharacterAgentInput {
   character: CharacterAgentCharacter;
-  conversationSummary: string | null;
   recentConversation: ConversationMessage[];
   interaction: string;
   detectedIntents: DetectedIntent[];
@@ -86,7 +82,6 @@ export interface UpdatedSecretState {
 export interface CharacterAgentResult {
   reply: string;
   discoveredClues: CharacterAgentDiscoveredClue[];
-  updatedConversationSummary: string;
   updatedSecretStates: UpdatedSecretState[];
 }
 
@@ -95,19 +90,6 @@ export type CharacterTranslationFn = (
   key: string,
   params?: Record<string, string>
 ) => string;
-
-const CharacterAgentResponseSchema = z.object({
-  reply: z.string(),
-  discoveredClues: z.array(
-    z.object({
-      clueId: z.string(),
-      reasoning: z.string(),
-    })
-  ),
-  updatedConversationSummary: z.string(),
-});
-
-type CharacterAgentResponse = z.infer<typeof CharacterAgentResponseSchema>;
 
 export class CharacterAgent {
   constructor(
@@ -127,20 +109,18 @@ export class CharacterAgent {
       input.discoveredClueIds
     );
 
-    const response = await this.llm.invokeStructured(
-      this.buildMessages(input, eligibleClueRules, eligibleSecretStages),
-      CharacterAgentResponseSchema
+    const reply = await this.llm.invoke(
+      this.buildMessages(input, eligibleClueRules, eligibleSecretStages)
     );
 
     console.log('[character-agent] raw llm response', {
       characterId: input.character.id,
       eligibleClueRuleCount: eligibleClueRules.length,
       eligibleSecretStageCount: eligibleSecretStages.length,
-      response,
+      replyLength: reply.length,
     });
 
-    const discoveredClues = this.normalizeDiscoveredClues(
-      response,
+    const discoveredClues = this.collectDiscoveredClues(
       eligibleClueRules,
       eligibleSecretStages
     );
@@ -154,9 +134,8 @@ export class CharacterAgent {
     });
 
     return {
-      reply: response.reply,
+      reply,
       discoveredClues,
-      updatedConversationSummary: response.updatedConversationSummary,
       updatedSecretStates,
     };
   }
@@ -252,11 +231,7 @@ export class CharacterAgent {
     return [
       {
         role: 'system',
-        content: this.translate(input.language, SYSTEM_PROMPT_KEY),
-      },
-      {
-        role: 'user',
-        content: this.translate(input.language, USER_PROMPT_KEY, {
+        content: this.translate(input.language, SYSTEM_PROMPT_KEY, {
           character: JSON.stringify(
             {
               id: input.character.id,
@@ -273,12 +248,6 @@ export class CharacterAgent {
             null,
             2
           ),
-          conversationSummary:
-            input.conversationSummary ?? NO_CONVERSATION_SUMMARY,
-          recentConversation: this.formatConversation(input.recentConversation),
-          interaction: input.interaction,
-          detectedIntents: JSON.stringify(input.detectedIntents, null, 2),
-          discoveredClueIds: JSON.stringify(input.discoveredClueIds),
           eligibleClueRules: JSON.stringify(
             eligibleClueRules.map((rule) => ({
               clueId: rule.clueId,
@@ -309,19 +278,23 @@ export class CharacterAgent {
           ),
         }),
       },
+      ...this.toChatHistory(input.recentConversation),
+      { role: 'user', content: input.interaction },
     ];
   }
 
-  private formatConversation(messages: ConversationMessage[]): string {
-    if (messages.length === 0) return 'Sem historico recente.';
-
+  private toChatHistory(messages: ConversationMessage[]): ChatMessage[] {
     return messages
-      .map((message) => `${message.role}: ${message.content}`)
-      .join('\n');
+      .filter(
+        (message) => message.role === 'user' || message.role === 'character'
+      )
+      .map((message) => ({
+        role: message.role === 'character' ? 'assistant' : 'user',
+        content: message.content,
+      }));
   }
 
-  private normalizeDiscoveredClues(
-    response: CharacterAgentResponse,
+  private collectDiscoveredClues(
     eligibleClueRules: CharacterClueRule[],
     eligibleSecretStages: Array<{
       secret: CharacterSecret;
@@ -332,21 +305,18 @@ export class CharacterAgent {
       ...eligibleClueRules.map((rule) => rule.clueId),
       ...eligibleSecretStages.flatMap(({ stage }) => stage.revealsClueIds),
     ];
-    const eligibleClueIdSet = new Set(eligibleClueIds);
 
-    const fromModel = response.discoveredClues.filter((result) =>
-      eligibleClueIdSet.has(result.clueId)
-    );
-    const modelClueIds = new Set(fromModel.map((result) => result.clueId));
-
-    const enforced = eligibleClueIds
-      .filter((clueId) => !modelClueIds.has(clueId))
+    const seen = new Set<string>();
+    return eligibleClueIds
+      .filter((clueId) => {
+        if (seen.has(clueId)) return false;
+        seen.add(clueId);
+        return true;
+      })
       .map((clueId) => ({
         clueId,
-        reasoning: ENFORCEMENT_REASONING,
+        reasoning: ELIGIBLE_REVEAL_REASONING,
       }));
-
-    return [...fromModel, ...enforced];
   }
 
   private computeUpdatedSecretStates(

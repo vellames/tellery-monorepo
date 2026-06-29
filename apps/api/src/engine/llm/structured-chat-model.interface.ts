@@ -8,6 +8,7 @@ export interface ChatMessage {
 }
 
 export interface IStructuredChatModel {
+  invoke(messages: ChatMessage[]): Promise<string>;
   invokeStructured<T>(
     messages: ChatMessage[],
     schema: z.ZodType<T>

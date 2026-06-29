@@ -73,7 +73,6 @@ describe('SessionInteractionService', () => {
     characterAgent.run.mockResolvedValue({
       reply: 'reply',
       discoveredClues: [],
-      updatedConversationSummary: 'resumo',
       updatedSecretStates: [],
     });
     service = new SessionInteractionService(
@@ -628,7 +627,6 @@ describe('SessionInteractionService', () => {
       characterAgent.run.mockResolvedValue({
         reply: 'Não vi nada não.',
         discoveredClues: [{ clueId: 'clue-1', reasoning: 'mencionou' }],
-        updatedConversationSummary: 'novo resumo',
         updatedSecretStates: [
           {
             secretId: 'secret-1',
@@ -648,7 +646,6 @@ describe('SessionInteractionService', () => {
 
       expect(sessions.recordCharacterInteraction).toHaveBeenCalledWith({
         characterStateId: input.stateId,
-        conversationSummary: 'novo resumo',
         discoveredClueIds: ['clue-1'],
         updatedSecretStates: [
           {

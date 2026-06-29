@@ -286,7 +286,6 @@ describe('SessionRepository', () => {
 
       await repo.recordCharacterInteraction({
         characterStateId: 'char-state-1',
-        conversationSummary: 'novo resumo',
         discoveredClueIds: ['clue-1'],
         updatedSecretStates: [
           {
@@ -305,7 +304,6 @@ describe('SessionRepository', () => {
       expect(prisma.characterSessionState.update).toHaveBeenCalledWith({
         where: { id: 'char-state-1' },
         data: expect.objectContaining({
-          conversationSummary: 'novo resumo',
           revealedClues: { connect: [{ id: 'clue-1' }] },
         }),
       });
@@ -335,7 +333,7 @@ describe('SessionRepository', () => {
       });
     });
 
-    it('updates the conversation summary and messages even with no secret advancement', async () => {
+    it('persists messages even with no secret advancement', async () => {
       prisma.characterSessionState.update.mockResolvedValue({} as never);
       prisma.characterConversationMessage.createMany.mockResolvedValue({
         count: 2,
@@ -343,7 +341,6 @@ describe('SessionRepository', () => {
 
       await repo.recordCharacterInteraction({
         characterStateId: 'char-state-1',
-        conversationSummary: 'resumo',
         discoveredClueIds: [],
         updatedSecretStates: [],
         messages: [

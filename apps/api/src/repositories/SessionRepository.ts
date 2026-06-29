@@ -281,7 +281,6 @@ export class SessionRepository
   async recordCharacterInteraction(
     input: {
       characterStateId: string;
-      conversationSummary: string;
       discoveredClueIds: string[];
       updatedSecretStates: UpdatedSecretState[];
       messages: { role: InteractionRole; content: string }[];
@@ -294,7 +293,6 @@ export class SessionRepository
       await client.characterSessionState.update({
         where: { id: input.characterStateId },
         data: {
-          conversationSummary: input.conversationSummary,
           revealedClues:
             input.discoveredClueIds.length > 0
               ? {

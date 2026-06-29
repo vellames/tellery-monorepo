@@ -25,7 +25,6 @@ type ObjectState = HistorySessionWithRelations['objectStates'][number];
 type CharacterState = HistorySessionWithRelations['characterStates'][number];
 type LocationState = HistorySessionWithRelations['locationStates'][number];
 
-const RECENT_CONVERSATION_LIMIT = 6;
 const LOCATION_VISIT_REASONING = 'Ambient clue revealed on first visit.';
 const NO_CLUE_FOUND_KEY = 'interact.noClueFound';
 const SESSION_NAMESPACE = 'session';
@@ -177,13 +176,14 @@ export class SessionInteractionService {
     discoveredClues: InteractDiscoveredClue[];
     detectedIntents: DetectedIntent[];
   }> {
-    const discoveredClues = await this.runObjectInspection(session, objectState);
+    const discoveredClues = await this.runObjectInspection(
+      session,
+      objectState
+    );
     return { reply: null, discoveredClues, detectedIntents: [] };
   }
 
-  private async resolveLocationState(
-    locationState: LocationState
-  ): Promise<{
+  private async resolveLocationState(locationState: LocationState): Promise<{
     reply: string | null;
     discoveredClues: InteractDiscoveredClue[];
     detectedIntents: DetectedIntent[];
@@ -318,12 +318,10 @@ export class SessionInteractionService {
       .filter((clue) => clue.discovered)
       .map((clue) => clue.id);
 
-    const recentConversation = characterState.messages
-      .slice(-RECENT_CONVERSATION_LIMIT)
-      .map((message) => ({
-        role: message.role,
-        content: message.content,
-      }));
+    const recentConversation = characterState.messages.map((message) => ({
+      role: message.role,
+      content: message.content,
+    }));
 
     const agentResult = await this.characterAgent.run({
       character: {
@@ -338,7 +336,6 @@ export class SessionInteractionService {
         openingLine: characterState.openingLine,
         conversationBoundaries: characterState.conversationBoundaries,
       },
-      conversationSummary: characterState.conversationSummary,
       recentConversation,
       interaction: input.interaction,
       detectedIntents,
@@ -389,7 +386,6 @@ export class SessionInteractionService {
 
     await this.sessions.recordCharacterInteraction({
       characterStateId: characterState.id,
-      conversationSummary: agentResult.updatedConversationSummary,
       discoveredClueIds: newlyDiscoveredClueIds,
       updatedSecretStates: agentResult.updatedSecretStates,
       messages,

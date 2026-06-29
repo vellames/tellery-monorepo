@@ -55,7 +55,6 @@ describe('CharacterAgent', () => {
 
   const baseInput = {
     character,
-    conversationSummary: null,
     recentConversation: [],
     interaction: 'o que aconteceu?',
     detectedIntents: [{ intentId: 'intent-a', confidence: 0.9, reasoning: '' }],
@@ -65,41 +64,17 @@ describe('CharacterAgent', () => {
     language,
   };
 
-  it('always calls the LLM and returns the reply and conversation summary', async () => {
-    llm.invokeStructured.mockResolvedValue({
-      reply: 'Não vi nada não.',
-      discoveredClues: [{ clueId: 'clue-1', reasoning: 'mencionou' }],
-      updatedConversationSummary: 'resumo atualizado',
-    });
+  it('always calls the LLM and returns the reply', async () => {
+    llm.invoke.mockResolvedValue('Não vi nada não.');
 
     const result = await agent.run(baseInput);
 
-    expect(llm.invokeStructured).toHaveBeenCalled();
+    expect(llm.invoke).toHaveBeenCalled();
     expect(result.reply).toBe('Não vi nada não.');
-    expect(result.updatedConversationSummary).toBe('resumo atualizado');
   });
 
-  it('enforces eligible clue rules the LLM omitted', async () => {
-    llm.invokeStructured.mockResolvedValue({
-      reply: '...',
-      discoveredClues: [],
-      updatedConversationSummary: 'resumo',
-    });
-
-    const result = await agent.run(baseInput);
-
-    expect(result.discoveredClues.map((c) => c.clueId)).toEqual(['clue-1']);
-  });
-
-  it('filters out LLM-returned clue ids that are not eligible', async () => {
-    llm.invokeStructured.mockResolvedValue({
-      reply: '...',
-      discoveredClues: [
-        { clueId: 'clue-1', reasoning: 'ok' },
-        { clueId: 'clue-foreign', reasoning: 'invalid' },
-      ],
-      updatedConversationSummary: 'resumo',
-    });
+  it('reveals clues from eligible clue rules', async () => {
+    llm.invoke.mockResolvedValue('...');
 
     const result = await agent.run(baseInput);
 
@@ -116,17 +91,13 @@ describe('CharacterAgent', () => {
         }),
       ];
 
-      llm.invokeStructured.mockResolvedValue({
-        reply: '...',
-        discoveredClues: [],
-        updatedConversationSummary: 'resumo',
-      });
+      llm.invoke.mockResolvedValue('...');
 
       await agent.run({ ...baseInput, clueRules: rules });
 
       // both clues enforced -> cascade worked
-      const call = llm.invokeStructured.mock.calls[0][1];
-      expect(call).toBeDefined();
+      const sentMessages = llm.invoke.mock.calls[0][0];
+      expect(sentMessages).toBeDefined();
     });
 
     it('does not unlock a rule when its required clue is absent', async () => {
@@ -134,11 +105,7 @@ describe('CharacterAgent', () => {
         buildRule({ clueId: 'clue-a', requiredClueIds: ['clue-missing'] }),
       ];
 
-      llm.invokeStructured.mockResolvedValue({
-        reply: '...',
-        discoveredClues: [],
-        updatedConversationSummary: 'resumo',
-      });
+      llm.invoke.mockResolvedValue('...');
 
       const result = await agent.run({ ...baseInput, clueRules: rules });
 
@@ -171,11 +138,7 @@ describe('CharacterAgent', () => {
     });
 
     it('advances a secret to the highest eligible stage and reveals its clues', async () => {
-      llm.invokeStructured.mockResolvedValue({
-        reply: '...',
-        discoveredClues: [],
-        updatedConversationSummary: 'resumo',
-      });
+      llm.invoke.mockResolvedValue('...');
 
       const result = await agent.run({
         ...baseInput,
@@ -198,11 +161,7 @@ describe('CharacterAgent', () => {
     });
 
     it('does not advance a secret when no stage is eligible', async () => {
-      llm.invokeStructured.mockResolvedValue({
-        reply: '...',
-        discoveredClues: [],
-        updatedConversationSummary: 'resumo',
-      });
+      llm.invoke.mockResolvedValue('...');
 
       const result = await agent.run({
         ...baseInput,
@@ -217,11 +176,7 @@ describe('CharacterAgent', () => {
     });
 
     it('does not consider stages at or below the current level', async () => {
-      llm.invokeStructured.mockResolvedValue({
-        reply: '...',
-        discoveredClues: [],
-        updatedConversationSummary: 'resumo',
-      });
+      llm.invoke.mockResolvedValue('...');
 
       const result = await agent.run({
         ...baseInput,
@@ -233,26 +188,38 @@ describe('CharacterAgent', () => {
     });
   });
 
-  it('builds the prompt with translated system and user prompts', async () => {
-    llm.invokeStructured.mockResolvedValue({
-      reply: '...',
-      discoveredClues: [],
-      updatedConversationSummary: 'resumo',
+  it('builds messages with system context and conversation history', async () => {
+    llm.invoke.mockResolvedValue('...');
+
+    await agent.run({
+      ...baseInput,
+      recentConversation: [
+        { role: 'user', content: 'msg-1' },
+        { role: 'character', content: 'msg-2' },
+        { role: 'system', content: 'meta-ignored' },
+      ],
     });
 
-    await agent.run(baseInput);
+    expect(translate).toHaveBeenCalledWith(
+      language,
+      'characterAgentSystemPrompt',
+      expect.objectContaining({ character: expect.any(String) })
+    );
 
-    expect(translate).toHaveBeenCalledWith(
-      language,
-      'characterAgentSystemPrompt'
-    );
-    expect(translate).toHaveBeenCalledWith(
-      language,
-      'characterAgentUserPrompt',
-      expect.objectContaining({
-        interaction: baseInput.interaction,
-        character: expect.any(String),
-      })
-    );
+    const messages = llm.invoke.mock.calls[0][0] as Array<{
+      role: string;
+      content: string;
+    }>;
+    // one system message (context + rules), then mapped history, then the
+    // current interaction as the final user message.
+    expect(messages[0].role).toBe('system');
+    expect(messages[1]).toEqual({ role: 'user', content: 'msg-1' });
+    expect(messages[2]).toEqual({ role: 'assistant', content: 'msg-2' });
+    expect(messages[messages.length - 1]).toEqual({
+      role: 'user',
+      content: baseInput.interaction,
+    });
+    // meta/system turns are not part of the dialogue history
+    expect(messages.some((m) => m.content === 'meta-ignored')).toBe(false);
   });
 });

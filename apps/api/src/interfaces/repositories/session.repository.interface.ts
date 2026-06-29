@@ -46,7 +46,6 @@ export interface ISessionRepository extends IBaseRepository {
   recordCharacterInteraction(
     input: {
       characterStateId: string;
-      conversationSummary: string;
       discoveredClueIds: string[];
       updatedSecretStates: UpdatedSecretState[];
       messages: SessionInteractionMessageInput[];

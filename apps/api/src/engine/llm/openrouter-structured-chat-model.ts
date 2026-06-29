@@ -19,6 +19,23 @@ export class OpenRouterStructuredChatModel implements IStructuredChatModel {
     });
   }
 
+  async invoke(messages: ChatMessage[]): Promise<string> {
+    console.log('[llm] plain call', {
+      model: this.model,
+      messageCount: messages.length,
+    });
+
+    const result = await this.chatModel.invoke(
+      messages.map((message) => ({
+        role: message.role,
+        content: message.content,
+      }))
+    );
+    return typeof result.content === 'string'
+      ? result.content
+      : String(result.content);
+  }
+
   async invokeStructured<T>(
     messages: ChatMessage[],
     schema: z.ZodType<T>
