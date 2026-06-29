@@ -65,6 +65,7 @@ export function SessionHub({ session }: SessionHubProps) {
   const [showEvidence, setShowEvidence] = useState(false);
   const [showCase, setShowCase] = useState(false);
   const [showConclusion, setShowConclusion] = useState(false);
+  const [showSolveLock, setShowSolveLock] = useState(false);
 
   const target = useMemo<InvestigationTarget | null>(() => {
     if (!targetRef) return null;
@@ -361,7 +362,7 @@ export function SessionHub({ session }: SessionHubProps) {
               </span>
             )}
           </button>
-          <div className="group/solve relative flex flex-1 sm:flex-none">
+          <div className="relative flex flex-1 sm:flex-none">
             <button
               className={cn(
                 'inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition sm:flex-none',
@@ -371,18 +372,42 @@ export function SessionHub({ session }: SessionHubProps) {
               )}
               type="button"
               disabled={!canSolveCase}
-              onClick={() => canSolveCase && setShowConclusion(true)}
+              onClick={() =>
+                canSolveCase
+                  ? setShowConclusion(true)
+                  : setShowSolveLock((v) => !v)
+              }
             >
               <Gavel className="size-4" />
               {t('solveCase')}
             </button>
-            {!canSolveCase && (
-              <div className="pointer-events-none absolute right-0 bottom-full z-20 mb-2 w-72 translate-y-1 rounded-2xl border border-[#fff9ef]/12 bg-[#0a0203]/95 p-3 text-xs leading-5 text-[#fff9ef]/65 opacity-0 shadow-2xl backdrop-blur transition-all group-hover/solve:translate-y-0 group-hover/solve:opacity-100">
-                {t('solveLocked', {
-                  found: requiredCluesFound,
-                  total: requiredCluesTotal,
-                })}
-              </div>
+            {!canSolveCase && showSolveLock && (
+              <>
+                <button
+                  type="button"
+                  aria-label={t('close')}
+                  onClick={() => setShowSolveLock(false)}
+                  className="fixed inset-0 z-20 cursor-default"
+                />
+                <div className="absolute right-0 bottom-full z-30 mb-2 w-72 max-w-[calc(100vw-2.5rem)] origin-bottom-right rounded-2xl border border-[#fff9ef]/12 bg-[#0a0203]/95 p-3 text-xs leading-5 text-[#fff9ef]/65 shadow-2xl backdrop-blur">
+                  <div className="flex items-start justify-between gap-2">
+                    <p>
+                      {t('solveLocked', {
+                        found: requiredCluesFound,
+                        total: requiredCluesTotal,
+                      })}
+                    </p>
+                    <button
+                      type="button"
+                      aria-label={t('close')}
+                      onClick={() => setShowSolveLock(false)}
+                      className="text-gold/70 grid size-6 shrink-0 cursor-pointer place-items-center rounded-full text-[#fff9ef]/60 transition hover:text-[#fff9ef]"
+                    >
+                      <X className="size-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </div>
