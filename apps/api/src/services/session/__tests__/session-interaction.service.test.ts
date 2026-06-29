@@ -302,10 +302,6 @@ describe('SessionInteractionService', () => {
   });
 
   describe('object inspection', () => {
-    const detected = [
-      { intentId: 'intent-1', confidence: 0.9, reasoning: 'clear' },
-    ];
-
     const objectState = {
       id: input.stateId,
       name: 'Bilhete',
@@ -315,9 +311,16 @@ describe('SessionInteractionService', () => {
         {
           clueId: 'clue-1',
           revealText: 'revela a tinta',
-          clue: { title: 'Tinta azul', description: 'tinta azulCaneta' },
+          clue: { title: 'Tinta azul', description: 'tinta azul' },
           triggerIntents: [{ id: 'intent-1' }],
           requiredClues: [],
+        },
+        {
+          clueId: 'clue-2',
+          revealText: 'revela o perfume',
+          clue: { title: 'Perfume cítrico', description: 'cheiro cítrico' },
+          triggerIntents: [{ id: 'intent-2' }],
+          requiredClues: [{ id: 'clue-1' }],
         },
       ],
     };
@@ -327,21 +330,25 @@ describe('SessionInteractionService', () => {
         id: 'clue-1',
         title: 'Tinta azul',
         description: 'tinta azul',
+        importance: 'required',
+        discovered: false,
+      },
+      {
+        id: 'clue-2',
+        title: 'Perfume cítrico',
+        description: 'cheiro cítrico',
+        importance: 'supporting',
         discovered: false,
       },
     ];
 
-    it('runs the object agent, persists and returns enriched discovered clues', async () => {
+    it('reveals all undiscovered clues of the object without LLM', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
           objectStates: [objectState] as never,
           clues: sessionClues as never,
         })
       );
-      intentDetection.detect.mockResolvedValue(detected);
-      objectAgent.run.mockResolvedValue([
-        { clueId: 'clue-1', reasoning: 'a tinta estava visível' },
-      ]);
 
       const result = await service.interact(
         sessionId,
@@ -350,40 +357,69 @@ describe('SessionInteractionService', () => {
         language
       );
 
-      expect(objectAgent.run).toHaveBeenCalledWith(
-        expect.objectContaining({
-          object: expect.objectContaining({ id: input.stateId }),
-          detectedIntents: detected,
-          discoveredClueIds: [],
-        })
-      );
+      expect(objectAgent.run).not.toHaveBeenCalled();
       expect(sessions.recordObjectInspection).toHaveBeenCalledWith({
         objectStateId: input.stateId,
-        discoveredClueIds: ['clue-1'],
+        discoveredClueIds: ['clue-1', 'clue-2'],
         messages: [
-          { role: 'user', content: 'hello' },
           { role: 'object', content: 'revela a tinta' },
+          { role: 'object', content: 'revela o perfume' },
         ],
       });
-      expect(result.discoveredClues).toEqual([
-        {
-          id: 'clue-1',
-          title: 'Tinta azul',
-          description: 'tinta azul',
-          reasoning: 'a tinta estava visível',
-        },
+      expect(result.discoveredClues.map((c) => c.id)).toEqual([
+        'clue-1',
+        'clue-2',
       ]);
     });
 
-    it('marks the object inspected even when no clue is discovered', async () => {
+    it('only reveals clues not yet discovered', async () => {
       sessions.findById.mockResolvedValue(
         buildSession({
           objectStates: [objectState] as never,
-          clues: sessionClues as never,
+          clues: [
+            {
+              id: 'clue-1',
+              title: 'Tinta azul',
+              description: 'tinta azul',
+              importance: 'required',
+              discovered: true,
+            },
+            {
+              id: 'clue-2',
+              title: 'Perfume cítrico',
+              description: 'cheiro cítrico',
+              importance: 'supporting',
+              discovered: false,
+            },
+          ] as never,
         })
       );
-      intentDetection.detect.mockResolvedValue(detected);
-      objectAgent.run.mockResolvedValue([]);
+
+      const result = await service.interact(
+        sessionId,
+        ownerId,
+        input,
+        language
+      );
+
+      expect(sessions.recordObjectInspection).toHaveBeenCalledWith({
+        objectStateId: input.stateId,
+        discoveredClueIds: ['clue-2'],
+        messages: [{ role: 'object', content: 'revela o perfume' }],
+      });
+      expect(result.discoveredClues.map((c) => c.id)).toEqual(['clue-2']);
+    });
+
+    it('returns empty when all clues already discovered', async () => {
+      sessions.findById.mockResolvedValue(
+        buildSession({
+          objectStates: [objectState] as never,
+          clues: [
+            { id: 'clue-1', discovered: true } as never,
+            { id: 'clue-2', discovered: true } as never,
+          ],
+        })
+      );
 
       const result = await service.interact(
         sessionId,
@@ -395,31 +431,9 @@ describe('SessionInteractionService', () => {
       expect(sessions.recordObjectInspection).toHaveBeenCalledWith({
         objectStateId: input.stateId,
         discoveredClueIds: [],
-        messages: [
-          { role: 'user', content: 'hello' },
-          { role: 'system', content: 'session:interact.noClueFound' },
-        ],
+        messages: [],
       });
       expect(result.discoveredClues).toEqual([]);
-    });
-
-    it('passes already-discovered clue ids to the object agent', async () => {
-      sessions.findById.mockResolvedValue(
-        buildSession({
-          objectStates: [objectState] as never,
-          clues: [
-            { id: 'clue-prev', title: 'x', description: 'y', discovered: true },
-          ] as never,
-        })
-      );
-      intentDetection.detect.mockResolvedValue(detected);
-      objectAgent.run.mockResolvedValue([]);
-
-      await service.interact(sessionId, ownerId, input, language);
-
-      expect(objectAgent.run).toHaveBeenCalledWith(
-        expect.objectContaining({ discoveredClueIds: ['clue-prev'] })
-      );
     });
   });
 

@@ -93,7 +93,7 @@ export class SessionInteractionService {
       language,
     });
 
-    const detectedIntents = await this.detectIntents(
+    const detectedIntents = resolvedState.type === 'object' ? [] : await this.detectIntents(
       session.intents,
       input,
       resolvedState,
@@ -105,10 +105,7 @@ export class SessionInteractionService {
     if (resolvedState.type === 'object') {
       discoveredClues = await this.runObjectInspection(
         session,
-        resolvedState.state,
-        input.interaction,
-        detectedIntents,
-        language
+        resolvedState.state
       );
     } else if (resolvedState.type === 'character') {
       const characterResult = await this.runCharacterInteraction(
@@ -180,59 +177,28 @@ export class SessionInteractionService {
 
   private async runObjectInspection(
     session: HistorySessionWithRelations,
-    objectState: ObjectState,
-    interaction: string,
-    detectedIntents: DetectedIntent[],
-    language: SupportedLanguage
+    objectState: ObjectState
   ): Promise<InteractDiscoveredClue[]> {
-    const discoveredClueIds = session.clues
-      .filter((clue) => clue.discovered)
-      .map((clue) => clue.id);
+    const alreadyDiscovered = new Set(
+      session.clues.filter((c) => c.discovered).map((c) => c.id)
+    );
 
-    const agentResult = await this.objectAgent.run({
-      object: {
-        id: objectState.id,
-        name: objectState.name,
-        shortDescription: objectState.shortDescription,
-        initialDescription: objectState.initialDescription,
-      },
-      rules: objectState.clueRevealRules.map((rule) => ({
-        clueId: rule.clueId,
-        revealText: rule.revealText,
-        clueTitle: rule.clue.title,
-        clueDescription: rule.clue.description,
-        triggerIntentIds: rule.triggerIntents.map((intent) => intent.id),
-        requiredClueIds: rule.requiredClues.map((clue) => clue.id),
-      })),
-      detectedIntents,
-      discoveredClueIds,
-      language,
-    });
+    const newlyDiscoveredClueIds: string[] = [];
+    const revealTexts: string[] = [];
 
-    const newlyDiscoveredClueIds = agentResult.map((result) => result.clueId);
+    for (const rule of objectState.clueRevealRules) {
+      if (alreadyDiscovered.has(rule.clueId)) continue;
 
-    const revealTexts = newlyDiscoveredClueIds
-      .map(
-        (clueId) =>
-          objectState.clueRevealRules.find((rule) => rule.clueId === clueId)
-            ?.revealText
-      )
-      .filter((text): text is string => Boolean(text));
+      newlyDiscoveredClueIds.push(rule.clueId);
+      if (rule.revealText) revealTexts.push(rule.revealText);
+    }
 
     const messages: { role: InteractionRole; content: string }[] = [
-      { role: InteractionRole.user, content: interaction },
       ...revealTexts.map((content) => ({
         role: InteractionRole.object,
         content,
       })),
     ];
-
-    if (newlyDiscoveredClueIds.length === 0) {
-      messages.push({
-        role: InteractionRole.system,
-        content: t(language, NO_CLUE_FOUND_KEY, {}, SESSION_NAMESPACE),
-      });
-    }
 
     await this.sessions.recordObjectInspection({
       objectStateId: objectState.id,
@@ -240,7 +206,18 @@ export class SessionInteractionService {
       messages,
     });
 
-    return this.enrichDiscoveredClues(agentResult, session.clues);
+    return newlyDiscoveredClueIds.map((clueId) => {
+      const rule = objectState.clueRevealRules.find(
+        (r) => r.clueId === clueId
+      );
+      const clue = session.clues.find((c) => c.id === clueId);
+      return {
+        id: clueId,
+        title: clue?.title ?? rule?.clue.title ?? '',
+        description: clue?.description ?? rule?.clue.description ?? '',
+        reasoning: rule?.revealText ?? 'Object inspected.',
+      };
+    });
   }
 
   private async runCharacterInteraction(
