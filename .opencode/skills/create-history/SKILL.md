@@ -33,6 +33,43 @@ Required top-level sections (see existing mocks for full shapes):
 - `endings[]` — `type` (`full_truth` | `partial_truth` | `wrong_accusation`), `condition`
 - `rules` — `minCluesBeforeConclusion`, `suggestConclusionAfterClues`, `maxRecommendedInteractions`
 
+### Spoiler-free descriptions (CRITICAL)
+
+Player-facing description fields must describe **what the player sees** (appearance, atmosphere), NEVER **what it means** (conclusions, clues, secrets). Clues belong exclusively in `clueRevealRules` and secret `revealStages`. If a description reveals what an investigation should uncover, the mystery is broken.
+
+**Fields that the player sees and must be spoiler-free:**
+
+| Field | Rule |
+| --- | --- |
+| `teaser`, `subtitle` | Set the mood; do NOT reveal the twist, the culprit's nature, or structural hints |
+| `opening.shortText`, `opening.fullText` | Describe the scene and the crime; list characters by their facade only ("um empresário"), never by their secret ("um empresário que não sabe explicar o que faz") |
+| `opening.callToAction` | Tell the player what to investigate; do NOT hint at what they'll discover |
+| `objective.description` | State the goal; remove parenthetical hints about the mystery's nature |
+| `characters[].shortDescription` | Describe the visible facade only. Do NOT hint the facade is fake, reveal guilt, or describe secrets |
+| `characters[].openingLine` | Can show personality; must NOT state secrets or clues outright |
+| `objects[].shortDescription` | Describe what the object IS, not what it PROVES |
+| `objects[].initialDescription` | Describe visual appearance ONLY. No interpretations ("a rachadura indica força"), no conclusions ("sem sinal de uso indevido"), no pre-revealing what examination would find |
+| `locations[].shortDescription` | Brief factual description of the place |
+| `locations[].initialDescription` | Atmosphere and decor; do NOT highlight specific evidence in the scene description |
+
+**Examples of what to fix:**
+
+| Bad (spoils clue) | Good (spoiler-free) |
+| --- | --- |
+| "jornalista que nunca publicou um artigo" | "que se apresenta como jornalista" |
+| "o painel está torto, com marcas de dedos recentes" | "um painel de manutenção na parede" |
+| "a tinta ainda está úmida" | (remove — this is a clueRevealRule discovery) |
+| "talvez descubra que ninguém é quem diz ser" | (remove — structural hint) |
+| "ferramentas sem sinal de uso indevido" | "ferramentas de precisão na bancada" |
+| "cinco identidades falsas" | "cinco passageiros no mesmo vagão" |
+
+**Fields that are safe to include detail** (not player-facing or only shown post-resolution):
+- `personality`, `speakingStyle` — used by the LLM character model, not shown directly
+- `publicKnowledge`, `privateKnowledge` — internal context for the character model
+- `conversationBoundaries` — internal guardrails
+- `clueRevealRules`, `secrets`, `revealStages` — the actual clue mechanics
+- `endings[].summary`, `endings[].epilogue` — shown only AFTER the player finishes
+
 ### Image key conventions (S3 paths)
 
 All `imageUrl` fields use relative S3 keys (NOT URLs). Match the section name
@@ -40,11 +77,11 @@ exactly as the existing mocks do — note the mixed singular/plural:
 
 | Section in JSON field | S3 path segment                                   |
 | --------------------- | ------------------------------------------------- |
-| cover / thumbnail     | `histories/<slug>/history/<file>.png`             |
-| location `imageUrl`   | `histories/<slug>/location/<file>.png` (singular) |
-| object `imageUrl`     | `histories/<slug>/object/<file>.png` (singular)   |
-| character `imageUrl`  | `histories/<slug>/characters/<file>.png` (plural) |
-| ending `imageUrl`     | `histories/<slug>/endings/<file>.png` (plural)    |
+| cover / thumbnail     | `histories/<slug>/history/<file>.jpg`             |
+| location `imageUrl`   | `histories/<slug>/location/<file>.jpg` (singular) |
+| object `imageUrl`     | `histories/<slug>/object/<file>.jpg` (singular)   |
+| character `imageUrl`  | `histories/<slug>/characters/<file>.jpg` (plural) |
+| ending `imageUrl`     | `histories/<slug>/endings/<file>.jpg` (plural)    |
 
 ### Clue reveal mechanics
 
@@ -149,7 +186,7 @@ Every `imageUrl` referenced in `<slug>.json` must have a matching prompt in
 the image-map. Run a quick check:
 
 ```sh
-node -e "const fs=require('fs');const m=JSON.parse(fs.readFileSync('mocks/<slug>-images-map.json'));const h=JSON.parse(fs.readFileSync('mocks/<slug>.json'));const exp=[];h.locations.forEach(l=>exp.push(['location',l.imageUrl]));h.objects.forEach(o=>exp.push(['object',o.imageUrl]));h.characters.forEach(c=>exp.push(['characters',c.imageUrl]));h.endings.forEach(e=>exp.push(['endings',e.imageUrl]));exp.push(['history',h.coverImageUrl]);exp.push(['history',h.thumbnailUrl]);const miss=exp.filter(([s,p])=>{const n=p.split('/').pop().replace('.png','');return !m[s]||!m[s][n];});console.log(miss.length?'MISSING: '+JSON.stringify(miss):'OK: all '+exp.length+' assets covered');"
+node -e "const fs=require('fs');const m=JSON.parse(fs.readFileSync('mocks/<slug>-images-map.json'));const h=JSON.parse(fs.readFileSync('mocks/<slug>.json'));const exp=[];h.locations.forEach(l=>exp.push(['location',l.imageUrl]));h.objects.forEach(o=>exp.push(['object',o.imageUrl]));h.characters.forEach(c=>exp.push(['characters',c.imageUrl]));h.endings.forEach(e=>exp.push(['endings',e.imageUrl]));exp.push(['history',h.coverImageUrl]);exp.push(['history',h.thumbnailUrl]);const miss=exp.filter(([s,p])=>{const n=p.split('/').pop().replace(/\.\w+$/,'');return !m[s]||!m[s][n];});console.log(miss.length?'MISSING: '+JSON.stringify(miss):'OK: all '+exp.length+' assets covered');"
 ```
 
 ## Phase 4 — Generate images
@@ -182,6 +219,17 @@ npm run build -w @ai-history/api && npm run db:seed -w @ai-history/api
 ```
 
 The seed is **silent on create** (only logs "already seeded" for updates).
+
+**IMPORTANT:** `db:seed` only updates `status`, `isFeatured`, `isFree`, and image URLs for
+existing histories — it does NOT update descriptions, clue reveal rules, or secret stages.
+If you changed any of those fields on an already-seeded history, use `db:reseed` instead:
+
+```sh
+npm run build -w @ai-history/api && npm run db:reseed -w @ai-history/api
+```
+
+`db:reseed` deletes and recreates every history from scratch (cascade), ensuring all fields
+are updated.
 Verify the row landed:
 
 ```sh
