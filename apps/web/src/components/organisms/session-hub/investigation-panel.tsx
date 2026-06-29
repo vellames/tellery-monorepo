@@ -77,6 +77,7 @@ export function InvestigationPanel({
   const audioChunksRef = useRef<Blob[]>([]);
 
   const dataRef = useRef<unknown>(target?.data);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const handleSend = useCallback(
     async (overrideInteraction?: string) => {
@@ -279,6 +280,15 @@ export function InvestigationPanel({
     onInteracted();
   }, [onInteracted]);
 
+  const messageCount =
+    ('messages' in (target?.data ?? {})
+      ? (target?.data as { messages?: unknown[] }).messages?.length ?? 0
+      : 0) + extraMessages.length;
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
+  }, [messageCount, isSending, isTranscribing]);
+
   if (!target) return null;
 
   const { kind } = target;
@@ -296,6 +306,7 @@ export function InvestigationPanel({
   const serverMessages: SessionMessage[] =
     kind === 'location' ? [] : target.data.messages;
   const allMessages = [...serverMessages, ...extraMessages];
+
   const locationObjects =
     kind === 'location'
       ? objects.filter((o) => o.locationId === target.data.id)
@@ -560,6 +571,7 @@ export function InvestigationPanel({
                 </p>
               </div>
             )}
+          <div ref={messagesEndRef} />
         </div>
 
         {/* input — hidden for locations (auto-inspected on open) */}
