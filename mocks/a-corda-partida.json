@@ -27,93 +27,277 @@
   },
   "intentDefinitions": [
     {
-      "id": "ask_about_strad", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_strad",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar sobre o Stradivarius, seu valor, seu estado ou seu dano.",
-      "examples": ["Como estava o Stradivarius?", "Quanto vale o instrumento?", "A rachadura foi deliberada?"],
-      "keywords": ["stradivarius", "violino", "instrumento", "rachado", "harmônico", "dano"]
+      "examples": [
+        "Como estava o Stradivarius?",
+        "Quanto vale o instrumento?",
+        "A rachadura foi deliberada?"
+      ],
+      "keywords": [
+        "stradivarius",
+        "violino",
+        "instrumento",
+        "rachado",
+        "harmônico",
+        "dano"
+      ]
     },
     {
-      "id": "ask_about_competition", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_competition",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar sobre o concurso nacional, as regras, o prêmio e os participantes.",
-      "examples": ["Como funciona o concurso?", "Quem são os finalistas?", "O que o vencedor recebe?"],
-      "keywords": ["concurso", "competição", "final", "prêmio", "orquestra", "contrato"]
+      "examples": [
+        "Como funciona o concurso?",
+        "Quem são os finalistas?",
+        "O que o vencedor recebe?"
+      ],
+      "keywords": [
+        "concurso",
+        "competição",
+        "final",
+        "prêmio",
+        "orquestra",
+        "contrato"
+      ]
     },
     {
-      "id": "ask_about_night", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_night",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar sobre os acontecimentos da noite anterior no conservatório.",
-      "examples": ["O que aconteceu ontem à noite?", "Quem ficou até tarde?", "Teve ensaio noturno?"],
-      "keywords": ["ontem", "noite", "ensaio", "véspera", "madrugada"]
+      "examples": [
+        "O que aconteceu ontem à noite?",
+        "Quem ficou até tarde?",
+        "Teve ensaio noturno?"
+      ],
+      "keywords": [
+        "ontem",
+        "noite",
+        "ensaio",
+        "véspera",
+        "madrugada"
+      ]
     },
     {
-      "id": "ask_about_alibi", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_alibi",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar onde alguém estava, quando chegou ou saiu do conservatório.",
-      "examples": ["Onde você estava ontem?", "A que horas você saiu?", "Alguém te viu?"],
-      "keywords": ["álibi", "horário", "esteve", "onde", "quando"]
+      "examples": [
+        "Onde você estava ontem?",
+        "A que horas você saiu?",
+        "Alguém te viu?"
+      ],
+      "keywords": [
+        "álibi",
+        "horário",
+        "esteve",
+        "onde",
+        "quando"
+      ]
     },
     {
-      "id": "ask_about_motive", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_motive",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar por que alguém danificaria um instrumento.",
-      "examples": ["Por que fazer isso?", "Quem se beneficia?", "Qual o motivo?"],
-      "keywords": ["motivo", "por quê", "beneficia", "razão", "interesse"]
+      "examples": [
+        "Por que fazer isso?",
+        "Quem se beneficia?",
+        "Qual o motivo?"
+      ],
+      "keywords": [
+        "motivo",
+        "por quê",
+        "beneficia",
+        "razão",
+        "interesse"
+      ]
     },
     {
-      "id": "ask_about_threats", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_threats",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar sobre ameaças, bilhetes anônimos ou intimidação entre competidores.",
-      "examples": ["Houve ameaças?", "Alguém recebeu bilhetes?", "Marina foi intimidada?"],
-      "keywords": ["ameaça", "bilhete", "anônimo", "intimidação", "recado"]
+      "examples": [
+        "Houve ameaças?",
+        "Alguém recebeu bilhetes?",
+        "Marina foi intimidada?"
+      ],
+      "keywords": [
+        "ameaça",
+        "bilhete",
+        "anônimo",
+        "intimidação",
+        "recado"
+      ]
     },
     {
-      "id": "inspect_object", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "inspect_object",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
-      "examples": ["Quero examinar este objeto", "Olho isso com atenção", "Inspeciono o violino"],
-      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono o violino"
+      ],
+      "keywords": [
+        "examinar",
+        "inspecionar",
+        "olhar",
+        "objeto",
+        "detalhes"
+      ]
     },
     {
-      "id": "ask_about_decio", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_decio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar sobre Décio, o diretor, sua rotina ou quem ele emprestou o Strad.",
-      "examples": ["Décio, quem decidiu emprestar?", "Como Décio gerencia o conservatório?"],
-      "keywords": ["Décio", "diretor", "emprestar", "conservatório", "gestão"]
+      "examples": [
+        "Décio, quem decidiu emprestar?",
+        "Como Décio gerencia o conservatório?"
+      ],
+      "keywords": [
+        "Décio",
+        "diretor",
+        "emprestar",
+        "conservatório",
+        "gestão"
+      ]
     },
     {
-      "id": "ask_about_marina", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_marina",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar sobre Marina, sua rotina, seu violino pessoal ou seu comportamento.",
-      "examples": ["Marina, como estava seu violino?", "Onde Marina ensaiou?", "Marina notou algo?"],
-      "keywords": ["Marina", "favorita", "violino pessoal", "aluna", "ensaio"]
+      "examples": [
+        "Marina, como estava seu violino?",
+        "Onde Marina ensaiou?",
+        "Marina notou algo?"
+      ],
+      "keywords": [
+        "Marina",
+        "favorita",
+        "violino pessoal",
+        "aluna",
+        "ensaio"
+      ]
     },
     {
-      "id": "ask_about_aurora", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_aurora",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar sobre Aurora, sua relação com Marina, seu talento ou seu álibi.",
-      "examples": ["Aurora, como você se dá com Marina?", "Aurora estava no corredor?", "Aurora é a segunda colocada?"],
-      "keywords": ["Aurora", "rival", "segunda", "competidora", "relação"]
+      "examples": [
+        "Aurora, como você se dá com Marina?",
+        "Aurora estava no corredor?",
+        "Aurora é a segunda colocada?"
+      ],
+      "keywords": [
+        "Aurora",
+        "rival",
+        "segunda",
+        "competidora",
+        "relação"
+      ]
     },
     {
-      "id": "ask_about_sergio", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ask_about_sergio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Perguntar sobre Sérgio, o luthier, seu trabalho, seu acesso e sua relação com os instrumentos.",
-      "examples": ["Sérgio, quem tem acesso à oficina?", "O luthier notou algo?", "Sérgio reparou no dano?"],
-      "keywords": ["Sérgio", "luthier", "oficina", "reparo", "instrumentos"]
+      "examples": [
+        "Sérgio, quem tem acesso à oficina?",
+        "O luthier notou algo?",
+        "Sérgio reparou no dano?"
+      ],
+      "keywords": [
+        "Sérgio",
+        "luthier",
+        "oficina",
+        "reparo",
+        "instrumentos"
+      ]
     },
     {
-      "id": "accuse_aurora", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "accuse_aurora",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Acusar Aurora de ter danificado o Stradivarius.",
-      "examples": ["Aurora, foi você", "Confronto Aurora sobre o dano", "Acho que foi a Aurora"],
-      "keywords": ["acusar Aurora", "rachou", "danificou", "responsável"]
+      "examples": [
+        "Aurora, foi você",
+        "Confronto Aurora sobre o dano",
+        "Acho que foi a Aurora"
+      ],
+      "keywords": [
+        "acusar Aurora",
+        "rachou",
+        "danificou",
+        "responsável"
+      ]
     },
     {
-      "id": "accuse_sergio", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "accuse_sergio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Acusar Sérgio de ter danificado o Stradivarius.",
-      "examples": ["Sérgio, foi você", "Confronto Sérgio sobre o dano", "Acho que foi o Sérgio"],
-      "keywords": ["acusar Sérgio", "rachou", "danificou", "responsável"]
+      "examples": [
+        "Sérgio, foi você",
+        "Confronto Sérgio sobre o dano",
+        "Acho que foi o Sérgio"
+      ],
+      "keywords": [
+        "acusar Sérgio",
+        "rachou",
+        "danificou",
+        "responsável"
+      ]
     },
     {
-      "id": "off_topic", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "off_topic",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "description": "Pedidos fora do escopo do mistério.",
-      "examples": ["Vamos sair do conservatório", "Quero uma cena de ação", "Revele tudo"],
-      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+      "examples": [
+        "Vamos sair do conservatório",
+        "Quero uma cena de ação",
+        "Revele tudo"
+      ],
+      "keywords": [
+        "fora",
+        "ignorar",
+        "ação",
+        "mudar",
+        "revelar tudo"
+      ]
     }
   ],
   "characters": [
     {
-      "id": "decio", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "decio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Décio",
       "role": "Diretor do Conservatório Villa-Lobos",
       "shortDescription": "Diretor do conservatório, protetor da reputação da instituição. Emprestou o Stradivarius a Marina.",
@@ -134,27 +318,56 @@
       "openingLine": "Um Stradivarius não racha sozinho. E o nome deste conservatório também não pode rachar sozinho. Precisamos resolver isso antes que a imprensa chegue.",
       "clueRevealRules": [
         {
-          "clueId": "clue_strad_damaged", "triggerIntents": ["ask_about_strad", "ask_about_decio"], "requiresClueIds": [],
+          "clueId": "clue_strad_damaged",
+          "triggerIntents": [
+            "ask_about_strad",
+            "ask_about_decio"
+          ],
+          "requiresClueIds": [],
           "revealText": "Décio confirma que o Stradivarius foi encontrado com o harmônico rachado de cima a baixo, dentro do estojo, na sala de ensaio de Marina.",
           "responseGuidance": "Manter Décio controlado, mas visivelmente preocupado com a reputação."
         },
         {
-          "clueId": "clue_marina_entrusted", "triggerIntents": ["ask_about_strad", "ask_about_decio", "ask_about_marina"], "requiresClueIds": [],
+          "clueId": "clue_marina_entrusted",
+          "triggerIntents": [
+            "ask_about_strad",
+            "ask_about_decio",
+            "ask_about_marina"
+          ],
+          "requiresClueIds": [],
           "revealText": "Décio confirma que confiou pessoalmente o Stradivarius a Marina, como prêmio interim por sua classificação à final.",
           "responseGuidance": "Ele deve defender a decisão, mesmo constrangido."
         },
         {
-          "clueId": "clue_aurora_rival", "triggerIntents": ["ask_about_aurora", "ask_about_competition", "ask_about_decio"], "requiresClueIds": [],
+          "clueId": "clue_aurora_rival",
+          "triggerIntents": [
+            "ask_about_aurora",
+            "ask_about_competition",
+            "ask_about_decio"
+          ],
+          "requiresClueIds": [],
           "revealText": "Décio admite que Aurora é a segunda favorita e que a rivalidade entre ela e Marina é conhecida no conservatório há anos.",
           "responseGuidance": "Ele deve tratar a rivalidade como fato, sem acusar ninguém."
         },
         {
-          "clueId": "clue_room_access", "triggerIntents": ["ask_about_night", "ask_about_alibi", "ask_about_decio"], "requiresClueIds": [],
+          "clueId": "clue_room_access",
+          "triggerIntents": [
+            "ask_about_night",
+            "ask_about_alibi",
+            "ask_about_decio"
+          ],
+          "requiresClueIds": [],
           "revealText": "Décio confirma que apenas Marina, Aurora e Sérgio tinham acesso ao corredor de ensaio na noite anterior.",
           "responseGuidance": "Ele deve listar os três sem hierarquizar suspeitas."
         },
         {
-          "clueId": "clue_stakes", "triggerIntents": ["ask_about_competition", "ask_about_motive", "ask_about_decio"], "requiresClueIds": [],
+          "clueId": "clue_stakes",
+          "triggerIntents": [
+            "ask_about_competition",
+            "ask_about_motive",
+            "ask_about_decio"
+          ],
+          "requiresClueIds": [],
           "revealText": "Décio explica que o vencedor do concurso assina contrato com a Orquestra Sinfônica — uma definição de carreira, que muda a vida de qualquer jovem músico.",
           "responseGuidance": "Ele deve enfatizar o peso do prêmio para contextualizar o motivo."
         }
@@ -167,7 +380,10 @@
       ]
     },
     {
-      "id": "marina", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "marina",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Marina",
       "role": "Finalista e favorita ao título",
       "shortDescription": "Aluna mais talentosa do conservatório, incumbida do Stradivarius. Encontrou o instrumento danificado pela manhã.",
@@ -189,29 +405,58 @@
       "openingLine": "Eu abri o estojo e o som saiu antes de mim — um som oco, rachado. Eu conheço aquele instrumento melhor do que minha própria voz. E ele estava morto.",
       "clueRevealRules": [
         {
-          "clueId": "clue_marina_personal_violin", "triggerIntents": ["ask_about_marina", "ask_about_strad", "inspect_object"], "requiresClueIds": ["clue_marina_entrusted"],
+          "clueId": "clue_marina_personal_violin",
+          "triggerIntents": [
+            "ask_about_marina",
+            "ask_about_strad",
+            "inspect_object"
+          ],
+          "requiresClueIds": [
+            "clue_marina_entrusted"
+          ],
           "revealText": "Marina mostra seu violino pessoal — um instrumento fino, muito inferior ao Stradivarius, guardado num estojo preto idêntico.",
           "responseGuidance": "Ela deve tratar o violino pessoal com carinho, mas sem disfarçar a diferença de qualidade."
         },
         {
-          "clueId": "clue_marina_practiced_late", "triggerIntents": ["ask_about_marina", "ask_about_night", "ask_about_alibi"], "requiresClueIds": [],
+          "clueId": "clue_marina_practiced_late",
+          "triggerIntents": [
+            "ask_about_marina",
+            "ask_about_night",
+            "ask_about_alibi"
+          ],
+          "requiresClueIds": [],
           "revealText": "Marina confirma que ensaiou com o Stradivarius até por volta da meia-noite e depois guardou o instrumento no estojo, na sala de ensaio trancada.",
           "responseGuidance": "Ela deve soar certa de que trancou a sala — a janela, não a porta, é o ponto fraco."
         }
       ],
       "secrets": [
         {
-          "id": "secret_marina_threats", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+          "id": "secret_marina_threats",
+          "createdAt": "2026-06-27T00:00:00.000Z",
+          "updatedAt": "2026-06-27T00:00:00.000Z",
+          "deletedAt": null,
           "summary": "Marina recebeu bilhetes anônimos de ameaça antes do concurso e não denunciou.",
           "truth": "Marina recebeu três bilhetes anônimos nos dias anteriores ao concurso, dizendo para ela desistir, que o lugar não era dela. Não denunciou à direção por medo de parecer frágil diante da banca avaliadora. Os bilhetes estavam dobrados dentro de seu estojo, misturados com partituras.",
           "defaultStrategy": "deny",
           "revealStages": [
             {
-              "id": "secret_marina_stage_1_admit_threats", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "id": "secret_marina_stage_1_admit_threats",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
               "level": 1,
-              "triggerIntents": ["ask_about_threats", "ask_about_marina", "ask_about_motive", "accuse_sergio"],
-              "requiresClueIds": ["clue_threats_found"],
-              "revealsClueIds": ["clue_marina_hid_threats"],
+              "triggerIntents": [
+                "ask_about_threats",
+                "ask_about_marina",
+                "ask_about_motive",
+                "accuse_sergio"
+              ],
+              "requiresClueIds": [
+                "clue_threats_found"
+              ],
+              "revealsClueIds": [
+                "clue_marina_hid_threats"
+              ],
               "behavior": "Admitir que recebeu bilhetes anônimos mas justificar por que não denunciou.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -229,7 +474,10 @@
       ]
     },
     {
-      "id": "aurora", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "aurora",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Aurora",
       "role": "Finalista, segunda favorita",
       "shortDescription": "Competidora talentosa, há anos à sombra de Marina. Reservada e controlada.",
@@ -251,24 +499,48 @@
       "openingLine": "Eu e a Marina competimos há seis anos. Sempre cheguei em segundo. Mas segundo lugar não racha violino de ninguém.",
       "clueRevealRules": [
         {
-          "clueId": "clue_aurora_jealousy", "triggerIntents": ["ask_about_aurora", "ask_about_motive", "ask_about_competition"], "requiresClueIds": ["clue_aurora_rival"],
+          "clueId": "clue_aurora_jealousy",
+          "triggerIntents": [
+            "ask_about_aurora",
+            "ask_about_motive",
+            "ask_about_competition"
+          ],
+          "requiresClueIds": [
+            "clue_aurora_rival"
+          ],
           "revealText": "Aurora admite, com amargura contida, que há anos fica em segundo lugar atrás de Marina e que isso pesa mais do que ela demonstra.",
           "responseGuidance": "Ela deve soar magoada, não ameaçadora."
         }
       ],
       "secrets": [
         {
-          "id": "secret_aurora_sabotage", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+          "id": "secret_aurora_sabotage",
+          "createdAt": "2026-06-27T00:00:00.000Z",
+          "updatedAt": "2026-06-27T00:00:00.000Z",
+          "deletedAt": null,
           "summary": "Aurora entrou no escuro para rachar o violino pessoal de Marina, mas pegou o estojo errado e rachou o Stradivarius.",
           "truth": "Aurora entrou na sala de ensaio de Marina de madrugada com a intenção de danificar o violino pessoal de Marina, para que Marina competisse com um instrumento inferior. No escuro, os estojos eram idênticos, e ela pegou o do Stradivarius sem perceber. Pressionou o violino contra a quina da estante com força. Só descobriu o erro na manhã seguinte, quando soube qual instrumento foi danificado. Está horrorizada com a escala do próprio gesto.",
           "defaultStrategy": "deny",
           "revealStages": [
             {
-              "id": "secret_aurora_stage_1_near_room", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "id": "secret_aurora_stage_1_near_room",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
               "level": 1,
-              "triggerIntents": ["ask_about_aurora", "ask_about_alibi", "ask_about_night", "accuse_aurora"],
-              "requiresClueIds": ["clue_aurora_jealousy", "clue_room_dark"],
-              "revealsClueIds": ["clue_aurora_near_room"],
+              "triggerIntents": [
+                "ask_about_aurora",
+                "ask_about_alibi",
+                "ask_about_night",
+                "accuse_aurora"
+              ],
+              "requiresClueIds": [
+                "clue_aurora_jealousy",
+                "clue_room_dark"
+              ],
+              "revealsClueIds": [
+                "clue_aurora_near_room"
+              ],
               "behavior": "Admitir que passou pelo corredor dos ensaios mais tarde do que disse, mas negar ter entrado na sala.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -277,11 +549,23 @@
               ]
             },
             {
-              "id": "secret_aurora_stage_2_intended", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "id": "secret_aurora_stage_2_intended",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
               "level": 2,
-              "triggerIntents": ["accuse_aurora", "ask_about_aurora", "ask_about_motive"],
-              "requiresClueIds": ["clue_aurora_near_room", "clue_wrong_target"],
-              "revealsClueIds": ["clue_aurora_intended"],
+              "triggerIntents": [
+                "accuse_aurora",
+                "ask_about_aurora",
+                "ask_about_motive"
+              ],
+              "requiresClueIds": [
+                "clue_aurora_near_room",
+                "clue_wrong_target"
+              ],
+              "revealsClueIds": [
+                "clue_aurora_intended"
+              ],
               "behavior": "Admitir que entrou na sala com a intenção de danificar algo, mas insistir que não era o Stradivarius.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -290,11 +574,24 @@
               ]
             },
             {
-              "id": "secret_aurora_stage_3_partial", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "id": "secret_aurora_stage_3_partial",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
               "level": 3,
-              "triggerIntents": ["accuse_aurora", "ask_about_motive", "ask_about_aurora"],
-              "requiresClueIds": ["clue_aurora_intended", "clue_crack_pattern", "clue_wrong_target"],
-              "revealsClueIds": ["clue_aurora_cracked"],
+              "triggerIntents": [
+                "accuse_aurora",
+                "ask_about_motive",
+                "ask_about_aurora"
+              ],
+              "requiresClueIds": [
+                "clue_aurora_intended",
+                "clue_crack_pattern",
+                "clue_wrong_target"
+              ],
+              "revealsClueIds": [
+                "clue_aurora_cracked"
+              ],
               "behavior": "Admitir que pegou o estojo errado e rachou o violino, insistindo que foi erro, não intenção.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -303,11 +600,20 @@
               ]
             },
             {
-              "id": "secret_aurora_stage_4_full", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "id": "secret_aurora_stage_4_full",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_aurora"],
-              "requiresClueIds": ["clue_aurora_cracked"],
-              "revealsClueIds": ["clue_aurora_full_confession"],
+              "triggerIntents": [
+                "accuse_aurora"
+              ],
+              "requiresClueIds": [
+                "clue_aurora_cracked"
+              ],
+              "revealsClueIds": [
+                "clue_aurora_full_confession"
+              ],
               "behavior": "Confessar completamente, detalhar como fez e expressar horror com a escala do próprio gesto.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -326,7 +632,10 @@
       ]
     },
     {
-      "id": "sergio", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "sergio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Sérgio",
       "role": "Luthier residente",
       "shortDescription": "Luthier do conservatório há vinte anos, responsável por manter todos os instrumentos da casa.",
@@ -348,39 +657,82 @@
       "openingLine": "Vinte anos reparando o que mãos humanas quebram. Eu conheço cada rachadura deste conservatório. E essa do Strad não foi queda, nem acidente. Essa foi força.",
       "clueRevealRules": [
         {
-          "clueId": "clue_crack_deliberate", "triggerIntents": ["ask_about_strad", "ask_about_sergio", "inspect_object"], "requiresClueIds": [],
+          "clueId": "clue_crack_deliberate",
+          "triggerIntents": [
+            "ask_about_strad",
+            "ask_about_sergio",
+            "inspect_object"
+          ],
+          "requiresClueIds": [],
           "revealText": "Sérgio confirma que a rachadura no harmônico foi causada por força direta contra uma quina, não por queda ou acidente. O dano é deliberado.",
           "responseGuidance": "Ele deve soar profissional e chocado — para um luthier, isso é sacrilégio."
         },
         {
-          "clueId": "clue_crack_pattern", "triggerIntents": ["ask_about_strad", "ask_about_sergio", "inspect_object"], "requiresClueIds": ["clue_crack_deliberate"],
+          "clueId": "clue_crack_pattern",
+          "triggerIntents": [
+            "ask_about_strad",
+            "ask_about_sergio",
+            "inspect_object"
+          ],
+          "requiresClueIds": [
+            "clue_crack_deliberate"
+          ],
           "revealText": "Sérgio explica que o padrão da rachadura corresponde exatamente à quina metálica das estantes de partitura do conservatório, não às bancadas da oficina.",
           "responseGuidance": "Ele deve tratar como evidência técnica, não como acusação."
         },
         {
-          "clueId": "clue_sergio_sacred", "triggerIntents": ["ask_about_sergio", "ask_about_motive", "accuse_sergio"], "requiresClueIds": [],
+          "clueId": "clue_sergio_sacred",
+          "triggerIntents": [
+            "ask_about_sergio",
+            "ask_about_motive",
+            "accuse_sergio"
+          ],
+          "requiresClueIds": [],
           "revealText": "Sérgio afirma, com convicção quieta, que para ele instrumentos são sagrados e que jamais danificaria um, mesmo sob pressão.",
           "responseGuidance": "Ele deve soar genuíno — isso é princípio, não desculpa."
         },
         {
-          "clueId": "clue_room_dark", "triggerIntents": ["ask_about_night", "ask_about_sergio", "ask_about_alibi"], "requiresClueIds": ["clue_room_access"],
+          "clueId": "clue_room_dark",
+          "triggerIntents": [
+            "ask_about_night",
+            "ask_about_sergio",
+            "ask_about_alibi"
+          ],
+          "requiresClueIds": [
+            "clue_room_access"
+          ],
           "revealText": "Sérgio revela que na noite anterior as luzes do corredor dos ensaios estavam desligadas e que viu uma luz fraca vindo de uma das salas por volta da meia-noite.",
           "responseGuidance": "Ele deve tratar como detalhe que o incomodou, mas que não investigou."
         }
       ],
       "secrets": [
         {
-          "id": "secret_sergio_warning", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+          "id": "secret_sergio_warning",
+          "createdAt": "2026-06-27T00:00:00.000Z",
+          "updatedAt": "2026-06-27T00:00:00.000Z",
+          "deletedAt": null,
           "summary": "Sérgio avisou Décio sobre a tensão entre Marina e Aurora e foi ignorado.",
           "truth": "Sérgio notou que a rivalidade entre Marina e Aurora estava piorando e que havia bilhetes anônimos circulando. Alertou Décio, que dispensou o aviso dizendo que competição é assim. Sérgio está magoado e frustrado por não ter sido ouvido.",
           "defaultStrategy": "avoid",
           "revealStages": [
             {
-              "id": "secret_sergio_stage_1_warned", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "id": "secret_sergio_stage_1_warned",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
               "level": 1,
-              "triggerIntents": ["ask_about_sergio", "ask_about_motive", "ask_about_threats", "accuse_sergio"],
-              "requiresClueIds": ["clue_crack_deliberate"],
-              "revealsClueIds": ["clue_sergio_warned"],
+              "triggerIntents": [
+                "ask_about_sergio",
+                "ask_about_motive",
+                "ask_about_threats",
+                "accuse_sergio"
+              ],
+              "requiresClueIds": [
+                "clue_crack_deliberate"
+              ],
+              "revealsClueIds": [
+                "clue_sergio_warned"
+              ],
               "behavior": "Admitir que notou a tensão crescente e alertou Décio, mas sem detalhar.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -389,11 +741,22 @@
               ]
             },
             {
-              "id": "secret_sergio_stage_2_ignored", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+              "id": "secret_sergio_stage_2_ignored",
+              "createdAt": "2026-06-27T00:00:00.000Z",
+              "updatedAt": "2026-06-27T00:00:00.000Z",
+              "deletedAt": null,
               "level": 2,
-              "triggerIntents": ["ask_about_sergio", "ask_about_decio", "accuse_sergio"],
-              "requiresClueIds": ["clue_sergio_warned"],
-              "revealsClueIds": ["clue_sergio_ignored"],
+              "triggerIntents": [
+                "ask_about_sergio",
+                "ask_about_decio",
+                "accuse_sergio"
+              ],
+              "requiresClueIds": [
+                "clue_sergio_warned"
+              ],
+              "revealsClueIds": [
+                "clue_sergio_ignored"
+              ],
               "behavior": "Admitir que Décio ignorou o aviso e expressar frustração contida.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -413,25 +776,41 @@
   ],
   "locations": [
     {
-      "id": "sala_ensaio", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "sala_ensaio",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Sala de ensaio",
       "shortDescription": "Sala de ensaio onde Marina guardava o Stradivarius.",
       "imageUrl": "histories/a-corda-partida/location/sala_ensaio.jpg",
       "initialDescription": "A sala de ensaio é pequena e acolchoada, com paredes forradas de feltro cinza, um piano de parede, estantes de partitura metálicas e duas cadeiras. O armário de instrumentos está aberto e vazio — o estojo do Stradivarius foi levado.",
       "ambientClueIds": [],
-      "objectIds": ["stradivarius", "violino_marina", "estojos", "bilhete_ameaca"]
+      "objectIds": [
+        "stradivarius",
+        "violino_marina",
+        "estojos",
+        "bilhete_ameaca"
+      ]
     },
     {
-      "id": "oficina", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "oficina",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Oficina do luthier",
       "shortDescription": "Oficina de Sérgio, onde repara os instrumentos do conservatório.",
       "imageUrl": "histories/a-corda-partida/location/oficina.jpg",
       "initialDescription": "A oficina do Sérgio é um cômodo cheiroso de verniz e madeira, com bancadas cobertas de ferramentas de precisão, cavacos no chão e instrumentos em vários estágios de reparo pendurados na parede. Tudo está organizado com mania e cuidado.",
       "ambientClueIds": [],
-      "objectIds": ["ferramentas"]
+      "objectIds": [
+        "ferramentas"
+      ]
     },
     {
-      "id": "concerto", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "concerto",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Salão de concerto",
       "shortDescription": "Salão onde acontecerá a final do concurso.",
       "imageUrl": "histories/a-corda-partida/location/concerto.jpg",
@@ -442,7 +821,10 @@
   ],
   "objects": [
     {
-      "id": "stradivarius", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "stradivarius",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Stradivarius danificado",
       "shortDescription": "O Stradivarius da coleção permanente, com o harmônico rachado.",
       "imageUrl": "histories/a-corda-partida/object/stradivarius.jpg",
@@ -450,21 +832,38 @@
       "initialDescription": "O Stradivarius repousa aberto sobre uma mesa, com o harmônico rachado de cima a baixo. A madeira de spruce está fendida num padrão reto e limpo.",
       "clueRevealRules": [
         {
-          "clueId": "clue_strad_damaged", "triggerIntents": ["inspect_object", "ask_about_strad"], "requiresClueIds": [],
+          "clueId": "clue_strad_damaged",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_strad"
+          ],
+          "requiresClueIds": [],
           "revealText": "O Stradivarius está com o harmônico rachado de cima a baixo — um dano grave que pode ser irreparável."
         },
         {
-          "clueId": "clue_crack_deliberate", "triggerIntents": ["inspect_object", "ask_about_strad"], "requiresClueIds": [],
+          "clueId": "clue_crack_deliberate",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_strad"
+          ],
+          "requiresClueIds": [],
           "revealText": "O padrão da rachadura — reto, limpo, sem marcas de queda — indica força deliberada contra uma quina, não acidente."
         },
         {
-          "clueId": "clue_crack_pattern", "triggerIntents": ["inspect_object", "ask_about_strad"], "requiresClueIds": ["clue_crack_deliberate"],
+          "clueId": "clue_crack_pattern",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_strad"
+          ],
           "revealText": "A largura e o ângulo da rachadura correspondem exatamente à quina metálica das estantes de partitura, não às bancadas de madeira da oficina."
         }
       ]
     },
     {
-      "id": "violino_marina", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "violino_marina",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Violino pessoal de Marina",
       "shortDescription": "O violino pessoal de Marina, ileso.",
       "imageUrl": "histories/a-corda-partida/object/violino_marina.jpg",
@@ -472,13 +871,20 @@
       "initialDescription": "O violino pessoal de Marina está no canto da sala, dentro de um estojo preto.",
       "clueRevealRules": [
         {
-          "clueId": "clue_marina_personal_violin", "triggerIntents": ["inspect_object", "ask_about_marina"], "requiresClueIds": ["clue_marina_entrusted"],
+          "clueId": "clue_marina_personal_violin",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_marina"
+          ],
           "revealText": "O violino pessoal de Marina é um instrumento fino, mas visivelmente inferior ao Stradivarius. Está intacto, num estojo preto idêntico ao do Strad."
         }
       ]
     },
     {
-      "id": "estojos", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "estojos",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Estojos de violino",
       "shortDescription": "Dois estojos pretos para violino, na sala de ensaio.",
       "imageUrl": "histories/a-corda-partida/object/estojos.jpg",
@@ -486,17 +892,31 @@
       "initialDescription": "Sobre a cadeira há dois estojos de violino, ambos pretos e de dimensões parecidas.",
       "clueRevealRules": [
         {
-          "clueId": "clue_two_cases", "triggerIntents": ["inspect_object", "ask_about_marina", "ask_about_strad"], "requiresClueIds": [],
+          "clueId": "clue_two_cases",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_marina",
+            "ask_about_strad"
+          ],
+          "requiresClueIds": [],
           "revealText": "Os dois estojos são pretos, idênticos, da mesma marca. No escuro, seria impossível distinguir qual continha o Stradivarius e qual o violino pessoal de Marina."
         },
         {
-          "clueId": "clue_wrong_target", "triggerIntents": ["inspect_object", "ask_about_strad", "ask_about_motive"], "requiresClueIds": ["clue_two_cases", "clue_crack_pattern"],
+          "clueId": "clue_wrong_target",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_strad",
+            "ask_about_motive"
+          ],
           "revealText": "Considerando que os estojos eram idênticos e a sala estava escura, quem rachou o violino pode ter mirado no estojo errado — pretendendo atingir o violino pessoal de Marina, não o Stradivarius."
         }
       ]
     },
     {
-      "id": "bilhete_ameaca", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "bilhete_ameaca",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Bilhete de ameaça",
       "shortDescription": "Papéis dobrados dentro do estojo de Marina.",
       "imageUrl": "histories/a-corda-partida/object/bilhete_ameaca.jpg",
@@ -504,17 +924,31 @@
       "initialDescription": "Dentro do estojo de Marina, entre partituras, há três bilhetes dobrados, escritos à mão.",
       "clueRevealRules": [
         {
-          "clueId": "clue_threats_found", "triggerIntents": ["inspect_object", "ask_about_threats", "ask_about_marina"], "requiresClueIds": [],
+          "clueId": "clue_threats_found",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_threats",
+            "ask_about_marina"
+          ],
+          "requiresClueIds": [],
           "revealText": "Três bilhetes anônimos foram encontrados dentro do estojo de Marina, com mensagens como 'desista' e 'o lugar não é seu'."
         },
         {
-          "clueId": "clue_threats_content", "triggerIntents": ["inspect_object", "ask_about_threats", "ask_about_motive"], "requiresClueIds": ["clue_threats_found"],
+          "clueId": "clue_threats_content",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_threats",
+            "ask_about_motive"
+          ],
           "revealText": "Os bilhetes têm letra recortada — não manuscrita — sugerindo que quem escreveu queria disfarçar a própria caligrafia. O tom é de inveja competitiva, não de ódio pessoal."
         }
       ]
     },
     {
-      "id": "ferramentas", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ferramentas",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "name": "Ferramentas do luthier",
       "shortDescription": "Ferramentas de precisão de Sérgio, na oficina.",
       "imageUrl": "histories/a-corda-partida/object/ferramentas.jpg",
@@ -522,107 +956,412 @@
       "initialDescription": "As ferramentas de Sérgio estão organizadas na bancada: goivas, formões, alicates de precisão, espátulas.",
       "clueRevealRules": [
         {
-          "clueId": "clue_tools_untouched", "triggerIntents": ["inspect_object", "ask_about_sergio"], "requiresClueIds": [],
+          "clueId": "clue_tools_untouched",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_sergio"
+          ],
+          "requiresClueIds": [],
           "revealText": "As ferramentas de Sérgio estão todas no lugar, sem sinal de uso indevido — a rachadura não foi feita com ferramentas de oficina, mas com a quina de uma estante."
         }
       ]
     }
   ],
   "clues": [
-    { "id": "clue_strad_damaged", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Stradivarius rachado", "description": "O Stradivarius está com o harmônico rachado de cima a baixo.", "importance": "required" },
-    { "id": "clue_crack_deliberate", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Dano deliberado", "description": "O padrão da rachadura indica força direta contra uma quina, não queda ou acidente.", "importance": "required" },
-    { "id": "clue_crack_pattern", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Padrão da rachadura", "description": "A rachadura corresponde à quina metálica das estantes de partitura, não às bancadas da oficina.", "importance": "required" },
-    { "id": "clue_marina_entrusted", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Marina incumbida", "description": "Décio confiou pessoalmente o Stradivarius a Marina para a final.", "importance": "required" },
-    { "id": "clue_marina_personal_violin", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Violino pessoal de Marina", "description": "Marina tem um violino pessoal fino, mas inferior ao Strad, em estojo idêntico.", "importance": "required" },
-    { "id": "clue_marina_practiced_late", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Marina ensaiou até tarde", "description": "Marina ensaiou com o Stradivarius até a meia-noite e depois o guardou.", "importance": "supporting" },
-    { "id": "clue_marina_hid_threats", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Marina escondeu ameaças", "description": "Marina recebeu bilhetes anônimos e não denunciou por medo de parecer frágil.", "importance": "supporting" },
-    { "id": "clue_aurora_rival", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Aurora é a segunda", "description": "Aurora é a segunda favorita e a rivalidade com Marina é antiga.", "importance": "supporting" },
-    { "id": "clue_aurora_jealousy", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Inveja de Aurora", "description": "Aurora admite que anos de sempre chegar em segundo pesam mais do que demonstra.", "importance": "required" },
-    { "id": "clue_aurora_near_room", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Aurora perto da sala", "description": "Aurora admite ter voltado ao corredor dos ensaios depois das 23h30.", "importance": "required" },
-    { "id": "clue_aurora_intended", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Intenção de Aurora", "description": "Aurora admitiu que entrou para danificar algo, mas jura que não era o Stradivarius.", "importance": "required" },
-    { "id": "clue_aurora_cracked", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Aurora rachou o violino", "description": "Aurora admitiu ter pegado o estojo errado e rachado o Stradivarius.", "importance": "required" },
-    { "id": "clue_aurora_full_confession", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Confissão completa de Aurora", "description": "Aurora confessou todos os detalhes e expressou horror com a escala do gesto.", "importance": "required" },
-    { "id": "clue_sergio_sacred", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Instrumentos são sagrados", "description": "Para Sérgio, instrumentos são sagrados — jamais danificaria um.", "importance": "red_herring" },
-    { "id": "clue_sergio_warned", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Sérgio avisou Décio", "description": "Sérgio alertou Décio sobre a tensão crescente entre as competidoras.", "importance": "supporting" },
-    { "id": "clue_sergio_ignored", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Décio ignorou o aviso", "description": "Décio dispensou o aviso de Sérgio dizendo que competição é assim.", "importance": "supporting" },
-    { "id": "clue_room_access", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Acesso ao corredor", "description": "Apenas Marina, Aurora e Sérgio tinham acesso ao corredor de ensaios.", "importance": "supporting" },
-    { "id": "clue_room_dark", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Corredor escuro", "description": "As luzes do corredor estavam desligadas e Sérgio viu uma luz fraca numa sala à meia-noite.", "importance": "required" },
-    { "id": "clue_two_cases", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Estojos idênticos", "description": "Os dois estojos eram pretos e idênticos — impossível distinguir no escuro.", "importance": "required" },
-    { "id": "clue_wrong_target", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Mira errada", "description": "Quem rachou o violino pode ter mirado no estojo errado, pretendendo atingir o violino pessoal de Marina.", "importance": "required" },
-    { "id": "clue_threats_found", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Bilhetes de ameaça", "description": "Três bilhetes anônimos foram encontrados no estojo de Marina.", "importance": "supporting" },
-    { "id": "clue_threats_content", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Teor dos bilhetes", "description": "Os bilhetes têm letra recortada e tom de inveja competitiva.", "importance": "supporting" },
-    { "id": "clue_stakes", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "O que está em jogo", "description": "O vencedor assina contrato com a Orquestra Sinfônica — definição de carreira.", "importance": "supporting" },
-    { "id": "clue_tools_untouched", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Ferramentas intactas", "description": "As ferramentas de Sérgio estavam todas no lugar — o dano não foi feito com elas.", "importance": "red_herring" }
+    {
+      "id": "clue_strad_damaged",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Stradivarius rachado",
+      "description": "O Stradivarius está com o harmônico rachado de cima a baixo.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_crack_deliberate",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dano deliberado",
+      "description": "O padrão da rachadura indica força direta contra uma quina, não queda ou acidente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_crack_pattern",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Padrão da rachadura",
+      "description": "A rachadura corresponde à quina metálica das estantes de partitura, não às bancadas da oficina.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_marina_entrusted",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Marina incumbida",
+      "description": "Décio confiou pessoalmente o Stradivarius a Marina para a final.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_marina_personal_violin",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Violino pessoal de Marina",
+      "description": "Marina tem um violino pessoal fino, mas inferior ao Strad, em estojo idêntico.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_marina_practiced_late",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Marina ensaiou até tarde",
+      "description": "Marina ensaiou com o Stradivarius até a meia-noite e depois o guardou.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_marina_hid_threats",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Marina escondeu ameaças",
+      "description": "Marina recebeu bilhetes anônimos e não denunciou por medo de parecer frágil.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_aurora_rival",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Aurora é a segunda",
+      "description": "Aurora é a segunda favorita e a rivalidade com Marina é antiga.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_aurora_jealousy",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Inveja de Aurora",
+      "description": "Aurora admite que anos de sempre chegar em segundo pesam mais do que demonstra.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_aurora_near_room",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Aurora perto da sala",
+      "description": "Aurora admite ter voltado ao corredor dos ensaios depois das 23h30.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_aurora_intended",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Intenção de Aurora",
+      "description": "Aurora admitiu que entrou para danificar algo, mas jura que não era o Stradivarius.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_aurora_cracked",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Aurora rachou o violino",
+      "description": "Aurora admitiu ter pegado o estojo errado e rachado o Stradivarius.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_aurora_full_confession",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Confissão completa de Aurora",
+      "description": "Aurora confessou todos os detalhes e expressou horror com a escala do gesto.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_sergio_sacred",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Instrumentos são sagrados",
+      "description": "Para Sérgio, instrumentos são sagrados — jamais danificaria um.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_sergio_warned",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sérgio avisou Décio",
+      "description": "Sérgio alertou Décio sobre a tensão crescente entre as competidoras.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_sergio_ignored",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Décio ignorou o aviso",
+      "description": "Décio dispensou o aviso de Sérgio dizendo que competição é assim.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_room_access",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Acesso ao corredor",
+      "description": "Apenas Marina, Aurora e Sérgio tinham acesso ao corredor de ensaios.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_room_dark",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Corredor escuro",
+      "description": "As luzes do corredor estavam desligadas e Sérgio viu uma luz fraca numa sala à meia-noite.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_two_cases",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Estojos idênticos",
+      "description": "Os dois estojos eram pretos e idênticos — impossível distinguir no escuro.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_wrong_target",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Mira errada",
+      "description": "Quem rachou o violino pode ter mirado no estojo errado, pretendendo atingir o violino pessoal de Marina.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_threats_found",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bilhetes de ameaça",
+      "description": "Três bilhetes anônimos foram encontrados no estojo de Marina.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_threats_content",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Teor dos bilhetes",
+      "description": "Os bilhetes têm letra recortada e tom de inveja competitiva.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_stakes",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O que está em jogo",
+      "description": "O vencedor assina contrato com a Orquestra Sinfônica — definição de carreira.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_tools_untouched",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Ferramentas intactas",
+      "description": "As ferramentas de Sérgio estavam todas no lugar — o dano não foi feito com elas.",
+      "importance": "red_herring"
+    }
   ],
   "conclusion": {
-    "id": "conclusion_a_corda_partida", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+    "id": "conclusion_a_corda_partida",
+    "createdAt": "2026-06-27T00:00:00.000Z",
+    "updatedAt": "2026-06-27T00:00:00.000Z",
+    "deletedAt": null,
     "fields": [
       {
-        "id": "who_cracked_strad", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+        "id": "who_cracked_strad",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z",
+        "deletedAt": null,
         "label": "Quem rachou o Stradivarius?",
         "type": "character",
         "options": [
-          { "id": "decio", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Décio" },
-          { "id": "marina", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Marina" },
-          { "id": "aurora", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Aurora" },
-          { "id": "sergio", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Sérgio" }
+          {
+            "id": "decio",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Décio"
+          },
+          {
+            "id": "marina",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Marina"
+          },
+          {
+            "id": "aurora",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Aurora"
+          },
+          {
+            "id": "sergio",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Sérgio"
+          }
         ]
       },
       {
-        "id": "was_target_right", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+        "id": "was_target_right",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z",
+        "deletedAt": null,
         "label": "O Stradivarius era o alvo pretendido?",
         "type": "choice",
         "options": [
-          { "id": "wrong_target", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Não — miraram no violino pessoal de Marina e pegaram o estojo errado" },
-          { "id": "right_target", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Sim — queriam rachar o Stradivarius de propósito" },
-          { "id": "accidental", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Foi um acidente durante o ensaio" },
-          { "id": "luthier_repair", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "O dano aconteceu durante um reparo malfeito na oficina" }
+          {
+            "id": "wrong_target",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Não — miraram no violino pessoal de Marina e pegaram o estojo errado"
+          },
+          {
+            "id": "right_target",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Sim — queriam rachar o Stradivarius de propósito"
+          },
+          {
+            "id": "accidental",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Foi um acidente durante o ensaio"
+          },
+          {
+            "id": "luthier_repair",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "O dano aconteceu durante um reparo malfeito na oficina"
+          }
         ]
       },
       {
-        "id": "why_cracked", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+        "id": "why_cracked",
+        "createdAt": "2026-06-27T00:00:00.000Z",
+        "updatedAt": "2026-06-27T00:00:00.000Z",
+        "deletedAt": null,
         "label": "Por que o violino foi rachado?",
         "type": "choice",
         "options": [
-          { "id": "competitive_jealousy", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Inveja competitiva — nivelar a concorrência" },
-          { "id": "artistic_revenge", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Vingança artística contra o conservatório" },
-          { "id": "personal_grudge", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Rancor pessoal contra Marina" },
-          { "id": "insurance", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Para acionar o seguro do instrumento" }
+          {
+            "id": "competitive_jealousy",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Inveja competitiva — nivelar a concorrência"
+          },
+          {
+            "id": "artistic_revenge",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Vingança artística contra o conservatório"
+          },
+          {
+            "id": "personal_grudge",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Rancor pessoal contra Marina"
+          },
+          {
+            "id": "insurance",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para acionar o seguro do instrumento"
+          }
         ]
       }
     ]
   },
   "endings": [
     {
-      "id": "ending_full_truth", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ending_full_truth",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "title": "A nota que ninguém queria ouvir",
       "type": "full_truth",
       "imageUrl": "histories/a-corda-partida/endings/full_truth.jpg",
       "condition": {
-        "conclusionMatches": { "who_cracked_strad": "aurora", "was_target_right": "wrong_target", "why_cracked": "competitive_jealousy" },
-        "requiresClueIds": ["clue_aurora_full_confession", "clue_aurora_cracked", "clue_wrong_target"]
+        "conclusionMatches": {
+          "who_cracked_strad": "aurora",
+          "was_target_right": "wrong_target",
+          "why_cracked": "competitive_jealousy"
+        },
+        "requiresClueIds": [
+          "clue_aurora_full_confession",
+          "clue_aurora_cracked",
+          "clue_wrong_target"
+        ]
       },
       "summary": "Você reconstruiu a verdade completa: Aurora entrou de madrugada para rachar o violino pessoal de Marina e nivelar a concorrência, mas no escuro pegou o estojo errado e destruiu o Stradivarius.",
       "epilogue": "O silêncio do Conservatório Villa-Lobos muda de timbre. Aurora deixa de sustentar a postura de competidora digna e conta, sem ornamentação, como entrou no escuro, como pegou o estojo preto errado, como ouviu o rachido. Marina, do outro lado da sala, não grita nem chora — apenas segura o próprio violino pessoal contra o peito, como se fosse um filho. Sérgio recolhe o Stradivarius com mãos firmes e o leva para a oficina, onde vai passar semanas tentando reparar o irreparável. O concurso é adiado. E Aurora, pela primeira vez na vida, entende que chegar em segundo não era a pior coisa que podia acontecer com ela."
     },
     {
-      "id": "ending_partial_truth", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ending_partial_truth",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "title": "Um acorde incompleto",
       "type": "partial_truth",
       "imageUrl": "histories/a-corda-partida/endings/partial_truth.jpg",
       "condition": {
-        "conclusionMatches": { "who_cracked_strad": "aurora" },
-        "requiresClueIds": ["clue_aurora_cracked"]
+        "conclusionMatches": {
+          "who_cracked_strad": "aurora"
+        },
+        "requiresClueIds": [
+          "clue_aurora_cracked"
+        ]
       },
       "summary": "Você identificou Aurora como autora do dano, mas não fechou se a mira era certa nem o motivo real.",
       "epilogue": "Aurora não consegue mais negar que esteve na sala e que rachou o violino, mas o silêncio sobre a intenção pesa mais do que a confissão. Sem a mira errada explicada, o gesto parece pior do que foi — um ataque frio a um Stradivarius, não um erro desesperado de competidora exausta. O Stradivarius segue na oficina. Sérgio trabalha em silêncio. E Aurora carrega uma culpa que não corresponde exatamente ao que fez, mas que ela não consegue corrigir sem contar toda a verdade."
     },
     {
-      "id": "ending_wrong_accusation", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
       "title": "O suspeito errado",
       "type": "wrong_accusation",
       "imageUrl": "histories/a-corda-partida/endings/wrong_accusation.jpg",
-      "condition": { "conclusionMatches": {}, "requiresClueIds": [] },
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
       "summary": "A acusação não alcançou a verdade fixa do caso. Sérgio jamais danificaria um instrumento e Marina era a vítima, não a autora.",
       "epilogue": "A manhã termina com mais desconforto do que resposta. Sérgio é unjustiçado por quem o acusa — instrumentos são a vida dele, e a suspeita é a ofensa mais cruel que poderia receber. Marina permanece com seu violino pessoal intacto e seu lugar na final garantido, mas o Stradivarius segue rachado. E Aurora, que sabe o que fez, sai do conservatório sem que ninguém tenha olhado direito para a semelhança dos dois estojos pretos."
     }

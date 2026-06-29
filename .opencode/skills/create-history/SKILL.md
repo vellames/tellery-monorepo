@@ -87,7 +87,7 @@ exactly as the existing mocks do — note the mixed singular/plural:
 
 Two distinct mechanisms reveal clues — do not confuse them:
 
-1. **`clueRevealRules`** (on characters, locations, objects): the **`clueId` at the top of the rule** is the clue that rule reveals. `requiresClueIds` gates it behind prior clues. `triggerIntents` lists which intents unlock it.
+1. **`clueRevealRules`** (on characters, locations, objects): the **`clueId` at the top of the rule** is the clue that rule reveals. `requiresClueIds` gates it behind prior clues. `triggerIntents` lists which intents unlock it. **Objects should NOT use `requiresClueIds`** — object clues should always be discoverable on first inspection (no prerequisites), to avoid frustrating dead-end inspections. Characters and secret stages may use `requiresClueIds` freely.
 2. **Secret `revealStages`** (on character secrets): stages use **`revealsClueIds`** (an array) to reveal clues. `requiresClueIds` gates the stage. Stages have `level` (0+), `behavior`, `allowedToRevealTruth`, `sampleResponses`.
 
 The `defaultStrategy` (`deny` | `avoid` | `deflect` | `cover_story` | `justify`)

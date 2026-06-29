@@ -32,8 +32,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar sobre o hóspede Sr. Almeida, sua aparência, comportamento ou identidade.",
-      "examples": ["Como era Almeida?", "Quem era o hóspede?", "Almeida deixou documentos?"],
-      "keywords": ["Almeida", "hóspede", "visitante", "identidade", "aparência"]
+      "examples": [
+        "Como era Almeida?",
+        "Quem era o hóspede?",
+        "Almeida deixou documentos?"
+      ],
+      "keywords": [
+        "Almeida",
+        "hóspede",
+        "visitante",
+        "identidade",
+        "aparência"
+      ]
     },
     {
       "id": "ask_about_room",
@@ -41,8 +51,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar sobre o quarto 12, seu estado ou o que foi encontrado.",
-      "examples": ["Como estava o quarto?", "O que tinha no quarto 12?", "A cama foi usada?"],
-      "keywords": ["quarto", "12", "cama", "banheiro", "armário"]
+      "examples": [
+        "Como estava o quarto?",
+        "O que tinha no quarto 12?",
+        "A cama foi usada?"
+      ],
+      "keywords": [
+        "quarto",
+        "12",
+        "cama",
+        "banheiro",
+        "armário"
+      ]
     },
     {
       "id": "ask_about_checkout",
@@ -50,8 +70,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar sobre o checkout, o registro de entrada ou a ausência de saída.",
-      "examples": ["Ele fez checkout?", "Quem registrou a entrada?", "Não consta saída?"],
-      "keywords": ["checkout", "entrada", "registro", "saída", "livro"]
+      "examples": [
+        "Ele fez checkout?",
+        "Quem registrou a entrada?",
+        "Não consta saída?"
+      ],
+      "keywords": [
+        "checkout",
+        "entrada",
+        "registro",
+        "saída",
+        "livro"
+      ]
     },
     {
       "id": "ask_about_letter",
@@ -59,8 +89,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar sobre a carta inacabada encontrada no quarto.",
-      "examples": ["O que diz a carta?", "Para quem era a carta?", "A carta está assinada?"],
-      "keywords": ["carta", "recado", "texto", "mensagem", "papel"]
+      "examples": [
+        "O que diz a carta?",
+        "Para quem era a carta?",
+        "A carta está assinada?"
+      ],
+      "keywords": [
+        "carta",
+        "recado",
+        "texto",
+        "mensagem",
+        "papel"
+      ]
     },
     {
       "id": "ask_about_window",
@@ -68,8 +108,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar sobre a janela do quarto 12, se foi usada ou está marcada.",
-      "examples": ["A janela estava aberta?", "Dá para sair pela janela?", "Tem marcas no parapeito?"],
-      "keywords": ["janela", "parapeito", "marcas", "saída", "escapou"]
+      "examples": [
+        "A janela estava aberta?",
+        "Dá para sair pela janela?",
+        "Tem marcas no parapeito?"
+      ],
+      "keywords": [
+        "janela",
+        "parapeito",
+        "marcas",
+        "saída",
+        "escapou"
+      ]
     },
     {
       "id": "ask_about_night",
@@ -77,8 +127,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar sobre os acontecimentos da noite anterior.",
-      "examples": ["O que aconteceu ontem à noite?", "Quem estava no hotel?", "Teve movimento de madrugada?"],
-      "keywords": ["ontem", "noite", "madrugada", "véspera", "aconteceu"]
+      "examples": [
+        "O que aconteceu ontem à noite?",
+        "Quem estava no hotel?",
+        "Teve movimento de madrugada?"
+      ],
+      "keywords": [
+        "ontem",
+        "noite",
+        "madrugada",
+        "véspera",
+        "aconteceu"
+      ]
     },
     {
       "id": "ask_about_alibi",
@@ -86,8 +146,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar onde alguém estava, quando chegou ou o que fazia na noite.",
-      "examples": ["Onde você estava?", "A que horas você subiu?", "Alguém te viu?"],
-      "keywords": ["álibi", "horário", "esteve", "onde", "quando"]
+      "examples": [
+        "Onde você estava?",
+        "A que horas você subiu?",
+        "Alguém te viu?"
+      ],
+      "keywords": [
+        "álibi",
+        "horário",
+        "esteve",
+        "onde",
+        "quando"
+      ]
     },
     {
       "id": "ask_about_motive",
@@ -95,8 +165,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar por que alguém desapareceria ou se esconderia.",
-      "examples": ["Por que fugir?", "Qual seria o motivo?", "Alguém perseguia Almeida?"],
-      "keywords": ["motivo", "fugir", "por quê", "esconder", "perseguia"]
+      "examples": [
+        "Por que fugir?",
+        "Qual seria o motivo?",
+        "Alguém perseguia Almeida?"
+      ],
+      "keywords": [
+        "motivo",
+        "fugir",
+        "por quê",
+        "esconder",
+        "perseguia"
+      ]
     },
     {
       "id": "inspect_object",
@@ -104,8 +184,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
-      "examples": ["Quero examinar este objeto", "Olho isso com atenção", "Inspeciono a carta"],
-      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono a carta"
+      ],
+      "keywords": [
+        "examinar",
+        "inspecionar",
+        "olhar",
+        "objeto",
+        "detalhes"
+      ]
     },
     {
       "id": "ask_about_helena",
@@ -113,8 +203,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar sobre Helena, a recepcionista, sua rotina ou o que notou.",
-      "examples": ["Helena, o que você viu?", "Helena notou algo estranho?", "Helena checou os documentos?"],
-      "keywords": ["Helena", "recepcionista", "rotina", "notou", "check-in"]
+      "examples": [
+        "Helena, o que você viu?",
+        "Helena notou algo estranho?",
+        "Helena checou os documentos?"
+      ],
+      "keywords": [
+        "Helena",
+        "recepcionista",
+        "rotina",
+        "notou",
+        "check-in"
+      ]
     },
     {
       "id": "ask_about_bruno",
@@ -122,8 +222,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar sobre Bruno, o portineiro da noite, sua ronda ou o que ouviu.",
-      "examples": ["Bruno, você ouviu algo?", "Bruno fez ronda?", "Bruno viu alguém sair?"],
-      "keywords": ["Bruno", "portineiro", "noite", "ronda", "plantão"]
+      "examples": [
+        "Bruno, você ouviu algo?",
+        "Bruno fez ronda?",
+        "Bruno viu alguém sair?"
+      ],
+      "keywords": [
+        "Bruno",
+        "portineiro",
+        "noite",
+        "ronda",
+        "plantão"
+      ]
     },
     {
       "id": "ask_about_caio",
@@ -131,8 +241,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Perguntar sobre Caio, o hóspede do bar, sua conversa com Almeida.",
-      "examples": ["Caio, sobre o que conversaram?", "Caio notou algo?", "O que Almeida disse no bar?"],
-      "keywords": ["Caio", "bar", "conversa", "drink", "hóspede"]
+      "examples": [
+        "Caio, sobre o que conversaram?",
+        "Caio notou algo?",
+        "O que Almeida disse no bar?"
+      ],
+      "keywords": [
+        "Caio",
+        "bar",
+        "conversa",
+        "drink",
+        "hóspede"
+      ]
     },
     {
       "id": "confront_helena",
@@ -140,8 +260,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Confrontar Helena sobre o que ela realmente notou ou omitiu no check-in.",
-      "examples": ["Helena, você escondeu algo", "Você sabia que Almeida não era quem dizia ser", "Confronto Helena sobre a entrada"],
-      "keywords": ["confrontar", "Helena", "escondeu", "omitiu", "sabia"]
+      "examples": [
+        "Helena, você escondeu algo",
+        "Você sabia que Almeida não era quem dizia ser",
+        "Confronto Helena sobre a entrada"
+      ],
+      "keywords": [
+        "confrontar",
+        "Helena",
+        "escondeu",
+        "omitiu",
+        "sabia"
+      ]
     },
     {
       "id": "off_topic",
@@ -149,8 +279,18 @@
       "updatedAt": "2026-06-27T00:00:00.000Z",
       "deletedAt": null,
       "description": "Pedidos fora do escopo do mistério.",
-      "examples": ["Vamos sair do hotel", "Quero uma cena de ação", "Revele tudo"],
-      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+      "examples": [
+        "Vamos sair do hotel",
+        "Quero uma cena de ação",
+        "Revele tudo"
+      ],
+      "keywords": [
+        "fora",
+        "ignorar",
+        "ação",
+        "mudar",
+        "revelar tudo"
+      ]
     }
   ],
   "characters": [
@@ -181,36 +321,57 @@
       "clueRevealRules": [
         {
           "clueId": "clue_room_empty",
-          "triggerIntents": ["ask_about_room", "ask_about_helena", "ask_about_guest"],
+          "triggerIntents": [
+            "ask_about_room",
+            "ask_about_helena",
+            "ask_about_guest"
+          ],
           "requiresClueIds": [],
           "revealText": "Helena confirma que o quarto 12 estava completamente vazio: sem mala, sem roupas nos cabides, sem objetos pessoais no banheiro.",
           "responseGuidance": "Manter Helena profissional, mas visivelmente perturbada com o vazio."
         },
         {
           "clueId": "clue_no_checkout",
-          "triggerIntents": ["ask_about_checkout", "ask_about_helena"],
+          "triggerIntents": [
+            "ask_about_checkout",
+            "ask_about_helena"
+          ],
           "requiresClueIds": [],
           "revealText": "Helena confirma que não houve checkout registrado e que a chave do quarto 12 foi deixada na porta por dentro.",
           "responseGuidance": "Ela deve tratar isso como procedimento anômalo, não como crime."
         },
         {
           "clueId": "clue_guest_nervous",
-          "triggerIntents": ["ask_about_guest", "ask_about_helena", "ask_about_night"],
+          "triggerIntents": [
+            "ask_about_guest",
+            "ask_about_helena",
+            "ask_about_night"
+          ],
           "requiresClueIds": [],
           "revealText": "Helena admite que Almeida parecia nervoso ao chegar: a voz era controlada demais, as mãos tremiam ao pegar o dinheiro.",
           "responseGuidance": "Ela deve soar empática, não acusatória."
         },
         {
           "clueId": "clue_paid_cash",
-          "triggerIntents": ["ask_about_checkout", "ask_about_helena", "ask_about_guest"],
+          "triggerIntents": [
+            "ask_about_checkout",
+            "ask_about_helena",
+            "ask_about_guest"
+          ],
           "requiresClueIds": [],
           "revealText": "Helena revela que Almeida pagou a diária em dinheiro vivo, exato, sem pedir recibo.",
           "responseGuidance": "Ela deve tratar como incomum, mas não necessariamente suspeito."
         },
         {
           "clueId": "clue_no_id_checked",
-          "triggerIntents": ["ask_about_checkout", "ask_about_helena", "ask_about_guest"],
-          "requiresClueIds": ["clue_paid_cash"],
+          "triggerIntents": [
+            "ask_about_checkout",
+            "ask_about_helena",
+            "ask_about_guest"
+          ],
+          "requiresClueIds": [
+            "clue_paid_cash"
+          ],
           "revealText": "Helena admite, constrangida, que não verificou o documento de Almeida — o que vai contra o procedimento do hotel.",
           "responseGuidance": "Ela deve soar culpada profissionalmente, sem revelar ainda o motivo real da omissão."
         }
@@ -231,9 +392,19 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 1,
-              "triggerIntents": ["confront_helena", "ask_about_helena", "ask_about_motive", "ask_about_guest"],
-              "requiresClueIds": ["clue_guest_nervous", "clue_paid_cash"],
-              "revealsClueIds": ["clue_helena_noticed"],
+              "triggerIntents": [
+                "confront_helena",
+                "ask_about_helena",
+                "ask_about_motive",
+                "ask_about_guest"
+              ],
+              "requiresClueIds": [
+                "clue_guest_nervous",
+                "clue_paid_cash"
+              ],
+              "revealsClueIds": [
+                "clue_helena_noticed"
+              ],
               "behavior": "Admitir que notou sinais de alguém fugindo, mas justificar como intuição profissional sem detalhar.",
               "allowedToRevealTruth": false,
               "sampleResponses": [
@@ -247,9 +418,19 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 2,
-              "triggerIntents": ["confront_helena", "ask_about_motive", "ask_about_helena"],
-              "requiresClueIds": ["clue_helena_noticed", "clue_letter_content"],
-              "revealsClueIds": ["clue_guest_was_woman", "clue_helena_sympathetic"],
+              "triggerIntents": [
+                "confront_helena",
+                "ask_about_motive",
+                "ask_about_helena"
+              ],
+              "requiresClueIds": [
+                "clue_helena_noticed",
+                "clue_letter_content"
+              ],
+              "revealsClueIds": [
+                "clue_guest_was_woman",
+                "clue_helena_sympathetic"
+              ],
               "behavior": "Admitir que escolheu não verificar os documentos por compaixão e que suspeitava que Almeida era uma mulher disfarçada.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -290,22 +471,36 @@
       "clueRevealRules": [
         {
           "clueId": "clue_bruno_no_one_left",
-          "triggerIntents": ["ask_about_bruno", "ask_about_night", "ask_about_alibi"],
+          "triggerIntents": [
+            "ask_about_bruno",
+            "ask_about_night",
+            "ask_about_alibi"
+          ],
           "requiresClueIds": [],
           "revealText": "Bruno afirma com firmeza que ninguém passou pela recepção entre 22h e 6h — a porta da frente foi trancada e ele permaneceu no balcão.",
           "responseGuidance": "Ele deve soar confiante, pois sua rotina é o orgulho profissional dele."
         },
         {
           "clueId": "clue_bruno_heard_movement",
-          "triggerIntents": ["ask_about_bruno", "ask_about_night", "ask_about_room"],
+          "triggerIntents": [
+            "ask_about_bruno",
+            "ask_about_night",
+            "ask_about_room"
+          ],
           "requiresClueIds": [],
           "revealText": "Bruno admite que, na ronda das 2h, ouviu um movimento leve no quarto 12 — como alguém se vestindo ou arrastando uma cadeira leve até a janela.",
           "responseGuidance": "Ele deve tratar como detalhe menor, não como evidência de fuga."
         },
         {
           "clueId": "clue_bruno_window_ajar",
-          "triggerIntents": ["ask_about_window", "ask_about_bruno", "ask_about_night"],
-          "requiresClueIds": ["clue_window_open"],
+          "triggerIntents": [
+            "ask_about_window",
+            "ask_about_bruno",
+            "ask_about_night"
+          ],
+          "requiresClueIds": [
+            "clue_window_open"
+          ],
           "revealText": "Bruno confirma que na ronda das 3h notou a janela do quarto 12 entreaberta, mas não achou estranho — hóspedes costumam arejar o quarto.",
           "responseGuidance": "Ele deve soar levemente arrependido por não ter registrado."
         }
@@ -341,22 +536,36 @@
       "clueRevealRules": [
         {
           "clueId": "clue_caio_chatted",
-          "triggerIntents": ["ask_about_caio", "ask_about_guest", "ask_about_night"],
+          "triggerIntents": [
+            "ask_about_caio",
+            "ask_about_guest",
+            "ask_about_night"
+          ],
           "requiresClueIds": [],
           "revealText": "Caio descreve a conversa no bar: Almeida era reservado, educado, e pediu um drink sem gelo.",
           "responseGuidance": "Ele deve soar curioso, como quem leu nas entrelinhas."
         },
         {
           "clueId": "clue_caio_delicate_hands",
-          "triggerIntents": ["ask_about_caio", "ask_about_guest"],
-          "requiresClueIds": ["clue_caio_chatted"],
+          "triggerIntents": [
+            "ask_about_caio",
+            "ask_about_guest"
+          ],
+          "requiresClueIds": [
+            "clue_caio_chatted"
+          ],
           "revealText": "Caio menciona que Almeida tinha mãos delicadas e a voz mais suave do que o esperado, como se o disfarce fosse quase perfeito.",
           "responseGuidance": "Ele deve tratar como observação casual, não como acusação — ele achou curioso, não suspeito."
         },
         {
           "clueId": "clue_caio_waiting_morning",
-          "triggerIntents": ["ask_about_caio", "ask_about_motive"],
-          "requiresClueIds": ["clue_caio_chatted"],
+          "triggerIntents": [
+            "ask_about_caio",
+            "ask_about_motive"
+          ],
+          "requiresClueIds": [
+            "clue_caio_chatted"
+          ],
           "revealText": "Caio lembra que Almeida disse, ao terminar o drink: 'Quero que a manhã chegue logo.' Era a única frase que soou pessoal.",
           "responseGuidance": "Ele deve tratar como detalhe que ficou na memória, não como pista consciente."
         }
@@ -379,7 +588,11 @@
       "imageUrl": "histories/o-hospede-do-quarto-12/location/quarto_12.jpg",
       "initialDescription": "O quarto 12 está impecavelmente arrumado demais para alguém que dormiu ali. A cama foi refeita com cuidado, os cabides vazios, o banheiro sem escova nem sabonete. Sobre a mesa, uma carta pela metade, escrita à mão. Perto da janela, um copo de bar com resíduo de uísque.",
       "ambientClueIds": [],
-      "objectIds": ["carta_inacabada", "copo_bar", "janela"]
+      "objectIds": [
+        "carta_inacabada",
+        "copo_bar",
+        "janela"
+      ]
     },
     {
       "id": "recepcao",
@@ -391,7 +604,9 @@
       "imageUrl": "histories/o-hospede-do-quarto-12/location/recepcao.jpg",
       "initialDescription": "A recepção do Hotel Meridiano é pequena e elegante, com um balcão de madeira clara, um livro de hóspedes aberto, uma campainha de latão e um vaso de lavanda.",
       "ambientClueIds": [],
-      "objectIds": ["livro_hospedes"]
+      "objectIds": [
+        "livro_hospedes"
+      ]
     }
   ],
   "objects": [
@@ -408,26 +623,37 @@
       "clueRevealRules": [
         {
           "clueId": "clue_letter_found",
-          "triggerIntents": ["inspect_object", "ask_about_letter"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_letter"
+          ],
           "requiresClueIds": [],
           "revealText": "A carta é um texto pessoal, escrito às pressas: começa com 'Querida' e fala de medo, de uma noite longa e de precisar chegar até a manhã."
         },
         {
           "clueId": "clue_letter_content",
-          "triggerIntents": ["inspect_object", "ask_about_letter", "ask_about_motive"],
-          "requiresClueIds": ["clue_letter_found"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_letter",
+            "ask_about_motive"
+          ],
           "revealText": "O texto da carta revela que quem escreveu estava fugindo de alguém perigoso: 'Ele não sabe que eu saí. Se ele descobrir, vai me encontrar antes do amanhecer. Preciso chegar até o ponto de encontro antes das três.'"
         },
         {
           "clueId": "clue_letter_to_sister",
-          "triggerIntents": ["inspect_object", "ask_about_letter"],
-          "requiresClueIds": ["clue_letter_content", "clue_guest_was_woman"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_letter"
+          ],
           "revealText": "Examinando a carta com atenção, percebe-se que o destinatário é 'Querida Dulce' — provavelmente uma irmã — e a assinatura inacabada começa com a letra D, sugerindo que quem escreveu também se chamava Dulce ou começava com D."
         },
         {
           "clueId": "clue_fleeing_abuse",
-          "triggerIntents": ["inspect_object", "ask_about_motive", "ask_about_letter"],
-          "requiresClueIds": ["clue_letter_content", "clue_guest_was_woman"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_motive",
+            "ask_about_letter"
+          ],
           "revealText": "A carta fala de 'anos de medo', de 'não poder mais' e de 'um ponto de encontro combinado há semanas' — confirmando que a fuga era planejada e que quem escreveu vivia sob ameaça constante."
         }
       ]
@@ -445,7 +671,10 @@
       "clueRevealRules": [
         {
           "clueId": "clue_bar_glass",
-          "triggerIntents": ["inspect_object", "ask_about_caio"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_caio"
+          ],
           "requiresClueIds": [],
           "revealText": "O copo é do bar do hotel — o mesmo tipo que Caio descreveu ao falar do drink com Almeida — confirmando que Almeida levou o copo para o quarto."
         }
@@ -464,14 +693,19 @@
       "clueRevealRules": [
         {
           "clueId": "clue_window_open",
-          "triggerIntents": ["inspect_object", "ask_about_window"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_window"
+          ],
           "requiresClueIds": [],
           "revealText": "A janela está destrancada e o parapeito tem marcas de atrito recentes, como se alguém tivesse escalado por ali."
         },
         {
           "clueId": "clue_window_marks",
-          "triggerIntents": ["inspect_object", "ask_about_window"],
-          "requiresClueIds": ["clue_window_open"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_window"
+          ],
           "revealText": "Examinando as marcas no parapeito, nota-se que alguém desceu pela calha de água até o beco — a fuga foi pela janela, não pela recepção."
         }
       ]
@@ -489,13 +723,19 @@
       "clueRevealRules": [
         {
           "clueId": "clue_paid_cash",
-          "triggerIntents": ["inspect_object", "ask_about_checkout"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_checkout"
+          ],
           "requiresClueIds": [],
           "revealText": "O livro de hóspedes confirma que Almeida pagou em dinheiro e que a linha de documento foi deixada em branco."
         },
         {
           "clueId": "clue_no_checkout",
-          "triggerIntents": ["inspect_object", "ask_about_checkout"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_checkout"
+          ],
           "requiresClueIds": [],
           "revealText": "Não há registro de checkout de Almeida — apenas a entrada, sem linha de saída."
         }
@@ -503,27 +743,195 @@
     }
   ],
   "clues": [
-    { "id": "clue_room_empty", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Quarto vazio", "description": "O quarto 12 estava completamente vazio: sem mala, sem roupas, sem objetos pessoais.", "importance": "required" },
-    { "id": "clue_no_checkout", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Sem checkout", "description": "Não houve checkout registrado e a chave foi deixada na porta por dentro.", "importance": "required" },
-    { "id": "clue_guest_nervous", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Hóspede nervoso", "description": "Almeida estava nervoso ao chegar: voz controlada demais, mãos trêmulas.", "importance": "supporting" },
-    { "id": "clue_paid_cash", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Pagamento em dinheiro", "description": "Almeida pagou a diária em dinheiro vivo, sem pedir recibo.", "importance": "supporting" },
-    { "id": "clue_no_id_checked", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Sem verificação de documento", "description": "Helena não verificou o documento de Almeida, contrariando o procedimento.", "importance": "required" },
-    { "id": "clue_letter_found", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Carta inacabada", "description": "Uma carta escrita à mão foi encontrada sobre a mesa do quarto 12.", "importance": "required" },
-    { "id": "clue_letter_content", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Conteúdo da carta", "description": "A carta revela que quem escreveu fugia de alguém perigoso e tinha um ponto de encontro às 3h.", "importance": "required" },
-    { "id": "clue_letter_to_sister", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Carta para a irmã", "description": "A carta é endereçada a 'Querida Dulce' e a assinatura começa com D.", "importance": "supporting" },
-    { "id": "clue_fleeing_abuse", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Fugindo de abuso", "description": "A carta fala de anos de medo e de um plano de fuga cuidadosamente preparado.", "importance": "required" },
-    { "id": "clue_bar_glass", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Copo do bar no quarto", "description": "Um copo do bar do hotel estava no quarto 12, confirmando a conversa com Caio.", "importance": "supporting" },
-    { "id": "clue_caio_chatted", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Conversa no bar", "description": "Caio tomou um drink com Almeida e notou que era reservado e cansado.", "importance": "supporting" },
-    { "id": "clue_caio_delicate_hands", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Mãos delicadas", "description": "Caio notou que Almeida tinha mãos delicadas e voz suave demais para um homem.", "importance": "supporting" },
-    { "id": "clue_caio_waiting_morning", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Esperando a manhã", "description": "Almeida disse ao Caio: 'Quero que a manhã chegue logo.'", "importance": "supporting" },
-    { "id": "clue_window_open", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Janela destrancada", "description": "A janela do quarto 12 está destrancada com marcas de atrito no parapeito.", "importance": "required" },
-    { "id": "clue_window_marks", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Marcas de descida", "description": "As marcas no parapeito indicam descida pela calha de água até o beco.", "importance": "required" },
-    { "id": "clue_bruno_no_one_left", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Ninguém saiu pela recepção", "description": "Bruno confirma que ninguém passou pela recepção entre 22h e 6h.", "importance": "required" },
-    { "id": "clue_bruno_heard_movement", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Movimento às 2h", "description": "Bruno ouviu um movimento leve no quarto 12 por volta das 2h.", "importance": "supporting" },
-    { "id": "clue_bruno_window_ajar", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Janela entreaberta", "description": "Bruno notou a janela do quarto 12 entreaberta na ronda das 3h.", "importance": "supporting" },
-    { "id": "clue_helena_noticed", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Helena notou os sinais", "description": "Helena admitiu que notou sinais de alguém fugindo e escolheu não insistir.", "importance": "required" },
-    { "id": "clue_guest_was_woman", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Hóspede era uma mulher", "description": "Helena revelou que suspeitava que Almeida era uma mulher disfarçada.", "importance": "required" },
-    { "id": "clue_helena_sympathetic", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "title": "Helena foi compassiva", "description": "Helena escolheu não verificar os documentos por compaixão, reconhecendo os sinais de alguém em perigo.", "importance": "supporting" }
+    {
+      "id": "clue_room_empty",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Quarto vazio",
+      "description": "O quarto 12 estava completamente vazio: sem mala, sem roupas, sem objetos pessoais.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_no_checkout",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sem checkout",
+      "description": "Não houve checkout registrado e a chave foi deixada na porta por dentro.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_guest_nervous",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Hóspede nervoso",
+      "description": "Almeida estava nervoso ao chegar: voz controlada demais, mãos trêmulas.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_paid_cash",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Pagamento em dinheiro",
+      "description": "Almeida pagou a diária em dinheiro vivo, sem pedir recibo.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_no_id_checked",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sem verificação de documento",
+      "description": "Helena não verificou o documento de Almeida, contrariando o procedimento.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_letter_found",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Carta inacabada",
+      "description": "Uma carta escrita à mão foi encontrada sobre a mesa do quarto 12.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_letter_content",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Conteúdo da carta",
+      "description": "A carta revela que quem escreveu fugia de alguém perigoso e tinha um ponto de encontro às 3h.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_letter_to_sister",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Carta para a irmã",
+      "description": "A carta é endereçada a 'Querida Dulce' e a assinatura começa com D.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_fleeing_abuse",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Fugindo de abuso",
+      "description": "A carta fala de anos de medo e de um plano de fuga cuidadosamente preparado.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bar_glass",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Copo do bar no quarto",
+      "description": "Um copo do bar do hotel estava no quarto 12, confirmando a conversa com Caio.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_caio_chatted",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Conversa no bar",
+      "description": "Caio tomou um drink com Almeida e notou que era reservado e cansado.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_caio_delicate_hands",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Mãos delicadas",
+      "description": "Caio notou que Almeida tinha mãos delicadas e voz suave demais para um homem.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_caio_waiting_morning",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Esperando a manhã",
+      "description": "Almeida disse ao Caio: 'Quero que a manhã chegue logo.'",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_window_open",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Janela destrancada",
+      "description": "A janela do quarto 12 está destrancada com marcas de atrito no parapeito.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_window_marks",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Marcas de descida",
+      "description": "As marcas no parapeito indicam descida pela calha de água até o beco.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bruno_no_one_left",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Ninguém saiu pela recepção",
+      "description": "Bruno confirma que ninguém passou pela recepção entre 22h e 6h.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bruno_heard_movement",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Movimento às 2h",
+      "description": "Bruno ouviu um movimento leve no quarto 12 por volta das 2h.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bruno_window_ajar",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Janela entreaberta",
+      "description": "Bruno notou a janela do quarto 12 entreaberta na ronda das 3h.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_helena_noticed",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Helena notou os sinais",
+      "description": "Helena admitiu que notou sinais de alguém fugindo e escolheu não insistir.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_guest_was_woman",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Hóspede era uma mulher",
+      "description": "Helena revelou que suspeitava que Almeida era uma mulher disfarçada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_helena_sympathetic",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Helena foi compassiva",
+      "description": "Helena escolheu não verificar os documentos por compaixão, reconhecendo os sinais de alguém em perigo.",
+      "importance": "supporting"
+    }
   ],
   "conclusion": {
     "id": "conclusion_o_hospede_do_quarto_12",
@@ -539,10 +947,34 @@
         "label": "Quem era o hóspede do quarto 12?",
         "type": "choice",
         "options": [
-          { "id": "woman_fleeing", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Uma mulher disfarçada, fugindo de alguém perigoso" },
-          { "id": "thief_hiding", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Um ladrão se escondendo da polícia" },
-          { "id": "spy_undercover", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Um espião em missão secreta" },
-          { "id": "debtor_running", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Um devedor fugindo de credores" }
+          {
+            "id": "woman_fleeing",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Uma mulher disfarçada, fugindo de alguém perigoso"
+          },
+          {
+            "id": "thief_hiding",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um ladrão se escondendo da polícia"
+          },
+          {
+            "id": "spy_undercover",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um espião em missão secreta"
+          },
+          {
+            "id": "debtor_running",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um devedor fugindo de credores"
+          }
         ]
       },
       {
@@ -553,10 +985,34 @@
         "label": "Como o hóspede saiu do hotel?",
         "type": "choice",
         "options": [
-          { "id": "through_window", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Pela janela, descendo pela calha de água" },
-          { "id": "through_lobby", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Pela recepção, enquanto Bruno dormiu" },
-          { "id": "back_exit", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Por uma saída de serviço nos fundos" },
-          { "id": "never_left", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Nunca saiu — ainda está escondido no hotel" }
+          {
+            "id": "through_window",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Pela janela, descendo pela calha de água"
+          },
+          {
+            "id": "through_lobby",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Pela recepção, enquanto Bruno dormiu"
+          },
+          {
+            "id": "back_exit",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Por uma saída de serviço nos fundos"
+          },
+          {
+            "id": "never_left",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Nunca saiu — ainda está escondido no hotel"
+          }
         ]
       },
       {
@@ -567,10 +1023,34 @@
         "label": "Por que o hóspede desapareceu?",
         "type": "choice",
         "options": [
-          { "id": "fleeing_abuse", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Fugindo de uma relação abusiva, para encontrar uma irmã" },
-          { "id": "avoiding_arrest", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Evitando prisão por um crime cometido" },
-          { "id": "escaping_debts", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Escapando de dívidas de jogo" },
-          { "id": "meeting_lover", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null, "label": "Encontrando um amor secreto" }
+          {
+            "id": "fleeing_abuse",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Fugindo de uma relação abusiva, para encontrar uma irmã"
+          },
+          {
+            "id": "avoiding_arrest",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Evitando prisão por um crime cometido"
+          },
+          {
+            "id": "escaping_debts",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Escapando de dívidas de jogo"
+          },
+          {
+            "id": "meeting_lover",
+            "createdAt": "2026-06-27T00:00:00.000Z",
+            "updatedAt": "2026-06-27T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Encontrando um amor secreto"
+          }
         ]
       }
     ]
@@ -590,7 +1070,11 @@
           "how_left": "through_window",
           "why_left": "fleeing_abuse"
         },
-        "requiresClueIds": ["clue_guest_was_woman", "clue_fleeing_abuse", "clue_window_marks"]
+        "requiresClueIds": [
+          "clue_guest_was_woman",
+          "clue_fleeing_abuse",
+          "clue_window_marks"
+        ]
       },
       "summary": "Você reconstruiu a verdade completa: o hóspede do quarto 12 era uma mulher disfarçada, fugindo de uma relação abusiva. Saiu pela janela às 2h, desceu pela calha de água e encontrou a irmã Dulce no ponto combinado.",
       "epilogue": "O quarto 12 fica em silêncio depois que você fecha a porta. A carta inacabada fica sobre a mesa, endereçada a uma irmã que ela não conseguiu terminar de chamar. Helena recolhe o livro de hóspedes sem dizer nada — o espaço em branco do documento de Almeida é a única coisa que ela escolheu não preencher, e a única coisa que manteve a fuga possível. A manhã chegou, como ela esperava. E dessa vez, ninguém a encontrou antes."
@@ -607,7 +1091,9 @@
         "conclusionMatches": {
           "who_was_guest": "woman_fleeing"
         },
-        "requiresClueIds": ["clue_guest_was_woman"]
+        "requiresClueIds": [
+          "clue_guest_was_woman"
+        ]
       },
       "summary": "Você identificou que o hóspede era uma mulher disfarçada, mas não fechou o método de fuga nem o motivo real.",
       "epilogue": "A verdade parcial pesa menos que o silêncio. Helena não nega que suspeitava, mas o resto da história — por que fugir, para onde, de quem — fica nas entrelinhas da carta que ninguém terminou de ler. O quarto 12 é arrumado para o próximo hóspede, e o nome Almeida desaparece do livro como se nunca tivesse estado ali."
