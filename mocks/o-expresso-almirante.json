@@ -5,8 +5,8 @@
   "deletedAt": null,
   "slug": "o-expresso-almirante",
   "title": "O Expresso Almirante",
-  "subtitle": "Um trem selado, uma maleta diplomática sumida, e cinco passageiros que não são quem dizem ser",
-  "teaser": "O Expresso Almirante cruza o país com um tratado secreto entre Valdória e Sarvânia a bordo. No meio do jantar de gala, a maleta diplomática desaparece. O trem está selado, ninguém embarcou nem desembarcou. Cinco passageiros compartilham a carruagem-restaurante. Cada um esconde uma identidade. Cada um tem motivo. Um deles levou a maleta.",
+  "subtitle": "Um trem selado, uma maleta diplomática sumida, e cinco passageiros no mesmo vagão",
+  "teaser": "O Expresso Almirante cruza o país com um tratado secreto entre Valdória e Sarvânia a bordo. No meio do jantar de gala, a maleta diplomática desaparece. O trem está selado, ninguém embarcou nem desembarcou. Cinco passageiros compartilham a carruagem-restaurante. Um deles levou a maleta.",
   "genre": "mystery",
   "language": "pt-BR",
   "estimatedDurationMinutes": 15,
@@ -17,13 +17,13 @@
   "coverImageUrl": "histories/o-expresso-almirante/history/cover.jpg",
   "thumbnailUrl": "histories/o-expresso-almirante/history/thumbnail.jpg",
   "opening": {
-    "shortText": "A maleta diplomática sumiu no meio do jantar de gala. O trem está selado. Cinco passageiros, cinco identidades falsas.",
-    "fullText": "São 22h no Expresso Almirante, o trem de luxo noturno que cruza o país de costa a costa. A carruagem-restaurante acaba de encerrar o jantar de gala em celebração ao tratado de cooperação entre Valdória e Sarvânia — documento que viajava numa maleta diplomática sobre o assento do embaixador, junto de um envelope lacrado que ninguém devia abrir. Quando os garçons recolhem a mesa, a maleta desapareceu. O chefe de bordo, Sr. Pessoa, tranca todas as portas. O trem está em movimento, ninguém embarcou nem desembarcou. Cinco passageiros compartilham a carruagem-restaurante: Vicente, um empresário de tecnologia que não sabe explicar o que sua empresa faz; Íris, uma jornalista de sociedade que nunca publicou um artigo; Sra. Volkov, uma viúva de diplomata cujo marido não consta em nenhum registro; Félix, o garçom do trem que entende demais de protocolo diplomático; e Bento, um garoto de 12 anos que desenha tudo o que vê num caderno de croquis. O Sr. Pessoa pede que ninguém saia da carruagem até a maleta aparecer. Cabe a você conversar com cada passageiro, examinar o restaurante e as cabines, e descobrir quem pegou a maleta, por quê — e talvez descobrir que ninguém aqui é exatamente quem diz ser.",
+    "shortText": "A maleta diplomática sumiu no meio do jantar de gala. O trem está selado. Cinco passageiros no mesmo vagão.",
+    "fullText": "São 22h no Expresso Almirante, o trem de luxo noturno que cruza o país de costa a costa. A carruagem-restaurante acaba de encerrar o jantar de gala em celebração ao tratado de cooperação entre Valdória e Sarvânia — documento que viajava numa maleta diplomática sobre o assento do embaixador. Quando os garçons recolhem a mesa, a maleta desapareceu. O chefe de bordo, Sr. Pessoa, tranca todas as portas. O trem está em movimento, ninguém embarcou nem desembarcou. Cinco passageiros compartilham a carruagem-restaurante: Vicente, um empresário de tecnologia; Íris, uma jornalista de sociedade; Sra. Volkov, uma viúva de diplomata; Félix, o garçom do trem; e Bento, um garoto de 12 anos que desenha num caderno. O Sr. Pessoa pede que ninguém saia da carruagem até a maleta aparecer. Cabe a você conversar com cada passageiro, examinar o restaurante e as cabines, e descobrir quem pegou a maleta, por quê e onde ela está escondida.",
     "callToAction": "Converse com os cinco passageiros, examine a carruagem-restaurante e as cabines, e descubra quem pegou a maleta diplomática antes que o trem chegue à fronteira."
   },
   "objective": {
     "mainQuestion": "Quem pegou a maleta diplomática, por quê, e onde ela está agora?",
-    "description": "Descubra a autoria do desaparecimento, o motivo real (que pode envolver identidades secretas) e o paradeiro da maleta antes da chegada à fronteira."
+    "description": "Descubra a autoria do desaparecimento, o motivo real e o paradeiro da maleta antes da chegada à fronteira."
   },
   "intentDefinitions": [
     {
@@ -186,7 +186,7 @@
       "id": "vicente", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
       "name": "Vicente",
       "role": "Empresário de tecnologia (supostamente)",
-      "shortDescription": "Homem de terno impecável que diz ser CEO de uma empresa de tecnologia. Não sabe explicar o que a empresa faz.",
+      "shortDescription": "Homem de terno impecável que se apresenta como CEO de uma empresa de tecnologia.",
       "imageUrl": "histories/o-expresso-almirante/characters/vicente.jpg",
       "personality": "Composto, articulado, ensaiado. Fala com confiança sobre tudo, exceto sobre o próprio negócio.",
       "speakingStyle": "Fala com vocabulário corporativo genérico, desvia perguntas técnicas com generalidades.",
@@ -203,7 +203,7 @@
         "Tem um dispositivo de comunicação escondido na cabine.",
         "Não pegou a maleta, mas estava vigilante."
       ],
-      "openingLine": "Eu sou CEO da Meridian Tech. Desenvolvemos… soluções. Integradas. De alta performance. Para o setor...Bento, por que você está me olhando assim?",
+      "openingLine": "Eu sou CEO da Meridian Tech. Desenvolvemos… soluções. Integradas. De alta performance. Para o setor corporativo.",
       "clueRevealRules": [
         {
           "clueId": "clue_vicente_businessman", "triggerIntents": ["ask_about_vicente", "ask_about_identity"], "requiresClueIds": [],
@@ -267,7 +267,7 @@
       "id": "iris", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
       "name": "Íris",
       "role": "Jornalista de sociedade (supostamente)",
-      "shortDescription": "Mulher elegante que diz ser jornalista de sociedade, mas nunca publicou um artigo. Estava sentada perto da maleta.",
+      "shortDescription": "Mulher elegante e sociável que se apresenta como jornalista de sociedade.",
       "imageUrl": "histories/o-expresso-almirante/characters/iris.jpg",
       "personality": "Encantadora, observadora, controlada. Usa simpatia e curiosidade como ferramentas.",
       "speakingStyle": "Fala com desenvoltura de salão, faz perguntas aparentemente casuais que extraem informação.",
@@ -388,7 +388,7 @@
       "id": "volkov", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
       "name": "Sra. Volkov",
       "role": "Viúva de diplomata (supostamente)",
-      "shortDescription": "Senhora elegante de luto discreto que diz ser viúva de diplomata falecido. O marido não consta em registros.",
+      "shortDescription": "Senhora em luto discreto que se apresenta como viúva de diplomata falecido.",
       "imageUrl": "histories/o-expresso-almirante/characters/volkov.jpg",
       "personality": "Reservada, digna, misteriosa. Fala pouco e com precisão cirúrgica.",
       "speakingStyle": "Vocabulário contido e formal, sotaque indefinido, frases que terminam antes de revelar demais.",
@@ -451,7 +451,7 @@
       "id": "felix", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
       "name": "Félix",
       "role": "Garçom do trem (supostamente)",
-      "shortDescription": "Garçom atencioso que serve o jantar. Sabe demais sobre protocolo diplomático para um garçom.",
+      "shortDescription": "Garçom atencioso da carruagem-restaurante do Expresso Almirante.",
       "imageUrl": "histories/o-expresso-almirante/characters/felix.jpg",
       "personality": "Discreto, profissional, vagamente paternal. Esconde conhecimento profundo atrás de simplicidade.",
       "speakingStyle": "Fala com educação de serviço, mas cita protocolo diplomático e geopolítica com naturalidade suspeita.",
@@ -518,7 +518,7 @@
       "id": "bento", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
       "name": "Bento",
       "role": "Sobrinho de passageira de outra classe",
-      "shortDescription": "Garoto de 12 anos que desenha tudo num caderno. Ninguém o leva a sério. Ele vê tudo.",
+      "shortDescription": "Garoto de 12 anos, sobrinho de uma passageira de outra classe. Passa o tempo desenhando.",
       "imageUrl": "histories/o-expresso-almirante/characters/bento.jpg",
       "personality": "Curioso, direto, sem filtro. Diz o que pensa com honestidade desconcertante de criança.",
       "speakingStyle": "Fala com simplicidade que corta a complexidade dos adultos, faz comparações infantis que revelam verdades.",
@@ -577,7 +577,7 @@
       "name": "Carruagem-restaurante",
       "shortDescription": "A carruagem onde o jantar de gala aconteceu e a maleta sumiu.",
       "imageUrl": "histories/o-expresso-almirante/location/restaurante.jpg",
-      "initialDescription": "A carruagem-restaurante do Expresso Almirante é um salão longo e elegante, com mesas forradas de branco, cristaleria, poltronas de veludo azul-escuro e janelas que refletem o interior iluminado contra a noite lá fora. O assento do embaixador está vazio; ao lado dele, o espaço onde a maleta ficava. Perto dali, um painel de manutenção na parede parece ligeiramente torto.",
+      "initialDescription": "A carruagem-restaurante do Expresso Almirante é um salão longo e elegante, com mesas forradas de branco, cristaleria, poltronas de veludo azul-escuro e janelas que refletem o interior iluminado contra a noite lá fora. O assento do embaixador está vazio; a mesa ainda guarda os restos do jantar de gala.",
       "ambientClueIds": [],
       "objectIds": ["assento_embaixador", "cardapio_jantar", "painel_parede"]
     },
@@ -607,7 +607,7 @@
       "shortDescription": "A poltrona onde o embaixador sentou e onde a maleta ficava apoiada.",
       "imageUrl": "histories/o-expresso-almirante/object/assento_embaixador.jpg",
       "locationId": "restaurante",
-      "initialDescription": "A poltrona do embaixador está vazia, com a marca retangular da maleta ainda visível no couro do braço. Ao lado, o painel de manutenção da parede está ligeiramente torto.",
+      "initialDescription": "A poltrona do embaixador está vazia, ao lado de uma mesa com os restos do jantar.",
       "clueRevealRules": [
         {
           "clueId": "clue_diplomat_seat", "triggerIntents": ["inspect_object", "ask_about_briefcase"], "requiresClueIds": [],
@@ -625,7 +625,7 @@
       "shortDescription": "Painel de acesso técnico na parede perto do assento do embaixador.",
       "imageUrl": "histories/o-expresso-almirante/object/painel_parede.jpg",
       "locationId": "restaurante",
-      "initialDescription": "O painel de manutenção na parede da carruagem-restaurante, perto do assento do embaixador, está ligeiramente torto, com marcas de dedos recentes nas bordas.",
+      "initialDescription": "Um painel de manutenção retangular na parede da carruagem, perto do assento do embaixador.",
       "clueRevealRules": [
         {
           "clueId": "clue_panel_mention", "triggerIntents": ["inspect_object", "ask_about_briefcase"], "requiresClueIds": ["clue_briefcase_missing"],
@@ -657,7 +657,7 @@
       "shortDescription": "Caderno de croquis do garoto, com desenhos de todos os passageiros.",
       "imageUrl": "histories/o-expresso-almirante/object/caderno_bento.jpg",
       "locationId": "cabines",
-      "initialDescription": "O caderno de Bento está aberto num banco do corredor de cabines. Os desenhos em traços de criança mostram cada passageiro do jantar, com anotações em letra caprichada.",
+      "initialDescription": "O caderno de Bento está sobre um banco do corredor de cabines, aberto numa página de desenhos.",
       "clueRevealRules": [
         {
           "clueId": "clue_bento_drawings", "triggerIntents": ["inspect_object", "ask_about_bento"], "requiresClueIds": ["clue_bento_nephew"],
@@ -671,7 +671,7 @@
       "shortDescription": "Aparelho de comunicação encontrado na cabine de Vicente.",
       "imageUrl": "histories/o-expresso-almirante/object/dispositivo_vicente.jpg",
       "locationId": "cabines",
-      "initialDescription": "Na cabine entreaberta de Vicente, sobre a cama, há um aparelho de comunicação compacto de aspecto militar, que nenhum empresário de tecnologia carregaria.",
+      "initialDescription": "Na cabine de Vicente, sobre a cama, há um aparelho de comunicação compacto e escuro.",
       "clueRevealRules": [
         {
           "clueId": "clue_vicente_device", "triggerIntents": ["inspect_object", "ask_about_vicente"], "requiresClueIds": ["clue_vicente_nervous"],
@@ -685,7 +685,7 @@
       "shortDescription": "O cartão de embarque de Íris, encontrado na cabine.",
       "imageUrl": "histories/o-expresso-almirante/object/cartao_iris.jpg",
       "locationId": "cabines",
-      "initialDescription": "Na cabine de Íris, o cartão de embarque mostra um nome que não bate com a credencial de jornalista que ela apresentou.",
+      "initialDescription": "Na mesa da cabine de Íris, há um cartão de embarque impresso.",
       "clueRevealRules": [
         {
           "clueId": "clue_iris_fake_name", "triggerIntents": ["inspect_object", "ask_about_iris"], "requiresClueIds": ["clue_iris_no_articles"],

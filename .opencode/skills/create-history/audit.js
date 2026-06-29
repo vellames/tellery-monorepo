@@ -155,7 +155,7 @@ const imgMapPath = inputPath.replace(/\.json$/, '-images-map.json');
 if (fs.existsSync(imgMapPath)) {
   const map = JSON.parse(fs.readFileSync(imgMapPath, 'utf8'));
   imgRefs.forEach(([section, p]) => {
-    const name = path.basename(p, '.png');
+    const name = path.basename(p, path.extname(p));
     const sec = section === 'character' ? 'characters' : section;
     if (!map[sec] || !map[sec][name]) {
       problems.push(`[imagem] sem prompt no image-map: ${sec}/${name}`);

@@ -196,13 +196,17 @@ async function updateExistingImageUrls(
   }
 }
 
-async function seedHistory(fileName: string): Promise<void> {
+async function seedHistory(fileName: string, force: boolean = false): Promise<void> {
   const data = readJson<HistorySeed>(fileName);
 
   const existing = await prisma.history.findUnique({
     where: { slug: data.slug },
   });
-  if (existing) {
+
+  if (existing && force) {
+    await prisma.history.delete({ where: { slug: data.slug } });
+    console.log(`History "${data.slug}" deleted for re-seed (--force).`);
+  } else if (existing) {
     await prisma.history.update({
       where: { slug: data.slug },
       data: {
@@ -451,6 +455,7 @@ async function seedHistory(fileName: string): Promise<void> {
 }
 
 async function main(): Promise<void> {
+  const force = process.argv.includes('--force');
   const historyFiles = [
     'o-bilhete-na-mesa-7.json',
     'o-relogio-parado.json',
@@ -461,7 +466,7 @@ async function main(): Promise<void> {
     'o-expresso-almirante.json',
   ];
   for (const fileName of historyFiles) {
-    await seedHistory(fileName);
+    await seedHistory(fileName, force);
   }
   console.log('Seed completed.');
 }
