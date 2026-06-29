@@ -18,6 +18,8 @@ import {
   DefinitionIdMap,
 } from './session-snapshot.factory';
 
+const MESSAGE_TIMESTAMP_INCREMENT_MS = 1;
+
 export const historySessionInclude = {
   clues: true,
   intents: true,
@@ -265,10 +267,11 @@ export class SessionRepository
 
       if (input.messages.length > 0) {
         await client.objectInteractionMessage.createMany({
-          data: input.messages.map((message) => ({
+          data: input.messages.map((message, index) => ({
             objectStateId: input.objectStateId,
             role: message.role,
             content: message.content,
+            createdAt: this.messageCreatedAt(now, index),
           })),
         });
       }
@@ -325,10 +328,11 @@ export class SessionRepository
 
       if (input.messages.length > 0) {
         await client.characterConversationMessage.createMany({
-          data: input.messages.map((message) => ({
+          data: input.messages.map((message, index) => ({
             characterStateId: input.characterStateId,
             role: message.role,
             content: message.content,
+            createdAt: this.messageCreatedAt(now, index),
           })),
         });
       }
@@ -343,6 +347,12 @@ export class SessionRepository
 
     if (tx) return run(tx);
     return this.runTransaction(run);
+  }
+
+  private messageCreatedAt(base: Date, index: number): Date {
+    return new Date(
+      base.getTime() + index * MESSAGE_TIMESTAMP_INCREMENT_MS
+    );
   }
 
   async recordLocationVisit(

@@ -226,16 +226,18 @@ describe('SessionRepository', () => {
       });
       expect(prisma.objectInteractionMessage.createMany).toHaveBeenCalledWith({
         data: [
-          {
+          expect.objectContaining({
             objectStateId: 'object-state-1',
             role: 'user',
             content: 'olho o bilhete',
-          },
-          {
+            createdAt: expect.any(Date),
+          }),
+          expect.objectContaining({
             objectStateId: 'object-state-1',
             role: 'object',
             content: 'a tinta é azul',
-          },
+            createdAt: expect.any(Date),
+          }),
         ],
       });
     });
@@ -259,11 +261,12 @@ describe('SessionRepository', () => {
       expect(prisma.sessionClue.updateMany).not.toHaveBeenCalled();
       expect(prisma.objectInteractionMessage.createMany).toHaveBeenCalledWith({
         data: [
-          {
+          expect.objectContaining({
             objectStateId: 'object-state-1',
             role: 'user',
             content: 'examinar',
-          },
+            createdAt: expect.any(Date),
+          }),
         ],
       });
     });
@@ -276,7 +279,7 @@ describe('SessionRepository', () => {
       );
     });
 
-    it('updates conversation summary, advances secrets, appends messages and marks clues discovered', async () => {
+    it('advances secrets, appends messages and marks clues discovered', async () => {
       prisma.characterSessionState.update.mockResolvedValue({} as never);
       prisma.characterSecretSessionState.update.mockResolvedValue({} as never);
       prisma.characterConversationMessage.createMany.mockResolvedValue({
@@ -319,12 +322,18 @@ describe('SessionRepository', () => {
         prisma.characterConversationMessage.createMany
       ).toHaveBeenCalledWith({
         data: [
-          { characterStateId: 'char-state-1', role: 'user', content: 'oi' },
-          {
+          expect.objectContaining({
+            characterStateId: 'char-state-1',
+            role: 'user',
+            content: 'oi',
+            createdAt: expect.any(Date),
+          }),
+          expect.objectContaining({
             characterStateId: 'char-state-1',
             role: 'character',
             content: 'olá',
-          },
+            createdAt: expect.any(Date),
+          }),
         ],
       });
       expect(prisma.sessionClue.updateMany).toHaveBeenCalledWith({
