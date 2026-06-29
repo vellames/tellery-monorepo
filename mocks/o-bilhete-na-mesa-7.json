@@ -1108,7 +1108,8 @@
           "clueId": "clue_cash_register_left_open",
           "triggerIntents": [
             "ask_about_cash_register",
-            "ask_about_counter"
+            "ask_about_counter",
+            "inspect_object"
           ],
           "revealText": "Reconstituindo a rotina, fica claro que o caixa ficou aberto por alguns minutos quando Elisa saiu ontem."
         }
@@ -1129,7 +1130,8 @@
           "clueId": "clue_rafa_black_pen",
           "triggerIntents": [
             "ask_about_black_pen",
-            "ask_about_ink"
+            "ask_about_ink",
+            "inspect_object"
           ],
           "requiresClueIds": [],
           "revealText": "A caneta de Rafa escreve em preto, o que não combina com a tinta azul do bilhete."
@@ -1152,7 +1154,8 @@
           "triggerIntents": [
             "ask_about_blue_pen",
             "ask_about_davi",
-            "ask_about_ink"
+            "ask_about_ink",
+            "inspect_object"
           ],
           "revealText": "A caneta azul de Davi combina com a cor de tinta usada no bilhete."
         }
@@ -1185,7 +1188,8 @@
           "clueId": "clue_table_7_near_window",
           "triggerIntents": [
             "ask_about_table_7",
-            "ask_about_alibi"
+            "ask_about_alibi",
+            "inspect_object"
           ],
           "requiresClueIds": [],
           "revealText": "A mesa 7 fica perto da janela, com visibilidade parcial da área externa e da entrada."
@@ -1207,7 +1211,8 @@
           "clueId": "clue_umbrella_too_dry",
           "triggerIntents": [
             "ask_about_umbrella",
-            "ask_about_alibi"
+            "ask_about_alibi",
+            "inspect_object"
           ],
           "requiresClueIds": [],
           "revealText": "O guarda-chuva de Clara está seco demais para sustentar bem a história de que ela voltou por causa da chuva recente."
