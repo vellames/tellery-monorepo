@@ -6,7 +6,7 @@
   "slug": "o-bilhete-na-mesa-7",
   "title": "O Bilhete na Mesa 7",
   "subtitle": "Um mistério elegante depois do fechamento do Café Aurora",
-  "teaser": "Às 22h17, Elisa encontra um bilhete anônimo sobre a mesa 7: \"Eu sei o que você fez ontem.\" Três pessoas ainda estão no café. Uma delas escreveu. Outra tem algo a esconder.",
+  "teaser": "Às 22h17, Elisa encontra um bilhete anônimo sobre a mesa 7: \"Eu sei o que você fez ontem.\" Três pessoas ainda estão no café. O bilhete acusa alguém — e quem escreveu ainda está ali.",
   "genre": "mystery",
   "language": "pt-BR",
   "estimatedDurationMinutes": 10,
@@ -23,7 +23,7 @@
   },
   "objective": {
     "mainQuestion": "Quem deixou o bilhete anônimo na mesa 7, e por quê?",
-    "description": "Descubra a autoria do bilhete, o motivo por trás dele e o segredo ocorrido no dia anterior no caixa do Café Aurora."
+    "description": "Descubra a autoria do bilhete, o motivo por trás dele e o que aconteceu no dia anterior no Café Aurora."
   },
   "intentDefinitions": [
     {
@@ -388,7 +388,7 @@
       "deletedAt": null,
       "name": "Clara",
       "role": "Última cliente do café",
-      "shortDescription": "Cliente elegante, impaciente e defensiva, com perfume cítrico discreto e uma desculpa frágil para ter voltado.",
+      "shortDescription": "Cliente elegante e impaciente, com perfume cítrico discreto, que voltou ao café pouco antes do fechamento.",
       "imageUrl": "histories/o-bilhete-na-mesa-7/characters/clara.jpg",
       "personality": "Controlada, vaidosa, reativa a perguntas diretas. Tenta parecer ofendida quando se sente encurralada.",
       "speakingStyle": "Fala com precisão e ironia suave, cortando perguntas quando considera que passaram do limite.",
@@ -564,7 +564,7 @@
       "deletedAt": null,
       "name": "Rafa",
       "role": "Garçom",
-      "shortDescription": "Garçom jovem e ansioso, nervoso por medo de ser acusado injustamente.",
+      "shortDescription": "Garçom jovem e ansioso que trabalhava no fechamento do café.",
       "imageUrl": "histories/o-bilhete-na-mesa-7/characters/rafa.jpg",
       "personality": "Prestativo, inseguro sob pressão e rápido demais para se defender.",
       "speakingStyle": "Fala em frases atropeladas, com explicações demais e pedidos indiretos para que acreditem nele.",
@@ -659,7 +659,7 @@
       "deletedAt": null,
       "name": "Davi",
       "role": "Músico do Café Aurora",
-      "shortDescription": "Músico calmo e observador, fala pouco e escolhe bem o que revela.",
+      "shortDescription": "Músico calmo e observador que tocava no café naquela noite.",
       "imageUrl": "histories/o-bilhete-na-mesa-7/characters/davi.jpg",
       "personality": "Sereno, perspicaz e evasivo quando pressionado. Tem senso moral, mas evita confronto direto.",
       "speakingStyle": "Fala em imagens discretas e observações laterais, como quem prefere sugerir a declarar.",
@@ -800,7 +800,7 @@
       "name": "Balcão",
       "shortDescription": "Área do caixa, das comandas e da rotina de fechamento.",
       "imageUrl": "histories/o-bilhete-na-mesa-7/location/balcao.jpg",
-      "initialDescription": "O balcão está limpo demais para parecer casual. O caixa fica encaixado ao lado da máquina de espresso, e uma caneta preta repousa próxima às comandas de Rafa.",
+      "initialDescription": "O balcão de metal reflete a luz baixa do fechamento. O caixa fica encaixado ao lado da máquina de espresso, e uma caneta preta repousa próxima às comandas de Rafa.",
       "ambientClueIds": [],
       "objectIds": ["caixa", "caneta_preta_rafa"]
     },
@@ -964,7 +964,7 @@
       "shortDescription": "Suporte próximo à entrada do café.",
       "imageUrl": "histories/o-bilhete-na-mesa-7/object/suporte_guarda_chuvas.jpg",
       "locationId": "area_externa",
-      "initialDescription": "O suporte de metal tem alguns respingos antigos no fundo, mas nada que sugira uso intenso na última hora.",
+      "initialDescription": "O suporte de metal fica perto da porta, com alguns respingos antigos no fundo.",
       "clueRevealRules": []
     },
     {

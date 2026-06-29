@@ -389,7 +389,7 @@
       "name": "Recepção",
       "shortDescription": "O balcão da recepção onde Helena fez o check-in de Almeida.",
       "imageUrl": "histories/o-hospede-do-quarto-12/location/recepcao.jpg",
-      "initialDescription": "A recepção do Hotel Meridiano é pequena e elegante, com um balcão de madeira clara, um livro de hóspedes aberto, uma campainha de latão e um vaso de lavanda. O registro de Almeida está na última página: nome, hora (21h), pagamento em dinheiro, linha de documento em branco.",
+      "initialDescription": "A recepção do Hotel Meridiano é pequena e elegante, com um balcão de madeira clara, um livro de hóspedes aberto, uma campainha de latão e um vaso de lavanda.",
       "ambientClueIds": [],
       "objectIds": ["livro_hospedes"]
     }
@@ -460,7 +460,7 @@
       "shortDescription": "Janela que dá para um beco lateral do hotel.",
       "imageUrl": "histories/o-hospede-do-quarto-12/object/janela.jpg",
       "locationId": "quarto_12",
-      "initialDescription": "A janela do quarto 12 dá para um beco lateral pouco iluminado. O parapeito tem marcas de atrito recentes e a trava está aberta.",
+      "initialDescription": "A janela do quarto 12 dá para um beco lateral pouco iluminado, com parapeito de metal voltado para a calçada.",
       "clueRevealRules": [
         {
           "clueId": "clue_window_open",
@@ -485,7 +485,7 @@
       "shortDescription": "Registro de entradas e saídas do hotel.",
       "imageUrl": "histories/o-hospede-do-quarto-12/object/livro_hospedes.jpg",
       "locationId": "recepcao",
-      "initialDescription": "O livro de hóspedes está aberto na última página. O registro de Almeida mostra: nome, hora (21h), pagamento em dinheiro. A linha de documento está em branco.",
+      "initialDescription": "O livro de hóspedes está aberto na última página, com anotações recentes à mão.",
       "clueRevealRules": [
         {
           "clueId": "clue_paid_cash",

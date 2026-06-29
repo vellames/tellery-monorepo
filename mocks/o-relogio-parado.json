@@ -432,7 +432,7 @@
       "deletedAt": null,
       "name": "Theo",
       "role": "Cliente colecionador",
-      "shortDescription": "Colecionador experiente e articulado, interessado em comprar o Cronos abaixo do preço de mercado.",
+      "shortDescription": "Colecionador experiente e articulado, que veio avaliar o Cronos na véspera.",
       "imageUrl": "histories/o-relogio-parado/characters/theo.jpg",
       "personality": "Calmo, falante e ligeiramente presunçoso. Sabe que parece suspeito e usa a franqueza como escudo.",
       "speakingStyle": "Fala com segurança e vocabulário de colecionador, frequentemente citando leilões e peças raras.",
@@ -515,7 +515,7 @@
       "name": "Vitrine central",
       "shortDescription": "Armário de vidro onde o Cronos ficava exposto.",
       "imageUrl": "histories/o-relogio-parado/location/vitrine.jpg",
-      "initialDescription": "A vitrine central fica ao fundo da loja, em madeira escura e vidro grosso. O estojo do Cronos repousa aberto e vazio no centro do móvel. Perto da fechadura, há um arranhão recente.",
+      "initialDescription": "A vitrine central fica ao fundo da loja, em madeira escura e vidro grosso. O estojo do Cronos repousa aberto e vazio no centro do móvel, sob uma luz discreta.",
       "ambientClueIds": ["clue_vitrine_scratch"],
       "objectIds": ["estojo_vazio", "chave_reserva"]
     },
@@ -525,9 +525,9 @@
       "updatedAt": "2026-06-26T00:00:00.000Z",
       "deletedAt": null,
       "name": "Bancada de trabalho",
-      "shortDescription": "Bancada onde Bia organiza peças e onde ficava a chave reserva.",
+      "shortDescription": "Bancada onde Bia organiza peças e ferramentas do ofício.",
       "imageUrl": "histories/o-relogio-parado/location/bancada.jpg",
-      "initialDescription": "A bancada fica junto da parede lateral, repleta de ferramentas pequenas, lupas e gavetas. Ao canto, uma lixeira de metal esconde um papel amassado.",
+      "initialDescription": "A bancada fica junto da parede lateral, repleta de ferramentas pequenas, lupas e gavetas. Ao canto, há uma lixeira de metal.",
       "ambientClueIds": [],
       "objectIds": ["agenda_hugo", "recibo_penhor"]
     }
@@ -561,7 +561,7 @@
       "shortDescription": "Chave pequena deixada habitualmente sobre a bancada.",
       "imageUrl": "histories/o-relogio-parado/object/chave_reserva.jpg",
       "locationId": "vitrine",
-      "initialDescription": "Uma chave pequena e antiga repousa sobre um pano ao lado da vitrine, fora do lugar habitual.",
+      "initialDescription": "Uma chave pequena e antiga repousa sobre um pano ao lado da vitrine.",
       "clueRevealRules": [
         {
           "clueId": "clue_spare_key_misplaced",

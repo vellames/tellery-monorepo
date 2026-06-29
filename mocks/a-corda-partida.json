@@ -6,7 +6,7 @@
   "slug": "a-corda-partida",
   "title": "A Corda Partida",
   "subtitle": "Um Stradivarius trincado na manhã do concurso nacional",
-  "teaser": "O Stradivarius do Conservatório Villa-Lobos aparece com o harmônico rachado na manhã do concurso nacional. Marina, a favorita, estava encarregada do instrumento. Mas alguém o rachou de propósito — e pode ter mirado no violino errado.",
+  "teaser": "O Stradivarius do Conservatório Villa-Lobos aparece com o harmônico rachado na manhã do concurso nacional. Marina, a favorita, estava encarregada do instrumento. Mas alguém o rachou de propósito durante a madrugada.",
   "genre": "mystery",
   "language": "pt-BR",
   "estimatedDurationMinutes": 12,
@@ -18,12 +18,12 @@
   "thumbnailUrl": "histories/a-corda-partida/history/thumbnail.jpg",
   "opening": {
     "shortText": "Um Stradivarius emprestado aparece rachado na manhã do concurso nacional. Não foi acidente.",
-    "fullText": "São 7h da manhã no Conservatório Villa-Lobos. Amanhã é a final do Concurso Nacional para Jovens Violinistas, e o prêmio é um contrato com a Orquestra Sinfônica —.definition de carreira. Décio, o diretor do conservatório, emprestou a Marina, aluna mais talentosa e favorita ao título, o Stradivarius da coleção permanente, instrumento avaliado em mais que o prédio. Quando Marina abre o estojo nesta manhã, o harmônico está rachado de cima a baixo, como se o violino tivesse sido pressionado com força contra uma quina. Sérgio, o luthier residente que mantém cada instrumento da casa, confirma: foi deliberado. Aurora, a segunda favorita, jura que não sabe de nada. Todos tinham acesso ao corredor dos ensaios durante a noite. Cabe a você examinar os violinos, ouvir as versões e descobrir quem rachou o Stradivarius, se a mira era certa e o que estava em jogo.",
+    "fullText": "São 7h da manhã no Conservatório Villa-Lobos. Amanhã é a final do Concurso Nacional para Jovens Violinistas, e o prêmio é um contrato com a Orquestra Sinfônica — definição de carreira. Décio, o diretor do conservatório, emprestou a Marina, aluna mais talentosa e favorita ao título, o Stradivarius da coleção permanente, instrumento avaliado em mais que o prédio. Quando Marina abre o estojo nesta manhã, o harmônico está rachado de cima a baixo. Sérgio, o luthier residente que mantém cada instrumento da casa, é chamado para avaliar o dano. Aurora, a segunda favorita, jura que não sabe de nada. Todos tinham acesso ao corredor dos ensaios durante a noite. Cabe a você examinar os violinos, ouvir as versões e descobrir quem rachou o Stradivarius e o que estava em jogo.",
     "callToAction": "Examine a sala de ensaio, a oficina e o salão de concerto, converse com Décio, Marina, Aurora e Sérgio, e reconstrua a noite anterior."
   },
   "objective": {
     "mainQuestion": "Quem rachou o Stradivarius, a mira foi no instrumento certo e o que estava em jogo?",
-    "description": "Descubra a autoria do dano, se o alvo era realmente o Stradivarius e o motivo real por trás do gesto."
+    "description": "Descubra a autoria do dano, o método usado e o motivo real por trás do gesto."
   },
   "intentDefinitions": [
     {
@@ -329,7 +329,7 @@
       "id": "sergio", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
       "name": "Sérgio",
       "role": "Luthier residente",
-      "shortDescription": "Luthier do conservatório há vinte anos, para quem instrumentos são sagrados. Sabe de tudo que acontece nos corredores.",
+      "shortDescription": "Luthier do conservatório há vinte anos, responsável por manter todos os instrumentos da casa.",
       "imageUrl": "histories/a-corda-partida/characters/sergio.jpg",
       "personality": "Metódico, quieto, devoto aos instrumentos. Fala pouco mas vê tudo.",
       "speakingStyle": "Frases econômicas, vocabulão técnico de oficiana, silêncios que pesam mais que palavras.",
@@ -417,7 +417,7 @@
       "name": "Sala de ensaio",
       "shortDescription": "Sala de ensaio onde Marina guardava o Stradivarius.",
       "imageUrl": "histories/a-corda-partida/location/sala_ensaio.jpg",
-      "initialDescription": "A sala de ensaio é pequena e acolchoada, com paredes forradas de feltro cinza, um piano de parede, estantes de partitura metálicas e duas cadeiras. O armário de instrumentos está aberto e vazio — o estojo do Stradivarius foi levado. Há duas estantes de quina metálica afiada.",
+      "initialDescription": "A sala de ensaio é pequena e acolchoada, com paredes forradas de feltro cinza, um piano de parede, estantes de partitura metálicas e duas cadeiras. O armário de instrumentos está aberto e vazio — o estojo do Stradivarius foi levado.",
       "ambientClueIds": [],
       "objectIds": ["stradivarius", "violino_marina", "estojos", "bilhete_ameaca"]
     },
@@ -447,7 +447,7 @@
       "shortDescription": "O Stradivarius da coleção permanente, com o harmônico rachado.",
       "imageUrl": "histories/a-corda-partida/object/stradivarius.jpg",
       "locationId": "sala_ensaio",
-      "initialDescription": "O Stradivarius repousa aberto sobre uma mesa, com o harmônico rachado de cima a baixo. A madeira de spruce está fendida num padrão reto e limpo, como se tivesse sido pressionada contra uma quina.",
+      "initialDescription": "O Stradivarius repousa aberto sobre uma mesa, com o harmônico rachado de cima a baixo. A madeira de spruce está fendida num padrão reto e limpo.",
       "clueRevealRules": [
         {
           "clueId": "clue_strad_damaged", "triggerIntents": ["inspect_object", "ask_about_strad"], "requiresClueIds": [],
@@ -469,7 +469,7 @@
       "shortDescription": "O violino pessoal de Marina, ileso.",
       "imageUrl": "histories/a-corda-partida/object/violino_marina.jpg",
       "locationId": "sala_ensaio",
-      "initialDescription": "O violino pessoal de Marina está intacto no canto da sala, dentro de um estojo preto idêntico ao que guardava o Stradivarius.",
+      "initialDescription": "O violino pessoal de Marina está no canto da sala, dentro de um estojo preto.",
       "clueRevealRules": [
         {
           "clueId": "clue_marina_personal_violin", "triggerIntents": ["inspect_object", "ask_about_marina"], "requiresClueIds": ["clue_marina_entrusted"],
@@ -480,10 +480,10 @@
     {
       "id": "estojos", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
       "name": "Estojos de violino",
-      "shortDescription": "Dois estojos pretos idênticos, um para cada violino.",
+      "shortDescription": "Dois estojos pretos para violino, na sala de ensaio.",
       "imageUrl": "histories/a-corda-partida/object/estojos.jpg",
       "locationId": "sala_ensaio",
-      "initialDescription": "Sobre a cadeira há dois estojos de violino, ambos pretos, mesmas dimensões, mesma marca. De fora é impossível distinguir qual contém qual instrumento.",
+      "initialDescription": "Sobre a cadeira há dois estojos de violino, ambos pretos e de dimensões parecidas.",
       "clueRevealRules": [
         {
           "clueId": "clue_two_cases", "triggerIntents": ["inspect_object", "ask_about_marina", "ask_about_strad"], "requiresClueIds": [],
@@ -498,10 +498,10 @@
     {
       "id": "bilhete_ameaca", "createdAt": "2026-06-27T00:00:00.000Z", "updatedAt": "2026-06-27T00:00:00.000Z", "deletedAt": null,
       "name": "Bilhete de ameaça",
-      "shortDescription": "Bilhetes anônimos encontrados dentro do estojo de Marina.",
+      "shortDescription": "Papéis dobrados dentro do estojo de Marina.",
       "imageUrl": "histories/a-corda-partida/object/bilhete_ameaca.jpg",
       "locationId": "sala_ensaio",
-      "initialDescription": "Dentro do estojo de Marina, entre partituras, há três bilhetes dobrados, escritos à mão em letra recortada, com mensagens curtas e agressivas.",
+      "initialDescription": "Dentro do estojo de Marina, entre partituras, há três bilhetes dobrados, escritos à mão.",
       "clueRevealRules": [
         {
           "clueId": "clue_threats_found", "triggerIntents": ["inspect_object", "ask_about_threats", "ask_about_marina"], "requiresClueIds": [],
@@ -519,7 +519,7 @@
       "shortDescription": "Ferramentas de precisão de Sérgio, na oficina.",
       "imageUrl": "histories/a-corda-partida/object/ferramentas.jpg",
       "locationId": "oficina",
-      "initialDescription": "As ferramentas de Sérgio estão organizadas com mania na bancada: goivas, formões, alicates de precisão, espátulas. Todas no lugar, sem sinal de uso indevido.",
+      "initialDescription": "As ferramentas de Sérgio estão organizadas na bancada: goivas, formões, alicates de precisão, espátulas.",
       "clueRevealRules": [
         {
           "clueId": "clue_tools_untouched", "triggerIntents": ["inspect_object", "ask_about_sergio"], "requiresClueIds": [],

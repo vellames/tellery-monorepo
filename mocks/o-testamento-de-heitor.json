@@ -6,7 +6,7 @@
   "slug": "o-testamento-de-heitor",
   "title": "O Testamento de Heitor",
   "subtitle": "Um patriarca morto, um testamento prestes a mudar, cinco herdeiros em silêncio",
-  "teaser": "Heitor Vargas é encontrado morto em seu escritório na manhã em que mudaria o testamento. Sem sinais de violência. Cinco beneficiários jantaram com ele na noite anterior. Um deles silenciou o patriarca antes do amanhecer.",
+  "teaser": "Heitor Vargas é encontrado morto em seu escritório na manhã em que mudaria o testamento. Sem sinais de violência. Cinco beneficiários jantaram com ele na noite anterior. Cada um tinha um motivo — e a noite foi longa.",
   "genre": "mystery",
   "language": "pt-BR",
   "estimatedDurationMinutes": 15,
@@ -575,7 +575,7 @@
       "deletedAt": null,
       "name": "Dr. Vasco",
       "role": "Médico de família",
-      "shortDescription": "Médico de família há décadas, sereno por fora, esconde um segredo que Heitor conhecia.",
+      "shortDescription": "Médico de família há décadas, sereno por fora, que receitou a medicação cardíaca de Heitor.",
       "imageUrl": "histories/o-testamento-de-heitor/characters/vasco.jpg",
       "personality": "Profissional, calmo, evasivo quando pressionado sobre si mesmo. Fala de medicina com segurança e sobre seu passado com reticência.",
       "speakingStyle": "Vocabulão clínico, frases pausadas, muda de assunto com perguntas sobre a saúde dos outros.",
@@ -672,7 +672,7 @@
       "deletedAt": null,
       "name": "Lia",
       "role": "Secretária e administradora da estância",
-      "shortDescription": "Secretária eficiente que administra as contas. Esconde desvio e um plano de fuga.",
+      "shortDescription": "Secretária eficiente que administra as contas e o escritório da estância.",
       "imageUrl": "histories/o-testamento-de-heitor/characters/lia.jpg",
       "personality": "Prática, discreta, controlada. Esconde pânico atrás de eficiência.",
       "speakingStyle": "Fala com clareza administrativa, números e prazos. Fica evasiva quando o assunto se aproxima do desvio.",
@@ -739,7 +739,7 @@
       "deletedAt": null,
       "name": "Téo",
       "role": "Filho caçula de Heitor",
-      "shortDescription": "Filho caçula, endividado por jogo. Já esbanjou sua herança e voltou pedindo mais.",
+      "shortDescription": "Filho caçula, charmoso e disperso. Já esbanjou sua herança antecipada e voltou à estância.",
       "imageUrl": "histories/o-testamento-de-heitor/characters/teo.jpg",
       "personality": "Indolente, charmoso, vergonhoso. Esconde desespero atrás de humor amargo.",
       "speakingStyle": "Fala com ironia despreocupada, frases curtas, desvia perguntas com piadas até ser encurralado.",
@@ -823,7 +823,7 @@
       "name": "Copa",
       "shortDescription": "Cômodo dos fundos onde Lia trabalha e onde a medicação era preparada.",
       "imageUrl": "histories/o-testamento-de-heitor/location/copa.jpg",
-      "initialDescription": "A copa é um cômodo estreito com uma escrivaninha coberta de livros de contabilidade, uma prateleira com frascos de remédio e material de escritório. Há uma gaveta entreaberta e um receipt amassado parcialmente visível.",
+      "initialDescription": "A copa é um cômodo estreito com uma escrivaninha coberta de livros de contabilidade, uma prateleira com frascos de remédio e material de escritório. Há uma gaveta entreaberta.",
       "ambientClueIds": [],
       "objectIds": ["recibo_embezzlement", "receita_medica"]
     }
@@ -838,7 +838,7 @@
       "shortDescription": "Frasco de medicação cardíaca de Heitor, no escritório.",
       "imageUrl": "histories/o-testamento-de-heitor/object/frasco_remedio.jpg",
       "locationId": "escritorio",
-      "initialDescription": "O frasco de medicação cardíaca de Heitor está sobre a mesa do escritório, perto do cálice de conhaque. Parece comum, mas algo no peso ou na quantidade de pílulas pode estar errado.",
+      "initialDescription": "O frasco de medicação cardíaca de Heitor está sobre a mesa do escritório, perto do cálice de conhaque.",
       "clueRevealRules": [
         {
           "clueId": "clue_medication_wrong_count",
@@ -863,7 +863,7 @@
       "shortDescription": "O testamento atual de Heitor, ainda válido.",
       "imageUrl": "histories/o-testamento-de-heitor/object/testamento.jpg",
       "locationId": "escritorio",
-      "initialDescription": "O testamento atual repousa numa gaveta entreaberta da mesa. O documento ainda é válido e favorece fortemente Beatriz.",
+      "initialDescription": "O testamento atual repousa numa gaveta entreaberta da mesa, com várias páginas e selos.",
       "clueRevealRules": [
         {
           "clueId": "clue_beatriz_inherits",
@@ -888,7 +888,7 @@
       "shortDescription": "Cálice de conhaque encontrado ao lado de Heitor.",
       "imageUrl": "histories/o-testamento-de-heitor/object/calice_conhaque.jpg",
       "locationId": "escritorio",
-      "initialDescription": "Um cálice de conhaque pela metade ainda está sobre a bandeja ao lado da poltrona onde Heitor foi encontrado. O líquido cheira normal.",
+      "initialDescription": "Um cálice de conhaque pela metade ainda está sobre a bandeja ao lado da poltrona onde Heitor foi encontrado.",
       "clueRevealRules": [
         {
           "clueId": "clue_cognac_glass",
@@ -932,7 +932,7 @@
       "shortDescription": "Pílula encontrada no chão do escritório.",
       "imageUrl": "histories/o-testamento-de-heitor/object/pilula_placebo.jpg",
       "locationId": "escritorio",
-      "initialDescription": "No chão do escritório, perto da mesa, há uma pílula que não combina com o frasco de medicação — a cor e o brilho são ligeiramente diferentes.",
+      "initialDescription": "No chão do escritório, perto da mesa, há uma pílula solta, fora do frasco.",
       "clueRevealRules": [
         {
           "clueId": "clue_placebo_pill_found",
@@ -976,7 +976,7 @@
       "shortDescription": "Recibo amassado na gaveta da copa.",
       "imageUrl": "histories/o-testamento-de-heitor/object/recibo_embezzlement.jpg",
       "locationId": "copa",
-      "initialDescription": "Na gaveta entreaberta da copa, um recibo amassado mostra transferências que não constam nos livros oficiais da estância.",
+      "initialDescription": "Na gaveta entreaberta da copa, há um recibo amassado entre papéis e livros de contabilidade.",
       "clueRevealRules": [
         {
           "clueId": "clue_lia_embezzling",
@@ -995,7 +995,7 @@
       "shortDescription": "Receita da medicação cardíaca de Heitor.",
       "imageUrl": "histories/o-testamento-de-heitor/object/receita_medica.jpg",
       "locationId": "copa",
-      "initialDescription": "A receita médica da medicação de Heitor está arquivada na copa, assinada pelo Dr. Vasco, com a dosagem correta.",
+      "initialDescription": "A receita médica da medicação de Heitor está arquivada na copa, assinada pelo Dr. Vasco.",
       "clueRevealRules": [
         {
           "clueId": "clue_vasco_prescribed",
