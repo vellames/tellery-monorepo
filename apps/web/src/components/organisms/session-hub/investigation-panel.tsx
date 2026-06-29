@@ -1,21 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  Fingerprint,
-  KeyRound,
-  MapPin,
-  MessageCircle,
-  Mic,
-  Loader2,
-  Search,
-  Send,
-  Sparkles,
-  Square,
-  X,
-} from 'lucide-react';
+import { Fingerprint, MapPin, MessageCircle, Sparkles, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { cn } from '@/lib/utils';
 import type {
   InteractDiscoveredClue,
   InteractResult,
@@ -25,6 +12,12 @@ import type {
   SessionMessage,
   SessionObject,
 } from '@/lib/types/session';
+import { CluePill } from './components/clue-pill';
+import { ClueDiscoveryOverlay } from './components/clue-discovery-overlay';
+import { InvestigationMessageList } from './components/investigation-message-list';
+import { LocationObjectList } from './components/location-object-list';
+import { ObjectInspectAction } from './components/object-inspect-action';
+import { CharacterInteractionForm } from './components/character-interaction-form';
 
 export type InvestigationTargetKind = 'character' | 'object' | 'location';
 
@@ -282,7 +275,7 @@ export function InvestigationPanel({
 
   const messageCount =
     ('messages' in (target?.data ?? {})
-      ? (target?.data as { messages?: unknown[] }).messages?.length ?? 0
+      ? ((target?.data as { messages?: unknown[] }).messages?.length ?? 0)
       : 0) + extraMessages.length;
 
   useEffect(() => {
@@ -311,13 +304,6 @@ export function InvestigationPanel({
     kind === 'location'
       ? objects.filter((o) => o.locationId === target.data.id)
       : [];
-
-  const placeholderKey =
-    kind === 'character'
-      ? 'askPlaceholder'
-      : kind === 'object'
-        ? 'inspectPlaceholder'
-        : 'explorePlaceholder';
 
   return (
     <div
@@ -407,157 +393,22 @@ export function InvestigationPanel({
         <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto p-5 sm:p-6">
           <p className="leading-7 text-[#fff9ef]/80 italic">{description}</p>
 
-          {allMessages.length > 0 && (
-            <div className="flex flex-col gap-3">
-              {allMessages.map((m, i) => {
-                const isUser = m.role === USER_ROLE;
-                const isSystem = m.role === 'system';
-                if (isSystem) {
-                  return (
-                    <div key={i} className="flex justify-center">
-                      <details className="group w-full rounded-xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] px-3 py-2 text-xs leading-5 text-[#fff9ef]/55">
-                        <summary className="flex cursor-pointer list-none items-center gap-1.5 text-[#fff9ef]/45 transition-colors hover:text-[#fff9ef]/70 [&::-webkit-details-marker]:hidden">
-                          <Search className="size-3" />
-                          <span>system prompt</span>
-                          <span className="ml-auto text-[10px] uppercase tracking-[0.18em] text-[#fff9ef]/30 group-open:hidden">
-                            abrir
-                          </span>
-                          <span className="ml-auto hidden text-[10px] uppercase tracking-[0.18em] text-[#fff9ef]/30 group-open:inline">
-                            fechar
-                          </span>
-                        </summary>
-                        <pre className="mt-2 max-h-[420px] overflow-auto whitespace-pre-wrap break-words rounded-lg bg-black/20 p-3 font-mono text-[11px] leading-5 text-[#fff9ef]/70">
-                          {m.content}
-                        </pre>
-                      </details>
-                    </div>
-                  );
-                }
-                return (
-                  <div
-                    key={i}
-                    className={cn(
-                      'flex',
-                      isUser ? 'justify-end' : 'justify-start'
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        'max-w-[82%] rounded-2xl px-4 py-2.5 text-sm leading-6',
-                        isUser
-                          ? 'bg-gold/90 text-gold-foreground rounded-br-md'
-                          : 'rounded-bl-md bg-[#fff9ef]/[0.07] text-[#fff9ef]/90'
-                      )}
-                    >
-                      {m.content}
-                    </div>
-                  </div>
-                );
-              })}
-
-              {isSending && (
-                <div className="flex justify-start">
-                  <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-[#fff9ef]/[0.07] px-4 py-3">
-                    {isTranscribing && (
-                      <span className="mr-1 text-xs text-[#fff9ef]/45">
-                        {tp('recording')}
-                      </span>
-                    )}
-                    {[0, 1, 2].map((dot) => (
-                      <span
-                        key={dot}
-                        className="bg-gold/70 scene-typing-dot size-1.5 rounded-full"
-                        style={{ animationDelay: `${dot * 0.15}s` }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {isTranscribing && !allMessages.length && (
-            <div className="flex justify-start">
-              <div className="flex items-center gap-2 rounded-2xl rounded-bl-md bg-[#fff9ef]/[0.07] px-4 py-3 text-xs text-[#fff9ef]/45">
-                <Mic className="size-3.5 animate-pulse" />
-                {tp('recording')}
-              </div>
-            </div>
-          )}
+          <InvestigationMessageList
+            messages={allMessages}
+            isSending={isSending}
+            isTranscribing={isTranscribing}
+          />
 
           {error && (
             <p className="text-center text-sm text-[#e57373]">{error}</p>
           )}
 
           {kind === 'location' && (
-            <div className="flex flex-col gap-3">
-              <h3 className="text-gold inline-flex items-center gap-2 text-xs font-bold tracking-[0.12em] uppercase">
-                <Search className="size-3.5" />
-                {tp('objectsHere')}
-              </h3>
-              {locationObjects.length === 0 ? (
-                <p className="text-sm text-[#fff9ef]/45">
-                  {tp('noObjectsHere')}
-                </p>
-              ) : (
-                <div className="flex flex-col gap-2.5">
-                  {locationObjects.map((object) => (
-                    <button
-                      key={object.id}
-                      type="button"
-                      onClick={() => onSelectObject(object)}
-                      className="group hover:border-gold/40 flex cursor-pointer items-center gap-3.5 rounded-xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] p-3 text-left transition hover:bg-[#fff9ef]/[0.06]"
-                    >
-                      {object.imageUrl ? (
-                        <div className="size-12 shrink-0 overflow-hidden rounded-lg">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={object.imageUrl}
-                            alt={object.name}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                      ) : (
-                        <div className="grid size-12 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-[#37050d] to-[#160a08]">
-                          <Fingerprint className="text-gold/60 size-5" />
-                        </div>
-                      )}
-                      <div className="min-w-0 flex-1">
-                        <h4 className="font-heading text-base font-semibold text-[#fff9ef]">
-                          {object.name}
-                        </h4>
-                        <p className="line-clamp-1 text-xs text-[#fff9ef]/55">
-                          {object.shortDescription}
-                        </p>
-                        {easyMode &&
-                          (object.cluesTotal === 0 ? (
-                            <p className="mt-0.5 text-[11px] font-medium text-[#fff9ef]/35">
-                              {t('noCluesAvailable')}
-                            </p>
-                          ) : (
-                            <p className="text-gold/80 mt-0.5 text-[11px] font-semibold">
-                              {t('cluesHereEasy', {
-                                found: object.discoveredClues.length,
-                                total: object.cluesTotal,
-                              })}
-                            </p>
-                          ))}
-                      </div>
-                      <span
-                        className={cn(
-                          'shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase',
-                          object.inspected
-                            ? 'bg-success/25 text-[#b9e4c5] ring-1 ring-[#b9e4c5]/30'
-                            : 'bg-black/40 text-[#fff9ef]/60 ring-1 ring-[#fff9ef]/15'
-                        )}
-                      >
-                        {object.inspected ? t('inspected') : t('notInspected')}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <LocationObjectList
+              objects={locationObjects}
+              easyMode={easyMode}
+              onSelectObject={onSelectObject}
+            />
           )}
 
           {allMessages.length === 0 &&
@@ -576,80 +427,24 @@ export function InvestigationPanel({
 
         {/* input — hidden for locations (auto-inspected on open) */}
         {kind === 'object' && (
-          <div className="shrink-0 border-t border-[#fff9ef]/10 bg-[#150508] p-3 sm:p-4">
-            <button
-              type="button"
-              onClick={() => void handleSend(tp('autoInspectLocation'))}
-              disabled={isSending}
-              className="text-gold-foreground shadow-button flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-8 py-4 text-base font-bold transition hover:scale-[1.01] disabled:cursor-wait disabled:opacity-70 disabled:hover:scale-100"
-            >
-              {isSending ? (
-                <>
-                  <Loader2 className="size-5 animate-spin" />
-                  {tp('sending')}
-                </>
-              ) : (
-                <>
-                  <Search className="size-5" />
-                  {tp('inspect')}
-                </>
-              )}
-            </button>
-          </div>
+          <ObjectInspectAction
+            isSending={isSending}
+            onInspect={() => void handleSend(tp('autoInspectLocation'))}
+          />
         )}
 
         {kind === 'character' && (
-          <div className="shrink-0 border-t border-[#fff9ef]/10 bg-[#150508] p-3 sm:p-4">
-            <form
-              className="flex items-center gap-2 rounded-2xl border border-[#fff9ef]/12 bg-[#fff9ef]/[0.04] px-3 py-1.5"
-              onSubmit={(e) => {
-                e.preventDefault();
-                void handleSend();
-              }}
-            >
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                disabled={isSending || isRecording}
-                placeholder={
-                  isRecording ? tp('recording') : tp(placeholderKey, { name })
-                }
-                className="flex-1 bg-transparent py-2 text-sm text-[#fff9ef] placeholder:text-[#fff9ef]/40 focus:outline-none disabled:opacity-50"
-              />
-              {isRecording ? (
-                <button
-                  type="button"
-                  onClick={handleStopRecording}
-                  aria-label={tp('recording')}
-                  className="grid size-9 shrink-0 animate-pulse cursor-pointer place-items-center rounded-xl bg-[#e57373]/20 text-[#e57373] ring-1 ring-[#e57373]/30 transition"
-                >
-                  <Square className="size-4" />
-                </button>
-              ) : isTranscribing ? (
-                <div className="text-gold/70 grid size-9 shrink-0 place-items-center rounded-xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04]">
-                  <Loader2 className="size-4 animate-spin" />
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  onClick={handleStartRecording}
-                  disabled={isSending}
-                  aria-label={tp('tapToRecord')}
-                  className="grid size-9 shrink-0 cursor-pointer place-items-center rounded-xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04] text-[#fff9ef]/60 transition hover:text-[#fff9ef] disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <Mic className="size-4" />
-                </button>
-              )}
-              <button
-                type="submit"
-                disabled={isSending || isRecording || !input.trim()}
-                aria-label={tp('send')}
-                className="text-gold-foreground grid size-9 shrink-0 cursor-pointer place-items-center rounded-xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] transition disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                <Send className="size-4" />
-              </button>
-            </form>
-          </div>
+          <CharacterInteractionForm
+            value={input}
+            onChange={setInput}
+            isSending={isSending}
+            isRecording={isRecording}
+            isTranscribing={isTranscribing}
+            name={name}
+            onSubmit={() => void handleSend()}
+            onStartRecording={handleStartRecording}
+            onStopRecording={handleStopRecording}
+          />
         )}
       </div>
 
@@ -665,177 +460,6 @@ export function InvestigationPanel({
           continueLabel={tp('continue')}
           onContinue={handleClueOverlayContinue}
         />
-      )}
-    </div>
-  );
-}
-
-function ClueDiscoveryOverlay({
-  clues,
-  heading,
-  continueLabel,
-  onContinue,
-}: {
-  clues: InteractDiscoveredClue[];
-  heading: string;
-  continueLabel: string;
-  onContinue: () => void;
-}) {
-  return (
-    <div className="absolute inset-0 isolate z-30 flex items-center justify-center overflow-hidden bg-[#0a0203]/88 p-4 backdrop-blur-xl sm:p-6">
-      <div className="scene-clue-aura pointer-events-none absolute inset-0" />
-      <div className="scene-clue-flash pointer-events-none absolute inset-0" />
-      <div className="scene-clue-sweep pointer-events-none absolute" />
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <span key={i} className="scene-clue-particle" />
-        ))}
-      </div>
-
-      <div className="scene-clue-card relative z-10 w-full max-w-lg overflow-hidden rounded-[28px] border border-[#f4d78f]/25 bg-[#160508]/92 p-5 shadow-[0_28px_90px_rgba(0,0,0,0.58),0_0_70px_rgba(196,154,74,0.16)] backdrop-blur-2xl sm:p-6">
-        <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#f9e8b7]/80 to-transparent" />
-        <div className="pointer-events-none absolute -top-24 right-8 h-48 w-48 rounded-full bg-[#f4d78f]/10 blur-3xl" />
-
-        <div className="relative flex items-center gap-4">
-          <div className="scene-clue-seal grid size-14 shrink-0 place-items-center rounded-2xl border border-[#f4d78f]/30 bg-gradient-to-br from-[#f9e8b7] to-[#c49a4a] text-[#32160a] shadow-[0_14px_40px_rgba(196,154,74,0.28)]">
-            <KeyRound className="size-6" />
-          </div>
-          <div className="min-w-0">
-            <div className="text-gold flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] uppercase">
-              <Sparkles className="size-3.5" />
-              {heading}
-            </div>
-            <div className="mt-2 h-px w-24 bg-gradient-to-r from-[#f4d78f]/70 to-transparent" />
-          </div>
-        </div>
-
-        <div className="relative mt-5 flex max-h-[42svh] flex-col gap-3 overflow-y-auto pr-1">
-          {clues.map((clue, i) => (
-            <div
-              key={clue.id}
-              className="scene-clue-item group relative overflow-hidden rounded-2xl border border-[#fff9ef]/12 bg-[#fff9ef]/[0.055] p-4 transition hover:border-[#f4d78f]/35 hover:bg-[#fff9ef]/[0.075]"
-              style={{ animationDelay: `${0.18 + i * 0.12}s` }}
-            >
-              <div className="absolute inset-y-3 left-0 w-1 rounded-r-full bg-gradient-to-b from-[#f9e8b7] via-[#f4d78f] to-[#9a6b2f]" />
-              <h3 className="font-heading text-xl leading-tight font-semibold text-[#fff9ef]">
-                {clue.title}
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-[#fff9ef]/68">
-                {clue.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <button
-          type="button"
-          onClick={onContinue}
-          className="text-gold-foreground mt-5 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-8 py-3.5 text-sm font-bold shadow-[0_16px_36px_rgba(196,154,74,0.22)] transition hover:scale-[1.01] hover:shadow-[0_18px_42px_rgba(196,154,74,0.3)]"
-        >
-          {continueLabel}
-          <Sparkles className="size-4" />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function CluePill({
-  found,
-  total,
-  easyMode,
-  clues,
-  label,
-  emptyLabel,
-  closeLabel,
-}: {
-  found: number;
-  total: number;
-  easyMode: boolean;
-  clues: SessionClue[];
-  label: string;
-  emptyLabel: string;
-  closeLabel: string;
-}) {
-  const pct = total > 0 ? Math.round((found / total) * 100) : 0;
-  const hasClues = clues.length > 0;
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="relative shrink-0">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-label={label}
-        className="flex cursor-pointer items-center gap-2 rounded-full border border-[#fff9ef]/15 bg-black/40 px-3 py-1.5 backdrop-blur transition hover:border-[#fff9ef]/25"
-      >
-        <KeyRound className="text-gold size-3.5" />
-        {easyMode ? (
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-bold text-[#fff9ef]/80">
-              {found}/{total}
-            </span>
-            <div className="h-1.5 w-12 overflow-hidden rounded-full bg-[#fff9ef]/15">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-[#c49a4a] to-[#f4d78f]"
-                style={{ width: `${pct}%` }}
-              />
-            </div>
-          </div>
-        ) : (
-          <span className="text-[11px] font-bold text-[#fff9ef]/80">
-            {found}
-          </span>
-        )}
-      </button>
-
-      {open && (
-        <>
-          <button
-            type="button"
-            aria-label={closeLabel}
-            onClick={() => setOpen(false)}
-            className="fixed inset-0 z-30 cursor-default"
-          />
-          <div className="absolute top-full right-0 z-40 mt-2 w-64 max-w-[calc(100vw-2.5rem)] origin-top-right">
-            <div className="flex flex-col gap-2 rounded-2xl border border-[#fff9ef]/12 bg-[#0a0203]/95 p-3 shadow-2xl backdrop-blur">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-gold text-[10px] font-bold tracking-[0.12em] uppercase">
-                  {label}
-                </span>
-                <button
-                  type="button"
-                  aria-label={closeLabel}
-                  onClick={() => setOpen(false)}
-                  className="text-gold/70 grid size-6 shrink-0 cursor-pointer place-items-center rounded-full text-[#fff9ef]/60 transition hover:text-[#fff9ef]"
-                >
-                  <X className="size-3.5" />
-                </button>
-              </div>
-              {hasClues ? (
-                clues.map((clue) => (
-                  <div
-                    key={clue.id}
-                    className="border-clue-border/20 relative overflow-hidden rounded-lg border bg-[#fff4d8]/[0.05] p-2.5 pl-3.5"
-                  >
-                    <div className="bg-gold absolute top-0 left-0 h-full w-1" />
-                    <h4 className="text-sm font-semibold text-[#fff9ef]">
-                      {clue.title}
-                    </h4>
-                    <p className="mt-0.5 text-xs leading-5 text-[#fff9ef]/60">
-                      {clue.description}
-                    </p>
-                  </div>
-                ))
-              ) : (
-                <p className="text-xs leading-5 text-[#fff9ef]/50">
-                  {emptyLabel}
-                </p>
-              )}
-            </div>
-          </div>
-        </>
       )}
     </div>
   );

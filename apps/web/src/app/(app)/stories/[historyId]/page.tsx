@@ -1,13 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import {
-  ArrowLeft,
-  Clock,
-  Info,
-  Play,
-  Search,
-  Target,
-} from 'lucide-react';
+import { ArrowLeft, Clock, Info, Play, Search, Target } from 'lucide-react';
 import { StatusCodes } from 'http-status-codes';
 import { getTranslations } from 'next-intl/server';
 import { fetchHistory } from '@/lib/api/history';

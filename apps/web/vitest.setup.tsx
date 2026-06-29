@@ -5,6 +5,11 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
+// jsdom does not implement Element.prototype.scrollIntoView
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = vi.fn();
+}
+
 vi.mock('next/link', () => ({
   default: ({
     children,
