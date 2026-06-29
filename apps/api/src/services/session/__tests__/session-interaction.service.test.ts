@@ -74,6 +74,7 @@ describe('SessionInteractionService', () => {
       reply: 'reply',
       discoveredClues: [],
       updatedSecretStates: [],
+      systemMessages: ['base-prompt', 'turn-prompt'],
     });
     service = new SessionInteractionService(
       sessions,
@@ -635,6 +636,7 @@ describe('SessionInteractionService', () => {
             revealedClueIds: [],
           },
         ],
+        systemMessages: ['base-prompt', 'turn-prompt'],
       });
 
       const result = await service.interact(
@@ -656,6 +658,8 @@ describe('SessionInteractionService', () => {
           },
         ],
         messages: [
+          { role: 'system', content: 'base-prompt' },
+          { role: 'system', content: 'turn-prompt' },
           { role: 'user', content: 'hello' },
           { role: 'character', content: 'Não vi nada não.' },
         ],

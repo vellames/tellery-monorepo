@@ -6,6 +6,7 @@ import {
 } from '../llm/structured-chat-model.interface';
 
 const SYSTEM_PROMPT_KEY = 'characterAgentSystemPrompt';
+const TURN_STATE_PROMPT_KEY = 'characterAgentTurnStatePrompt';
 const ELIGIBLE_REVEAL_REASONING =
   'Revealed by an eligible clue rule or secret stage for this interaction.';
 
@@ -56,12 +57,17 @@ export interface ConversationMessage {
   content: string;
 }
 
+export interface DiscoveredClueSummary {
+  id: string;
+  title: string;
+}
+
 export interface RunCharacterAgentInput {
   character: CharacterAgentCharacter;
   recentConversation: ConversationMessage[];
   interaction: string;
   detectedIntents: DetectedIntent[];
-  discoveredClueIds: string[];
+  discoveredClues: DiscoveredClueSummary[];
   clueRules: CharacterClueRule[];
   secrets: CharacterSecret[];
   language: SupportedLanguage;
@@ -83,6 +89,7 @@ export interface CharacterAgentResult {
   reply: string;
   discoveredClues: CharacterAgentDiscoveredClue[];
   updatedSecretStates: UpdatedSecretState[];
+  systemMessages: string[];
 }
 
 export type CharacterTranslationFn = (
@@ -98,20 +105,35 @@ export class CharacterAgent {
   ) {}
 
   async run(input: RunCharacterAgentInput): Promise<CharacterAgentResult> {
+    const discoveredClueIds = input.discoveredClues.map((clue) => clue.id);
     const eligibleClueRules = this.getEligibleClueRules(
       input.clueRules,
       input.detectedIntents,
-      input.discoveredClueIds
+      discoveredClueIds
     );
     const eligibleSecretStages = this.getEligibleSecretStages(
       input.secrets,
       input.detectedIntents,
-      input.discoveredClueIds
+      discoveredClueIds
     );
 
-    const reply = await this.llm.invoke(
-      this.buildMessages(input, eligibleClueRules, eligibleSecretStages)
+    const { messages, currentSystemMessages } = this.buildMessages(
+      input,
+      eligibleClueRules,
+      eligibleSecretStages
     );
+
+    console.log('[character-agent] messages sent to LLM', {
+      characterId: input.character.id,
+      eligibleClueRuleCount: eligibleClueRules.length,
+      eligibleSecretStageCount: eligibleSecretStages.length,
+      messages: messages.map((message) => ({
+        role: message.role,
+        content: message.content,
+      })),
+    });
+
+    const reply = await this.llm.invoke(messages);
 
     console.log('[character-agent] raw llm response', {
       characterId: input.character.id,
@@ -137,6 +159,7 @@ export class CharacterAgent {
       reply,
       discoveredClues,
       updatedSecretStates,
+      systemMessages: currentSystemMessages,
     };
   }
 
@@ -227,71 +250,110 @@ export class CharacterAgent {
       secret: CharacterSecret;
       stage: CharacterSecretStage;
     }>
-  ): ChatMessage[] {
-    return [
-      {
-        role: 'system',
-        content: this.translate(input.language, SYSTEM_PROMPT_KEY, {
-          character: JSON.stringify(
-            {
-              id: input.character.id,
-              name: input.character.name,
-              role: input.character.role,
-              shortDescription: input.character.shortDescription,
-              personality: input.character.personality,
-              speakingStyle: input.character.speakingStyle,
-              publicKnowledge: input.character.publicKnowledge,
-              privateKnowledge: input.character.privateKnowledge,
-              openingLine: input.character.openingLine,
-              conversationBoundaries: input.character.conversationBoundaries,
-            },
-            null,
-            2
-          ),
-          eligibleClueRules: JSON.stringify(
-            eligibleClueRules.map((rule) => ({
-              clueId: rule.clueId,
-              revealText: rule.revealText,
-              clue: {
-                title: rule.clueTitle,
-                description: rule.clueDescription,
-              },
-              triggerIntentIds: rule.triggerIntentIds,
-              requiredClueIds: rule.requiredClueIds,
+  ): { messages: ChatMessage[]; currentSystemMessages: string[] } {
+    const history = this.toChatHistory(input.recentConversation);
+    const shouldSendBasePrompt = !history.some(
+      (message) => message.role === 'system' && this.isBasePrompt(message.content)
+    );
+    const baseSystemMessage: ChatMessage = {
+      role: 'system',
+      content: this.translate(input.language, SYSTEM_PROMPT_KEY, {
+        character: JSON.stringify(
+          {
+            id: input.character.id,
+            name: input.character.name,
+            role: input.character.role,
+            shortDescription: input.character.shortDescription,
+            personality: input.character.personality,
+            speakingStyle: input.character.speakingStyle,
+            publicKnowledge: input.character.publicKnowledge,
+            privateKnowledge: input.character.privateKnowledge,
+            openingLine: input.character.openingLine,
+            conversationBoundaries: input.character.conversationBoundaries,
+          },
+          null,
+          2
+        ),
+        secretBaselines: JSON.stringify(
+          input.secrets.map((secret) => ({
+            secretId: secret.secretId,
+            summary: secret.summary,
+            defaultStrategy: secret.defaultStrategy,
+          })),
+          null,
+          2
+        ),
+      }),
+    };
+    const turnSystemMessage: ChatMessage = {
+      role: 'system',
+      content: this.translate(input.language, TURN_STATE_PROMPT_KEY, {
+        discoveredClues: JSON.stringify(
+          input.discoveredClues.map((clue) => clue.title)
+        ),
+        currentProgress: JSON.stringify(
+          input.secrets.map((secret) => ({
+            secretId: secret.secretId,
+            currentStageLevel: secret.currentStageLevel,
+          })),
+          null,
+          2
+        ),
+        turnReveals: JSON.stringify(
+          {
+            clueReveals: eligibleClueRules.map((rule) => ({
+              clue: rule.clueTitle,
+              reveal: rule.revealText,
             })),
-            null,
-            2
-          ),
-          eligibleSecretStages: JSON.stringify(
-            eligibleSecretStages.map(({ secret, stage }) => ({
+            secretAdvances: eligibleSecretStages.map(({ secret, stage }) => ({
               secretId: secret.secretId,
-              secretSummary: secret.summary,
-              secretTruth: secret.truth,
-              defaultStrategy: secret.defaultStrategy,
-              currentStageLevel: secret.currentStageLevel,
-              nextStageLevel: stage.level,
-              stage,
-              revealsClues: stage.revealsClueIds,
+              advanceToLevel: stage.level,
+              behavior: stage.behavior,
+              allowedToRevealTruth: stage.allowedToRevealTruth,
+              ...(stage.allowedToRevealTruth ? { truth: secret.truth } : {}),
+              sampleResponses: stage.sampleResponses,
             })),
-            null,
-            2
-          ),
-        }),
-      },
-      ...this.toChatHistory(input.recentConversation),
-      { role: 'user', content: input.interaction },
+          },
+          null,
+          2
+        ),
+      }),
+    };
+    const currentSystemMessages = [
+      ...(shouldSendBasePrompt ? [baseSystemMessage.content] : []),
+      turnSystemMessage.content,
     ];
+
+    return {
+      messages: [
+        ...(shouldSendBasePrompt ? [baseSystemMessage] : []),
+        ...history,
+        turnSystemMessage,
+        { role: 'user', content: input.interaction },
+      ],
+      currentSystemMessages,
+    };
+  }
+
+  private isBasePrompt(content: string): boolean {
+    return (
+      content.includes('Baseline dos segredos') ||
+      content.includes('Secrets baseline')
+    );
   }
 
   private toChatHistory(messages: ConversationMessage[]): ChatMessage[] {
-    return messages
-      .filter(
-        (message) => message.role === 'user' || message.role === 'character'
-      )
-      .map((message) => ({
-        role: message.role === 'character' ? 'assistant' : 'user',
-        content: message.content,
-      }));
+    return messages.map((message) => ({
+      role: this.toChatRole(message.role),
+      content: message.content,
+    }));
+  }
+
+  private toChatRole(role: string): ChatMessage['role'] {
+    if (role === 'system') return 'system';
+    if (role === 'user') return 'user';
+
+    return 'assistant';
   }
 
   private collectDiscoveredClues(

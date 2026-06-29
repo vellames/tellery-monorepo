@@ -1,4 +1,4 @@
-import { SupportedLanguage, t } from '@ai-history/i18n';
+import { SupportedLanguage } from '@ai-history/i18n';
 import { InteractionRole } from '@prisma/client';
 import { StatusCodes } from 'http-status-codes';
 import { CharacterAgent } from '../../engine/character/character-agent.service';
@@ -26,8 +26,6 @@ type CharacterState = HistorySessionWithRelations['characterStates'][number];
 type LocationState = HistorySessionWithRelations['locationStates'][number];
 
 const LOCATION_VISIT_REASONING = 'Ambient clue revealed on first visit.';
-const NO_CLUE_FOUND_KEY = 'interact.noClueFound';
-const SESSION_NAMESPACE = 'session';
 const OFF_TOPIC_INTENT_ID = 'off_topic';
 
 export interface InteractDiscoveredClue {
@@ -314,9 +312,9 @@ export class SessionInteractionService {
     detectedIntents: DetectedIntent[],
     language: SupportedLanguage
   ): Promise<{ reply: string; discoveredClues: InteractDiscoveredClue[] }> {
-    const discoveredClueIds = session.clues
+    const discoveredClues = session.clues
       .filter((clue) => clue.discovered)
-      .map((clue) => clue.id);
+      .map((clue) => ({ id: clue.id, title: clue.title }));
 
     const recentConversation = characterState.messages.map((message) => ({
       role: message.role,
@@ -339,7 +337,7 @@ export class SessionInteractionService {
       recentConversation,
       interaction: input.interaction,
       detectedIntents,
-      discoveredClueIds,
+      discoveredClues,
       clueRules: characterState.clueRevealRules.map((rule) => ({
         clueId: rule.clueId,
         revealText: rule.revealText,
@@ -373,16 +371,13 @@ export class SessionInteractionService {
     );
 
     const messages: { role: InteractionRole; content: string }[] = [
+      ...agentResult.systemMessages.map((content) => ({
+        role: InteractionRole.system,
+        content,
+      })),
       { role: InteractionRole.user, content: input.interaction },
       { role: InteractionRole.character, content: agentResult.reply },
     ];
-
-    if (newlyDiscoveredClueIds.length === 0) {
-      messages.push({
-        role: InteractionRole.system,
-        content: t(language, NO_CLUE_FOUND_KEY, {}, SESSION_NAMESPACE),
-      });
-    }
 
     await this.sessions.recordCharacterInteraction({
       characterStateId: characterState.id,

@@ -404,10 +404,21 @@ export function InvestigationPanel({
                 if (isSystem) {
                   return (
                     <div key={i} className="flex justify-center">
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] px-3 py-1 text-xs text-[#fff9ef]/45">
-                        <Search className="size-3" />
-                        {m.content}
-                      </span>
+                      <details className="group w-full rounded-xl border border-[#fff9ef]/10 bg-[#fff9ef]/[0.03] px-3 py-2 text-xs leading-5 text-[#fff9ef]/55">
+                        <summary className="flex cursor-pointer list-none items-center gap-1.5 text-[#fff9ef]/45 transition-colors hover:text-[#fff9ef]/70 [&::-webkit-details-marker]:hidden">
+                          <Search className="size-3" />
+                          <span>system prompt</span>
+                          <span className="ml-auto text-[10px] uppercase tracking-[0.18em] text-[#fff9ef]/30 group-open:hidden">
+                            abrir
+                          </span>
+                          <span className="ml-auto hidden text-[10px] uppercase tracking-[0.18em] text-[#fff9ef]/30 group-open:inline">
+                            fechar
+                          </span>
+                        </summary>
+                        <pre className="mt-2 max-h-[420px] overflow-auto whitespace-pre-wrap break-words rounded-lg bg-black/20 p-3 font-mono text-[11px] leading-5 text-[#fff9ef]/70">
+                          {m.content}
+                        </pre>
+                      </details>
                     </div>
                   );
                 }

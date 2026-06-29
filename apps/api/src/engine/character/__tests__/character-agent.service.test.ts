@@ -58,7 +58,7 @@ describe('CharacterAgent', () => {
     recentConversation: [],
     interaction: 'o que aconteceu?',
     detectedIntents: [{ intentId: 'intent-a', confidence: 0.9, reasoning: '' }],
-    discoveredClueIds: [],
+    discoveredClues: [],
     clueRules: [buildRule({})],
     secrets: [],
     language,
@@ -191,7 +191,7 @@ describe('CharacterAgent', () => {
   it('builds messages with system context and conversation history', async () => {
     llm.invoke.mockResolvedValue('...');
 
-    await agent.run({
+    const result = await agent.run({
       ...baseInput,
       recentConversation: [
         { role: 'user', content: 'msg-1' },
@@ -210,16 +210,41 @@ describe('CharacterAgent', () => {
       role: string;
       content: string;
     }>;
-    // one system message (context + rules), then mapped history, then the
-    // current interaction as the final user message.
+    // base system, then all persisted history (including system), then current
+    // turn system, then the current interaction as the final user message.
     expect(messages[0].role).toBe('system');
     expect(messages[1]).toEqual({ role: 'user', content: 'msg-1' });
     expect(messages[2]).toEqual({ role: 'assistant', content: 'msg-2' });
+    expect(messages[3]).toEqual({ role: 'system', content: 'meta-ignored' });
+    expect(messages[4].role).toBe('system');
     expect(messages[messages.length - 1]).toEqual({
       role: 'user',
       content: baseInput.interaction,
     });
-    // meta/system turns are not part of the dialogue history
-    expect(messages.some((m) => m.content === 'meta-ignored')).toBe(false);
+    expect(result.systemMessages).toHaveLength(2);
+    expect(result.systemMessages).not.toContain('meta-ignored');
+  });
+
+  it('does not generate a new base prompt when one already exists in history', async () => {
+    llm.invoke.mockResolvedValue('...');
+
+    const result = await agent.run({
+      ...baseInput,
+      recentConversation: [
+        { role: 'system', content: 'Baseline dos segredos anterior' },
+      ],
+    });
+
+    const messages = llm.invoke.mock.calls[0][0] as Array<{
+      role: string;
+      content: string;
+    }>;
+
+    expect(messages[0]).toEqual({
+      role: 'system',
+      content: 'Baseline dos segredos anterior',
+    });
+    expect(result.systemMessages).toHaveLength(1);
+    expect(result.systemMessages[0]).toBe('characterAgentTurnStatePrompt');
   });
 });
