@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useId, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
@@ -65,6 +65,8 @@ export function SessionHub({ session }: SessionHubProps) {
   const [showEvidence, setShowEvidence] = useState(false);
   const [showCase, setShowCase] = useState(false);
   const [showConclusion, setShowConclusion] = useState(false);
+  const [showSolveLockedHint, setShowSolveLockedHint] = useState(false);
+  const solveLockedHintId = useId();
 
   const target = useMemo<InvestigationTarget | null>(() => {
     if (!targetRef) return null;
@@ -90,6 +92,20 @@ export function SessionHub({ session }: SessionHubProps) {
   const progressPct =
     cluesTotal > 0 ? Math.round((foundClues / cluesTotal) * 100) : 0;
   const isSolved = session.status === SESSION_STATUS_SOLVED;
+  const solveLockedMessage = t('solveLocked', {
+    found: requiredCluesFound,
+    total: requiredCluesTotal,
+  });
+
+  const handleSolveCaseClick = () => {
+    if (canSolveCase) {
+      setShowSolveLockedHint(false);
+      setShowConclusion(true);
+      return;
+    }
+
+    setShowSolveLockedHint(true);
+  };
 
   const questionedCount = useMemo(
     () => characters.filter((c) => c.messages.length > 0).length,
@@ -328,10 +344,10 @@ export function SessionHub({ session }: SessionHubProps) {
       </section>
 
       {/* ── Fixed bottom action bar ───────────────────────────────────── */}
-      <div className="h-24" />
+      <div className="h-[calc(6rem+env(safe-area-inset-bottom))]" />
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#fff9ef]/10 bg-[#1b070b]/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-2.5 sm:px-6">
+        <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 pt-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] sm:px-6">
           {/* compact progress */}
           <div className="hidden flex-1 items-center gap-2.5 sm:flex">
             <span className="text-gold font-heading text-lg leading-none font-semibold">
@@ -350,7 +366,7 @@ export function SessionHub({ session }: SessionHubProps) {
 
           <button
             onClick={() => setShowEvidence(true)}
-            className="inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#fff9ef]/15 px-4 py-2.5 text-sm font-bold text-[#fff9ef]/85 transition hover:bg-[#fff9ef]/[0.06] sm:flex-none"
+            className="inline-flex min-h-12 flex-1 cursor-pointer touch-manipulation items-center justify-center gap-2 rounded-xl border border-[#fff9ef]/15 px-4 py-2.5 text-sm font-bold text-[#fff9ef]/85 transition hover:bg-[#fff9ef]/[0.06] sm:flex-none"
             type="button"
           >
             <KeyRound className="size-4" />
@@ -364,24 +380,32 @@ export function SessionHub({ session }: SessionHubProps) {
           <div className="group/solve relative flex flex-1 sm:flex-none">
             <button
               className={cn(
-                'inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition sm:flex-none',
+                'inline-flex min-h-12 flex-1 touch-manipulation items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition sm:flex-none',
                 canSolveCase
                   ? 'shadow-button text-gold-foreground cursor-pointer bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] hover:scale-[1.01]'
-                  : 'cursor-not-allowed border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04] text-[#fff9ef]/35'
+                  : 'cursor-pointer border border-[#fff9ef]/10 bg-[#fff9ef]/[0.04] text-[#fff9ef]/35 hover:bg-[#fff9ef]/[0.07]'
               )}
               type="button"
-              disabled={!canSolveCase}
-              onClick={() => canSolveCase && setShowConclusion(true)}
+              aria-disabled={!canSolveCase}
+              aria-describedby={!canSolveCase ? solveLockedHintId : undefined}
+              onBlur={() => setShowSolveLockedHint(false)}
+              onClick={handleSolveCaseClick}
+              onFocus={() => !canSolveCase && setShowSolveLockedHint(true)}
             >
               <Gavel className="size-4" />
               {t('solveCase')}
             </button>
             {!canSolveCase && (
-              <div className="pointer-events-none absolute right-0 bottom-full z-20 mb-2 w-72 translate-y-1 rounded-2xl border border-[#fff9ef]/12 bg-[#0a0203]/95 p-3 text-xs leading-5 text-[#fff9ef]/65 opacity-0 shadow-2xl backdrop-blur transition-all group-hover/solve:translate-y-0 group-hover/solve:opacity-100">
-                {t('solveLocked', {
-                  found: requiredCluesFound,
-                  total: requiredCluesTotal,
-                })}
+              <div
+                id={solveLockedHintId}
+                className={cn(
+                  'pointer-events-none absolute right-0 bottom-full z-20 mb-2 w-72 rounded-2xl border border-[#fff9ef]/12 bg-[#0a0203]/95 p-3 text-xs leading-5 text-[#fff9ef]/65 shadow-2xl backdrop-blur transition-all group-focus-within/solve:translate-y-0 group-focus-within/solve:opacity-100 group-hover/solve:translate-y-0 group-hover/solve:opacity-100',
+                  showSolveLockedHint
+                    ? 'translate-y-0 opacity-100'
+                    : 'translate-y-1 opacity-0'
+                )}
+              >
+                {solveLockedMessage}
               </div>
             )}
           </div>

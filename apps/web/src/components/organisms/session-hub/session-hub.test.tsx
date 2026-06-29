@@ -141,27 +141,35 @@ describe('SessionHub', () => {
     expect(screen.getByText('Tinta azul')).toBeInTheDocument();
   });
 
-  it('locks solving until required clues are discovered', () => {
+  it('keeps locked solving clickable and shows guidance', async () => {
+    const user = userEvent.setup();
     renderWithProviders(<SessionHub session={session} />);
 
+    const solveButton = screen.getByRole('button', { name: 'Resolver o caso' });
+    const lockedMessage = screen.getByText(
+      '1/2 pistas obrigatórias descobertas. Descubra as demais para resolver o caso.'
+    );
+
+    expect(solveButton).not.toBeDisabled();
     expect(
       screen.getByRole('button', { name: 'Resolver o caso' })
-    ).toBeDisabled();
-    expect(
-      screen.getByText(
-        '1/2 pistas obrigatórias descobertas. Descubra as demais para resolver o caso.'
-      )
-    ).toBeInTheDocument();
+    ).toHaveAttribute('aria-disabled', 'true');
+    expect(lockedMessage).toHaveClass('opacity-0');
+
+    await user.click(solveButton);
+
+    expect(lockedMessage).toHaveClass('opacity-100');
   });
 
-  it('enables solving when all required clues are discovered', () => {
+  it('opens the conclusion modal when all required clues are discovered', async () => {
+    const user = userEvent.setup();
     renderWithProviders(
       <SessionHub session={{ ...session, requiredCluesTotal: 1 }} />
     );
 
-    expect(
-      screen.getByRole('button', { name: 'Resolver o caso' })
-    ).not.toBeDisabled();
+    await user.click(screen.getByRole('button', { name: 'Resolver o caso' }));
+
+    expect(screen.getByRole('dialog')).toHaveAccessibleName('Resolva o caso');
   });
 
   it('renders entity images when available', () => {
