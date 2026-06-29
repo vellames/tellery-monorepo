@@ -209,6 +209,19 @@
       "keywords": ["acusar Sérgio", "rachou", "danificou", "responsável"]
     },
     {
+      "id": "press_for_confession",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+    },
+    {
       "id": "off_topic",
       "createdAt": "2026-06-27T00:00:00.000Z",
       "updatedAt": "2026-06-27T00:00:00.000Z",
@@ -453,7 +466,7 @@
                 "ask_about_night",
                 "accuse_aurora"
               ],
-              "requiresClueIds": ["clue_aurora_jealousy", "clue_room_dark"],
+              "requiresClueIds": ["clue_aurora_jealousy"],
               "revealsClueIds": ["clue_aurora_near_room"],
               "behavior": "Admitir que passou pelo corredor dos ensaios mais tarde do que disse, mas negar ter entrado na sala.",
               "allowedToRevealTruth": false,
@@ -495,8 +508,7 @@
               ],
               "requiresClueIds": [
                 "clue_aurora_intended",
-                "clue_crack_pattern",
-                "clue_wrong_target"
+                "clue_crack_pattern"
               ],
               "revealsClueIds": ["clue_aurora_cracked"],
               "behavior": "Admitir que pegou o estojo errado e rachou o violino, insistindo que foi erro, não intenção.",
@@ -512,7 +524,7 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_aurora"],
+              "triggerIntents": ["accuse_aurora", "ask_about_motive", "press_for_confession"],
               "requiresClueIds": ["clue_aurora_cracked"],
               "revealsClueIds": ["clue_aurora_full_confession"],
               "behavior": "Confessar completamente, detalhar como fez e expressar horror com a escala do próprio gesto.",

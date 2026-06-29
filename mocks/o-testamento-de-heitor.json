@@ -361,6 +361,19 @@
       "keywords": ["acusar Téo", "matou", "responsável", "culpado"]
     },
     {
+      "id": "press_for_confession",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+    },
+    {
       "id": "off_topic",
       "createdAt": "2026-06-27T00:00:00.000Z",
       "updatedAt": "2026-06-27T00:00:00.000Z",
@@ -708,10 +721,7 @@
                 "ask_about_beatriz",
                 "accuse_beatriz"
               ],
-              "requiresClueIds": [
-                "clue_beatriz_threatened",
-                "clue_beatriz_fingerprints"
-              ],
+              "requiresClueIds": ["clue_beatriz_threatened"],
               "revealsClueIds": ["clue_beatriz_motive_stop_will"],
               "behavior": "Admitir que tinha motivo para impedir a mudança do testamento, mas ainda negar a ação.",
               "allowedToRevealTruth": false,
@@ -729,8 +739,7 @@
               "triggerIntents": ["accuse_beatriz", "ask_about_motive"],
               "requiresClueIds": [
                 "clue_placebo_different_brand",
-                "clue_beatriz_motive_stop_will",
-                "clue_beatriz_fingerprints"
+                "clue_beatriz_motive_stop_will"
               ],
               "revealsClueIds": ["clue_beatriz_swapped_medication"],
               "behavior": "Admitir parcialmente que trocou os comprimidos, insistindo que não previu que ele morreria.",
@@ -746,7 +755,7 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_beatriz"],
+              "triggerIntents": ["accuse_beatriz", "ask_about_motive", "press_for_confession"],
               "requiresClueIds": ["clue_beatriz_swapped_medication"],
               "revealsClueIds": [
                 "clue_beatriz_full_confession",

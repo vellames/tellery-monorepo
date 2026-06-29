@@ -203,6 +203,19 @@
       "keywords": ["acusar Dante", "trocou", "falsificação", "responsável"]
     },
     {
+      "id": "press_for_confession",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+    },
+    {
       "id": "off_topic",
       "createdAt": "2026-06-27T00:00:00.000Z",
       "updatedAt": "2026-06-27T00:00:00.000Z",
@@ -382,7 +395,6 @@
                 "ask_about_alibi"
               ],
               "requiresClueIds": [
-                "clue_otavio_restructuring",
                 "clue_sonia_knew_frame"
               ],
               "revealsClueIds": ["clue_sonia_motive_sale"],
@@ -406,9 +418,8 @@
                 "ask_about_forgery"
               ],
               "requiresClueIds": [
-                "clue_forge_materials",
                 "clue_sonia_motive_sale",
-                "clue_transport_crate_misplaced"
+                "clue_forge_materials"
               ],
               "revealsClueIds": ["clue_sonia_took_painting"],
               "behavior": "Admitir parcialmente que trocou o quadro, insistindo que ia devolver e que fez por princípio, não por ganância.",
@@ -428,14 +439,10 @@
                 "accuse_sonia",
                 "ask_about_motive",
                 "ask_about_sonia",
-                "ask_about_crate"
+                "ask_about_crate",
+                "press_for_confession"
               ],
-              "requiresClueIds": [
-                "clue_forge_materials",
-                "clue_sonia_motive_sale",
-                "clue_transport_crate_misplaced",
-                "clue_sonia_took_painting"
-              ],
+              "requiresClueIds": ["clue_sonia_took_painting"],
               "revealsClueIds": ["clue_original_in_crate"],
               "behavior": "Confessar completamente o que fez, onde o original está e por quê, propondo devolvê-lo imediatamente.",
               "allowedToRevealTruth": true,

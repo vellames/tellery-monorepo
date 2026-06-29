@@ -53,7 +53,7 @@ export function loadConfig(): ValidatorConfig {
     historySlug: process.env.VALIDATOR_HISTORY_SLUG ?? 'o-bilhete-na-mesa-7',
     openRouterApiKey: required('OPENROUTER_API_KEY'),
     investigatorModel:
-      process.env.VALIDATOR_INVESTIGATOR_MODEL ?? 'deepseek/deepseek-v4-pro',
+      process.env.VALIDATOR_INVESTIGATOR_MODEL ?? 'deepseek/deepseek-v4-flash',
     maxIterations: Number(process.env.VALIDATOR_MAX_ITERATIONS ?? 50),
     outputPath: process.env.VALIDATOR_OUTPUT ?? 'validator-output.txt',
   };

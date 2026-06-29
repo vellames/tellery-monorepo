@@ -196,6 +196,19 @@
       "keywords": ["acusar Theo", "pegou", "sumiço", "responsável"]
     },
     {
+      "id": "press_for_confession",
+      "createdAt": "2026-06-26T00:00:00.000Z",
+      "updatedAt": "2026-06-26T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+    },
+    {
       "id": "off_topic",
       "createdAt": "2026-06-26T00:00:00.000Z",
       "updatedAt": "2026-06-26T00:00:00.000Z",
@@ -382,8 +395,6 @@
               "level": 3,
               "triggerIntents": ["accuse_bia", "ask_about_motive"],
               "requiresClueIds": [
-                "clue_vitrine_scratch",
-                "clue_bia_knew_spare_key",
                 "clue_bia_mother_treatment",
                 "clue_pawn_receipt"
               ],
@@ -401,13 +412,8 @@
               "updatedAt": "2026-06-26T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_bia"],
-              "requiresClueIds": [
-                "clue_vitrine_scratch",
-                "clue_bia_knew_spare_key",
-                "clue_bia_mother_treatment",
-                "clue_pawn_receipt"
-              ],
+              "triggerIntents": ["accuse_bia", "ask_about_motive", "press_for_confession"],
+              "requiresClueIds": ["clue_bia_took_watch"],
               "revealsClueIds": ["clue_bia_took_watch", "clue_watch_at_pawn"],
               "behavior": "Confessar completamente o que fez, onde o relógio está e por quê, propondo resgatá-lo.",
               "allowedToRevealTruth": true,

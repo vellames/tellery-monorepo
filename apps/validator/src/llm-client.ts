@@ -43,10 +43,62 @@ export class OpenRouterJsonClient {
       throw new Error('OpenRouter returned an empty response.');
     }
 
-    try {
-      return JSON.parse(content);
-    } catch {
-      throw new Error(`OpenRouter did not return valid JSON: ${content}`);
+    const parsed = this.parseJsonContent(content);
+    if (parsed !== undefined) return parsed;
+
+    throw new Error(`OpenRouter did not return valid JSON: ${content}`);
+  }
+
+  private parseJsonContent(content: string): unknown | undefined {
+    const trimmed = content.trim();
+
+    for (const candidate of [trimmed, this.extractJsonObject(trimmed)]) {
+      if (!candidate) continue;
+
+      try {
+        return JSON.parse(candidate);
+      } catch {
+        continue;
+      }
     }
+
+    return undefined;
+  }
+
+  private extractJsonObject(content: string): string | undefined {
+    const start = content.indexOf('{');
+    if (start === -1) return undefined;
+
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+
+    for (let index = start; index < content.length; index += 1) {
+      const char = content[index];
+
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+
+      if (char === '\\') {
+        escaped = true;
+        continue;
+      }
+
+      if (char === '"') {
+        inString = !inString;
+        continue;
+      }
+
+      if (inString) continue;
+
+      if (char === '{') depth += 1;
+      if (char === '}') depth -= 1;
+
+      if (depth === 0) return content.slice(start, index + 1);
+    }
+
+    return undefined;
   }
 }

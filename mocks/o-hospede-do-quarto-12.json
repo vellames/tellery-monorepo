@@ -196,6 +196,19 @@
       "keywords": ["confrontar", "Helena", "escondeu", "omitiu", "sabia"]
     },
     {
+      "id": "press_for_confession",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+    },
+    {
       "id": "off_topic",
       "createdAt": "2026-06-27T00:00:00.000Z",
       "updatedAt": "2026-06-27T00:00:00.000Z",
@@ -327,7 +340,8 @@
               "triggerIntents": [
                 "confront_helena",
                 "ask_about_motive",
-                "ask_about_helena"
+                "ask_about_helena",
+                "press_for_confession"
               ],
               "requiresClueIds": ["clue_helena_noticed", "clue_letter_content"],
               "revealsClueIds": [

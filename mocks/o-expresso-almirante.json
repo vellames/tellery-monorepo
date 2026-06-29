@@ -251,6 +251,19 @@
       "keywords": ["acusar Íris", "pegou", "maleta", "responsável"]
     },
     {
+      "id": "press_for_confession",
+      "createdAt": "2026-06-27T00:00:00.000Z",
+      "updatedAt": "2026-06-27T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+    },
+    {
       "id": "off_topic",
       "createdAt": "2026-06-27T00:00:00.000Z",
       "updatedAt": "2026-06-27T00:00:00.000Z",
@@ -597,8 +610,7 @@
               "triggerIntents": ["accuse_iris", "confront_iris"],
               "requiresClueIds": [
                 "clue_iris_motive_document",
-                "clue_bento_saw_iris",
-                "clue_panel_evidence"
+                "clue_bento_saw_iris"
               ],
               "revealsClueIds": ["clue_iris_partial_confession"],
               "behavior": "Admitir parcialmente que pegou a maleta e a escondeu no painel, mas insistir que ia devolver depois de retirar o envelope.",
@@ -614,7 +626,7 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_iris"],
+              "triggerIntents": ["accuse_iris", "confront_iris", "ask_about_motive", "press_for_confession"],
               "requiresClueIds": ["clue_iris_partial_confession"],
               "revealsClueIds": [
                 "clue_iris_full_confession",
@@ -863,7 +875,7 @@
             "ask_about_iris",
             "ask_about_dinner"
           ],
-          "requiresClueIds": ["clue_bento_drawings", "clue_iris_moved"],
+          "requiresClueIds": ["clue_bento_drawings"],
           "revealText": "Bento mostra um desenho: a 'senhora do vestido bonito' (Íris) não foi ao toalete — foi até o assento do embaixador e ficou perto da parede perto de uns parafusos.",
           "responseGuidance": "Ele deve falar com naturalidade de quem não percebeu a gravidade do que viu."
         },

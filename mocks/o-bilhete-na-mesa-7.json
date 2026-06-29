@@ -300,6 +300,45 @@
       "keywords": ["motivo", "por quê", "ganharia", "pressionar"]
     },
     {
+      "id": "ask_if_davi_saw_theft",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar se Davi viu Clara mexendo no caixa, pegando algo ou roubando dinheiro.",
+      "examples": [
+        "Davi, você viu Clara pegando dinheiro?",
+        "Você viu ela mexer no caixa?",
+        "Ela pegou algo do caixa, você viu, né?"
+      ],
+      "keywords": ["viu Clara", "viu ela", "pegando", "roubando", "caixa", "dinheiro"]
+    },
+    {
+      "id": "connect_note_to_theft",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Relacionar o bilhete ao roubo do caixa ou à tentativa de pressionar Clara.",
+      "examples": [
+        "O bilhete era para fazer Clara confessar?",
+        "Davi escreveu isso porque viu o caixa?",
+        "Esse recado era sobre o dinheiro que Clara pegou?"
+      ],
+      "keywords": ["bilhete", "Clara", "roubo", "pressionar", "recado", "devolver"]
+    },
+    {
+      "id": "press_for_confession",
+      "createdAt": "2026-06-22T00:00:00.000Z",
+      "updatedAt": "2026-06-22T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+    },
+    {
       "id": "ask_who_touched_note",
       "createdAt": "2026-06-22T00:00:00.000Z",
       "updatedAt": "2026-06-22T00:00:00.000Z",
@@ -488,7 +527,12 @@
               "updatedAt": "2026-06-22T00:00:00.000Z",
               "deletedAt": null,
               "level": 2,
-              "triggerIntents": ["ask_about_counter", "ask_about_alibi"],
+              "triggerIntents": [
+                "ask_about_counter",
+                "ask_about_alibi",
+                "ask_about_cash_register",
+                "accuse_clara_of_theft"
+              ],
               "requiresClueIds": ["clue_rafa_saw_clara_near_counter"],
               "revealsClueIds": ["clue_clara_near_counter"],
               "behavior": "Admitir que passou perto do balcão, alegando procurar espaço para deixar a xícara ou pegar suas coisas.",
@@ -506,13 +550,13 @@
               "level": 3,
               "triggerIntents": [
                 "accuse_clara_of_theft",
-                "ask_about_cash_register"
+                "ask_about_cash_register",
+                "ask_if_davi_saw_theft",
+                "press_for_confession"
               ],
               "requiresClueIds": [
                 "clue_cash_register_left_open",
-                "clue_rafa_saw_clara_near_counter",
-                "clue_davi_saw_clara_cash_register",
-                "clue_umbrella_too_dry"
+                "clue_clara_near_counter"
               ],
               "revealsClueIds": ["clue_clara_took_something_from_register"],
               "behavior": "Admitir parcialmente que pegou algo, tentando justificar como engano, impulso ou dinheiro que pretendia devolver.",
@@ -528,19 +572,13 @@
               "updatedAt": "2026-06-22T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_clara_of_theft"],
-              "requiresClueIds": [
-                "clue_cash_register_left_open",
-                "clue_rafa_saw_clara_near_counter",
-                "clue_davi_saw_clara_cash_register",
-                "clue_davi_wrote_note",
-                "clue_davi_note_motive",
-                "clue_umbrella_too_dry"
+              "triggerIntents": [
+                "accuse_clara_of_theft",
+                "connect_note_to_theft",
+                "press_for_confession"
               ],
-              "revealsClueIds": [
-                "clue_clara_took_something_from_register",
-                "clue_clara_stole_money"
-              ],
+              "requiresClueIds": ["clue_clara_took_something_from_register"],
+              "revealsClueIds": ["clue_clara_stole_money"],
               "behavior": "Confessar que pegou dinheiro do caixa, ainda tentando preservar dignidade e propor reparação.",
               "allowedToRevealTruth": true,
               "sampleResponses": [
@@ -680,12 +718,11 @@
           "triggerIntents": [
             "ask_about_clara",
             "ask_about_cash_register",
-            "ask_about_yesterday"
+            "ask_about_yesterday",
+            "ask_if_davi_saw_theft",
+            "accuse_clara_of_theft"
           ],
-          "requiresClueIds": [
-            "clue_cash_register_left_open",
-            "clue_rafa_saw_clara_near_counter"
-          ],
+          "requiresClueIds": ["clue_cash_register_left_open"],
           "revealText": "Davi admite que viu Clara perto do caixa no intervalo em que Elisa tinha saído, mas diz que não queria causar uma cena.",
           "responseGuidance": "Ele deve conduzir a atenção para Clara sem soar vingativo."
         },
@@ -716,7 +753,9 @@
               "triggerIntents": [
                 "ask_about_note",
                 "ask_about_motive",
-                "ask_about_davi"
+                "ask_about_davi",
+                "connect_note_to_theft",
+                "press_for_confession"
               ],
               "requiresClueIds": [],
               "revealsClueIds": [],
@@ -735,7 +774,9 @@
               "level": 2,
               "triggerIntents": [
                 "accuse_davi_of_writing_note",
-                "ask_about_blue_pen"
+                "ask_about_blue_pen",
+                "connect_note_to_theft",
+                "press_for_confession"
               ],
               "requiresClueIds": ["clue_note_blue_ink", "clue_davi_blue_pen"],
               "revealsClueIds": [],
@@ -752,7 +793,13 @@
               "updatedAt": "2026-06-22T00:00:00.000Z",
               "deletedAt": null,
               "level": 3,
-              "triggerIntents": ["accuse_davi_of_writing_note"],
+              "triggerIntents": [
+                "accuse_davi_of_writing_note",
+                "ask_about_motive",
+                "ask_if_davi_saw_theft",
+                "connect_note_to_theft",
+                "press_for_confession"
+              ],
               "requiresClueIds": [
                 "clue_note_blue_ink",
                 "clue_davi_blue_pen",
