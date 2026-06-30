@@ -213,7 +213,14 @@
         "Chega de enrolar, fala a verdade",
         "Confessa o que aconteceu"
       ],
-      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
     },
     {
       "id": "off_topic",
@@ -394,9 +401,7 @@
                 "ask_about_yesterday",
                 "ask_about_alibi"
               ],
-              "requiresClueIds": [
-                "clue_sonia_knew_frame"
-              ],
+              "requiresClueIds": ["clue_sonia_knew_frame"],
               "revealsClueIds": ["clue_sonia_motive_sale"],
               "behavior": "Revelar que Otávio estava prestes a vender o Vertigem a Dante abaixo do preço, quebrando a promessa ao doador, mas ainda negar a troca.",
               "allowedToRevealTruth": false,

@@ -371,7 +371,14 @@
         "Chega de enrolar, fala a verdade",
         "Confessa o que aconteceu"
       ],
-      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
     },
     {
       "id": "off_topic",
@@ -755,7 +762,11 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_beatriz", "ask_about_motive", "press_for_confession"],
+              "triggerIntents": [
+                "accuse_beatriz",
+                "ask_about_motive",
+                "press_for_confession"
+              ],
               "requiresClueIds": ["clue_beatriz_swapped_medication"],
               "revealsClueIds": [
                 "clue_beatriz_full_confession",

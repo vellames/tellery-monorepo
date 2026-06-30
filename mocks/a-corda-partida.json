@@ -219,7 +219,14 @@
         "Chega de enrolar, fala a verdade",
         "Confessa o que aconteceu"
       ],
-      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
     },
     {
       "id": "off_topic",
@@ -506,10 +513,7 @@
                 "ask_about_motive",
                 "ask_about_aurora"
               ],
-              "requiresClueIds": [
-                "clue_aurora_intended",
-                "clue_crack_pattern"
-              ],
+              "requiresClueIds": ["clue_aurora_intended", "clue_crack_pattern"],
               "revealsClueIds": ["clue_aurora_cracked"],
               "behavior": "Admitir que pegou o estojo errado e rachou o violino, insistindo que foi erro, não intenção.",
               "allowedToRevealTruth": false,
@@ -524,7 +528,11 @@
               "updatedAt": "2026-06-27T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_aurora", "ask_about_motive", "press_for_confession"],
+              "triggerIntents": [
+                "accuse_aurora",
+                "ask_about_motive",
+                "press_for_confession"
+              ],
               "requiresClueIds": ["clue_aurora_cracked"],
               "revealsClueIds": ["clue_aurora_full_confession"],
               "behavior": "Confessar completamente, detalhar como fez e expressar horror com a escala do próprio gesto.",

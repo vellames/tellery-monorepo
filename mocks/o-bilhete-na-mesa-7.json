@@ -310,7 +310,14 @@
         "Você viu ela mexer no caixa?",
         "Ela pegou algo do caixa, você viu, né?"
       ],
-      "keywords": ["viu Clara", "viu ela", "pegando", "roubando", "caixa", "dinheiro"]
+      "keywords": [
+        "viu Clara",
+        "viu ela",
+        "pegando",
+        "roubando",
+        "caixa",
+        "dinheiro"
+      ]
     },
     {
       "id": "connect_note_to_theft",
@@ -323,7 +330,14 @@
         "Davi escreveu isso porque viu o caixa?",
         "Esse recado era sobre o dinheiro que Clara pegou?"
       ],
-      "keywords": ["bilhete", "Clara", "roubo", "pressionar", "recado", "devolver"]
+      "keywords": [
+        "bilhete",
+        "Clara",
+        "roubo",
+        "pressionar",
+        "recado",
+        "devolver"
+      ]
     },
     {
       "id": "press_for_confession",
@@ -336,7 +350,14 @@
         "Chega de enrolar, fala a verdade",
         "Confessa o que aconteceu"
       ],
-      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
     },
     {
       "id": "ask_who_touched_note",

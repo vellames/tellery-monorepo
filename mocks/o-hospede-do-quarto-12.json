@@ -206,7 +206,14 @@
         "Chega de enrolar, fala a verdade",
         "Confessa o que aconteceu"
       ],
-      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
     },
     {
       "id": "off_topic",

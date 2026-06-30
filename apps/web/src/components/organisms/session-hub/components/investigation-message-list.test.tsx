@@ -63,11 +63,7 @@ describe('InvestigationMessageList', () => {
 
   it('shows only typing dots while sending transcribed audio', () => {
     const { container } = renderWithProviders(
-      <InvestigationMessageList
-        messages={[]}
-        isSending
-        isTranscribing
-      />
+      <InvestigationMessageList messages={[]} isSending isTranscribing />
     );
 
     const dots = container.querySelectorAll('.scene-typing-dot');

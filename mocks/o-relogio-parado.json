@@ -206,7 +206,14 @@
         "Chega de enrolar, fala a verdade",
         "Confessa o que aconteceu"
       ],
-      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
     },
     {
       "id": "off_topic",
@@ -412,7 +419,11 @@
               "updatedAt": "2026-06-26T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_bia", "ask_about_motive", "press_for_confession"],
+              "triggerIntents": [
+                "accuse_bia",
+                "ask_about_motive",
+                "press_for_confession"
+              ],
               "requiresClueIds": ["clue_bia_took_watch"],
               "revealsClueIds": ["clue_bia_took_watch", "clue_watch_at_pawn"],
               "behavior": "Confessar completamente o que fez, onde o relógio está e por quê, propondo resgatá-lo.",
