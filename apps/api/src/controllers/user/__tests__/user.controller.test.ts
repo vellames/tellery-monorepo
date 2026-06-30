@@ -34,6 +34,7 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
+        availableSessions: 3,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       };
@@ -119,6 +120,7 @@ describe('UserController', () => {
           id: 'user-1',
           name: 'Ana Teste',
           email: 'ana@teste.local',
+          availableSessions: 3,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
@@ -193,6 +195,7 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
+        availableSessions: 3,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       };
@@ -255,6 +258,7 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Updated',
         email: 'ana.updated@teste.local',
+        availableSessions: 3,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-02T00:00:00.000Z',
       };

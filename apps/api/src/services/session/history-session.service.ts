@@ -97,9 +97,19 @@ export class HistorySessionService {
       );
     }
 
-    const session = await this.sessions.create({
-      userId: user.id,
-      history,
+    const session = await this.sessions.runTransaction(async (tx) => {
+      const decremented = await this.users.decrementAvailableSessions(
+        user.id,
+        tx
+      );
+      if (!decremented) {
+        throw new HttpError(
+          StatusCodes.PAYMENT_REQUIRED,
+          user.id,
+          'session:errors.noSessionsAvailable'
+        );
+      }
+      return this.sessions.create({ userId: user.id, history }, tx);
     });
 
     return {

@@ -24,6 +24,7 @@ export interface UserResponseDto {
   id: string;
   name: string;
   email: string;
+  availableSessions: number;
   createdAt: string;
   updatedAt: string;
 }

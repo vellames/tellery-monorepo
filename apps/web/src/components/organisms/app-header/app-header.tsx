@@ -1,8 +1,6 @@
-import { Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { User } from '@/lib/types/auth';
-
-const AVAILABLE_SESSIONS = 20;
+import { SessionsAvailableBadge } from '@/components/molecules';
 
 export interface AppHeaderProps {
   user: User;
@@ -30,10 +28,10 @@ export function AppHeader({ user }: AppHeaderProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="border-border bg-card/70 text-muted-foreground shadow-soft hidden items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold sm:flex">
-          <Star className="fill-gold text-gold size-4" />
-          <span>{t('sessionsAvailable', { count: AVAILABLE_SESSIONS })}</span>
-        </div>
+        <SessionsAvailableBadge
+          count={user.availableSessions}
+          className="px-3 py-2 sm:px-5 sm:py-3"
+        />
         <div className="bg-secondary text-secondary-foreground shadow-soft grid size-12 place-items-center overflow-hidden rounded-full text-sm font-semibold sm:size-14">
           {user.name.charAt(0).toUpperCase()}
         </div>

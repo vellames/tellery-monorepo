@@ -10,6 +10,7 @@ type PrismaUser = {
   name: string;
   email: string;
   password: string;
+  availableSessions: number;
 };
 
 const mockUser = (overrides: Partial<PrismaUser> = {}): PrismaUser => ({
@@ -20,6 +21,7 @@ const mockUser = (overrides: Partial<PrismaUser> = {}): PrismaUser => ({
   name: 'Ana Teste',
   email: 'ana@teste.local',
   password: 'password123',
+  availableSessions: 3,
   ...overrides,
 });
 
@@ -182,6 +184,44 @@ describe('UserRepository', () => {
         where: { id: 'user-1' },
         data: { deletedAt: expect.any(Date) },
       });
+    });
+  });
+
+  describe('decrementAvailableSessions', () => {
+    it('should conditionally decrement and return true when a row was updated', async () => {
+      prisma.user.updateMany.mockResolvedValue({ count: 1 });
+
+      const result = await repo.decrementAvailableSessions('user-1');
+
+      expect(result).toBe(true);
+      expect(prisma.user.updateMany).toHaveBeenCalledWith({
+        where: {
+          id: 'user-1',
+          availableSessions: { gt: 0 },
+          deletedAt: null,
+        },
+        data: { availableSessions: { decrement: 1 } },
+      });
+    });
+
+    it('should return false when no row was updated (quota exhausted)', async () => {
+      prisma.user.updateMany.mockResolvedValue({ count: 0 });
+
+      const result = await repo.decrementAvailableSessions('user-1');
+
+      expect(result).toBe(false);
+    });
+
+    it('should forward the transaction when provided', async () => {
+      const tx = {
+        user: { updateMany: jest.fn().mockResolvedValue({ count: 1 }) },
+      };
+      prisma.user.updateMany.mockResolvedValue({ count: 1 });
+
+      await repo.decrementAvailableSessions('user-1', tx as never);
+
+      expect(tx.user.updateMany).toHaveBeenCalled();
+      expect(prisma.user.updateMany).not.toHaveBeenCalled();
     });
   });
 });

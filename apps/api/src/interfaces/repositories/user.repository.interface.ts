@@ -13,5 +13,9 @@ export interface IUserRepository extends IBaseRepository {
     data: UpdateUserDto,
     tx?: PrismaTransaction
   ): Promise<User>;
+  decrementAvailableSessions(
+    id: string,
+    tx?: PrismaTransaction
+  ): Promise<boolean>;
   softDelete(id: string, tx?: PrismaTransaction): Promise<void>;
 }

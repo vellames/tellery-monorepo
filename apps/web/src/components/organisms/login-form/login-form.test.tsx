@@ -33,6 +33,7 @@ describe('LoginForm', () => {
       id: '1',
       name: '',
       email: '',
+      availableSessions: 3,
       createdAt: '',
       updatedAt: '',
     });

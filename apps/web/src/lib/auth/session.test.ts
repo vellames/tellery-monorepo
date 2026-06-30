@@ -22,6 +22,7 @@ const user: User = {
   id: '1',
   name: 'Ana',
   email: 'a@b.c',
+  availableSessions: 3,
   createdAt: '',
   updatedAt: '',
 };

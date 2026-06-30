@@ -4,6 +4,7 @@ import {
   ChangePasswordForm,
   LogoutButton,
 } from '@/components/organisms';
+import { SessionsAvailableBadge } from '@/components/molecules';
 import {
   Card,
   CardContent,
@@ -35,6 +36,10 @@ export default async function ProfilePage() {
             <CardDescription>
               {t('memberSince', { date: memberSince })}
             </CardDescription>
+            <SessionsAvailableBadge
+              count={user.availableSessions}
+              className="w-fit"
+            />
           </CardHeader>
           <CardContent>
             <ProfileForm user={user} />

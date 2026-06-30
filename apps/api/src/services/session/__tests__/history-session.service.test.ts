@@ -20,6 +20,7 @@ const mockUser = (overrides: Partial<User> = {}): User =>
     name: 'Ana Teste',
     email: 'ana@teste.local',
     password: 'hashed',
+    availableSessions: 3,
     ...overrides,
   }) as User;
 
@@ -69,6 +70,12 @@ describe('HistorySessionService', () => {
       sessions,
       imageUrlSigner
     );
+
+    sessions.runTransaction.mockImplementation(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      async (cb: any) => cb({})
+    );
+    users.decrementAvailableSessions.mockResolvedValue(true);
   });
 
   afterEach(() => {
@@ -91,10 +98,14 @@ describe('HistorySessionService', () => {
         historyId: 'history-1',
       });
 
-      expect(sessions.create).toHaveBeenCalledWith({
-        userId: 'user-1',
-        history,
-      });
+      expect(users.decrementAvailableSessions).toHaveBeenCalledWith(
+        'user-1',
+        expect.anything()
+      );
+      expect(sessions.create).toHaveBeenCalledWith(
+        { userId: 'user-1', history },
+        expect.anything()
+      );
       expect(result).toEqual({
         session,
         sessionStatus: 'active',
@@ -121,6 +132,22 @@ describe('HistorySessionService', () => {
       ).rejects.toMatchObject({
         statusCode: StatusCodes.CONFLICT,
         messageKey: 'session:errors.sessionAlreadyActive',
+      });
+      expect(sessions.create).not.toHaveBeenCalled();
+      expect(users.decrementAvailableSessions).not.toHaveBeenCalled();
+    });
+
+    it('throws 402 when the user has no available sessions left', async () => {
+      users.findById.mockResolvedValue(mockUser());
+      histories.findById.mockResolvedValue(mockHistory());
+      sessions.findActiveByHistory.mockResolvedValue(null);
+      users.decrementAvailableSessions.mockResolvedValue(false);
+
+      await expect(
+        service.startSession('user-1', { historyId: 'history-1' })
+      ).rejects.toMatchObject({
+        statusCode: StatusCodes.PAYMENT_REQUIRED,
+        messageKey: 'session:errors.noSessionsAvailable',
       });
       expect(sessions.create).not.toHaveBeenCalled();
     });
