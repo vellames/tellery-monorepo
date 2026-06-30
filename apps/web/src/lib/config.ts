@@ -22,5 +22,6 @@ export const config = {
     logoutApi: '/api/auth/logout',
     registerApi: '/api/auth/register',
     meApi: '/api/me',
+    mePasswordApi: '/api/me/password',
   },
 } as const;

@@ -296,6 +296,57 @@ describe('UserService', () => {
     });
   });
 
+  describe('changePassword', () => {
+    it('should verify the current password before updating', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      passwordHasher.compare.mockResolvedValue(true);
+      repo.update.mockResolvedValue(mockUser());
+
+      await service.changePassword('user-1', 'password123', 'new-password');
+
+      expect(passwordHasher.compare).toHaveBeenCalledWith(
+        'password123',
+        'hashed-password'
+      );
+    });
+
+    it('should hash the new password and persist it', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      passwordHasher.compare.mockResolvedValue(true);
+      repo.update.mockResolvedValue(mockUser());
+
+      await service.changePassword('user-1', 'password123', 'new-password');
+
+      expect(passwordHasher.hash).toHaveBeenCalledWith('new-password');
+      expect(repo.update).toHaveBeenCalledWith('user-1', {
+        password: 'hashed-password',
+      });
+    });
+
+    it('should throw 401 when the current password is wrong', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      passwordHasher.compare.mockResolvedValue(false);
+
+      await expect(
+        service.changePassword('user-1', 'wrong-password', 'new-password')
+      ).rejects.toThrow('Current password is incorrect');
+
+      expect(passwordHasher.hash).not.toHaveBeenCalled();
+      expect(repo.update).not.toHaveBeenCalled();
+    });
+
+    it('should throw 404 when the user is not found', async () => {
+      repo.findById.mockResolvedValue(null);
+
+      await expect(
+        service.changePassword('user-1', 'password123', 'new-password')
+      ).rejects.toThrow('User not found');
+
+      expect(passwordHasher.compare).not.toHaveBeenCalled();
+      expect(repo.update).not.toHaveBeenCalled();
+    });
+  });
+
   describe('delete', () => {
     it('should soft delete an existing user', async () => {
       repo.findById.mockResolvedValue(mockUser());

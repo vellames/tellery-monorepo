@@ -122,6 +122,36 @@ export class UserService {
     await this.users.softDelete(id);
   }
 
+  async changePassword(
+    id: string,
+    currentPassword: string,
+    newPassword: string
+  ): Promise<void> {
+    const user = await this.users.findById(id);
+    if (!user) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        'User not found',
+        'user:errors.userNotFound'
+      );
+    }
+
+    const valid = await this.passwordHasher.compare(
+      currentPassword,
+      user.password
+    );
+    if (!valid) {
+      throw new HttpError(
+        StatusCodes.UNAUTHORIZED,
+        'Current password is incorrect',
+        'user:errors.currentPasswordIncorrect'
+      );
+    }
+
+    const hashedPassword = await this.passwordHasher.hash(newPassword);
+    await this.users.update(id, { password: hashedPassword });
+  }
+
   private toResponseDto(user: User): UserResponseDto {
     return {
       id: user.id,

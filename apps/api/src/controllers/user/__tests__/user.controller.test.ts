@@ -366,4 +366,130 @@ describe('UserController', () => {
       expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
     });
   });
+
+  describe('changePassword', () => {
+    it('should return 200 when the password is changed', async () => {
+      userService.changePassword.mockResolvedValue(undefined);
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { currentPassword: 'password123', newPassword: 'new-password' },
+        t,
+      } as Partial<Request>;
+
+      await controller.changePassword(req as Request, res as Response);
+
+      expect(userService.changePassword).toHaveBeenCalledWith(
+        'user-1',
+        'password123',
+        'new-password'
+      );
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({ success: true })
+      );
+    });
+
+    it('should return 422 when required fields are missing', async () => {
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { currentPassword: 'password123' },
+        t,
+      } as Partial<Request>;
+
+      await controller.changePassword(req as Request, res as Response);
+
+      expect(userService.changePassword).not.toHaveBeenCalled();
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+    });
+
+    it('should return 422 when newPassword is shorter than 6 chars', async () => {
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { currentPassword: 'password123', newPassword: '12345' },
+        t,
+      } as Partial<Request>;
+
+      await controller.changePassword(req as Request, res as Response);
+
+      expect(userService.changePassword).not.toHaveBeenCalled();
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+    });
+
+    it('should return 422 when newPassword equals currentPassword', async () => {
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: {
+          currentPassword: 'same-password',
+          newPassword: 'same-password',
+        },
+        t,
+      } as Partial<Request>;
+
+      await controller.changePassword(req as Request, res as Response);
+
+      expect(userService.changePassword).not.toHaveBeenCalled();
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+    });
+
+    it('should return 401 when the current password is wrong', async () => {
+      userService.changePassword.mockRejectedValue(
+        new HttpError(
+          StatusCodes.UNAUTHORIZED,
+          'Current password is incorrect',
+          'user:errors.currentPasswordIncorrect'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: {
+          currentPassword: 'wrong-password',
+          newPassword: 'new-password',
+        },
+        t,
+      } as Partial<Request>;
+
+      await controller.changePassword(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNAUTHORIZED);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          error: 'user:errors.currentPasswordIncorrect',
+        })
+      );
+    });
+
+    it('should return 404 when user is not found', async () => {
+      userService.changePassword.mockRejectedValue(
+        new HttpError(
+          StatusCodes.NOT_FOUND,
+          'User not found',
+          'user:errors.userNotFound'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { currentPassword: 'password123', newPassword: 'new-password' },
+        t,
+      } as Partial<Request>;
+
+      await controller.changePassword(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.NOT_FOUND);
+    });
+
+    it('should return 500 on unexpected errors', async () => {
+      userService.changePassword.mockRejectedValue(
+        new Error('Something went wrong')
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { currentPassword: 'password123', newPassword: 'new-password' },
+        t,
+      } as Partial<Request>;
+
+      await controller.changePassword(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    });
+  });
 });

@@ -1,5 +1,9 @@
 import { config } from '@/lib/config';
-import type { UpdateProfilePayload, User } from '@/lib/types/auth';
+import type {
+  ChangePasswordPayload,
+  UpdateProfilePayload,
+  User,
+} from '@/lib/types/auth';
 
 export async function updateProfileRequest(
   payload: UpdateProfilePayload
@@ -20,4 +24,21 @@ export async function updateProfileRequest(
   }
 
   return body.user;
+}
+
+export async function changePasswordRequest(
+  payload: ChangePasswordPayload
+): Promise<void> {
+  const res = await fetch(config.routes.mePasswordApi, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as {
+      error?: string;
+    } | null;
+    throw new Error(body?.error ?? '');
+  }
 }

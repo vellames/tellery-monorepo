@@ -245,6 +245,7 @@
   "profile": {
     "title": "Perfil",
     "subtitle": "Gerencie os dados da sua conta.",
+    "account": "Dados da conta",
     "name": "Nome",
     "namePlaceholder": "Seu nome",
     "email": "E-mail",
@@ -252,6 +253,25 @@
     "memberSince": "Membro desde {date}",
     "submit": "Salvar alterações",
     "saved": "Perfil atualizado",
+    "password": {
+      "title": "Alterar senha",
+      "current": "Senha atual",
+      "currentPlaceholder": "••••••••",
+      "new": "Nova senha",
+      "newPlaceholder": "••••••••",
+      "confirm": "Confirmar nova senha",
+      "confirmPlaceholder": "••••••••",
+      "submit": "Atualizar senha",
+      "saved": "Senha atualizada",
+      "errors": {
+        "required": "Senha atual e nova senha são obrigatórias",
+        "currentRequired": "Senha atual é obrigatória",
+        "newMin": "A senha deve ter ao menos 6 caracteres",
+        "sameAsCurrent": "A nova senha deve ser diferente da senha atual",
+        "mismatch": "As senhas não coincidem",
+        "updateFailed": "Falha ao atualizar a senha"
+      }
+    },
     "errors": {
       "required": "Nome e e-mail são obrigatórios",
       "nameRequired": "Nome é obrigatório",

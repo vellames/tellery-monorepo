@@ -245,6 +245,7 @@
   "profile": {
     "title": "Profile",
     "subtitle": "Manage your account details.",
+    "account": "Account details",
     "name": "Name",
     "namePlaceholder": "Your name",
     "email": "Email",
@@ -252,6 +253,25 @@
     "memberSince": "Member since {date}",
     "submit": "Save changes",
     "saved": "Profile updated",
+    "password": {
+      "title": "Change password",
+      "current": "Current password",
+      "currentPlaceholder": "••••••••",
+      "new": "New password",
+      "newPlaceholder": "••••••••",
+      "confirm": "Confirm new password",
+      "confirmPlaceholder": "••••••••",
+      "submit": "Update password",
+      "saved": "Password updated",
+      "errors": {
+        "required": "Current and new passwords are required",
+        "currentRequired": "Current password is required",
+        "newMin": "Password must be at least 6 characters",
+        "sameAsCurrent": "New password must be different from the current password",
+        "mismatch": "Passwords do not match",
+        "updateFailed": "Failed to update password"
+      }
+    },
     "errors": {
       "required": "Name and email are required",
       "nameRequired": "Name is required",

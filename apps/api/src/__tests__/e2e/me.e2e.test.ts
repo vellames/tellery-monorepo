@@ -243,3 +243,116 @@ describe('E2E: PATCH /me', () => {
     expect(response.body.error).toBe('Corpo da requisição inválido');
   });
 });
+
+describe('E2E: PATCH /me/password', () => {
+  afterEach(() => {
+    mockReset(mockRepo);
+    mockReset(mockPasswordHasher);
+    mockPasswordHasher.hash.mockResolvedValue('hashed-password');
+  });
+
+  it('should return 200 and rotate the password when the current password is valid', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+    mockPasswordHasher.compare.mockResolvedValue(true);
+    mockRepo.update.mockResolvedValue(mockUser());
+
+    const response = await request(app)
+      .patch('/me/password')
+      .set(authHeader)
+      .send({ currentPassword: 'password123', newPassword: 'new-password' });
+
+    expect(response.status).toBe(StatusCodes.OK);
+    expect(response.body.success).toBe(true);
+    expect(mockPasswordHasher.compare).toHaveBeenCalledWith(
+      'password123',
+      'hashed-password'
+    );
+    expect(mockPasswordHasher.hash).toHaveBeenCalledWith('new-password');
+    expect(mockRepo.update).toHaveBeenCalledWith(AUTHENTICATED_USER_ID, {
+      password: 'hashed-password',
+    });
+  });
+
+  it('should return 401 when the current password is wrong', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+    mockPasswordHasher.compare.mockResolvedValue(false);
+
+    const response = await request(app)
+      .patch('/me/password')
+      .set(authHeader)
+      .send({ currentPassword: 'wrong-password', newPassword: 'new-password' });
+
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
+    expect(response.body.success).toBe(false);
+    expect(mockPasswordHasher.hash).not.toHaveBeenCalled();
+    expect(mockRepo.update).not.toHaveBeenCalled();
+  });
+
+  it('should return 401 with Portuguese message when the current password is wrong', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+    mockPasswordHasher.compare.mockResolvedValue(false);
+
+    const response = await request(app)
+      .patch('/me/password')
+      .set(authHeader)
+      .set('Accept-Language', 'pt-BR')
+      .send({ currentPassword: 'wrong-password', newPassword: 'new-password' });
+
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
+    expect(response.body.error).toBe('Senha atual incorreta');
+  });
+
+  it('should return 422 when required fields are missing', async () => {
+    const response = await request(app)
+      .patch('/me/password')
+      .set(authHeader)
+      .send({ currentPassword: 'password123' });
+
+    expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(response.body.success).toBe(false);
+    expect(mockPasswordHasher.compare).not.toHaveBeenCalled();
+  });
+
+  it('should return 422 when newPassword is shorter than 6 chars', async () => {
+    const response = await request(app)
+      .patch('/me/password')
+      .set(authHeader)
+      .send({ currentPassword: 'password123', newPassword: '12345' });
+
+    expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(response.body.success).toBe(false);
+    expect(mockRepo.update).not.toHaveBeenCalled();
+  });
+
+  it('should return 422 when newPassword equals currentPassword', async () => {
+    const response = await request(app)
+      .patch('/me/password')
+      .set(authHeader)
+      .send({ currentPassword: 'same-password', newPassword: 'same-password' });
+
+    expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(response.body.success).toBe(false);
+    expect(mockPasswordHasher.compare).not.toHaveBeenCalled();
+  });
+
+  it('should return 401 when no token is provided', async () => {
+    const response = await request(app)
+      .patch('/me/password')
+      .send({ currentPassword: 'password123', newPassword: 'new-password' });
+
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
+    expect(mockPasswordHasher.compare).not.toHaveBeenCalled();
+  });
+
+  it('should return 404 when the authenticated user no longer exists', async () => {
+    mockRepo.findById.mockResolvedValue(null);
+
+    const response = await request(app)
+      .patch('/me/password')
+      .set(authHeader)
+      .send({ currentPassword: 'password123', newPassword: 'new-password' });
+
+    expect(response.status).toBe(StatusCodes.NOT_FOUND);
+    expect(response.body.success).toBe(false);
+  });
+});

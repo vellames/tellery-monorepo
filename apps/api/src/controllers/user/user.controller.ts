@@ -5,6 +5,7 @@ import {
   createUserSchema,
   loginSchema,
   updateMeSchema,
+  changePasswordSchema,
 } from '../../types/domain/user/user.validation';
 import { HttpError } from '../../utils/http-error';
 import {
@@ -98,6 +99,35 @@ export class UserController {
     try {
       const user = await this.userService.update(req.user!.id, parsed.data);
       sendSuccess(res, user);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey ? t(error.messageKey) : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
+
+  changePassword = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+    const parsed = changePasswordSchema.safeParse(req.body);
+    if (!parsed.success) {
+      sendValidationError(
+        res,
+        t('common:errors.invalidRequestBody'),
+        parsed.error.issues
+      );
+      return;
+    }
+
+    try {
+      await this.userService.changePassword(
+        req.user!.id,
+        parsed.data.currentPassword,
+        parsed.data.newPassword
+      );
+      sendSuccess(res, null);
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;

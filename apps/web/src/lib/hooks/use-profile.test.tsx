@@ -11,11 +11,12 @@ vi.mock('sonner', () => ({
 }));
 vi.mock('@/lib/api/profile', () => ({
   updateProfileRequest: vi.fn(),
+  changePasswordRequest: vi.fn(),
 }));
 
 import { toast } from 'sonner';
-import { updateProfileRequest } from '@/lib/api/profile';
-import { useUpdateProfile } from '@/lib/hooks/use-profile';
+import { changePasswordRequest, updateProfileRequest } from '@/lib/api/profile';
+import { useChangePassword, useUpdateProfile } from '@/lib/hooks/use-profile';
 import { renderHookWithProviders } from '@/test-utils';
 
 const user = {
@@ -57,5 +58,41 @@ describe('useUpdateProfile', () => {
     });
 
     expect(toast.error).toHaveBeenCalledWith('Email already in use');
+  });
+});
+
+describe('useChangePassword', () => {
+  beforeEach(() => vi.clearAllMocks());
+
+  it('toasts on success', async () => {
+    vi.mocked(changePasswordRequest).mockResolvedValue();
+    const { result } = renderHookWithProviders(() => useChangePassword());
+
+    await act(async () => {
+      await result.current.mutateAsync({
+        currentPassword: 'old-pass',
+        newPassword: 'new-password',
+      });
+    });
+
+    expect(toast.success).toHaveBeenCalled();
+  });
+
+  it('toasts the error on failure', async () => {
+    vi.mocked(changePasswordRequest).mockRejectedValue(
+      new Error('Current password is incorrect')
+    );
+    const { result } = renderHookWithProviders(() => useChangePassword());
+
+    await act(async () => {
+      await expect(
+        result.current.mutateAsync({
+          currentPassword: 'wrong',
+          newPassword: 'new-password',
+        })
+      ).rejects.toThrow('Current password is incorrect');
+    });
+
+    expect(toast.error).toHaveBeenCalledWith('Current password is incorrect');
   });
 });

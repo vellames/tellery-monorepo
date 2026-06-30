@@ -182,4 +182,82 @@ router.patch('/', authenticate, async (req, res) => {
   await DIContainer.getInstance().getUserController().updateProfile(req, res);
 });
 
+/**
+ * @openapi
+ * /me/password:
+ *   patch:
+ *     tags: [Users]
+ *     summary: Change the logged-in user's password
+ *     description: Verifies the current password and rotates it to a new one. The new password must be at least 6 characters and different from the current password.
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [currentPassword, newPassword]
+ *             properties:
+ *               currentPassword:
+ *                 type: string
+ *                 description: The user's current password.
+ *               newPassword:
+ *                 type: string
+ *                 minLength: 6
+ *                 description: The new password (must differ from the current password).
+ *     responses:
+ *       200:
+ *         description: Password changed successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *       401:
+ *         description: Missing/invalid token or current password is incorrect
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *       404:
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *       422:
+ *         description: Invalid request body (missing fields, newPassword under 6 chars, or newPassword equals currentPassword)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ */
+router.patch('/password', authenticate, async (req, res) => {
+  await DIContainer.getInstance().getUserController().changePassword(req, res);
+});
+
 export default router;
