@@ -23,5 +23,6 @@ export const config = {
     registerApi: '/api/auth/register',
     meApi: '/api/me',
     mePasswordApi: '/api/me/password',
+    sessionStartApi: '/api/session/start',
   },
 } as const;

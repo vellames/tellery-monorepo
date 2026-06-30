@@ -1,9 +1,6 @@
 'use client';
 
-import { useEffect, useActionState } from 'react';
-import { toast } from 'sonner';
-import { startSessionAction } from '@/lib/actions/session';
-import { INITIAL_STATE } from '@/lib/actions/session-state';
+import { useStartSession } from '@/lib/hooks/use-start-session';
 import { StartSessionButton } from '../start-session-button/start-session-button';
 
 export interface StartSessionFormProps {
@@ -11,18 +8,16 @@ export interface StartSessionFormProps {
 }
 
 export function StartSessionForm({ historyId }: StartSessionFormProps) {
-  const [state, formAction] = useActionState(
-    startSessionAction.bind(null, historyId),
-    INITIAL_STATE
-  );
-
-  useEffect(() => {
-    if (state.error) toast.error(state.error);
-  }, [state.error]);
+  const startSession = useStartSession();
 
   return (
-    <form action={formAction}>
-      <StartSessionButton />
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        startSession.mutate(historyId);
+      }}
+    >
+      <StartSessionButton pending={startSession.isPending} />
     </form>
   );
 }

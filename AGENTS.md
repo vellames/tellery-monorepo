@@ -93,6 +93,12 @@ npm run test:coverage -w @ai-history/api # with coverage report
 - API runs on port 3232. Postgres runs on port 5555.
 - Commit messages are lowercase and imperative (e.g. `add prisma with postgres`).
 
+### Web (`apps/web`)
+
+- The browser never calls the backend API (port 3232) directly. All API calls go through a **BFF route handler** in `apps/web/src/app/api/**/route.ts`, which uses `apiFetch` (server-only, injects the session token + locale) and **forwards the backend's HTTP status code**.
+- The default pattern for any backend-mediated action is: **BFF route handler → client fetcher (`lib/api/*`) → React Query mutation hook (`lib/hooks/*`)**. Toasts (sonner) handle success/error feedback. `useLogin`, `useUpdateProfile`, `useChangePassword` are the canonical examples.
+- **Server actions (`'use server'`) are reserved for non-API concerns** — e.g. `setLocale` writes a cookie and never touches the backend. Do **not** use server actions for API calls; they swallow HTTP status codes (always 200) and break the BFF status-forwarding contract.
+
 ## Mandatory practices
 
 - **Unit tests are required.** Every repository, service, and controller must have unit tests. Tests run as part of `npm run verify` — no PR is complete without passing tests.

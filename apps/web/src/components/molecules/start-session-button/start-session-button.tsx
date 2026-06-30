@@ -1,11 +1,13 @@
 'use client';
 
-import { useFormStatus } from 'react-dom';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-export function StartSessionButton() {
-  const { pending } = useFormStatus();
+export interface StartSessionButtonProps {
+  pending: boolean;
+}
+
+export function StartSessionButton({ pending }: StartSessionButtonProps) {
   const t = useTranslations('stories');
 
   return (
