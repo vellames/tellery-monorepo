@@ -26,7 +26,7 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-border bg-card/90 shadow-card fixed inset-x-4 bottom-4 z-20 mx-auto grid max-w-md grid-cols-4 rounded-[28px] border px-3 py-3 backdrop-blur lg:static lg:inset-x-auto lg:bottom-auto lg:mx-0 lg:w-full lg:max-w-none">
+    <nav className="border-border bg-card/90 shadow-card fixed inset-x-4 bottom-4 z-20 grid grid-cols-4 rounded-[28px] border px-3 py-3 backdrop-blur lg:static lg:inset-x-auto lg:bottom-auto lg:mx-0 lg:w-full lg:max-w-none">
       {navItems.map(({ icon: Icon, labelKey, href }) => {
         const isActive =
           !!href && (pathname === href || pathname.startsWith(`${href}/`));

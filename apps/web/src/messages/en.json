@@ -145,6 +145,7 @@
     "startButton": "Start story",
     "starting": "Starting…",
     "startError": "Could not start the session. Please try again.",
+    "noSessionsAvailable": "You have no sessions available.",
     "backToStories": "Back to stories",
     "continueButton": "Continue investigation",
     "activeSessionDisclaimer": "You already have an ongoing investigation for this story. Pick up where you left off.",

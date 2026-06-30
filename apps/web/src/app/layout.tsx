@@ -4,7 +4,12 @@ import { Cormorant_Garamond, Mulish } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { Providers } from '@/components/providers';
 import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages, getTimeZone } from 'next-intl/server';
+import {
+  getLocale,
+  getMessages,
+  getTimeZone,
+  getTranslations,
+} from 'next-intl/server';
 
 const mulish = Mulish({ subsets: ['latin'], variable: '--font-sans' });
 const cormorant = Cormorant_Garamond({
@@ -13,10 +18,13 @@ const cormorant = Cormorant_Garamond({
   variable: '--font-heading',
 });
 
-export const metadata: Metadata = {
-  title: 'AI History',
-  description: 'AI History',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('common');
+  return {
+    title: `Tellery - ${t('tagline')}`,
+    description: t('tagline'),
+  };
+}
 
 export default async function RootLayout({
   children,

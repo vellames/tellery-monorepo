@@ -6,8 +6,13 @@ import { getTranslations } from 'next-intl/server';
 import { fetchHistory } from '@/lib/api/history';
 import { fetchSessions } from '@/lib/api/session';
 import { ApiError } from '@/lib/api/client';
+import { getSessionUser } from '@/lib/auth/session';
 import { config } from '@/lib/config';
-import { StartSessionForm, AbandonSessionButton } from '@/components/molecules';
+import {
+  StartSessionForm,
+  StartSessionButton,
+  AbandonSessionButton,
+} from '@/components/molecules';
 
 export default async function StoryStartPage({
   params,
@@ -38,6 +43,9 @@ export default async function StoryStartPage({
   } catch {
     // ignore — treat as no active session
   }
+
+  const user = await getSessionUser();
+  const hasSessionsLeft = !!user && user.availableSessions > 0;
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8">
@@ -109,8 +117,10 @@ export default async function StoryStartPage({
             <AbandonSessionButton sessionId={activeSessionId} />
           </div>
         </div>
-      ) : (
+      ) : hasSessionsLeft ? (
         <StartSessionForm historyId={history.id} />
+      ) : (
+        <StartSessionButton unavailable />
       )}
     </div>
   );
