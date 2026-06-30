@@ -26,16 +26,19 @@ export interface LlmCallRecordInput {
   totalTokens: number;
   costUsdNanos: bigint;
   latencyMs?: number | null;
+  audioSeconds?: number | null;
 }
 
 export interface SessionCostBreakdownItem {
   purpose: LlmCallPurpose;
   costUsdNanos: bigint;
   calls: number;
+  audioSeconds: number | null;
 }
 
 export interface SessionCostSummary {
   totalCostUsdNanos: bigint;
+  totalAudioSeconds: number;
   breakdown: SessionCostBreakdownItem[];
 }
 

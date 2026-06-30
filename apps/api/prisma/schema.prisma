@@ -57,6 +57,7 @@ enum LlmCallPurpose {
   intent
   character
   object
+  audio
 }
 
 // ─── User ─────────────────────────────────────────────────────────────────────
@@ -839,6 +840,8 @@ model LlmCall {
 
   costUsdNanos BigInt
   latencyMs    Int?
+
+  audioSeconds Int?
 
   @@index([sessionId])
   @@index([createdAt])

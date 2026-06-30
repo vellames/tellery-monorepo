@@ -135,7 +135,7 @@ export class DIContainer {
     appConfig.aws.s3Bucket as string
   );
   private readonly audioTranscription: IAudioTranscriptionService =
-    new OpenRouterAudioTranscriptionService();
+    new OpenRouterAudioTranscriptionService(this.llmCallRecorder);
   private readonly sessionController = new SessionController(
     this.historySessionService,
     this.sessionInteractionService,

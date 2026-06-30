@@ -397,7 +397,10 @@ describe('SessionController - getCost', () => {
     const cost = {
       totalCostUsd: 0.00025,
       totalCalls: 3,
-      breakdown: [{ purpose: 'character', costUsd: 0.0002, calls: 2 }],
+      totalAudioSeconds: 0,
+      breakdown: [
+        { purpose: 'character', costUsd: 0.0002, calls: 2, audioSeconds: null },
+      ],
     };
     historySessionService.getSessionCost.mockResolvedValue(cost);
     req = {

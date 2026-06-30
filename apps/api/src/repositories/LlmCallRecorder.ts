@@ -15,6 +15,7 @@ export class LlmCallRecorder implements ILlmCallRecorder {
       totalTokens: input.totalTokens,
       costUsdNanos: toNanos(input.costUsd),
       latencyMs: input.latencyMs,
+      audioSeconds: input.audioSeconds,
     });
   }
 }

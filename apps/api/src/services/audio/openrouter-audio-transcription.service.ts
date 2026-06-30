@@ -1,8 +1,13 @@
 import { appConfig } from '../../config/app.config';
-import { IAudioTranscriptionService } from '../../interfaces';
+import { IAudioTranscriptionService, ILlmCallRecorder } from '../../interfaces';
+import { computeAudioCostUsd } from '../../engine/llm/cost';
 
 interface TranscriptionResponse {
   text: string;
+  usage?: {
+    seconds?: number;
+    cost?: number;
+  };
 }
 
 const FORMAT_FROM_CONTENT_TYPE: Record<string, string> = {
@@ -17,10 +22,13 @@ const FORMAT_FROM_CONTENT_TYPE: Record<string, string> = {
 };
 
 export class OpenRouterAudioTranscriptionService implements IAudioTranscriptionService {
+  constructor(private readonly recorder: ILlmCallRecorder) {}
+
   async transcribe(input: {
     buffer: Buffer;
     contentType: string;
     filename: string;
+    sessionId?: string;
   }): Promise<{ text: string }> {
     const apiKey = appConfig.openrouter.apiKey;
     const model = appConfig.openrouter.audioModel;
@@ -38,6 +46,7 @@ export class OpenRouterAudioTranscriptionService implements IAudioTranscriptionS
       format,
     });
 
+    const startedAt = Date.now();
     const res = await fetch(`${baseUrl}/audio/transcriptions`, {
       method: 'POST',
       headers: {
@@ -53,6 +62,7 @@ export class OpenRouterAudioTranscriptionService implements IAudioTranscriptionS
         language: 'pt',
       }),
     });
+    const latencyMs = Date.now() - startedAt;
 
     if (!res.ok) {
       const errorBody = await res.text().catch(() => 'unknown');
@@ -71,8 +81,46 @@ export class OpenRouterAudioTranscriptionService implements IAudioTranscriptionS
     console.log('[audio-transcription] result', {
       textLength: text.length,
       text: text.slice(0, 100),
+      usage: data.usage,
     });
 
+    this.recordUsage(input.sessionId, model, data, latencyMs);
+
     return { text };
+  }
+
+  private recordUsage(
+    sessionId: string | undefined,
+    model: string,
+    data: TranscriptionResponse,
+    latencyMs: number
+  ): void {
+    if (!sessionId) return;
+
+    const seconds = data.usage?.seconds;
+    const costUsd =
+      typeof data.usage?.cost === 'number'
+        ? data.usage.cost
+        : typeof seconds === 'number'
+          ? computeAudioCostUsd(model, seconds, appConfig.openrouter.pricing)
+          : 0;
+    const audioSeconds =
+      typeof seconds === 'number' ? Math.round(seconds) : null;
+
+    this.recorder
+      .record({
+        sessionId,
+        purpose: 'audio',
+        model,
+        promptTokens: 0,
+        completionTokens: 0,
+        totalTokens: 0,
+        costUsd,
+        latencyMs,
+        audioSeconds,
+      })
+      .catch((error) => {
+        console.error('[audio-transcription] failed to record usage', error);
+      });
   }
 }

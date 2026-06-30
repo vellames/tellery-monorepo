@@ -23,3 +23,13 @@ export function computeCostUsd(
     (completionTokens / 1_000_000) * tier.completionPerMillion
   );
 }
+
+export function computeAudioCostUsd(
+  model: string,
+  audioSeconds: number,
+  pricing: Record<string, ModelPricing>
+): number {
+  const tier = pricing[model];
+  if (!tier?.perMinute) return 0;
+  return (audioSeconds / 60) * tier.perMinute;
+}

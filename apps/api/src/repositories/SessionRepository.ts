@@ -474,22 +474,24 @@ export class SessionRepository
     const [total, groups] = await Promise.all([
       client.llmCall.aggregate({
         where: { sessionId },
-        _sum: { costUsdNanos: true },
+        _sum: { costUsdNanos: true, audioSeconds: true },
       }),
       client.llmCall.groupBy({
         by: ['purpose'],
         where: { sessionId },
-        _sum: { costUsdNanos: true },
+        _sum: { costUsdNanos: true, audioSeconds: true },
         _count: { id: true },
       }),
     ]);
 
     return {
       totalCostUsdNanos: total._sum.costUsdNanos ?? 0n,
+      totalAudioSeconds: total._sum.audioSeconds ?? 0,
       breakdown: groups.map((group) => ({
         purpose: group.purpose,
         costUsdNanos: group._sum.costUsdNanos ?? 0n,
         calls: group._count.id,
+        audioSeconds: group._sum.audioSeconds ?? null,
       })),
     };
   }

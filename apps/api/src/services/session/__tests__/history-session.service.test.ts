@@ -283,24 +283,58 @@ describe('HistorySessionService', () => {
   });
 
   describe('getSessionCost', () => {
-    it('returns the total cost and per-purpose breakdown converted to USD', async () => {
+    it('returns the total cost, audio seconds and per-purpose breakdown in USD', async () => {
       sessions.findById.mockResolvedValue(mockSession());
       sessions.getSessionCost.mockResolvedValue({
-        totalCostUsdNanos: 250_000n,
+        totalCostUsdNanos: 250_100n,
+        totalAudioSeconds: 6,
         breakdown: [
-          { purpose: 'character', costUsdNanos: 200_000n, calls: 2 },
-          { purpose: 'intent', costUsdNanos: 50_000n, calls: 1 },
+          {
+            purpose: 'character',
+            costUsdNanos: 200_000n,
+            calls: 2,
+            audioSeconds: null,
+          },
+          {
+            purpose: 'intent',
+            costUsdNanos: 50_000n,
+            calls: 1,
+            audioSeconds: null,
+          },
+          {
+            purpose: 'audio',
+            costUsdNanos: 100n,
+            calls: 1,
+            audioSeconds: 6,
+          },
         ],
       });
 
       const result = await service.getSessionCost('session-1', 'user-1');
 
       expect(sessions.getSessionCost).toHaveBeenCalledWith('session-1');
-      expect(result.totalCostUsd).toBeCloseTo(0.00025, 9);
-      expect(result.totalCalls).toBe(3);
+      expect(result.totalCostUsd).toBeCloseTo(0.0002501, 9);
+      expect(result.totalCalls).toBe(4);
+      expect(result.totalAudioSeconds).toBe(6);
       expect(result.breakdown).toEqual([
-        { purpose: 'character', costUsd: expect.closeTo(0.0002, 9), calls: 2 },
-        { purpose: 'intent', costUsd: expect.closeTo(0.00005, 9), calls: 1 },
+        {
+          purpose: 'character',
+          costUsd: expect.closeTo(0.0002, 9),
+          calls: 2,
+          audioSeconds: null,
+        },
+        {
+          purpose: 'intent',
+          costUsd: expect.closeTo(0.00005, 9),
+          calls: 1,
+          audioSeconds: null,
+        },
+        {
+          purpose: 'audio',
+          costUsd: expect.closeTo(0.0000001, 9),
+          calls: 1,
+          audioSeconds: 6,
+        },
       ]);
     });
 

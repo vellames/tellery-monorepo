@@ -185,6 +185,7 @@ export class SessionController {
           buffer: file.buffer,
           contentType: file.mimetype,
           filename: file.originalname,
+          sessionId,
         });
 
         if (!text.trim()) {

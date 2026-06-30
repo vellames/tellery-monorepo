@@ -48,6 +48,7 @@ const env = parsed.data;
 export interface ModelPricing {
   promptPerMillion: number;
   completionPerMillion: number;
+  perMinute?: number;
 }
 
 export const appConfig = {
@@ -85,6 +86,11 @@ export const appConfig = {
       'google/gemini-2.5-flash-lite': {
         promptPerMillion: 0.1,
         completionPerMillion: 0.4,
+      },
+      'openai/whisper-1': {
+        promptPerMillion: 0,
+        completionPerMillion: 0,
+        perMinute: 0.006,
       },
     } satisfies Record<string, ModelPricing>,
   },

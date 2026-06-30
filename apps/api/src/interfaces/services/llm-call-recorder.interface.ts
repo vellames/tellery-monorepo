@@ -9,6 +9,7 @@ export interface LlmCallUsageInput {
   totalTokens: number;
   costUsd: number;
   latencyMs?: number | null;
+  audioSeconds?: number | null;
 }
 
 export interface ILlmCallRecorder {

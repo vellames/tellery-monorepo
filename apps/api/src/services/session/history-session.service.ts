@@ -40,11 +40,13 @@ export interface SessionCostBreakdownItemResponse {
   purpose: string;
   costUsd: number;
   calls: number;
+  audioSeconds: number | null;
 }
 
 export interface SessionCostResponse {
   totalCostUsd: number;
   totalCalls: number;
+  totalAudioSeconds: number;
   breakdown: SessionCostBreakdownItemResponse[];
 }
 
@@ -193,10 +195,12 @@ export class HistorySessionService {
     return {
       totalCostUsd: fromNanos(summary.totalCostUsdNanos),
       totalCalls: summary.breakdown.reduce((sum, item) => sum + item.calls, 0),
+      totalAudioSeconds: summary.totalAudioSeconds,
       breakdown: summary.breakdown.map((item) => ({
         purpose: item.purpose,
         costUsd: fromNanos(item.costUsdNanos),
         calls: item.calls,
+        audioSeconds: item.audioSeconds,
       })),
     };
   }

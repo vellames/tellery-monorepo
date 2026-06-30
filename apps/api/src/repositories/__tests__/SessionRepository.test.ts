@@ -417,22 +417,55 @@ describe('SessionRepository', () => {
         },
       });
     });
+
+    it('persists an audio call with audio seconds and zero tokens', async () => {
+      prisma.llmCall.create.mockResolvedValue({} as never);
+
+      await repo.recordLlmCall({
+        sessionId: 'session-1',
+        purpose: 'audio',
+        model: 'openai/whisper-1',
+        promptTokens: 0,
+        completionTokens: 0,
+        totalTokens: 0,
+        costUsdNanos: 100n,
+        audioSeconds: 6,
+      });
+
+      expect(prisma.llmCall.create).toHaveBeenCalledWith({
+        data: {
+          sessionId: 'session-1',
+          purpose: 'audio',
+          model: 'openai/whisper-1',
+          promptTokens: 0,
+          completionTokens: 0,
+          totalTokens: 0,
+          costUsdNanos: 100n,
+          audioSeconds: 6,
+        },
+      });
+    });
   });
 
   describe('getSessionCost', () => {
-    it('aggregates nano-dollar totals and groups per purpose', async () => {
+    it('aggregates cost and audio seconds per purpose', async () => {
       (prisma.llmCall.aggregate as jest.Mock).mockResolvedValue({
-        _sum: { costUsdNanos: 250_000n },
+        _sum: { costUsdNanos: 250_100n, audioSeconds: 6 },
       });
       (prisma.llmCall.groupBy as jest.Mock).mockResolvedValue([
         {
           purpose: 'character',
-          _sum: { costUsdNanos: 200_000n },
+          _sum: { costUsdNanos: 200_000n, audioSeconds: null },
           _count: { id: 2 },
         },
         {
           purpose: 'intent',
-          _sum: { costUsdNanos: 50_000n },
+          _sum: { costUsdNanos: 50_000n, audioSeconds: null },
+          _count: { id: 1 },
+        },
+        {
+          purpose: 'audio',
+          _sum: { costUsdNanos: 100n, audioSeconds: 6 },
           _count: { id: 1 },
         },
       ]);
@@ -441,18 +474,35 @@ describe('SessionRepository', () => {
 
       expect(prisma.llmCall.aggregate).toHaveBeenCalledWith({
         where: { sessionId: 'session-1' },
-        _sum: { costUsdNanos: true },
+        _sum: { costUsdNanos: true, audioSeconds: true },
       });
       expect(prisma.llmCall.groupBy).toHaveBeenCalledWith({
         by: ['purpose'],
         where: { sessionId: 'session-1' },
-        _sum: { costUsdNanos: true },
+        _sum: { costUsdNanos: true, audioSeconds: true },
         _count: { id: true },
       });
-      expect(result.totalCostUsdNanos).toBe(250_000n);
+      expect(result.totalCostUsdNanos).toBe(250_100n);
+      expect(result.totalAudioSeconds).toBe(6);
       expect(result.breakdown).toEqual([
-        { purpose: 'character', costUsdNanos: 200_000n, calls: 2 },
-        { purpose: 'intent', costUsdNanos: 50_000n, calls: 1 },
+        {
+          purpose: 'character',
+          costUsdNanos: 200_000n,
+          calls: 2,
+          audioSeconds: null,
+        },
+        {
+          purpose: 'intent',
+          costUsdNanos: 50_000n,
+          calls: 1,
+          audioSeconds: null,
+        },
+        {
+          purpose: 'audio',
+          costUsdNanos: 100n,
+          calls: 1,
+          audioSeconds: 6,
+        },
       ]);
     });
   });

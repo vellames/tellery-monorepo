@@ -70,4 +70,29 @@ describe('LlmCallRecorder', () => {
       expect.objectContaining({ latencyMs: undefined })
     );
   });
+
+  it('forwards audio seconds for a whisper call', async () => {
+    await recorder.record({
+      sessionId: 'session-1',
+      purpose: 'audio',
+      model: 'openai/whisper-1',
+      promptTokens: 0,
+      completionTokens: 0,
+      totalTokens: 0,
+      costUsd: 0.0001,
+      audioSeconds: 6,
+    });
+
+    expect(repo.recordLlmCall).toHaveBeenCalledWith({
+      sessionId: 'session-1',
+      purpose: 'audio',
+      model: 'openai/whisper-1',
+      promptTokens: 0,
+      completionTokens: 0,
+      totalTokens: 0,
+      costUsdNanos: 100_000n,
+      latencyMs: undefined,
+      audioSeconds: 6,
+    });
+  });
 });
