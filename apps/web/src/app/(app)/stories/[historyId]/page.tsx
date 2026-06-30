@@ -7,11 +7,7 @@ import { fetchHistory } from '@/lib/api/history';
 import { fetchSessions } from '@/lib/api/session';
 import { ApiError } from '@/lib/api/client';
 import { config } from '@/lib/config';
-import { startSessionAction } from '@/lib/actions/session';
-import {
-  StartSessionButton,
-  AbandonSessionButton,
-} from '@/components/molecules';
+import { StartSessionForm, AbandonSessionButton } from '@/components/molecules';
 
 export default async function StoryStartPage({
   params,
@@ -114,9 +110,7 @@ export default async function StoryStartPage({
           </div>
         </div>
       ) : (
-        <form action={startSessionAction.bind(null, history.id)}>
-          <StartSessionButton />
-        </form>
+        <StartSessionForm historyId={history.id} />
       )}
     </div>
   );

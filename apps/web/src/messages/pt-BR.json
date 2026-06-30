@@ -144,6 +144,7 @@
     "objective": "Objetivo",
     "startButton": "Iniciar história",
     "starting": "Iniciando…",
+    "startError": "Não foi possível iniciar a sessão. Tente novamente.",
     "backToStories": "Voltar para histórias",
     "continueButton": "Continuar investigação",
     "activeSessionDisclaimer": "Você já tem uma investigação em andamento desta história. Continue de onde parou.",
