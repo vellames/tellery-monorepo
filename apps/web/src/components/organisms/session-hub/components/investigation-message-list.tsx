@@ -1,7 +1,6 @@
 'use client';
 
-import { Mic, Search } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { SessionMessage } from '@/lib/types/session';
 
@@ -18,8 +17,6 @@ export function InvestigationMessageList({
   isSending,
   isTranscribing,
 }: InvestigationMessageListProps) {
-  const tp = useTranslations('play.panel');
-
   if (messages.length === 0 && !isSending && !isTranscribing) return null;
 
   return (
@@ -70,11 +67,6 @@ export function InvestigationMessageList({
       {isSending && (
         <div className="flex justify-start">
           <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-[#fff9ef]/[0.07] px-4 py-3">
-            {isTranscribing && (
-              <span className="mr-1 text-xs text-[#fff9ef]/45">
-                {tp('recording')}
-              </span>
-            )}
             {[0, 1, 2].map((dot) => (
               <span
                 key={dot}
@@ -82,15 +74,6 @@ export function InvestigationMessageList({
                 style={{ animationDelay: `${dot * 0.15}s` }}
               />
             ))}
-          </div>
-        </div>
-      )}
-
-      {isTranscribing && !messages.length && (
-        <div className="flex justify-start">
-          <div className="flex items-center gap-2 rounded-2xl rounded-bl-md bg-[#fff9ef]/[0.07] px-4 py-3 text-xs text-[#fff9ef]/45">
-            <Mic className="size-3.5 animate-pulse" />
-            {tp('recording')}
           </div>
         </div>
       )}

@@ -60,4 +60,18 @@ describe('InvestigationMessageList', () => {
     const dots = container.querySelectorAll('.scene-typing-dot');
     expect(dots).toHaveLength(3);
   });
+
+  it('shows only typing dots while sending transcribed audio', () => {
+    const { container } = renderWithProviders(
+      <InvestigationMessageList
+        messages={[]}
+        isSending
+        isTranscribing
+      />
+    );
+
+    const dots = container.querySelectorAll('.scene-typing-dot');
+    expect(dots).toHaveLength(3);
+    expect(screen.queryByText('Gravando…')).not.toBeInTheDocument();
+  });
 });
