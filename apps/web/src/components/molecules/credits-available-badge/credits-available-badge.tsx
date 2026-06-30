@@ -2,15 +2,15 @@ import { Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
-export interface SessionsAvailableBadgeProps {
+export interface CreditsAvailableBadgeProps {
   count: number;
   className?: string;
 }
 
-export function SessionsAvailableBadge({
+export function CreditsAvailableBadge({
   count,
   className,
-}: SessionsAvailableBadgeProps) {
+}: CreditsAvailableBadgeProps) {
   const t = useTranslations('common');
 
   return (
@@ -21,7 +21,7 @@ export function SessionsAvailableBadge({
       )}
     >
       <Star className="fill-gold text-gold size-4" />
-      <span>{t('sessionsAvailable', { count })}</span>
+      <span>{t('creditsAvailable', { count })}</span>
     </div>
   );
 }

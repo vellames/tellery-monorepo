@@ -75,14 +75,14 @@ export class UserRepository extends BaseRepository implements IUserRepository {
     });
   }
 
-  async decrementAvailableSessions(
+  async decrementAvailableCredits(
     id: string,
     tx?: PrismaTransaction
   ): Promise<boolean> {
     const client = tx || this.prisma;
     const result = await client.user.updateMany({
-      where: { id, availableSessions: { gt: 0 }, deletedAt: null },
-      data: { availableSessions: { decrement: 1 } },
+      where: { id, availableCredits: { gt: 0 }, deletedAt: null },
+      data: { availableCredits: { decrement: 1 } },
     });
     return result.count > 0;
   }

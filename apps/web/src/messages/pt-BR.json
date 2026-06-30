@@ -117,7 +117,7 @@
     "privacyPolicy": "Política de Privacidade",
     "termsOfUse": "Termos de Uso",
     "tagline": "Histórias onde você participa",
-    "sessionsAvailable": "{count} sessões disponíveis",
+    "creditsAvailable": "{count} créditos disponíveis",
     "featured": "Destaque",
     "genres": {
       "mystery": "Mistério",
@@ -145,7 +145,7 @@
     "startButton": "Iniciar história",
     "starting": "Iniciando…",
     "startError": "Não foi possível iniciar a sessão. Tente novamente.",
-    "noSessionsAvailable": "Você não tem sessões disponíveis.",
+    "noCreditsAvailable": "Você não tem créditos disponíveis.",
     "backToStories": "Voltar para histórias",
     "continueButton": "Continuar investigação",
     "activeSessionDisclaimer": "Você já tem uma investigação em andamento desta história. Continue de onde parou.",

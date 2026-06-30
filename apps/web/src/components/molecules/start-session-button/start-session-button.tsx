@@ -21,7 +21,7 @@ export function StartSessionButton({
       type="submit"
     >
       {unavailable ? (
-        t('noSessionsAvailable')
+        t('noCreditsAvailable')
       ) : pending ? (
         <>
           <Loader2 className="size-5 animate-spin" />

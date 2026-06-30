@@ -45,7 +45,7 @@ export default async function StoryStartPage({
   }
 
   const user = await getSessionUser();
-  const hasSessionsLeft = !!user && user.availableSessions > 0;
+  const hasSessionsLeft = !!user && user.availableCredits > 0;
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8">

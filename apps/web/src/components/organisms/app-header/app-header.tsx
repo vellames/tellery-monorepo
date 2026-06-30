@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 import type { User } from '@/lib/types/auth';
-import { SessionsAvailableBadge } from '@/components/molecules';
+import { CreditsAvailableBadge } from '@/components/molecules';
 
 export interface AppHeaderProps {
   user: User;
@@ -28,8 +28,8 @@ export function AppHeader({ user }: AppHeaderProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <SessionsAvailableBadge
-          count={user.availableSessions}
+        <CreditsAvailableBadge
+          count={user.availableCredits}
           className="px-3 py-2 sm:px-5 sm:py-3"
         />
         <div className="bg-secondary text-secondary-foreground shadow-soft grid size-12 place-items-center overflow-hidden rounded-full text-sm font-semibold sm:size-14">

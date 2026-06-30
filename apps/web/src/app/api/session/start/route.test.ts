@@ -40,7 +40,7 @@ describe('POST /api/session/start', () => {
       id: '1',
       name: 'A',
       email: 'a@b.c',
-      availableSessions: 2,
+      availableCredits: 2,
       createdAt: '',
       updatedAt: '',
     });
@@ -58,13 +58,13 @@ describe('POST /api/session/start', () => {
 
   it('forwards the ApiError status and message', async () => {
     vi.mocked(apiFetch).mockRejectedValue(
-      new ApiError('You have no sessions available', 402)
+      new ApiError('You have no credits available', 402)
     );
 
     const res = await POST(makeReq({ historyId: 'history-1' }));
 
     expect(res.status).toBe(402);
-    expect((await res.json()).error).toBe('You have no sessions available');
+    expect((await res.json()).error).toBe('You have no credits available');
     expect(refreshSessionUser).not.toHaveBeenCalled();
   });
 });

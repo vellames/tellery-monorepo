@@ -23,7 +23,7 @@ const user = {
   id: '1',
   name: 'Ana Updated',
   email: 'ana.updated@b.c',
-  availableSessions: 3,
+  availableCredits: 3,
   createdAt: '',
   updatedAt: '',
 };

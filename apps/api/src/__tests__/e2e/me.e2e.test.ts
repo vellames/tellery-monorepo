@@ -72,7 +72,7 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   name: 'Ana Teste',
   email: AUTHENTICATED_USER_EMAIL,
   password: 'hashed-password',
-  availableSessions: 3,
+  availableCredits: 3,
   ...overrides,
 });
 
@@ -98,7 +98,7 @@ describe('E2E: GET /me', () => {
       id: AUTHENTICATED_USER_ID,
       name: 'Ana Teste',
       email: AUTHENTICATED_USER_EMAIL,
-      availableSessions: 3,
+      availableCredits: 3,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
@@ -146,7 +146,7 @@ describe('E2E: PATCH /me', () => {
       id: AUTHENTICATED_USER_ID,
       name: 'Ana Updated',
       email: 'ana.updated@teste.local',
-      availableSessions: 3,
+      availableCredits: 3,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });

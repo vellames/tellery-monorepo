@@ -98,7 +98,7 @@ export class HistorySessionService {
     }
 
     const session = await this.sessions.runTransaction(async (tx) => {
-      const decremented = await this.users.decrementAvailableSessions(
+      const decremented = await this.users.decrementAvailableCredits(
         user.id,
         tx
       );
@@ -106,7 +106,7 @@ export class HistorySessionService {
         throw new HttpError(
           StatusCodes.PAYMENT_REQUIRED,
           user.id,
-          'session:errors.noSessionsAvailable'
+          'session:errors.noCreditsAvailable'
         );
       }
       return this.sessions.create({ userId: user.id, history }, tx);

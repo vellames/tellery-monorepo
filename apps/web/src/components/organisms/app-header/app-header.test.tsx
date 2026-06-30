@@ -8,7 +8,7 @@ const mockUser: User = {
   id: '1',
   name: 'Cassiano',
   email: 'cassiano@example.com',
-  availableSessions: 7,
+  availableCredits: 7,
   createdAt: '',
   updatedAt: '',
 };
@@ -22,7 +22,7 @@ describe('AppHeader', () => {
     expect(
       screen.getByText('Histórias onde você participa')
     ).toBeInTheDocument();
-    expect(screen.getByText('7 sessões disponíveis')).toBeInTheDocument();
+    expect(screen.getByText('7 créditos disponíveis')).toBeInTheDocument();
   });
 
   it('shows the first letter of the user name in the avatar', () => {
@@ -35,6 +35,6 @@ describe('AppHeader', () => {
     renderWithProviders(<AppHeader user={mockUser} />, { locale: 'en' });
 
     expect(screen.getByText('Stories you take part in')).toBeInTheDocument();
-    expect(screen.getByText('7 sessions available')).toBeInTheDocument();
+    expect(screen.getByText('7 credits available')).toBeInTheDocument();
   });
 });

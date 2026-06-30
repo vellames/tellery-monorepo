@@ -36,16 +36,16 @@ describe('useStartSession', () => {
 
   it('toasts the error on failure', async () => {
     vi.mocked(startSessionRequest).mockRejectedValue(
-      new Error('You have no sessions available')
+      new Error('You have no credits available')
     );
     const { result } = renderHookWithProviders(() => useStartSession());
 
     await act(async () => {
       await expect(result.current.mutateAsync('history-1')).rejects.toThrow(
-        'You have no sessions available'
+        'You have no credits available'
       );
     });
 
-    expect(toast.error).toHaveBeenCalledWith('You have no sessions available');
+    expect(toast.error).toHaveBeenCalledWith('You have no credits available');
   });
 });

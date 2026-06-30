@@ -25,16 +25,13 @@ describe('startSessionRequest', () => {
 
   it('throws the error message when the request fails', async () => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValue(
-      new Response(
-        JSON.stringify({ error: 'You have no sessions available' }),
-        {
-          status: 402,
-        }
-      )
+      new Response(JSON.stringify({ error: 'You have no credits available' }), {
+        status: 402,
+      })
     );
 
     await expect(startSessionRequest('history-1')).rejects.toThrow(
-      'You have no sessions available'
+      'You have no credits available'
     );
   });
 });

@@ -72,7 +72,7 @@ model User {
   email    String @unique
   password String
 
-  availableSessions Int @default(3)
+  availableCredits Int @default(3)
 
   sessions HistorySession[]
 }

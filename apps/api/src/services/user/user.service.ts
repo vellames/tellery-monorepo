@@ -157,7 +157,7 @@ export class UserService {
       id: user.id,
       name: user.name,
       email: user.email,
-      availableSessions: user.availableSessions,
+      availableCredits: user.availableCredits,
       createdAt: user.createdAt.toISOString(),
       updatedAt: user.updatedAt.toISOString(),
     };

@@ -13,7 +13,7 @@ export interface IUserRepository extends IBaseRepository {
     data: UpdateUserDto,
     tx?: PrismaTransaction
   ): Promise<User>;
-  decrementAvailableSessions(
+  decrementAvailableCredits(
     id: string,
     tx?: PrismaTransaction
   ): Promise<boolean>;

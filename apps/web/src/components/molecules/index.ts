@@ -6,4 +6,4 @@ export { StoryCard } from './story-card/story-card';
 export { StartSessionButton } from './start-session-button/start-session-button';
 export { StartSessionForm } from './start-session-form/start-session-form';
 export { AbandonSessionButton } from './abandon-session-button/abandon-session-button';
-export { SessionsAvailableBadge } from './sessions-available-badge/sessions-available-badge';
+export { CreditsAvailableBadge } from './credits-available-badge/credits-available-badge';

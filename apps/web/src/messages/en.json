@@ -117,7 +117,7 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfUse": "Terms of Use",
     "tagline": "Stories you take part in",
-    "sessionsAvailable": "{count} sessions available",
+    "creditsAvailable": "{count} credits available",
     "featured": "Featured",
     "genres": {
       "mystery": "Mystery",
@@ -145,7 +145,7 @@
     "startButton": "Start story",
     "starting": "Starting…",
     "startError": "Could not start the session. Please try again.",
-    "noSessionsAvailable": "You have no sessions available.",
+    "noCreditsAvailable": "You have no credits available.",
     "backToStories": "Back to stories",
     "continueButton": "Continue investigation",
     "activeSessionDisclaimer": "You already have an ongoing investigation for this story. Pick up where you left off.",

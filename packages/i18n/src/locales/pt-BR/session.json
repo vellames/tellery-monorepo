@@ -11,7 +11,7 @@
     "sessionAlreadyCompleted": "Esta sessão já foi concluída",
     "sessionAlreadyActive": "Você já tem uma sessão em andamento para esta história",
     "sessionNotActive": "Esta sessão não está mais ativa",
-    "noSessionsAvailable": "Você não tem sessões disponíveis",
+    "noCreditsAvailable": "Você não tem créditos disponíveis",
     "requiredCluesNotDiscovered": "Você ainda não descobriu todas as pistas obrigatórias",
     "unknownConclusionField": "Campo de conclusão desconhecido: {{id}}",
     "unknownConclusionOption": "Opção de conclusão desconhecida: {{id}}",
