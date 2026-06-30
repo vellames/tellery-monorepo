@@ -10,7 +10,12 @@ vi.mock('next/headers', () => ({
   cookies: vi.fn(async () => store),
 }));
 
-import { clearSession, getSessionUser, setSession } from '@/lib/auth/session';
+import {
+  clearSession,
+  getSessionUser,
+  setSession,
+  updateSessionUser,
+} from '@/lib/auth/session';
 import type { User } from '@/lib/types/auth';
 
 const user: User = {
@@ -58,5 +63,20 @@ describe('session', () => {
     store.get.mockReturnValue(undefined);
 
     await expect(getSessionUser()).resolves.toBeNull();
+  });
+
+  it('updateSessionUser refreshes only the readable user cookie', async () => {
+    await updateSessionUser(user);
+
+    expect(store.set).toHaveBeenCalledWith(
+      'ai-history.user',
+      JSON.stringify(user),
+      expect.objectContaining({ httpOnly: false })
+    );
+    expect(store.set).not.toHaveBeenCalledWith(
+      'ai-history.session',
+      expect.anything(),
+      expect.anything()
+    );
   });
 });

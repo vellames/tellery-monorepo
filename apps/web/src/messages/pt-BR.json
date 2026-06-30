@@ -241,5 +241,23 @@
     "endingCorrectAnswers": "Respostas corretas",
     "endingCluesDiscovered": "Pistas descobertas",
     "endingRequiredClues": "Pistas obrigatórias"
+  },
+  "profile": {
+    "title": "Perfil",
+    "subtitle": "Gerencie os dados da sua conta.",
+    "name": "Nome",
+    "namePlaceholder": "Seu nome",
+    "email": "E-mail",
+    "emailPlaceholder": "voce@exemplo.com",
+    "memberSince": "Membro desde {date}",
+    "submit": "Salvar alterações",
+    "saved": "Perfil atualizado",
+    "errors": {
+      "required": "Nome e e-mail são obrigatórios",
+      "nameRequired": "Nome é obrigatório",
+      "invalidEmail": "E-mail inválido",
+      "emailRequired": "E-mail é obrigatório",
+      "updateFailed": "Falha ao atualizar o perfil"
+    }
   }
 }

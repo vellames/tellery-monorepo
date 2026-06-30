@@ -18,7 +18,7 @@ const navItems: NavItem[] = [
   { icon: Home, labelKey: 'home', href: config.routes.home },
   { icon: BookOpen, labelKey: 'stories', href: config.routes.stories },
   { icon: Compass, labelKey: 'journey', href: config.routes.journey },
-  { icon: UserRound, labelKey: 'profile' },
+  { icon: UserRound, labelKey: 'profile', href: config.routes.profile },
 ];
 
 export function BottomNav() {

@@ -241,5 +241,23 @@
     "endingCorrectAnswers": "Correct answers",
     "endingCluesDiscovered": "Clues discovered",
     "endingRequiredClues": "Required clues"
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Manage your account details.",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "memberSince": "Member since {date}",
+    "submit": "Save changes",
+    "saved": "Profile updated",
+    "errors": {
+      "required": "Name and email are required",
+      "nameRequired": "Name is required",
+      "invalidEmail": "Invalid email",
+      "emailRequired": "Email is required",
+      "updateFailed": "Failed to update profile"
+    }
   }
 }

@@ -9,3 +9,4 @@ export { HowItWorks } from './how-it-works/how-it-works';
 export { StoryList } from './story-list/story-list';
 export { SessionHub } from './session-hub/session-hub';
 export { SessionHistory } from './session-history/session-history';
+export { ProfileForm } from './profile-form/profile-form';

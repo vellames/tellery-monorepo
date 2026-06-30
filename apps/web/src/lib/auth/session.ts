@@ -38,3 +38,11 @@ export async function getSessionUser(): Promise<User | null> {
     return null;
   }
 }
+
+export async function updateSessionUser(user: User): Promise<void> {
+  const store = await cookies();
+  store.set(config.auth.userCookie, JSON.stringify(user), {
+    ...cookieOptions,
+    httpOnly: false,
+  });
+}

@@ -17,8 +17,10 @@ export const config = {
     forgotPassword: '/forgot-password',
     privacy: '/privacy',
     terms: '/terms',
+    profile: '/profile',
     loginApi: '/api/auth/login',
     logoutApi: '/api/auth/logout',
     registerApi: '/api/auth/register',
+    meApi: '/api/me',
   },
 } as const;
