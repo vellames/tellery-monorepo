@@ -676,6 +676,7 @@ model ObjectInteractionMessage {
   content String
 
   @@index([objectStateId])
+  @@index([objectStateId, createdAt])
 }
 
 model CharacterConversationMessage {
@@ -689,6 +690,7 @@ model CharacterConversationMessage {
   content String
 
   @@index([characterStateId])
+  @@index([characterStateId, createdAt])
 }
 
 model SessionConclusionField {

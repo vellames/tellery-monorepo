@@ -45,7 +45,7 @@ export const historySessionInclude = {
         },
       },
       revealedClues: true,
-      messages: true,
+      messages: { orderBy: { createdAt: 'asc' } },
     },
   },
   locationStates: {
@@ -57,7 +57,7 @@ export const historySessionInclude = {
         include: { clue: true, triggerIntents: true, requiredClues: true },
       },
       revealedClues: true,
-      messages: true,
+      messages: { orderBy: { createdAt: 'asc' } },
     },
   },
   conclusionFields: {

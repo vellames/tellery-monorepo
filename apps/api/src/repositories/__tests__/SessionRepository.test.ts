@@ -83,6 +83,28 @@ describe('SessionRepository', () => {
     });
   });
 
+  describe('historySessionInclude — message ordering', () => {
+    it('orders character conversation messages by createdAt asc', () => {
+      expect(
+        (
+          historySessionInclude.characterStates as {
+            include: { messages: unknown };
+          }
+        ).include.messages
+      ).toEqual({ orderBy: { createdAt: 'asc' } });
+    });
+
+    it('orders object interaction messages by createdAt asc', () => {
+      expect(
+        (
+          historySessionInclude.objectStates as {
+            include: { messages: unknown };
+          }
+        ).include.messages
+      ).toEqual({ orderBy: { createdAt: 'asc' } });
+    });
+  });
+
   describe('list', () => {
     it('returns paginated sessions ordered by createdAt desc when no userId', async () => {
       const sessions = [
