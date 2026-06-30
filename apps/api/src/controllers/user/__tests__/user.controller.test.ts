@@ -186,4 +186,184 @@ describe('UserController', () => {
       expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
     });
   });
+
+  describe('getProfile', () => {
+    it('should return 200 with the logged-in user profile', async () => {
+      const userDto = {
+        id: 'user-1',
+        name: 'Ana Teste',
+        email: 'ana@teste.local',
+        createdAt: '2026-01-01T00:00:00.000Z',
+        updatedAt: '2026-01-01T00:00:00.000Z',
+      };
+      userService.findById.mockResolvedValue(userDto);
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.getProfile(req as Request, res as Response);
+
+      expect(userService.findById).toHaveBeenCalledWith('user-1');
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+      expect(json).toHaveBeenCalledWith({
+        success: true,
+        data: userDto,
+        message: undefined,
+      });
+    });
+
+    it('should return 404 when user is not found', async () => {
+      userService.findById.mockRejectedValue(
+        new HttpError(
+          StatusCodes.NOT_FOUND,
+          'User not found',
+          'user:errors.userNotFound'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.getProfile(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.NOT_FOUND);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          error: 'user:errors.userNotFound',
+        })
+      );
+    });
+
+    it('should return 500 on unexpected errors', async () => {
+      userService.findById.mockRejectedValue(new Error('Something went wrong'));
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.getProfile(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    });
+  });
+
+  describe('updateProfile', () => {
+    it('should return 200 with the updated user', async () => {
+      const userDto = {
+        id: 'user-1',
+        name: 'Ana Updated',
+        email: 'ana.updated@teste.local',
+        createdAt: '2026-01-01T00:00:00.000Z',
+        updatedAt: '2026-01-02T00:00:00.000Z',
+      };
+      userService.update.mockResolvedValue(userDto);
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: {
+          name: 'Ana Updated',
+          email: 'ana.updated@teste.local',
+        },
+        t,
+      } as Partial<Request>;
+
+      await controller.updateProfile(req as Request, res as Response);
+
+      expect(userService.update).toHaveBeenCalledWith('user-1', {
+        name: 'Ana Updated',
+        email: 'ana.updated@teste.local',
+      });
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+      expect(json).toHaveBeenCalledWith({
+        success: true,
+        data: userDto,
+        message: undefined,
+      });
+    });
+
+    it('should return 422 when body is invalid', async () => {
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { email: 'not-an-email' },
+        t,
+      } as Partial<Request>;
+
+      await controller.updateProfile(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({ success: false })
+      );
+    });
+
+    it('should return 422 when a password field is sent', async () => {
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { name: 'Ana', password: 'secret' },
+        t,
+      } as Partial<Request>;
+
+      await controller.updateProfile(req as Request, res as Response);
+
+      expect(userService.update).not.toHaveBeenCalled();
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+    });
+
+    it('should return 409 when email is already in use', async () => {
+      userService.update.mockRejectedValue(
+        new HttpError(
+          StatusCodes.CONFLICT,
+          'Email already in use',
+          'user:errors.emailAlreadyInUse'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { email: 'taken@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.updateProfile(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.CONFLICT);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          error: 'user:errors.emailAlreadyInUse',
+        })
+      );
+    });
+
+    it('should return 404 when user is not found', async () => {
+      userService.update.mockRejectedValue(
+        new HttpError(
+          StatusCodes.NOT_FOUND,
+          'User not found',
+          'user:errors.userNotFound'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { name: 'Ana' },
+        t,
+      } as Partial<Request>;
+
+      await controller.updateProfile(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.NOT_FOUND);
+    });
+
+    it('should return 500 on unexpected errors', async () => {
+      userService.update.mockRejectedValue(new Error('Something went wrong'));
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: { name: 'Ana' },
+        t,
+      } as Partial<Request>;
+
+      await controller.updateProfile(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    });
+  });
 });
