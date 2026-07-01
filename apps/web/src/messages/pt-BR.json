@@ -137,6 +137,40 @@
     "profile": "Perfil",
     "openMenu": "Abrir menu"
   },
+  "subscription": {
+    "title": "Assinatura",
+    "subtitle": "Receba créditos mensais e continue investigando.",
+    "unavailable": "As assinaturas não estão disponíveis no momento.",
+    "creditsPerMonth": "{count} créditos por mês",
+    "cancelAnytime": "Cancele quando quiser pelo portal do cliente",
+    "subscribe": "Assinar",
+    "manage": "Gerenciar assinatura",
+    "checkoutSuccess": "Assinatura ativada! Seus créditos foram adicionados.",
+    "checkoutCanceled": "O checkout foi cancelado.",
+    "renewsOn": "Renova em {date}",
+    "endsOn": "Termina em {date}",
+    "interval": {
+      "month": "mês",
+      "year": "ano"
+    },
+    "status": {
+      "incomplete": "Pagamento pendente",
+      "incomplete_expired": "Pagamento expirado",
+      "trialing": "Período de teste",
+      "active": "Ativa",
+      "past_due": "Pagamento em retentativa",
+      "canceled": "Cancelada",
+      "unpaid": "Pagamento falhou",
+      "paused": "Pausada"
+    },
+    "link": "Assinatura",
+    "linkDescription": "Gerencie seu plano e créditos.",
+    "errors": {
+      "checkoutFailed": "Falha ao iniciar o checkout. Tente novamente.",
+      "portalFailed": "Falha ao abrir o portal do cliente.",
+      "noActiveSubscription": "Você não possui uma assinatura ativa."
+    }
+  },
   "stories": {
     "title": "Histórias",
     "featuredSection": "Destaques",

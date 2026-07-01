@@ -1,0 +1,10 @@
+{
+  "errors": {
+    "notConfigured": "Subscription billing is not configured",
+    "checkoutFailed": "Failed to start checkout. Please try again.",
+    "alreadySubscribed": "You already have an active subscription",
+    "noActiveSubscription": "No active subscription found",
+    "webhookInvalid": "Invalid webhook signature or payload",
+    "webhookFailed": "Webhook processing failed"
+  }
+}

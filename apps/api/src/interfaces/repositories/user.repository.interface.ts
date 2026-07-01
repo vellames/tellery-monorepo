@@ -17,5 +17,6 @@ export interface IUserRepository extends IBaseRepository {
     id: string,
     tx?: PrismaTransaction
   ): Promise<boolean>;
+  addCredits(id: string, amount: number, tx?: PrismaTransaction): Promise<void>;
   softDelete(id: string, tx?: PrismaTransaction): Promise<void>;
 }

@@ -457,8 +457,37 @@ async function seedHistory(
   }
 }
 
+async function seedPlan(): Promise<void> {
+  const stripePriceId = process.env.STRIPE_MONTHLY_PRICE_ID;
+  if (!stripePriceId) {
+    console.log(
+      'Skipping plan seed: STRIPE_MONTHLY_PRICE_ID is not set. Set it after creating the price in Stripe.'
+    );
+    return;
+  }
+
+  await prisma.plan.upsert({
+    where: { stripePriceId },
+    create: {
+      stripePriceId,
+      name: 'Mensal',
+      creditsPerCycle: 20,
+      interval: 'month',
+      active: true,
+    },
+    update: {
+      name: 'Mensal',
+      creditsPerCycle: 20,
+      interval: 'month',
+      active: true,
+    },
+  });
+  console.log(`Plan seeded for price "${stripePriceId}".`);
+}
+
 async function main(): Promise<void> {
   const force = process.argv.includes('--force');
+  await seedPlan();
   const historyFiles = [
     'o-bilhete-na-mesa-7.json',
     'o-relogio-parado.json',

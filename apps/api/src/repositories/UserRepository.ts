@@ -86,4 +86,16 @@ export class UserRepository extends BaseRepository implements IUserRepository {
     });
     return result.count > 0;
   }
+
+  async addCredits(
+    id: string,
+    amount: number,
+    tx?: PrismaTransaction
+  ): Promise<void> {
+    const client = tx || this.prisma;
+    await client.user.update({
+      where: { id },
+      data: { availableCredits: { increment: amount } },
+    });
+  }
 }

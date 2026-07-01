@@ -31,6 +31,11 @@ const envSchema = z.object({
     .int()
     .min(60)
     .default(3600),
+  STRIPE_SECRET_KEY: z.string().min(1),
+  STRIPE_PUBLISHABLE_KEY: z.string().optional(),
+  STRIPE_WEBHOOK_SECRET: z.string().optional(),
+  STRIPE_MONTHLY_PRICE_ID: z.string().optional(),
+  WEB_BASE_URL: z.string().url().default('http://localhost:3000'),
 });
 
 const parsed = envSchema.safeParse(process.env);
@@ -107,5 +112,17 @@ export const appConfig = {
     secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
     s3Bucket: env.AWS_S3_BUCKET,
     presignedExpirationSeconds: env.AWS_S3_PRESIGNED_EXPIRATION_SECONDS,
+  },
+
+  stripe: {
+    secretKey: env.STRIPE_SECRET_KEY,
+    publishableKey: env.STRIPE_PUBLISHABLE_KEY,
+    webhookSecret: env.STRIPE_WEBHOOK_SECRET,
+    monthlyPriceId: env.STRIPE_MONTHLY_PRICE_ID,
+    apiVersion: '2026-06-24.dahlia',
+  },
+
+  web: {
+    baseUrl: env.WEB_BASE_URL,
   },
 } as const;

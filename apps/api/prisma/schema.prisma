@@ -60,6 +60,17 @@ enum LlmCallPurpose {
   audio
 }
 
+enum SubscriptionStatus {
+  incomplete
+  incomplete_expired
+  trialing
+  active
+  past_due
+  canceled
+  unpaid
+  paused
+}
+
 // ─── User ─────────────────────────────────────────────────────────────────────
 
 model User {
@@ -74,7 +85,8 @@ model User {
 
   availableCredits Int @default(3)
 
-  sessions HistorySession[]
+  sessions     HistorySession[]
+  subscription Subscription?
 }
 
 // ─── History (authored content) ───────────────────────────────────────────────
@@ -849,4 +861,65 @@ model LlmCall {
 
   @@index([sessionId])
   @@index([createdAt])
+}
+
+// ─── Subscriptions (Stripe) ───────────────────────────────────────────────────
+
+model Plan {
+  id              String         @id @default(uuid())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  deletedAt       DateTime?
+
+  stripePriceId   String         @unique
+  name            String
+  creditsPerCycle Int
+  interval        String
+  active          Boolean        @default(true)
+
+  subscriptions   Subscription[]
+
+  @@index([active])
+}
+
+model Subscription {
+  id                   String             @id @default(uuid())
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  deletedAt            DateTime?
+
+  userId               String             @unique
+  user                 User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  planId               String?
+  plan                 Plan?              @relation(fields: [planId], references: [id])
+
+  stripeCustomerId         String         @unique
+  stripeSubscriptionId     String?        @unique
+  stripePriceId            String?
+
+  status               SubscriptionStatus
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean            @default(false)
+
+  creditGrants         CreditGrant[]
+
+  @@index([status])
+}
+
+// Idempotency ledger — one row per Stripe invoice we've granted credits for.
+model CreditGrant {
+  id               String   @id @default(uuid())
+  createdAt        DateTime @default(now())
+
+  subscriptionId   String
+  subscription     Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  stripeInvoiceId  String   @unique
+  credits          Int
+  userId           String
+
+  @@index([subscriptionId])
+  @@index([userId])
 }

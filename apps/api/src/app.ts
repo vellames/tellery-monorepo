@@ -21,6 +21,7 @@ export function createApp() {
   );
   app.use(i18nMiddleware);
   app.use(requestLogger);
+  app.use('/subscriptions/webhook', express.raw({ type: 'application/json' }));
   app.use(express.json());
 
   app.use(

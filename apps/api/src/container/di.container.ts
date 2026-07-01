@@ -5,6 +5,7 @@ import { appConfig } from '../config/app.config';
 import { HealthController } from '../controllers/health.controller';
 import { HistoryController } from '../controllers/history.controller';
 import { SessionController } from '../controllers/session.controller';
+import { SubscriptionController } from '../controllers/subscription/subscription.controller';
 import { UserController } from '../controllers/user/user.controller';
 import { CharacterAgent } from '../engine/character/character-agent.service';
 import { IntentDetectionService } from '../engine/intent/intent-detection.service';
@@ -19,11 +20,16 @@ import {
   IUserRepository,
   IAudioStorage,
   IAudioTranscriptionService,
+  ISubscriptionRepository,
+  IPlanRepository,
+  IStripeService,
 } from '../interfaces';
 import {
   HistoryDefinitionRepository,
   LlmCallRecorder,
+  PlanRepository,
   SessionRepository,
+  SubscriptionRepository,
   UserRepository,
 } from '../repositories';
 import { HistorySessionService } from '../services/session/history-session.service';
@@ -36,6 +42,8 @@ import { OpenRouterAudioTranscriptionService } from '../services/audio/openroute
 import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
 import { JwtTokenService } from '../services/user/jwt-token.service';
 import { UserService } from '../services/user/user.service';
+import { StripeService } from '../services/subscription/stripe.service';
+import { SubscriptionService } from '../services/subscription/subscription.service';
 import { createAuthMiddleware } from '../middleware/auth.middleware';
 import { createSessionOwnershipMiddleware } from '../middleware/session-ownership.middleware';
 import type { RequestHandler } from 'express';
@@ -48,6 +56,11 @@ export class DIContainer {
   private readonly userRepository: IUserRepository = new UserRepository(
     this.prisma
   );
+  private readonly planRepository: IPlanRepository = new PlanRepository(
+    this.prisma
+  );
+  private readonly subscriptionRepository: ISubscriptionRepository =
+    new SubscriptionRepository(this.prisma);
   private readonly historyDefinitionRepository: IHistoryDefinitionRepository =
     new HistoryDefinitionRepository(this.prisma);
   private readonly sessionRepository: ISessionRepository =
@@ -75,6 +88,23 @@ export class DIContainer {
     this.tokenService
   );
   private readonly userController = new UserController(this.userService);
+  private readonly stripeService: IStripeService = new StripeService({
+    secretKey: appConfig.stripe.secretKey,
+    webhookSecret: appConfig.stripe.webhookSecret,
+  });
+  private readonly subscriptionService = new SubscriptionService(
+    this.subscriptionRepository,
+    this.planRepository,
+    this.userRepository,
+    this.stripeService,
+    {
+      monthlyPriceId: appConfig.stripe.monthlyPriceId,
+      webBaseUrl: appConfig.web.baseUrl,
+    }
+  );
+  private readonly subscriptionController = new SubscriptionController(
+    this.subscriptionService
+  );
   private readonly s3Client = new S3Client({
     region: appConfig.aws.region,
     credentials: appConfig.aws.accessKeyId
@@ -173,6 +203,10 @@ export class DIContainer {
 
   getUserController(): UserController {
     return this.userController;
+  }
+
+  getSubscriptionController(): SubscriptionController {
+    return this.subscriptionController;
   }
 
   getAuthMiddleware(): RequestHandler {

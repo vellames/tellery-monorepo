@@ -1,4 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server';
+import Link from 'next/link';
+import { ChevronRight } from 'lucide-react';
 import {
   ProfileForm,
   ChangePasswordForm,
@@ -13,10 +15,12 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { fetchMe } from '@/lib/api/me';
+import { config } from '@/lib/config';
 
 export default async function ProfilePage() {
   const user = await fetchMe();
   const t = await getTranslations('profile');
+  const tSub = await getTranslations('subscription');
   const locale = await getLocale();
   const memberSince = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
@@ -45,14 +49,29 @@ export default async function ProfilePage() {
             <ProfileForm user={user} />
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('password.title')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ChangePasswordForm />
-          </CardContent>
-        </Card>
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('password.title')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ChangePasswordForm />
+            </CardContent>
+          </Card>
+          <Link href={config.routes.subscription} className="block">
+            <Card className="hover:border-primary/40 transition-colors">
+              <CardContent className="flex items-center justify-between py-5">
+                <div className="space-y-1">
+                  <p className="font-semibold">{tSub('link')}</p>
+                  <p className="text-muted-foreground text-sm">
+                    {tSub('linkDescription')}
+                  </p>
+                </div>
+                <ChevronRight className="text-muted-foreground size-5" />
+              </CardContent>
+            </Card>
+          </Link>
+        </div>
       </div>
       <LogoutButton />
     </section>
