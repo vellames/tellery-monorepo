@@ -1,19 +1,19 @@
 'use client';
 
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { clientFetch } from '@/lib/api/client-fetch';
 import { config } from '@/lib/config';
 
 export const AVAILABLE_CREDITS_QUERY_KEY = ['availableCredits'] as const;
 
+interface AvailableCreditsResponse {
+  availableCredits: number;
+}
+
 async function fetchAvailableCredits(): Promise<number> {
-  const res = await fetch(config.routes.meCreditsApi);
-  const body = (await res.json().catch(() => null)) as {
-    availableCredits?: number;
-    error?: string;
-  } | null;
-  if (!res.ok || body?.availableCredits === undefined) {
-    throw new Error(body?.error ?? '');
-  }
+  const body = await clientFetch<AvailableCreditsResponse>(
+    config.routes.meCreditsApi
+  );
   return body.availableCredits;
 }
 

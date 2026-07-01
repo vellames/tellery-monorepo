@@ -3,22 +3,14 @@ import { cookies } from 'next/headers';
 import { StatusCodes } from 'http-status-codes';
 import { config } from '@/lib/config';
 import { LOCALE_COOKIE, defaultLocale } from '@/i18n/config';
+import { ApiError, REQUEST_FAILED } from '@/lib/api/error';
+
+export { ApiError } from '@/lib/api/error';
 
 interface ApiEnvelope<T> {
   success: boolean;
   data?: T;
   error?: string;
-}
-
-export class ApiError extends Error {
-  constructor(
-    message: string,
-    public readonly status: number,
-    public readonly body?: Record<string, unknown>
-  ) {
-    super(message);
-    this.name = 'ApiError';
-  }
 }
 
 export async function apiFetch<T>(
@@ -43,7 +35,7 @@ export async function apiFetch<T>(
 
   if (!res.ok || !body?.success || body.data === undefined) {
     throw new ApiError(
-      body?.error ?? 'Falha na requisição',
+      body?.error ?? REQUEST_FAILED,
       res.ok ? StatusCodes.INTERNAL_SERVER_ERROR : res.status,
       body ? (body as unknown as Record<string, unknown>) : undefined
     );

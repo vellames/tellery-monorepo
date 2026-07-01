@@ -1,4 +1,17 @@
 {
+  "errors": {
+    "boundary": {
+      "title": "Something went wrong",
+      "description": "An unexpected error occurred. Please try again.",
+      "retry": "Try again",
+      "home": "Back to home"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you're looking for doesn't exist or has moved.",
+      "home": "Back to home"
+    }
+  },
   "auth": {
     "title": "Welcome back",
     "subtitle": "Continue your next story.",

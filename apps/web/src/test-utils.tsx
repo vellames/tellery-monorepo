@@ -1,18 +1,30 @@
 import { render, renderHook, type RenderOptions } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryCache,
+  MutationCache,
+} from '@tanstack/react-query';
 import { NextIntlClientProvider } from 'next-intl';
+import { toast } from 'sonner';
 import { type ReactNode } from 'react';
 import ptBR from '@/messages/pt-BR.json';
 import en from '@/messages/en.json';
+import { extractErrorMessage } from '@/lib/api/error';
 
 const messages = { 'pt-BR': ptBR, en } as const;
 
 function makeQueryClient() {
+  const onError = (error: unknown) => {
+    toast.error(extractErrorMessage(error));
+  };
   return new QueryClient({
     defaultOptions: {
       queries: { retry: false },
       mutations: { retry: false },
     },
+    queryCache: new QueryCache({ onError }),
+    mutationCache: new MutationCache({ onError }),
   });
 }
 

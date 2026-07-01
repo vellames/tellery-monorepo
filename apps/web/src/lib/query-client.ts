@@ -1,12 +1,25 @@
 'use client';
 
-import { QueryClient, isServer } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryCache,
+  MutationCache,
+  isServer,
+} from '@tanstack/react-query';
+import { toast } from 'sonner';
+import { extractErrorMessage } from '@/lib/api/error';
 
 function makeQueryClient(): QueryClient {
+  const onError = (error: unknown) => {
+    toast.error(extractErrorMessage(error));
+  };
+
   return new QueryClient({
     defaultOptions: {
       queries: { staleTime: 60 * 1000, retry: 1 },
     },
+    queryCache: new QueryCache({ onError }),
+    mutationCache: new MutationCache({ onError }),
   });
 }
 

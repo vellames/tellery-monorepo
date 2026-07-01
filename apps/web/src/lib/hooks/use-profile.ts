@@ -21,8 +21,6 @@ export function useUpdateProfile() {
       toast.success(t('saved'));
       router.refresh();
     },
-    onError: (error: Error) =>
-      toast.error(error.message || t('errors.updateFailed')),
   });
 }
 
@@ -33,7 +31,5 @@ export function useChangePassword() {
     mutationFn: (payload: ChangePasswordPayload) =>
       changePasswordRequest(payload),
     onSuccess: () => toast.success(t('saved')),
-    onError: (error: Error) =>
-      toast.error(error.message || t('errors.updateFailed')),
   });
 }

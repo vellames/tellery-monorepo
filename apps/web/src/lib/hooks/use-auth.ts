@@ -19,18 +19,12 @@ export function useLogin() {
       router.push(config.routes.home);
       router.refresh();
     },
-    onError: (error: Error) =>
-      toast.error(error.message || t('errors.loginFailed')),
   });
 }
 
 export function useRegister() {
-  const t = useTranslations('register');
-
   return useMutation({
     mutationFn: (payload: RegisterPayload) => registerRequest(payload),
-    onError: (error: Error) =>
-      toast.error(error.message || t('errors.registerFailed')),
   });
 }
 

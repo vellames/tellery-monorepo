@@ -1,4 +1,17 @@
 {
+  "errors": {
+    "boundary": {
+      "title": "Algo deu errado",
+      "description": "Ocorreu um erro inesperado. Tente novamente.",
+      "retry": "Tentar novamente",
+      "home": "Voltar ao início"
+    },
+    "notFound": {
+      "title": "Página não encontrada",
+      "description": "A página que você procura não existe ou foi movida.",
+      "home": "Voltar ao início"
+    }
+  },
   "auth": {
     "title": "Bem-vindo de volta",
     "subtitle": "Continue sua próxima história.",
