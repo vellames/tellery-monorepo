@@ -6,12 +6,15 @@ import { getTranslations } from 'next-intl/server';
 import { fetchHistory } from '@/lib/api/history';
 import { fetchSessions } from '@/lib/api/session';
 import { fetchAvailableCredits } from '@/lib/api/credits-server';
+import { fetchSubscription } from '@/lib/api/subscription-data';
 import { ApiError } from '@/lib/api/client';
 import { config } from '@/lib/config';
+import { isActiveSubscription } from '@/lib/types/subscription';
 import {
   StartSessionForm,
   StartSessionButton,
   AbandonSessionButton,
+  SubscribeRequiredNotice,
 } from '@/components/molecules';
 
 export default async function StoryStartPage({
@@ -51,6 +54,15 @@ export default async function StoryStartPage({
     // ignore — treat as no credits
   }
   const hasSessionsLeft = availableCredits > 0;
+
+  let subscription = null;
+  try {
+    subscription = await fetchSubscription();
+  } catch {
+    // ignore — treat as no active subscription
+  }
+  const hasActiveSubscription = isActiveSubscription(subscription);
+  const requiresSubscription = !history.isFree && !hasActiveSubscription;
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8">
@@ -122,6 +134,8 @@ export default async function StoryStartPage({
             <AbandonSessionButton sessionId={activeSessionId} />
           </div>
         </div>
+      ) : requiresSubscription ? (
+        <SubscribeRequiredNotice />
       ) : hasSessionsLeft ? (
         <StartSessionForm historyId={history.id} />
       ) : (

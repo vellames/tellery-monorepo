@@ -196,6 +196,8 @@
     "starting": "Iniciando…",
     "startError": "Não foi possível iniciar a sessão. Tente novamente.",
     "noCreditsAvailable": "Você não tem créditos disponíveis.",
+    "premiumRequiredMessage": "Esta é uma história premium. Você precisa de uma assinatura ativa para jogá-la.",
+    "subscribeToPlay": "Assine para jogar",
     "backToStories": "Voltar para histórias",
     "continueButton": "Continuar investigação",
     "activeSessionDisclaimer": "Você já tem uma investigação em andamento desta história. Continue de onde parou.",

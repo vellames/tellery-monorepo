@@ -7,3 +7,4 @@ export { StartSessionButton } from './start-session-button/start-session-button'
 export { StartSessionForm } from './start-session-form/start-session-form';
 export { AbandonSessionButton } from './abandon-session-button/abandon-session-button';
 export { CreditsAvailableBadge } from './credits-available-badge/credits-available-badge';
+export { SubscribeRequiredNotice } from './subscribe-required-notice/subscribe-required-notice';
