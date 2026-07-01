@@ -58,18 +58,39 @@ describe('SubscriptionController', () => {
   });
 
   describe('getSubscription', () => {
-    it('should return 200 with the subscription', async () => {
+    it('should return 200 with the subscription (no sync by default)', async () => {
       subscriptionService.getSubscription.mockResolvedValue({
         id: 'sub-1',
       } as never);
-      req = { user: { id: 'user-1', email: 'a@b.c' }, t } as Partial<Request>;
+      req = {
+        user: { id: 'user-1', email: 'a@b.c' },
+        query: {},
+        t,
+      } as Partial<Request>;
 
       await controller.getSubscription(req as Request, res as Response);
 
       expect(subscriptionService.getSubscription).toHaveBeenCalledWith(
-        'user-1'
+        'user-1',
+        false
       );
       expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+    });
+
+    it('should sync from stripe when sync=1 is queried', async () => {
+      subscriptionService.getSubscription.mockResolvedValue(null);
+      req = {
+        user: { id: 'user-1', email: 'a@b.c' },
+        query: { sync: '1' },
+        t,
+      } as Partial<Request>;
+
+      await controller.getSubscription(req as Request, res as Response);
+
+      expect(subscriptionService.getSubscription).toHaveBeenCalledWith(
+        'user-1',
+        true
+      );
     });
   });
 

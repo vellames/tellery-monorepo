@@ -33,8 +33,10 @@ export class SubscriptionController {
 
   getSubscription = async (req: Request, res: Response): Promise<void> => {
     try {
+      const syncFromStripe = req.query.sync === '1';
       const subscription = await this.subscriptionService.getSubscription(
-        req.user!.id
+        req.user!.id,
+        syncFromStripe
       );
       sendSuccess(res, subscription);
     } catch (error) {

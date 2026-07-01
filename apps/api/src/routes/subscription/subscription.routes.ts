@@ -59,11 +59,16 @@ router.get('/plan', authenticate, async (req, res) => {
  *   get:
  *     tags: [Subscriptions]
  *     summary: Get the logged-in user's subscription
- *     description: Returns the authenticated user's subscription state (mirrored from Stripe). Null when the user has never subscribed.
+ *     description: Returns the authenticated user's subscription state (mirrored from Stripe). Null when the user has never subscribed. Pass sync=1 to refresh the local state from Stripe before returning (use where fresh display state matters, e.g. after canceling).
  *     security:
  *       - BearerAuth: []
  *     parameters:
  *       - $ref: '#/components/parameters/AcceptLanguage'
+ *       - name: sync
+ *         in: query
+ *         required: false
+ *         schema: { type: string, enum: ['1'], example: '1' }
+ *         description: When '1', pulls the latest subscription state from Stripe before responding.
  *     responses:
  *       200:
  *         description: The user's subscription (or null)

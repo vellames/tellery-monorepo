@@ -19,7 +19,7 @@ const buildStripeSubscription = (
     object: 'subscription',
     status: 'active',
     customer: 'cus_123',
-    cancel_at_period_end: false,
+    cancel_at: null,
     items: {
       object: 'list',
       data: [
@@ -147,6 +147,68 @@ describe('SubscriptionService', () => {
     it('should return null when the user has no subscription', async () => {
       subscriptions.findByUserId.mockResolvedValue(null);
       expect(await service.getSubscription('user-1')).toBeNull();
+    });
+
+    it('should refresh from stripe before returning when syncFromStripe is true', async () => {
+      subscriptions.findByUserId.mockResolvedValue(mockSubscription());
+      plans.findByStripePriceId.mockResolvedValue(mockPlan());
+      stripe.retrieveSubscription.mockResolvedValue(buildStripeSubscription());
+
+      await service.getSubscription('user-1', true);
+
+      expect(stripe.retrieveSubscription).toHaveBeenCalledWith('sub_stripe_1');
+      expect(subscriptions.update).toHaveBeenCalledWith(
+        'sub-1',
+        expect.objectContaining({ stripeSubscriptionId: 'sub_stripe_1' })
+      );
+    });
+
+    it('should not sync by default', async () => {
+      subscriptions.findByUserId.mockResolvedValue(mockSubscription());
+      plans.findByStripePriceId.mockResolvedValue(mockPlan());
+
+      await service.getSubscription('user-1');
+
+      expect(stripe.retrieveSubscription).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('syncFromStripe', () => {
+    it('should refresh the local subscription when a stripe id exists', async () => {
+      subscriptions.findByUserId.mockResolvedValue(mockSubscription());
+      stripe.retrieveSubscription.mockResolvedValue(
+        buildStripeSubscription({ status: 'past_due', cancel_at: 2000 })
+      );
+
+      await service.syncFromStripe('user-1');
+
+      expect(stripe.retrieveSubscription).toHaveBeenCalledWith('sub_stripe_1');
+      expect(subscriptions.update).toHaveBeenCalledWith(
+        'sub-1',
+        expect.objectContaining({
+          status: 'past_due',
+          cancelAtPeriodEnd: true,
+        })
+      );
+    });
+
+    it('should do nothing when there is no local subscription', async () => {
+      subscriptions.findByUserId.mockResolvedValue(null);
+
+      await service.syncFromStripe('user-1');
+
+      expect(stripe.retrieveSubscription).not.toHaveBeenCalled();
+      expect(subscriptions.update).not.toHaveBeenCalled();
+    });
+
+    it('should do nothing when the local subscription has no stripe id', async () => {
+      subscriptions.findByUserId.mockResolvedValue(
+        mockSubscription({ stripeSubscriptionId: null })
+      );
+
+      await service.syncFromStripe('user-1');
+
+      expect(stripe.retrieveSubscription).not.toHaveBeenCalled();
     });
   });
 

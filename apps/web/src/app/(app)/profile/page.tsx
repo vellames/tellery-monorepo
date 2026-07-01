@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/card';
 import { fetchMe } from '@/lib/api/me';
 import {
-  fetchSubscription,
+  fetchSubscriptionSynced,
   fetchSubscriptionPlan,
 } from '@/lib/api/subscription-data';
 
@@ -29,7 +29,7 @@ export default async function ProfilePage() {
 
   const [plan, subscription] = await Promise.all([
     fetchSubscriptionPlan(),
-    fetchSubscription(),
+    fetchSubscriptionSynced(),
   ]);
 
   return (

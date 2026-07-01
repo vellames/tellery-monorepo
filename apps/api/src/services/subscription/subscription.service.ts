@@ -54,8 +54,13 @@ export class SubscriptionService {
   }
 
   async getSubscription(
-    userId: string
+    userId: string,
+    syncFromStripe = false
   ): Promise<SubscriptionResponseDto | null> {
+    if (syncFromStripe) {
+      await this.syncFromStripe(userId).catch(() => {});
+    }
+
     const sub = await this.subscriptions.findByUserId(userId);
     if (!sub) {
       return null;
@@ -227,15 +232,45 @@ export class SubscriptionService {
     }
   }
 
+  async syncFromStripe(userId: string): Promise<void> {
+    const local = await this.subscriptions.findByUserId(userId);
+    if (!local || !local.stripeSubscriptionId) {
+      return;
+    }
+    const stripeSubscription = await this.stripe.retrieveSubscription(
+      local.stripeSubscriptionId
+    );
+    await this.applySubscriptionUpdate(local.id, stripeSubscription);
+  }
+
+  private async applySubscriptionUpdate(
+    localId: string,
+    subscription: Stripe.Subscription
+  ): Promise<void> {
+    const priceId = subscription.items.data[0]?.price?.id ?? null;
+    const plan = priceId ? await this.plans.findByStripePriceId(priceId) : null;
+
+    const { start, end } = this.periodDates(subscription);
+
+    await this.subscriptions.update(localId, {
+      stripeSubscriptionId: subscription.id,
+      stripePriceId: priceId,
+      planId: plan?.id ?? null,
+      status: subscription.status as SubscriptionStatus,
+      currentPeriodStart: start,
+      currentPeriodEnd: end,
+      cancelAtPeriodEnd: subscription.cancel_at !== null,
+    });
+  }
+
   private async syncSubscription(
     subscription: Stripe.Subscription
   ): Promise<void> {
     const customerId =
       typeof subscription.customer === 'string' ? subscription.customer : null;
-    const subscriptionId = subscription.id;
 
     const existing =
-      (await this.subscriptions.findByStripeSubscriptionId(subscriptionId)) ??
+      (await this.subscriptions.findByStripeSubscriptionId(subscription.id)) ??
       (customerId
         ? await this.subscriptions.findByStripeCustomerId(customerId)
         : null);
@@ -244,20 +279,7 @@ export class SubscriptionService {
       return;
     }
 
-    const priceId = subscription.items.data[0]?.price?.id ?? null;
-    const plan = priceId ? await this.plans.findByStripePriceId(priceId) : null;
-
-    const { start, end } = this.periodDates(subscription);
-
-    await this.subscriptions.update(existing.id, {
-      stripeSubscriptionId: subscriptionId,
-      stripePriceId: priceId,
-      planId: plan?.id ?? null,
-      status: subscription.status as SubscriptionStatus,
-      currentPeriodStart: start,
-      currentPeriodEnd: end,
-      cancelAtPeriodEnd: subscription.cancel_at_period_end,
-    });
+    await this.applySubscriptionUpdate(existing.id, subscription);
   }
 
   private async handleSubscriptionDeleted(

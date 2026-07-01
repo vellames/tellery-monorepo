@@ -55,7 +55,7 @@ async function run(): Promise<void> {
         currentPeriodEnd: item
           ? new Date(item.current_period_end * 1000)
           : null,
-        cancelAtPeriodEnd: current.cancel_at_period_end,
+        cancelAtPeriodEnd: current.cancel_at !== null,
       },
     });
     console.log(

@@ -9,3 +9,7 @@ export async function fetchSubscriptionPlan(): Promise<PlanDisplay | null> {
 export async function fetchSubscription(): Promise<SubscriptionState | null> {
   return apiFetch<SubscriptionState | null>('/subscriptions');
 }
+
+export async function fetchSubscriptionSynced(): Promise<SubscriptionState | null> {
+  return apiFetch<SubscriptionState | null>('/subscriptions?sync=1');
+}

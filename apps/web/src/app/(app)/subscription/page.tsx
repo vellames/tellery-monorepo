@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 import { SubscriptionPanel } from '@/components/organisms';
 import {
-  fetchSubscription,
+  fetchSubscriptionSynced,
   fetchSubscriptionPlan,
 } from '@/lib/api/subscription-data';
 
@@ -18,7 +18,7 @@ export default async function SubscriptionPage({
 
   const [plan, subscription] = await Promise.all([
     fetchSubscriptionPlan(),
-    fetchSubscription(),
+    fetchSubscriptionSynced(),
   ]);
 
   return (
