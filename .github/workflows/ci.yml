@@ -60,20 +60,5 @@ jobs:
       - name: Test
         run: npm run test
 
-      # DEBUG: surface config validation diagnostics from the api test worker
-      # crash. jest swallows worker stdout on process.exit, so app.config.ts
-      # writes the failing zod issues to this file. Remove once fixed.
-      - name: Dump config validation diagnostics
-        if: always()
-        run: |
-          for f in apps/api/config-validation-error.json; do
-            if [ -f "$f" ]; then
-              echo "::group::$f"
-              cat "$f"
-              echo
-              echo "::endgroup::"
-            fi
-          done
-
       - name: Build
         run: npm run build
