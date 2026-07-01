@@ -1,6 +1,7 @@
 {
   "errors": {
     "notConfigured": "Subscription billing is not configured",
+    "missingSsn": "Add your CPF in your profile before subscribing.",
     "checkoutFailed": "Failed to start checkout. Please try again.",
     "alreadySubscribed": "You already have an active subscription",
     "noActiveSubscription": "No active subscription found",

@@ -236,11 +236,26 @@ describe('SubscriptionService', () => {
       ).rejects.toMatchObject({ statusCode: StatusCodes.NOT_FOUND });
     });
 
+    it('should throw 422 when the user has no ssn', async () => {
+      users.findById.mockResolvedValue({ id: 'user-1', ssn: null } as never);
+
+      await expect(
+        service.createCheckoutSession('user-1')
+      ).rejects.toMatchObject({
+        statusCode: StatusCodes.UNPROCESSABLE_ENTITY,
+        messageKey: 'subscription:errors.missingSsn',
+      });
+
+      expect(stripe.createCustomer).not.toHaveBeenCalled();
+      expect(stripe.createCheckoutSession).not.toHaveBeenCalled();
+    });
+
     it('should create a customer + local row when none exists', async () => {
       users.findById.mockResolvedValue({
         id: 'user-1',
         name: 'Ana',
         email: 'ana@teste.local',
+        ssn: '29537995593',
       } as never);
       subscriptions.findByUserId.mockResolvedValue(null);
       stripe.createCustomer.mockResolvedValue({ id: 'cus_new' } as never);
@@ -267,7 +282,10 @@ describe('SubscriptionService', () => {
     });
 
     it('should reuse the existing customer when a subscription row exists', async () => {
-      users.findById.mockResolvedValue({ id: 'user-1' } as never);
+      users.findById.mockResolvedValue({
+        id: 'user-1',
+        ssn: '29537995593',
+      } as never);
       subscriptions.findByUserId.mockResolvedValue(mockSubscription());
       stripe.createCheckoutSession.mockResolvedValue({
         url: 'https://checkout.stripe.com/session_2',

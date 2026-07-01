@@ -101,6 +101,14 @@ export class SubscriptionService {
       );
     }
 
+    if (!user.ssn) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        'User has no SSN',
+        'subscription:errors.missingSsn'
+      );
+    }
+
     let subscription = await this.subscriptions.findByUserId(userId);
     if (!subscription) {
       const customer = await this.stripe.createCustomer({

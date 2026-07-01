@@ -1,6 +1,7 @@
 {
   "errors": {
     "notConfigured": "A cobrança de assinatura não está configurada",
+    "missingSsn": "Adicione seu CPF no seu perfil antes de assinar.",
     "checkoutFailed": "Falha ao iniciar o checkout. Tente novamente.",
     "alreadySubscribed": "Você já possui uma assinatura ativa",
     "noActiveSubscription": "Nenhuma assinatura ativa encontrada",

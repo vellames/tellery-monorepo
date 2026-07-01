@@ -112,7 +112,7 @@ router.get('/', authenticate, async (req, res) => {
  *   post:
  *     tags: [Subscriptions]
  *     summary: Create a Stripe Checkout Session
- *     description: Finds-or-creates a Stripe Customer for the authenticated user, then creates a subscription-mode Checkout Session (collects CPF + billing address on Stripe's side). Returns the hosted URL to redirect to.
+ *     description: Finds-or-creates a Stripe Customer for the authenticated user, then creates a subscription-mode Checkout Session. Requires an SSN/CPF on the user's profile (collects billing address on Stripe's side). Returns the hosted URL to redirect to.
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -159,7 +159,7 @@ router.get('/', authenticate, async (req, res) => {
  *                 success: { type: boolean, example: false }
  *                 error: { type: string }
  *       422:
- *         description: Invalid request body
+ *         description: Invalid request body, or the user has no SSN/CPF on file
  *         content:
  *           application/json:
  *             schema:
