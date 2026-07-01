@@ -34,6 +34,7 @@ describe('LoginForm', () => {
       name: '',
       email: '',
       ssn: null,
+      emailVerifiedAt: null,
       createdAt: '',
       updatedAt: '',
     });

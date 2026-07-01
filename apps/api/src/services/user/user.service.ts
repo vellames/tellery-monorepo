@@ -1,10 +1,12 @@
 import { User } from '@prisma/client';
 import { cpf } from 'cpf-cnpj-validator';
 import { StatusCodes } from 'http-status-codes';
+import { SupportedLanguage } from '@ai-history/i18n';
 import {
   IUserRepository,
   IPasswordHasher,
   ITokenService,
+  IEmailVerificationService,
 } from '../../interfaces';
 import {
   AvailableCreditsResponseDto,
@@ -20,10 +22,14 @@ export class UserService {
   constructor(
     private readonly users: IUserRepository,
     private readonly passwordHasher: IPasswordHasher,
-    private readonly tokenService: ITokenService
+    private readonly tokenService: ITokenService,
+    private readonly emailVerification: IEmailVerificationService
   ) {}
 
-  async create(data: CreateUserDto): Promise<AuthResponseDto> {
+  async create(
+    data: CreateUserDto,
+    locale: SupportedLanguage = 'pt-BR'
+  ): Promise<AuthResponseDto> {
     const existing = await this.users.findByEmail(data.email);
     if (existing) {
       throw new HttpError(
@@ -36,6 +42,16 @@ export class UserService {
     const hashedPassword = await this.passwordHasher.hash(data.password);
     const user = await this.users.create({ ...data, password: hashedPassword });
     const token = this.tokenService.sign({ sub: user.id, email: user.email });
+
+    this.emailVerification
+      .sendVerification(
+        { id: user.id, email: user.email, name: user.name },
+        locale
+      )
+      .catch((error) => {
+        console.error('[email] failed to send verification', error);
+      });
+
     return { user: this.toResponseDto(user), token };
   }
 
@@ -63,6 +79,52 @@ export class UserService {
 
     const token = this.tokenService.sign({ sub: user.id, email: user.email });
     return { user: this.toResponseDto(user), token };
+  }
+
+  async verifyEmail(token: string): Promise<UserResponseDto> {
+    const { sub } = this.emailVerification.verifyToken(token);
+    const user = await this.users.findById(sub);
+    if (!user) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        'User not found',
+        'user:errors.userNotFound'
+      );
+    }
+    if (user.emailVerifiedAt) {
+      throw new HttpError(
+        StatusCodes.CONFLICT,
+        'Email is already verified',
+        'user:errors.emailAlreadyVerified'
+      );
+    }
+    const updated = await this.users.markEmailVerified(sub);
+    return this.toResponseDto(updated);
+  }
+
+  async resendEmailVerification(
+    userId: string,
+    locale: SupportedLanguage = 'pt-BR'
+  ): Promise<void> {
+    const user = await this.users.findById(userId);
+    if (!user) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        'User not found',
+        'user:errors.userNotFound'
+      );
+    }
+    if (user.emailVerifiedAt) {
+      throw new HttpError(
+        StatusCodes.CONFLICT,
+        'Email is already verified',
+        'user:errors.emailAlreadyVerified'
+      );
+    }
+    await this.emailVerification.sendVerification(
+      { id: user.id, email: user.email, name: user.name },
+      locale
+    );
   }
 
   async findById(id: string): Promise<UserResponseDto> {
@@ -177,6 +239,9 @@ export class UserService {
       name: user.name,
       email: user.email,
       ssn: user.ssn,
+      emailVerifiedAt: user.emailVerifiedAt
+        ? user.emailVerifiedAt.toISOString()
+        : null,
       createdAt: user.createdAt.toISOString(),
       updatedAt: user.updatedAt.toISOString(),
     };

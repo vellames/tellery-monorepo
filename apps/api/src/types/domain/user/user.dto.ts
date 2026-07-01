@@ -26,6 +26,7 @@ export interface UserResponseDto {
   name: string;
   email: string;
   ssn: string | null;
+  emailVerifiedAt: string | null;
   createdAt: string;
   updatedAt: string;
 }

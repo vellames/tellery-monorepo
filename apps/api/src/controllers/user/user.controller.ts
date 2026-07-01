@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
+import { SupportedLanguage } from '@ai-history/i18n';
 import { UserService } from '../../services/user/user.service';
 import {
   createUserSchema,
   loginSchema,
   updateMeSchema,
   changePasswordSchema,
+  verifyEmailSchema,
 } from '../../types/domain/user/user.validation';
 import { HttpError } from '../../utils/http-error';
 import {
@@ -31,8 +33,11 @@ export class UserController {
     }
 
     try {
-      const user = await this.userService.create(parsed.data);
-      sendSuccess(res, user, undefined, StatusCodes.CREATED);
+      const auth = await this.userService.create(
+        parsed.data,
+        req.language as SupportedLanguage
+      );
+      sendSuccess(res, auth, undefined, StatusCodes.CREATED);
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
@@ -142,6 +147,50 @@ export class UserController {
         req.user!.id,
         parsed.data.currentPassword,
         parsed.data.newPassword
+      );
+      sendSuccess(res, null);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey ? t(error.messageKey) : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
+
+  verifyEmail = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+    const parsed = verifyEmailSchema.safeParse(req.body);
+    if (!parsed.success) {
+      sendValidationError(
+        res,
+        t('common:errors.invalidRequestBody'),
+        parsed.error.issues
+      );
+      return;
+    }
+
+    try {
+      const user = await this.userService.verifyEmail(parsed.data.token);
+      sendSuccess(res, user);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey ? t(error.messageKey) : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
+
+  resendVerification = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+
+    try {
+      await this.userService.resendEmailVerification(
+        req.user!.id,
+        req.language as SupportedLanguage
       );
       sendSuccess(res, null);
     } catch (error) {

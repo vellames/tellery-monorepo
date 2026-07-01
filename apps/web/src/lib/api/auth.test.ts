@@ -1,5 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
-import { loginRequest, logoutRequest, registerRequest } from '@/lib/api/auth';
+import {
+  loginRequest,
+  logoutRequest,
+  registerRequest,
+  resendVerificationRequest,
+  verifyEmailRequest,
+} from '@/lib/api/auth';
 import type { User } from '@/lib/types/auth';
 
 const user: User = {
@@ -7,6 +13,7 @@ const user: User = {
   name: 'Ana',
   email: 'a@b.c',
   ssn: null,
+  emailVerifiedAt: null,
   createdAt: '',
   updatedAt: '',
 };
@@ -55,6 +62,32 @@ describe('api/auth', () => {
     await expect(
       registerRequest({ name: 'A', email: 'a@b.c', password: '123456' })
     ).rejects.toThrow('Email already in use');
+  });
+
+  it('verifyEmailRequest returns the refreshed user', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response(JSON.stringify({ user }), { status: 200 })
+    );
+
+    await expect(verifyEmailRequest('token-abc')).resolves.toEqual(user);
+  });
+
+  it('verifyEmailRequest throws on an invalid token', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Invalid token' }), { status: 422 })
+    );
+
+    await expect(verifyEmailRequest('bad')).rejects.toThrow('Invalid token');
+  });
+
+  it('resendVerificationRequest performs a POST', async () => {
+    const fetchMock = vi
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValue(new Response('{"success":true}', { status: 200 }));
+
+    await resendVerificationRequest();
+
+    expect(fetchMock.mock.calls[0][1]).toMatchObject({ method: 'POST' });
   });
 
   it('logoutRequest performs a POST', async () => {

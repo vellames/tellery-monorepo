@@ -70,6 +70,24 @@
       "emailRequired": "E-mail é obrigatório"
     }
   },
+  "verifyEmail": {
+    "title": "Verifique seu e-mail",
+    "subtitle": "Confirmando seu endereço de e-mail…",
+    "verifying": "Confirmando seu endereço de e-mail…",
+    "successTitle": "E-mail verificado",
+    "successMessage": "Seu e-mail foi confirmado. Tudo pronto.",
+    "invalidTitle": "Link inválido ou expirado",
+    "invalidMessage": "Este link de verificação é inválido ou expirou. Você pode pedir um novo no seu perfil.",
+    "continue": "Continuar",
+    "bannerMessage": "Seu e-mail ainda não foi verificado. Verifique para proteger sua conta.",
+    "resend": "Reenviar",
+    "resendSent": "E-mail de verificação enviado. Confira sua caixa de entrada.",
+    "resendFailed": "Não foi possível reenviar o e-mail de verificação.",
+    "errors": {
+      "missingToken": "Token de verificação ausente.",
+      "verifyFailed": "Falha ao verificar o e-mail"
+    }
+  },
   "home": {
     "featured": {
       "badge": "Comece por aqui",
@@ -125,6 +143,7 @@
     "logout": "Sair",
     "greeting": "Olá, {name}",
     "backToLogin": "Voltar para o login",
+    "backToHome": "Voltar ao início",
     "privacyPolicy": "Política de Privacidade",
     "termsOfUse": "Termos de Uso",
     "tagline": "Histórias onde você participa",

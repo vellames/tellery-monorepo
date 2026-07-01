@@ -5,6 +5,8 @@
     "invalidSsn": "Invalid SSN",
     "invalidCredentials": "Invalid email or password",
     "currentPasswordIncorrect": "Current password is incorrect",
-    "unknownUser": "Unknown user: {{id}}"
+    "unknownUser": "Unknown user: {{id}}",
+    "invalidVerificationToken": "Invalid or expired verification link",
+    "emailAlreadyVerified": "Email is already verified"
   }
 }

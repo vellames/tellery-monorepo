@@ -5,6 +5,8 @@
     "invalidSsn": "CPF inválido",
     "invalidCredentials": "E-mail ou senha inválidos",
     "currentPasswordIncorrect": "Senha atual incorreta",
-    "unknownUser": "Usuário desconhecido: {{id}}"
+    "unknownUser": "Usuário desconhecido: {{id}}",
+    "invalidVerificationToken": "Link de verificação inválido ou expirado",
+    "emailAlreadyVerified": "E-mail já verificado"
   }
 }

@@ -4,7 +4,13 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
-import { loginRequest, logoutRequest, registerRequest } from '@/lib/api/auth';
+import {
+  loginRequest,
+  logoutRequest,
+  registerRequest,
+  resendVerificationRequest,
+  verifyEmailRequest,
+} from '@/lib/api/auth';
 import { config } from '@/lib/config';
 import type { LoginPayload, RegisterPayload } from '@/lib/types/auth';
 
@@ -44,6 +50,26 @@ export function useLogout() {
     onSettled: () => {
       router.push(config.routes.login);
       router.refresh();
+    },
+  });
+}
+
+export function useVerifyEmail() {
+  return useMutation({
+    mutationFn: (token: string) => verifyEmailRequest(token),
+  });
+}
+
+export function useResendVerification() {
+  const t = useTranslations('verifyEmail');
+
+  return useMutation({
+    mutationFn: () => resendVerificationRequest(),
+    onSuccess: () => {
+      toast.success(t('resendSent'));
+    },
+    onError: () => {
+      toast.error(t('resendFailed'));
     },
   });
 }

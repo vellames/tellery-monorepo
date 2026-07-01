@@ -20,6 +20,7 @@ const mockUser: User = {
   name: 'Cassiano',
   email: 'cassiano@example.com',
   ssn: null,
+  emailVerifiedAt: null,
   createdAt: '',
   updatedAt: '',
 };

@@ -84,6 +84,8 @@ model User {
   password String
   ssn      String?
 
+  emailVerifiedAt DateTime?
+
   availableCredits Int @default(3)
 
   sessions     HistorySession[]

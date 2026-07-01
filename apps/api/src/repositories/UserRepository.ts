@@ -100,4 +100,12 @@ export class UserRepository extends BaseRepository implements IUserRepository {
       data: { availableCredits: amount },
     });
   }
+
+  async markEmailVerified(id: string, tx?: PrismaTransaction): Promise<User> {
+    const client = tx || this.prisma;
+    return client.user.update({
+      where: { id },
+      data: { emailVerifiedAt: new Date() },
+    });
+  }
 }

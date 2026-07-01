@@ -14,11 +14,25 @@ vi.mock('@/lib/api/auth', () => ({
   loginRequest: vi.fn(),
   registerRequest: vi.fn(),
   logoutRequest: vi.fn(),
+  verifyEmailRequest: vi.fn(),
+  resendVerificationRequest: vi.fn(),
 }));
 
 import { toast } from 'sonner';
-import { loginRequest, logoutRequest, registerRequest } from '@/lib/api/auth';
-import { useLogin, useLogout, useRegister } from '@/lib/hooks/use-auth';
+import {
+  loginRequest,
+  logoutRequest,
+  registerRequest,
+  resendVerificationRequest,
+  verifyEmailRequest,
+} from '@/lib/api/auth';
+import {
+  useLogin,
+  useLogout,
+  useRegister,
+  useResendVerification,
+  useVerifyEmail,
+} from '@/lib/hooks/use-auth';
 import { renderHookWithProviders } from '@/test-utils';
 
 const user = {
@@ -26,6 +40,7 @@ const user = {
   name: 'Ana',
   email: 'a@b.c',
   ssn: null,
+  emailVerifiedAt: null,
   createdAt: '',
   updatedAt: '',
 };
@@ -108,6 +123,45 @@ describe('auth hooks', () => {
 
       expect(logoutRequest).toHaveBeenCalled();
       expect(pushMock).toHaveBeenCalledWith('/');
+    });
+  });
+
+  describe('useVerifyEmail', () => {
+    it('resolves with the verified user', async () => {
+      vi.mocked(verifyEmailRequest).mockResolvedValue(user);
+      const { result } = renderHookWithProviders(() => useVerifyEmail());
+
+      const verified = await act(async () =>
+        result.current.mutateAsync('token-abc')
+      );
+
+      expect(verifyEmailRequest).toHaveBeenCalledWith('token-abc');
+      expect(verified).toEqual(user);
+    });
+  });
+
+  describe('useResendVerification', () => {
+    it('toasts success on resolve', async () => {
+      vi.mocked(resendVerificationRequest).mockResolvedValue();
+      const { result } = renderHookWithProviders(() => useResendVerification());
+
+      await act(async () => {
+        await result.current.mutateAsync();
+      });
+
+      expect(resendVerificationRequest).toHaveBeenCalled();
+      expect(toast.success).toHaveBeenCalled();
+    });
+
+    it('toasts error on failure', async () => {
+      vi.mocked(resendVerificationRequest).mockRejectedValue(new Error('nope'));
+      const { result } = renderHookWithProviders(() => useResendVerification());
+
+      await act(async () => {
+        await expect(result.current.mutateAsync()).rejects.toThrow('nope');
+      });
+
+      expect(toast.error).toHaveBeenCalled();
     });
   });
 });

@@ -34,3 +34,7 @@ export const changePasswordSchema = z
     message: 'New password must be different from the current password',
     path: ['newPassword'],
   });
+
+export const verifyEmailSchema = z.object({
+  token: z.string().min(1),
+});

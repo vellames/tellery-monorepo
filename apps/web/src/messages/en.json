@@ -70,6 +70,24 @@
       "emailRequired": "Email is required"
     }
   },
+  "verifyEmail": {
+    "title": "Verify your email",
+    "subtitle": "Confirming your email address…",
+    "verifying": "Confirming your email address…",
+    "successTitle": "Email verified",
+    "successMessage": "Your email is confirmed. You're all set.",
+    "invalidTitle": "Invalid or expired link",
+    "invalidMessage": "This verification link is invalid or has expired. You can request a new one from your profile.",
+    "continue": "Continue",
+    "bannerMessage": "Your email isn't verified yet. Verify it to secure your account.",
+    "resend": "Resend",
+    "resendSent": "Verification email sent. Check your inbox.",
+    "resendFailed": "Could not resend the verification email.",
+    "errors": {
+      "missingToken": "Verification token is missing.",
+      "verifyFailed": "Failed to verify email"
+    }
+  },
   "home": {
     "featured": {
       "badge": "Start here",
@@ -125,6 +143,7 @@
     "logout": "Log out",
     "greeting": "Hello, {name}",
     "backToLogin": "Back to login",
+    "backToHome": "Back to home",
     "privacyPolicy": "Privacy Policy",
     "termsOfUse": "Terms of Use",
     "tagline": "Stories you take part in",

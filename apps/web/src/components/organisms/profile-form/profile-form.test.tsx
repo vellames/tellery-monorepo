@@ -17,6 +17,7 @@ const user: User = {
   name: 'Ana Teste',
   email: 'ana@teste.local',
   ssn: '29537995593',
+  emailVerifiedAt: null,
   createdAt: '2026-01-01T00:00:00.000Z',
   updatedAt: '2026-01-01T00:00:00.000Z',
 };

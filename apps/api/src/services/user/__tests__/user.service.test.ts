@@ -4,6 +4,7 @@ import {
   IUserRepository,
   IPasswordHasher,
   ITokenService,
+  IEmailVerificationService,
 } from '../../../interfaces';
 import { UserService } from '../user.service';
 import { HttpError } from '../../../utils/http-error';
@@ -17,6 +18,7 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   email: 'ana@teste.local',
   password: 'hashed-password',
   ssn: null,
+  emailVerifiedAt: null,
   availableCredits: 3,
   ...overrides,
 });
@@ -25,6 +27,7 @@ describe('UserService', () => {
   let repo: DeepMockProxy<IUserRepository>;
   let passwordHasher: DeepMockProxy<IPasswordHasher>;
   let tokenService: DeepMockProxy<ITokenService>;
+  let emailVerification: DeepMockProxy<IEmailVerificationService>;
   let service: UserService;
 
   beforeEach(() => {
@@ -33,13 +36,25 @@ describe('UserService', () => {
     passwordHasher.hash.mockResolvedValue('hashed-password');
     tokenService = mockDeep<ITokenService>();
     tokenService.sign.mockReturnValue('signed-token');
-    service = new UserService(repo, passwordHasher, tokenService);
+    emailVerification = mockDeep<IEmailVerificationService>();
+    emailVerification.verifyToken.mockReturnValue({
+      sub: 'user-1',
+      email: 'ana@teste.local',
+    });
+    emailVerification.sendVerification.mockResolvedValue(undefined);
+    service = new UserService(
+      repo,
+      passwordHasher,
+      tokenService,
+      emailVerification
+    );
   });
 
   afterEach(() => {
     mockReset(repo);
     mockReset(passwordHasher);
     mockReset(tokenService);
+    mockReset(emailVerification);
   });
 
   describe('create', () => {
@@ -69,11 +84,16 @@ describe('UserService', () => {
           name: 'Ana Teste',
           email: 'ana@teste.local',
           ssn: null,
+          emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
         token: 'signed-token',
       });
+      expect(emailVerification.sendVerification).toHaveBeenCalledWith(
+        { id: 'user-1', email: 'ana@teste.local', name: 'Ana Teste' },
+        'pt-BR'
+      );
     });
 
     it('should throw 409 when email is already in use', async () => {
@@ -150,6 +170,7 @@ describe('UserService', () => {
           name: 'Ana Teste',
           email: 'ana@teste.local',
           ssn: null,
+          emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
@@ -426,6 +447,83 @@ describe('UserService', () => {
         'User not found'
       );
       expect(repo.softDelete).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('verifyEmail', () => {
+    it('should mark the user as verified when the token is valid', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      repo.markEmailVerified.mockResolvedValue(
+        mockUser({ emailVerifiedAt: new Date('2026-07-01') })
+      );
+
+      const result = await service.verifyEmail('valid-token');
+
+      expect(emailVerification.verifyToken).toHaveBeenCalledWith('valid-token');
+      expect(repo.markEmailVerified).toHaveBeenCalledWith('user-1');
+      expect(result.emailVerifiedAt).toBe('2026-07-01T00:00:00.000Z');
+    });
+
+    it('should throw 422 when the verification token is invalid', async () => {
+      emailVerification.verifyToken.mockImplementation(() => {
+        throw new HttpError(422, 'Invalid or expired verification token');
+      });
+
+      await expect(service.verifyEmail('bad')).rejects.toThrow(HttpError);
+      expect(repo.markEmailVerified).not.toHaveBeenCalled();
+    });
+
+    it('should throw 404 when the user no longer exists', async () => {
+      repo.findById.mockResolvedValue(null);
+
+      await expect(service.verifyEmail('valid-token')).rejects.toThrow(
+        'User not found'
+      );
+      expect(repo.markEmailVerified).not.toHaveBeenCalled();
+    });
+
+    it('should throw 409 when the email is already verified', async () => {
+      repo.findById.mockResolvedValue(
+        mockUser({ emailVerifiedAt: new Date('2026-07-01') })
+      );
+
+      await expect(service.verifyEmail('valid-token')).rejects.toThrow(
+        'Email is already verified'
+      );
+      expect(repo.markEmailVerified).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('resendEmailVerification', () => {
+    it('should resend the verification email to an unverified user', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+
+      await service.resendEmailVerification('user-1', 'en');
+
+      expect(emailVerification.sendVerification).toHaveBeenCalledWith(
+        { id: 'user-1', email: 'ana@teste.local', name: 'Ana Teste' },
+        'en'
+      );
+    });
+
+    it('should throw 404 when the user is not found', async () => {
+      repo.findById.mockResolvedValue(null);
+
+      await expect(service.resendEmailVerification('user-1')).rejects.toThrow(
+        'User not found'
+      );
+      expect(emailVerification.sendVerification).not.toHaveBeenCalled();
+    });
+
+    it('should throw 409 when the email is already verified', async () => {
+      repo.findById.mockResolvedValue(
+        mockUser({ emailVerifiedAt: new Date('2026-07-01') })
+      );
+
+      await expect(service.resendEmailVerification('user-1')).rejects.toThrow(
+        'Email is already verified'
+      );
+      expect(emailVerification.sendVerification).not.toHaveBeenCalled();
     });
   });
 });

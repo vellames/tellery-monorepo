@@ -7,6 +7,7 @@ const user: User = {
   name: 'Ana Updated',
   email: 'ana.updated@b.c',
   ssn: '29537995593',
+  emailVerifiedAt: null,
   createdAt: '',
   updatedAt: '',
 };

@@ -22,5 +22,6 @@ export interface IUserRepository extends IBaseRepository {
     amount: number,
     tx?: PrismaTransaction
   ): Promise<void>;
+  markEmailVerified(id: string, tx?: PrismaTransaction): Promise<User>;
   softDelete(id: string, tx?: PrismaTransaction): Promise<void>;
 }

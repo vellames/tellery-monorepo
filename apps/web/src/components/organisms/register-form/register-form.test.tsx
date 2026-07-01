@@ -50,6 +50,7 @@ describe('RegisterForm', () => {
       name: 'Ana',
       email: 'a@b.c',
       ssn: null,
+      emailVerifiedAt: null,
       createdAt: '',
       updatedAt: '',
     });

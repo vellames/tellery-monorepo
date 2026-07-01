@@ -1,0 +1,12 @@
+{
+  "brandName": "Tellery",
+  "brandTagline": "Stories you take part in",
+  "subject": "Verify your email, {{name}}",
+  "preheader": "Confirm your email to secure your account",
+  "title": "Verify your email",
+  "greeting": "Welcome, {{name}}",
+  "body": "Confirm your email address to verify your account. Click the button below to complete verification.",
+  "button": "Verify email",
+  "footerNote": "If you did not create an account, you can safely ignore this email.",
+  "footerCopyright": "© {{year}} Tellery. All rights reserved."
+}

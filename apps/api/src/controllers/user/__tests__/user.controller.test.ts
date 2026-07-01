@@ -35,6 +35,7 @@ describe('UserController', () => {
         name: 'Ana Teste',
         email: 'ana@teste.local',
         ssn: null,
+        emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       };
@@ -122,6 +123,7 @@ describe('UserController', () => {
           name: 'Ana Teste',
           email: 'ana@teste.local',
           ssn: null,
+          emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
@@ -197,6 +199,7 @@ describe('UserController', () => {
         name: 'Ana Teste',
         email: 'ana@teste.local',
         ssn: null,
+        emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       };
@@ -314,6 +317,7 @@ describe('UserController', () => {
         name: 'Ana Updated',
         email: 'ana.updated@teste.local',
         ssn: null,
+        emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-02T00:00:00.000Z',
       };
@@ -549,6 +553,125 @@ describe('UserController', () => {
       } as Partial<Request>;
 
       await controller.changePassword(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    });
+  });
+
+  describe('verifyEmail', () => {
+    const verifiedDto = {
+      id: 'user-1',
+      name: 'Ana Teste',
+      email: 'ana@teste.local',
+      ssn: null,
+      emailVerifiedAt: '2026-07-01T00:00:00.000Z',
+      createdAt: '2026-01-01T00:00:00.000Z',
+      updatedAt: '2026-01-01T00:00:00.000Z',
+    };
+
+    it('should return 200 with the verified user', async () => {
+      userService.verifyEmail.mockResolvedValue(verifiedDto);
+      req = { body: { token: 'valid-token' }, t } as Partial<Request>;
+
+      await controller.verifyEmail(req as Request, res as Response);
+
+      expect(userService.verifyEmail).toHaveBeenCalledWith('valid-token');
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+      expect(json).toHaveBeenCalledWith({
+        success: true,
+        data: verifiedDto,
+        message: undefined,
+      });
+    });
+
+    it('should return 422 when token is missing', async () => {
+      req = { body: {}, t } as Partial<Request>;
+
+      await controller.verifyEmail(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+      expect(userService.verifyEmail).not.toHaveBeenCalled();
+    });
+
+    it('should return 422 when the token is invalid', async () => {
+      userService.verifyEmail.mockRejectedValue(
+        new HttpError(
+          StatusCodes.UNPROCESSABLE_ENTITY,
+          'Invalid or expired verification token',
+          'user:errors.invalidVerificationToken'
+        )
+      );
+      req = { body: { token: 'bad' }, t } as Partial<Request>;
+
+      await controller.verifyEmail(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+    });
+
+    it('should return 409 when already verified', async () => {
+      userService.verifyEmail.mockRejectedValue(
+        new HttpError(
+          StatusCodes.CONFLICT,
+          'Email is already verified',
+          'user:errors.emailAlreadyVerified'
+        )
+      );
+      req = { body: { token: 'valid-token' }, t } as Partial<Request>;
+
+      await controller.verifyEmail(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.CONFLICT);
+    });
+  });
+
+  describe('resendVerification', () => {
+    it('should return 200 when the email is resent', async () => {
+      userService.resendEmailVerification.mockResolvedValue(undefined);
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        language: 'pt-BR',
+        t,
+      } as Partial<Request>;
+
+      await controller.resendVerification(req as Request, res as Response);
+
+      expect(userService.resendEmailVerification).toHaveBeenCalledWith(
+        'user-1',
+        'pt-BR'
+      );
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+    });
+
+    it('should return 409 when the email is already verified', async () => {
+      userService.resendEmailVerification.mockRejectedValue(
+        new HttpError(
+          StatusCodes.CONFLICT,
+          'Email is already verified',
+          'user:errors.emailAlreadyVerified'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        language: 'pt-BR',
+        t,
+      } as Partial<Request>;
+
+      await controller.resendVerification(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.CONFLICT);
+    });
+
+    it('should return 500 on unexpected errors', async () => {
+      userService.resendEmailVerification.mockRejectedValue(
+        new Error('Something went wrong')
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        language: 'pt-BR',
+        t,
+      } as Partial<Request>;
+
+      await controller.resendVerification(req as Request, res as Response);
 
       expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
     });

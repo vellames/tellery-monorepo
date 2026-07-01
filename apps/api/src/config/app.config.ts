@@ -36,6 +36,15 @@ const envSchema = z.object({
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
   STRIPE_MONTHLY_PRICE_ID: z.string().optional(),
   WEB_BASE_URL: z.string().url().default('http://localhost:3000'),
+  SMTP_HOST: z.string().optional(),
+  SMTP_PORT: z.coerce.number().int().default(587),
+  SMTP_SECURE: z.string().optional(),
+  SMTP_USER: z.string().optional(),
+  SMTP_PASS: z.string().optional(),
+  SMTP_FROM: z.string().optional(),
+  EMAIL_FROM_NAME: z.string().default('Tellery'),
+  EMAIL_VERIFICATION_JWT_SECRET: z.string().min(16).optional(),
+  EMAIL_VERIFICATION_TOKEN_EXPIRES_IN: z.string().default('24h'),
 });
 
 const parsed = envSchema.safeParse(process.env);
@@ -124,5 +133,19 @@ export const appConfig = {
 
   web: {
     baseUrl: env.WEB_BASE_URL,
+  },
+
+  email: {
+    fromName: env.EMAIL_FROM_NAME,
+    fromAddress: env.SMTP_FROM,
+    verificationExpiresIn: env.EMAIL_VERIFICATION_TOKEN_EXPIRES_IN,
+    verificationJwtSecret: env.EMAIL_VERIFICATION_JWT_SECRET ?? env.JWT_SECRET,
+    smtp: {
+      host: env.SMTP_HOST,
+      port: env.SMTP_PORT,
+      secure: env.SMTP_SECURE === 'true',
+      user: env.SMTP_USER,
+      pass: env.SMTP_PASS,
+    },
   },
 } as const;

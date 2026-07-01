@@ -11,6 +11,7 @@ type PrismaUser = {
   email: string;
   password: string;
   ssn: string | null;
+  emailVerifiedAt: Date | null;
   availableCredits: number;
 };
 
@@ -23,6 +24,7 @@ const mockUser = (overrides: Partial<PrismaUser> = {}): PrismaUser => ({
   email: 'ana@teste.local',
   password: 'password123',
   ssn: null,
+  emailVerifiedAt: null,
   availableCredits: 3,
   ...overrides,
 });
@@ -271,6 +273,37 @@ describe('UserRepository', () => {
       expect(tx.user.update).toHaveBeenCalledWith({
         where: { id: 'user-1' },
         data: { availableCredits: 20 },
+      });
+      expect(prisma.user.update).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('markEmailVerified', () => {
+    it('should set emailVerifiedAt and return the updated user', async () => {
+      const verified = mockUser({
+        emailVerifiedAt: new Date('2026-07-01'),
+      });
+      prisma.user.update.mockResolvedValue(verified);
+
+      const result = await repo.markEmailVerified('user-1');
+
+      expect(result).toEqual(verified);
+      expect(prisma.user.update).toHaveBeenCalledWith({
+        where: { id: 'user-1' },
+        data: { emailVerifiedAt: expect.any(Date) },
+      });
+    });
+
+    it('should forward the transaction when provided', async () => {
+      const tx = {
+        user: { update: jest.fn().mockResolvedValue(mockUser()) },
+      };
+
+      await repo.markEmailVerified('user-1', tx as never);
+
+      expect(tx.user.update).toHaveBeenCalledWith({
+        where: { id: 'user-1' },
+        data: { emailVerifiedAt: expect.any(Date) },
       });
       expect(prisma.user.update).not.toHaveBeenCalled();
     });

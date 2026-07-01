@@ -4,7 +4,10 @@ import {
   ChangePasswordForm,
   SubscriptionPanel,
 } from '@/components/organisms';
-import { CreditsAvailableBadge } from '@/components/molecules';
+import {
+  CreditsAvailableBadge,
+  EmailVerificationBanner,
+} from '@/components/molecules';
 import {
   Card,
   CardContent,
@@ -38,6 +41,7 @@ export default async function ProfilePage() {
         <h1 className="font-heading text-3xl font-bold">{t('title')}</h1>
         <p className="text-muted-foreground">{t('subtitle')}</p>
       </header>
+      {!user.emailVerifiedAt && <EmailVerificationBanner />}
       <SubscriptionPanel
         plan={plan}
         subscription={subscription}

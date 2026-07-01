@@ -6,6 +6,7 @@ import {
   IUserRepository,
   IPasswordHasher,
   ITokenService,
+  IEmailVerificationService,
 } from '../../interfaces';
 import { User } from '@prisma/client';
 import { UserController } from '../../controllers/user/user.controller';
@@ -27,10 +28,13 @@ const realTokenService: ITokenService = new JwtTokenService(
   TEST_JWT_SECRET,
   TEST_JWT_EXPIRES_IN
 );
+const mockEmailVerification: DeepMockProxy<IEmailVerificationService> =
+  mockDeep<IEmailVerificationService>();
 const userService = new UserService(
   mockRepo,
   mockPasswordHasher,
-  realTokenService
+  realTokenService,
+  mockEmailVerification
 );
 const userController = new UserController(userService);
 
@@ -73,6 +77,7 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   email: AUTHENTICATED_USER_EMAIL,
   password: 'hashed-password',
   ssn: null,
+  emailVerifiedAt: null,
   availableCredits: 3,
   ...overrides,
 });
@@ -100,6 +105,7 @@ describe('E2E: GET /me', () => {
       name: 'Ana Teste',
       email: AUTHENTICATED_USER_EMAIL,
       ssn: null,
+      emailVerifiedAt: null,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
@@ -148,6 +154,7 @@ describe('E2E: PATCH /me', () => {
       name: 'Ana Updated',
       email: 'ana.updated@teste.local',
       ssn: null,
+      emailVerifiedAt: null,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
