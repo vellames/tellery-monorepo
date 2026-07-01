@@ -43,7 +43,7 @@ export default async function ProfilePage() {
         subscription={subscription}
         locale={locale}
       />
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6">
         <Card>
           <CardHeader>
             <CardTitle>{t('account')}</CardTitle>
