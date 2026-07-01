@@ -1,10 +1,9 @@
 import { getLocale, getTranslations } from 'next-intl/server';
-import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
 import {
   ProfileForm,
   ChangePasswordForm,
   LogoutButton,
+  SubscriptionPanel,
 } from '@/components/organisms';
 import { CreditsAvailableBadge } from '@/components/molecules';
 import {
@@ -15,17 +14,24 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { fetchMe } from '@/lib/api/me';
-import { config } from '@/lib/config';
+import {
+  fetchSubscription,
+  fetchSubscriptionPlan,
+} from '@/lib/api/subscription-data';
 
 export default async function ProfilePage() {
   const user = await fetchMe();
   const t = await getTranslations('profile');
-  const tSub = await getTranslations('subscription');
   const locale = await getLocale();
   const memberSince = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'long',
   }).format(new Date(user.createdAt));
+
+  const [plan, subscription] = await Promise.all([
+    fetchSubscriptionPlan(),
+    fetchSubscription(),
+  ]);
 
   return (
     <section className="space-y-8">
@@ -33,6 +39,7 @@ export default async function ProfilePage() {
         <h1 className="font-heading text-3xl font-bold">{t('title')}</h1>
         <p className="text-muted-foreground">{t('subtitle')}</p>
       </header>
+      <SubscriptionPanel plan={plan} subscription={subscription} locale={locale} />
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
@@ -46,29 +53,14 @@ export default async function ProfilePage() {
             <ProfileForm user={user} />
           </CardContent>
         </Card>
-        <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('password.title')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ChangePasswordForm />
-            </CardContent>
-          </Card>
-          <Link href={config.routes.subscription} className="block">
-            <Card className="hover:border-primary/40 transition-colors">
-              <CardContent className="flex items-center justify-between py-5">
-                <div className="space-y-1">
-                  <p className="font-semibold">{tSub('link')}</p>
-                  <p className="text-muted-foreground text-sm">
-                    {tSub('linkDescription')}
-                  </p>
-                </div>
-                <ChevronRight className="text-muted-foreground size-5" />
-              </CardContent>
-            </Card>
-          </Link>
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('password.title')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChangePasswordForm />
+          </CardContent>
+        </Card>
       </div>
       <LogoutButton />
     </section>
