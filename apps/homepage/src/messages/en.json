@@ -89,5 +89,11 @@
     "title": "Tellery",
     "tagline": "Stories you take part in",
     "description": "Interactive stories where you talk, investigate and uncover the truth."
+  },
+  "cookieConsent": {
+    "ariaLabel": "Cookie notice",
+    "description": "We use cookies that are essential to the site and your experience. You may accept or reject optional cookies at any time. <link>Privacy Policy</link>.",
+    "accept": "Accept",
+    "reject": "Reject"
   }
 }

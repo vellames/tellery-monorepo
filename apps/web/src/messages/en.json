@@ -369,5 +369,11 @@
       "invalidSsn": "Invalid SSN",
       "updateFailed": "Failed to update profile"
     }
+  },
+  "cookieConsent": {
+    "ariaLabel": "Cookie notice",
+    "description": "We use cookies that are essential to the site and your experience. You may accept or reject optional cookies at any time. <link>Privacy Policy</link>.",
+    "accept": "Accept",
+    "reject": "Reject"
   }
 }

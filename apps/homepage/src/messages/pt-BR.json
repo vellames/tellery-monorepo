@@ -89,5 +89,11 @@
     "title": "Tellery",
     "tagline": "Histórias onde você participa",
     "description": "Histórias interativas onde você conversa, investiga e descobre a verdade."
+  },
+  "cookieConsent": {
+    "ariaLabel": "Aviso de cookies",
+    "description": "Usamos cookies essenciais ao funcionamento do site e à sua experiência. Você pode aceitar ou rejeitar cookies opcionais a qualquer momento. <link>Política de Privacidade</link>.",
+    "accept": "Aceitar",
+    "reject": "Rejeitar"
   }
 }

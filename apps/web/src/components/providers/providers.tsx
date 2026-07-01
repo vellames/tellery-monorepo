@@ -6,6 +6,7 @@ import { TriangleAlertIcon, RefreshCwIcon } from 'lucide-react';
 import { Toaster } from '@/components/ui/sonner';
 import { Button } from '@/components/ui/button';
 import { ErrorBoundary } from '@/components/error-boundary';
+import { CookieConsentBanner } from '@ai-history/ui';
 import { getQueryClient } from '@/lib/query-client';
 
 function ProvidersErrorFallback({ reset }: { reset: () => void }) {
@@ -38,6 +39,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       >
         {children}
       </ErrorBoundary>
+      <CookieConsentBanner privacyHref="/privacy" />
       <Toaster richColors closeButton position="top-right" />
     </QueryClientProvider>
   );

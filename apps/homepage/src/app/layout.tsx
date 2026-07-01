@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, Mulish } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
+import { CookieConsentBanner } from '@ai-history/ui';
 import {
   getLocale,
   getMessages,
@@ -47,6 +48,9 @@ export default async function RootLayout({
           timeZone={timeZone}
         >
           {children}
+          <CookieConsentBanner
+            privacyHref={`${process.env.NEXT_PUBLIC_WEB_URL ?? 'http://localhost:3000'}/privacy`}
+          />
         </NextIntlClientProvider>
       </body>
     </html>
