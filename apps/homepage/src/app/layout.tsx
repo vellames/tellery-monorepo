@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Cormorant_Garamond, Mulish } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import {
   getLocale,
@@ -7,6 +8,13 @@ import {
   getTranslations,
 } from 'next-intl/server';
 import './globals.css';
+
+const mulish = Mulish({ subsets: ['latin'], variable: '--font-sans' });
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-heading',
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata');
@@ -27,7 +35,7 @@ export default async function RootLayout({
   const timeZone = await getTimeZone();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`${mulish.variable} ${cormorant.variable}`}>
       <body>
         <NextIntlClientProvider
           locale={locale}

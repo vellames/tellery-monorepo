@@ -1,9 +1,87 @@
 {
   "home": {
-    "title": "Tellery"
+    "nav": {
+      "how": "Como funciona",
+      "experience": "Experiência",
+      "premium": "Premium",
+      "cta": "Entrar no caso"
+    },
+    "hero": {
+      "eyebrow": "Histórias interativas com alma de investigação",
+      "title": "Entre em histórias que respondem a você.",
+      "subtitle": "Converse com personagens, examine cenas, descubra evidências e monte sua própria conclusão em experiências narrativas guiadas por IA.",
+      "primaryCta": "Começar uma investigação",
+      "secondaryCta": "Ver como funciona",
+      "badge": "Mistério, suspense e drama em formato jogável",
+      "caseLabel": "Arquivo aberto",
+      "caseTitle": "O último brinde no Hotel Aurora",
+      "caseMeta": "3 suspeitos • 7 evidências • 42 min",
+      "caseClue": "Evidência descoberta",
+      "caseClueTitle": "Taça com marcas de batom dourado",
+      "caseQuestion": "Pergunte à pianista o que ela viu depois da meia-noite...",
+      "caseProgress": "68% do caso revelado"
+    },
+    "stats": {
+      "stories": "Histórias para investigar",
+      "paths": "Caminhos possíveis",
+      "ending": "Final moldado pelas suas pistas"
+    },
+    "how": {
+      "eyebrow": "Como funciona",
+      "title": "Uma história. Várias pistas. A sua conclusão.",
+      "subtitle": "Cada investigação começa com um briefing, mas o caminho até a verdade depende das perguntas que você faz.",
+      "enter": {
+        "title": "Entre no caso",
+        "description": "Leia a apresentação, entenda o objetivo e escolha por onde começar."
+      },
+      "investigate": {
+        "title": "Investigue livremente",
+        "description": "Fale com personagens, examine objetos e explore locais em busca de detalhes escondidos."
+      },
+      "solve": {
+        "title": "Descubra a verdade",
+        "description": "Colete evidências suficientes, conecte os fatos e envie sua conclusão."
+      }
+    },
+    "experience": {
+      "eyebrow": "Experiência",
+      "title": "Não é só escolher opções. É investigar.",
+      "subtitle": "Tellery transforma cada história em um painel vivo: suspeitos, lugares, objetos, pistas obrigatórias e finais que dependem do que você descobriu.",
+      "characters": {
+        "title": "Personagens que respondem",
+        "description": "Faça perguntas em linguagem natural e siga contradições, memórias e pistas."
+      },
+      "scenes": {
+        "title": "Cenas exploráveis",
+        "description": "Observe ambientes, inspecione objetos e desbloqueie evidências escondidas."
+      },
+      "endings": {
+        "title": "Conclusões com consequência",
+        "description": "A história termina com resumo, epílogo e pontuação baseados na sua investigação."
+      },
+      "boardLabel": "Painel de investigação"
+    },
+    "premium": {
+      "eyebrow": "Casos contínuos",
+      "title": "Novos mistérios para continuar investigando.",
+      "subtitle": "Use créditos para iniciar histórias e desbloqueie experiências premium com assinatura.",
+      "credits": "Créditos mensais para iniciar histórias",
+      "premiumStories": "Acesso a histórias premium",
+      "differentEndings": "Mistérios com finais diferentes",
+      "cancel": "Cancele quando quiser"
+    },
+    "finalCta": {
+      "eyebrow": "A próxima pista está esperando",
+      "title": "Histórias onde você não assiste de fora. Você participa.",
+      "subtitle": "Entre em Tellery, abra um caso e descubra até onde suas perguntas conseguem levar a história.",
+      "cta": "Começar agora"
+    },
+    "footer": {
+      "tagline": "Histórias onde você participa"
+    }
   },
   "metadata": {
     "title": "Tellery",
-    "description": "Tellery"
+    "description": "Histórias interativas onde você conversa, investiga e descobre a verdade."
   }
 }

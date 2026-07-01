@@ -1,9 +1,87 @@
 {
   "home": {
-    "title": "Tellery"
+    "nav": {
+      "how": "How it works",
+      "experience": "Experience",
+      "premium": "Premium",
+      "cta": "Enter the case"
+    },
+    "hero": {
+      "eyebrow": "Interactive stories with an investigative soul",
+      "title": "Step into stories that answer back.",
+      "subtitle": "Talk to characters, inspect scenes, uncover evidence and build your own conclusion in AI-powered narrative investigations.",
+      "primaryCta": "Start an investigation",
+      "secondaryCta": "See how it works",
+      "badge": "Playable mystery, suspense and drama",
+      "caseLabel": "Open case file",
+      "caseTitle": "The final toast at Hotel Aurora",
+      "caseMeta": "3 suspects • 7 pieces of evidence • 42 min",
+      "caseClue": "Evidence discovered",
+      "caseClueTitle": "Glass with golden lipstick marks",
+      "caseQuestion": "Ask the pianist what she saw after midnight...",
+      "caseProgress": "68% of the case revealed"
+    },
+    "stats": {
+      "stories": "Stories to investigate",
+      "paths": "Possible paths",
+      "ending": "Ending shaped by your clues"
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "One story. Many clues. Your conclusion.",
+      "subtitle": "Every investigation starts with a briefing, but the path to the truth depends on the questions you ask.",
+      "enter": {
+        "title": "Enter the case",
+        "description": "Read the briefing, understand the objective and choose where to begin."
+      },
+      "investigate": {
+        "title": "Investigate freely",
+        "description": "Talk to characters, inspect objects and explore locations for hidden details."
+      },
+      "solve": {
+        "title": "Find the truth",
+        "description": "Collect enough evidence, connect the facts and submit your conclusion."
+      }
+    },
+    "experience": {
+      "eyebrow": "Experience",
+      "title": "This is not just choosing options. It is investigating.",
+      "subtitle": "Tellery turns every story into a living board: suspects, places, objects, required clues and endings that depend on what you uncovered.",
+      "characters": {
+        "title": "Characters that answer",
+        "description": "Ask natural questions and follow contradictions, memories and clues."
+      },
+      "scenes": {
+        "title": "Explorable scenes",
+        "description": "Observe environments, inspect objects and unlock hidden evidence."
+      },
+      "endings": {
+        "title": "Consequential conclusions",
+        "description": "The story closes with a summary, epilogue and score based on your investigation."
+      },
+      "boardLabel": "Investigation board"
+    },
+    "premium": {
+      "eyebrow": "Ongoing cases",
+      "title": "New mysteries to keep investigating.",
+      "subtitle": "Use credits to start stories and unlock premium experiences with a subscription.",
+      "credits": "Monthly credits to start stories",
+      "premiumStories": "Access to premium stories",
+      "differentEndings": "Mysteries with different endings",
+      "cancel": "Cancel anytime"
+    },
+    "finalCta": {
+      "eyebrow": "The next clue is waiting",
+      "title": "Stories where you do not watch from outside. You take part.",
+      "subtitle": "Enter Tellery, open a case and discover how far your questions can take the story.",
+      "cta": "Start now"
+    },
+    "footer": {
+      "tagline": "Stories you take part in"
+    }
   },
   "metadata": {
     "title": "Tellery",
-    "description": "Tellery"
+    "description": "Interactive stories where you talk, investigate and uncover the truth."
   }
 }
