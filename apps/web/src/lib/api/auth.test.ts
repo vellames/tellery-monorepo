@@ -32,14 +32,16 @@ describe('api/auth', () => {
     ).rejects.toThrow('Invalid');
   });
 
-  it('registerRequest resolves on 201', async () => {
+  it('registerRequest returns the user on 201', async () => {
     const fetchMock = vi
       .spyOn(globalThis, 'fetch')
-      .mockResolvedValue(new Response('{"success":true}', { status: 201 }));
+      .mockResolvedValue(
+        new Response(JSON.stringify({ user }), { status: 201 })
+      );
 
     await expect(
       registerRequest({ name: 'Ana', email: 'a@b.c', password: '123456' })
-    ).resolves.toBeUndefined();
+    ).resolves.toEqual(user);
     expect(fetchMock).toHaveBeenCalled();
   });
 

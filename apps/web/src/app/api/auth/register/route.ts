@@ -1,8 +1,9 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { StatusCodes } from 'http-status-codes';
 import { getTranslations } from 'next-intl/server';
+import { setSession } from '@/lib/auth/session';
 import { ApiError, apiFetch } from '@/lib/api/client';
-import type { RegisterPayload } from '@/lib/types/auth';
+import type { AuthPayload, RegisterPayload } from '@/lib/types/auth';
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   const t = await getTranslations('register.errors');
@@ -16,14 +17,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   }
 
   try {
-    await apiFetch('/users/register', {
+    const { token, user } = await apiFetch<AuthPayload>('/users/register', {
       method: 'POST',
       body: JSON.stringify(body),
     });
-    return NextResponse.json(
-      { success: true },
-      { status: StatusCodes.CREATED }
-    );
+    await setSession(token, user);
+    return NextResponse.json({ user }, { status: StatusCodes.CREATED });
   } catch (error) {
     const message =
       error instanceof ApiError ? error.message : t('registerFailed');

@@ -90,14 +90,18 @@ describe('E2E: /users/register', () => {
     expect(response.status).toBe(StatusCodes.CREATED);
     expect(response.body.success).toBe(true);
     expect(response.body.data).toEqual({
-      id: 'user-1',
-      name: 'Ana Teste',
-      email: 'ana@teste.local',
-      ssn: null,
-      createdAt: '2026-01-01T00:00:00.000Z',
-      updatedAt: '2026-01-01T00:00:00.000Z',
+      user: {
+        id: 'user-1',
+        name: 'Ana Teste',
+        email: 'ana@teste.local',
+        ssn: null,
+        createdAt: '2026-01-01T00:00:00.000Z',
+        updatedAt: '2026-01-01T00:00:00.000Z',
+      },
+      token: 'signed-token',
     });
     expect(response.body.data).not.toHaveProperty('password');
+    expect(response.body.data.user).not.toHaveProperty('password');
   });
 
   it('should return 422 when name is missing', async () => {

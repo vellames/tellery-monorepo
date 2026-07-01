@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { Loader2, Lock, Mail, MailCheck, User } from 'lucide-react';
+import { Loader2, Lock, Mail, User } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { CheckboxField, FormikField } from '@/components/molecules';
@@ -58,29 +58,6 @@ export function RegisterForm() {
       }),
     [t]
   );
-
-  if (register.isSuccess) {
-    return (
-      <div className="space-y-4 text-center">
-        <MailCheck className="text-gold mx-auto size-10" />
-        <h2 className="font-heading text-primary text-xl font-bold">
-          {t('successTitle')}
-        </h2>
-        <p className="text-muted-foreground text-sm">
-          {t('successMessage', { email: register.variables?.email ?? '' })}
-        </p>
-        <Button
-          variant="outline"
-          size="lg"
-          className="w-full"
-          nativeButton={false}
-          render={<Link href={config.routes.login} />}
-        >
-          {tCommon('backToLogin')}
-        </Button>
-      </div>
-    );
-  }
 
   return (
     <Formik

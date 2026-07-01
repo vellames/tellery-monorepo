@@ -59,13 +59,20 @@ describe('UserService', () => {
         email: 'ana@teste.local',
         password: 'hashed-password',
       });
-      expect(result).toEqual({
-        id: 'user-1',
-        name: 'Ana Teste',
+      expect(tokenService.sign).toHaveBeenCalledWith({
+        sub: 'user-1',
         email: 'ana@teste.local',
-        ssn: null,
-        createdAt: '2026-01-01T00:00:00.000Z',
-        updatedAt: '2026-01-01T00:00:00.000Z',
+      });
+      expect(result).toEqual({
+        user: {
+          id: 'user-1',
+          name: 'Ana Teste',
+          email: 'ana@teste.local',
+          ssn: null,
+          createdAt: '2026-01-01T00:00:00.000Z',
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+        token: 'signed-token',
       });
     });
 
@@ -115,6 +122,7 @@ describe('UserService', () => {
       });
 
       expect(result).not.toHaveProperty('password');
+      expect(result.user).not.toHaveProperty('password');
     });
   });
 

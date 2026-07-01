@@ -9,7 +9,7 @@ const router = Router();
  *   post:
  *     tags: [Users]
  *     summary: Register a new user
- *     description: Creates a new user account. Returns the user data without the password.
+ *     description: Creates a new user account and returns the user data along with an access token, logging the user in automatically.
  *     parameters:
  *       - $ref: '#/components/parameters/AcceptLanguage'
  *     requestBody:
@@ -41,23 +41,29 @@ const router = Router();
  *                 success:
  *                   type: boolean
  *                   example: true
- *                 data:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: string
- *                       format: uuid
- *                     name:
- *                       type: string
- *                     email:
- *                       type: string
- *                       format: email
- *                     createdAt:
- *                       type: string
- *                       format: date-time
- *                     updatedAt:
- *                       type: string
- *                       format: date-time
+ *               data:
+ *                 type: object
+ *                 properties:
+ *                   user:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         format: uuid
+ *                       name:
+ *                         type: string
+ *                       email:
+ *                         type: string
+ *                         format: email
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date-time
+ *                   token:
+ *                     type: string
+ *                     description: JWT access token used to authenticate subsequent requests.
  *       422:
  *         description: Invalid request body (failed validation)
  *         content:

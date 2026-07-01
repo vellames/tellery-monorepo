@@ -23,8 +23,16 @@ export function useLogin() {
 }
 
 export function useRegister() {
+  const router = useRouter();
+  const t = useTranslations('auth');
+
   return useMutation({
     mutationFn: (payload: RegisterPayload) => registerRequest(payload),
+    onSuccess: () => {
+      toast.success(t('welcome'));
+      router.push(config.routes.home);
+      router.refresh();
+    },
   });
 }
 

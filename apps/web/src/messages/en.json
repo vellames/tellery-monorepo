@@ -44,8 +44,6 @@
     "privacyPrefix": "I accept the ",
     "privacyPolicy": "Privacy Policy",
     "submit": "Create account",
-    "successTitle": "Check your email",
-    "successMessage": "We sent a confirmation link to {email}. You need to confirm it to activate your account.",
     "errors": {
       "nameRequired": "Name is required",
       "nameMin": "Name is too short",

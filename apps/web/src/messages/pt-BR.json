@@ -44,8 +44,6 @@
     "privacyPrefix": "Li e aceito a ",
     "privacyPolicy": "Política de Privacidade",
     "submit": "Criar conta",
-    "successTitle": "Verifique seu e-mail",
-    "successMessage": "Enviamos um link de confirmação para {email}. Você precisa confirmar para ativar sua conta.",
     "errors": {
       "nameRequired": "Nome é obrigatório",
       "nameMin": "Nome muito curto",

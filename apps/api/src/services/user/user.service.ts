@@ -23,7 +23,7 @@ export class UserService {
     private readonly tokenService: ITokenService
   ) {}
 
-  async create(data: CreateUserDto): Promise<UserResponseDto> {
+  async create(data: CreateUserDto): Promise<AuthResponseDto> {
     const existing = await this.users.findByEmail(data.email);
     if (existing) {
       throw new HttpError(
@@ -35,7 +35,8 @@ export class UserService {
 
     const hashedPassword = await this.passwordHasher.hash(data.password);
     const user = await this.users.create({ ...data, password: hashedPassword });
-    return this.toResponseDto(user);
+    const token = this.tokenService.sign({ sub: user.id, email: user.email });
+    return { user: this.toResponseDto(user), token };
   }
 
   async login(data: LoginDto): Promise<AuthResponseDto> {

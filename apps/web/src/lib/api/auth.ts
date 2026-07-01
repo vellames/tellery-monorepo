@@ -6,6 +6,10 @@ interface LoginResponse {
   user: User;
 }
 
+interface RegisterResponse {
+  user: User;
+}
+
 export async function loginRequest(payload: LoginPayload): Promise<User> {
   const body = await clientFetch<LoginResponse>(config.routes.loginApi, {
     method: 'POST',
@@ -14,11 +18,12 @@ export async function loginRequest(payload: LoginPayload): Promise<User> {
   return body.user;
 }
 
-export async function registerRequest(payload: RegisterPayload): Promise<void> {
-  await clientFetch(config.routes.registerApi, {
+export async function registerRequest(payload: RegisterPayload): Promise<User> {
+  const body = await clientFetch<RegisterResponse>(config.routes.registerApi, {
     method: 'POST',
     body: JSON.stringify(payload),
   });
+  return body.user;
 }
 
 export async function logoutRequest(): Promise<void> {

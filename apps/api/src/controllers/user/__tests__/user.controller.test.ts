@@ -29,7 +29,7 @@ describe('UserController', () => {
   });
 
   describe('register', () => {
-    it('should return 201 with the created user', async () => {
+    it('should return 201 with the created user and a token', async () => {
       const userDto = {
         id: 'user-1',
         name: 'Ana Teste',
@@ -38,7 +38,8 @@ describe('UserController', () => {
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       };
-      userService.create.mockResolvedValue(userDto);
+      const authPayload = { user: userDto, token: 'signed-token' };
+      userService.create.mockResolvedValue(authPayload);
       req = {
         body: {
           name: 'Ana Teste',
@@ -53,7 +54,7 @@ describe('UserController', () => {
       expect(status).toHaveBeenCalledWith(StatusCodes.CREATED);
       expect(json).toHaveBeenCalledWith({
         success: true,
-        data: userDto,
+        data: authPayload,
         message: undefined,
       });
     });

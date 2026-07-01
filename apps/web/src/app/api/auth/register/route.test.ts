@@ -15,9 +15,13 @@ vi.mock('@/lib/api/client', () => ({
     }
   },
 }));
+vi.mock('@/lib/auth/session', () => ({
+  setSession: vi.fn(),
+}));
 
 import { POST } from '@/app/api/auth/register/route';
 import { apiFetch, ApiError } from '@/lib/api/client';
+import { setSession } from '@/lib/auth/session';
 
 function makeReq(body: unknown) {
   return new NextRequest('http://localhost/api/auth/register', {
@@ -27,6 +31,18 @@ function makeReq(body: unknown) {
   });
 }
 
+const authPayload = {
+  token: 'signed-token',
+  user: {
+    id: '1',
+    name: 'A',
+    email: 'a@b.c',
+    ssn: null,
+    createdAt: '',
+    updatedAt: '',
+  },
+};
+
 describe('POST /api/auth/register', () => {
   beforeEach(() => vi.clearAllMocks());
 
@@ -35,21 +51,19 @@ describe('POST /api/auth/register', () => {
     expect(res.status).toBe(422);
   });
 
-  it('returns 201 on success', async () => {
-    vi.mocked(apiFetch).mockResolvedValue({
-      id: '1',
-      name: 'A',
-      email: 'a@b.c',
-      createdAt: '',
-      updatedAt: '',
-    });
+  it('saves the session and returns 201 with the user on success', async () => {
+    vi.mocked(apiFetch).mockResolvedValue(authPayload);
 
     const res = await POST(
       makeReq({ name: 'Ana', email: 'a@b.c', password: '123456' })
     );
 
+    expect(setSession).toHaveBeenCalledWith(
+      authPayload.token,
+      authPayload.user
+    );
     expect(res.status).toBe(201);
-    expect((await res.json()).success).toBe(true);
+    expect(await res.json()).toEqual({ user: authPayload.user });
   });
 
   it('forwards the ApiError message and status', async () => {
@@ -63,5 +77,6 @@ describe('POST /api/auth/register', () => {
 
     expect(res.status).toBe(409);
     expect((await res.json()).error).toBe('Email already in use');
+    expect(setSession).not.toHaveBeenCalled();
   });
 });

@@ -62,8 +62,8 @@ describe('auth hooks', () => {
   });
 
   describe('useRegister', () => {
-    it('resolves without redirecting', async () => {
-      vi.mocked(registerRequest).mockResolvedValue();
+    it('redirects home and toasts on success', async () => {
+      vi.mocked(registerRequest).mockResolvedValue(user);
       const { result } = renderHookWithProviders(() => useRegister());
 
       await act(async () => {
@@ -74,7 +74,9 @@ describe('auth hooks', () => {
         });
       });
 
-      expect(pushMock).not.toHaveBeenCalled();
+      expect(pushMock).toHaveBeenCalledWith('/home');
+      expect(refreshMock).toHaveBeenCalled();
+      expect(toast.success).toHaveBeenCalled();
     });
 
     it('toasts the error on failure', async () => {
