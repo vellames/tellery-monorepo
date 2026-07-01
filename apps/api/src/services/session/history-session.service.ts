@@ -2,6 +2,7 @@ import {
   IHistoryDefinitionRepository,
   IImageUrlSigner,
   ISessionRepository,
+  ISubscriptionRepository,
   IUserRepository,
 } from '../../interfaces';
 import { HttpError } from '../../utils/http-error';
@@ -12,6 +13,7 @@ import {
   buildSessionStateResponse,
   SessionStateResponse,
 } from './session-state.mapper';
+import { isActiveSubscription } from '../subscription/subscription-status';
 
 const DEFAULT_PAGE_SIZE = 10;
 const MAX_PAGE_SIZE = 50;
@@ -55,7 +57,8 @@ export class HistorySessionService {
     private readonly users: IUserRepository,
     private readonly histories: IHistoryDefinitionRepository,
     private readonly sessions: ISessionRepository,
-    private readonly imageUrlSigner: IImageUrlSigner
+    private readonly imageUrlSigner: IImageUrlSigner,
+    private readonly subscriptions: ISubscriptionRepository
   ) {}
 
   async startSession(userId: string, input: StartSessionBody) {
@@ -95,6 +98,17 @@ export class HistorySessionService {
         'session:errors.sessionAlreadyActive',
         { sessionId: existingSession.id }
       );
+    }
+
+    if (!history.isFree) {
+      const subscription = await this.subscriptions.findByUserId(user.id);
+      if (!isActiveSubscription(subscription)) {
+        throw new HttpError(
+          StatusCodes.PAYMENT_REQUIRED,
+          user.id,
+          'session:errors.subscriptionRequired'
+        );
+      }
     }
 
     const session = await this.sessions.runTransaction(async (tx) => {

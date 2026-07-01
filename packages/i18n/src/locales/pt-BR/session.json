@@ -12,6 +12,7 @@
     "sessionAlreadyActive": "Você já tem uma sessão em andamento para esta história",
     "sessionNotActive": "Esta sessão não está mais ativa",
     "noCreditsAvailable": "Você não tem créditos disponíveis",
+    "subscriptionRequired": "Você precisa de uma assinatura ativa para jogar esta história",
     "requiredCluesNotDiscovered": "Você ainda não descobriu todas as pistas obrigatórias",
     "unknownConclusionField": "Campo de conclusão desconhecido: {{id}}",
     "unknownConclusionOption": "Opção de conclusão desconhecida: {{id}}",

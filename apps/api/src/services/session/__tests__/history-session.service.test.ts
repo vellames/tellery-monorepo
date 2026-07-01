@@ -1,10 +1,11 @@
-import { User } from '@prisma/client';
+import { Subscription, User } from '@prisma/client';
 import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import {
   IHistoryDefinitionRepository,
   IImageUrlSigner,
   ISessionRepository,
+  ISubscriptionRepository,
   IUserRepository,
 } from '../../../interfaces';
 import type { HistoryWithDefinitions } from '../../../repositories/HistoryDefinitionRepository';
@@ -24,7 +25,9 @@ const mockUser = (overrides: Partial<User> = {}): User =>
     ...overrides,
   }) as User;
 
-const mockHistory = (): HistoryWithDefinitions =>
+const mockHistory = (
+  overrides: Partial<HistoryWithDefinitions> = {}
+): HistoryWithDefinitions =>
   ({
     id: 'history-1',
     slug: 'o-bilhete-na-mesa-7',
@@ -32,7 +35,29 @@ const mockHistory = (): HistoryWithDefinitions =>
     subtitle: null,
     opening: 'opening text',
     objective: 'objective text',
+    isFree: true,
+    ...overrides,
   }) as unknown as HistoryWithDefinitions;
+
+const mockSubscription = (
+  overrides: Partial<Subscription> = {}
+): Subscription =>
+  ({
+    id: 'sub-1',
+    createdAt: new Date('2026-01-01'),
+    updatedAt: new Date('2026-01-01'),
+    deletedAt: null,
+    userId: 'user-1',
+    planId: null,
+    stripeCustomerId: 'cust-1',
+    stripeSubscriptionId: 'stripe-sub-1',
+    stripePriceId: null,
+    status: 'active',
+    currentPeriodStart: null,
+    currentPeriodEnd: null,
+    cancelAtPeriodEnd: false,
+    ...overrides,
+  }) as Subscription;
 
 const mockSession = (
   overrides: Partial<HistorySessionWithRelations> = {}
@@ -54,6 +79,7 @@ describe('HistorySessionService', () => {
   let histories: DeepMockProxy<IHistoryDefinitionRepository>;
   let sessions: DeepMockProxy<ISessionRepository>;
   let imageUrlSigner: DeepMockProxy<IImageUrlSigner>;
+  let subscriptions: DeepMockProxy<ISubscriptionRepository>;
   let service: HistorySessionService;
 
   beforeEach(() => {
@@ -61,6 +87,7 @@ describe('HistorySessionService', () => {
     histories = mockDeep<IHistoryDefinitionRepository>();
     sessions = mockDeep<ISessionRepository>();
     imageUrlSigner = mockDeep<IImageUrlSigner>();
+    subscriptions = mockDeep<ISubscriptionRepository>();
     imageUrlSigner.sign.mockImplementation(async (key: string | null) =>
       key ? `https://signed.test/${key}` : null
     );
@@ -68,7 +95,8 @@ describe('HistorySessionService', () => {
       users,
       histories,
       sessions,
-      imageUrlSigner
+      imageUrlSigner,
+      subscriptions
     );
 
     sessions.runTransaction.mockImplementation(
@@ -76,6 +104,7 @@ describe('HistorySessionService', () => {
       async (cb: any) => cb({})
     );
     users.decrementAvailableCredits.mockResolvedValue(true);
+    subscriptions.findByUserId.mockResolvedValue(null);
   });
 
   afterEach(() => {
@@ -83,6 +112,7 @@ describe('HistorySessionService', () => {
     mockReset(histories);
     mockReset(sessions);
     mockReset(imageUrlSigner);
+    mockReset(subscriptions);
   });
 
   describe('startSession', () => {
@@ -199,6 +229,77 @@ describe('HistorySessionService', () => {
 
       expect(histories.findById).toHaveBeenCalledWith('missing');
       expect(histories.findBySlug).toHaveBeenCalledWith('o-bilhete-na-mesa-7');
+    });
+
+    it('throws 402 subscriptionRequired when a premium history is started without a subscription', async () => {
+      users.findById.mockResolvedValue(mockUser());
+      histories.findById.mockResolvedValue(mockHistory({ isFree: false }));
+      sessions.findActiveByHistory.mockResolvedValue(null);
+      subscriptions.findByUserId.mockResolvedValue(null);
+
+      await expect(
+        service.startSession('user-1', { historyId: 'history-1' })
+      ).rejects.toMatchObject({
+        statusCode: StatusCodes.PAYMENT_REQUIRED,
+        messageKey: 'session:errors.subscriptionRequired',
+      });
+      expect(subscriptions.findByUserId).toHaveBeenCalledWith('user-1');
+      expect(users.decrementAvailableCredits).not.toHaveBeenCalled();
+      expect(sessions.create).not.toHaveBeenCalled();
+    });
+
+    it('throws 402 subscriptionRequired when a premium history is started with an inactive subscription', async () => {
+      users.findById.mockResolvedValue(mockUser());
+      histories.findById.mockResolvedValue(mockHistory({ isFree: false }));
+      sessions.findActiveByHistory.mockResolvedValue(null);
+      subscriptions.findByUserId.mockResolvedValue(
+        mockSubscription({ status: 'canceled' })
+      );
+
+      await expect(
+        service.startSession('user-1', { historyId: 'history-1' })
+      ).rejects.toMatchObject({
+        statusCode: StatusCodes.PAYMENT_REQUIRED,
+        messageKey: 'session:errors.subscriptionRequired',
+      });
+      expect(users.decrementAvailableCredits).not.toHaveBeenCalled();
+      expect(sessions.create).not.toHaveBeenCalled();
+    });
+
+    it('starts a premium history when the user has an active subscription', async () => {
+      const history = mockHistory({ isFree: false });
+      const session = mockSession();
+      users.findById.mockResolvedValue(mockUser());
+      histories.findById.mockResolvedValue(history);
+      sessions.findActiveByHistory.mockResolvedValue(null);
+      subscriptions.findByUserId.mockResolvedValue(mockSubscription());
+      sessions.create.mockResolvedValue(session);
+
+      const result = await service.startSession('user-1', {
+        historyId: 'history-1',
+      });
+
+      expect(subscriptions.findByUserId).toHaveBeenCalledWith('user-1');
+      expect(users.decrementAvailableCredits).toHaveBeenCalledWith(
+        'user-1',
+        expect.anything()
+      );
+      expect(sessions.create).toHaveBeenCalledWith(
+        { userId: 'user-1', history },
+        expect.anything()
+      );
+      expect(result.session).toBe(session);
+    });
+
+    it('does not check the subscription for a free history', async () => {
+      users.findById.mockResolvedValue(mockUser());
+      histories.findById.mockResolvedValue(mockHistory({ isFree: true }));
+      sessions.findActiveByHistory.mockResolvedValue(null);
+      sessions.create.mockResolvedValue(mockSession());
+
+      await service.startSession('user-1', { historyId: 'history-1' });
+
+      expect(subscriptions.findByUserId).not.toHaveBeenCalled();
     });
   });
 

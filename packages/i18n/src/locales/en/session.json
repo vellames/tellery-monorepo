@@ -12,6 +12,7 @@
     "sessionAlreadyActive": "You already have an active session for this history",
     "sessionNotActive": "This session is no longer active",
     "noCreditsAvailable": "You have no credits available",
+    "subscriptionRequired": "An active subscription is required to play this history",
     "requiredCluesNotDiscovered": "You have not discovered all required clues yet",
     "unknownConclusionField": "Unknown conclusion field: {{id}}",
     "unknownConclusionOption": "Unknown conclusion option: {{id}}",

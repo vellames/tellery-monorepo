@@ -123,7 +123,8 @@ export class DIContainer {
     this.userRepository,
     this.historyDefinitionRepository,
     this.sessionRepository,
-    this.imageUrlSigner
+    this.imageUrlSigner,
+    this.subscriptionRepository
   );
   private readonly intentDetectionService = new IntentDetectionService(
     new OpenRouterStructuredChatModel(

@@ -83,8 +83,22 @@ const checkSessionOwnership: RequestHandler = (req, res, next) => {
  *           application/json:
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
+ *       402:
+ *         description: >
+ *           Payment required. Returned when the user has no available credits,
+ *           or when starting a premium (non-free) history without an active subscription.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
  *       404:
  *         description: User or history not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorResponse"
+ *       409:
+ *         description: An active session already exists for this history
  *         content:
  *           application/json:
  *             schema:
