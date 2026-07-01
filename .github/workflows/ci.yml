@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Dummy values so zod env validation (apps/api/src/config/app.config.ts)
+  # passes during typecheck/build/test. No real DB/network access is needed:
+  # api tests fully mock Prisma, and DATABASE_URL only needs to be a
+  # well-formed URL, not a reachable one.
+  DATABASE_URL: postgresql://postgres:postgres@localhost:5555/ai_history?schema=public
+  JWT_SECRET: ci-placeholder-jwt-secret-value
+  OPENROUTER_API_KEY: ci-placeholder-openrouter-key
+  STRIPE_SECRET_KEY: ci-placeholder-stripe-key
+  WEB_BASE_URL: http://localhost:3000
+  NODE_ENV: test
+
+jobs:
+  verify:
+    name: Lint, typecheck, test, build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npm run db:generate -w @ai-history/api
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
