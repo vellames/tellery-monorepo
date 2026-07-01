@@ -45,11 +45,15 @@ export function UserMenu({ user }: UserMenuProps) {
             </span>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => router.push(config.routes.profile)}>
+          <DropdownMenuItem
+            className="py-2.5"
+            onClick={() => router.push(config.routes.profile)}
+          >
             <UserRound />
             {tProfile('title')}
           </DropdownMenuItem>
           <DropdownMenuItem
+            className="py-2.5"
             variant="destructive"
             onClick={() => logout.mutate()}
             disabled={logout.isPending}
