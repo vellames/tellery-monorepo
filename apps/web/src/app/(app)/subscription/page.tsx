@@ -22,7 +22,7 @@ export default async function SubscriptionPage({
   ]);
 
   return (
-    <section className="mx-auto max-w-md space-y-8">
+    <section className="space-y-8">
       <header className="space-y-1">
         <h1 className="font-heading text-3xl font-bold">{t('title')}</h1>
         <p className="text-muted-foreground">{t('subtitle')}</p>

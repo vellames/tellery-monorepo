@@ -1,13 +1,18 @@
+import Link from 'next/link';
+import { Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { User } from '@/lib/types/auth';
 import { CreditsAvailableBadge } from '@/components/molecules';
+import { config } from '@/lib/config';
 
 export interface AppHeaderProps {
   user: User;
+  hasActiveSubscription?: boolean;
 }
 
-export function AppHeader({ user }: AppHeaderProps) {
+export function AppHeader({ user, hasActiveSubscription }: AppHeaderProps) {
   const t = useTranslations('common');
+  const tSub = useTranslations('subscription');
 
   return (
     <header className="flex items-center justify-between gap-4">
@@ -29,6 +34,15 @@ export function AppHeader({ user }: AppHeaderProps) {
 
       <div className="flex items-center gap-3">
         <CreditsAvailableBadge className="px-3 py-2 sm:px-5 sm:py-3" />
+        {!hasActiveSubscription && (
+          <Link
+            href={config.routes.subscription}
+            className="bg-primary text-primary-foreground shadow-soft inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition hover:bg-primary/80"
+          >
+            <Sparkles className="size-4" />
+            <span className="hidden sm:inline">{tSub('subscribeNow')}</span>
+          </Link>
+        )}
         <div className="bg-secondary text-secondary-foreground shadow-soft grid size-12 place-items-center overflow-hidden rounded-full text-sm font-semibold sm:size-14">
           {user.name.charAt(0).toUpperCase()}
         </div>

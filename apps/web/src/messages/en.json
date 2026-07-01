@@ -146,6 +146,7 @@
     "refreshMonthly": "Credits refresh every cycle — unused ones don't roll over",
     "cancelAnytime": "Cancel anytime from the customer portal",
     "subscribe": "Subscribe",
+    "subscribeNow": "Subscribe now",
     "manage": "Manage subscription",
     "checkoutSuccess": "Subscription activated! Your credits were added.",
     "checkoutCanceled": "Checkout was canceled.",

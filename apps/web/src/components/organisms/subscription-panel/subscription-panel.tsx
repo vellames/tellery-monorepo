@@ -17,7 +17,11 @@ import {
   useCreateCheckout,
   useCreateBillingPortal,
 } from '@/lib/hooks/use-subscription';
-import type { PlanDisplay, SubscriptionState } from '@/lib/types/subscription';
+import {
+  isActiveSubscription,
+  type PlanDisplay,
+  type SubscriptionState,
+} from '@/lib/types/subscription';
 
 interface SubscriptionPanelProps {
   plan: PlanDisplay | null;
@@ -25,8 +29,6 @@ interface SubscriptionPanelProps {
   locale: string;
   status?: string;
 }
-
-const ACTIVE_STATUSES = new Set(['active', 'trialing', 'past_due', 'unpaid']);
 
 export function SubscriptionPanel({
   plan,
@@ -48,7 +50,7 @@ export function SubscriptionPanel({
     }
   }, [status, t, queryClient]);
 
-  const isActive = !!subscription && ACTIVE_STATUSES.has(subscription.status);
+  const isActive = isActiveSubscription(subscription);
 
   if (!plan) {
     return (

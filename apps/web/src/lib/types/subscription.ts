@@ -31,3 +31,16 @@ export interface BillingPortalResponse {
 export interface CreateCheckoutPayload {
   priceId?: string;
 }
+
+export const ACTIVE_SUBSCRIPTION_STATUSES = new Set([
+  'active',
+  'trialing',
+  'past_due',
+  'unpaid',
+]);
+
+export function isActiveSubscription(
+  subscription: SubscriptionState | null
+): boolean {
+  return !!subscription && ACTIVE_SUBSCRIPTION_STATUSES.has(subscription.status);
+}
