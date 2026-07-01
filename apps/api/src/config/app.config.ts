@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { writeFileSync } from 'node:fs';
 import { z } from 'zod';
 
 const envSchema = z.object({
@@ -54,6 +55,39 @@ if (!parsed.success) {
   parsed.error.issues.forEach((issue) => {
     console.error(`  ${issue.path.join('.')}: ${issue.message}`);
   });
+  // DEBUG (CI test worker crash): jest drops worker stdout/stderr when a worker
+  // dies on process.exit, so the zod issues above are never visible. Write the
+  // full diagnostic payload to a file so it survives the crash.
+  const debugPayload = {
+    issues: parsed.error.issues.map((issue) => ({
+      path: issue.path.join('.'),
+      message: issue.message,
+      code: issue.code,
+      received: (issue as { received?: unknown }).received,
+    })),
+    envKeysPresent: Object.keys(process.env).sort(),
+    schemaValuesForDebug: {
+      DATABASE_URL: process.env.DATABASE_URL,
+      JWT_SECRET: process.env.JWT_SECRET
+        ? `${process.env.JWT_SECRET.length} chars`
+        : undefined,
+      OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+      WEB_BASE_URL: process.env.WEB_BASE_URL,
+      NODE_ENV: process.env.NODE_ENV,
+      PORT: process.env.PORT,
+      INTENT_DETECTOR_THRESHOLD: process.env.INTENT_DETECTOR_THRESHOLD,
+      SMTP_PORT: process.env.SMTP_PORT,
+    },
+  };
+  try {
+    writeFileSync(
+      process.env.CONFIG_DEBUG_FILE ?? './config-validation-error.json',
+      JSON.stringify(debugPayload, null, 2)
+    );
+  } catch {
+    // best-effort
+  }
   process.exit(1);
 }
 
