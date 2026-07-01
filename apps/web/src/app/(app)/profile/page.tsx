@@ -38,7 +38,11 @@ export default async function ProfilePage() {
         <h1 className="font-heading text-3xl font-bold">{t('title')}</h1>
         <p className="text-muted-foreground">{t('subtitle')}</p>
       </header>
-      <SubscriptionPanel plan={plan} subscription={subscription} locale={locale} />
+      <SubscriptionPanel
+        plan={plan}
+        subscription={subscription}
+        locale={locale}
+      />
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>

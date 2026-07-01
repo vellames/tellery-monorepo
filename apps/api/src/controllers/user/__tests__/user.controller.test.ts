@@ -34,6 +34,7 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
+        ssn: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       };
@@ -119,6 +120,7 @@ describe('UserController', () => {
           id: 'user-1',
           name: 'Ana Teste',
           email: 'ana@teste.local',
+          ssn: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
@@ -193,6 +195,7 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
+        ssn: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       };
@@ -309,6 +312,7 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Updated',
         email: 'ana.updated@teste.local',
+        ssn: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-02T00:00:00.000Z',
       };
@@ -318,6 +322,7 @@ describe('UserController', () => {
         body: {
           name: 'Ana Updated',
           email: 'ana.updated@teste.local',
+          ssn: '295.379.955-93',
         },
         t,
       } as Partial<Request>;
@@ -327,6 +332,7 @@ describe('UserController', () => {
       expect(userService.update).toHaveBeenCalledWith('user-1', {
         name: 'Ana Updated',
         email: 'ana.updated@teste.local',
+        ssn: '295.379.955-93',
       });
       expect(status).toHaveBeenCalledWith(StatusCodes.OK);
       expect(json).toHaveBeenCalledWith({

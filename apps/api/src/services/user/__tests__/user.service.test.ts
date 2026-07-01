@@ -16,6 +16,7 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   name: 'Ana Teste',
   email: 'ana@teste.local',
   password: 'hashed-password',
+  ssn: null,
   availableCredits: 3,
   ...overrides,
 });
@@ -62,6 +63,7 @@ describe('UserService', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
+        ssn: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       });
@@ -139,6 +141,7 @@ describe('UserService', () => {
           id: 'user-1',
           name: 'Ana Teste',
           email: 'ana@teste.local',
+          ssn: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
@@ -312,6 +315,39 @@ describe('UserService', () => {
 
       expect(result.name).toBe('New Name');
       expect(repo.findByEmail).not.toHaveBeenCalled();
+    });
+
+    it('should normalize a valid CPF before updating ssn', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      repo.update.mockResolvedValue(mockUser({ ssn: '29537995593' }));
+
+      const result = await service.update('user-1', {
+        ssn: '295.379.955-93',
+      });
+
+      expect(repo.update).toHaveBeenCalledWith('user-1', {
+        ssn: '29537995593',
+      });
+      expect(result.ssn).toBe('29537995593');
+    });
+
+    it('should clear ssn when an empty value is provided', async () => {
+      repo.findById.mockResolvedValue(mockUser({ ssn: '29537995593' }));
+      repo.update.mockResolvedValue(mockUser({ ssn: null }));
+
+      await service.update('user-1', { ssn: '' });
+
+      expect(repo.update).toHaveBeenCalledWith('user-1', { ssn: null });
+    });
+
+    it('should throw 422 when ssn is not a valid CPF', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+
+      await expect(
+        service.update('user-1', { ssn: '111.111.111-11' })
+      ).rejects.toMatchObject({ statusCode: 422 });
+
+      expect(repo.update).not.toHaveBeenCalled();
     });
   });
 

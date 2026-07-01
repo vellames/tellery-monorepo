@@ -38,7 +38,7 @@ export function AppHeader({ user, hasActiveSubscription }: AppHeaderProps) {
         {!hasActiveSubscription && (
           <Link
             href={config.routes.subscription}
-            className="bg-primary text-primary-foreground shadow-soft inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition hover:bg-primary/80"
+            className="bg-primary text-primary-foreground shadow-soft hover:bg-primary/80 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition"
           >
             <Sparkles className="size-4" />
             <span className="hidden sm:inline">{tSub('subscribeNow')}</span>

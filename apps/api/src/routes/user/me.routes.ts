@@ -130,7 +130,7 @@ router.get('/available-credits', authenticate, async (req, res) => {
  *   patch:
  *     tags: [Users]
  *     summary: Update the logged-in user's profile
- *     description: Updates the name and/or email of the authenticated user. The password cannot be changed through this endpoint.
+ *     description: Updates the name, email, and/or SSN of the authenticated user. The password cannot be changed through this endpoint. The SSN field currently accepts Brazilian CPF values only.
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -149,6 +149,11 @@ router.get('/available-credits', authenticate, async (req, res) => {
  *                 type: string
  *                 format: email
  *                 example: ana.updated@teste.local
+ *               ssn:
+ *                 type: string
+ *                 nullable: true
+ *                 description: Stored as SSN, currently validated as a Brazilian CPF.
+ *                 example: '295.379.955-93'
  *     responses:
  *       200:
  *         description: Profile updated successfully
@@ -171,6 +176,9 @@ router.get('/available-credits', authenticate, async (req, res) => {
  *                     email:
  *                       type: string
  *                       format: email
+ *                     ssn:
+ *                       type: string
+ *                       nullable: true
  *                     createdAt:
  *                       type: string
  *                       format: date-time

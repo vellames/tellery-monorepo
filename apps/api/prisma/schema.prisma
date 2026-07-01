@@ -82,6 +82,7 @@ model User {
   name     String
   email    String @unique
   password String
+  ssn      String?
 
   availableCredits Int @default(3)
 

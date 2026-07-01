@@ -55,11 +55,13 @@ export class UserRepository extends BaseRepository implements IUserRepository {
       name?: string;
       email?: string;
       password?: string;
+      ssn?: string | null;
     } = {};
 
     if (data.name) updateData.name = data.name;
     if (data.email) updateData.email = data.email;
     if (data.password) updateData.password = data.password;
+    if ('ssn' in data) updateData.ssn = data.ssn;
 
     return client.user.update({
       where: { id },

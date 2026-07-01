@@ -16,7 +16,9 @@ describe('SubscribeRequiredNotice', () => {
   it('renders the premium required message', () => {
     renderWithProviders(<SubscribeRequiredNotice />);
 
-    expect(screen.getByText(/esta é uma história premium/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/esta é uma história premium/i)
+    ).toBeInTheDocument();
   });
 
   it('links to the subscription page', () => {

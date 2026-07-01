@@ -72,6 +72,7 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   name: 'Ana Teste',
   email: AUTHENTICATED_USER_EMAIL,
   password: 'hashed-password',
+  ssn: null,
   availableCredits: 3,
   ...overrides,
 });
@@ -98,6 +99,7 @@ describe('E2E: GET /me', () => {
       id: AUTHENTICATED_USER_ID,
       name: 'Ana Teste',
       email: AUTHENTICATED_USER_EMAIL,
+      ssn: null,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
@@ -145,6 +147,7 @@ describe('E2E: PATCH /me', () => {
       id: AUTHENTICATED_USER_ID,
       name: 'Ana Updated',
       email: 'ana.updated@teste.local',
+      ssn: null,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
@@ -201,6 +204,35 @@ describe('E2E: PATCH /me', () => {
     expect(response.body.success).toBe(false);
     expect(mockRepo.update).not.toHaveBeenCalled();
     expect(mockPasswordHasher.hash).not.toHaveBeenCalled();
+  });
+
+  it('should normalize a valid CPF when updating ssn', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+    mockRepo.update.mockResolvedValue(mockUser({ ssn: '29537995593' }));
+
+    const response = await request(app)
+      .patch('/me')
+      .set(authHeader)
+      .send({ ssn: '295.379.955-93' });
+
+    expect(response.status).toBe(StatusCodes.OK);
+    expect(response.body.data.ssn).toBe('29537995593');
+    expect(mockRepo.update).toHaveBeenCalledWith(AUTHENTICATED_USER_ID, {
+      ssn: '29537995593',
+    });
+  });
+
+  it('should return 422 when ssn is not a valid CPF', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+
+    const response = await request(app)
+      .patch('/me')
+      .set(authHeader)
+      .send({ ssn: '111.111.111-11' });
+
+    expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(response.body.success).toBe(false);
+    expect(mockRepo.update).not.toHaveBeenCalled();
   });
 
   it('should return 409 when email is already in use', async () => {

@@ -16,7 +16,7 @@ export function SubscribeRequiredNotice() {
       </div>
       <Link
         href={config.routes.subscription}
-        className="shadow-button mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-base font-bold text-primary-foreground transition hover:scale-[1.01]"
+        className="shadow-button bg-primary text-primary-foreground mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-8 py-4 text-base font-bold transition hover:scale-[1.01]"
       >
         <Sparkles className="size-5" />
         {t('subscribeToPlay')}

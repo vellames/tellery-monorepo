@@ -2,6 +2,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  ssn: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -25,6 +26,7 @@ export interface RegisterPayload {
 export interface UpdateProfilePayload {
   name: string;
   email: string;
+  ssn: string | null;
 }
 
 export interface ChangePasswordPayload {

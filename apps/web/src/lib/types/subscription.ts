@@ -42,5 +42,7 @@ export const ACTIVE_SUBSCRIPTION_STATUSES = new Set([
 export function isActiveSubscription(
   subscription: SubscriptionState | null
 ): boolean {
-  return !!subscription && ACTIVE_SUBSCRIPTION_STATUSES.has(subscription.status);
+  return (
+    !!subscription && ACTIVE_SUBSCRIPTION_STATUSES.has(subscription.status)
+  );
 }

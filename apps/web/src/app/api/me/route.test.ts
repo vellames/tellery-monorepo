@@ -35,6 +35,7 @@ const user = {
   id: '1',
   name: 'Ana Updated',
   email: 'ana.updated@b.c',
+  ssn: '29537995593',
   createdAt: '',
   updatedAt: '',
 };
@@ -53,12 +54,20 @@ describe('PATCH /api/me', () => {
     vi.mocked(apiFetch).mockResolvedValue(user);
 
     const res = await PATCH(
-      makeReq({ name: 'Ana Updated', email: 'ana.updated@b.c' })
+      makeReq({
+        name: 'Ana Updated',
+        email: 'ana.updated@b.c',
+        ssn: '295.379.955-93',
+      })
     );
 
     expect(apiFetch).toHaveBeenCalledWith('/me', {
       method: 'PATCH',
-      body: JSON.stringify({ name: 'Ana Updated', email: 'ana.updated@b.c' }),
+      body: JSON.stringify({
+        name: 'Ana Updated',
+        email: 'ana.updated@b.c',
+        ssn: '295.379.955-93',
+      }),
     });
     expect(res.status).toBe(200);
     expect(updateSessionUser).toHaveBeenCalledWith(user);
@@ -70,7 +79,9 @@ describe('PATCH /api/me', () => {
       new ApiError('Email already in use', 409)
     );
 
-    const res = await PATCH(makeReq({ name: 'Ana', email: 'taken@b.c' }));
+    const res = await PATCH(
+      makeReq({ name: 'Ana', email: 'taken@b.c', ssn: null })
+    );
 
     expect(res.status).toBe(409);
     expect((await res.json()).error).toBe('Email already in use');

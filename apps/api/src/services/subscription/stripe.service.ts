@@ -6,16 +6,21 @@ import {
   IStripeService,
 } from '../../interfaces';
 
+type StripeClientConfig = NonNullable<ConstructorParameters<typeof Stripe>[1]>;
+
 export interface StripeServiceConfig {
   secretKey: string;
   webhookSecret: string | undefined;
+  apiVersion: StripeClientConfig['apiVersion'];
 }
 
 export class StripeService implements IStripeService {
   private readonly client: Stripe;
 
   constructor(private readonly config: StripeServiceConfig) {
-    this.client = new Stripe(config.secretKey);
+    this.client = new Stripe(config.secretKey, {
+      apiVersion: config.apiVersion,
+    });
   }
 
   async createCustomer(input: CreateCustomerInput): Promise<Stripe.Customer> {
@@ -36,8 +41,7 @@ export class StripeService implements IStripeService {
       client_reference_id: input.userId,
       success_url: input.successUrl,
       cancel_url: input.cancelUrl,
-      tax_id_collection: { enabled: true },
-      billing_address_collection: 'auto',
+      billing_address_collection: 'required',
       customer_update: { address: 'auto', name: 'auto' },
       metadata: { userId: input.userId },
     });

@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { Loader2, Mail, UserRound } from 'lucide-react';
+import { IdCard, Loader2, Mail, UserRound } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { FormikField } from '@/components/molecules';
@@ -22,6 +22,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
   const initialValues: UpdateProfilePayload = {
     name: user.name,
     email: user.email,
+    ssn: user.ssn ?? '',
   };
 
   const profileSchema = useMemo(
@@ -32,6 +33,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
           .string()
           .email(t('errors.invalidEmail'))
           .required(t('errors.emailRequired')),
+        ssn: yup.string().nullable(),
       }),
     [t]
   );
@@ -62,6 +64,13 @@ export function ProfileForm({ user }: ProfileFormProps) {
           placeholder={t('emailPlaceholder')}
           autoComplete="email"
           icon={<Mail className="size-4" />}
+        />
+        <FormikField
+          name="ssn"
+          label={t('ssn')}
+          placeholder={t('ssnPlaceholder')}
+          autoComplete="off"
+          icon={<IdCard className="size-4" />}
         />
         <Button
           type="submit"

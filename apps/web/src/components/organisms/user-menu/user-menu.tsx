@@ -31,7 +31,7 @@ export function UserMenu({ user }: UserMenuProps) {
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          'bg-secondary text-secondary-foreground shadow-soft grid size-12 cursor-pointer place-items-center overflow-hidden rounded-full text-sm font-semibold transition hover:opacity-80 focus-visible:ring-ring/50 focus-visible:ring-3 sm:size-14'
+          'bg-secondary text-secondary-foreground shadow-soft focus-visible:ring-ring/50 grid size-12 cursor-pointer place-items-center overflow-hidden rounded-full text-sm font-semibold transition hover:opacity-80 focus-visible:ring-3 sm:size-14'
         )}
       >
         {user.name.charAt(0).toUpperCase()}

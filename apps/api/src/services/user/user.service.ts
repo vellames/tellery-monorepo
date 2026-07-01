@@ -1,4 +1,5 @@
 import { User } from '@prisma/client';
+import { cpf } from 'cpf-cnpj-validator';
 import { StatusCodes } from 'http-status-codes';
 import {
   IUserRepository,
@@ -114,6 +115,10 @@ export class UserService {
     }
 
     const updateData: UpdateUserDto = { ...data };
+    if ('ssn' in updateData) {
+      updateData.ssn = this.normalizeCpf(updateData.ssn);
+    }
+
     if (data.password) {
       updateData.password = await this.passwordHasher.hash(data.password);
     }
@@ -170,8 +175,25 @@ export class UserService {
       id: user.id,
       name: user.name,
       email: user.email,
+      ssn: user.ssn,
       createdAt: user.createdAt.toISOString(),
       updatedAt: user.updatedAt.toISOString(),
     };
+  }
+
+  private normalizeCpf(value: string | null | undefined): string | null {
+    if (value === null || value === undefined || value.trim() === '') {
+      return null;
+    }
+
+    if (!cpf.isValid(value)) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        'Invalid SSN',
+        'user:errors.invalidSsn'
+      );
+    }
+
+    return cpf.strip(value);
   }
 }

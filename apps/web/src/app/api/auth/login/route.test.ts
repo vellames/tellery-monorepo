@@ -44,6 +44,7 @@ describe('POST /api/auth/login', () => {
       id: '1',
       name: 'A',
       email: 'a@b.c',
+      ssn: null,
       createdAt: '',
       updatedAt: '',
     };

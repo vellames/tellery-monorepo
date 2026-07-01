@@ -16,6 +16,7 @@ const user: User = {
   id: '1',
   name: 'Ana Teste',
   email: 'ana@teste.local',
+  ssn: '29537995593',
   createdAt: '2026-01-01T00:00:00.000Z',
   updatedAt: '2026-01-01T00:00:00.000Z',
 };
@@ -28,6 +29,7 @@ describe('ProfileForm', () => {
 
     expect(screen.getByLabelText('Nome')).toHaveValue('Ana Teste');
     expect(screen.getByLabelText('E-mail')).toHaveValue('ana@teste.local');
+    expect(screen.getByLabelText('CPF')).toHaveValue('29537995593');
   });
 
   it('shows a validation error when the name is cleared', async () => {
@@ -53,7 +55,7 @@ describe('ProfileForm', () => {
     expect(mutateMock).not.toHaveBeenCalled();
   });
 
-  it('submits the name and email', async () => {
+  it('submits the name, email, and ssn', async () => {
     const evt = userEvent.setup();
     renderWithProviders(<ProfileForm user={user} />);
 
@@ -63,7 +65,11 @@ describe('ProfileForm', () => {
 
     await waitFor(() =>
       expect(mutateMock).toHaveBeenCalledWith(
-        { name: 'Ana Updated', email: 'ana@teste.local' },
+        {
+          name: 'Ana Updated',
+          email: 'ana@teste.local',
+          ssn: '29537995593',
+        },
         expect.anything()
       )
     );

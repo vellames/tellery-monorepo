@@ -6,6 +6,7 @@ const user: User = {
   id: '1',
   name: 'Ana Updated',
   email: 'ana.updated@b.c',
+  ssn: '29537995593',
   createdAt: '',
   updatedAt: '',
 };
@@ -22,6 +23,7 @@ describe('updateProfileRequest', () => {
     const result = await updateProfileRequest({
       name: 'Ana Updated',
       email: 'ana.updated@b.c',
+      ssn: '29537995593',
     });
 
     expect(result).toEqual(user);
@@ -33,6 +35,7 @@ describe('updateProfileRequest', () => {
         body: JSON.stringify({
           name: 'Ana Updated',
           email: 'ana.updated@b.c',
+          ssn: '29537995593',
         }),
       })
     );
@@ -46,7 +49,7 @@ describe('updateProfileRequest', () => {
     );
 
     await expect(
-      updateProfileRequest({ name: 'Ana', email: 'taken@b.c' })
+      updateProfileRequest({ name: 'Ana', email: 'taken@b.c', ssn: null })
     ).rejects.toThrow('Email already in use');
   });
 });

@@ -31,9 +31,11 @@ interface SubscriptionPanelProps {
   status?: string;
 }
 
-function statusTone(
-  subscription: SubscriptionState
-): { box: string; text: string; dot: string } {
+function statusTone(subscription: SubscriptionState): {
+  box: string;
+  text: string;
+  dot: string;
+} {
   if (subscription.cancelAtPeriodEnd) {
     return {
       box: 'bg-warning/5 border-warning/30',
@@ -141,7 +143,12 @@ export function SubscriptionPanel({
             return (
               <div className="space-y-4">
                 <div className={cn('rounded-xl border p-4', tone.box)}>
-                  <p className={cn('flex items-center gap-2 font-semibold', tone.text)}>
+                  <p
+                    className={cn(
+                      'flex items-center gap-2 font-semibold',
+                      tone.text
+                    )}
+                  >
                     <span className={cn('size-2 rounded-full', tone.dot)} />
                     {t(
                       subscription!.cancelAtPeriodEnd

@@ -10,6 +10,7 @@ type PrismaUser = {
   name: string;
   email: string;
   password: string;
+  ssn: string | null;
   availableCredits: number;
 };
 
@@ -21,6 +22,7 @@ const mockUser = (overrides: Partial<PrismaUser> = {}): PrismaUser => ({
   name: 'Ana Teste',
   email: 'ana@teste.local',
   password: 'password123',
+  ssn: null,
   availableCredits: 3,
   ...overrides,
 });
@@ -170,6 +172,30 @@ describe('UserRepository', () => {
       expect(prisma.user.update).toHaveBeenCalledWith({
         where: { id: 'user-1' },
         data: { name: 'New Name' },
+      });
+    });
+
+    it('should update ssn when provided', async () => {
+      const updated = mockUser({ ssn: '29537995593' });
+      prisma.user.update.mockResolvedValue(updated);
+
+      const result = await repo.update('user-1', { ssn: '29537995593' });
+
+      expect(result).toEqual(updated);
+      expect(prisma.user.update).toHaveBeenCalledWith({
+        where: { id: 'user-1' },
+        data: { ssn: '29537995593' },
+      });
+    });
+
+    it('should clear ssn when null is provided', async () => {
+      prisma.user.update.mockResolvedValue(mockUser({ ssn: null }));
+
+      await repo.update('user-1', { ssn: null });
+
+      expect(prisma.user.update).toHaveBeenCalledWith({
+        where: { id: 'user-1' },
+        data: { ssn: null },
       });
     });
   });

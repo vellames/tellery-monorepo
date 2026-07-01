@@ -63,6 +63,7 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   name: 'Ana Teste',
   email: 'ana@teste.local',
   password: 'password123',
+  ssn: null,
   availableCredits: 3,
   ...overrides,
 });
@@ -92,6 +93,7 @@ describe('E2E: /users/register', () => {
       id: 'user-1',
       name: 'Ana Teste',
       email: 'ana@teste.local',
+      ssn: null,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
@@ -206,6 +208,7 @@ describe('E2E: /users/login', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
+        ssn: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       },

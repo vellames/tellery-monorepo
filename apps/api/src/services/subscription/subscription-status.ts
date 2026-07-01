@@ -10,5 +10,7 @@ export const ACTIVE_SUBSCRIPTION_STATUSES = new Set<SubscriptionStatus>([
 export function isActiveSubscription(
   subscription: Pick<Subscription, 'status'> | null
 ): boolean {
-  return !!subscription && ACTIVE_SUBSCRIPTION_STATUSES.has(subscription.status);
+  return (
+    !!subscription && ACTIVE_SUBSCRIPTION_STATUSES.has(subscription.status)
+  );
 }

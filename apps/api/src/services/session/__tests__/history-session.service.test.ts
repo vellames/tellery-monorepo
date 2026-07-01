@@ -21,6 +21,7 @@ const mockUser = (overrides: Partial<User> = {}): User =>
     name: 'Ana Teste',
     email: 'ana@teste.local',
     password: 'hashed',
+    ssn: null,
     availableCredits: 3,
     ...overrides,
   }) as User;

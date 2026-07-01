@@ -23,6 +23,7 @@ const user = {
   id: '1',
   name: 'Ana Updated',
   email: 'ana.updated@b.c',
+  ssn: '29537995593',
   createdAt: '',
   updatedAt: '',
 };
@@ -38,6 +39,7 @@ describe('useUpdateProfile', () => {
       await result.current.mutateAsync({
         name: 'Ana Updated',
         email: 'ana.updated@b.c',
+        ssn: '29537995593',
       });
     });
 
@@ -53,7 +55,11 @@ describe('useUpdateProfile', () => {
 
     await act(async () => {
       await expect(
-        result.current.mutateAsync({ name: 'Ana', email: 'taken@b.c' })
+        result.current.mutateAsync({
+          name: 'Ana',
+          email: 'taken@b.c',
+          ssn: null,
+        })
       ).rejects.toThrow('Email already in use');
     });
 

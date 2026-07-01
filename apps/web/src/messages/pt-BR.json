@@ -305,6 +305,8 @@
     "namePlaceholder": "Seu nome",
     "email": "E-mail",
     "emailPlaceholder": "voce@exemplo.com",
+    "ssn": "CPF",
+    "ssnPlaceholder": "000.000.000-00",
     "memberSince": "Membro desde {date}",
     "submit": "Salvar alterações",
     "saved": "Perfil atualizado",
@@ -332,6 +334,7 @@
       "nameRequired": "Nome é obrigatório",
       "invalidEmail": "E-mail inválido",
       "emailRequired": "E-mail é obrigatório",
+      "invalidSsn": "CPF inválido",
       "updateFailed": "Falha ao atualizar o perfil"
     }
   }

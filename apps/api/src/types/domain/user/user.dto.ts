@@ -8,6 +8,7 @@ export interface UpdateUserDto {
   name?: string;
   email?: string;
   password?: string;
+  ssn?: string | null;
 }
 
 export interface LoginDto {
@@ -24,6 +25,7 @@ export interface UserResponseDto {
   id: string;
   name: string;
   email: string;
+  ssn: string | null;
   createdAt: string;
   updatedAt: string;
 }

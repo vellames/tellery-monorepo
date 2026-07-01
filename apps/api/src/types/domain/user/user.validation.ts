@@ -16,6 +16,7 @@ export const updateMeSchema = z
   .object({
     name: z.string().min(1).optional(),
     email: z.string().email().optional(),
+    ssn: z.string().nullable().optional(),
   })
   .strict();
 

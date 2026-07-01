@@ -91,6 +91,7 @@ export class DIContainer {
   private readonly stripeService: IStripeService = new StripeService({
     secretKey: appConfig.stripe.secretKey,
     webhookSecret: appConfig.stripe.webhookSecret,
+    apiVersion: appConfig.stripe.apiVersion,
   });
   private readonly subscriptionService = new SubscriptionService(
     this.subscriptionRepository,
