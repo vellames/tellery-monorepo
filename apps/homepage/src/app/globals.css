@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light;
+  background: #f7f1e7;
+  color: #241c1a;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: #f7f1e7;
+}
+
+a {
+  color: inherit;
+}
