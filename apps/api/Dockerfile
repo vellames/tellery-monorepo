@@ -3,7 +3,7 @@
 # Build context MUST be the repository root (shared npm workspaces + turbo).
 #   docker build -f apps/api/Dockerfile -t ai-history-api .
 
-FROM node:20-alpine AS base
+FROM node:24-alpine AS base
 RUN apk add --no-cache libc6-compat
 
 # ---- Pruner: isolate the api workspace + its dependencies ----
