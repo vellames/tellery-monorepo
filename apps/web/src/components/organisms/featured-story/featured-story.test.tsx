@@ -50,32 +50,37 @@ describe('FeaturedStory', () => {
     expect(screen.getByText('Grátis')).toBeInTheDocument();
   });
 
-  it('navigates to the next slide and shows premium label', async () => {
+  it('navigates to the next slide', async () => {
     const user = userEvent.setup();
-    renderWithProviders(<FeaturedStory histories={mockHistories} />);
+    const { container } = renderWithProviders(
+      <FeaturedStory histories={mockHistories} />
+    );
 
     await user.click(screen.getByLabelText('Próximo'));
 
-    expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
-    expect(screen.getByText('Premium')).toBeInTheDocument();
+    expect(getTrackTransform(container)).toContain('-100%');
   });
 
   it('wraps around when navigating previous from the first slide', async () => {
     const user = userEvent.setup();
-    renderWithProviders(<FeaturedStory histories={mockHistories} />);
+    const { container } = renderWithProviders(
+      <FeaturedStory histories={mockHistories} />
+    );
 
     await user.click(screen.getByLabelText('Anterior'));
 
-    expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
+    expect(getTrackTransform(container)).toContain('-100%');
   });
 
   it('navigates via dot indicators', async () => {
     const user = userEvent.setup();
-    renderWithProviders(<FeaturedStory histories={mockHistories} />);
+    const { container } = renderWithProviders(
+      <FeaturedStory histories={mockHistories} />
+    );
 
     await user.click(screen.getByLabelText('Slide 2'));
 
-    expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
+    expect(getTrackTransform(container)).toContain('-100%');
   });
 
   it('renders nothing when histories is empty', () => {
@@ -87,15 +92,17 @@ describe('FeaturedStory', () => {
   it('auto-advances to the next slide after the interval', () => {
     vi.useFakeTimers();
     try {
-      renderWithProviders(<FeaturedStory histories={mockHistories} />);
+      const { container } = renderWithProviders(
+        <FeaturedStory histories={mockHistories} />
+      );
 
-      expect(screen.getByText('O Bilhete na Mesa 7')).toBeInTheDocument();
+      expect(getTrackTransform(container)).not.toContain('-100%');
 
       act(() => {
         vi.advanceTimersByTime(12000);
       });
 
-      expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
+      expect(getTrackTransform(container)).toContain('-100%');
     } finally {
       vi.useRealTimers();
     }
@@ -104,19 +111,25 @@ describe('FeaturedStory', () => {
   it('stops auto-advancing after the user manually navigates', () => {
     vi.useFakeTimers();
     try {
-      renderWithProviders(<FeaturedStory histories={mockHistories} />);
+      const { container } = renderWithProviders(
+        <FeaturedStory histories={mockHistories} />
+      );
 
       fireEvent.click(screen.getByLabelText('Próximo'));
-      expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
+      expect(getTrackTransform(container)).toContain('-100%');
 
       act(() => {
         vi.advanceTimersByTime(12000);
       });
 
-      expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
-      expect(screen.queryByText('O Bilhete na Mesa 7')).not.toBeInTheDocument();
+      expect(getTrackTransform(container)).toContain('-100%');
     } finally {
       vi.useRealTimers();
     }
   });
 });
+
+function getTrackTransform(container: HTMLElement): string {
+  const track = container.querySelector<HTMLElement>('[style*="translateX"]');
+  return track?.style.transform ?? '';
+}

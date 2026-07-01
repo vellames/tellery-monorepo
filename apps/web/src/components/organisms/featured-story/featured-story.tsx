@@ -41,7 +41,6 @@ export function FeaturedStory({
 
   if (histories.length === 0) return null;
 
-  const story = histories[current];
   const hasMultiple = histories.length > 1;
 
   const selectSlide = (index: number) => {
@@ -57,71 +56,82 @@ export function FeaturedStory({
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="grid min-h-[460px] grid-cols-1 lg:min-h-[560px] lg:grid-cols-5">
-        {/* Right: cover image (renders first in DOM for layering on the left fade) */}
-        <div className="relative order-1 min-h-[220px] lg:order-2 lg:col-span-3 lg:min-h-full">
-          {story.coverImageUrl ? (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={story.coverImageUrl}
-              alt={story.title}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] via-[#160a08] to-[#6e3d15]" />
-          )}
-          {/* Fade the image into the maroon panel */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#3a0d16]/85 via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#3a0d16] lg:via-[#3a0d16]/40 lg:to-transparent" />
-        </div>
-
-        {/* Left: maroon text panel */}
-        <div className="relative z-10 order-2 flex flex-col justify-center p-7 pb-16 sm:p-12 lg:order-1 lg:col-span-2 lg:pb-12 lg:pl-20">
-          <div>
-            {showBadge && (
-              <div className="border-gold/40 text-gold mb-6 inline-flex items-center gap-2 rounded-xl border bg-black/20 px-4 py-2 text-[11px] font-bold tracking-[0.12em] uppercase sm:text-xs">
-                <Star className="fill-gold size-3.5" />
-                {t('badge')}
-              </div>
-            )}
-
-            <h1 className="font-heading text-4xl leading-[0.98] font-semibold tracking-tight text-[#fff9ef] sm:text-5xl">
-              {story.title}
-            </h1>
-
-            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-medium text-[#fff9ef]/75 sm:text-sm">
-              <span className="inline-flex items-center gap-1.5">
-                <Search className="size-4" />
-                {tGenre(story.genre)}
-              </span>
-              <span className="text-[#fff9ef]/40">•</span>
-              <span className="inline-flex items-center gap-1.5">
-                <Clock className="size-4" />
-                {t('duration', { minutes: story.estimatedDurationMinutes })}
-              </span>
-              <span className="text-[#fff9ef]/30">|</span>
-              <span
-                className={cn(
-                  'font-semibold',
-                  story.isFree ? 'text-gold' : 'text-[#fff9ef]'
+      <div
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {histories.map((story) => (
+          <div className="w-full shrink-0" key={story.id}>
+            <div className="grid min-h-[460px] grid-cols-1 lg:min-h-[560px] lg:grid-cols-5">
+              {/* Right: cover image (renders first in DOM for layering on the left fade) */}
+              <div className="relative order-1 min-h-[220px] lg:order-2 lg:col-span-3 lg:min-h-full">
+                {story.coverImageUrl ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={story.coverImageUrl}
+                    alt={story.title}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#37050d] via-[#160a08] to-[#6e3d15]" />
                 )}
-              >
-                {story.isFree ? t('free') : t('premium')}
-              </span>
+                {/* Fade the image into the maroon panel */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3a0d16]/85 via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#3a0d16] lg:via-[#3a0d16]/40 lg:to-transparent" />
+              </div>
+
+              {/* Left: maroon text panel */}
+              <div className="relative z-10 order-2 flex flex-col justify-center p-7 pb-16 sm:p-12 lg:order-1 lg:col-span-2 lg:pb-12 lg:pl-20">
+                <div>
+                  {showBadge && (
+                    <div className="border-gold/40 text-gold mb-6 inline-flex items-center gap-2 rounded-xl border bg-black/20 px-4 py-2 text-[11px] font-bold tracking-[0.12em] uppercase sm:text-xs">
+                      <Star className="fill-gold size-3.5" />
+                      {t('badge')}
+                    </div>
+                  )}
+
+                  <h1 className="font-heading text-4xl leading-[0.98] font-semibold tracking-tight text-[#fff9ef] sm:text-5xl">
+                    {story.title}
+                  </h1>
+
+                  <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-medium text-[#fff9ef]/75 sm:text-sm">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Search className="size-4" />
+                      {tGenre(story.genre)}
+                    </span>
+                    <span className="text-[#fff9ef]/40">•</span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <Clock className="size-4" />
+                      {t('duration', {
+                        minutes: story.estimatedDurationMinutes,
+                      })}
+                    </span>
+                    <span className="text-[#fff9ef]/30">|</span>
+                    <span
+                      className={cn(
+                        'font-semibold',
+                        story.isFree ? 'text-gold' : 'text-[#fff9ef]'
+                      )}
+                    >
+                      {story.isFree ? t('free') : t('premium')}
+                    </span>
+                  </div>
+
+                  <p className="mt-5 max-w-md text-sm leading-7 text-[#fff9ef]/85 sm:text-base sm:leading-7">
+                    {story.teaser}
+                  </p>
+
+                  <Link
+                    className="shadow-button mt-7 inline-flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-7 py-3.5 text-sm font-bold text-[#4a111b] transition hover:scale-[1.01] sm:w-auto sm:min-w-64"
+                    href={`/stories/${story.id}`}
+                  >
+                    {t('startButton')}
+                    <ArrowRight className="size-5" />
+                  </Link>
+                </div>
+              </div>
             </div>
-
-            <p className="mt-5 max-w-md text-sm leading-7 text-[#fff9ef]/85 sm:text-base sm:leading-7">
-              {story.teaser}
-            </p>
-
-            <Link
-              className="shadow-button mt-7 inline-flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-7 py-3.5 text-sm font-bold text-[#4a111b] transition hover:scale-[1.01] sm:w-auto sm:min-w-64"
-              href={`/stories/${story.id}`}
-            >
-              {t('startButton')}
-              <ArrowRight className="size-5" />
-            </Link>
           </div>
-        </div>
+        ))}
       </div>
 
       {hasMultiple && (
