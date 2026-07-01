@@ -151,6 +151,7 @@
     "close": "Fechar",
     "privacyPolicy": "Política de Privacidade",
     "termsOfUse": "Termos de Uso",
+    "copyright": "© {year} Tellery. Todos os direitos reservados.",
     "tagline": "Histórias onde você participa",
     "creditsAvailable": "{count} créditos disponíveis",
     "featured": "Destaque",

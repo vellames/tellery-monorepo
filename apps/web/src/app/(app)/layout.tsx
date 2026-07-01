@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { AppHeader, BottomNav } from '@/components/organisms';
 import { getSessionUser } from '@/lib/auth/session';
 import { fetchSubscription } from '@/lib/api/subscription-data';
@@ -11,6 +13,7 @@ export default async function AppLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const t = await getTranslations('common');
   const user = await getSessionUser();
   if (!user) redirect(config.routes.login);
 
@@ -35,6 +38,23 @@ export default async function AppLayout({
         <AppHeader user={user} hasActiveSubscription={hasActiveSubscription} />
         <BottomNav hasSessions={hasSessions} />
         {children}
+        <footer className="text-muted-foreground border-border mt-2 flex flex-col items-center justify-between gap-2 border-t pt-6 text-xs sm:flex-row">
+          <div className="flex items-center gap-4">
+            <Link
+              href={config.routes.privacy}
+              className="hover:text-primary underline"
+            >
+              {t('privacyPolicy')}
+            </Link>
+            <Link
+              href={config.routes.terms}
+              className="hover:text-primary underline"
+            >
+              {t('termsOfUse')}
+            </Link>
+          </div>
+          <p>{t('copyright', { year: new Date().getFullYear() })}</p>
+        </footer>
       </div>
     </main>
   );

@@ -49,23 +49,28 @@ export default async function AuthLayout({
             {children}
           </div>
         </div>
-        <footer className="flex items-center justify-center gap-4 pt-8 text-sm">
-          <Link
-            href={config.routes.privacy}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-primary underline"
-          >
-            {t('privacyPolicy')}
-          </Link>
-          <Link
-            href={config.routes.terms}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-primary underline"
-          >
-            {t('termsOfUse')}
-          </Link>
+        <footer className="flex flex-col items-center gap-3 pt-8 text-sm">
+          <div className="flex items-center gap-4">
+            <Link
+              href={config.routes.privacy}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary underline"
+            >
+              {t('privacyPolicy')}
+            </Link>
+            <Link
+              href={config.routes.terms}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary underline"
+            >
+              {t('termsOfUse')}
+            </Link>
+          </div>
+          <p className="text-muted-foreground text-xs">
+            {t('copyright', { year: new Date().getFullYear() })}
+          </p>
         </footer>
       </div>
     </div>
