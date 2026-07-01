@@ -3,6 +3,7 @@ export { FormikMaskedField } from './formik-masked-field/formik-masked-field';
 export { MaskedInput } from './masked-input/masked-input';
 export { CheckboxField } from './checkbox-field/checkbox-field';
 export { ConfirmDialog } from './confirm-dialog/confirm-dialog';
+export { CpfDialog } from './cpf-dialog/cpf-dialog';
 export { LanguageSwitcher } from './language-switcher/language-switcher';
 export { StoryCard } from './story-card/story-card';
 export { StartSessionButton } from './start-session-button/start-session-button';

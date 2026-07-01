@@ -36,7 +36,7 @@ export default async function SubscriptionPage({
         subscription={subscription}
         locale={locale}
         status={status}
-        emailVerifiedAt={user?.emailVerifiedAt ?? null}
+        user={user}
       />
     </section>
   );

@@ -1,8 +1,8 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { AlertTriangle, Loader2, X } from 'lucide-react';
+import { useCallback, useState } from 'react';
+import { AlertTriangle, Loader2 } from 'lucide-react';
+import { Modal } from '@/components/ui/modal';
 import { cn } from '@/lib/utils';
 
 export interface ConfirmDialogProps {
@@ -16,7 +16,7 @@ export interface ConfirmDialogProps {
   confirmLabel: string;
   /** When omitted, the cancel button is hidden (single-action acknowledge dialog). */
   cancelLabel?: string;
-  /** Accessible label for the backdrop and close (X) affordances. Defaults to cancelLabel. */
+  /** Accessible label for the dismiss affordances. Defaults to cancelLabel. */
   closeLabel?: string;
   onConfirm: () => Promise<void> | void;
   /** Override the default warning icon. */
@@ -54,18 +54,9 @@ export function ConfirmDialog({
     [isControlled, onOpenChange]
   );
 
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
-    };
-    document.addEventListener('keydown', onKey);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = '';
-    };
-  }, [isOpen, setOpen]);
+  const closeIfIdle = useCallback(() => {
+    if (!loading) setOpen(false);
+  }, [loading, setOpen]);
 
   const handleConfirm = useCallback(async () => {
     setLoading(true);
@@ -77,24 +68,19 @@ export function ConfirmDialog({
     }
   }, [onConfirm, setOpen]);
 
-  const closeIfIdle = () => {
-    if (!loading) setOpen(false);
-  };
+  return (
+    <>
+      {trigger !== undefined && (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="cursor-pointer"
+        >
+          {trigger}
+        </button>
+      )}
 
-  const dialog = isOpen ? (
-    <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-6"
-      role="dialog"
-      aria-modal="true"
-    >
-      <button
-        type="button"
-        aria-label={dismissLabel}
-        onClick={closeIfIdle}
-        className="absolute inset-0 cursor-default bg-black/60 backdrop-blur-sm"
-      />
-
-      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-2xl">
+      <Modal open={isOpen} onClose={closeIfIdle} closeLabel={dismissLabel}>
         <div className="flex flex-col gap-4 p-7">
           <div className="flex items-start gap-3">
             <div
@@ -105,7 +91,7 @@ export function ConfirmDialog({
             >
               {icon ?? <AlertTriangle className="size-5 text-red-600" />}
             </div>
-            <div className="flex-1">
+            <div className="flex-1 pr-6">
               <h3 className="font-heading text-lg font-semibold text-stone-900">
                 {title}
               </h3>
@@ -113,14 +99,6 @@ export function ConfirmDialog({
                 {description}
               </p>
             </div>
-            <button
-              type="button"
-              aria-label={dismissLabel}
-              onClick={closeIfIdle}
-              className="cursor-pointer text-stone-400 transition hover:text-stone-600"
-            >
-              <X className="size-4" />
-            </button>
           </div>
 
           <div className="flex gap-3 pt-1">
@@ -148,25 +126,7 @@ export function ConfirmDialog({
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  ) : null;
-
-  return (
-    <>
-      {trigger !== undefined && (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="cursor-pointer"
-        >
-          {trigger}
-        </button>
-      )}
-
-      {typeof document !== 'undefined' && dialog
-        ? createPortal(dialog, document.body)
-        : dialog}
+      </Modal>
     </>
   );
 }

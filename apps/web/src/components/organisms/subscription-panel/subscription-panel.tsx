@@ -6,7 +6,7 @@ import { Loader2, Sparkles, CheckCircle2, MailCheck } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
-import { ConfirmDialog } from '@/components/molecules';
+import { ConfirmDialog, CpfDialog } from '@/components/molecules';
 import {
   Card,
   CardContent,
@@ -24,6 +24,7 @@ import {
   type PlanDisplay,
   type SubscriptionState,
 } from '@/lib/types/subscription';
+import type { User } from '@/lib/types/auth';
 import { cn } from '@/lib/utils';
 
 interface SubscriptionPanelProps {
@@ -31,7 +32,7 @@ interface SubscriptionPanelProps {
   subscription: SubscriptionState | null;
   locale: string;
   status?: string;
-  emailVerifiedAt?: string | null;
+  user: User | null;
 }
 
 function statusTone(subscription: SubscriptionState): {
@@ -65,7 +66,7 @@ export function SubscriptionPanel({
   subscription,
   locale,
   status,
-  emailVerifiedAt,
+  user,
 }: SubscriptionPanelProps) {
   const t = useTranslations('subscription');
   const tVerify = useTranslations('verifyEmail');
@@ -74,11 +75,16 @@ export function SubscriptionPanel({
   const createPortal = useCreateBillingPortal();
   const resend = useResendVerification();
   const [verifyDialogOpen, setVerifyDialogOpen] = useState(false);
+  const [cpfDialogOpen, setCpfDialogOpen] = useState(false);
 
   const handleSubscribe = () => {
-    if (!emailVerifiedAt) {
+    if (!user?.emailVerifiedAt) {
       resend.mutate();
       setVerifyDialogOpen(true);
+      return;
+    }
+    if (!user.ssn) {
+      setCpfDialogOpen(true);
       return;
     }
     createCheckout.mutate();
@@ -224,6 +230,15 @@ export function SubscriptionPanel({
         iconClassName="bg-clue"
         confirmClassName="bg-primary hover:bg-primary/90"
       />
+
+      {user && (
+        <CpfDialog
+          open={cpfDialogOpen}
+          onClose={() => setCpfDialogOpen(false)}
+          user={user}
+          onSuccess={() => createCheckout.mutate()}
+        />
+      )}
     </>
   );
 }

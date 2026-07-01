@@ -148,6 +148,7 @@
     "greeting": "Hello, {name}",
     "backToLogin": "Back to login",
     "backToHome": "Back to home",
+    "close": "Close",
     "privacyPolicy": "Privacy Policy",
     "termsOfUse": "Terms of Use",
     "tagline": "Stories you take part in",
@@ -187,6 +188,9 @@
     "checkoutCanceled": "Checkout was canceled.",
     "renewsOn": "Renews on {date}",
     "endsOn": "Ends on {date}",
+    "cpfModalTitle": "Enter your CPF",
+    "cpfModalDescription": "You need to provide your CPF to proceed with checkout.",
+    "cpfModalSubmit": "Save and continue",
     "interval": {
       "month": "month",
       "year": "year"
@@ -206,7 +210,8 @@
     "errors": {
       "checkoutFailed": "Failed to start checkout. Please try again.",
       "portalFailed": "Failed to open the customer portal.",
-      "noActiveSubscription": "You don't have an active subscription."
+      "noActiveSubscription": "You don't have an active subscription.",
+      "invalidSsn": "Invalid CPF"
     }
   },
   "stories": {

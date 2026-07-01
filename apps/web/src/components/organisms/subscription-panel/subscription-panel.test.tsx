@@ -5,8 +5,15 @@ import userEvent from '@testing-library/user-event';
 vi.mock('sonner', () => ({
   toast: { success: vi.fn(), error: vi.fn() },
 }));
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ refresh: vi.fn(), push: vi.fn(), replace: vi.fn() }),
+}));
 vi.mock('@/lib/api/auth', () => ({
   resendVerificationRequest: vi.fn(),
+}));
+vi.mock('@/lib/api/profile', () => ({
+  updateProfileRequest: vi.fn(),
+  changePasswordRequest: vi.fn(),
 }));
 vi.mock('@/lib/hooks/use-subscription', () => ({
   useCreateCheckout: vi.fn(),
@@ -18,6 +25,7 @@ import { useCreateCheckout } from '@/lib/hooks/use-subscription';
 import { SubscriptionPanel } from '@/components/organisms/subscription-panel/subscription-panel';
 import { renderWithProviders } from '@/test-utils';
 import type { PlanDisplay } from '@/lib/types/subscription';
+import type { User } from '@/lib/types/auth';
 
 const plan: PlanDisplay = {
   id: 'price_1',
@@ -39,13 +47,22 @@ function mockCheckout() {
   return mutate;
 }
 
-function renderPanel(emailVerifiedAt?: string | null) {
+function renderPanel(userOverrides: Partial<User> = {}) {
   return renderWithProviders(
     <SubscriptionPanel
       plan={plan}
       subscription={null}
       locale="pt-BR"
-      emailVerifiedAt={emailVerifiedAt ?? null}
+      user={{
+        id: '1',
+        name: 'Ana',
+        email: 'a@b.c',
+        ssn: null,
+        emailVerifiedAt: '2026-07-01T00:00:00.000Z',
+        createdAt: '',
+        updatedAt: '',
+        ...userOverrides,
+      }}
     />
   );
 }
@@ -57,7 +74,7 @@ describe('SubscriptionPanel', () => {
     const mutate = mockCheckout();
     vi.mocked(resendVerificationRequest).mockResolvedValue();
     const user = userEvent.setup();
-    renderPanel(null);
+    renderPanel({ emailVerifiedAt: null });
 
     await user.click(screen.getByRole('button', { name: /assinar/i }));
 
@@ -68,10 +85,21 @@ describe('SubscriptionPanel', () => {
     ).toBeInTheDocument();
   });
 
-  it('starts checkout when the email is verified', async () => {
+  it('opens the CPF dialog when the email is verified but there is no CPF', async () => {
     const mutate = mockCheckout();
     const user = userEvent.setup();
-    renderPanel('2026-07-01T00:00:00.000Z');
+    renderPanel({ ssn: null });
+
+    await user.click(screen.getByRole('button', { name: /assinar/i }));
+
+    expect(mutate).not.toHaveBeenCalled();
+    expect(await screen.findByText(/informe seu cpf/i)).toBeInTheDocument();
+  });
+
+  it('starts checkout when the email is verified and a CPF is on file', async () => {
+    const mutate = mockCheckout();
+    const user = userEvent.setup();
+    renderPanel({ ssn: '29537995593' });
 
     await user.click(screen.getByRole('button', { name: /assinar/i }));
 

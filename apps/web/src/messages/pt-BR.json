@@ -148,6 +148,7 @@
     "greeting": "Olá, {name}",
     "backToLogin": "Voltar para o login",
     "backToHome": "Voltar ao início",
+    "close": "Fechar",
     "privacyPolicy": "Política de Privacidade",
     "termsOfUse": "Termos de Uso",
     "tagline": "Histórias onde você participa",
@@ -187,6 +188,9 @@
     "checkoutCanceled": "O checkout foi cancelado.",
     "renewsOn": "Renova em {date}",
     "endsOn": "Termina em {date}",
+    "cpfModalTitle": "Informe seu CPF",
+    "cpfModalDescription": "Você precisa informar seu CPF para seguir com a compra.",
+    "cpfModalSubmit": "Salvar e continuar",
     "interval": {
       "month": "mês",
       "year": "ano"
@@ -206,7 +210,8 @@
     "errors": {
       "checkoutFailed": "Falha ao iniciar o checkout. Tente novamente.",
       "portalFailed": "Falha ao abrir o portal do cliente.",
-      "noActiveSubscription": "Você não possui uma assinatura ativa."
+      "noActiveSubscription": "Você não possui uma assinatura ativa.",
+      "invalidSsn": "CPF inválido"
     }
   },
   "stories": {
