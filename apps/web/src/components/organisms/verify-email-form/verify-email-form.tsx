@@ -57,7 +57,7 @@ export function VerifyEmailForm() {
           size="lg"
           className="w-full"
           nativeButton={false}
-          render={<Link href={config.routes.home} />}
+          render={<Link href={config.routes.profile} />}
         >
           {t('continue')}
         </Button>
