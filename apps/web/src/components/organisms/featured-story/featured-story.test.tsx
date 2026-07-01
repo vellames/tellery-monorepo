@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest';
-import { screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import { act } from 'react';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { FeaturedStory } from '@/components/organisms/featured-story/featured-story';
@@ -81,5 +82,41 @@ describe('FeaturedStory', () => {
     const { container } = renderWithProviders(<FeaturedStory histories={[]} />);
 
     expect(container.firstChild).toBeNull();
+  });
+
+  it('auto-advances to the next slide after the interval', () => {
+    vi.useFakeTimers();
+    try {
+      renderWithProviders(<FeaturedStory histories={mockHistories} />);
+
+      expect(screen.getByText('O Bilhete na Mesa 7')).toBeInTheDocument();
+
+      act(() => {
+        vi.advanceTimersByTime(12000);
+      });
+
+      expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('stops auto-advancing after the user manually navigates', () => {
+    vi.useFakeTimers();
+    try {
+      renderWithProviders(<FeaturedStory histories={mockHistories} />);
+
+      fireEvent.click(screen.getByLabelText('Próximo'));
+      expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
+
+      act(() => {
+        vi.advanceTimersByTime(12000);
+      });
+
+      expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
+      expect(screen.queryByText('O Bilhete na Mesa 7')).not.toBeInTheDocument();
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });

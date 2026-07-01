@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -14,6 +14,8 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import type { History } from '@/lib/types/history';
 
+const AUTO_SLIDE_INTERVAL_MS = 12000;
+
 export interface FeaturedStoryProps {
   histories: History[];
   showBadge?: boolean;
@@ -26,18 +28,35 @@ export function FeaturedStory({
   const t = useTranslations('home.featured');
   const tGenre = useTranslations('common.genres');
   const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [autoSlide, setAutoSlide] = useState(true);
+
+  useEffect(() => {
+    if (histories.length <= 1 || paused || !autoSlide) return;
+    const id = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % histories.length);
+    }, AUTO_SLIDE_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [current, histories.length, paused, autoSlide]);
 
   if (histories.length === 0) return null;
 
   const story = histories[current];
   const hasMultiple = histories.length > 1;
 
-  const goTo = (index: number) => {
+  const selectSlide = (index: number) => {
+    setAutoSlide(false);
     setCurrent((index + histories.length) % histories.length);
   };
 
   return (
-    <section className="shadow-card relative overflow-hidden rounded-[28px] bg-[#3a0d16] sm:rounded-[36px]">
+    <section
+      className="shadow-card relative overflow-hidden rounded-[28px] bg-[#3a0d16] sm:rounded-[36px]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
       <div className="grid min-h-[460px] grid-cols-1 lg:min-h-[560px] lg:grid-cols-5">
         {/* Right: cover image (renders first in DOM for layering on the left fade) */}
         <div className="relative order-1 min-h-[220px] lg:order-2 lg:col-span-3 lg:min-h-full">
@@ -109,7 +128,7 @@ export function FeaturedStory({
         <>
           <button
             className="border-gold/30 text-gold absolute top-[88px] left-4 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border bg-black/30 backdrop-blur transition hover:bg-black/50 lg:top-1/2"
-            onClick={() => goTo(current - 1)}
+            onClick={() => selectSlide(current - 1)}
             type="button"
             aria-label={t('previous')}
           >
@@ -117,7 +136,7 @@ export function FeaturedStory({
           </button>
           <button
             className="border-gold/30 text-gold absolute top-[88px] right-4 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border bg-black/30 backdrop-blur transition hover:bg-black/50 lg:top-1/2"
-            onClick={() => goTo(current + 1)}
+            onClick={() => selectSlide(current + 1)}
             type="button"
             aria-label={t('next')}
           >
@@ -131,7 +150,7 @@ export function FeaturedStory({
                   index === current ? 'bg-gold w-8' : 'w-2 bg-[#fff9ef]/40'
                 )}
                 key={index}
-                onClick={() => goTo(index)}
+                onClick={() => selectSlide(index)}
                 type="button"
                 aria-label={t('slide', { number: index + 1 })}
               />
