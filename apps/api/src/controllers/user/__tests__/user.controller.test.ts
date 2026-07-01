@@ -34,7 +34,6 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
-        availableCredits: 3,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       };
@@ -120,7 +119,6 @@ describe('UserController', () => {
           id: 'user-1',
           name: 'Ana Teste',
           email: 'ana@teste.local',
-          availableCredits: 3,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
@@ -195,7 +193,6 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
-        availableCredits: 3,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       };
@@ -252,13 +249,66 @@ describe('UserController', () => {
     });
   });
 
+  describe('getAvailableCredits', () => {
+    it('should return 200 with the credit balance', async () => {
+      userService.getAvailableCredits.mockResolvedValue({
+        availableCredits: 23,
+      });
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.getAvailableCredits(req as Request, res as Response);
+
+      expect(userService.getAvailableCredits).toHaveBeenCalledWith('user-1');
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+      expect(json).toHaveBeenCalledWith({
+        success: true,
+        data: { availableCredits: 23 },
+        message: undefined,
+      });
+    });
+
+    it('should return 404 when user is not found', async () => {
+      userService.getAvailableCredits.mockRejectedValue(
+        new HttpError(
+          StatusCodes.NOT_FOUND,
+          'User not found',
+          'user:errors.userNotFound'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.getAvailableCredits(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.NOT_FOUND);
+    });
+
+    it('should return 500 on unexpected errors', async () => {
+      userService.getAvailableCredits.mockRejectedValue(
+        new Error('Something went wrong')
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.getAvailableCredits(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    });
+  });
+
   describe('updateProfile', () => {
     it('should return 200 with the updated user', async () => {
       const userDto = {
         id: 'user-1',
         name: 'Ana Updated',
         email: 'ana.updated@teste.local',
-        availableCredits: 3,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-02T00:00:00.000Z',
       };

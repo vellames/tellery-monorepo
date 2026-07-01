@@ -5,8 +5,8 @@ import { StatusCodes } from 'http-status-codes';
 import { getTranslations } from 'next-intl/server';
 import { fetchHistory } from '@/lib/api/history';
 import { fetchSessions } from '@/lib/api/session';
+import { fetchAvailableCredits } from '@/lib/api/credits-server';
 import { ApiError } from '@/lib/api/client';
-import { getSessionUser } from '@/lib/auth/session';
 import { config } from '@/lib/config';
 import {
   StartSessionForm,
@@ -44,8 +44,13 @@ export default async function StoryStartPage({
     // ignore — treat as no active session
   }
 
-  const user = await getSessionUser();
-  const hasSessionsLeft = !!user && user.availableCredits > 0;
+  let availableCredits = 0;
+  try {
+    availableCredits = await fetchAvailableCredits();
+  } catch {
+    // ignore — treat as no credits
+  }
+  const hasSessionsLeft = availableCredits > 0;
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8">

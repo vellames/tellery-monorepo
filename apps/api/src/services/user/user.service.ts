@@ -6,6 +6,7 @@ import {
   ITokenService,
 } from '../../interfaces';
 import {
+  AvailableCreditsResponseDto,
   AuthResponseDto,
   CreateUserDto,
   LoginDto,
@@ -72,6 +73,18 @@ export class UserService {
       );
     }
     return this.toResponseDto(user);
+  }
+
+  async getAvailableCredits(id: string): Promise<AvailableCreditsResponseDto> {
+    const user = await this.users.findById(id);
+    if (!user) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        'User not found',
+        'user:errors.userNotFound'
+      );
+    }
+    return { availableCredits: user.availableCredits };
   }
 
   async findAll(): Promise<UserResponseDto[]> {
@@ -157,7 +170,6 @@ export class UserService {
       id: user.id,
       name: user.name,
       email: user.email,
-      availableCredits: user.availableCredits,
       createdAt: user.createdAt.toISOString(),
       updatedAt: user.updatedAt.toISOString(),
     };

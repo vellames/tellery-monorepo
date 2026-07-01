@@ -92,7 +92,6 @@ describe('E2E: /users/register', () => {
       id: 'user-1',
       name: 'Ana Teste',
       email: 'ana@teste.local',
-      availableCredits: 3,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
@@ -207,7 +206,6 @@ describe('E2E: /users/login', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
-        availableCredits: 3,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       },

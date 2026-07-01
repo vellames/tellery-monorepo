@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { Loader2, Sparkles, CheckCircle2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
@@ -34,16 +35,18 @@ export function SubscriptionPanel({
   status,
 }: SubscriptionPanelProps) {
   const t = useTranslations('subscription');
+  const queryClient = useQueryClient();
   const createCheckout = useCreateCheckout();
   const createPortal = useCreateBillingPortal();
 
   useEffect(() => {
     if (status === 'success') {
       toast.success(t('checkoutSuccess'));
+      queryClient.invalidateQueries({ queryKey: ['availableCredits'] });
     } else if (status === 'cancel') {
       toast.error(t('checkoutCanceled'));
     }
-  }, [status, t]);
+  }, [status, t, queryClient]);
 
   const isActive = !!subscription && ACTIVE_STATUSES.has(subscription.status);
 

@@ -1,11 +1,16 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
+
+vi.mock('@/lib/hooks/use-available-credits', () => ({
+  useAvailableCredits: () => ({ data: 20, isLoading: false }),
+}));
+
 import { CreditsAvailableBadge } from '@/components/molecules/credits-available-badge/credits-available-badge';
 import { renderWithProviders } from '@/test-utils';
 
 describe('CreditsAvailableBadge', () => {
   it('renders the count in Portuguese', () => {
-    renderWithProviders(<CreditsAvailableBadge count={20} />, {
+    renderWithProviders(<CreditsAvailableBadge />, {
       locale: 'pt-BR',
     });
 
@@ -13,7 +18,7 @@ describe('CreditsAvailableBadge', () => {
   });
 
   it('renders the count in English', () => {
-    renderWithProviders(<CreditsAvailableBadge count={20} />, {
+    renderWithProviders(<CreditsAvailableBadge />, {
       locale: 'en',
     });
 

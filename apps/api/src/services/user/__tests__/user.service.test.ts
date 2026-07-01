@@ -62,7 +62,6 @@ describe('UserService', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
-        availableCredits: 3,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
       });
@@ -140,7 +139,6 @@ describe('UserService', () => {
           id: 'user-1',
           name: 'Ana Teste',
           email: 'ana@teste.local',
-          availableCredits: 3,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
@@ -209,6 +207,24 @@ describe('UserService', () => {
       await expect(service.findById('nonexistent')).rejects.toThrow(HttpError);
       await expect(service.findById('nonexistent')).rejects.toThrow(
         'User not found'
+      );
+    });
+  });
+
+  describe('getAvailableCredits', () => {
+    it('should return the credit balance for an existing user', async () => {
+      repo.findById.mockResolvedValue(mockUser({ availableCredits: 23 }));
+
+      const result = await service.getAvailableCredits('user-1');
+
+      expect(result).toEqual({ availableCredits: 23 });
+    });
+
+    it('should throw 404 when user is not found', async () => {
+      repo.findById.mockResolvedValue(null);
+
+      await expect(service.getAvailableCredits('nonexistent')).rejects.toThrow(
+        HttpError
       );
     });
   });

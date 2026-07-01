@@ -24,9 +24,12 @@ export interface UserResponseDto {
   id: string;
   name: string;
   email: string;
-  availableCredits: number;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface AvailableCreditsResponseDto {
+  availableCredits: number;
 }
 
 export interface AuthResponseDto {

@@ -1,5 +1,10 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
+
+vi.mock('@/lib/hooks/use-available-credits', () => ({
+  useAvailableCredits: () => ({ data: 7, isLoading: false }),
+}));
+
 import { AppHeader } from '@/components/organisms/app-header/app-header';
 import { renderWithProviders } from '@/test-utils';
 import type { User } from '@/lib/types/auth';
@@ -8,7 +13,6 @@ const mockUser: User = {
   id: '1',
   name: 'Cassiano',
   email: 'cassiano@example.com',
-  availableCredits: 7,
   createdAt: '',
   updatedAt: '',
 };

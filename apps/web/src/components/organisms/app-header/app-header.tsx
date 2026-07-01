@@ -28,10 +28,7 @@ export function AppHeader({ user }: AppHeaderProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <CreditsAvailableBadge
-          count={user.availableCredits}
-          className="px-3 py-2 sm:px-5 sm:py-3"
-        />
+        <CreditsAvailableBadge className="px-3 py-2 sm:px-5 sm:py-3" />
         <div className="bg-secondary text-secondary-foreground shadow-soft grid size-12 place-items-center overflow-hidden rounded-full text-sm font-semibold sm:size-14">
           {user.name.charAt(0).toUpperCase()}
         </div>

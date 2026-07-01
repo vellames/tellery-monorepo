@@ -1,17 +1,19 @@
+'use client';
+
 import { Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { useAvailableCredits } from '@/lib/hooks/use-available-credits';
 
 export interface CreditsAvailableBadgeProps {
-  count: number;
   className?: string;
 }
 
 export function CreditsAvailableBadge({
-  count,
   className,
 }: CreditsAvailableBadgeProps) {
   const t = useTranslations('common');
+  const { data: count, isLoading } = useAvailableCredits();
 
   return (
     <div
@@ -21,7 +23,11 @@ export function CreditsAvailableBadge({
       )}
     >
       <Star className="fill-gold text-gold size-4" />
-      <span>{t('creditsAvailable', { count })}</span>
+      <span>
+        {isLoading
+          ? t('creditsAvailable', { count: '…' })
+          : t('creditsAvailable', { count: count ?? 0 })}
+      </span>
     </div>
   );
 }

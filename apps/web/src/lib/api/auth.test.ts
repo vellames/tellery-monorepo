@@ -6,7 +6,6 @@ const user: User = {
   id: '1',
   name: 'Ana',
   email: 'a@b.c',
-  availableCredits: 3,
   createdAt: '',
   updatedAt: '',
 };

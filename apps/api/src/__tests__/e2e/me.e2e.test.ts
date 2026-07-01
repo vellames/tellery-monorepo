@@ -98,7 +98,6 @@ describe('E2E: GET /me', () => {
       id: AUTHENTICATED_USER_ID,
       name: 'Ana Teste',
       email: AUTHENTICATED_USER_EMAIL,
-      availableCredits: 3,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
@@ -146,7 +145,6 @@ describe('E2E: PATCH /me', () => {
       id: AUTHENTICATED_USER_ID,
       name: 'Ana Updated',
       email: 'ana.updated@teste.local',
-      availableCredits: 3,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });

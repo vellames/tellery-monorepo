@@ -24,6 +24,7 @@ export const config = {
     registerApi: '/api/auth/register',
     meApi: '/api/me',
     mePasswordApi: '/api/me/password',
+    meCreditsApi: '/api/me/available-credits',
     sessionStartApi: '/api/session/start',
     subscriptionApi: '/api/subscriptions',
     subscriptionPlanApi: '/api/subscriptions/plan',

@@ -15,13 +15,9 @@ vi.mock('@/lib/api/client', () => ({
     }
   },
 }));
-vi.mock('@/lib/api/me', () => ({
-  refreshSessionUser: vi.fn(),
-}));
 
 import { POST } from '@/app/api/session/start/route';
 import { apiFetch, ApiError } from '@/lib/api/client';
-import { refreshSessionUser } from '@/lib/api/me';
 
 function makeReq(body: unknown) {
   return new NextRequest('http://localhost/api/session/start', {
@@ -34,16 +30,8 @@ function makeReq(body: unknown) {
 describe('POST /api/session/start', () => {
   beforeEach(() => vi.clearAllMocks());
 
-  it('starts a session, refreshes the user cookie and returns the sessionId', async () => {
+  it('starts a session and returns the sessionId', async () => {
     vi.mocked(apiFetch).mockResolvedValue({ session: { id: 'session-1' } });
-    vi.mocked(refreshSessionUser).mockResolvedValue({
-      id: '1',
-      name: 'A',
-      email: 'a@b.c',
-      availableCredits: 2,
-      createdAt: '',
-      updatedAt: '',
-    });
 
     const res = await POST(makeReq({ historyId: 'history-1' }));
 
@@ -51,7 +39,6 @@ describe('POST /api/session/start', () => {
       method: 'POST',
       body: JSON.stringify({ historyId: 'history-1' }),
     });
-    expect(refreshSessionUser).toHaveBeenCalled();
     expect(res.status).toBe(200);
     expect((await res.json()).sessionId).toBe('session-1');
   });
@@ -65,6 +52,5 @@ describe('POST /api/session/start', () => {
 
     expect(res.status).toBe(402);
     expect((await res.json()).error).toBe('You have no credits available');
-    expect(refreshSessionUser).not.toHaveBeenCalled();
   });
 });

@@ -40,10 +40,7 @@ export default async function ProfilePage() {
             <CardDescription>
               {t('memberSince', { date: memberSince })}
             </CardDescription>
-            <CreditsAvailableBadge
-              count={user.availableCredits}
-              className="w-fit"
-            />
+            <CreditsAvailableBadge className="w-fit" />
           </CardHeader>
           <CardContent>
             <ProfileForm user={user} />

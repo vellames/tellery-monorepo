@@ -2,7 +2,6 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  availableCredits: number;
   createdAt: string;
   updatedAt: string;
 }

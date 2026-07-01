@@ -84,6 +84,22 @@ export class UserController {
     }
   };
 
+  getAvailableCredits = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const credits = await this.userService.getAvailableCredits(req.user!.id);
+      sendSuccess(res, credits);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const t = req.t as TranslationFunction;
+        const message = error.messageKey ? t(error.messageKey) : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      const t = req.t as TranslationFunction;
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
+
   updateProfile = async (req: Request, res: Response): Promise<void> => {
     const t = req.t as TranslationFunction;
     const parsed = updateMeSchema.safeParse(req.body);

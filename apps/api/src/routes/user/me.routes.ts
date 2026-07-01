@@ -77,6 +77,55 @@ router.get('/', authenticate, async (req, res) => {
 
 /**
  * @openapi
+ * /me/available-credits:
+ *   get:
+ *     tags: [Users]
+ *     summary: Get the logged-in user's available credits
+ *     description: Returns only the current credit balance. Use this instead of /me for always-fresh credit counts (credits change outside the session, e.g. webhook credit grants).
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     responses:
+ *       200:
+ *         description: The user's current credit balance
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: { type: boolean, example: true }
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     availableCredits: { type: integer, example: 23 }
+ *       401:
+ *         description: Missing or invalid authentication token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: { type: boolean, example: false }
+ *                 error: { type: string }
+ *       404:
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: { type: boolean, example: false }
+ *                 error: { type: string }
+ */
+router.get('/available-credits', authenticate, async (req, res) => {
+  await DIContainer.getInstance()
+    .getUserController()
+    .getAvailableCredits(req, res);
+});
+
+/**
+ * @openapi
  * /me:
  *   patch:
  *     tags: [Users]
