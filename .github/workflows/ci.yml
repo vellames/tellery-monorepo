@@ -50,6 +50,13 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      # Build shared workspaces before tests. api tests import
+      # @ai-history/i18n, whose package.json points main at dist/index.js;
+      # without this step, dist/ is absent in a fresh checkout and ts-jest
+      # workers crash resolving the module ("exceeding retry limit").
+      - name: Build shared packages
+        run: npm run build -w @ai-history/i18n
+
       - name: Test
         run: npm run test
 
