@@ -1,4 +1,6 @@
 export { FormikField } from './formik-field/formik-field';
+export { FormikMaskedField } from './formik-masked-field/formik-masked-field';
+export { MaskedInput } from './masked-input/masked-input';
 export { CheckboxField } from './checkbox-field/checkbox-field';
 export { ConfirmDialog } from './confirm-dialog/confirm-dialog';
 export { LanguageSwitcher } from './language-switcher/language-switcher';

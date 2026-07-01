@@ -29,7 +29,7 @@ describe('ProfileForm', () => {
 
     expect(screen.getByLabelText('Nome')).toHaveValue('Ana Teste');
     expect(screen.getByLabelText('E-mail')).toHaveValue('ana@teste.local');
-    expect(screen.getByLabelText('CPF')).toHaveValue('29537995593');
+    expect(screen.getByLabelText('CPF')).toHaveValue('295.379.955-93');
   });
 
   it('shows a validation error when the name is cleared', async () => {
@@ -73,5 +73,14 @@ describe('ProfileForm', () => {
         expect.anything()
       )
     );
+  });
+
+  it('masks the cpf while typing', async () => {
+    const evt = userEvent.setup();
+    renderWithProviders(<ProfileForm user={{ ...user, ssn: null }} />);
+
+    await evt.type(screen.getByLabelText('CPF'), '12345678901');
+
+    expect(screen.getByLabelText('CPF')).toHaveValue('123.456.789-01');
   });
 });

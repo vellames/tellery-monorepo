@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import { IdCard, Loader2, Mail, UserRound } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import { FormikField } from '@/components/molecules';
+import { FormikField, FormikMaskedField } from '@/components/molecules';
 import { useUpdateProfile } from '@/lib/hooks/use-profile';
 import type { UpdateProfilePayload } from '@/lib/types/auth';
 import type { User } from '@/lib/types/auth';
@@ -65,7 +65,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
           autoComplete="email"
           icon={<Mail className="size-4" />}
         />
-        <FormikField
+        <FormikMaskedField
           name="ssn"
           label={t('ssn')}
           placeholder={t('ssnPlaceholder')}
