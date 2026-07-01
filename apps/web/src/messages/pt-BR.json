@@ -160,6 +160,7 @@
     "cancelAnytime": "Cancele quando quiser pelo portal do cliente",
     "subscribe": "Assinar",
     "subscribeNow": "Assinar agora",
+    "activeWillEnd": "Ativa (será cancelada ao fim do período)",
     "manage": "Gerenciar assinatura",
     "checkoutSuccess": "Assinatura ativada! Seus créditos foram adicionados.",
     "checkoutCanceled": "O checkout foi cancelado.",

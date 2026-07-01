@@ -22,12 +22,37 @@ import {
   type PlanDisplay,
   type SubscriptionState,
 } from '@/lib/types/subscription';
+import { cn } from '@/lib/utils';
 
 interface SubscriptionPanelProps {
   plan: PlanDisplay | null;
   subscription: SubscriptionState | null;
   locale: string;
   status?: string;
+}
+
+function statusTone(
+  subscription: SubscriptionState
+): { box: string; text: string; dot: string } {
+  if (subscription.cancelAtPeriodEnd) {
+    return {
+      box: 'bg-warning/5 border-warning/30',
+      text: 'text-warning',
+      dot: 'bg-warning',
+    };
+  }
+  if (subscription.status === 'past_due' || subscription.status === 'unpaid') {
+    return {
+      box: 'bg-destructive/5 border-destructive/30',
+      text: 'text-destructive',
+      dot: 'bg-destructive',
+    };
+  }
+  return {
+    box: 'bg-success/5 border-success/30',
+    text: 'text-success',
+    dot: 'bg-success',
+  };
 }
 
 export function SubscriptionPanel({
@@ -111,32 +136,42 @@ export function SubscriptionPanel({
         </p>
 
         {isActive ? (
-          <div className="space-y-4">
-            <div className="bg-primary/5 border-primary/20 rounded-xl border p-4">
-              <p className="font-semibold">
-                {t(`status.${subscription!.status}`)}
-              </p>
-              {periodEnd && (
-                <p className="text-muted-foreground text-sm">
-                  {subscription!.cancelAtPeriodEnd
-                    ? t('endsOn', { date: periodEnd })
-                    : t('renewsOn', { date: periodEnd })}
-                </p>
-              )}
-            </div>
-            <Button
-              size="lg"
-              variant="outline"
-              className="w-full"
-              disabled={createPortal.isPending}
-              onClick={() => createPortal.mutate()}
-            >
-              {createPortal.isPending && (
-                <Loader2 className="size-4 animate-spin" />
-              )}
-              {t('manage')}
-            </Button>
-          </div>
+          (() => {
+            const tone = statusTone(subscription!);
+            return (
+              <div className="space-y-4">
+                <div className={cn('rounded-xl border p-4', tone.box)}>
+                  <p className={cn('flex items-center gap-2 font-semibold', tone.text)}>
+                    <span className={cn('size-2 rounded-full', tone.dot)} />
+                    {t(
+                      subscription!.cancelAtPeriodEnd
+                        ? 'activeWillEnd'
+                        : `status.${subscription!.status}`
+                    )}
+                  </p>
+                  {periodEnd && (
+                    <p className={cn('mt-1 text-sm', tone.text)}>
+                      {subscription!.cancelAtPeriodEnd
+                        ? t('endsOn', { date: periodEnd })
+                        : t('renewsOn', { date: periodEnd })}
+                    </p>
+                  )}
+                </div>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full"
+                  disabled={createPortal.isPending}
+                  onClick={() => createPortal.mutate()}
+                >
+                  {createPortal.isPending && (
+                    <Loader2 className="size-4 animate-spin" />
+                  )}
+                  {t('manage')}
+                </Button>
+              </div>
+            );
+          })()
         ) : (
           <Button
             size="lg"

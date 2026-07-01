@@ -160,6 +160,7 @@
     "cancelAnytime": "Cancel anytime from the customer portal",
     "subscribe": "Subscribe",
     "subscribeNow": "Subscribe now",
+    "activeWillEnd": "Active (will be cancelled at the end of the period)",
     "manage": "Manage subscription",
     "checkoutSuccess": "Subscription activated! Your credits were added.",
     "checkoutCanceled": "Checkout was canceled.",
