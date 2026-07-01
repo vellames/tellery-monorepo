@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import type { PointerEvent } from 'react';
 
 type NavCopy = {
@@ -15,7 +16,6 @@ type HeroCopy = {
   subtitle: string;
   primaryCta: string;
   secondaryCta: string;
-  badge: string;
   caseLabel: string;
   caseTitle: string;
   caseMeta: string;
@@ -72,12 +72,20 @@ export type LandingCopy = {
   };
   footer: {
     tagline: string;
+    copyright: string;
+    privacy: string;
+    terms: string;
   };
 };
 
 type InteractiveLandingProps = {
   copy: LandingCopy;
 };
+
+const APP_URL = 'https://app.tellery.ai';
+const FINAL_CTA_URL = 'https://app.tellery.com';
+const PRIVACY_URL = 'https://app.tellery.ai/privacy';
+const TERMS_URL = 'https://app.tellery.ai/terms';
 
 export function InteractiveLanding({ copy }: InteractiveLandingProps) {
   function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
@@ -91,15 +99,21 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
     <div className="landing-shell" onPointerMove={handlePointerMove}>
       <header className="site-header" aria-label="Tellery">
         <a className="brand" href="#top" aria-label="Tellery home">
-          <span className="brand-mark">T</span>
-          <span>Tellery</span>
+          <Image
+            className="brand-logo"
+            src="/logo.png"
+            alt="Tellery"
+            width={178}
+            height={72}
+            priority
+          />
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#how">{copy.nav.how}</a>
           <a href="#experience">{copy.nav.experience}</a>
           <a href="#premium">{copy.nav.premium}</a>
         </nav>
-        <a className="header-cta" href="#start">
+        <a className="header-cta" href={APP_URL}>
           {copy.nav.cta}
         </a>
       </header>
@@ -111,14 +125,13 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
             <h1>{copy.hero.title}</h1>
             <p className="hero-subtitle">{copy.hero.subtitle}</p>
             <div className="hero-actions">
-              <a className="primary-button magnetic-button" href="#start">
+              <a className="primary-button magnetic-button" href={APP_URL}>
                 {copy.hero.primaryCta}
               </a>
               <a className="secondary-button" href="#how">
                 {copy.hero.secondaryCta}
               </a>
             </div>
-            <p className="hero-badge">{copy.hero.badge}</p>
           </div>
 
           <div className="hero-stage" aria-label={copy.hero.caseTitle}>
@@ -243,15 +256,30 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
           <p className="eyebrow">{copy.finalCta.eyebrow}</p>
           <h2>{copy.finalCta.title}</h2>
           <p>{copy.finalCta.subtitle}</p>
-          <a className="primary-button magnetic-button" href="#top">
+          <a className="primary-button magnetic-button" href={FINAL_CTA_URL}>
             {copy.finalCta.cta}
           </a>
         </section>
       </main>
 
       <footer className="site-footer section-frame">
-        <span>Tellery</span>
-        <p>{copy.footer.tagline}</p>
+        <div>
+          <span>Tellery</span>
+          <p>{copy.footer.tagline}</p>
+        </div>
+        <div className="footer-meta">
+          <p>
+            © {new Date().getFullYear()} Tellery. {copy.footer.copyright}
+          </p>
+          <nav aria-label="Legal links">
+            <a href={PRIVACY_URL} target="_blank" rel="noreferrer">
+              {copy.footer.privacy}
+            </a>
+            <a href={TERMS_URL} target="_blank" rel="noreferrer">
+              {copy.footer.terms}
+            </a>
+          </nav>
+        </div>
       </footer>
     </div>
   );

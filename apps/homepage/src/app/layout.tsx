@@ -20,8 +20,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('metadata');
 
   return {
-    title: t('title'),
+    title: `${t('title')} - ${t('tagline')}`,
     description: t('description'),
+    icons: {
+      icon: '/logo.png',
+      apple: '/logo.png',
+    },
   };
 }
 

@@ -7,12 +7,11 @@
       "cta": "Entrar no caso"
     },
     "hero": {
-      "eyebrow": "Histórias interativas com alma de investigação",
+      "eyebrow": "Histórias onde você participa",
       "title": "Entre em histórias que respondem a você.",
       "subtitle": "Converse com personagens, examine cenas, descubra evidências e monte sua própria conclusão em experiências narrativas guiadas por IA.",
       "primaryCta": "Começar uma investigação",
       "secondaryCta": "Ver como funciona",
-      "badge": "Mistério, suspense e drama em formato jogável",
       "caseLabel": "Arquivo aberto",
       "caseTitle": "O último brinde no Hotel Aurora",
       "caseMeta": "3 suspeitos • 7 evidências • 42 min",
@@ -22,8 +21,11 @@
       "caseProgress": "68% do caso revelado"
     },
     "stats": {
+      "storiesValue": "Dezenas",
       "stories": "Histórias para investigar",
+      "pathsValue": "Infinitos",
       "paths": "Caminhos possíveis",
+      "endingValue": "Incontáveis",
       "ending": "Final moldado pelas suas pistas"
     },
     "how": {
@@ -77,11 +79,15 @@
       "cta": "Começar agora"
     },
     "footer": {
-      "tagline": "Histórias onde você participa"
+      "tagline": "Histórias onde você participa",
+      "copyright": "Todos os direitos reservados.",
+      "privacy": "Política de Privacidade",
+      "terms": "Termos de Uso"
     }
   },
   "metadata": {
     "title": "Tellery",
+    "tagline": "Histórias onde você participa",
     "description": "Histórias interativas onde você conversa, investiga e descobre a verdade."
   }
 }

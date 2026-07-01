@@ -7,12 +7,11 @@
       "cta": "Enter the case"
     },
     "hero": {
-      "eyebrow": "Interactive stories with an investigative soul",
+      "eyebrow": "Stories you take part in",
       "title": "Step into stories that answer back.",
       "subtitle": "Talk to characters, inspect scenes, uncover evidence and build your own conclusion in AI-powered narrative investigations.",
       "primaryCta": "Start an investigation",
       "secondaryCta": "See how it works",
-      "badge": "Playable mystery, suspense and drama",
       "caseLabel": "Open case file",
       "caseTitle": "The final toast at Hotel Aurora",
       "caseMeta": "3 suspects • 7 pieces of evidence • 42 min",
@@ -22,8 +21,11 @@
       "caseProgress": "68% of the case revealed"
     },
     "stats": {
+      "storiesValue": "Dozens",
       "stories": "Stories to investigate",
+      "pathsValue": "Infinite",
       "paths": "Possible paths",
+      "endingValue": "Countless",
       "ending": "Ending shaped by your clues"
     },
     "how": {
@@ -77,11 +79,15 @@
       "cta": "Start now"
     },
     "footer": {
-      "tagline": "Stories you take part in"
+      "tagline": "Stories you take part in",
+      "copyright": "All rights reserved.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
     }
   },
   "metadata": {
     "title": "Tellery",
+    "tagline": "Stories you take part in",
     "description": "Interactive stories where you talk, investigate and uncover the truth."
   }
 }

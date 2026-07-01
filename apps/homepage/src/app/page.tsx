@@ -28,7 +28,6 @@ export default async function HomePage() {
       subtitle: t('hero.subtitle'),
       primaryCta: t('hero.primaryCta'),
       secondaryCta: t('hero.secondaryCta'),
-      badge: t('hero.badge'),
       caseLabel: t('hero.caseLabel'),
       caseTitle: t('hero.caseTitle'),
       caseMeta: t('hero.caseMeta'),
@@ -38,9 +37,9 @@ export default async function HomePage() {
       caseProgress: t('hero.caseProgress'),
     },
     stats: [
-      { value: '12+', label: t('stats.stories') },
-      { value: '∞', label: t('stats.paths') },
-      { value: '1', label: t('stats.ending') },
+      { value: t('stats.storiesValue'), label: t('stats.stories') },
+      { value: t('stats.pathsValue'), label: t('stats.paths') },
+      { value: t('stats.endingValue'), label: t('stats.ending') },
     ],
     how: {
       eyebrow: t('how.eyebrow'),
@@ -76,6 +75,9 @@ export default async function HomePage() {
     },
     footer: {
       tagline: t('footer.tagline'),
+      copyright: t('footer.copyright'),
+      privacy: t('footer.privacy'),
+      terms: t('footer.terms'),
     },
   };
 
