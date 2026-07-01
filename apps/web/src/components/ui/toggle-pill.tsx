@@ -16,7 +16,8 @@ const togglePillTones = cva('', {
 });
 
 export interface TogglePillProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof togglePillTones> {
   pressed: boolean;
 }

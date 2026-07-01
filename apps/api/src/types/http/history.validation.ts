@@ -6,9 +6,7 @@ export const listHistoriesQuerySchema = paginationQuerySchema.extend({
   isFree: z
     .enum(['true', 'false'])
     .optional()
-    .transform((value) =>
-      value === undefined ? undefined : value === 'true'
-    ),
+    .transform((value) => (value === undefined ? undefined : value === 'true')),
 });
 
 export type ListHistoriesQuery = z.infer<typeof listHistoriesQuerySchema>;

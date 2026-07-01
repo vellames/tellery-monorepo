@@ -31,8 +31,7 @@ export function StoriesFilters() {
     router.replace(query ? `${pathname}?${query}` : pathname);
   };
 
-  const toggleFree = () =>
-    apply(activeFilter === 'free' ? null : 'free');
+  const toggleFree = () => apply(activeFilter === 'free' ? null : 'free');
 
   const togglePremium = () =>
     apply(activeFilter === 'premium' ? null : 'premium');
@@ -46,11 +45,7 @@ export function StoriesFilters() {
       <TogglePill tone="free" pressed={freeOn} onClick={toggleFree}>
         {t('free')}
       </TogglePill>
-      <TogglePill
-        tone="premium"
-        pressed={premiumOn}
-        onClick={togglePremium}
-      >
+      <TogglePill tone="premium" pressed={premiumOn} onClick={togglePremium}>
         {premiumOn && <Lock className="size-3.5" />}
         {t('premium')}
       </TogglePill>

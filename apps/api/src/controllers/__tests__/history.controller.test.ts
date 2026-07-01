@@ -50,10 +50,14 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(true, {
-      page: 1,
-      limit: 20,
-    }, undefined);
+    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(
+      true,
+      {
+        page: 1,
+        limit: 20,
+      },
+      undefined
+    );
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
     expect(json).toHaveBeenCalledWith({
       success: true,
@@ -78,10 +82,14 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(false, {
-      page: 2,
-      limit: 5,
-    }, undefined);
+    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(
+      false,
+      {
+        page: 2,
+        limit: 5,
+      },
+      undefined
+    );
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
   });
 

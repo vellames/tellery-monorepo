@@ -42,7 +42,9 @@ describe('FormikMaskedField', () => {
       <Formik
         initialValues={{ ssn: '' }}
         onSubmit={() => {}}
-        validationSchema={yup.object({ ssn: yup.string().required('required') })}
+        validationSchema={yup.object({
+          ssn: yup.string().required('required'),
+        })}
       >
         {() => (
           <Form>

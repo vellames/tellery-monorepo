@@ -53,11 +53,7 @@ describe('formatCpf', () => {
 describe('MaskedInput', () => {
   it('displays a raw prefilled value as masked', () => {
     render(
-      <MaskedInput
-        value="29537995593"
-        onChange={() => {}}
-        aria-label="CPF"
-      />
+      <MaskedInput value="29537995593" onChange={() => {}} aria-label="CPF" />
     );
 
     expect(screen.getByLabelText('CPF')).toHaveValue('295.379.955-93');

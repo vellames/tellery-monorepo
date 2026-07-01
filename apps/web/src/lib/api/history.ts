@@ -30,7 +30,9 @@ export function fetchUpcomingHistories(): Promise<History[]> {
   return fetchByFeaturedFlag(false, { limit: UPCOMING_LIMIT });
 }
 
-export function fetchNonFeaturedHistories(isFree?: boolean): Promise<History[]> {
+export function fetchNonFeaturedHistories(
+  isFree?: boolean
+): Promise<History[]> {
   return fetchByFeaturedFlag(false, { isFree });
 }
 
