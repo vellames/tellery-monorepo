@@ -101,6 +101,14 @@ export class SubscriptionService {
       );
     }
 
+    if (!user.emailVerifiedAt) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        'Email is not verified',
+        'subscription:errors.emailNotVerified'
+      );
+    }
+
     if (!user.ssn) {
       throw new HttpError(
         StatusCodes.UNPROCESSABLE_ENTITY,

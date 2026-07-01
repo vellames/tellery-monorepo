@@ -237,7 +237,11 @@ describe('SubscriptionService', () => {
     });
 
     it('should throw 422 when the user has no ssn', async () => {
-      users.findById.mockResolvedValue({ id: 'user-1', ssn: null } as never);
+      users.findById.mockResolvedValue({
+        id: 'user-1',
+        ssn: null,
+        emailVerifiedAt: new Date('2026-07-01'),
+      } as never);
 
       await expect(
         service.createCheckoutSession('user-1')
@@ -250,12 +254,31 @@ describe('SubscriptionService', () => {
       expect(stripe.createCheckoutSession).not.toHaveBeenCalled();
     });
 
+    it('should throw 422 when the email is not verified', async () => {
+      users.findById.mockResolvedValue({
+        id: 'user-1',
+        ssn: '29537995593',
+        emailVerifiedAt: null,
+      } as never);
+
+      await expect(
+        service.createCheckoutSession('user-1')
+      ).rejects.toMatchObject({
+        statusCode: StatusCodes.UNPROCESSABLE_ENTITY,
+        messageKey: 'subscription:errors.emailNotVerified',
+      });
+
+      expect(stripe.createCustomer).not.toHaveBeenCalled();
+      expect(stripe.createCheckoutSession).not.toHaveBeenCalled();
+    });
+
     it('should create a customer + local row when none exists', async () => {
       users.findById.mockResolvedValue({
         id: 'user-1',
         name: 'Ana',
         email: 'ana@teste.local',
         ssn: '29537995593',
+        emailVerifiedAt: new Date('2026-07-01'),
       } as never);
       subscriptions.findByUserId.mockResolvedValue(null);
       stripe.createCustomer.mockResolvedValue({ id: 'cus_new' } as never);
@@ -285,6 +308,7 @@ describe('SubscriptionService', () => {
       users.findById.mockResolvedValue({
         id: 'user-1',
         ssn: '29537995593',
+        emailVerifiedAt: new Date('2026-07-01'),
       } as never);
       subscriptions.findByUserId.mockResolvedValue(mockSubscription());
       stripe.createCheckoutSession.mockResolvedValue({

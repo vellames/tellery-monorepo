@@ -159,7 +159,7 @@ router.get('/', authenticate, async (req, res) => {
  *                 success: { type: boolean, example: false }
  *                 error: { type: string }
  *       422:
- *         description: Invalid request body, or the user has no SSN/CPF on file
+ *         description: Invalid request body, the user's email is not verified, or the user has no SSN/CPF on file
  *         content:
  *           application/json:
  *             schema:
