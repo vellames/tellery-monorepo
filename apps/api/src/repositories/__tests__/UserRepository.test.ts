@@ -225,26 +225,26 @@ describe('UserRepository', () => {
     });
   });
 
-  describe('addCredits', () => {
-    it('should increment availableCredits by the given amount', async () => {
-      prisma.user.update.mockResolvedValue(mockUser({ availableCredits: 23 }));
+  describe('setAvailableCredits', () => {
+    it('should reset availableCredits to the given amount', async () => {
+      prisma.user.update.mockResolvedValue(mockUser({ availableCredits: 20 }));
 
-      await repo.addCredits('user-1', 20);
+      await repo.setAvailableCredits('user-1', 20);
 
       expect(prisma.user.update).toHaveBeenCalledWith({
         where: { id: 'user-1' },
-        data: { availableCredits: { increment: 20 } },
+        data: { availableCredits: 20 },
       });
     });
 
     it('should forward the transaction when provided', async () => {
       const tx = { user: { update: jest.fn().mockResolvedValue(mockUser()) } };
 
-      await repo.addCredits('user-1', 20, tx as never);
+      await repo.setAvailableCredits('user-1', 20, tx as never);
 
       expect(tx.user.update).toHaveBeenCalledWith({
         where: { id: 'user-1' },
-        data: { availableCredits: { increment: 20 } },
+        data: { availableCredits: 20 },
       });
       expect(prisma.user.update).not.toHaveBeenCalled();
     });

@@ -330,7 +330,7 @@ export class SubscriptionService {
         tx
       );
       if (granted) {
-        await this.users.addCredits(
+        await this.users.setAvailableCredits(
           subscription.userId,
           plan.creditsPerCycle,
           tx

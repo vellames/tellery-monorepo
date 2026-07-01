@@ -142,6 +142,8 @@
     "subtitle": "Receba créditos mensais e continue investigando.",
     "unavailable": "As assinaturas não estão disponíveis no momento.",
     "creditsPerMonth": "{count} créditos por mês",
+    "premiumStories": "Acesso a todas as histórias premium",
+    "refreshMonthly": "Os créditos renovam a cada ciclo — os não usados não acumulam",
     "cancelAnytime": "Cancele quando quiser pelo portal do cliente",
     "subscribe": "Assinar",
     "manage": "Gerenciar assinatura",

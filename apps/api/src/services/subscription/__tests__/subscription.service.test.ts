@@ -339,7 +339,7 @@ describe('SubscriptionService', () => {
         },
         expect.anything()
       );
-      expect(users.addCredits).toHaveBeenCalledWith(
+      expect(users.setAvailableCredits).toHaveBeenCalledWith(
         'user-1',
         20,
         expect.anything()
@@ -365,7 +365,7 @@ describe('SubscriptionService', () => {
 
       await service.handleWebhook(Buffer.from('{}'), 'sig');
 
-      expect(users.addCredits).not.toHaveBeenCalled();
+      expect(users.setAvailableCredits).not.toHaveBeenCalled();
     });
 
     it('should ignore non-grantable billing reasons', async () => {

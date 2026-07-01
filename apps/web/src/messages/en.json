@@ -142,6 +142,8 @@
     "subtitle": "Get monthly credits and keep investigating.",
     "unavailable": "Subscriptions are not available right now.",
     "creditsPerMonth": "{count} credits per month",
+    "premiumStories": "Access to all premium stories",
+    "refreshMonthly": "Credits refresh every cycle — unused ones don't roll over",
     "cancelAnytime": "Cancel anytime from the customer portal",
     "subscribe": "Subscribe",
     "manage": "Manage subscription",

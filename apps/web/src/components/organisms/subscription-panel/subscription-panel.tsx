@@ -96,9 +96,17 @@ export function SubscriptionPanel({
           </li>
           <li className="flex items-center gap-2">
             <CheckCircle2 className="text-primary size-4" />
+            {t('premiumStories')}
+          </li>
+          <li className="flex items-center gap-2">
+            <CheckCircle2 className="text-primary size-4" />
             {t('cancelAnytime')}
           </li>
         </ul>
+
+        <p className="text-muted-foreground text-xs italic">
+          {t('refreshMonthly')}
+        </p>
 
         {isActive ? (
           <div className="space-y-4">

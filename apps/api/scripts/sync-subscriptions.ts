@@ -94,7 +94,7 @@ async function run(): Promise<void> {
         });
         await tx.user.update({
           where: { id: local.userId },
-          data: { availableCredits: { increment: credits } },
+          data: { availableCredits: credits },
         });
       });
       console.log(
