@@ -4,6 +4,12 @@ import { screen } from '@testing-library/react';
 vi.mock('@/lib/hooks/use-available-credits', () => ({
   useAvailableCredits: () => ({ data: 7, isLoading: false }),
 }));
+vi.mock('@/lib/hooks/use-auth', () => ({
+  useLogout: () => ({ mutate: vi.fn(), isPending: false }),
+}));
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }),
+}));
 
 import { AppHeader } from '@/components/organisms/app-header/app-header';
 import { renderWithProviders } from '@/test-utils';

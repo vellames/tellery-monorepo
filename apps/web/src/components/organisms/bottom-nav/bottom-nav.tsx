@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, Compass, Home, UserRound } from 'lucide-react';
+import { BookOpen, Compass, Home } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
@@ -10,23 +10,42 @@ import { config } from '@/lib/config';
 
 interface NavItem {
   icon: LucideIcon;
-  labelKey: 'home' | 'stories' | 'journey' | 'profile';
+  labelKey: 'home' | 'stories' | 'journey';
   href?: string;
 }
 
-const navItems: NavItem[] = [
+const baseNavItems: NavItem[] = [
   { icon: Home, labelKey: 'home', href: config.routes.home },
   { icon: BookOpen, labelKey: 'stories', href: config.routes.stories },
   { icon: Compass, labelKey: 'journey', href: config.routes.journey },
-  { icon: UserRound, labelKey: 'profile', href: config.routes.profile },
 ];
 
-export function BottomNav() {
+const colsClass: Record<number, string> = {
+  2: 'grid-cols-2',
+  3: 'grid-cols-3',
+  4: 'grid-cols-4',
+};
+
+export interface BottomNavProps {
+  hasSessions?: boolean;
+}
+
+export function BottomNav({ hasSessions = true }: BottomNavProps) {
   const t = useTranslations('nav');
   const pathname = usePathname();
 
+  const navItems = baseNavItems.filter(
+    (item) => item.labelKey !== 'journey' || hasSessions
+  );
+  const cols = navItems.length;
+
   return (
-    <nav className="border-border bg-card/90 shadow-card fixed inset-x-4 bottom-4 z-20 grid grid-cols-4 rounded-[28px] border px-3 py-3 backdrop-blur lg:static lg:inset-x-auto lg:bottom-auto lg:mx-0 lg:w-full lg:max-w-none">
+    <nav
+      className={cn(
+        'border-border bg-card/90 shadow-card fixed inset-x-4 bottom-4 z-20 grid rounded-[28px] border px-3 py-3 backdrop-blur lg:static lg:inset-x-auto lg:bottom-auto lg:mx-0 lg:w-full lg:max-w-none',
+        colsClass[cols] ?? `grid-cols-${cols}`
+      )}
+    >
       {navItems.map(({ icon: Icon, labelKey, href }) => {
         const isActive =
           !!href && (pathname === href || pathname.startsWith(`${href}/`));

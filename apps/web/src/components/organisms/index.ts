@@ -12,3 +12,4 @@ export { SessionHistory } from './session-history/session-history';
 export { ProfileForm } from './profile-form/profile-form';
 export { ChangePasswordForm } from './change-password-form/change-password-form';
 export { SubscriptionPanel } from './subscription-panel/subscription-panel';
+export { UserMenu } from './user-menu/user-menu';

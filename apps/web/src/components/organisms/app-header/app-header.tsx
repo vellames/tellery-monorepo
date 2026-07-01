@@ -3,6 +3,7 @@ import { Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { User } from '@/lib/types/auth';
 import { CreditsAvailableBadge } from '@/components/molecules';
+import { UserMenu } from '@/components/organisms/user-menu/user-menu';
 import { config } from '@/lib/config';
 
 export interface AppHeaderProps {
@@ -43,9 +44,7 @@ export function AppHeader({ user, hasActiveSubscription }: AppHeaderProps) {
             <span className="hidden sm:inline">{tSub('subscribeNow')}</span>
           </Link>
         )}
-        <div className="bg-secondary text-secondary-foreground shadow-soft grid size-12 place-items-center overflow-hidden rounded-full text-sm font-semibold sm:size-14">
-          {user.name.charAt(0).toUpperCase()}
-        </div>
+        <UserMenu user={user} />
       </div>
     </header>
   );

@@ -11,13 +11,13 @@ import { BottomNav } from '@/components/organisms/bottom-nav/bottom-nav';
 import { renderWithProviders } from '@/test-utils';
 
 describe('BottomNav', () => {
-  it('renders all four nav items in pt-BR', () => {
+  it('renders home, stories and journey in pt-BR', () => {
     renderWithProviders(<BottomNav />, { locale: 'pt-BR' });
 
     expect(screen.getByText('Início')).toBeInTheDocument();
     expect(screen.getByText('Histórias')).toBeInTheDocument();
     expect(screen.getByText('Minha jornada')).toBeInTheDocument();
-    expect(screen.getByText('Perfil')).toBeInTheDocument();
+    expect(screen.queryByText('Perfil')).not.toBeInTheDocument();
   });
 
   it('renders English translations when locale is en', () => {
@@ -26,7 +26,15 @@ describe('BottomNav', () => {
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Stories')).toBeInTheDocument();
     expect(screen.getByText('My journey')).toBeInTheDocument();
-    expect(screen.getByText('Profile')).toBeInTheDocument();
+    expect(screen.queryByText('Profile')).not.toBeInTheDocument();
+  });
+
+  it('hides the journey item when the user has no sessions', () => {
+    renderWithProviders(<BottomNav hasSessions={false} />, { locale: 'pt-BR' });
+
+    expect(screen.getByText('Início')).toBeInTheDocument();
+    expect(screen.getByText('Histórias')).toBeInTheDocument();
+    expect(screen.queryByText('Minha jornada')).not.toBeInTheDocument();
   });
 
   it('marks the home item active on the home route', () => {

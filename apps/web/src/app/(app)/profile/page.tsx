@@ -2,7 +2,6 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import {
   ProfileForm,
   ChangePasswordForm,
-  LogoutButton,
   SubscriptionPanel,
 } from '@/components/organisms';
 import { CreditsAvailableBadge } from '@/components/molecules';
@@ -62,7 +61,6 @@ export default async function ProfilePage() {
           </CardContent>
         </Card>
       </div>
-      <LogoutButton />
     </section>
   );
 }
