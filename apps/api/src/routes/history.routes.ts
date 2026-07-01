@@ -24,6 +24,12 @@ const authenticate: RequestHandler = (req, res, next) => {
  *         schema:
  *           type: boolean
  *         description: Filter histories by featured flag. Must be `true` or `false`.
+ *       - name: isFree
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: boolean
+ *         description: Filter histories by access tier. `true` returns only free histories, `false` returns only premium histories. When omitted, all histories are returned regardless of access tier.
  *       - name: page
  *         in: query
  *         required: false
@@ -98,7 +104,7 @@ const authenticate: RequestHandler = (req, res, next) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  *       422:
- *         description: Invalid or missing query parameter (isFeatured, page or limit)
+ *         description: Invalid or missing query parameter (isFeatured, isFree, page or limit)
  *         content:
  *           application/json:
  *             schema:

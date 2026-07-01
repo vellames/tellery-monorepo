@@ -24,9 +24,14 @@ export class HistoryCatalogService {
 
   async listAvailable(
     isFeatured: boolean,
-    pagination: PaginationQuery
+    pagination: PaginationQuery,
+    isFree?: boolean
   ): Promise<PaginatedResult<HistoryCatalogItemDto>> {
-    const result = await this.histories.listPublished(isFeatured, pagination);
+    const result = await this.histories.listPublished(
+      isFeatured,
+      pagination,
+      isFree
+    );
     const items = await Promise.all(
       result.items.map((history) => this.toSignedDto(history))
     );

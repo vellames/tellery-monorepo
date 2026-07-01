@@ -192,6 +192,11 @@
     "title": "Histórias",
     "featuredSection": "Destaques",
     "allSection": "Todas as histórias",
+    "filters": {
+      "label": "Filtrar histórias por acesso",
+      "free": "Grátis",
+      "premium": "Premium"
+    },
     "objective": "Objetivo",
     "startButton": "Iniciar história",
     "starting": "Iniciando…",

@@ -132,12 +132,14 @@ export class HistoryDefinitionRepository
 
   async listPublished(
     isFeatured: boolean,
-    pagination: PaginationQuery
+    pagination: PaginationQuery,
+    isFree?: boolean
   ): Promise<PaginatedResult<HistoryCatalogItem>> {
     const where: Prisma.HistoryWhereInput = {
       status: 'published',
       isFeatured,
       deletedAt: null,
+      ...(isFree !== undefined && { isFree }),
     };
     const [items, total] = await Promise.all([
       this.prisma.history.findMany({

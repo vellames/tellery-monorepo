@@ -26,6 +26,7 @@ export interface IHistoryDefinitionRepository extends IBaseRepository {
   ): Promise<HistoryCatalogDetailItem | null>;
   listPublished(
     isFeatured: boolean,
-    pagination: PaginationQuery
+    pagination: PaginationQuery,
+    isFree?: boolean
   ): Promise<PaginatedResult<HistoryCatalogItem>>;
 }

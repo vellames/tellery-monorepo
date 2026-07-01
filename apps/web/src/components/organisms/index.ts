@@ -7,6 +7,7 @@ export { BottomNav } from './bottom-nav/bottom-nav';
 export { FeaturedStory } from './featured-story/featured-story';
 export { HowItWorks } from './how-it-works/how-it-works';
 export { StoryList } from './story-list/story-list';
+export { StoriesFilters } from './stories-filters/stories-filters';
 export { SessionHub } from './session-hub/session-hub';
 export { SessionHistory } from './session-history/session-history';
 export { ProfileForm } from './profile-form/profile-form';

@@ -190,5 +190,68 @@ describe('HistoryDefinitionRepository', () => {
         totalPages: 0,
       });
     });
+
+    it('adds isFree to the where clause when isFree is true', async () => {
+      prisma.history.findMany.mockResolvedValue([] as never);
+      prisma.history.count.mockResolvedValue(0);
+
+      await repo.listPublished(true, pagination, true);
+
+      expect(prisma.history.findMany).toHaveBeenCalledWith({
+        where: {
+          status: 'published',
+          isFeatured: true,
+          deletedAt: null,
+          isFree: true,
+        },
+        select: historyCatalogSelect,
+        orderBy: { updatedAt: 'desc' },
+        skip: 0,
+        take: 20,
+      });
+      expect(prisma.history.count).toHaveBeenCalledWith({
+        where: {
+          status: 'published',
+          isFeatured: true,
+          deletedAt: null,
+          isFree: true,
+        },
+      });
+    });
+
+    it('adds isFree to the where clause when isFree is false', async () => {
+      prisma.history.findMany.mockResolvedValue([] as never);
+      prisma.history.count.mockResolvedValue(0);
+
+      await repo.listPublished(false, pagination, false);
+
+      expect(prisma.history.findMany).toHaveBeenCalledWith({
+        where: {
+          status: 'published',
+          isFeatured: false,
+          deletedAt: null,
+          isFree: false,
+        },
+        select: historyCatalogSelect,
+        orderBy: { updatedAt: 'desc' },
+        skip: 0,
+        take: 20,
+      });
+    });
+
+    it('omits isFree from the where clause when isFree is undefined', async () => {
+      prisma.history.findMany.mockResolvedValue([] as never);
+      prisma.history.count.mockResolvedValue(0);
+
+      await repo.listPublished(true, pagination);
+
+      expect(prisma.history.findMany).toHaveBeenCalledWith({
+        where: { status: 'published', isFeatured: true, deletedAt: null },
+        select: historyCatalogSelect,
+        orderBy: { updatedAt: 'desc' },
+        skip: 0,
+        take: 20,
+      });
+    });
   });
 });

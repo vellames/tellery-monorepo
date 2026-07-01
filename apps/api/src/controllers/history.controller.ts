@@ -26,10 +26,11 @@ export class HistoryController {
     }
 
     try {
-      const { isFeatured, page, limit } = parsedQuery.data;
+      const { isFeatured, isFree, page, limit } = parsedQuery.data;
       const histories = await this.historyCatalogService.listAvailable(
         isFeatured,
-        { page, limit }
+        { page, limit },
+        isFree
       );
       sendSuccess(res, histories);
     } catch {

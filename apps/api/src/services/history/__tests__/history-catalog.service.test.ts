@@ -116,6 +116,42 @@ describe('HistoryCatalogService', () => {
       expect(result.totalPages).toBe(3);
       expect(result.items.map((i) => i.id)).toEqual(['a', 'b']);
     });
+
+    it('forwards the isFree filter to the repository when provided', async () => {
+      histories.listPublished.mockResolvedValue({
+        items: [],
+        total: 0,
+        page: 1,
+        limit: 20,
+        totalPages: 0,
+      });
+
+      await service.listAvailable(true, { page: 1, limit: 20 }, true);
+
+      expect(histories.listPublished).toHaveBeenCalledWith(
+        true,
+        { page: 1, limit: 20 },
+        true
+      );
+    });
+
+    it('forwards isFree as undefined to the repository when omitted', async () => {
+      histories.listPublished.mockResolvedValue({
+        items: [],
+        total: 0,
+        page: 1,
+        limit: 20,
+        totalPages: 0,
+      });
+
+      await service.listAvailable(true, { page: 1, limit: 20 });
+
+      expect(histories.listPublished).toHaveBeenCalledWith(
+        true,
+        { page: 1, limit: 20 },
+        undefined
+      );
+    });
   });
 
   describe('getById', () => {

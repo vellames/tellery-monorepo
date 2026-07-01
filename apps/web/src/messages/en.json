@@ -192,6 +192,11 @@
     "title": "Stories",
     "featuredSection": "Featured",
     "allSection": "All stories",
+    "filters": {
+      "label": "Filter stories by access",
+      "free": "Free",
+      "premium": "Premium"
+    },
     "objective": "Objective",
     "startButton": "Start story",
     "starting": "Starting…",

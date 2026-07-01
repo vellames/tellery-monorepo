@@ -53,7 +53,7 @@ describe('HistoryController - list', () => {
     expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(true, {
       page: 1,
       limit: 20,
-    });
+    }, undefined);
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
     expect(json).toHaveBeenCalledWith({
       success: true,
@@ -81,8 +81,54 @@ describe('HistoryController - list', () => {
     expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(false, {
       page: 2,
       limit: 5,
-    });
+    }, undefined);
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+  });
+
+  it('passes isFree=true through as the third argument', async () => {
+    historyCatalogService.listAvailable.mockResolvedValue({
+      items: [],
+      total: 0,
+      page: 1,
+      limit: 20,
+      totalPages: 0,
+    });
+    req = {
+      query: { isFeatured: 'true', isFree: 'true' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.list(req as Request, res as Response);
+
+    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(
+      true,
+      { page: 1, limit: 20 },
+      true
+    );
+  });
+
+  it('passes isFree=false through as the third argument', async () => {
+    historyCatalogService.listAvailable.mockResolvedValue({
+      items: [],
+      total: 0,
+      page: 1,
+      limit: 20,
+      totalPages: 0,
+    });
+    req = {
+      query: { isFeatured: 'true', isFree: 'false' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.list(req as Request, res as Response);
+
+    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(
+      true,
+      { page: 1, limit: 20 },
+      false
+    );
   });
 
   it('returns 422 when isFeatured query parameter is missing', async () => {
@@ -101,6 +147,19 @@ describe('HistoryController - list', () => {
   it('returns 422 when isFeatured query parameter is invalid', async () => {
     req = {
       query: { isFeatured: 'yes' },
+      user: { id: 'user-1', email: 'ana@teste.local' },
+      t,
+    };
+
+    await controller.list(req as Request, res as Response);
+
+    expect(historyCatalogService.listAvailable).not.toHaveBeenCalled();
+    expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+  });
+
+  it('returns 422 when isFree query parameter is invalid', async () => {
+    req = {
+      query: { isFeatured: 'true', isFree: 'yes' },
       user: { id: 'user-1', email: 'ana@teste.local' },
       t,
     };
