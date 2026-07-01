@@ -46,6 +46,7 @@ export default async function ProfilePage() {
         plan={plan}
         subscription={subscription}
         locale={locale}
+        emailVerifiedAt={user.emailVerifiedAt}
       />
       <div className="grid gap-6">
         <Card>
