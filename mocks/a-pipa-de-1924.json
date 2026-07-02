@@ -1,0 +1,1748 @@
+{
+  "id": "history_a_pipa_de_1924",
+  "createdAt": "2026-07-02T00:00:00.000Z",
+  "updatedAt": "2026-07-02T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "a-pipa-de-1924",
+  "title": "A Pipa de 1924",
+  "subtitle": "Um vinicultor banhado em tinto, na adega, na noite do centenário da vinícola",
+  "teaser": "Na Vinícola Seixas, o patriarca Augusto Seixas aparece morto na adega de caverna, banhado no tinto de uma pipa antiga, na véspera da festa do centenário. A casa está cheia de família, negócios e ressentimentos velhos. Cada taça servida naquela noite escondia algo.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 15,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/a-pipa-de-1924/history/cover.jpg",
+  "thumbnailUrl": "histories/a-pipa-de-1924/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "Augusto Seixas está morto na adega, coberto de tinto. A festa do centenário da vinícola seria hoje. Cinco pessoas dormiam na casa grande.",
+    "fullText": "São 6h da manhã na Vinícola Seixas, no alto do Vale dos Eucaliptos, e a festa do centenário que abriria o jantar desta noite agora é luto. Nair, a governanta que está na casa há quarenta anos, desceu à adega de caverna para conferir as garrafas do lote histórico e encontrou Augusto Seixas — 70 anos, patriarca e vinicultor da casa — caído entre as pipas de carvalho, banhado no tinto escuro de uma pipa antiga que vazou sobre o corpo. Não há sinal de luta ampla, mas a base de uma das pipas apresenta uma amassadura recente na altura da têmpora dele, e um torneirinho de bronze foi encontrado aberto ao lado do corpo, derramando o vinho sobre as pedras. Para completar, o lote de 1924 — joia da vinícola, guardado há cem anos para a taça de hoje — havia sido tirado da prateleira alta e estava na bancada de degustação, fora da ordem. Cinco pessoas dormiam na casa grande: Bento, o filho enólogo que prepara os vinhos; Margô, vinicultora de uma família rival que viera negociar um antigo litígio; Salles, negociante que compra a produção da casa; Dora, sommelière contratada para o jantar; e a própria Nair, que vive na casa grande. Cabe a você examinar a adega e a casa, ouvir as cinco versões e descobrir quem silenciou Augusto antes da taça do centenário.",
+    "callToAction": "Examine a adega de caverna e a casa grande, converse com Bento, Margô, Salles, Dora e Nair, e reconstrua a última noite de Augusto Seixas."
+  },
+  "objective": {
+    "mainQuestion": "Quem causou a morte de Augusto Seixas, como e por quê?",
+    "description": "Descubra se a morte foi acidente ou provocada, quem foi o responsável, qual foi o método e o motivo real, e onde está a evidência que confirma a verdade."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_death",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a morte de Augusto, o corpo, a cena ou as circunstâncias.",
+      "examples": [
+        "Como Augusto morreu?",
+        "Quem encontrou o corpo?",
+        "Houve violência?"
+      ],
+      "keywords": [
+        "morte",
+        "morreu",
+        "corpo",
+        "cadáver",
+        "morta",
+        "queda"
+      ]
+    },
+    {
+      "id": "ask_about_wine",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre os vinhos, as pipas, o lote de 1924, a produção ou a adega.",
+      "examples": [
+        "Como era o lote de 1924?",
+        "Quem cuida das pipas?",
+        "O vinho estava bom?"
+      ],
+      "keywords": [
+        "vinho",
+        "pipa",
+        "lote",
+        "1924",
+        "adega",
+        "tinto",
+        "uva"
+      ]
+    },
+    {
+      "id": "ask_about_centennial",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a festa do centenário, o discurso, o jantar ou a taça de hoje.",
+      "examples": [
+        "Como seria a festa do centenário?",
+        "Augusto ia dar um discurso?",
+        "Qual vinho serviriam hoje?"
+      ],
+      "keywords": [
+        "centenário",
+        "festa",
+        "discurso",
+        "jantar",
+        "taça",
+        "comemoração"
+      ]
+    },
+    {
+      "id": "ask_about_finances",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre as finanças da vinícola, dívidas, contratos, vendas ou valores.",
+      "examples": [
+        "Como andam as contas da casa?",
+        "Havia dívidas?",
+        "Quanto vale o lote de 1924?"
+      ],
+      "keywords": [
+        "finanças",
+        "dinheiro",
+        "dívida",
+        "conta",
+        "venda",
+        "contrato",
+        "valor"
+      ]
+    },
+    {
+      "id": "ask_about_fraud",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre adulteração, falsificação, mistura de lotes ou fraude no vinho.",
+      "examples": [
+        "Houve adulteração no vinho?",
+        "Misturaram lotes?",
+        "Fraudaram o lote histórico?"
+      ],
+      "keywords": [
+        "adulteração",
+        "fraude",
+        "falsificação",
+        "mistura",
+        "diluição",
+        "lote trocado"
+      ]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava na noite, a que horas foi dormir ou desceu à adega.",
+      "examples": [
+        "Qual é o seu álibi?",
+        "Onde você estava de madrugada?",
+        "Você desceu à adega?"
+      ],
+      "keywords": [
+        "álibi",
+        "madrugada",
+        "quarto",
+        "dormi",
+        "deitado",
+        "esteve",
+        "desci"
+      ]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar por que alguém faria mal a Augusto.",
+      "examples": [
+        "Qual seria o motivo?",
+        "Quem ganhava com a morte dele?",
+        "Por que alguém faria isso?"
+      ],
+      "keywords": [
+        "motivo",
+        "por quê",
+        "ganharia",
+        "razão",
+        "interesse",
+        "vingança"
+      ]
+    },
+    {
+      "id": "ask_about_augusto",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Augusto, sua rotina, sua saúde, seu temperamento ou sua reputação.",
+      "examples": [
+        "Como Augusto estava ultimamente?",
+        "Ele tinha problemas de saúde?",
+        "Augusto andava tenso?"
+      ],
+      "keywords": [
+        "Augusto",
+        "patriarca",
+        "rotina",
+        "saúde",
+        "tenso",
+        "reputação"
+      ]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono a bancada"
+      ],
+      "keywords": [
+        "examinar",
+        "inspecionar",
+        "olhar",
+        "objeto",
+        "detalhes"
+      ]
+    },
+    {
+      "id": "ask_about_bento",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Bento, seu trabalho como enólogo, sua relação com o pai.",
+      "examples": [
+        "Bento, como você cuida dos vinhos?",
+        "Como Bento lidava com o pai?",
+        "Bento mexeu no lote de 1924?"
+      ],
+      "keywords": [
+        "Bento",
+        "enólogo",
+        "filho",
+        "produção",
+        "relação"
+      ]
+    },
+    {
+      "id": "ask_about_margo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Margô, sua família rival, o litígio ou sua visita.",
+      "examples": [
+        "Margô, por que você veio?",
+        "Qual é o litígio entre as famílias?",
+        "Margô ameaçou processo?"
+      ],
+      "keywords": [
+        "Margô",
+        "rival",
+        "litígio",
+        "processo",
+        "família"
+      ]
+    },
+    {
+      "id": "ask_about_salles",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Salles, seu comércio de vinhos, seus contratos com a vinícola.",
+      "examples": [
+        "Salles, o que você compra da casa?",
+        "Quanto Salles deve à vinícola?",
+        "Salles deu calote?"
+      ],
+      "keywords": [
+        "Salles",
+        "negociante",
+        "compra",
+        "contrato",
+        "calote"
+      ]
+    },
+    {
+      "id": "ask_about_dora",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Dora, sua função como sommelière, sua contratação para o jantar.",
+      "examples": [
+        "Dora, como foi contratada?",
+        "Dora corria risco no emprego?",
+        "O que Dora serviu no jantar?"
+      ],
+      "keywords": [
+        "Dora",
+        "sommelière",
+        "emprego",
+        "serviço",
+        "jantar"
+      ]
+    },
+    {
+      "id": "ask_about_nair",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Nair, sua rotina na casa grande, como achou o corpo.",
+      "examples": [
+        "Nair, como encontrou o corpo?",
+        "Que horas Nair desceu?",
+        "Nair ouviu barulho?"
+      ],
+      "keywords": [
+        "Nair",
+        "governanta",
+        "cozinha",
+        "corpo",
+        "encontrou"
+      ]
+    },
+    {
+      "id": "accuse_bento",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Bento de ter causado a morte de Augusto.",
+      "examples": [
+        "Bento, foi você",
+        "Confronto Bento sobre a morte",
+        "Acho que foi o Bento"
+      ],
+      "keywords": [
+        "acusar Bento",
+        "responsável",
+        "culpado",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "accuse_margo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Margô de ter causado a morte de Augusto.",
+      "examples": [
+        "Margô, foi você",
+        "Confronto Margô sobre a morte",
+        "Acho que foi a Margô"
+      ],
+      "keywords": [
+        "acusar Margô",
+        "responsável",
+        "culpada",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "accuse_salles",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Salles de ter causado a morte de Augusto.",
+      "examples": [
+        "Salles, foi você",
+        "Confronto Salles sobre a morte",
+        "Acho que foi o Salles"
+      ],
+      "keywords": [
+        "acusar Salles",
+        "responsável",
+        "culpado",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "accuse_dora",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Dora de ter causado a morte de Augusto.",
+      "examples": [
+        "Dora, foi você",
+        "Confronto Dora sobre a morte",
+        "Acho que foi a Dora"
+      ],
+      "keywords": [
+        "acusar Dora",
+        "responsável",
+        "culpada",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "press_for_confession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair da vinícola",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": [
+        "fora",
+        "ignorar",
+        "ação",
+        "mudar",
+        "revelar tudo"
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": "bento",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bento",
+      "role": "Enólogo da vinícola e filho de Augusto",
+      "shortDescription": "Enólogo da casa e filho de Augusto, responsável por toda a produção e pelos lotes de guarda.",
+      "imageUrl": "histories/a-pipa-de-1924/characters/bento.jpg",
+      "personality": "Aplicado, sensível e inseguro sob a sombra do pai. Trata a vinícola como uma herança pesada que precisa defender de qualquer forma.",
+      "speakingStyle": "Fala com vocabulário técnico de enologia, calmo por fora, mas se enrosa nas palavras quando o assunto é o pai ou o dinheiro.",
+      "publicKnowledge": [
+        "É o enólogo da Vinícola Seixas há dez anos, depois de formar-se na França.",
+        "É o filho único de Augusto e prepara todos os vinhos da casa.",
+        "Tinha acesso livre à adega e às chaves das pipas de guarda."
+      ],
+      "privateKnowledge": [
+        "Adulterou o lote de 1924 há dois anos, misturando-o com vinho barato para cobrir um furo de caixa da vinícola.",
+        "Augusto descobriu a fraude ao preparar o discurso do centenário e ia denunciá-la na festa.",
+        "Desceu à adega na madrugada para tentar dissuadir o pai do discurso.",
+        "É o responsável pela morte, mas preparou a cena para parecer um acidente com a pipa."
+      ],
+      "openingLine": "Eu preparei cada garrafa da casa, cada lote, cada taça. Não me peçam para resumir o que sinto numa manhã destas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_bento_enologist",
+          "triggerIntents": ["ask_about_bento", "ask_about_wine"],
+          "requiresClueIds": [],
+          "revealText": "Bento confirma que é o enólogo da casa há dez anos e que tinha acesso livre à adega e às chaves das pipas de guarda, inclusive a do lote de 1924.",
+          "responseGuidance": "Deve falar do ofício com orgulho contido e tom profissional."
+        },
+        {
+          "clueId": "clue_bento_did_not_sleep",
+          "triggerIntents": ["ask_about_alibi", "ask_about_centennial"],
+          "requiresClueIds": [],
+          "revealText": "Bento admite que, apesar de dizer que fora dormir cedo, passou boa parte da madrugada na casa de vinificação 'acertando os tanques' para a festa.",
+          "responseGuidance": "Deve justificar a ausência como dedicação ao trabalho, sem nervosismo aparente."
+        },
+        {
+          "clueId": "clue_bento_tense_augusto",
+          "triggerIntents": ["ask_about_augusto", "ask_about_bento"],
+          "requiresClueIds": ["clue_bento_enologist"],
+          "revealText": "Bento reconhece que Augusto estava incomumente tenso nas últimas semanas e evitava falar sobre o discurso do centenário, mas atribui o comportamento a cansaço de quem organiza uma festa grande.",
+          "responseGuidance": "Deve reconhecer a tensão, mas minimizá-la como algo rotineiro de um patriarca veterano."
+        },
+        {
+          "clueId": "clue_bento_clothes_wine",
+          "triggerIntents": ["ask_about_bento", "ask_about_death"],
+          "requiresClueIds": ["clue_bento_was_in_cellar"],
+          "revealText": "Ao gesticular, Bento deixa ver manchas recentes de tinto na barra da camisa e no punho, compatíveis com o vazamento da pipa aberta na adega.",
+          "responseGuidance": "Ele deve puxar a manga para esconder a mancha sem deixar de responder, e descartá-la como 'respinguei enquanto provava'."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_bento_fraud",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Bento adulterou o lote de 1924 e matou Augusto para impedi-lo de denunciar a fraude no discurso do centenário.",
+          "truth": "Há dois anos, com a vinícola às portas da falência, Bento misturou o valioso lote de 1924 com um tinto barato e engarrafou a mistura, vendendo parte como se fosse o lote original para cobrir um furo de caixa. Augusto descobriu a fraude ao preparar o discurso do centenário, comparando os rótulos antigos com os atuais, e decidiu denunciá-la na festa de hoje. Na madrugada, Bento desceu à adega para tentar dissuadi-lo; na discussão, Augusto sofreu um golpe na têmpora com a base de uma pipa. Bento abriu o torneirinho de bronze e largou o corpo sob o vazamento para simular um acidente com a pipa antiga.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_bento_stage_0_deny",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": [
+                "ask_about_death",
+                "accuse_bento",
+                "ask_about_alibi"
+              ],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento na morte e defender que tudo indica um acidente trágico com a pipa antiga.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Meu pai deve ter tropeçado na pipa, como tantas vezes na vida. Uma adega escura, um homem de setenta anos de madrugada.",
+                "Não me peçam para acusar minha própria família. Acidente com pipa não é incomum quando se está cansado."
+              ]
+            },
+            {
+              "id": "secret_bento_stage_1_was_in_cellar",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "ask_about_alibi",
+                "ask_about_death",
+                "accuse_bento"
+              ],
+              "requiresClueIds": ["clue_door_log_bento"],
+              "revealsClueIds": ["clue_bento_was_in_cellar"],
+              "behavior": "Admitir que desceu à adega antes da madrugada, mas insistir que o pai estava vivo quando saiu.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu desci uma vez, sim, para conferir os tanques. Augusto estava ajustando o lote de 1924 na bancada. Trocamos duas palavras e subi.",
+                "Não vi nada de errado. Ele estava concentrado, como sempre antes de uma festa grande."
+              ]
+            },
+            {
+              "id": "secret_bento_stage_2_dispute",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": [
+                "ask_about_fraud",
+                "ask_about_centennial",
+                "ask_about_motive",
+                "accuse_bento"
+              ],
+              "requiresClueIds": [
+                "clue_bento_was_in_cellar",
+                "clue_speech_draft"
+              ],
+              "revealsClueIds": ["clue_bento_augusto_dispute"],
+              "behavior": "Admitir que havia uma discussão dura sobre o discurso do centenário e o lote de 1924, mas negar que tivesse implicações pessoais ou fatais.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tinha uma divergência sobre o que dizer no discurso. Acontece em qualquer família. Não vira briga, muito menos motivo para morrer.",
+                "Augusto queria revisar a história do lote de 1924 no discurso. Eu discordava da forma. Era família, não guerra."
+              ]
+            },
+            {
+              "id": "secret_bento_stage_3_knew_adulteration",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": [
+                "ask_about_fraud",
+                "ask_about_wine",
+                "ask_about_motive",
+                "accuse_bento"
+              ],
+              "requiresClueIds": [
+                "clue_bento_augusto_dispute",
+                "clue_adulterated_bottles"
+              ],
+              "revealsClueIds": ["clue_bento_knew_adulteration"],
+              "behavior": "Admitir que sabia que os lotes antigos tinham sido mexidos, mas insistir que nunca os adulterou deliberadamente.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu sabia que as garrafas antigas não estavam no estado que deviam, todo enólogo sabe quando um lote sofreu. Mas nunca misturei nada de propósito.",
+                "Se houve alteração, foi um erro de armazenagem, não uma fraude. Eu jamais falsificaria o vinho do meu pai."
+              ]
+            },
+            {
+              "id": "secret_bento_stage_4_partial_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": [
+                "accuse_bento",
+                "ask_about_motive",
+                "press_for_confession"
+              ],
+              "requiresClueIds": [
+                "clue_bento_knew_adulteration",
+                "clue_ledger_shortfall"
+              ],
+              "revealsClueIds": ["clue_bento_argued_augusto"],
+              "behavior": "Admitir que discutiu acaloradamente com Augusto na adega sobre o discurso e a fraude, mas negar a agressão.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu desci para pedir que ele não denunciasse a fraude no discurso. Discutimos. Eu saí. Quando saí, ele estava vivo.",
+                "Foi a discussão mais dura da minha vida. Mas eu não levantei a mão. Nunca."
+              ]
+            },
+            {
+              "id": "secret_bento_stage_5_full_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 5,
+              "triggerIntents": [
+                "accuse_bento",
+                "press_for_confession",
+                "ask_about_motive"
+              ],
+              "requiresClueIds": [
+                "clue_bento_argued_augusto",
+                "clue_bento_clothes_wine"
+              ],
+              "revealsClueIds": [
+                "clue_bento_pushed_augusto",
+                "clue_bento_motive_fraud"
+              ],
+              "behavior": "Confessar completamente o que aconteceu: a adulteração do lote de 1924, o confronto na adega, o golpe fatal com a pipa e a encenação do acidente.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Tá. Eu desci para impedi-lo. Discutimos, ele me empurrou, eu segurei a borda da pipa para não cair... e ele tropeçou contra a base. Quando vi, ele estava no chão. Abri o torneirinho para parecer acidente. Foi um minuto, e eu destruí cem anos de casa.",
+                "Eu misturei o 1924. Tinha medo do que o discurso ia fazer comigo. Não foi premeditado. Mas ele morreu por causa daquela mentira, e isso é só meu."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar a adulteração do lote antes do estágio 3.",
+        "Não confessar a presença na adega na hora da morte antes do estágio 1.",
+        "Não revelar a sequência completa da morte antes do estágio 5.",
+        "Manter o tom de um enólogo controlado, não de um vilão exibido."
+      ]
+    },
+    {
+      "id": "margo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Margô",
+      "role": "Vinicultora de uma família rival que veio negociar um antigo litígio",
+      "shortDescription": "Vinicultora de uma família rival, que subiu à casa para negociar um litígio fronteiriço de décadas.",
+      "imageUrl": "histories/a-pipa-de-1924/characters/margo.jpg",
+      "personality": "Direta, astuta e orgulhosa. Trata a briga de terras como uma questão de honra de família, não como negócio.",
+      "speakingStyle": "Fala firme, com vocabulário de advogado de provincia e ironia contida. Não esconde o desprezo pela família Seixas.",
+      "publicKnowledge": [
+        "É vinicultora da Vinícola Monte Alto, família rival dos Seixas há três gerações.",
+        "Veio à casa para negociar um litígio fronteiriço de terras que decide o acesso a uma nascente.",
+        "Tinha um desentendimento público com Augusto na véspera, durante o jantar."
+      ],
+      "privateKnowledge": [
+        "Ameaçou processar os Seixas se a nascente não fosse partilhada.",
+        "Estava no alojamento de hóspedes dormindo durante a morte; tem álibi no registro da casa.",
+        "É inocente, mas teme que o histórico de rivalidade a coloque como suspeita natural."
+      ],
+      "openingLine": "Sou a vizinha de quem vocês não gostam. Sim, briguei com o Augusto ontem à noite. Óbvio não é o mesmo que culpado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_margo_rival",
+          "triggerIntents": ["ask_about_margo", "ask_about_augusto"],
+          "requiresClueIds": [],
+          "revealText": "Margô confirma que é vinicultora de uma família rival dos Seixas há três gerações e que veio negociar um litígio fronteiriço por uma nascente.",
+          "responseGuidance": "Deve falar da rivalidade com franqueza irônica, sem constrangimento."
+        },
+        {
+          "clueId": "clue_margo_threat",
+          "triggerIntents": ["ask_about_motive", "ask_about_margo"],
+          "requiresClueIds": ["clue_margo_rival"],
+          "revealText": "Margô admite que ameaçou processar os Seixas se a nascente não fosse partilhada, e que trocou palavras duras com Augusto no jantar da véspera.",
+          "responseGuidance": "Deve reconhecer a ameaça como tática de negociação, com frieza, e descartar a violência como algo 'de amadores'."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_margo_alibi",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Margô dormiu no alojamento de hóspedes durante a morte e não desceu à adega.",
+          "truth": "Na madrugada da morte, Margô estava no alojamento de hóspedes, no outro extremo da casa grande. O registro eletrônico da porta mostra que ela não saiu do quarto entre meia-noite e as seis. É inocente; apenas teme que o histórico de rivalidade a incrimine.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_margo_stage_1_quarters_alibi",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_alibi", "accuse_margo"],
+              "requiresClueIds": ["clue_margo_threat"],
+              "revealsClueIds": ["clue_margo_quarters_alibi"],
+              "behavior": "Revelar que estava no alojamento de hóspedes dormindo durante a madrugada e que o registro da porta atesta que não saiu do quarto.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu dormia no alojamento de hóspedes, no outro extremo da casa. O registro da porta mostra que não saí do quarto a madrugada toda. Processo é negócio; faca é de amador.",
+                "Briguei com o Augusto ontem, sim. E depois fui dormir, como qualquer pessoa honesta. Pergunta ao registro."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar a morte — Margô é inocente.",
+        "Não esconder a rivalidade, mas não exagerar para não parecer culposa.",
+        "Manter o tom direto e orgulhoso, não de quem mente."
+      ]
+    },
+    {
+      "id": "salles",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Salles",
+      "role": "Negociante que compra a produção da vinícola",
+      "shortDescription": "Negociante que compra grande parte da produção da casa, com contratos antigos e valores atrasados.",
+      "imageUrl": "histories/a-pipa-de-1924/characters/salles.jpg",
+      "personality": "Comercial, afável e disfarçadamente apertado. Trata a vinícola como cliente principal e teme perder o fornecedor.",
+      "speakingStyle": "Fala com familiaridade de quem frequenta a casa há anos, cita safras e jantares antigos, e desvia quando o assunto é dinheiro atrasado.",
+      "publicKnowledge": [
+        "É negociante de vinhos e compra a maior parte da produção da Vinícola Seixas há quinze anos.",
+        "Veio à casa para fechar os contratos do próximo ano e renegociar valores.",
+        "Tinha uma discussão antiga com Augusto sobre atrasos de pagamento."
+      ],
+      "privateKnowledge": [
+        "Devia à vinícola um valor alto de lotes entregues e não pagos.",
+        "Estava no salão de provas revidando rótulos durante a madrugada, sem descer à adega.",
+        "É inocente, mas teme que a dívida apareça como motivo."
+      ],
+      "openingLine": "Compro o vinho da casa há quinze anos. Conhecia o Augusto como ninguém. Isso me torna suspeito ou informante — vocês escolhem.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_salles_buyer",
+          "triggerIntents": ["ask_about_salles", "ask_about_finances"],
+          "requiresClueIds": [],
+          "revealText": "Salles confirma que é o maior comprador da produção da vinícola há quinze anos e que estava na casa para renegociar os contratos do ano seguinte.",
+          "responseGuidance": "Deve falar do comércio com afago comercial, sem esconder a importância do cliente."
+        },
+        {
+          "clueId": "clue_salles_debt",
+          "triggerIntents": ["ask_about_finances", "ask_about_salles"],
+          "requiresClueIds": ["clue_salles_buyer"],
+          "revealText": "Salles admite que devia à vinícola um valor alto de lotes entregues e não pagos, e que Augusto pressionava pelo acerto.",
+          "responseGuidance": "Deve reconhecer a dívida com desculpa comercial, sem rancor, e tratar como assunto rotineiro."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_salles_alibi",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Salles esteve no salão de provas revidando rótulos durante a madrugada, sem descer à adega.",
+          "truth": "Na madrugada da morte, Salles estava no salão de provas, no primeiro andar, reorganizando rótulos antigos que trouxera de presente. Dora, que subiu para buscar uma taça esquecida, viu Salles ali durante todo o intervalo em que Augusto morreu. É inocente; apenas teme que a dívida apareça como motivo.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_salles_stage_1_tasting_alibi",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_alibi", "accuse_salles"],
+              "requiresClueIds": ["clue_salles_debt"],
+              "revealsClueIds": ["clue_salles_tasting_alibi"],
+              "behavior": "Revelar que esteve no salão de provas reorganizando rótulos durante a madrugada, com Dora como testemunha.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu estava no salão de provas, reorganizando uns rótulos antigos que trouxe de presente. A Dora subiu lá pra buscar uma taça, me viu o tempo todo.",
+                "Eu devia, sim. Mas dívida se paga em juízo, não com morte. Pergunta à Dora onde eu estava."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar a morte — Salles é inocente.",
+        "Pode se mostrar evasivo sobre o dinheiro, mas o álibi do salão é real.",
+        "Manter o tom comercial afável, não de quem mente."
+      ]
+    },
+    {
+      "id": "dora",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dora",
+      "role": "Sommelière contratada para o jantar do centenário",
+      "shortDescription": "Sommelière contratada para o jantar do centenário, a primeira pessoa de fora a tocar nas garrafas de guarda em décadas.",
+      "imageUrl": "histories/a-pipa-de-1924/characters/dora.jpg",
+      "personality": "Caprichosa, profissional e observadora. Trata o vinho como ofício de precisão e nota pequenas anomalias que ninguém mais vê.",
+      "speakingStyle": "Fala com vocabulário técnico de sommellerie, descreve aromas e cores, e é honesta demais quando o assunto é qualidade.",
+      "publicKnowledge": [
+        "É sommelière freelance e foi contratada para o serviço de taças do jantar do centenário.",
+        "Chegou na véspera para conferir o estado dos lotes de guarda e o harmonização do menu.",
+        "É a primeira pessoa de fora da família a manusear as garrafas de guarda em muitos anos."
+      ],
+      "privateKnowledge": [
+        "Notou que o lote de 1924 tinha aroma e cor inconsistentes com a idade, mas não sabia por quê.",
+        "Estava no salão de provas com Salles durante a madrugada, subindo para buscar uma taça.",
+        "É inocente, mas teme que ter notado a anomalia e não ter falado a transforme em cúmplice aos olhos da polícia."
+      ],
+      "openingLine": "Fui contratada para servir as taças do centenário. A primeira coisa que notei ao cheirar o 1924 é que algo não batia. Mas eu nunca, nunca faria mal a ninguém por um vinho.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_dora_sommeliere",
+          "triggerIntents": ["ask_about_dora", "ask_about_wine"],
+          "requiresClueIds": [],
+          "revealText": "Dora confirma que foi contratada para o serviço de taças do jantar do centenário e que chegou na véspera para conferir os lotes de guarda.",
+          "responseGuidance": "Deve falar do ofício com orgulho profissional."
+        },
+        {
+          "clueId": "clue_dora_off_note",
+          "triggerIntents": ["ask_about_wine", "ask_about_fraud"],
+          "requiresClueIds": ["clue_dora_sommeliere"],
+          "revealText": "Dora admite que, ao cheirar o lote de 1924 na véspera, notou aroma e cor que não condiziam com a idade — um sinal de que algo havia sido mexido.",
+          "responseGuidance": "Deve relatar a anomalia com precisão profissional, sem acusar ninguém, mas sem esconder a estranheza."
+        },
+        {
+          "clueId": "clue_dora_saw_salles",
+          "triggerIntents": ["ask_about_alibi", "ask_about_salles"],
+          "requiresClueIds": ["clue_dora_sommeliere"],
+          "revealText": "Dora confirma que subiu ao salão de provas para buscar uma taça esquecida durante a madrugada e viu Salles reorganizando rótulos lá o tempo todo.",
+          "responseGuidance": "Deve confirmar o álibi de Salles com naturalidade profissional."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca acusar ninguém — Dora é testemunha técnica, não investigadora.",
+        "Pode relatar anomalias sensoriais com precisão, mas sem tirar conclusões culposas.",
+        "Manter o tom profissional e observador."
+      ]
+    },
+    {
+      "id": "nair",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Nair",
+      "role": "Governanta da casa grande há quarenta anos",
+      "shortDescription": "Governanta que está na casa há quarenta anos e encontrou o corpo ao conferir as garrafas da festa.",
+      "imageUrl": "histories/a-pipa-de-1924/characters/nair.jpg",
+      "personality": "Observadora, leal e prática. Conhece a rotina de cada morador e nota o que ninguém mais nota.",
+      "speakingStyle": "Fala com calma do interior, mistura conselhos e comentários diretos, e usa palavras simples e afetuosas.",
+      "publicKnowledge": [
+        "Vive na casa grande há quarenta anos e cuida de toda a hospedagem.",
+        "Foi quem encontrou o corpo de Augusto na adega ao descer para conferir as garrafas da festa.",
+        "Conhece a rotina noturna de cada morador e hóspede."
+      ],
+      "privateKnowledge": [
+        "Viu Bento descendo em direção à adega e subindo tenso perto da hora da morte.",
+        "Confirmou que Dora e Salles estavam juntos no salão de provas durante a madrugada.",
+        "É testemunha neutra: não suspeita de ninguém em particular, mas viu mais do que diz."
+      ],
+      "openingLine": "Fui conferir as garrafas, como toda manhã antes de uma festa. A porta da adega tava entreaberta. Quando cheguei lá embaixo... bem. O Seu Augusto já estava no chão.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_nair_found_body",
+          "triggerIntents": ["ask_about_death", "ask_about_nair"],
+          "requiresClueIds": [],
+          "revealText": "Nair confirma que encontrou o corpo de Augusto banhado em tinto ao pé das pipas, por volta das 6h, ao descer para conferir as garrafas da festa.",
+          "responseGuidance": "Deve relatar a descoberta com comoção contida, sem drama exagerado."
+        },
+        {
+          "clueId": "clue_nair_saw_bento",
+          "triggerIntents": ["ask_about_alibi", "ask_about_bento"],
+          "requiresClueIds": ["clue_nair_found_body"],
+          "revealText": "Nair conta que, antes do amanhecer, viu Bento descendo em direção à adega e subindo pouco depois visivelmente tenso.",
+          "responseGuidance": "Deve falar da observação com naturalidade, sem acusar, apenas relatando o que viu."
+        },
+        {
+          "clueId": "clue_nair_salles_dora_alibi",
+          "triggerIntents": ["ask_about_alibi", "ask_about_salles"],
+          "requiresClueIds": ["clue_nair_found_body"],
+          "revealText": "Nair confirma que Dora e Salles estavam juntos no salão de provas durante a madrugada, subindo e descendo enquanto ela preparava o café.",
+          "responseGuidance": "Deve confirmar o álibi dos dois com franqueza, sem favoritismo."
+        },
+        {
+          "clueId": "clue_nair_cellar_ajar",
+          "triggerIntents": ["ask_about_death", "ask_about_wine"],
+          "requiresClueIds": ["clue_nair_found_body"],
+          "revealText": "Nair observa que a porta da adega estava entreaberta e o torneirinho de bronze aberto quando ela chegou, detalhe que a incomodou porque Augusto sempre trancava tudo à noite.",
+          "responseGuidance": "Deve destacar o desarranjo como algo fora do padrão de Augusto, sem tirar conclusões."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca acusar ninguém — Nair é testemunha, não investigadora.",
+        "Não afirmar com certeza quem viu além de Bento; apenas relatar o que observou.",
+        "Manter o tom bondoso e observador, sem partidarismo."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "adega",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Adega de caverna",
+      "shortDescription": "Caverna de pedra sob a casa grande onde descansam as pipas e os lotes de guarda.",
+      "imageUrl": "histories/a-pipa-de-1924/location/adega.jpg",
+      "initialDescription": "A adega é uma caverna de pedra sob a casa grande, com paredes úmidas e teto abobadado, iluminada por lâmpadas amarelas. De ambos os lados do corredor central alinham-se pipas de carvalho escuro, e ao fundo uma bancada de degustação com taças e um caderno de safras. Um cheiro forte de tinto derramado toma o ar, e há um brilho escuro no chão de pedra junto às pipas do fundo.",
+      "ambientClueIds": ["clue_cellar_damp_floor"],
+      "objectIds": ["pipa_amassada", "torneirinho_bronze"]
+    },
+    {
+      "id": "bancada",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bancada de degustação",
+      "shortDescription": "Bancada ao fundo da adega onde se faz a prova e se arquivam os cadernos de safra.",
+      "imageUrl": "histories/a-pipa-de-1924/location/bancada.jpg",
+      "initialDescription": "A bancada de degustação fica ao fundo da adega, sob uma lâmpada pendente. Há taças limpas, uma garrafa sem rótulo, e um caderno aberto com anotações a lápis. A uma ponta, uma pilha desordenada de papéis e um livro de registros encadernado em couro.",
+      "ambientClueIds": [],
+      "objectIds": ["caderno_safras", "discurso_centenario", "garrafa_1924"]
+    },
+    {
+      "id": "salao_provas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Salão de provas",
+      "shortDescription": "Sala no primeiro andar com mesas de prova, taças e o quadro de rótulos antigos.",
+      "imageUrl": "histories/a-pipa-de-1924/location/salao_provas.jpg",
+      "initialDescription": "O salão de provas fica no primeiro andar, com janelas voltadas para o vinhedo. Há uma mesa longa com taças invertidas sobre panos brancos, um quadro de cortiça com rótulos antigos pregados, e um armário aberto com caixas de garrafas. Um cheiro leve de tinto seco paira no ar.",
+      "ambientClueIds": [],
+      "objectIds": ["rotulos_antigos", "caixa_1924"]
+    },
+    {
+      "id": "escritorio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Escritório de Augusto",
+      "shortDescription": "Sala particular de Augusto com a escrivaninha, os contratos e o cofre.",
+      "imageUrl": "histories/a-pipa-de-1924/location/escritorio.jpg",
+      "initialDescription": "O escritório de Augusto fica ao lado da sala de visitas, com uma escrivaninha de jacarandá, estantes de contratos antigos e um cofre antigo entre dois quadros. Sobre a mesa há papéis organizados em pilhas, um calendário aberto na semana do centenário e um par de óculos de leitura sobre uma carteira de tabaco.",
+      "ambientClueIds": [],
+      "objectIds": ["livro_razao", "porta_cofre"]
+    },
+    {
+      "id": "corredor_casa",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Corredor da casa grande",
+      "shortDescription": "Corredor principal que dá acesso à adega, ao salão e aos quartos.",
+      "imageUrl": "histories/a-pipa-de-1924/location/corredor_casa.jpg",
+      "initialDescription": "O corredor da casa grande é largo, de assoalho de madeira escura, com quadros de safras antigas nas paredes e um relógio de parede que ainda bate as horas. Junto à porta da adega há um painel eletrônico de acessos que registra quem entra e sai. O ar cheira a cera de madeira e café passado.",
+      "ambientClueIds": [],
+      "objectIds": ["painel_acessos", "registro_portas"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "pipa_amassada",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Pipa amassada",
+      "shortDescription": "Pipa de carvalho cuja base tem uma amassadura recente na altura da têmpora do corpo.",
+      "imageUrl": "histories/a-pipa-de-1924/object/pipa_amassada.jpg",
+      "locationId": "adega",
+      "initialDescription": "Uma das pipas do fundo da adega tem, na base, uma amassadura recente, com a madeira ligeiramente rachada, na altura exata da têmpora do corpo caído ao lado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_pipe_dent",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": [],
+          "revealText": "A amassadura na base da pipa é recente e está na altura da têmpora de Augusto, compatível com um golpe forte e não com o corpo simplesmente caído ao pé dela."
+        },
+        {
+          "clueId": "clue_pipe_wiped",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": ["clue_pipe_dent"],
+          "revealText": "Há uma faixa da pipa, ao redor da amassadura, que foi esfregada recentemente, como se alguém quisesse apagar marcas de mão — mas um filete escuro de vinho escorre ainda da junta."
+        }
+      ]
+    },
+    {
+      "id": "torneirinho_bronze",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Torneirinho de bronze aberto",
+      "shortDescription": "Torneirinho de bronze da pipa, encontrado aberto ao lado do corpo.",
+      "imageUrl": "histories/a-pipa-de-1924/object/torneirinho_bronze.jpg",
+      "locationId": "adega",
+      "initialDescription": "Um torneirinho de bronze, preso à pipa amassada, está aberto, derramando um fio escuro de tinto sobre as pedras do chão.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_spigot_open",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": [],
+          "revealText": "O torneirinho está aberto de propósito e a junta dele foi afrouxada, o que não acontece por acidente — alguém precisou virar o volante de bronze para derramar o vinho sobre o corpo."
+        },
+        {
+          "clueId": "clue_cellar_damp_floor",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": [],
+          "revealText": "O chão de pedra da adega está encharcado de tinto junto às pipas do fundo, num volume que não condiz com o fio de um torneirinho — alguém derramou vinho de propósito para cobrir a cena."
+        }
+      ]
+    },
+    {
+      "id": "caderno_safras",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caderno de safras",
+      "shortDescription": "Caderno aberto sobre a bancada com anotações de Augusto.",
+      "imageUrl": "histories/a-pipa-de-1924/object/caderno_safras.jpg",
+      "locationId": "bancada",
+      "initialDescription": "O caderno de capa preta de Augusto está aberto sobre a bancada de degustação, com anotações a lápis nas últimas páginas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_augusto_suspected",
+          "triggerIntents": ["inspect_object", "ask_about_augusto"],
+          "requiresClueIds": [],
+          "revealText": "As notas recentes mostram que Augusto vinha comparando os rótulos antigos do lote de 1924 com as garrafas atuais e anotando divergências, com a palavra 'diferente' repetida à margem."
+        },
+        {
+          "clueId": "clue_augusto_inconsistency",
+          "triggerIntents": ["inspect_object", "ask_about_wine"],
+          "requiresClueIds": ["clue_augusto_suspected"],
+          "revealText": "Uma das páginas lista três garrafas do lote de 1924 em que o nível de cor e os sedimentos não condizem com a idade, como se o conteúdo tivesse sido trocado recentemente."
+        }
+      ]
+    },
+    {
+      "id": "discurso_centenario",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Discurso do centenário",
+      "shortDescription": "Folhas datilografadas com o esboço do discurso de Augusto para a festa.",
+      "imageUrl": "histories/a-pipa-de-1924/object/discurso_centenario.jpg",
+      "locationId": "bancada",
+      "initialDescription": "Três folhas datilografadas, com correções a caneta vermelha, descansam sob o caderno de Augusto.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_speech_draft",
+          "triggerIntents": ["inspect_object", "ask_about_centennial"],
+          "requiresClueIds": [],
+          "revealText": "As folhas são o rascunho do discurso do centenário, em que Augusto pretendia contar a história verdadeira do lote de 1924 e anunciar que o denunciaria na festa, com a fraude e os responsáveis nomeados."
+        }
+      ]
+    },
+    {
+      "id": "garrafa_1924",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Garrafa do lote 1924",
+      "shortDescription": "Garrafa sem rótulo, aberta, sobre a bancada.",
+      "imageUrl": "histories/a-pipa-de-1924/object/garrafa_1924.jpg",
+      "locationId": "bancada",
+      "initialDescription": "Uma garrafa de vinho escuro, sem rótulo, está aberta sobre a bancada, ao lado de uma taça usada.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_bottle_opened",
+          "triggerIntents": ["inspect_object", "ask_about_wine"],
+          "requiresClueIds": [],
+          "revealText": "A garrafa estava na prateleira alta dos lotes de guarda e foi tirada de lá durante a madrugada, aberta e provada — algo que Augusto não faria sozinho antes de uma festa."
+        },
+        {
+          "clueId": "clue_bottle_residue",
+          "triggerIntents": ["inspect_object", "ask_about_fraud"],
+          "requiresClueIds": ["clue_bottle_opened"],
+          "revealText": "No fundo da taça usada ao lado, o resíduo tem uma cor mais clara e um sedimento estranho que não condiz com um tinto de cem anos — indica que o conteúdo foi misturado com vinho mais novo."
+        }
+      ]
+    },
+    {
+      "id": "rotulos_antigos",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Quadro de rótulos antigos",
+      "shortDescription": "Quadro de cortiça no salão de provas com rótulos de safras históricas.",
+      "imageUrl": "histories/a-pipa-de-1924/object/rotulos_antigos.jpg",
+      "locationId": "salao_provas",
+      "initialDescription": "Um quadro de cortiça na parede do salão de provas exibe rótulos antigos de safras históricas, pregados em ordem de ano.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_labels_tampered",
+          "triggerIntents": ["inspect_object", "ask_about_fraud"],
+          "requiresClueIds": [],
+          "revealText": "Três dos rótulos do lote de 1924 no quadro foram pregados de novo em data recente, com tachinhas mais novas que as demais e o papel estranhamente limpo em comparação com os vizinhos."
+        }
+      ]
+    },
+    {
+      "id": "caixa_1924",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caixa do lote 1924",
+      "shortDescription": "Caixa de madeira aberta com garrafas do lote histórico.",
+      "imageUrl": "histories/a-pipa-de-1924/object/caixa_1924.jpg",
+      "locationId": "salao_provas",
+      "initialDescription": "Uma caixa de madeira escura, aberta, com a inscrição 'LOTE 1924 — GUARDA', repousa no armário do salão de provas, com garrafas em seu interior.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_adulterated_bottles",
+          "triggerIntents": ["inspect_object", "ask_about_fraud"],
+          "requiresClueIds": [],
+          "revealText": "As garrafas dentro da caixa têm níveis de líquido diferentes entre si e lacres de cera com tonalidades levemente distintas, como se algumas tivessem sido abertas, misturadas e relacradas em momentos separados."
+        }
+      ]
+    },
+    {
+      "id": "livro_razao",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Livro-razão da vinícola",
+      "shortDescription": "Livro de registros contábeis da vinícola sobre a escrivaninha.",
+      "imageUrl": "histories/a-pipa-de-1924/object/livro_razao.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "Um livro-razão encadernado em couro, aberto sobre a escrivaninha de Augusto, mostra colunas de entradas e saídas dos últimos dois anos.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_ledger_shortfall",
+          "triggerIntents": ["inspect_object", "ask_about_finances"],
+          "requiresClueIds": [],
+          "revealText": "O livro-razão mostra um furo de caixa há dois anos, na mesma época em que uma venda de 'lote de guarda' aparece registrada por um valor alto, sem nota fiscal correspondente — o rastro do dinheiro da fraude."
+        }
+      ]
+    },
+    {
+      "id": "porta_cofre",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cofre aberto",
+      "shortDescription": "Cofre antigo entre dois quadros, parcialmente aberto.",
+      "imageUrl": "histories/a-pipa-de-1924/object/porta_cofre.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "Um cofre antigo, entre dois quadros na parede, está parcialmente aberto, com a porta de ferro entreaberta.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_safe_doc_missing",
+          "triggerIntents": ["inspect_object", "ask_about_augusto"],
+          "requiresClueIds": [],
+          "revealText": "Dentro do cofre há uma pasta vazia com a etiqueta '1924 — auditoria', de onde foi tirado um documento durante a madrugada, pois a pasta está quente ao toque e fora do lugar."
+        }
+      ]
+    },
+    {
+      "id": "painel_acessos",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Painel eletrônico de acessos",
+      "shortDescription": "Painel no corredor que registra quem entra e sai das áreas restritas.",
+      "imageUrl": "histories/a-pipa-de-1924/object/painel_acessos.jpg",
+      "locationId": "corredor_casa",
+      "initialDescription": "O painel eletrônico junto à porta da adega exibe uma lista cronológica de acessos às áreas restritas da casa grande.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_door_log_bento",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": [],
+          "revealText": "O painel registra que a credencial de Bento foi usada para abrir a porta da adega às 3h12 e novamente às 3h41 da madrugada — horários que Bento não havia mencionado."
+        },
+        {
+          "clueId": "clue_margo_quarters_alibi",
+          "triggerIntents": ["inspect_object", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "O painel mostra que a credencial de Margô não registrou nenhuma movimentação entre meia-noite e as seis da manhã, indicando que ela permaneceu no alojamento de hóspedes o tempo todo."
+        }
+      ]
+    },
+    {
+      "id": "registro_portas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Registro de portas do salão",
+      "shortDescription": "Folha de papel junto ao painel com a marcação manual das portas.",
+      "imageUrl": "histories/a-pipa-de-1924/object/registro_portas.jpg",
+      "locationId": "corredor_casa",
+      "initialDescription": "Uma folha de papel, presa com fita ao lado do painel, registra manualmente quem entrou e saiu do salão de provas na última noite.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_salles_tasting_alibi",
+          "triggerIntents": ["inspect_object", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "A folha confirma que Salles esteve no salão de provas das 23h até depois das 4h, com a assinatura de Dora atestando que o acompanhou parte do tempo."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_nair_found_body",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Nair encontrou o corpo",
+      "description": "Nair encontrou Augusto morto, banhado em tinto, ao pé das pipas por volta das 6h.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_nair_cellar_ajar",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Adega entreaberta e desarranjada",
+      "description": "A porta da adega estava entreaberta e o torneirinho aberto, o que destoa do hábito de Augusto de trancar tudo à noite.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_cellar_damp_floor",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Chão de pedra úmido de tinto",
+      "description": "O chão de pedra da adega está úmido de tinto derramado junto às pipas do fundo, onde o corpo foi encontrado.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_pipe_dent",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Amassadura recente na pipa",
+      "description": "A amassadura na base da pipa é recente e está na altura da têmpora de Augusto, compatível com um golpe forte.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_pipe_wiped",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Pipa limpa pela metade",
+      "description": "Parte da pipa, ao redor da amassadura, foi esfregada para apagar marcas, mas um filete escuro de vinho escorre ainda da junta.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_spigot_open",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Torneirinho aberto de propósito",
+      "description": "O torneirinho de bronze está aberto de propósito e a junta foi afrouxada, o que não acontece por acidente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_door_log_bento",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bento entrou na adega de madrugada",
+      "description": "O painel de acessos registra que Bento usou a credencial na porta da adega às 3h12 e às 3h41 da madrugada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bento_enologist",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bento é o enólogo da casa",
+      "description": "Bento é o enólogo da casa há dez anos e tinha acesso livre à adega e às chaves das pipas de guarda.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bento_did_not_sleep",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bento não dormiu",
+      "description": "Apesar de dizer que fora dormir cedo, Bento passou boa parte da madrugada na casa de vinificação.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bento_tense_augusto",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Augusto estava tenso com Bento",
+      "description": "Augusto estava incomumente tenso nas últimas semanas e evitava falar sobre o discurso do centenário.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bento_was_in_cellar",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bento admite ter descido à adega",
+      "description": "Bento admite que desceu à adega antes da madrugada, mas insiste que o pai estava vivo quando saiu.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_nair_saw_bento",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Nair viu Bento descer tenso",
+      "description": "Nair viu Bento descendo em direção à adega e subindo visivelmente tenso perto da hora da morte.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_augusto_suspected",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Augusto rastreava divergências",
+      "description": "O caderno de Augusto mostra que ele comparava os rótulos antigos do lote de 1924 com as garrafas atuais e anotava divergências.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_augusto_inconsistency",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Garrafas de 1924 não batiam",
+      "description": "Augusto listou três garrafas do lote de 1924 em que o nível de cor e os sedimentos não condizem com a idade.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_speech_draft",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Discurso do centenário denunciava a fraude",
+      "description": "O rascunho do discurso mostra que Augusto ia contar a história verdadeira do lote de 1924 e denunciar a fraude na festa.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_labels_tampered",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Rótulos de 1924 foram repostos",
+      "description": "Três dos rótulos do lote de 1924 no quadro foram pregados de novo em data recente, com tachinhas mais novas e o papel estranhamente limpo.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_adulterated_bottles",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Garrafas de 1924 adulteradas",
+      "description": "As garrafas da caixa do lote 1924 têm níveis diferentes e lacres de cera com tonalidades distintas, como se fossem abertas, misturadas e relacradas.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bottle_opened",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Garrafa de 1924 aberta na madrugada",
+      "description": "A garrafa sem rótulo foi tirada da prateleira alta dos lotes de guarda e aberta na bancada durante a madrugada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bottle_residue",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Resíduo misturado com vinho novo",
+      "description": "O resíduo na taça junto à garrafa aberta tem cor mais clara e sedimento estranho, indicando mistura com vinho mais novo.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_ledger_shortfall",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Furo de caixa há dois anos",
+      "description": "O livro-razão mostra um furo de caixa há dois anos e uma venda de 'lote de guarda' sem nota fiscal, rastro do dinheiro da fraude.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_safe_doc_missing",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Documento de auditoria sumiu do cofre",
+      "description": "Uma pasta vazia com a etiqueta '1924 — auditoria' no cofre teve um documento tirado durante a madrugada.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bento_augusto_dispute",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Disputa sobre o discurso",
+      "description": "Bento admite uma discussão dura com Augusto sobre o discurso do centenário e o lote de 1924.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bento_knew_adulteration",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bento sabia da adulteração",
+      "description": "Bento admite saber que os lotes antigos tinham sido mexidos, mas nega tê-los adulterado deliberadamente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bento_argued_augusto",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bento discutiu com Augusto na adega",
+      "description": "Bento admite que desceu à adega para pedir que Augusto não denunciasse a fraude no discurso e que discutiram acaloradamente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bento_clothes_wine",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Manchas de vinho nas roupas de Bento",
+      "description": "Bento tem manchas recentes de tinto na barra da camisa e no punho, compatíveis com o vazamento da pipa aberta.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bento_pushed_augusto",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Augusto sofreu o golpe na adega",
+      "description": "Bento admite que Augusto sofreu o golpe fatal com a base da pipa durante a discussão na adega.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bento_motive_fraud",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Motivo: encobrir a fraude do lote 1924",
+      "description": "Bento admite que adulterou o lote de 1924 e que o discurso destruiria sua reputação, fornecendo o motivo.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_margo_rival",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Margô é de família rival",
+      "description": "Margô é vinicultora de uma família rival dos Seixas e veio negociar um litígio fronteiriço.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_margo_threat",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Margô ameaçou processo",
+      "description": "Margô ameaçou processar os Seixas pela nascente e trocou palavras duras com Augusto no jantar.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_margo_quarters_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Margô no alojamento",
+      "description": "O painel de acessos confirma que Margô não saiu do alojamento de hóspedes entre meia-noite e as seis.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_salles_buyer",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Salles é o maior comprador",
+      "description": "Salles é o maior comprador da produção da vinícola há quinze anos e renegociava os contratos.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_salles_debt",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Salles devia à vinícola",
+      "description": "Salles devia à vinícola um valor alto de lotes entregues e não pagos, e Augusto pressionava pelo acerto.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_salles_tasting_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Salles no salão de provas",
+      "description": "Salles esteve no salão de provas das 23h até depois das 4h, com Dora como testemunha.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_dora_sommeliere",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dora é a sommelière do centenário",
+      "description": "Dora foi contratada para o serviço de taças do jantar e chegou na véspera para conferir os lotes de guarda.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_dora_off_note",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dora notou aroma fora de época",
+      "description": "Ao cheirar o lote de 1924 na véspera, Dora notou aroma e cor que não condiziam com a idade.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_dora_saw_salles",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dora confirma álibi de Salles",
+      "description": "Dora subiu ao salão de provas para buscar uma taça e viu Salles reorganizando rótulos durante a madrugada.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_nair_salles_dora_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Nair confirma Salles e Dora no salão",
+      "description": "Nair confirma que Dora e Salles estavam juntos no salão de provas durante a madrugada.",
+      "importance": "red_herring"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_a_pipa_de_1924",
+    "createdAt": "2026-07-02T00:00:00.000Z",
+    "updatedAt": "2026-07-02T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_killed_augusto",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem causou a morte de Augusto?",
+        "type": "character",
+        "options": [
+          {
+            "id": "bento",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Bento"
+          },
+          {
+            "id": "margo",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Margô"
+          },
+          {
+            "id": "salles",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Salles"
+          },
+          {
+            "id": "dora",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Dora"
+          }
+        ]
+      },
+      {
+        "id": "how_augusto_died",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Como Augusto morreu?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "pipe_blow",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Golpe com a base da pipa de carvalho"
+          },
+          {
+            "id": "fall_from_stairs",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Queda da escada da adega"
+          },
+          {
+            "id": "natural_causes",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Causas naturais durante a inspeção"
+          },
+          {
+            "id": "poisoned_wine",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Vinho envenenado da garrafa aberta"
+          }
+        ]
+      },
+      {
+        "id": "why_augusto_killed",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Por que Augusto foi morto?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "hide_fraud",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para encobrir a fraude do lote de 1924"
+          },
+          {
+            "id": "border_dispute",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Por disputa fronteiriça de terras"
+          },
+          {
+            "id": "unpaid_debt",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para não pagar a dívida de lotes"
+          },
+          {
+            "id": "contract_revenge",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Por vingança de contrato quebrado"
+          }
+        ]
+      },
+      {
+        "id": "where_evidence",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Onde está a evidência que confirma a verdade?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "bottle_residue_taca",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "No resíduo da taça junto à garrafa de 1924"
+          },
+          {
+            "id": "access_panel",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "No painel de acessos da adega"
+          },
+          {
+            "id": "salles_records",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Nos registros de Salles no salão"
+          },
+          {
+            "id": "margo_quarters",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "No painel do alojamento de Margô"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A taça que ninguém bebeu",
+      "type": "full_truth",
+      "imageUrl": "histories/a-pipa-de-1924/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "who_killed_augusto": "bento",
+          "how_augusto_died": "pipe_blow",
+          "why_augusto_killed": "hide_fraud",
+          "where_evidence": "bottle_residue_taca"
+        },
+        "requiresClueIds": [
+          "clue_bento_pushed_augusto",
+          "clue_bento_motive_fraud",
+          "clue_bottle_residue"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Bento adulterou o lote de 1924, matou Augusto com a base da pipa durante a discussão na adega para impedir o discurso, e forjou um acidente com o torneirinho aberto.",
+      "epilogue": "Quando a festa do centenário deveria começar, o salão fica em silêncio. Bento não sustenta mais o tom de enólogo ofendido: o resíduo da taça falou por ele. O lote de 1924, joia da casa por cem anos, é despejado no chão de pedra da adega, e ninguém o recolhe. Dora recolhe suas taças e vai embora sem servir uma única gota. A Vinícola Seixas continua de pé, mas o nome de 1924, gravado nos rótulos e nos contratos, passa a ser pronunciado em voz baixa, como uma cicatriz na história da família."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Safra incompleta",
+      "type": "partial_truth",
+      "condition": {
+        "conclusionMatches": {
+          "who_killed_augusto": "bento"
+        },
+        "requiresClueIds": ["clue_bento_pushed_augusto"]
+      },
+      "imageUrl": "histories/a-pipa-de-1924/endings/partial_truth.jpg",
+      "summary": "Você identificou Bento como responsável pela morte de Augusto, mas não fechou o método exato, o motivo real e o paradeiro da evidência decisiva.",
+      "epilogue": "Bento não consegue mais negar que esteve na adega, mas o silêncio sobre o lote de 1924 pesa mais do que a confissão parcial. Sem o resíduo da taça e sem o discurso na balança, o caso se arrasta entre a acusação e a dúvida. A festa do centenário é suspensa, a garrafa sem rótulo segue na bancada, e o nome de 1924 permanece, por enquanto, como uma verdade que ninguém conseguiu servir."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O suspeito errado",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/a-pipa-de-1924/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade do caso. Margô estava no alojamento, Salles no salão de provas, Dora na companhia dele, e não houve acidente.",
+      "epilogue": "A versão do acidente com a pipa se instala como a mais confortável. Augusto é enterrado como um patriarca morto por uma queda triste. Bento permanece na vinícola, assina sozinho os próximos rótulos e nunca mais abre a caixa do lote de 1924. Nas noites de festa, a adega de caverna continua iluminada, e o torneirinho de bronze da pipa amassada permanece, para sempre, ligeiramente aberto."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 8,
+    "suggestConclusionAfterClues": 16,
+    "maxRecommendedInteractions": 26
+  }
+}
