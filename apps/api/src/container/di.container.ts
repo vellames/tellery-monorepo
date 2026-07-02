@@ -45,7 +45,7 @@ import { OpenRouterAudioTranscriptionService } from '../services/audio/openroute
 import { BcryptPasswordHasher } from '../services/user/bcrypt-password-hasher';
 import { JwtTokenService } from '../services/user/jwt-token.service';
 import { UserService } from '../services/user/user.service';
-import { NodemailerMailer } from '../services/email/nodemailer-mailer';
+import { ResendMailer } from '../services/email/resend-mailer';
 import { EmailTokenService } from '../services/email/email-token.service';
 import { EmailVerificationService } from '../services/email/email-verification.service';
 import { StripeService } from '../services/subscription/stripe.service';
@@ -88,12 +88,8 @@ export class DIContainer {
   );
   private readonly sessionOwnershipMiddleware: RequestHandler =
     createSessionOwnershipMiddleware(this.sessionRepository);
-  private readonly mailer: IMailer = new NodemailerMailer({
-    host: appConfig.email.smtp.host,
-    port: appConfig.email.smtp.port,
-    secure: appConfig.email.smtp.secure,
-    user: appConfig.email.smtp.user,
-    pass: appConfig.email.smtp.pass,
+  private readonly mailer: IMailer = new ResendMailer({
+    token: appConfig.email.resend.apiKey,
     from: `"${appConfig.email.fromName}" <${appConfig.email.fromAddress}>`,
   });
   private readonly emailTokenService: IEmailTokenService =
