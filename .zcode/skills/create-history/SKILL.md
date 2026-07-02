@@ -124,6 +124,50 @@ Every honest red herring needs an alibi or exculpatory clue reachable early.
 The validator's LLM will check and discard it — if there's no alibi, the
 investigator may mis-accuse. Mark the red-herring clue with `importance: "red_herring"`.
 
+### Intent design — optimize for experience, not difficulty
+
+`intentDefinitions` and the `triggerIntents` on rules/stages decide whether a
+player's natural phrasing unlocks a clue. The goal is a **smooth investigation
+that feels fair**, not a hard puzzle. Tune for **moderate** difficulty — never
+too easy, never too hard.
+
+**Too specific is the main trap.** An intent like `ask_beatriz_about_medication_swap_on_thursday`
+will only fire on a near-exact phrasing, so the player asks the right question
+and gets nothing back — that reads as a bug, not a mystery. Prefer broad,
+conversational intents (`ask_about_medication`, `ask_about_motive`,
+`ask_about_alibi`) that match many phrasings of the same idea.
+
+| Bad (too specific)                          | Good (broad, natural)        |
+| ------------------------------------------- | ---------------------------- |
+| `ask_if_lucia_poisoned_the_champagne_glass` | `ask_about_poison`           |
+| `ask_beatriz_why_she_swapped_pills_at_22h`  | `ask_about_motive`           |
+| `ask_where_rafael_was_at_midnight_exactly`  | `ask_about_alibi`            |
+| `press_lucia_stage_3_botic_access`          | `press_for_confession`       |
+
+**Concrete rules of thumb:**
+
+- **Keep intent count moderate** (~8–12 for a 16-clue story, ~15–22 for a 30-clue
+  story). Most are reusable `ask_about_<topic>` + one `accuse_<character>` per
+  real suspect, plus the universal `inspect_object` / `press_for_confession` /
+  `off_topic`.
+- **Write 4–6 `keywords` per intent** using the everyday words a player would
+  actually say (`veneno`, `morte`, `brinde`, `álibi`), not investigator jargon.
+  Keyword matches force `confidence = 1.0`, so good keywords are the most
+  reliable way to make a clue reachable.
+- **Reuse the same intent across many `triggerIntents`.** A single
+  `ask_about_motive` can gate motive-flavored rules on several characters —
+  that's how the player "asks about motive" anywhere and gets relevant reveals.
+- **Never create an intent whose only purpose is to gate exactly one rule with
+  a niche phrasing.** If a clue needs that, broaden the intent or fold it into
+  an existing topic intent.
+- **Validate by reading the `intents:` line during Phase 6.** If the
+  investigator is asking the right question but the clue still won't unlock,
+  the intent is too specific — broaden its `keywords`/`examples`, or re-point
+  the rule's `triggerIntents` at a broader intent.
+
+The player should never feel they have to guess the developer's exact wording.
+When in doubt, make the intent broader.
+
 ## Phase 2 — Audit consistency
 
 Run the audit script bundled with this skill. It checks:
