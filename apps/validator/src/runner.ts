@@ -3,6 +3,7 @@ import { Investigator, PastAction } from './investigator';
 
 export interface DetectedIntentLog {
   intentId: string;
+  description?: string;
   confidence: number;
   reasoning: string;
 }
@@ -167,6 +168,7 @@ export async function runSession(
       turnLog.reply = result.reply;
       turnLog.detectedIntents = result.detectedIntents.map((intent) => ({
         intentId: intent.intentId,
+        description: intent.description,
         confidence: intent.confidence,
         reasoning: intent.reasoning,
       }));
@@ -178,7 +180,11 @@ export async function runSession(
       console.log(`  sent:      ${action.message}`);
       if (result.detectedIntents.length > 0) {
         const intentsFormatted = result.detectedIntents
-          .map((i) => `${i.intentId} (${i.confidence})`)
+          .map((i) =>
+            i.description
+              ? `${i.description} (${i.confidence})`
+              : `${i.intentId} (${i.confidence})`
+          )
           .join(', ');
         console.log(`  intents:   ${intentsFormatted}`);
       }

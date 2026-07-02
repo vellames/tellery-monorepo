@@ -79,6 +79,7 @@ export interface InteractResponse {
   reply: string | null;
   detectedIntents: {
     intentId: string;
+    description?: string;
     confidence: number;
     reasoning: string;
   }[];

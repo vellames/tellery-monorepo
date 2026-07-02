@@ -29,8 +29,9 @@ export function writeReport(result: RunResult, outputPath: string): void {
     if (turn.detectedIntents.length > 0) {
       sections.push('  Detected intents:');
       for (const intent of turn.detectedIntents) {
+        const label = intent.description ?? intent.intentId;
         sections.push(
-          `    - ${intent.intentId} (confidence ${intent.confidence}): ${intent.reasoning}`
+          `    - ${label} (confidence ${intent.confidence}): ${intent.reasoning}`
         );
       }
     }

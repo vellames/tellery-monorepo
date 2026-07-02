@@ -94,7 +94,9 @@ function parseArgs(argv: string[]): Partial<ValidatorConfig> {
  * Resolve config with precedence: CLI argument > environment variable > default.
  * The `.env` file is still loaded as fallback, so nothing passed via flag is required there.
  */
-export function loadConfig(argv: string[] = process.argv.slice(2)): ValidatorConfig {
+export function loadConfig(
+  argv: string[] = process.argv.slice(2)
+): ValidatorConfig {
   const args = parseArgs(argv);
 
   const historySlug =
@@ -105,8 +107,12 @@ export function loadConfig(argv: string[] = process.argv.slice(2)): ValidatorCon
   const defaultOutput = `validator-output-${historySlug}.txt`;
 
   return {
-    apiUrl: args.apiUrl ?? process.env.VALIDATOR_API_URL ?? 'http://localhost:3232',
-    email: required('VALIDATOR_EMAIL', args.email ?? process.env.VALIDATOR_EMAIL),
+    apiUrl:
+      args.apiUrl ?? process.env.VALIDATOR_API_URL ?? 'http://localhost:3232',
+    email: required(
+      'VALIDATOR_EMAIL',
+      args.email ?? process.env.VALIDATOR_EMAIL
+    ),
     password: required(
       'VALIDATOR_PASSWORD',
       args.password ?? process.env.VALIDATOR_PASSWORD
@@ -123,6 +129,7 @@ export function loadConfig(argv: string[] = process.argv.slice(2)): ValidatorCon
     maxIterations: Number(
       args.maxIterations ?? process.env.VALIDATOR_MAX_ITERATIONS ?? 50
     ),
-    outputPath: args.outputPath ?? process.env.VALIDATOR_OUTPUT ?? defaultOutput,
+    outputPath:
+      args.outputPath ?? process.env.VALIDATOR_OUTPUT ?? defaultOutput,
   };
 }
