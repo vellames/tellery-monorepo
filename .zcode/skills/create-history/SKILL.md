@@ -225,6 +225,39 @@ Structure (mirror `mocks/o-bilhete-na-mesa-7-images-map.json`):
 - Every prompt should reference the visual clues that matter for that asset.
 - `coverImageUrl` / `thumbnailUrl` / `imageUrl` in the history JSON must match the `<slug>` and section names used here.
 
+### Character diversity (CRITICAL)
+
+Without explicit guidance, the image model converges on a single default
+archetype and every portrait comes out looking the same. **You MUST make the
+cast visibly distinct** — different skin tones, ages, builds, hair, and facial
+features. A cast that is all the same ethnicity/skin tone breaks immersion and
+feels generic.
+
+- **Specify ethnicity/skin tone explicitly in every character prompt.** State it
+  plainly: "a young White woman with fair skin and freckles", "a middle-aged
+  Afro-Brazilian man with dark brown skin", "a Mestizo Mexican woman with warm
+  tan skin", etc. Do NOT default to a vague nationality ("a Mexican man") — that
+  is what causes the convergence.
+- **Vary the cast.** If the story has 3+ characters, the cast should visibly span
+  a range (e.g. White, Pardo/mixed, Black), matching what's plausible for the
+  setting. Mexican settings are overwhelmingly Mestizo but realistically include
+  Indigenous, White, and Afro-Mexican people — reflect that range. Brazilian
+  settings are multiethnic by default.
+- **Differentiate beyond skin tone too**: age, build, hair color/texture, facial
+  features, facial hair, scars, glasses. No two characters should read as the
+  same "person in different clothes".
+- **Bad vs good character prompt openers:**
+
+  | Bad (converges)                              | Good (explicitly distinct)                                   |
+  | -------------------------------------------- | ------------------------------------------------------------ |
+  | "a Mexican man in his thirties"              | "a Mestizo Mexican man in his early thirties, warm tan skin, sharp jawline, wavy dark brown hair" |
+  | "an elegant woman"                           | "an Afro-Mexican woman, deep brown skin, natural coily hair pulled back" |
+  | "an older man, grey hair"                    | "a White older man, ruddy fair skin, receding steel-grey hair, thick grey beard" |
+
+- When you write the whole cast, read all character prompts together and check
+  they describe visibly *different* people — not the same default face in
+  different outfits.
+
 ### Validate coverage
 
 Every `imageUrl` referenced in `<slug>.json` must have a matching prompt in
