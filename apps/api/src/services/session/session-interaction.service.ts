@@ -106,11 +106,18 @@ export class SessionInteractionService {
       hasReply: result.reply !== null,
     });
 
+    const intentDescriptionById = new Map(
+      session.intents.map((intent) => [intent.id, intent.description])
+    );
+
     return {
       id: input.stateId,
       stateType: resolvedState.type,
       reply: result.reply,
-      detectedIntents: result.detectedIntents,
+      detectedIntents: result.detectedIntents.map((detected) => ({
+        ...detected,
+        description: intentDescriptionById.get(detected.intentId),
+      })),
       discoveredClues: result.discoveredClues,
     };
   }

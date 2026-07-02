@@ -20,6 +20,7 @@ export interface IntentDetectionTarget {
 
 export interface DetectedIntent {
   intentId: string;
+  description?: string;
   confidence: number;
   reasoning: string;
 }
