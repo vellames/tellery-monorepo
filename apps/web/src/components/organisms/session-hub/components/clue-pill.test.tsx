@@ -19,7 +19,7 @@ const clues: SessionClue[] = [
 const baseProps = {
   found: 1,
   total: 2,
-  easyMode: false,
+  assistedMode: false,
   clues,
   label: 'Pistas encontradas aqui',
   emptyLabel: 'Nenhuma pista encontrada aqui ainda.',
@@ -33,8 +33,8 @@ describe('CluePill', () => {
     expect(screen.getByText('1')).toBeInTheDocument();
   });
 
-  it('shows found/total in easy mode', () => {
-    renderWithProviders(<CluePill {...baseProps} easyMode />);
+  it('shows found/total in assisted mode', () => {
+    renderWithProviders(<CluePill {...baseProps} assistedMode />);
 
     expect(screen.getByText('1/2')).toBeInTheDocument();
   });

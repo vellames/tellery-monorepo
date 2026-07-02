@@ -13,7 +13,7 @@ export interface LeadCardProps {
   description: string;
   imageUrl?: string | null;
   cluesLabel: string;
-  easyMode: boolean;
+  assistedMode: boolean;
   cluesFound: number;
   cluesTotal: number;
   done: boolean;
@@ -31,7 +31,7 @@ export function LeadCard({
   description,
   imageUrl,
   cluesLabel,
-  easyMode,
+  assistedMode,
   cluesFound,
   cluesTotal,
   done,
@@ -103,7 +103,7 @@ export function LeadCard({
               {ctaLabel} →
             </span>
           </div>
-          {easyMode && cluesTotal > 0 && (
+          {assistedMode && cluesTotal > 0 && (
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#fff9ef]/10">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-[#c49a4a] to-[#f4d78f] transition-[width] duration-700"

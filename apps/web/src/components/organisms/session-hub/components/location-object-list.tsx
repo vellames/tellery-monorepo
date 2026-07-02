@@ -7,13 +7,13 @@ import type { SessionObject } from '@/lib/types/session';
 
 export interface LocationObjectListProps {
   objects: SessionObject[];
-  easyMode: boolean;
+  assistedMode: boolean;
   onSelectObject: (object: SessionObject) => void;
 }
 
 export function LocationObjectList({
   objects,
-  easyMode,
+  assistedMode,
   onSelectObject,
 }: LocationObjectListProps) {
   const t = useTranslations('play');
@@ -57,14 +57,14 @@ export function LocationObjectList({
                 <p className="line-clamp-1 text-xs text-[#fff9ef]/55">
                   {object.shortDescription}
                 </p>
-                {easyMode &&
+                {assistedMode &&
                   (object.cluesTotal === 0 ? (
                     <p className="mt-0.5 text-[11px] font-medium text-[#fff9ef]/35">
                       {t('noCluesAvailable')}
                     </p>
                   ) : (
                     <p className="text-gold/80 mt-0.5 text-[11px] font-semibold">
-                      {t('cluesHereEasy', {
+                      {t('cluesHereAssisted', {
                         found: object.discoveredClues.length,
                         total: object.cluesTotal,
                       })}
