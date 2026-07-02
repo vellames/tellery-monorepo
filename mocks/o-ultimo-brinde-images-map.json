@@ -1,0 +1,115 @@
+{
+  "master": {
+    "prompt": "Create an image for Tellery, a premium interactive storytelling app. The image belongs to the story “O Último Brinde”, a passionate Mexican-telenovela-style murder mystery set at Hacienda Las Palmas in Jalisco, Mexico, on the morning of a wedding that will not happen. Art direction: premium cinematic editorial illustration, semi-realistic digital painting, refined adult melodrama, romantic and tense, golden hour warmth pierced by grief, elegant but emotionally charged. The visual tone should feel like a prestige streaming romantic-thriller, not a traditional game. Setting identity: Hacienda Las Palmas is a historic Mexican tequila hacienda with white-washed adobe walls, terracotta tile roofs, wrought-iron gates, bougainvillea cascading over arches, fields of blue agave stretching to the Sierra Madre, a white garden glorietta pavilion, and interiors of dark carved wood, copper pots, and shelves of herbal apothecary jars. Color palette: warm terracotta #C56B3A, deep bougainvillea magenta #B0326E, tequila amber #E0A93A, hacienda white #F4ECDE, agave blue-green #6E8A6A, dark carved wood #3A2418, sunset gold #D98E2A, soft shadow plum #4A2A3A. Lighting: golden Mexican morning light, long warm shadows, soft directional sun through bougainvillea, glowing amber interior lamp accents, cinematic low-light, gentle depth falloff, subtle film grain. Style: refined, polished, modern, premium, adult, romantic, cinematic, semi-realistic, soft depth of field, believable materials, emotionally grounded realism with a telenovela melodramatic undertone. Avoid horror, gore, blood, weapons, police crime-scene aesthetics, skulls, monsters, childish illustration, cartoon style, anime, fantasy RPG visuals, game UI, neon cyberpunk, text overlays, logos, and watermarks."
+  },
+  "history": {
+    "cover": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a wide cinematic cover image for the passionate murder mystery story “O Último Brinde”. Show the white garden glorietta pavilion of Hacienda Las Palmas at golden hour, seen across a garden of blooming magenta bougainvillea with blue agave fields and the Sierra Madre in the far distance. On the small wrought-iron table inside the pavilion, two crystal champagne glasses sit: one tipped over, one still full. A spilled bottle of champagne rests beside them. White flowers are slightly dishevelled. The scene should feel romantic and tragic at once, like a wedding morning turned to mourning. Composition: wide horizontal hero-card framing for a mobile storytelling app. The glorietta is centered slightly right; on the left, leave atmospheric negative space with bougainvillea and warm haze for future app title and CTA overlay, but do not render any text overlay. No people in the foreground. Mood: golden, romantic, tragic, melodramatic, cinematic."
+    },
+    "thumbnail": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a cinematic close-up thumbnail for the passionate murder mystery story “O Último Brinde”. Show a dark wrought-iron table surface with two crystal champagne glasses in the foreground: one tipped over with dry residue inside, and one still full and untouched. A small pearl earring lies on the table beside the glasses as a key clue. Behind them, softly blurred, magenta bougainvillea blooms and warm golden Mexican light. The tipped glass and the pearl earring must be the clearest focal points and remain readable even at small mobile thumbnail size. Composition: square close-up still life, strong focal hierarchy, shallow depth of field, high contrast between glowing amber champagne and dark iron. Mood: romantic, suspicious, tragic, elegant."
+    }
+  },
+  "location": {
+    "glorieta": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for the “Glorieta do jardim”, the crime scene. Show a white garden pavilion with thin columns at golden hour, overlooking blue agave fields and the Sierra Madre. On the wrought-iron table inside: two crystal champagne glasses (one tipped over, one full), an opened champagne bottle, slightly dishevelled white flowers, and a folded white card with handwritten golden ink. A single pearl earring lies on the floor under the table as a subtle clue. The morning light is warm and golden, with magenta bougainvillea climbing one side of the pavilion. Composition: the pavilion is the clear focal point, centered, with enough garden context to establish the place. Mood: romantic, tragic, golden, investigative. Important visual clues: two glasses one tipped/one full, opened bottle, folded card, pearl earring on floor, bougainvillea."
+    },
+    "casarao": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for the “Salão principal” of Hacienda Las Palmas. Show a wide high-ceilinged hall with wrought-iron lanterns, hand-painted talavera tiles on the walls, and a long dark carved-wood table still set with the remains of the rehearsal dinner: champagne glasses, melted candles, and wilting flowers. The scene should feel like the morning after a celebration that ended in grief. Warm amber light streams through tall windows. Composition: wide establishing shot, the long table leading the eye into the room. Mood: elegant, melancholy, warm, melodramatic. Important visual clues: long dinner table, melted candles, champagne glasses, talavera tiles, wrought-iron lanterns."
+    },
+    "cozinha": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for the “Cozinha e botica” of Hacienda Las Palmas. Show a long cool kitchen with a wood-fired stove, copper pots hanging on the wall, and — importantly — a wooden apothecary shelf filled with glass jars of dried herbs and tinctures used for generations as household remedies. One dark glass jar sits slightly out of alignment with the others, with a worn label. The scene should feel like a working kitchen that hides a deadly household remedy. Composition: medium-wide shot, the apothecary shelf clearly visible but not screaming for attention, with the stove and copper pots providing context. Mood: warm, practical, quietly ominous. Important visual clues: apothecary shelf of herb jars, one dark misaligned jar, wood-fired stove, copper pots."
+    },
+    "ala_quartos": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for the “Ala de hóspedes” of Hacienda Las Palmas. Show a corridor of white doors in the guest wing, each room with a vanity and a nightstand, beds still unmade in the morning light. The scene should feel like a night in which almost no one slept. Warm light filters through arched windows at the end of the hall; bougainvillea shadows fall across the white walls. Composition: a hallway receding in perspective, doors slightly ajar, one room hinting at a leather-bound folder on the nightstand. Mood: intimate, restless, quietly suspicious. Important visual clues: unmade beds, white doors, arched hallway, one room with a folder on the nightstand."
+    },
+    "estudio": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for the “Escritório de Don Esteban” of Hacienda Las Palmas. Show a heavy wooden desk covered in contracts and ledgers, a framed photograph of the first tequila harvest on the wall, shelves of hacienda account books, and a leather chair. A slightly open drawer reveals a yellowed envelope, hinting at a hidden document. The room smells of leather and agave. Composition: medium shot, the desk dominant, the slightly open drawer visible as a subtle clue. Mood: imposing, formal, secretive, patriarchal. Important visual clues: desk with contracts, framed harvest photo, slightly open drawer with yellowed envelope, leather chair."
+    }
+  },
+  "object": {
+    "tacas": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for the “Taças de champanhe”, the central crime-scene objects. Show two fine crystal champagne glasses on a wrought-iron table: one tipped on its side with dry residue inside, the other standing full to the brim, untouched. The contrast between the two glasses is the emotional and investigative core. Soft golden light and blurred bougainvillea in the background. Composition: close-up still life, the two glasses dominate the frame, crystal reflections and clarity visible. Mood: romantic, tragic, pivotal, elegant. Important visual clues: one tipped glass with residue, one full untouched glass, iron table surface."
+    },
+    "champanhe": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the “Garrafa de champanhe”. Show an opened champagne bottle on the wrought-iron table, its foil seal broken in an unusual way, with drips dried down the neck suggesting it was tampered with before serving. The neck should hint that something was dissolved inside. Soft golden background bokeh. Composition: square close-up still life, the bottle neck and broken seal are the focal point, shallow depth of field. Mood: suspicious, pivotal, elegant. Important visual clues: unusually broken foil seal, dried drips on the neck, evidence of tampering."
+    },
+    "convite": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the “Cartão do brinde”. Show a folded white card on the wrought-iron table, with elegant handwritten golden ink calligraphy in Portuguese. The card must clearly contain a short handwritten invitation that reads “Meia-noite. Só nós dois. — V.” written in flowing script, appearing as natural handwriting on the paper, not as a digital text overlay. Soft golden light, blurred champagne glasses in the background. Composition: square close-up, the card and its handwriting dominate the frame. Mood: romantic, secret, intimate, tragic. Important visual clues: folded white card, golden ink handwriting with the phrase 'Meia-noite. Só nós dois. — V.'."
+    },
+    "brinco": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the “Brinco de pérola”, a key clue. Show a single small pearl earring lying on the stone floor under the wrought-iron table of the glorietta, caught in a slant of golden morning light. The pearl should gleam softly against the warm terracotta-tinted stone. Blurred champagne glass legs and tipped flower petals in the background. Composition: square extreme close-up still life, the lone pearl earring is the absolute focal point, shallow depth of field. Mood: intimate, damning, tragic, delicate. Important visual clues: single pearl earring on stone floor, golden light, clue dropped by someone who was at the scene."
+    },
+    "frasco_conito": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for the “Frasco da botica”, the source of the poison. Show a dark apothecary glass jar on a wooden shelf, slightly out of alignment with the neatly arranged jars beside it. Inside are dried roots; the worn label reads “Aconito” in old handwriting, appearing as natural ink on aged paper, not as a digital overlay. The jar shows faint recent fingerprints or smudges on the glass. Other herbal jars and dried plants are softly blurred behind. Composition: medium close-up, the misaligned dark jar is the clear focal point, label readable. Mood: ominous, domestic, quietly deadly. Important visual clues: dark misaligned jar, dried roots, label reading 'Aconito', recent smudges on glass."
+    },
+    "certidao_casamento": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the “Certidão de casamento” found in Rafael's room. Show an official Mexican marriage certificate, aged, with formal seals and names in elegant calligraphy, pulled partway out of a leather folder resting on a nightstand. The document should look authentic and legal, revealing a prior marriage. Soft warm light from a nearby window, an unmade bed softly blurred behind. Composition: square close-up, the certificate and its seals are the focal point, shallow depth of field. Mood: damning, secret, formal, melodramatic. Important visual clues: official marriage certificate with seals, leather folder, nightstand."
+    },
+    "diario_lucia": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the “Caderno de Lucía”. Show a leather-bound journal on a vanity, closed with a delicate ribbon tie, its pages marked and the corners of leaves curled from frequent reading. The journal should feel intensely personal, obsessive, and private. A single pearl earring matching the one at the crime scene may rest nearby on the vanity, barely in frame. Soft golden light, blurred feminine vanity details in the background. Composition: square close-up still life, the journal dominates, ribbon tie and curled pages visible. Mood: obsessive, romantic, intimate, damning. Important visual clues: leather journal with ribbon tie, curled page corners, marked pages, matching pearl earring nearby."
+    },
+    "certidao_sofia": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for the “Certidão no escritório” found in Don Esteban's desk. Show a yellowed Mexican birth certificate, folded with care inside a yellowed envelope, pulled from a slightly open drawer of a heavy wooden desk. The document should show names and formal seals revealing parentage. A framed photograph of the tequila harvest and a stack of contracts are softly blurred behind. Composition: square close-up, the birth certificate and envelope are the focal point, drawer edge visible. Mood: secretive, patriarchal, melodramatic, revelatory. Important visual clues: birth certificate, yellowed envelope, slightly open desk drawer, formal seals."
+    }
+  },
+  "characters": {
+    "lucia": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a cinematic character portrait for “Lucía”, the maid of honor and secret culprit, a Mexican woman in her late twenties. She has dark hair pulled into a soft updo, large dark eyes red-rimmed from crying, and wears an elegant cream dress with a single pearl earring (its match is missing — a key detail). Her expression blends performed grief with barely contained intensity. She holds a handkerchief. Soft golden morning light, blurred bougainvillea behind. Composition: 4:5 portrait, head and shoulders, eye contact, dramatic chiaroscuro. Mood: grief-stricken, intense, romantic, secretly tormented. Important visual clues: only one pearl earring worn (the match is missing at the crime scene), red-rimmed eyes, cream dress, handkerchief."
+    },
+    "rafael": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a cinematic character portrait for “Rafael”, the groom, a charming Mexican man in his early thirties. He has neatly styled dark hair, a well-fitted linen suit in warm taupe, an open collar, and a strained, evasive expression that hides panic behind a charming smile. Soft golden light, blurred hacienda arches behind. Composition: 4:5 portrait, head and shoulders, slight three-quarter angle, warm and flattering but subtly uneasy. Mood: charming, evasive, guilty-looking, romantic. Important visual clues: linen suit, strained smile, groom's attire, evasive eyes."
+    },
+    "esteban": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a cinematic character portrait for “Don Esteban”, the patriarch of the Reyes tequila dynasty, a imposing Mexican man in his early sixties. He has silver-streaked hair, a trimmed grey beard, a crisp white guayabera shirt under a dark charro jacket, and a stern, formal expression of wounded authority. Soft golden light, blurred agave fields and hacienda behind. Composition: 4:5 portrait, head and shoulders, direct imposing gaze, low-angle dignity. Mood: imposing, proud, grieving, patriarchal. Important visual clues: silver hair, charro jacket over guayabera, stern wounded authority."
+    },
+    "sofia": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a cinematic character portrait for “Sofía”, the 'cousin' raised in the family, a Mexican woman in her mid-twenties with an air of quiet reserve. She has soft dark hair in a loose braid, warm brown skin, a modest pale-blue dress, and a gentle but guarded expression that hints at a lifelong feeling of being 'almost family'. She holds a small arrangement of white flowers for the chapel. Soft golden light, blurred chapel doors behind. Composition: 4:5 portrait, head and shoulders, soft direct gaze, delicate and melancholy. Mood: reserved, melancholy, loyal, quietly wounded. Important visual clues: pale-blue dress, loose braid, white flower arrangement, guarded gentleness."
+    },
+    "mateo": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a cinematic character portrait for “Mateo”, the ex-boyfriend who returned for the wedding, a Mexican man in his early thirties with a romantic, melancholy air. He has tousled dark hair, light stubble, a rumpled linen shirt unbuttoned at the collar, and an expression of openhearted grief and unresolved longing. He looks like a man who never moved on. Soft golden light, blurred hacienda garden and travel bag behind. Composition: 4:5 portrait, head and shoulders, soulful eye contact, slightly dishevelled. Mood: romantic, melancholy, passionate, grieving. Important visual clues: rumpled linen shirt, stubble, travel bag, longing expression."
+    },
+    "carmen": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a cinematic character portrait for “Doña Carmen”, the matriarch and Valentina's stepmother, an elegant Mexican woman in her late fifties. She has greying dark hair in a precise low chignon, refined jewelry, a deep-burgundy elegant dress, and a serene, composed expression that conceals decades of kept secrets. She observes everything. Soft golden light, blurred hacienda interior with talavera tiles behind. Composition: 4:5 portrait, head and shoulders, composed direct gaze, dignified and formidable. Mood: serene, formidable, knowing, quietly powerful. Important visual clues: precise chignon, refined jewelry, deep-burgundy dress, all-seeing composure."
+    }
+  },
+  "endings": {
+    "full_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the full-truth ending “O brinde que só ela bebeu”. Show the glorietta at sunset, now emptied of people, with a single full untouched champagne glass left on the wrought-iron table glowing in the last golden light. Magenta bougainvillea petals have fallen across the stone floor like confetti from a wedding that never happened. In the far background, the agave fields turn amber under the setting sun. The mood is tragic, romantic, and conclusive — the crime is solved but the love behind it was wasted. Composition: wide cinematic shot, the lone full glass as the focal point, fallen petals, sunset. Mood: tragic, romantic, conclusive, golden, mournful. Important visual clues: single untouched full glass, fallen bougainvillea petals, sunset over agave."
+    },
+    "partial_truth_a": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the partial-truth ending “A mão certa, o motivo incerto”. Show a half-empty champagne glass on the wrought-iron table in uncertain twilight, half in golden light and half in shadow, symbolizing a truth only half-revealed. Behind it, the apothecary shelf of the kitchen is softly blurred and out of reach, the dark aconite jar still unnoticed among the others. Composition: wide cinematic, the half-lit glass as focal point, shadowed unresolved background. Mood: unresolved, ominous, melancholy, half-known. Important visual clues: half-lit glass, unreachable blurred apothecary shelf, uncertain twilight."
+    },
+    "partial_truth_b": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the partial-truth ending “O veneno certo, a mão errada”. Show the tipped champagne glass on the stone floor of the glorietta in cold morning light, while shadowy out-of-focus silhouettes of the wrong suspects (a groom, a patriarch, a young woman) stand blurred in the background, none of them the true culprit. The pearl earring lies unnoticed in the foreground shadow. Composition: wide cinematic, the tipped glass and hidden earring in foreground, blurred wrong-suspect silhouettes behind. Mood: mistaken, ominous, unjust, melancholy. Important visual clues: tipped glass, hidden pearl earring in shadow, blurred wrong-suspect silhouettes."
+    },
+    "wrong_accusation": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the wrong-accusation ending “Um brinde que nunca se encerra”. Show the empty glorietta at night, the two champagne glasses still on the table (one tipped, one full) now cold and untouched in moonlight, with the hacienda windows glowing warm but distant in the background. No one is there to claim the truth. The pearl earring lies permanently hidden under the table. Composition: wide cinematic nocturnal shot, the two abandoned glasses as focal point, cold moonlight, distant warm hacienda. Mood: unresolved, eternal, mournful, cold, forgotten. Important visual clues: two abandoned glasses, hidden pearl earring, moonlight, distant hacienda glow."
+    }
+  }
+}
