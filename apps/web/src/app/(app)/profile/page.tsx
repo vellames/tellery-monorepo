@@ -20,6 +20,7 @@ import {
   fetchSubscriptionSynced,
   fetchSubscriptionPlan,
 } from '@/lib/api/subscription-data';
+import { isActiveSubscription } from '@/lib/types/subscription';
 
 export default async function ProfilePage() {
   const user = await fetchMe();
@@ -34,6 +35,7 @@ export default async function ProfilePage() {
     fetchSubscriptionPlan(),
     fetchSubscriptionSynced(),
   ]);
+  const hasActiveSubscription = isActiveSubscription(subscription);
 
   return (
     <section className="space-y-8">
@@ -55,7 +57,10 @@ export default async function ProfilePage() {
             <CardDescription>
               {t('memberSince', { date: memberSince })}
             </CardDescription>
-            <CreditsAvailableBadge className="w-fit" />
+            <CreditsAvailableBadge
+              className="w-fit"
+              hasActiveSubscription={hasActiveSubscription}
+            />
           </CardHeader>
           <CardContent>
             <ProfileForm user={user} />

@@ -34,14 +34,17 @@ export function AppHeader({ user, hasActiveSubscription }: AppHeaderProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <CreditsAvailableBadge className="px-3 py-2 sm:px-5 sm:py-3" />
+        <CreditsAvailableBadge
+          className="px-3 py-2 sm:px-5 sm:py-3"
+          hasActiveSubscription={hasActiveSubscription}
+        />
         {!hasActiveSubscription && (
           <Link
             href={config.routes.subscription}
             className="bg-primary text-primary-foreground shadow-soft hover:bg-primary/80 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition"
           >
             <Sparkles className="size-4" />
-            <span className="hidden sm:inline">{tSub('subscribeNow')}</span>
+            <span>{tSub('subscribeNow')}</span>
           </Link>
         )}
         <UserMenu user={user} />

@@ -154,6 +154,8 @@
     "copyright": "© {year} Tellery. Todos os direitos reservados.",
     "tagline": "Histórias onde você participa",
     "creditsAvailable": "{count} créditos disponíveis",
+    "yourCredits": "Seus créditos",
+    "youHaveCredits": "Você tem {count} créditos disponíveis.",
     "featured": "Destaque",
     "genres": {
       "mystery": "Mistério",
@@ -183,6 +185,7 @@
     "cancelAnytime": "Cancele quando quiser pelo portal do cliente",
     "subscribe": "Assinar",
     "subscribeNow": "Assinar agora",
+    "subscribeForMoreCredits": "Assinar para mais créditos",
     "activeWillEnd": "Ativa (será cancelada ao fim do período)",
     "manage": "Gerenciar assinatura",
     "checkoutSuccess": "Assinatura ativada! Seus créditos foram adicionados.",

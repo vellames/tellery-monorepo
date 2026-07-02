@@ -154,6 +154,8 @@
     "copyright": "© {year} Tellery. All rights reserved.",
     "tagline": "Stories you take part in",
     "creditsAvailable": "{count} credits available",
+    "yourCredits": "Your credits",
+    "youHaveCredits": "You have {count} available credits.",
     "featured": "Featured",
     "genres": {
       "mystery": "Mystery",
@@ -183,6 +185,7 @@
     "cancelAnytime": "Cancel anytime from the customer portal",
     "subscribe": "Subscribe",
     "subscribeNow": "Subscribe now",
+    "subscribeForMoreCredits": "Subscribe for more credits",
     "activeWillEnd": "Active (will be cancelled at the end of the period)",
     "manage": "Manage subscription",
     "checkoutSuccess": "Subscription activated! Your credits were added.",
