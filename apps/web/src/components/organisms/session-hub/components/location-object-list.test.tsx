@@ -27,7 +27,7 @@ describe('LocationObjectList', () => {
     renderWithProviders(
       <LocationObjectList
         objects={objects}
-        easyMode={false}
+        assistedMode={false}
         onSelectObject={vi.fn()}
       />
     );
@@ -41,7 +41,7 @@ describe('LocationObjectList', () => {
     renderWithProviders(
       <LocationObjectList
         objects={objects}
-        easyMode={false}
+        assistedMode={false}
         onSelectObject={onSelectObject}
       />
     );
@@ -55,7 +55,7 @@ describe('LocationObjectList', () => {
     renderWithProviders(
       <LocationObjectList
         objects={[]}
-        easyMode={false}
+        assistedMode={false}
         onSelectObject={vi.fn()}
       />
     );

@@ -38,7 +38,7 @@ export interface InvestigationPanelProps {
   sessionId: string;
   target: InvestigationTarget | null;
   objects: SessionObject[];
-  easyMode: boolean;
+  assistedMode: boolean;
   onSelectObject: (object: SessionObject) => void;
   onInteracted: () => void;
   onClose: () => void;
@@ -48,7 +48,7 @@ export function InvestigationPanel({
   sessionId,
   target,
   objects,
-  easyMode,
+  assistedMode,
   onSelectObject,
   onInteracted,
   onClose,
@@ -381,7 +381,7 @@ export function InvestigationPanel({
           <CluePill
             found={serverClues.length}
             total={target.data.cluesTotal}
-            easyMode={easyMode}
+            assistedMode={assistedMode}
             clues={serverClues}
             label={tp('cluesFoundHere')}
             emptyLabel={tp('noCluesFoundHere')}
@@ -406,7 +406,7 @@ export function InvestigationPanel({
           {kind === 'location' && (
             <LocationObjectList
               objects={locationObjects}
-              easyMode={easyMode}
+              assistedMode={assistedMode}
               onSelectObject={onSelectObject}
             />
           )}

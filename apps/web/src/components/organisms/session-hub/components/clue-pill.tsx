@@ -7,7 +7,7 @@ import type { SessionClue } from '@/lib/types/session';
 export interface CluePillProps {
   found: number;
   total: number;
-  easyMode: boolean;
+  assistedMode: boolean;
   clues: SessionClue[];
   label: string;
   emptyLabel: string;
@@ -17,7 +17,7 @@ export interface CluePillProps {
 export function CluePill({
   found,
   total,
-  easyMode,
+  assistedMode,
   clues,
   label,
   emptyLabel,
@@ -37,7 +37,7 @@ export function CluePill({
         className="flex cursor-pointer items-center gap-2 rounded-full border border-[#fff9ef]/15 bg-black/40 px-3 py-1.5 backdrop-blur transition hover:border-[#fff9ef]/25"
       >
         <KeyRound className="text-gold size-3.5" />
-        {easyMode ? (
+        {assistedMode ? (
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-bold text-[#fff9ef]/80">
               {found}/{total}

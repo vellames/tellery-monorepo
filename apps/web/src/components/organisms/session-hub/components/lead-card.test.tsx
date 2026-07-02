@@ -9,7 +9,7 @@ const baseProps = {
   name: 'Elisa',
   description: 'Cuidadosa com o ambiente.',
   cluesLabel: '1 pista',
-  easyMode: false,
+  assistedMode: false,
   cluesFound: 1,
   cluesTotal: 2,
   done: false,
@@ -49,19 +49,19 @@ describe('LeadCard', () => {
     expect(screen.getByText('Questioned')).toBeInTheDocument();
   });
 
-  it('does not render the easy-mode progress bar when easyMode is off', () => {
+  it('does not render the assisted-mode progress bar when assistedMode is off', () => {
     const { container } = renderWithProviders(
-      <LeadCard {...baseProps} easyMode={false} onClick={vi.fn()} />
+      <LeadCard {...baseProps} assistedMode={false} onClick={vi.fn()} />
     );
 
     expect(container.querySelector('[style*="width"]')).toBeNull();
   });
 
-  it('renders the easy-mode progress bar when easyMode is on and clues exist', () => {
+  it('renders the assisted-mode progress bar when assistedMode is on and clues exist', () => {
     const { container } = renderWithProviders(
       <LeadCard
         {...baseProps}
-        easyMode
+        assistedMode
         cluesTotal={2}
         cluesFound={1}
         onClick={vi.fn()}

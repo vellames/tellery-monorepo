@@ -63,7 +63,7 @@ export function SessionHub({ session }: SessionHubProps) {
     kind: InvestigationTargetKind;
     id: string;
   } | null>(null);
-  const [easyMode, setEasyMode] = useState(false);
+  const [assistedMode, setAssistedMode] = useState(true);
   const [showEvidence, setShowEvidence] = useState(false);
   const [showCase, setShowCase] = useState(false);
   const [showConclusion, setShowConclusion] = useState(false);
@@ -168,19 +168,19 @@ export function SessionHub({ session }: SessionHubProps) {
 
           <button
             type="button"
-            onClick={() => setEasyMode((v) => !v)}
-            aria-pressed={easyMode}
-            aria-label={t('easyMode')}
-            title={t('easyMode')}
+            onClick={() => setAssistedMode((v) => !v)}
+            aria-pressed={assistedMode}
+            aria-label={t('assistedMode')}
+            title={t('assistedMode')}
             className={cn(
               'absolute top-4 right-4 z-10 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-bold tracking-wide backdrop-blur transition',
-              easyMode
+              assistedMode
                 ? 'border-gold/50 bg-gold/20 text-gold'
                 : 'border-[#fff9ef]/15 bg-black/30 text-[#fff9ef]/60 hover:text-[#fff9ef]'
             )}
           >
             <Sparkles className="size-3.5" />
-            {t('easyMode')}
+            {t('assistedMode')}
           </button>
 
           <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-6 sm:p-10">
@@ -276,8 +276,8 @@ export function SessionHub({ session }: SessionHubProps) {
                   cluesLabel={
                     effectiveCluesTotal === 0
                       ? t('noCluesAvailable')
-                      : easyMode
-                        ? t('cluesHereEasy', {
+                      : assistedMode
+                        ? t('cluesHereAssisted', {
                             found: effectiveCluesFound,
                             total: effectiveCluesTotal,
                           })
@@ -285,7 +285,7 @@ export function SessionHub({ session }: SessionHubProps) {
                             count: effectiveCluesFound,
                           })
                   }
-                  easyMode={easyMode}
+                  assistedMode={assistedMode}
                   cluesFound={effectiveCluesFound}
                   cluesTotal={effectiveCluesTotal}
                   done={location.visited}
@@ -318,8 +318,8 @@ export function SessionHub({ session }: SessionHubProps) {
                 cluesLabel={
                   character.cluesTotal === 0
                     ? t('noCluesAvailable')
-                    : easyMode
-                      ? t('cluesHereEasy', {
+                    : assistedMode
+                      ? t('cluesHereAssisted', {
                           found: character.discoveredClues.length,
                           total: character.cluesTotal,
                         })
@@ -327,7 +327,7 @@ export function SessionHub({ session }: SessionHubProps) {
                           count: character.discoveredClues.length,
                         })
                 }
-                easyMode={easyMode}
+                assistedMode={assistedMode}
                 cluesFound={character.discoveredClues.length}
                 cluesTotal={character.cluesTotal}
                 done={character.messages.length > 0}
@@ -471,7 +471,7 @@ export function SessionHub({ session }: SessionHubProps) {
         sessionId={sessionId}
         target={target}
         objects={objects}
-        easyMode={easyMode}
+        assistedMode={assistedMode}
         onSelectObject={(object) =>
           setTargetRef({ kind: 'object', id: object.id })
         }
