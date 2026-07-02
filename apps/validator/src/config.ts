@@ -37,24 +37,92 @@ export interface ValidatorConfig {
   outputPath: string;
 }
 
-function required(name: string): string {
-  const value = process.env[name];
+function required(name: string, value: string | undefined): string {
   if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
+    throw new Error(
+      `Missing required value for ${name} (set it via CLI flag or ${name} in .env)`
+    );
   }
   return value;
 }
 
-export function loadConfig(): ValidatorConfig {
+function parseArgs(argv: string[]): Partial<ValidatorConfig> {
+  const parsed: Partial<ValidatorConfig> = {};
+
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    const next = argv[i + 1];
+
+    switch (arg) {
+      case '--api-url':
+        parsed.apiUrl = next;
+        i++;
+        break;
+      case '--email':
+        parsed.email = next;
+        i++;
+        break;
+      case '--password':
+        parsed.password = next;
+        i++;
+        break;
+      case '--slug':
+        parsed.historySlug = next;
+        i++;
+        break;
+      case '--model':
+        parsed.investigatorModel = next;
+        i++;
+        break;
+      case '--max-iterations':
+        parsed.maxIterations = Number(next);
+        i++;
+        break;
+      case '--output':
+        parsed.outputPath = next;
+        i++;
+        break;
+      default:
+        throw new Error(`Unknown argument: ${arg}`);
+    }
+  }
+
+  return parsed;
+}
+
+/**
+ * Resolve config with precedence: CLI argument > environment variable > default.
+ * The `.env` file is still loaded as fallback, so nothing passed via flag is required there.
+ */
+export function loadConfig(argv: string[] = process.argv.slice(2)): ValidatorConfig {
+  const args = parseArgs(argv);
+
+  const historySlug =
+    args.historySlug ??
+    process.env.VALIDATOR_HISTORY_SLUG ??
+    'o-bilhete-na-mesa-7';
+  // Default the output file to the slug, so parallel runs don't overwrite each other.
+  const defaultOutput = `validator-output-${historySlug}.txt`;
+
   return {
-    apiUrl: process.env.VALIDATOR_API_URL ?? 'http://localhost:3232',
-    email: required('VALIDATOR_EMAIL'),
-    password: required('VALIDATOR_PASSWORD'),
-    historySlug: process.env.VALIDATOR_HISTORY_SLUG ?? 'o-bilhete-na-mesa-7',
-    openRouterApiKey: required('OPENROUTER_API_KEY'),
+    apiUrl: args.apiUrl ?? process.env.VALIDATOR_API_URL ?? 'http://localhost:3232',
+    email: required('VALIDATOR_EMAIL', args.email ?? process.env.VALIDATOR_EMAIL),
+    password: required(
+      'VALIDATOR_PASSWORD',
+      args.password ?? process.env.VALIDATOR_PASSWORD
+    ),
+    historySlug,
+    openRouterApiKey: required(
+      'OPENROUTER_API_KEY',
+      args.openRouterApiKey ?? process.env.OPENROUTER_API_KEY
+    ),
     investigatorModel:
-      process.env.VALIDATOR_INVESTIGATOR_MODEL ?? 'deepseek/deepseek-v4-flash',
-    maxIterations: Number(process.env.VALIDATOR_MAX_ITERATIONS ?? 50),
-    outputPath: process.env.VALIDATOR_OUTPUT ?? 'validator-output.txt',
+      args.investigatorModel ??
+      process.env.VALIDATOR_INVESTIGATOR_MODEL ??
+      'deepseek/deepseek-v4-flash',
+    maxIterations: Number(
+      args.maxIterations ?? process.env.VALIDATOR_MAX_ITERATIONS ?? 50
+    ),
+    outputPath: args.outputPath ?? process.env.VALIDATOR_OUTPUT ?? defaultOutput,
   };
 }
