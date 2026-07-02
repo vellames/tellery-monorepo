@@ -37,7 +37,8 @@ const VARIANTS = {
   scene: {
     wrapper:
       'fixed inset-0 z-[60] flex items-end justify-center sm:items-center',
-    backdrop: 'absolute inset-0 cursor-default bg-[#0a0203]/80 backdrop-blur-sm',
+    backdrop:
+      'absolute inset-0 cursor-default bg-[#0a0203]/80 backdrop-blur-sm',
     panel:
       'relative w-full max-w-2xl overflow-hidden rounded-t-[28px] border border-[#fff9ef]/12 bg-[#1b070b] shadow-2xl sm:rounded-[28px]',
     closeButton:
@@ -82,13 +83,19 @@ export function Modal({
         type="button"
         aria-label={closeLabel}
         onClick={onClose}
-        style={variant === 'scene' ? { animation: SCENE_BACKDROP_ANIMATION } : undefined}
+        style={
+          variant === 'scene'
+            ? { animation: SCENE_BACKDROP_ANIMATION }
+            : undefined
+        }
         className={styles.backdrop}
       />
 
       <div
         className={cn(styles.panel, className)}
-        style={variant === 'scene' ? { animation: SCENE_PANEL_ANIMATION } : undefined}
+        style={
+          variant === 'scene' ? { animation: SCENE_PANEL_ANIMATION } : undefined
+        }
       >
         {closeLabel && (
           <button

@@ -49,9 +49,7 @@ export function CaseModal({
               <h3 className="text-gold text-xs font-bold tracking-[0.16em] uppercase">
                 {objectiveLabel}
               </h3>
-              <p className="mt-1.5 leading-7 text-[#fff9ef]/90">
-                {objective}
-              </p>
+              <p className="mt-1.5 leading-7 text-[#fff9ef]/90">{objective}</p>
             </div>
           </div>
         </div>

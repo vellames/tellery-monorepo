@@ -23,7 +23,7 @@ export function CreditsAvailableBadge({
   const [open, setOpen] = useState(false);
   const { data: count, isLoading } = useAvailableCredits();
 
-  const displayCount = isLoading ? '…' : count ?? 0;
+  const displayCount = isLoading ? '…' : (count ?? 0);
 
   return (
     <>

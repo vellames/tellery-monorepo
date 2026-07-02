@@ -23,7 +23,9 @@ export class ResendMailer implements IMailer {
     });
 
     if (error) {
-      throw new Error(`[email] resend failed: ${error.name} - ${error.message}`);
+      throw new Error(
+        `[email] resend failed: ${error.name} - ${error.message}`
+      );
     }
 
     void data;

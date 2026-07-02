@@ -44,17 +44,14 @@ describe('CreditsAvailableBadge', () => {
 
     await user.click(screen.getByRole('button'));
 
-    expect(
-      screen.getByText('Subscribe for more credits')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Subscribe for more credits')).toBeInTheDocument();
   });
 
   it('hides the subscribe link when there is an active subscription', async () => {
     const user = userEvent.setup();
-    renderWithProviders(
-      <CreditsAvailableBadge hasActiveSubscription />,
-      { locale: 'en' }
-    );
+    renderWithProviders(<CreditsAvailableBadge hasActiveSubscription />, {
+      locale: 'en',
+    });
 
     await user.click(screen.getByRole('button'));
 

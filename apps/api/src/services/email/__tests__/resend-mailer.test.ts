@@ -16,7 +16,10 @@ describe('ResendMailer', () => {
   });
 
   it('creates the client with the provided api token', () => {
-    new ResendMailer({ token: 're_test_token', from: 'Tellery <noreply@example.com>' });
+    new ResendMailer({
+      token: 're_test_token',
+      from: 'Tellery <noreply@example.com>',
+    });
 
     expect(Resend).toHaveBeenCalledWith('re_test_token');
   });
@@ -63,6 +66,8 @@ describe('ResendMailer', () => {
         html: '<p>html</p>',
         text: 'plain',
       })
-    ).rejects.toThrow('[email] resend failed: validation_error - Invalid email');
+    ).rejects.toThrow(
+      '[email] resend failed: validation_error - Invalid email'
+    );
   });
 });

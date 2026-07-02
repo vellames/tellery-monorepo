@@ -108,7 +108,10 @@ describe('Modal', () => {
         </Modal>
       );
 
-      expect(screen.getByRole('dialog')).toHaveAttribute('aria-label', 'Briefing');
+      expect(screen.getByRole('dialog')).toHaveAttribute(
+        'aria-label',
+        'Briefing'
+      );
     });
 
     it('uses the bottom-sheet layout on mobile', () => {
