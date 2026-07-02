@@ -148,6 +148,11 @@ describe('buildSessionStateResponse', () => {
             },
           ],
           messages: [
+            {
+              role: 'system',
+              content: 'base-prompt',
+              createdAt: new Date('2026-01-01'),
+            },
             { role: 'user', content: 'oi', createdAt: new Date('2026-01-01') },
             {
               role: 'character',
@@ -198,6 +203,8 @@ describe('buildSessionStateResponse', () => {
     expect(JSON.stringify(character)).not.toContain('GM-ONLY');
     expect(JSON.stringify(character)).not.toContain('GM-SECRET');
     expect(JSON.stringify(character)).not.toContain('intent-gm');
+    expect(JSON.stringify(character)).not.toContain('base-prompt');
+    expect(character.messages.every((m) => m.role !== 'system')).toBe(true);
   });
 
   it('maps objects without leaking reveal rules', () => {
