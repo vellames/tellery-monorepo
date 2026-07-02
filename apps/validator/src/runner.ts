@@ -1,6 +1,12 @@
 import { GameApiClient, SessionStateResponse } from './api-client';
 import { Investigator, PastAction } from './investigator';
 
+export interface DetectedIntentLog {
+  intentId: string;
+  confidence: number;
+  reasoning: string;
+}
+
 export interface TurnLog {
   turn: number;
   stateType: string | null;
@@ -9,6 +15,7 @@ export interface TurnLog {
   reasoning: string;
   message: string | null;
   reply: string | null;
+  detectedIntents: DetectedIntentLog[];
   discoveredClues: { title: string; description: string }[];
   error: string | null;
 }
@@ -139,6 +146,7 @@ export async function runSession(
       reasoning: action.reasoning,
       message: action.message,
       reply: null,
+      detectedIntents: [],
       discoveredClues: [],
       error: null,
     };
@@ -157,12 +165,23 @@ export async function runSession(
         action.message
       );
       turnLog.reply = result.reply;
+      turnLog.detectedIntents = result.detectedIntents.map((intent) => ({
+        intentId: intent.intentId,
+        confidence: intent.confidence,
+        reasoning: intent.reasoning,
+      }));
       turnLog.discoveredClues = result.discoveredClues.map((clue) => ({
         title: clue.title,
         description: clue.description,
       }));
 
       console.log(`  sent:      ${action.message}`);
+      if (result.detectedIntents.length > 0) {
+        const intentsFormatted = result.detectedIntents
+          .map((i) => `${i.intentId} (${i.confidence})`)
+          .join(', ');
+        console.log(`  intents:   ${intentsFormatted}`);
+      }
       if (result.reply) {
         console.log(`  reply:     ${result.reply}`);
       }
