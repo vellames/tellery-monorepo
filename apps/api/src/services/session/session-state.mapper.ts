@@ -1,3 +1,4 @@
+import { InteractionRole } from '@prisma/client';
 import type { HistorySessionWithRelations } from '../../repositories/SessionRepository';
 
 export interface SessionMessageDto {
@@ -143,6 +144,17 @@ const mapMessage = (message: {
   createdAt: message.createdAt,
 });
 
+/**
+ * Maps the persisted conversation messages, hiding internal `system` messages
+ * (the character/object agent prompt strings) from the player-facing response.
+ */
+const mapConversationMessages = (
+  messages: { role: string; content: string; createdAt: Date }[]
+): SessionMessageDto[] =>
+  messages
+    .filter((message) => message.role !== InteractionRole.system)
+    .map(mapMessage);
+
 export function buildSessionStateResponse(
   session: HistorySessionWithRelations
 ): SessionStateResponse {
@@ -180,7 +192,7 @@ export function buildSessionStateResponse(
         discoveredClues: characterClues
           .filter((clue) => clue.discovered)
           .map(toClueDto),
-        messages: character.messages.map(mapMessage),
+        messages: mapConversationMessages(character.messages),
       };
     }),
     objects: session.objectStates.map((object) => ({
@@ -196,7 +208,7 @@ export function buildSessionStateResponse(
       discoveredClues: object.clueRevealRules
         .filter((rule) => rule.clue.discovered)
         .map((rule) => toClueDto(rule.clue)),
-      messages: object.messages.map(mapMessage),
+      messages: mapConversationMessages(object.messages),
     })),
     locations: session.locationStates.map((location) => ({
       id: location.id,
