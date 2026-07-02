@@ -98,7 +98,14 @@
         "Quem jantou ontem?",
         "Teve briga no jantar?"
       ],
-      "keywords": ["jantar", "ceia", "ensaio", "mesa", "noite anterior", "presentes"]
+      "keywords": [
+        "jantar",
+        "ceia",
+        "ensaio",
+        "mesa",
+        "noite anterior",
+        "presentes"
+      ]
     },
     {
       "id": "perguntar_sobre_veneno",
@@ -132,7 +139,13 @@
         "Lucía estava onde ontem?",
         "Como Lucía achou o corpo?"
       ],
-      "keywords": ["Lucía", "dama-de-honra", "amiga", "melhor amiga", "sentimentos"]
+      "keywords": [
+        "Lucía",
+        "dama-de-honra",
+        "amiga",
+        "melhor amiga",
+        "sentimentos"
+      ]
     },
     {
       "id": "perguntar_sobre_rafael",
@@ -158,7 +171,14 @@
         "Esteban estava onde ontem?",
         "O que Esteban achava de Rafael?"
       ],
-      "keywords": ["Esteban", "patriarca", "Don", "família", "tequila", "opinião"]
+      "keywords": [
+        "Esteban",
+        "patriarca",
+        "Don",
+        "família",
+        "tequila",
+        "opinião"
+      ]
     },
     {
       "id": "perguntar_sobre_sofia",
@@ -197,7 +217,14 @@
         "Carmen notou algo estranho?",
         "Que horas Carmen se recolheu?"
       ],
-      "keywords": ["Carmen", "Doña", "madrasta", "matriarca", "testemunhou", "viu"]
+      "keywords": [
+        "Carmen",
+        "Doña",
+        "madrasta",
+        "matriarca",
+        "testemunhou",
+        "viu"
+      ]
     },
     {
       "id": "perguntar_parentesco_sofia",
@@ -210,7 +237,15 @@
         "Quem é a mãe de Sofía?",
         "Sofía é parente de sangue?"
       ],
-      "keywords": ["mãe", "pai", "filha", "parentesco", "sangue", "origem", "verdadeira"]
+      "keywords": [
+        "mãe",
+        "pai",
+        "filha",
+        "parentesco",
+        "sangue",
+        "origem",
+        "verdadeira"
+      ]
     },
     {
       "id": "perguntar_sentimentos_lucia",
@@ -223,7 +258,15 @@
         "Lucía sentia ciúmes de Valentina?",
         "Lucía, o que você sentia pelo noivo?"
       ],
-      "keywords": ["sentimentos", "amor", "ciúmes", "gostava", "raiva", "ressentimento", "Rafael"]
+      "keywords": [
+        "sentimentos",
+        "amor",
+        "ciúmes",
+        "gostava",
+        "raiva",
+        "ressentimento",
+        "Rafael"
+      ]
     },
     {
       "id": "perguntar_onde_rafael",
@@ -236,7 +279,14 @@
         "Com quem Rafael estava?",
         "Por que Rafael faltou ao brinde?"
       ],
-      "keywords": ["onde", "paradeiro", "meia-noite", "faltou", "com quem", "ausente"]
+      "keywords": [
+        "onde",
+        "paradeiro",
+        "meia-noite",
+        "faltou",
+        "com quem",
+        "ausente"
+      ]
     },
     {
       "id": "inspecionar_objeto",
@@ -249,7 +299,14 @@
         "Olho isso com atenção",
         "Inspeciono as taças"
       ],
-      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes", "observar"]
+      "keywords": [
+        "examinar",
+        "inspecionar",
+        "olhar",
+        "objeto",
+        "detalhes",
+        "observar"
+      ]
     },
     {
       "id": "acusar_lucia",
@@ -385,21 +442,31 @@
         },
         {
           "clueId": "clue_rafael_absent",
-          "triggerIntents": ["perguntar_sobre_o_brinde", "perguntar_sobre_rafael"],
+          "triggerIntents": [
+            "perguntar_sobre_o_brinde",
+            "perguntar_sobre_rafael"
+          ],
           "requiresClueIds": [],
           "revealText": "Lucía explica que o brinde era para ser a dois, à meia-noite, mas que a segunda taça ficou intocada — Rafael nunca chegou à glorieta.",
           "responseGuidance": "Deve soar magoada ao mencionar a ausência de Rafael, sem explicar por que isso a afeta tanto."
         },
         {
           "clueId": "clue_lucia_found_body",
-          "triggerIntents": ["perguntar_sobre_morte", "perguntar_sobre_lucia", "perguntar_sobre_carmen"],
+          "triggerIntents": [
+            "perguntar_sobre_morte",
+            "perguntar_sobre_lucia",
+            "perguntar_sobre_carmen"
+          ],
           "requiresClueIds": [],
           "revealText": "Lucía afirma ter sido a primeira a chegar à glorieta ao amanhecer, depois de Valentina não responder às chamadas.",
           "responseGuidance": "Deve apresentar isso como ocorrência natural, de quem foi buscar a amiga."
         },
         {
           "clueId": "clue_wedding_today",
-          "triggerIntents": ["perguntar_sobre_casamento", "perguntar_sobre_lucia"],
+          "triggerIntents": [
+            "perguntar_sobre_casamento",
+            "perguntar_sobre_lucia"
+          ],
           "requiresClueIds": [],
           "revealText": "Lucía lembra que o casamento de Valentina com Rafael aconteceria ao pôr do sol deste dia, e que a véspera foi de jantar de ensaio e preparativos.",
           "responseGuidance": "Deve falar do casamento com um misto de orgulho pela amiga e algo não dito."
@@ -675,14 +742,20 @@
       "clueRevealRules": [
         {
           "clueId": "clue_wedding_today",
-          "triggerIntents": ["perguntar_sobre_casamento", "perguntar_sobre_esteban"],
+          "triggerIntents": [
+            "perguntar_sobre_casamento",
+            "perguntar_sobre_esteban"
+          ],
           "requiresClueIds": [],
           "revealText": "Don Esteban confirma que o casamento de Valentina com Rafael aconteceria ao pôr do sol, com o jantar de ensaio na véspera.",
           "responseGuidance": "Deve falar do casamento com formalidade, deixando entrever descontentamento sem declará-lo."
         },
         {
           "clueId": "clue_ponche_dinner",
-          "triggerIntents": ["perguntar_sobre_jantar", "perguntar_sobre_esteban"],
+          "triggerIntents": [
+            "perguntar_sobre_jantar",
+            "perguntar_sobre_esteban"
+          ],
           "requiresClueIds": [],
           "revealText": "Don Esteban descreve o jantar de ensaio da véspera: longa mesa, toda a família reunida, brindes e conversas que se estenderam pela noite.",
           "responseGuidance": "Deve relatar o jantar com sobriedade de anfitrião, sem detalhar tensões."
@@ -973,20 +1046,14 @@
         },
         {
           "clueId": "clue_mateo_airport_alibi",
-          "triggerIntents": [
-            "perguntar_sobre_mateo",
-            "perguntar_sobre_carmen"
-          ],
+          "triggerIntents": ["perguntar_sobre_mateo", "perguntar_sobre_carmen"],
           "requiresClueIds": ["clue_mateo_confrontation"],
           "revealText": "Doña Carmen confirma que Mateo pegou o carro por volta das onze da noite e partiu para o aeroporto, dizendo-se de volta para a cidade.",
           "responseGuidance": "Deve confirmar como quem anota partidas e chegadas por hábito."
         },
         {
           "clueId": "clue_sofia_chapel_alibi",
-          "triggerIntents": [
-            "perguntar_sobre_sofia",
-            "perguntar_sobre_carmen"
-          ],
+          "triggerIntents": ["perguntar_sobre_sofia", "perguntar_sobre_carmen"],
           "requiresClueIds": ["clue_sofia_inherits"],
           "revealText": "Doña Carmen confirma que Sofía passou a madrugada na capela com o padre, preparando os arranjos, e de lá não saiu até o amanhecer.",
           "responseGuidance": "Deve falar de Sofília com proteção velada."
@@ -1119,13 +1186,21 @@
       "clueRevealRules": [
         {
           "clueId": "clue_two_glasses",
-          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_o_brinde", "perguntar_sobre_morte"],
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_o_brinde",
+            "perguntar_sobre_morte"
+          ],
           "requiresClueIds": [],
           "revealText": "Havia duas taças servidas na glorieta. Só uma foi bebida — a que está caída. A outra continua cheia, intacta, como se quem deveria beber nunca tivesse chegado."
         },
         {
           "clueId": "clue_rafael_absent",
-          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_o_brinde", "perguntar_sobre_rafael"],
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_o_brinde",
+            "perguntar_sobre_rafael"
+          ],
           "requiresClueIds": [],
           "revealText": "A taça que permanece cheia indica que a segunda pessoa do brinde nunca chegou. Pelo combinado, essa pessoa seria Rafael — que esteve ausente a noite toda da glorieta."
         }
@@ -1144,7 +1219,11 @@
       "clueRevealRules": [
         {
           "clueId": "clue_bottle_tampered",
-          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_o_brinde", "perguntar_sobre_veneno"],
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_o_brinde",
+            "perguntar_sobre_veneno"
+          ],
           "requiresClueIds": [],
           "revealText": "Examinando a garrafa, nota-se que o lacre foi rompido de forma estranha e o gargalo mostra vestígios de que algo foi dissolvido dentro antes de servir — a garrafa foi violada de propósito."
         },
@@ -1188,7 +1267,11 @@
       "clueRevealRules": [
         {
           "clueId": "clue_earring_found",
-          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_morte", "perguntar_sobre_o_brinde"],
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_morte",
+            "perguntar_sobre_o_brinde"
+          ],
           "requiresClueIds": [],
           "revealText": "Um brinco de pérola foi encontrado no chão da glorieta, indicando que alguém além de Valentina esteve no pavilhão antes do amanhecer."
         }
@@ -1245,7 +1328,11 @@
       "clueRevealRules": [
         {
           "clueId": "clue_lucias_diary",
-          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_lucia", "perguntar_sentimentos_lucia"],
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_lucia",
+            "perguntar_sentimentos_lucia"
+          ],
           "requiresClueIds": [],
           "revealText": "As páginas do caderno revelam, em caligrafia de Lucía, uma paixão antiga e obsessiva por Rafael e um ressentimento crescente contra Valentina, descrita como quem 'tomou' o que era dela. Há anotações recentes sobre o brinde e sobre a glorieta."
         }
@@ -1264,7 +1351,11 @@
       "clueRevealRules": [
         {
           "clueId": "clue_sofia_illegitimate",
-          "triggerIntents": ["inspecionar_objeto", "perguntar_parentesco_sofia", "perguntar_sobre_sofia"],
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_parentesco_sofia",
+            "perguntar_sobre_sofia"
+          ],
           "requiresClueIds": [],
           "revealText": "A certidão registra Sofília Cruz como filha de Don Esteban Reyes, fora do casamento. Sofília é, portanto, meia-irmã de Valentina — e não prima —, o que muda a linha de herança da hacienda."
         }

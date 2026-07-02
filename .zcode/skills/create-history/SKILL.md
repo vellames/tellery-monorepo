@@ -137,12 +137,12 @@ and gets nothing back — that reads as a bug, not a mystery. Prefer broad,
 conversational intents (`ask_about_medication`, `ask_about_motive`,
 `ask_about_alibi`) that match many phrasings of the same idea.
 
-| Bad (too specific)                          | Good (broad, natural)        |
-| ------------------------------------------- | ---------------------------- |
-| `ask_if_lucia_poisoned_the_champagne_glass` | `ask_about_poison`           |
-| `ask_beatriz_why_she_swapped_pills_at_22h`  | `ask_about_motive`           |
-| `ask_where_rafael_was_at_midnight_exactly`  | `ask_about_alibi`            |
-| `press_lucia_stage_3_botic_access`          | `press_for_confession`       |
+| Bad (too specific)                          | Good (broad, natural)  |
+| ------------------------------------------- | ---------------------- |
+| `ask_if_lucia_poisoned_the_champagne_glass` | `ask_about_poison`     |
+| `ask_beatriz_why_she_swapped_pills_at_22h`  | `ask_about_motive`     |
+| `ask_where_rafael_was_at_midnight_exactly`  | `ask_about_alibi`      |
+| `press_lucia_stage_3_botic_access`          | `press_for_confession` |
 
 **Concrete rules of thumb:**
 
@@ -248,14 +248,14 @@ feels generic.
   same "person in different clothes".
 - **Bad vs good character prompt openers:**
 
-  | Bad (converges)                              | Good (explicitly distinct)                                   |
-  | -------------------------------------------- | ------------------------------------------------------------ |
-  | "a Mexican man in his thirties"              | "a Mestizo Mexican man in his early thirties, warm tan skin, sharp jawline, wavy dark brown hair" |
-  | "an elegant woman"                           | "an Afro-Mexican woman, deep brown skin, natural coily hair pulled back" |
-  | "an older man, grey hair"                    | "a White older man, ruddy fair skin, receding steel-grey hair, thick grey beard" |
+  | Bad (converges)                 | Good (explicitly distinct)                                                                        |
+  | ------------------------------- | ------------------------------------------------------------------------------------------------- |
+  | "a Mexican man in his thirties" | "a Mestizo Mexican man in his early thirties, warm tan skin, sharp jawline, wavy dark brown hair" |
+  | "an elegant woman"              | "an Afro-Mexican woman, deep brown skin, natural coily hair pulled back"                          |
+  | "an older man, grey hair"       | "a White older man, ruddy fair skin, receding steel-grey hair, thick grey beard"                  |
 
 - When you write the whole cast, read all character prompts together and check
-  they describe visibly *different* people — not the same default face in
+  they describe visibly _different_ people — not the same default face in
   different outfits.
 
 ### Validate coverage
@@ -390,15 +390,15 @@ signal when a clue fails to unlock (the trigger intent wasn't detected, or a
 
 Available flags (all optional; anything not passed falls back to `.env`):
 
-| Flag              | Env equivalent                |
-| ----------------- | ----------------------------- |
-| `--slug`          | `VALIDATOR_HISTORY_SLUG`      |
-| `--email`         | `VALIDATOR_EMAIL`             |
-| `--password`      | `VALIDATOR_PASSWORD`          |
-| `--api-url`       | `VALIDATOR_API_URL`           |
-| `--model`         | `VALIDATOR_INVESTIGATOR_MODEL`|
-| `--max-iterations`| `VALIDATOR_MAX_ITERATIONS`    |
-| `--output`        | `VALIDATOR_OUTPUT`            |
+| Flag               | Env equivalent                 |
+| ------------------ | ------------------------------ |
+| `--slug`           | `VALIDATOR_HISTORY_SLUG`       |
+| `--email`          | `VALIDATOR_EMAIL`              |
+| `--password`       | `VALIDATOR_PASSWORD`           |
+| `--api-url`        | `VALIDATOR_API_URL`            |
+| `--model`          | `VALIDATOR_INVESTIGATOR_MODEL` |
+| `--max-iterations` | `VALIDATOR_MAX_ITERATIONS`     |
+| `--output`         | `VALIDATOR_OUTPUT`             |
 
 The validator logs in, starts a session, runs an LLM investigator (default
 `deepseek/deepseek-v4-flash`) for up to 50 turns, and writes a report.
