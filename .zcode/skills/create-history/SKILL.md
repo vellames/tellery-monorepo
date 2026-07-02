@@ -261,6 +261,56 @@ of overwriting a shared one.
 npm start -w @ai-history/validator -- --slug <slug>
 ```
 
+### Watch the run live (REQUIRED)
+
+**The user wants to follow the investigation as it unfolds — do NOT just fire the
+validator and report the final result.** Run it in the background with a long
+timeout (the run can take 10–15 min for a 30-clue history) and tail the output
+log in a loop so the user sees each turn in real time.
+
+Pattern:
+
+```sh
+# 1. launch in background (timeout ~900000ms = 15 min for a full run)
+npm start -w @ai-history/validator -- --slug <slug>   # run_in_background: true, timeout: 900000
+
+# 2. wait, then tail — repeat every ~90–150s until the run finishes
+sleep 90 && tail -40 <stdout-log-path>
+```
+
+Each turn prints, in order:
+
+```
+[turn N] -> <type> / <entity name>
+  reasoning: <why the investigator chose this>
+  sent:      <utterance sent to the entity>
+  intents:   <intentId> (<confidence>), ...   # only for character turns
+  reply:     <character's in-character response>   # only for character turns
+  discovered: <clue title>, <clue title>           # when new clues unlock
+  progress:  <N> clues discovered so far
+```
+
+Keep tailing and surfacing progress to the user (e.g. "turn 12, 14/30 clues,
+just unlocked the Sofía half-sister twist") until the run ends with either
+`[validator] done — <n> clues in <t> turns (investigator decided to stop)`
+(success) or `max iterations` / an error (failure). The `intents:` line shows
+which intents the API detected and with what confidence — it's the key debug
+signal when a clue fails to unlock (the trigger intent wasn't detected, or a
+`requiresClueIds` prerequisite is missing).
+
+### Pitfalls
+
+- **Stale session → 409.** If a previous run was killed mid-investigation, the
+  session stays `active` in the DB and the next start fails with
+  `409: Você já tem uma sessão em andamento`. Abandon it before re-running:
+  ```sh
+  docker exec ai-history-postgres-1 psql -U postgres -d ai_history -c \
+    "UPDATE \"HistorySession\" SET status='abandoned' WHERE status='active';"
+  ```
+- **Background-task timeout ≠ failure.** Exit code 143 (SIGTERM) means the
+  harness killed the run for hitting its timeout, not a real error. Check the
+  last log line and stderr before treating it as a failure.
+
 Available flags (all optional; anything not passed falls back to `.env`):
 
 | Flag              | Env equivalent                |
