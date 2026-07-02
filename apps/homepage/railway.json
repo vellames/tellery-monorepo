@@ -5,6 +5,7 @@
     "dockerfilePath": "apps/homepage/Dockerfile",
     "watchPatterns": [
       "apps/homepage/**",
+      "packages/ui/**",
       "package.json",
       "package-lock.json",
       "turbo.json",
