@@ -503,7 +503,8 @@ async function main(): Promise<void> {
     'a-receita-secreta.json',
     'o-relicario-de-santa-luzia.json',
     'a-ultima-costura.json',
-    'o-envelope-pardo.json'
+    'o-envelope-pardo.json',
+    'o-quarto-escuro.json'
   ];
   for (const fileName of historyFiles) {
     await seedHistory(fileName, force);
