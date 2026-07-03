@@ -7,7 +7,8 @@ type NavCopy = {
   how: string;
   experience: string;
   premium: string;
-  cta: string;
+  createAccount: string;
+  signIn: string;
 };
 
 type HeroCopy = {
@@ -82,8 +83,8 @@ type InteractiveLandingProps = {
   copy: LandingCopy;
 };
 
-const APP_URL = 'https://app.tellery.ai';
-const FINAL_CTA_URL = 'https://app.tellery.com';
+const REGISTER_URL = 'https://app.tellery.ai/register';
+const SIGN_IN_URL = 'https://app.tellery.ai';
 const PRIVACY_URL = 'https://app.tellery.ai/privacy';
 const TERMS_URL = 'https://app.tellery.ai/terms';
 
@@ -113,9 +114,14 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
           <a href="#experience">{copy.nav.experience}</a>
           <a href="#premium">{copy.nav.premium}</a>
         </nav>
-        <a className="header-cta" href={APP_URL}>
-          {copy.nav.cta}
-        </a>
+        <div className="header-actions">
+          <a className="header-sign-in" href={SIGN_IN_URL}>
+            {copy.nav.signIn}
+          </a>
+          <a className="header-cta" href={REGISTER_URL}>
+            {copy.nav.createAccount}
+          </a>
+        </div>
       </header>
 
       <main id="top">
@@ -125,7 +131,10 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
             <h1>{copy.hero.title}</h1>
             <p className="hero-subtitle">{copy.hero.subtitle}</p>
             <div className="hero-actions">
-              <a className="primary-button magnetic-button" href={APP_URL}>
+              <a
+                className="primary-button magnetic-button"
+                href={REGISTER_URL}
+              >
                 {copy.hero.primaryCta}
               </a>
               <a className="secondary-button" href="#how">
@@ -256,7 +265,7 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
           <p className="eyebrow">{copy.finalCta.eyebrow}</p>
           <h2>{copy.finalCta.title}</h2>
           <p>{copy.finalCta.subtitle}</p>
-          <a className="primary-button magnetic-button" href={FINAL_CTA_URL}>
+          <a className="primary-button magnetic-button" href={REGISTER_URL}>
             {copy.finalCta.cta}
           </a>
         </section>

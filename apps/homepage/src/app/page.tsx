@@ -20,7 +20,8 @@ export default async function HomePage() {
       how: t('nav.how'),
       experience: t('nav.experience'),
       premium: t('nav.premium'),
-      cta: t('nav.cta'),
+      createAccount: t('nav.createAccount'),
+      signIn: t('nav.signIn'),
     },
     hero: {
       eyebrow: t('hero.eyebrow'),

@@ -143,7 +143,9 @@ a {
 
 .brand,
 .site-nav,
-.header-cta {
+.header-actions,
+.header-cta,
+.header-sign-in {
   position: relative;
   z-index: 1;
 }
@@ -174,6 +176,24 @@ a {
 
 .site-nav a:hover {
   color: var(--primary);
+}
+
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-sign-in {
+  padding: 11px 14px;
+  font-size: 0.86rem;
+  font-weight: 850;
+  color: var(--primary);
+  transition: color 180ms ease;
+}
+
+.header-sign-in:hover {
+  color: rgba(110, 31, 43, 0.7);
 }
 
 .header-cta,
@@ -1089,6 +1109,11 @@ p {
 
   .header-cta {
     padding: 10px 13px;
+    font-size: 0.78rem;
+  }
+
+  .header-sign-in {
+    padding: 10px 10px;
     font-size: 0.78rem;
   }
 
