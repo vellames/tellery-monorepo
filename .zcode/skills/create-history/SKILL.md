@@ -287,6 +287,15 @@ Output: `output/<slug>/{history,location,object,characters,endings}/*.png` +
 `manifest.json`. (Note: this lands under `apps/image-generator/output/` because
 of the workspace CWD — that's a known limitation.)
 
+### Uploading to S3 is NOT part of this skill
+
+**Do NOT upload the generated images to S3.** The `coverImageUrl` /
+`thumbnailUrl` / `imageUrl` fields in the history JSON store S3 *keys*
+(`histories/<slug>/...`) only as references — the actual upload is handled
+separately, out of band, and is not a step in this pipeline. Generating the
+images locally and committing the JSON + image-map is enough; seeding and
+validating work with the keys alone.
+
 ## Phase 5 — Seed into the database
 
 1. Add the filename to the `historyFiles` array in `apps/api/src/seed.ts`.
