@@ -124,6 +124,50 @@ Every honest red herring needs an alibi or exculpatory clue reachable early.
 The validator's LLM will check and discard it — if there's no alibi, the
 investigator may mis-accuse. Mark the red-herring clue with `importance: "red_herring"`.
 
+### Intent design — optimize for experience, not difficulty
+
+`intentDefinitions` and the `triggerIntents` on rules/stages decide whether a
+player's natural phrasing unlocks a clue. The goal is a **smooth investigation
+that feels fair**, not a hard puzzle. Tune for **moderate** difficulty — never
+too easy, never too hard.
+
+**Too specific is the main trap.** An intent like `ask_beatriz_about_medication_swap_on_thursday`
+will only fire on a near-exact phrasing, so the player asks the right question
+and gets nothing back — that reads as a bug, not a mystery. Prefer broad,
+conversational intents (`ask_about_medication`, `ask_about_motive`,
+`ask_about_alibi`) that match many phrasings of the same idea.
+
+| Bad (too specific)                          | Good (broad, natural)  |
+| ------------------------------------------- | ---------------------- |
+| `ask_if_lucia_poisoned_the_champagne_glass` | `ask_about_poison`     |
+| `ask_beatriz_why_she_swapped_pills_at_22h`  | `ask_about_motive`     |
+| `ask_where_rafael_was_at_midnight_exactly`  | `ask_about_alibi`      |
+| `press_lucia_stage_3_botic_access`          | `press_for_confession` |
+
+**Concrete rules of thumb:**
+
+- **Keep intent count moderate** (~8–12 for a 16-clue story, ~15–22 for a 30-clue
+  story). Most are reusable `ask_about_<topic>` + one `accuse_<character>` per
+  real suspect, plus the universal `inspect_object` / `press_for_confession` /
+  `off_topic`.
+- **Write 4–6 `keywords` per intent** using the everyday words a player would
+  actually say (`veneno`, `morte`, `brinde`, `álibi`), not investigator jargon.
+  Keyword matches force `confidence = 1.0`, so good keywords are the most
+  reliable way to make a clue reachable.
+- **Reuse the same intent across many `triggerIntents`.** A single
+  `ask_about_motive` can gate motive-flavored rules on several characters —
+  that's how the player "asks about motive" anywhere and gets relevant reveals.
+- **Never create an intent whose only purpose is to gate exactly one rule with
+  a niche phrasing.** If a clue needs that, broaden the intent or fold it into
+  an existing topic intent.
+- **Validate by reading the `intents:` line during Phase 6.** If the
+  investigator is asking the right question but the clue still won't unlock,
+  the intent is too specific — broaden its `keywords`/`examples`, or re-point
+  the rule's `triggerIntents` at a broader intent.
+
+The player should never feel they have to guess the developer's exact wording.
+When in doubt, make the intent broader.
+
 ## Phase 2 — Audit consistency
 
 Run the audit script bundled with this skill. It checks:
@@ -138,7 +182,7 @@ Run the audit script bundled with this skill. It checks:
 **Run:**
 
 ```sh
-node .opencode/skills/create-history/audit.js mocks/<slug>.json
+node .opencode/skills/create-history/scripts/audit.js mocks/<slug>.json
 ```
 
 Expected output: `OK — nenhuma inconsistência.` and `<all>/<all> pistas alcançáveis`.
@@ -181,6 +225,39 @@ Structure (mirror `mocks/o-bilhete-na-mesa-7-images-map.json`):
 - Every prompt should reference the visual clues that matter for that asset.
 - `coverImageUrl` / `thumbnailUrl` / `imageUrl` in the history JSON must match the `<slug>` and section names used here.
 
+### Character diversity (CRITICAL)
+
+Without explicit guidance, the image model converges on a single default
+archetype and every portrait comes out looking the same. **You MUST make the
+cast visibly distinct** — different skin tones, ages, builds, hair, and facial
+features. A cast that is all the same ethnicity/skin tone breaks immersion and
+feels generic.
+
+- **Specify ethnicity/skin tone explicitly in every character prompt.** State it
+  plainly: "a young White woman with fair skin and freckles", "a middle-aged
+  Afro-Brazilian man with dark brown skin", "a Mestizo Mexican woman with warm
+  tan skin", etc. Do NOT default to a vague nationality ("a Mexican man") — that
+  is what causes the convergence.
+- **Vary the cast.** If the story has 3+ characters, the cast should visibly span
+  a range (e.g. White, Pardo/mixed, Black), matching what's plausible for the
+  setting. Mexican settings are overwhelmingly Mestizo but realistically include
+  Indigenous, White, and Afro-Mexican people — reflect that range. Brazilian
+  settings are multiethnic by default.
+- **Differentiate beyond skin tone too**: age, build, hair color/texture, facial
+  features, facial hair, scars, glasses. No two characters should read as the
+  same "person in different clothes".
+- **Bad vs good character prompt openers:**
+
+  | Bad (converges)                 | Good (explicitly distinct)                                                                        |
+  | ------------------------------- | ------------------------------------------------------------------------------------------------- |
+  | "a Mexican man in his thirties" | "a Mestizo Mexican man in his early thirties, warm tan skin, sharp jawline, wavy dark brown hair" |
+  | "an elegant woman"              | "an Afro-Mexican woman, deep brown skin, natural coily hair pulled back"                          |
+  | "an older man, grey hair"       | "a White older man, ruddy fair skin, receding steel-grey hair, thick grey beard"                  |
+
+- When you write the whole cast, read all character prompts together and check
+  they describe visibly _different_ people — not the same default face in
+  different outfits.
+
 ### Validate coverage
 
 Every `imageUrl` referenced in `<slug>.json` must have a matching prompt in
@@ -209,6 +286,15 @@ existing), `--no-prefix-master`. Requires `WAVESPEED_API_KEY` in `.env`.
 Output: `output/<slug>/{history,location,object,characters,endings}/*.png` +
 `manifest.json`. (Note: this lands under `apps/image-generator/output/` because
 of the workspace CWD — that's a known limitation.)
+
+### Uploading to S3 is NOT part of this skill
+
+**Do NOT upload the generated images to S3.** The `coverImageUrl` /
+`thumbnailUrl` / `imageUrl` fields in the history JSON store S3 *keys*
+(`histories/<slug>/...`) only as references — the actual upload is handled
+separately, out of band, and is not a step in this pipeline. Generating the
+images locally and committing the JSON + image-map is enough; seeding and
+validating work with the keys alone.
 
 ## Phase 5 — Seed into the database
 
@@ -250,14 +336,81 @@ docker exec ai-history-postgres-1 psql -U postgres -d ai_history -t -c \
 ## Phase 6 — Validate with the LLM investigator
 
 Requires (in `.env`): `VALIDATOR_EMAIL`, `VALIDATOR_PASSWORD`, `OPENROUTER_API_KEY`.
-Set `VALIDATOR_HISTORY_SLUG=<slug>` in `.env` (default is the bilhete).
+
+**Pass the slug via CLI args** — do NOT edit `VALIDATOR_HISTORY_SLUG` in `.env`.
+The validator resolves config with precedence **CLI arg > env > default**, so
+multiple histories can be validated in parallel without touching `.env`, and
+each run writes to its own report file (`validator-output-<slug>.txt`) instead
+of overwriting a shared one.
 
 ```sh
-npm start -w @ai-history/validator
+npm start -w @ai-history/validator -- --slug <slug>
 ```
 
+### Watch the run live (REQUIRED)
+
+**The user wants to follow the investigation as it unfolds — do NOT just fire the
+validator and report the final result.** Run it in the background with a long
+timeout (the run can take 10–15 min for a 30-clue history) and tail the output
+log in a loop so the user sees each turn in real time.
+
+Pattern:
+
+```sh
+# 1. launch in background (timeout ~900000ms = 15 min for a full run)
+npm start -w @ai-history/validator -- --slug <slug>   # run_in_background: true, timeout: 900000
+
+# 2. wait, then tail — repeat every ~90–150s until the run finishes
+sleep 90 && tail -40 <stdout-log-path>
+```
+
+Each turn prints, in order:
+
+```
+[turn N] -> <type> / <entity name>
+  reasoning: <why the investigator chose this>
+  sent:      <utterance sent to the entity>
+  intents:   <intentId> (<confidence>), ...   # only for character turns
+  reply:     <character's in-character response>   # only for character turns
+  discovered: <clue title>, <clue title>           # when new clues unlock
+  progress:  <N> clues discovered so far
+```
+
+Keep tailing and surfacing progress to the user (e.g. "turn 12, 14/30 clues,
+just unlocked the Sofía half-sister twist") until the run ends with either
+`[validator] done — <n> clues in <t> turns (investigator decided to stop)`
+(success) or `max iterations` / an error (failure). The `intents:` line shows
+which intents the API detected and with what confidence — it's the key debug
+signal when a clue fails to unlock (the trigger intent wasn't detected, or a
+`requiresClueIds` prerequisite is missing).
+
+### Pitfalls
+
+- **Stale session → 409.** If a previous run was killed mid-investigation, the
+  session stays `active` in the DB and the next start fails with
+  `409: Você já tem uma sessão em andamento`. Abandon it before re-running:
+  ```sh
+  docker exec ai-history-postgres-1 psql -U postgres -d ai_history -c \
+    "UPDATE \"HistorySession\" SET status='abandoned' WHERE status='active';"
+  ```
+- **Background-task timeout ≠ failure.** Exit code 143 (SIGTERM) means the
+  harness killed the run for hitting its timeout, not a real error. Check the
+  last log line and stderr before treating it as a failure.
+
+Available flags (all optional; anything not passed falls back to `.env`):
+
+| Flag               | Env equivalent                 |
+| ------------------ | ------------------------------ |
+| `--slug`           | `VALIDATOR_HISTORY_SLUG`       |
+| `--email`          | `VALIDATOR_EMAIL`              |
+| `--password`       | `VALIDATOR_PASSWORD`           |
+| `--api-url`        | `VALIDATOR_API_URL`            |
+| `--model`          | `VALIDATOR_INVESTIGATOR_MODEL` |
+| `--max-iterations` | `VALIDATOR_MAX_ITERATIONS`     |
+| `--output`         | `VALIDATOR_OUTPUT`             |
+
 The validator logs in, starts a session, runs an LLM investigator (default
-`deepseek/deepseek-v4-pro`) for up to 50 turns, and writes a report.
+`deepseek/deepseek-v4-flash`) for up to 50 turns, and writes a report.
 
 **Success criteria:**
 
@@ -265,7 +418,7 @@ The validator logs in, starts a session, runs an LLM investigator (default
 - `stopReason: investigator decided to stop` (resolved) — NOT hitting `maxIterations`
 - Every entity shows `<n>/<n>` in the ENTITY PROGRESS section
 
-Report lands at `apps/validator/validator-output.txt`.
+Report lands at `apps/validator/validator-output-<slug>.txt` (override with `--output`).
 
 If the investigator gets stuck or mis-accuses, the problem is usually:
 

@@ -504,7 +504,9 @@ async function main(): Promise<void> {
     'o-relicario-de-santa-luzia.json',
     'a-ultima-costura.json',
     'o-envelope-pardo.json',
-    'o-quarto-escuro.json'
+    'o-quarto-escuro.json',
+    'o-jogo-do-silencio.json',
+    'a-frequencia-fantasma.json'
   ];
   for (const fileName of historyFiles) {
     await seedHistory(fileName, force);

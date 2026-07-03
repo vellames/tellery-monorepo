@@ -83,16 +83,20 @@ function buildLlmMessages(
     'ou um card final elegante alinhado à paleta. A "narration" do CTA é o gancho de conversão (ex.: ' +
     '"Você consegue descobrir quem foi? Resolva o mistério agora."). Não use um CTA genérico — ' +
     'amarre-o ao mistério específico da história.\n' +
-    '9. Use "styleNote" (opcional, string única) para declarar a identidade visual global ' +
+    '9. O Tellery É UM WEB APP (rodando no navegador). NÃO existe aplicativo para baixar. ' +
+    'NUNCA use as palavras "baixe", "baixar", "download", "app store", "play store", "instale" ou ' +
+    'qualquer menção a instalação. Use sempre verbos de acesso web: "jogue", "acesse", "investigue", ' +
+    '"descubra", "entre", "comece a jogar". Falar em "app Tellery" é ok, mas nunca em "baixar o app".\n' +
+    '10. Use "styleNote" (opcional, string única) para declarar a identidade visual global ' +
     '(paleta, estilo, iluminação) que se aplica a todos os shots, inclusive o CTA.\n' +
-    '10. Respeite qualquer "artDirection" fornecida como base para o "styleNote".\n' +
-    '11. Inclua "socialCaption": uma legenda pronta para postar no TikTok/Instagram Reels, ' +
+    '11. Respeite qualquer "artDirection" fornecida como base para o "styleNote".\n' +
+    '12. Inclua "socialCaption": uma legenda pronta para postar no TikTok/Instagram Reels, ' +
     'ajustada ao criativo. Deve ter um gancho curto na primeira linha, contexto do mistério ' +
-    '(sem spoiler), um CTA convidando a jogar/resolver, e hashtags relevantes (mínimo 5). ' +
-    'Mencione o app "Tellery" no corpo da legenda. O objeto "socialCaption" tem dois campos: ' +
-    '"caption" (texto completo, já com #hashtags embutidas ao final) e "hashtags" (lista apenas ' +
-    'das tags sem a #, para uso programático).\n' +
-    '12. Retorne APENAS um objeto JSON: ' +
+    '(sem spoiler), um CTA convidando a jogar/resolver (sem mencionar download), e hashtags ' +
+    'relevantes (mínimo 5). Mencione o app "Tellery" no corpo da legenda. O objeto "socialCaption" ' +
+    'tem dois campos: "caption" (texto completo, já com #hashtags embutidas ao final) e "hashtags" ' +
+    '(lista apenas das tags sem a #, para uso programático).\n' +
+    '13. Retorne APENAS um objeto JSON: ' +
     '{"styleNote": string, "shots": [{"timecode": string, "visual": string, "narration": string}], ' +
     '"socialCaption": {"caption": string, "hashtags": string[]}}.';
 
