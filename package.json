@@ -17,7 +17,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "verify": "npm run format && npm run lint && npm run typecheck && npm run build && npm run test",
+    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run build && npm run test",
     "docker:dev": "npm run docker:dev -w @ai-history/api",
     "docker:dev:down": "npm run docker:dev:down -w @ai-history/api",
     "docker:dev:logs": "npm run docker:dev:logs -w @ai-history/api",

@@ -131,10 +131,7 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
             <h1>{copy.hero.title}</h1>
             <p className="hero-subtitle">{copy.hero.subtitle}</p>
             <div className="hero-actions">
-              <a
-                className="primary-button magnetic-button"
-                href={REGISTER_URL}
-              >
+              <a className="primary-button magnetic-button" href={REGISTER_URL}>
                 {copy.hero.primaryCta}
               </a>
               <a className="secondary-button" href="#how">
