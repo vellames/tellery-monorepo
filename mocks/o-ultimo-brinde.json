@@ -1,0 +1,1892 @@
+{
+  "id": "history_o_ultimo_brinde",
+  "createdAt": "2026-07-02T00:00:00.000Z",
+  "updatedAt": "2026-07-02T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-ultimo-brinde",
+  "title": "O Último Brinde",
+  "subtitle": "Uma noiva, um brinde à meia-noite e uma taça que só ela bebeu",
+  "teaser": "Na manhã do casamento, Valentina Reyes aparece morta na glorieta da hacienda, ao lado de duas taças de champanhe — mas só a dela foi servida. Cada pessoa na casa esconde uma paixão, um ressentimento ou uma mentira. O amor, nesta família, sempre custa caro.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 15,
+  "status": "published",
+  "isFeatured": true,
+  "isFree": true,
+  "version": 1,
+  "coverImageUrl": "histories/o-ultimo-brinde/history/cover.jpg",
+  "thumbnailUrl": "histories/o-ultimo-brinde/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "Valentina Reyes morreu na noite anterior, na glorieta onde seria o brinde privado do casamento. Havia duas taças. Só a dela foi bebida.",
+    "fullText": "São seis da manhã na Hacienda Las Palmas, no coração de Jalisco. O casamento de Valentina Reyes — herdeira da dinastia da tequila Reyes — com Rafael Domínguez aconteceria hoje ao pôr do sol. Em vez dos preparativos, há um corpo na glorieta do jardim, o pavilhão branco de onde se vê o campo de agave. Valentina está caída junto à mesinha de ferro, uma taça de champanhe derramada ao seu lado. Há duas taças no lugar — mas só uma foi servida. Quem combinou o brinde privado à meia-noite nunca apareceu. Don Esteban Reyes, o patriarca, reuniu os presentes na casa principal: Rafael, o noivo, que não compareceu ao brinde e não explica o porquê; Lucía, a dama-de-honra e melhor amiga de Valentina, que diz ter encontrado o corpo ao amanhecer; Doña Carmen, a madrasta de Valentina e senhora da casa, que observa a todos em silêncio; Sofía, prima de Valentina criada na família desde criança; Mateo, ex-namorado de Valentina, que reapareceu para a cerimônia; e o próprio Don Esteban, que nunca escondeu que este casamento não era bem o que queria para a filha. Cada um tem um motivo. Cada um esteve na hacienda. Cada um guarda um segredo. Cabe a você examinar a glorieta, percorrer a casa, ouvir as seis versões e descobrir quem, se alguém, serviu o último brinde de Valentina.",
+    "callToAction": "Examine a glorieta e a hacienda, converse com os seis presentes e reconstrua a noite do brinde que nunca acabou."
+  },
+  "objective": {
+    "mainQuestion": "Quem matou Valentina Reyes, como e por quê?",
+    "description": "Descubra quem serviu a taça envenenada, qual foi o veneno e de onde veio, e qual paixão ou segredo levou alguém a matar na manhã do casamento."
+  },
+  "intentDefinitions": [
+    {
+      "id": "perguntar_sobre_morte",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a morte de Valentina, o corpo, a cena da glorieta ou as circunstâncias.",
+      "examples": [
+        "Como Valentina morreu?",
+        "Quem encontrou o corpo?",
+        "O que houve na glorieta?"
+      ],
+      "keywords": [
+        "morte",
+        "morreu",
+        "corpo",
+        "cadáver",
+        "morta",
+        "glorieta",
+        "cena"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_o_brinde",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o brinde privado combinado para a meia-noite, as taças e o champanhe.",
+      "examples": [
+        "Como era o brinde?",
+        "Quem combinou o brinde?",
+        "Por que duas taças?"
+      ],
+      "keywords": [
+        "brinde",
+        "taça",
+        "taças",
+        "champanhe",
+        "meia-noite",
+        "encontro"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_casamento",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o casamento de Valentina com Rafael, os planos e o que a família achava.",
+      "examples": [
+        "Como era o casamento?",
+        "A família aprovava Rafael?",
+        "O casamento era certo?"
+      ],
+      "keywords": [
+        "casamento",
+        "núpcias",
+        "noivo",
+        "noiva",
+        "cerimônia",
+        "união"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_jantar",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o jantar de ensaio da noite anterior, quem esteve presente e o que aconteceu.",
+      "examples": [
+        "Como foi o jantar?",
+        "Quem jantou ontem?",
+        "Teve briga no jantar?"
+      ],
+      "keywords": [
+        "jantar",
+        "ceia",
+        "ensaio",
+        "mesa",
+        "noite anterior",
+        "presentes"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_veneno",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o veneno, a causa da morte, sintomas ou de onde poderia ter vindo.",
+      "examples": [
+        "Foi veneno?",
+        "Que veneno era?",
+        "De onde tiraram o veneno?"
+      ],
+      "keywords": [
+        "veneno",
+        "envenenado",
+        "aconito",
+        "sintomas",
+        "botica",
+        "erva",
+        "tóxico"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_lucia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Lucía, a dama-de-honra, sua amizade com Valentina ou seus sentimentos.",
+      "examples": [
+        "Lucía, como era sua amizade?",
+        "Lucía estava onde ontem?",
+        "Como Lucía achou o corpo?"
+      ],
+      "keywords": [
+        "Lucía",
+        "dama-de-honra",
+        "amiga",
+        "melhor amiga",
+        "sentimentos"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_rafael",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Rafael, o noivo, por que não foi ao brinde ou onde estava.",
+      "examples": [
+        "Rafael, por que não foi ao brinde?",
+        "Onde Rafael estava à meia-noite?",
+        "Rafael ama Valentina?"
+      ],
+      "keywords": ["Rafael", "noivo", "ausente", "brinde", "encontro", "onde"]
+    },
+    {
+      "id": "perguntar_sobre_esteban",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Don Esteban, o patriarca, suas opiniões sobre o casamento e a família.",
+      "examples": [
+        "Don Esteban, o senhor queria esse casamento?",
+        "Esteban estava onde ontem?",
+        "O que Esteban achava de Rafael?"
+      ],
+      "keywords": [
+        "Esteban",
+        "patriarca",
+        "Don",
+        "família",
+        "tequila",
+        "opinião"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_sofia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Sofía, sua relação com Valentina e seu lugar na família.",
+      "examples": [
+        "Sofía, você é parente de quem?",
+        "Sofía estava onde ontem?",
+        "Como Sofía se dava com Valentina?"
+      ],
+      "keywords": ["Sofía", "prima", "parente", "família", "relação", "criada"]
+    },
+    {
+      "id": "perguntar_sobre_mateo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Mateo, o ex-namorado de Valentina, sua reaparição e seus sentimentos.",
+      "examples": [
+        "Mateo, por que você voltou?",
+        "Mateo ainda ama Valentina?",
+        "Mateo estava onde ontem?"
+      ],
+      "keywords": ["Mateo", "ex", "namorado", "voltou", "sentimentos", "paixão"]
+    },
+    {
+      "id": "perguntar_sobre_carmen",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Doña Carmen, a madrasta, o que testemunhou e os segredos da casa.",
+      "examples": [
+        "Doña Carmen, o que a senhora viu?",
+        "Carmen notou algo estranho?",
+        "Que horas Carmen se recolheu?"
+      ],
+      "keywords": [
+        "Carmen",
+        "Doña",
+        "madrasta",
+        "matriarca",
+        "testemunhou",
+        "viu"
+      ]
+    },
+    {
+      "id": "perguntar_parentesco_sofia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a verdadeira origem de Sofía e quem são seus pais.",
+      "examples": [
+        "Sofía é filha de quem?",
+        "Quem é a mãe de Sofía?",
+        "Sofía é parente de sangue?"
+      ],
+      "keywords": [
+        "mãe",
+        "pai",
+        "filha",
+        "parentesco",
+        "sangue",
+        "origem",
+        "verdadeira"
+      ]
+    },
+    {
+      "id": "perguntar_sentimentos_lucia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar Lucía sobre seus sentimentos por Rafael e sua relação com Valentina.",
+      "examples": [
+        "Lucía, você gostava do Rafael?",
+        "Lucía sentia ciúmes de Valentina?",
+        "Lucía, o que você sentia pelo noivo?"
+      ],
+      "keywords": [
+        "sentimentos",
+        "amor",
+        "ciúmes",
+        "gostava",
+        "raiva",
+        "ressentimento",
+        "Rafael"
+      ]
+    },
+    {
+      "id": "perguntar_onde_rafael",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Questionar especificamente o paradeiro de Rafael à hora do brinde.",
+      "examples": [
+        "Onde Rafael estava à meia-noite?",
+        "Com quem Rafael estava?",
+        "Por que Rafael faltou ao brinde?"
+      ],
+      "keywords": [
+        "onde",
+        "paradeiro",
+        "meia-noite",
+        "faltou",
+        "com quem",
+        "ausente"
+      ]
+    },
+    {
+      "id": "inspecionar_objeto",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono as taças"
+      ],
+      "keywords": [
+        "examinar",
+        "inspecionar",
+        "olhar",
+        "objeto",
+        "detalhes",
+        "observar"
+      ]
+    },
+    {
+      "id": "acusar_lucia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Lucía de ter matado Valentina.",
+      "examples": [
+        "Lucía, foi você",
+        "Confronto Lucía sobre a morte",
+        "Acho que foi a Lucía"
+      ],
+      "keywords": ["acusar Lucía", "matou", "responsável", "culpada", "culpado"]
+    },
+    {
+      "id": "acusar_rafael",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Rafael de ter matado Valentina.",
+      "examples": [
+        "Rafael, foi você",
+        "Confronto Rafael sobre a morte",
+        "Acho que foi o Rafael"
+      ],
+      "keywords": ["acusar Rafael", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "acusar_esteban",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Don Esteban de ter matado Valentina.",
+      "examples": [
+        "Don Esteban, foi o senhor",
+        "Confronto Esteban sobre a morte",
+        "Acho que foi o Esteban"
+      ],
+      "keywords": ["acusar Esteban", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "acusar_sofia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Sofía de ter matado Valentina.",
+      "examples": [
+        "Sofía, foi você",
+        "Confronto Sofía sobre a morte",
+        "Acho que foi a Sofía"
+      ],
+      "keywords": ["acusar Sofía", "matou", "responsável", "culpada"]
+    },
+    {
+      "id": "acusar_mateo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Mateo de ter matado Valentina.",
+      "examples": [
+        "Mateo, foi você",
+        "Confronto Mateo sobre a morte",
+        "Acho que foi o Mateo"
+      ],
+      "keywords": ["acusar Mateo", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "pressionar_confissao",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
+    },
+    {
+      "id": "fora_do_assunto",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair da hacienda",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "lucia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Lucía",
+      "role": "Dama-de-honra e melhor amiga de Valentina",
+      "shortDescription": "Melhor amiga de Valentina desde a infância e dama-de-honra. Foi ela quem encontrou o corpo ao amanhecer.",
+      "imageUrl": "histories/o-ultimo-brinde/characters/lucia.jpg",
+      "personality": "Aparenta doçura e devoção, mas por trás há uma intensidade controlada. Dramática quando emocionada, fiscal dos detalhes, incapaz de deixar o passado descansar.",
+      "speakingStyle": "Voz meiga que se rompe em paixão quando acuada. Frases que começam comedidas e terminam em lágrimas ou desafio. Sempre fala de Valentina com carinho declarado.",
+      "publicKnowledge": [
+        "É amiga de Valentina desde os tempos de escola e foi escolhida como dama-de-honra.",
+        "Encontrou o corpo de Valentina na glorieta pouco depois do amanhecer.",
+        "Estava na hacienda desde a véspera, ajudando nos preparativos.",
+        "Sabia do brinde privado combinado para a meia-noite na glorieta."
+      ],
+      "privateKnowledge": [
+        "Ainda esteve na glorieta na noite anterior, antes de o corpo ser encontrado.",
+        "Tem um diário pessoal guardado em seu quarto, na ala de hóspedes.",
+        "Usa sempre o mesmo perfume de gardênia, presente marcante da família.",
+        "Não suportava a ideia de ver Rafael casado com Valentina."
+      ],
+      "openingLine": "Eu é quem a encontrei. Minha Valentina, no chão frio, com o vestido de noiva dobrado no colo. Dizem que o tempo cura tudo. Eu duvido.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_valentina_dead",
+          "triggerIntents": ["perguntar_sobre_morte", "perguntar_sobre_lucia"],
+          "requiresClueIds": [],
+          "revealText": "Lucía relata, entre soluços, que encontrou Valentina caída na glorieta pouco depois do amanhecer, com uma taça de champanhe derramada ao lado.",
+          "responseGuidance": "Manter o tom de luto ostensivo, sem nunca deixar transparecer culpa."
+        },
+        {
+          "clueId": "clue_rafael_absent",
+          "triggerIntents": [
+            "perguntar_sobre_o_brinde",
+            "perguntar_sobre_rafael"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Lucía explica que o brinde era para ser a dois, à meia-noite, mas que a segunda taça ficou intocada — Rafael nunca chegou à glorieta.",
+          "responseGuidance": "Deve soar magoada ao mencionar a ausência de Rafael, sem explicar por que isso a afeta tanto."
+        },
+        {
+          "clueId": "clue_lucia_found_body",
+          "triggerIntents": [
+            "perguntar_sobre_morte",
+            "perguntar_sobre_lucia",
+            "perguntar_sobre_carmen"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Lucía afirma ter sido a primeira a chegar à glorieta ao amanhecer, depois de Valentina não responder às chamadas.",
+          "responseGuidance": "Deve apresentar isso como ocorrência natural, de quem foi buscar a amiga."
+        },
+        {
+          "clueId": "clue_wedding_today",
+          "triggerIntents": [
+            "perguntar_sobre_casamento",
+            "perguntar_sobre_lucia"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Lucía lembra que o casamento de Valentina com Rafael aconteceria ao pôr do sol deste dia, e que a véspera foi de jantar de ensaio e preparativos.",
+          "responseGuidance": "Deve falar do casamento com um misto de orgulho pela amiga e algo não dito."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_lucia_killed_valentina",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Lucía envenenou a taça de champanhe de Valentina por estar apaixonada por Rafael há anos.",
+          "truth": "Lucía é apaixonada por Rafael desde a adolescência e nunca aceitou que ele escolhesse Valentina. Na noite anterior, preparou o brinde na glorieta e dissolveu tintura de aconito — retirada da botica da hacienda — na taça destinada a Valentina. Esperava que Rafael bebesse a outra taça e, com a morte da noiva, finalmente se voltasse para ela. Rafael nunca compareceu ao brinde, e só Valentina bebeu. Lucía fingiu encontrar o corpo ao amanhecer.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_lucia_stage_0_deny",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": [
+                "acusar_lucia",
+                "perguntar_sobre_lucia",
+                "perguntar_sobre_morte"
+              ],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento e reagir com indignação ferida, escudada na amizade.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu a amava como a uma irmã. Como ousa me perguntar isso justamente agora?",
+                "Eu a encontrei morta. Passei a noite inteira chorando. Não me faça de culpada da dor que sinto."
+              ]
+            },
+            {
+              "id": "secret_lucia_stage_1_admit_presence",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "acusar_lucia",
+                "perguntar_sobre_lucia",
+                "perguntar_sobre_o_brinde"
+              ],
+              "requiresClueIds": [
+                "clue_carmen_saw_lucia",
+                "clue_earring_is_lucias"
+              ],
+              "revealsClueIds": ["clue_lucia_admits_presence"],
+              "behavior": "Admitir, sem graça, que esteve na glorieta mais cedo, na noite anterior, mas insistir que foi só para enfeitar o brinde.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Sim, eu estive lá antes. Fui arrumar as taças, as flores... eu queria que estivesse tudo perfeito para ela. Isso não me faz assassina.",
+                "O brinco é meu, sim. Caiu quando eu decorava a glorieta. Eu nem percebi. Não significa o que a senhora está pensando."
+              ]
+            },
+            {
+              "id": "secret_lucia_stage_2_feelings_rafael",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": [
+                "perguntar_sentimentos_lucia",
+                "acusar_lucia",
+                "pressionar_confissao"
+              ],
+              "requiresClueIds": [
+                "clue_lucia_admits_presence",
+                "clue_lucias_diary"
+              ],
+              "revealsClueIds": ["clue_lucia_feelings_rafael"],
+              "behavior": "Quebrar parcialmente e admitir os sentimentos por Rafael e o ressentimento que crescia contra Valentina, mas negar a ação.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tudo bem. Sim. Eu amava o Rafael. Antes dela. Antes de tudo. E ver ele escolhendo ela, na minha frente, todos os dias... a senhora não sabe o que é isso.",
+                "Eu a amava, e a odiava, e não consigo mais separar uma coisa da outra. Mas eu nunca... eu não conseguiria machucá-la."
+              ]
+            },
+            {
+              "id": "secret_lucia_stage_3_prepared_toast",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": [
+                "acusar_lucia",
+                "perguntar_sobre_o_brinde",
+                "pressionar_confissao"
+              ],
+              "requiresClueIds": [
+                "clue_lucia_feelings_rafael",
+                "clue_bottle_tampered"
+              ],
+              "revealsClueIds": ["clue_lucia_prepared_toast"],
+              "behavior": "Admitir que preparou o brinde e mexeu na garrafa, mas ainda procurar uma justificativa que não seja o crime.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Fui eu que preparei as taças, sim. E a garrafa. Eu queria que fosse um brinde bonito, só isso. O resto... o resto eu não fiz.",
+                "Eu dissolvei algo na taça dela. Mas era para ser só um sonífero, para ela passar mal e o casamento atrasar. Eu não sabia que ela ia morrer."
+              ]
+            },
+            {
+              "id": "secret_lucia_stage_4_full_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": [
+                "acusar_lucia",
+                "perguntar_sobre_veneno",
+                "pressionar_confissao"
+              ],
+              "requiresClueIds": [
+                "clue_lucia_prepared_toast",
+                "clue_aconite_source_botic"
+              ],
+              "revealsClueIds": [
+                "clue_lucia_full_confession",
+                "clue_rafael_never_hers"
+              ],
+              "behavior": "Confessar completamente, revelar o veneno, a origem na botica e a esperança de que Rafael se voltasse para ela — e constatar, tarde, que ele tampouco seria dela.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Fui eu. Peguei o aconito lá da botica, na parede da cozinha. Dissolvi na taça dela. Eu pensei... eu pensei que com ela fora, o Rafael finalmente me olharia. Ele nem foi ao brinde. Nem isso.",
+                "Matei a minha melhor amiga por um homem que tinha outra esposa. Eu bem que mereço este inferno. Sirva-me dele."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar o veneno antes do estágio 4.",
+        "Nunca revelar a origem do veneno na botica antes do estágio 4.",
+        "Manter o tom de paixão ferida, não de frieza calculista.",
+        "Sempre falar de Valentina com declarada ternura, mesmo depois da confissão."
+      ]
+    },
+    {
+      "id": "rafael",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Rafael",
+      "role": "Noivo de Valentina",
+      "shortDescription": "O noivo. Deveria ter comparecido ao brinde privado à meia-noite e não apareceu.",
+      "imageUrl": "histories/o-ultimo-brinde/characters/rafael.jpg",
+      "personality": "Encantador e evasivo, acostumado a agradar a todos. Esconde o pânico de quem tem muito a perder atrás de sorrisos educados.",
+      "speakingStyle": "Fala com brandura diplomática, muda de assunto com galanteios, gagueja quando encurralado por uma pergunta direta.",
+      "publicKnowledge": [
+        "Iria casar-se com Valentina ao pôr do sol deste dia.",
+        "Faltou ao brinde privado combinado para a meia-noite na glorieta.",
+        "Está hospedado na ala de hóspedes da hacienda desde a véspera."
+      ],
+      "privateKnowledge": [
+        "Já era casado quando conheceu Valentina e nunca dissolveu o primeiro casamento.",
+        "Na hora do brinde, estava em segredo com a primeira esposa, que apareceu sem aviso.",
+        "Nunca foi à glorieta — sua taça permaneceu intocada a noite toda.",
+        "Não matou Valentina, mas teme que o segredo do casamento anterior venha à tona."
+      ],
+      "openingLine": "Eu deveria ter ido ao brinde. Se eu tivesse ido... talvez nada disso estivesse acontecido. Essa ideia não me deixa dormir.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_rafael_secret_meeting",
+          "triggerIntents": [
+            "perguntar_onde_rafael",
+            "perguntar_sobre_rafael",
+            "perguntar_sobre_o_brinde"
+          ],
+          "requiresClueIds": ["clue_rafael_absent"],
+          "revealText": "Rafel admite, a contragosto, que na hora do brinde estava em outro lugar da hacienda, num encontro que preferia não nomear.",
+          "responseGuidance": "Ele deve oferecer isso como desculpa evasiva, sem revelar com quem estava."
+        },
+        {
+          "clueId": "clue_rafael_glass_intact",
+          "triggerIntents": [
+            "acusar_rafael",
+            "perguntar_sobre_o_brinde",
+            "perguntar_onde_rafael"
+          ],
+          "requiresClueIds": ["clue_rafael_bigamy"],
+          "revealText": "Rafael defende-se: nunca chegou a ir à glorieta, e sua taça permaneceu cheia e intocada a noite inteira — ninguém o viu lá.",
+          "responseGuidance": "Ele deve usar isso como álibi, quase aliviado por ter faltado."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_rafael_bigamy",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Rafael já era casado quando conheceu Valentina e estava com a primeira esposa na hora do brinde.",
+          "truth": "Rafael é casado desde antes de conhecer Valentina e nunca dissolveu o primeiro casamento. Na noite do brinde, sua primeira esposa chegou à hacienda sem aviso, e ele passou a meia-noite com ela, tentando convencê-la a ir embora antes que a família descobrisse. Por isso nunca compareceu à glorieta. Não matou Valentina, mas o segredo da bigamia o torna suspeito e ele fará de tudo para escondê-lo.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_rafael_stage_1_admit_encounter",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "perguntar_onde_rafael",
+                "perguntar_sobre_rafael",
+                "acusar_rafael"
+              ],
+              "requiresClueIds": ["clue_rafael_secret_meeting"],
+              "revealsClueIds": ["clue_rafael_bigamy"],
+              "behavior": "Admitir, envergonhado, que estava com uma pessoa do seu passado e que isso impede que ele fosse ao brinde, sem nomear o quê.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu estava com... alguém. Alguém do meu passado. Eu não podia estar em dois lugares. Não é o que a senhora está pensando.",
+                "Há coisas do meu passado que eu não me orgulho. Naquela noite, elas voltaram a me procurar. Foi por isso que faltei."
+              ]
+            },
+            {
+              "id": "secret_rafael_stage_2_admit_bigamy",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": [
+                "perguntar_sobre_rafael",
+                "perguntar_onde_rafael",
+                "acusar_rafael",
+                "pressionar_confissao"
+              ],
+              "requiresClueIds": ["clue_rafael_bigamy"],
+              "revealsClueIds": [],
+              "behavior": "Admitir a bigamia por completo: já era casado, e estava com a esposa legítima na hora do brinde.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu já era casado quando conheci a Valentina. Minha esposa apareceu naquela noite. Eu estava com ela, implorando para ela ir embora. Por isso não fui ao brinde. Mas eu não a matei — juro por tudo o que me resta.",
+                "Sim. Sou um homem casado. Ia cometer mais uma traição ao me casar com a Valentina. Ela morreu sem saber disso. Eu carrego esse peso, mas não o de tê-la matado."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter matado Valentina, pois é inocente disso.",
+        "Não revelar a bigamia antes de confrontado com o encontro secreto ou a certidão.",
+        "Usar a taça intacta como álibi quando acusado, mas sem revelar por que faltou.",
+        "Manter o tom de noivo envergonhado, não de vilão frio."
+      ]
+    },
+    {
+      "id": "esteban",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Don Esteban",
+      "role": "Patriarca da família Reyes",
+      "shortDescription": "Patriarca da família Reyes e dono da Hacienda Las Palmas. Recebia a todos para o casamento da filha.",
+      "imageUrl": "histories/o-ultimo-brinde/characters/esteban.jpg",
+      "personality": "Imponente, formal, orgulhoso. Acostumado a comandar e a esconder falhas atrás do nome da família.",
+      "speakingStyle": "Fala devagar, com peso de quem não se explica duas vezes. Vocabulário de patriarca de campo, cortês com mulheres, seco com homens.",
+      "publicKnowledge": [
+        "É o patriarca da família Reyes, dono da Hacienda Las Palmas e dos campos de agave.",
+        "Dava Valentina em casamento a Rafael neste dia.",
+        "Comandou o jantar de ensaio na noite anterior.",
+        "Tem um escritório na casa principal onde trata dos negócios da tequila."
+      ],
+      "privateKnowledge": [
+        "Sofía é sua filha ilegítima, fruto de um relacionamento antigo, e foi acolhida na família como prima.",
+        "Era contra o casamento de Valentina com Rafael, que julgava oportunista.",
+        "Na hora do brinde, estava fechado no escritório com o advogado da família, revisando contratos.",
+        "Não matou a filha."
+      ],
+      "openingLine": "Esta casa já viu muitas despedidas, mas nenhuma como esta. Minha filha se foi na manhã em que devia começar a viver. Poupem-me de conselhos e digam o que precisam.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_wedding_today",
+          "triggerIntents": [
+            "perguntar_sobre_casamento",
+            "perguntar_sobre_esteban"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Don Esteban confirma que o casamento de Valentina com Rafael aconteceria ao pôr do sol, com o jantar de ensaio na véspera.",
+          "responseGuidance": "Deve falar do casamento com formalidade, deixando entrever descontentamento sem declará-lo."
+        },
+        {
+          "clueId": "clue_ponche_dinner",
+          "triggerIntents": [
+            "perguntar_sobre_jantar",
+            "perguntar_sobre_esteban"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Don Esteban descreve o jantar de ensaio da véspera: longa mesa, toda a família reunida, brindes e conversas que se estenderam pela noite.",
+          "responseGuidance": "Deve relatar o jantar com sobriedade de anfitrião, sem detalhar tensões."
+        },
+        {
+          "clueId": "clue_esteban_opposed_wedding",
+          "triggerIntents": [
+            "perguntar_sobre_casamento",
+            "perguntar_sobre_esteban",
+            "perguntar_sobre_rafael"
+          ],
+          "requiresClueIds": ["clue_wedding_today"],
+          "revealText": "Don Esteban admite, com franqueza áspera, que via Rafael com desconfiança e não achava que ele fosse o marido certo para a filha.",
+          "responseGuidance": "Deve soar como julgamento de pai, não como ameaça."
+        },
+        {
+          "clueId": "clue_sofia_inherits",
+          "triggerIntents": [
+            "perguntar_sobre_sofia",
+            "perguntar_parentesco_sofia",
+            "perguntar_sobre_esteban"
+          ],
+          "requiresClueIds": ["clue_valentina_dead"],
+          "revealText": "Don Esteban reconhece, a contra-gosto, que como Valentina morreu sem filhos, a linha de sucessão da hacienda passa a incluir Sofía, que sempre foi tratada como prima.",
+          "responseGuidance": "Deve tratar a questão de herança como incômodo, desviando o olhar."
+        },
+        {
+          "clueId": "clue_esteban_office_alibi",
+          "triggerIntents": [
+            "perguntar_sobre_esteban",
+            "perguntar_sobre_carmen",
+            "perguntar_sobre_jantar"
+          ],
+          "requiresClueIds": ["clue_esteban_opposed_wedding"],
+          "revealText": "Don Esteban afirma que durante toda a madrugada esteve fechado no escritório com o advogado da família, revisando os contratos do casamento e da tequila.",
+          "responseGuidance": "Deve oferecer o álibi com a naturalidade de quem nada tem a esconder quanto à morte."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_esteban_illegitimate_daughter",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Sofía é filha ilegítima de Esteban, acolhida na família como prima para evitar escândalo.",
+          "truth": "Sofía é fruto de um relacionamento antigo de Don Esteban, fora do casamento. Para evitar escândalo, ela foi acolhida na hacienda e criada como prima de Valentina. Esteban sempre soube da verdade e a escondeu da família e da própria Sofília durante décadas. Não matou Valentina, mas teme que a verdade sobre Sofília venha à tona e manche o nome da família.",
+          "defaultStrategy": "avoid",
+          "revealStages": [
+            {
+              "id": "secret_esteban_stage_1_admit_sofia_tie",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "perguntar_parentesco_sofia",
+                "perguntar_sobre_sofia",
+                "perguntar_sobre_esteban",
+                "acusar_esteban"
+              ],
+              "requiresClueIds": ["clue_sofia_inherits"],
+              "revealsClueIds": ["clue_sofia_illegitimate"],
+              "behavior": "Admitir, com vergonha contida, que Sofía é mais do que uma prima — é de seu sangue —, sem ainda dizer toda a verdade.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Sofía... sempre foi da família. Mais do que as pessoas sabem. Eu a tomei sob minha proteção há muito tempo.",
+                "Há coisas que um pai faz para proteger os filhos. Sofília esteve sempre sob meu teto por uma razão que não cabe a esta mesa julgar."
+              ]
+            },
+            {
+              "id": "secret_esteban_stage_2_admit_daughter",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": [
+                "perguntar_parentesco_sofia",
+                "perguntar_sobre_esteban",
+                "acusar_esteban",
+                "pressionar_confissao"
+              ],
+              "requiresClueIds": ["clue_sofia_illegitimate"],
+              "revealsClueIds": [],
+              "behavior": "Admitir por completo que Sofília é sua filha ilegítima, meia-irmã de Valentina.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Sofía é minha filha. Minha e de uma mulher de antes do meu casamento com Carmen. A criei como prima para poupar esta família da vergonha. Minha Valentina era sua meia-irmã e nunca soube.",
+                "Sim. Eu tive uma filha fora do casamento. Sofília. Passei a vida escondendo isso. Mas esconder um erro não me tornou assassino da minha própria filha."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter matado Valentina, pois é inocente disso.",
+        "Não revelar a paternidade de Sofília antes de confrontado com a herança.",
+        "Manter o tom de patriarca ferido, nunca de culpado encurralado.",
+        "Defender o nome da família acima de tudo."
+      ]
+    },
+    {
+      "id": "sofia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sofía",
+      "role": "Prima de Valentina, criada na família",
+      "shortDescription": "Prima de Valentina, acolhida na família desde criança. Sempre esteve perto dos preparativos.",
+      "imageUrl": "histories/o-ultimo-brinde/characters/sofia.jpg",
+      "personality": "Meiga, reservada, observadora. Esconde a ferida de quem sempre foi tratada como quase-família, nunca de todo.",
+      "speakingStyle": "Fala baixo, com delicadeza estudada; evita conflito e só se firma quando provocada sobre seu lugar na casa.",
+      "publicKnowledge": [
+        "Foi criada na hacienda desde os dez anos, tratada como prima de Valentina.",
+        "Ajudava nos preparativos do casamento.",
+        "Dorme na ala da família, perto da capela."
+      ],
+      "privateKnowledge": [
+        "Sempre soube, no fundo, que não era simplesmente prima.",
+        "Se Valentina morresse sem filhos, ela passaria a fazer parte da linha de herança.",
+        "Na hora do brinde, estava na capela com o padre, montando os arranjos para a cerimônia.",
+        "Não matou Valentina."
+      ],
+      "openingLine": "Eu cresci nesta casa chamando a Valentina de prima. Hoje não tenho nem uma palavra para o que somos. Só sei que ela se foi, e eu ainda estou aqui, como sempre.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_sofia_chapel_alibi",
+          "triggerIntents": [
+            "perguntar_sobre_sofia",
+            "perguntar_sobre_carmen",
+            "perguntar_sobre_jantar"
+          ],
+          "requiresClueIds": ["clue_sofia_inherits"],
+          "revealText": "Sofía afirma que passou toda a madrugada na capela ao lado do padre, montando os arranjos para a cerimônia, e que ele pode confirmar.",
+          "responseGuidance": "Deve oferecer o álibi com mansidão, sem insistir demais."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_sofia_parentage",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Sofía sabe que é filha ilegítima de Esteban, meia-irmã de Valentina.",
+          "truth": "Sofília cresceu sabendo, por meias palavras e silêncios, que não era simplesmente prima: é filha ilegítima de Don Esteban, meia-irmã de Valentina. Nunca confrontou o pai sobre isso e viveu na ambiguidade de ser quase-família. Com a morte de Valentina sem filhos, ela passa a integrar a linha de sucessão. Não matou Valentina — guardava por ela um carinho confuso de irmã que nunca pôde chamar assim.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_sofia_stage_1_admit_parentage",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "perguntar_parentesco_sofia",
+                "perguntar_sobre_sofia",
+                "acusar_sofia",
+                "pressionar_confissao"
+              ],
+              "requiresClueIds": ["clue_sofia_inherits"],
+              "revealsClueIds": ["clue_sofia_illegitimate"],
+              "behavior": "Admitir, com dor contida, que sempre soube que era mais do que prima, e que é filha de Esteban.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu não sou prima. Nunca fui. Sou filha dele, fora do casamento. Cresci ouvindo meias-verdades. A Valentina era minha irmã, e eu nunca pude sequer chamá-la disso.",
+                "Sim, eu ia herdar se ela morresse. Isso não me faz assassina. Faz de mim alguém que perdeu a única irmã que teve, sem nunca poder dizer isso em voz alta."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter matado Valentina, pois é inocente disso.",
+        "Não revelar a paternidade antes de confrontada com a herança.",
+        "Manter o tom de quem esteve sempre à sombra, sem rancor declarado."
+      ]
+    },
+    {
+      "id": "mateo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Mateo",
+      "role": "Ex-namorado de Valentina",
+      "shortDescription": "Ex-namorado de Valentina, que reapareceu para o casamento. Diz ter vindo apenas se despedir.",
+      "imageUrl": "histories/o-ultimo-brinde/characters/mateo.jpg",
+      "personality": "Romântico, impulsivo, melancólico. Vive do que perdeu e não consegue disfarçar o que ainda sente.",
+      "speakingStyle": "Frases carregadas de saudade, metáforas de fumaça e agave, voz que se quebra quando fala de Valentina.",
+      "publicKnowledge": [
+        "Foi namorado de Valentina antes de Rafael.",
+        "Reapareceu na hacienda na véspera do casamento.",
+        "Diz ter voltado apenas para se despedir dela."
+      ],
+      "privateKnowledge": [
+        "Ainda amava Valentina e nunca aceitou o fim do namoro.",
+        "No jantar de ensaio, confrontou Valentina em particular, implorando que desistisse do casamento.",
+        "Na hora do brinde, já tinha ido embora de carro para o aeroporto.",
+        "Não matou Valentina."
+      ],
+      "openingLine": "Eu voltei para dizê-la que a deixava ir. Era para ser um adeus. Em vez disso, eu a encontrei assim, e o adeus virou luto, e o luto virou isto que a senhora vê.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_mateo_confrontation",
+          "triggerIntents": [
+            "perguntar_sobre_mateo",
+            "perguntar_sobre_jantar",
+            "perguntar_sobre_casamento"
+          ],
+          "requiresClueIds": ["clue_ponche_dinner"],
+          "revealText": "Mateo admite, envergonhado, que durante o jantar de ensaio puxou Valentina para um canto e implorou que ela desistisse do casamento, em vão.",
+          "responseGuidance": "Deve assumir o confronto com remorso de quem sabe que passou dos limites."
+        },
+        {
+          "clueId": "clue_mateo_airport_alibi",
+          "triggerIntents": [
+            "perguntar_sobre_mateo",
+            "perguntar_sobre_carmen",
+            "acusar_mateo"
+          ],
+          "requiresClueIds": ["clue_mateo_confrontation"],
+          "revealText": "Mateo jura que por volta das onze da noite pegou o carro e seguiu para o aeroporto, de onde embarcou de madrugada — longe da hacienda no horário do brinde.",
+          "responseGuidance": "Deve oferecer o álibi com honestidade áspera, quase aliviado por ter saído a tempo."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar ter matado Valentina, pois é inocente disso.",
+        "Admitir o confronto do jantar, mas sem exagerar a própria inocência.",
+        "Manter o tom de apaixonado enlutado, nunca de ameaçador."
+      ]
+    },
+    {
+      "id": "carmen",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Doña Carmen",
+      "role": "Madrasta de Valentina e matriarca da hacienda",
+      "shortDescription": "Madrasta de Valentina e senhora da casa. Observa os movimentos de todos e conhece os segredos da família.",
+      "imageUrl": "histories/o-ultimo-brinde/characters/carmen.jpg",
+      "personality": "Serena, cortês, implacável. Cuidou da casa e do nome da família por décadas, escondendo fendas com elegância.",
+      "speakingStyle": "Frases medidas, vocabulário de casa grande, sempre polida até a frase final, que costuma ser precisa e cortante.",
+      "publicKnowledge": [
+        "É a esposa de Don Esteban e madrasta de Valentina há muitos anos.",
+        "Comanda a rotina e os empregados da hacienda.",
+        "Foi a última a se recolher na noite anterior.",
+        "Conhece bem as ervas e remédios da botica da casa."
+      ],
+      "privateKnowledge": [
+        "Viu Lucía esgueirando-se em direção à glorieta tarde da noite, antes de o corpo ser encontrado.",
+        "Reconheceu no corpo de Valentina os sinais de envenenamento por aconito, erva que conhece bem.",
+        "Sabe há anos que Sofía é filha ilegítima de Esteban e calou para preservar a família.",
+        "Sabe que Mateo foi embora de carro antes do brinde e que Sofía passou a noite na capela."
+      ],
+      "openingLine": "Trinta anos cuidando desta casa. Aprendi que o silêncio mantém uma família de pé, e que a verdade, quase sempre, a derruba. Hoje talvez eu tenha que escolher.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_poison_aconite",
+          "triggerIntents": [
+            "perguntar_sobre_morte",
+            "perguntar_sobre_veneno",
+            "perguntar_sobre_carmen"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Doña Carmen afirma, com segurança, que os lábios arroxeados e a espuma seca na boca de Valentina são sinais de envenenamento por aconito, uma erva que ela conhece de longa data.",
+          "responseGuidance": "Deve falar como quem reconhece um mal antigo, sem dramatizar."
+        },
+        {
+          "clueId": "clue_earring_is_lucias",
+          "triggerIntents": [
+            "perguntar_sobre_lucia",
+            "perguntar_sobre_carmen",
+            "perguntar_sobre_morte"
+          ],
+          "requiresClueIds": ["clue_earring_found"],
+          "revealText": "Doña Carmen identifica sem hesitação o brinco de pérola encontrado na glorieta: pertence a Lucía, que usa o mesmo par há anos.",
+          "responseGuidance": "Deve dizer isso como fato, deixando ao investigador o peso da conclusão."
+        },
+        {
+          "clueId": "clue_carmen_saw_lucia",
+          "triggerIntents": [
+            "perguntar_sobre_lucia",
+            "perguntar_sobre_carmen",
+            "perguntar_sobre_morte"
+          ],
+          "requiresClueIds": ["clue_lucia_found_body"],
+          "revealText": "Doña Carmen revela que, ao se recolher tarde da noite, viu Lucía esgueirando-se pelo jardim em direção à glorieta — bem antes de o corpo ser encontrado ao amanhecer.",
+          "responseGuidance": "Deve contar isso com relutância, como quem cede o que preferia calar."
+        },
+        {
+          "clueId": "clue_mateo_airport_alibi",
+          "triggerIntents": ["perguntar_sobre_mateo", "perguntar_sobre_carmen"],
+          "requiresClueIds": ["clue_mateo_confrontation"],
+          "revealText": "Doña Carmen confirma que Mateo pegou o carro por volta das onze da noite e partiu para o aeroporto, dizendo-se de volta para a cidade.",
+          "responseGuidance": "Deve confirmar como quem anota partidas e chegadas por hábito."
+        },
+        {
+          "clueId": "clue_sofia_chapel_alibi",
+          "triggerIntents": ["perguntar_sobre_sofia", "perguntar_sobre_carmen"],
+          "requiresClueIds": ["clue_sofia_inherits"],
+          "revealText": "Doña Carmen confirma que Sofía passou a madrugada na capela com o padre, preparando os arranjos, e de lá não saiu até o amanhecer.",
+          "responseGuidance": "Deve falar de Sofília com proteção velada."
+        },
+        {
+          "clueId": "clue_esteban_office_alibi",
+          "triggerIntents": [
+            "perguntar_sobre_esteban",
+            "perguntar_sobre_carmen"
+          ],
+          "requiresClueIds": ["clue_esteban_opposed_wedding"],
+          "revealText": "Doña Carmen confirma que o marido esteve fechado no escritório com o advogado durante toda a madrugada, revisando contratos.",
+          "responseGuidance": "Deve confirmar o álibi do marido com naturalidade conjugal."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_carmen_protected_family",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Carmen sabe há anos que Sofília é filha ilegítima de Esteban e calou para preservar a família.",
+          "truth": "Doña Carmen descobriu há muitos anos que Sofília é filha de um relacionamento antigo de Esteban. Escolheu calar e acolher a menina como prima para preservar o nome da família. Não conta nada que não precise contar, mas quando confrontada com a verdade, confirma-a.",
+          "defaultStrategy": "avoid",
+          "revealStages": [
+            {
+              "id": "secret_carmen_stage_1_admit_knew",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "perguntar_parentesco_sofia",
+                "perguntar_sobre_carmen",
+                "perguntar_sobre_sofia",
+                "pressionar_confissao"
+              ],
+              "requiresClueIds": ["clue_sofia_illegitimate"],
+              "revealsClueIds": ["clue_sofia_illegitimate"],
+              "behavior": "Confirmar, com a dignidade de quem manteve a casa de pé, que sempre soube da paternidade de Sofília e escolheu o silêncio.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu sempre soube. Uma esposa sabe. Escolhi o silêncio porque uma família se sustenta de escolhas que ninguém vê. Hoje vejo que o silêncio também custa caro.",
+                "Soube desde que ela chegou, aos dez anos. Nunca foi prima — foi a filha que ele teve fora desta casa. Calei para que esta família não se desmanchasse antes do tempo."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca acusar ninguém diretamente; oferecer o que viu, não conclusões.",
+        "Confirmar a paternidade de Sofília apenas depois que a verdade já estiver clara.",
+        "Manter o tom de matriarca que protege a casa, sem tomar partido visível."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "glorieta",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Glorieta do jardim",
+      "shortDescription": "O pavilhão branco no jardim onde o corpo de Valentina foi encontrado.",
+      "imageUrl": "histories/o-ultimo-brinde/location/glorieta.jpg",
+      "initialDescription": "A glorieta é um pavilhão branco de colunas finas, no ponto de onde se vê o campo de agave até a serra. Há uma mesinha de ferro forjado com duas taças de champanhe, uma garrafa aberta e flores brancas meio despenteadas. O ar da manhã ainda guarda o perfume doce da noite.",
+      "ambientClueIds": ["clue_valentina_dead"],
+      "objectIds": ["tacas", "champanhe", "convite", "brinco"]
+    },
+    {
+      "id": "casarao",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Salão principal",
+      "shortDescription": "O salão onde a família celebrou o jantar de ensaio na véspera.",
+      "imageUrl": "histories/o-ultimo-brinde/location/casarao.jpg",
+      "initialDescription": "O salão principal da hacienda é amplo, de teto alto, com lampiões de ferro, azulejos nas paredes e uma longa mesa de madeira escura ainda posta com os restos do jantar de ensaio: taças, velas gastas e flores murchas.",
+      "ambientClueIds": ["clue_ponche_dinner"],
+      "objectIds": []
+    },
+    {
+      "id": "cozinha",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cozinha e botica",
+      "shortDescription": "A cozinha dos fundos, com a botica de ervas da casa.",
+      "imageUrl": "histories/o-ultimo-brinde/location/cozinha.jpg",
+      "initialDescription": "A cozinha é um cômodo comprido e fresco, com fogão a lenha, panelas de cobre e, numa das paredes, uma prateleira de botica com frascos de vidro cheios de ervas secas e tinturas, usadas há gerações como remédios da casa.",
+      "ambientClueIds": [],
+      "objectIds": ["frasco_conito"]
+    },
+    {
+      "id": "ala_quartos",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Ala de hóspedes",
+      "shortDescription": "Os quartos onde os convidados estão hospedados.",
+      "imageUrl": "histories/o-ultimo-brinde/location/ala_quartos.jpg",
+      "initialDescription": "A ala de hóspedes é um corredor de portas brancas, com quartos simples e arejados, cada um com sua penteadeira e seu criado-mudo. À manhã, as camas ainda por fazer denunciam uma noite em que quase ninguém dormiu.",
+      "ambientClueIds": [],
+      "objectIds": ["certidao_casamento", "diario_lucia"]
+    },
+    {
+      "id": "estudio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Escritório de Don Esteban",
+      "shortDescription": "O escritório onde Esteban trata dos negócios da tequila.",
+      "imageUrl": "histories/o-ultimo-brinde/location/estudio.jpg",
+      "initialDescription": "O escritório de Don Esteban cheira a couro e agave. Há uma escrivaninha pesada coberta de contratos, um quadro da primeira safra e prateleiras com os livros de contas da hacienda. Tudo no lugar de sempre, como se a noite não tivesse passado.",
+      "ambientClueIds": [],
+      "objectIds": ["certidao_sofia"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "tacas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Taças de champanhe",
+      "shortDescription": "As duas taças sobre a mesinha da glorieta.",
+      "imageUrl": "histories/o-ultimo-brinde/object/tacas.jpg",
+      "locationId": "glorieta",
+      "initialDescription": "Duas taças de cristal fino repousam sobre a mesinha de ferro da glorieta. Uma delas está caída de lado, com vestígios secos no fundo; a outra permanece de pé, cheia até a borda.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_two_glasses",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_o_brinde",
+            "perguntar_sobre_morte"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Havia duas taças servidas na glorieta. Só uma foi bebida — a que está caída. A outra continua cheia, intacta, como se quem deveria beber nunca tivesse chegado."
+        },
+        {
+          "clueId": "clue_rafael_absent",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_o_brinde",
+            "perguntar_sobre_rafael"
+          ],
+          "requiresClueIds": [],
+          "revealText": "A taça que permanece cheia indica que a segunda pessoa do brinde nunca chegou. Pelo combinado, essa pessoa seria Rafael — que esteve ausente a noite toda da glorieta."
+        }
+      ]
+    },
+    {
+      "id": "champanhe",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Garrafa de champanhe",
+      "shortDescription": "A garrafa de champanhe aberta na glorieta.",
+      "imageUrl": "histories/o-ultimo-brinde/object/champanhe.jpg",
+      "locationId": "glorieta",
+      "initialDescription": "Uma garrafa de champanhe está aberta ao lado das taças, com o lacre partido. O gargalo ainda guarda gotas que escorreram pela noite.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_bottle_tampered",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_o_brinde",
+            "perguntar_sobre_veneno"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Examinando a garrafa, nota-se que o lacre foi rompido de forma estranha e o gargalo mostra vestígios de que algo foi dissolvido dentro antes de servir — a garrafa foi violada de propósito."
+        },
+        {
+          "clueId": "clue_gardenia_perfume",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_o_brinde"],
+          "requiresClueIds": [],
+          "revealText": "No gargalo da garrafa e na borda da taça caída, percebe-se um perfume doce e conhecido na casa: gardênia, assinatura olfativa de quem preparou e serviu o brinde."
+        }
+      ]
+    },
+    {
+      "id": "convite",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cartão do brinde",
+      "shortDescription": "Um cartão dobrado ao lado das taças.",
+      "imageUrl": "histories/o-ultimo-brinde/object/convite.jpg",
+      "locationId": "glorieta",
+      "initialDescription": "Ao lado das taças, há um cartão branco dobrado, com uma caligrafia à mão em tinta dourada.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_invite_card",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_o_brinde"],
+          "requiresClueIds": [],
+          "revealText": "O cartão, na caligrafia de Valentina, convida para um brinde a dois à meia-noite na glorieta e está assinado apenas com um 'V'. Era um encontro privado dela com Rafael, combinado em segredo."
+        }
+      ]
+    },
+    {
+      "id": "brinco",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Brinco de pérola",
+      "shortDescription": "Um brinco solto encontrado no chão da glorieta.",
+      "imageUrl": "histories/o-ultimo-brinde/object/brinco.jpg",
+      "locationId": "glorieta",
+      "initialDescription": "No chão da glorieta, sob a mesinha, há um pequeno brinco de pérola, solto, de um par que parece ter se desprendido de alguém que esteve ali.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_earring_found",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_morte",
+            "perguntar_sobre_o_brinde"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Um brinco de pérola foi encontrado no chão da glorieta, indicando que alguém além de Valentina esteve no pavilhão antes do amanhecer."
+        }
+      ]
+    },
+    {
+      "id": "frasco_conito",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Frasco da botica",
+      "shortDescription": "Um frasco de ervas na botica da cozinha.",
+      "imageUrl": "histories/o-ultimo-brinde/object/frasco_conito.jpg",
+      "locationId": "cozinha",
+      "initialDescription": "Na prateleira de botica, há um frasco de vidro escuro com raízes secas e uma etiqueta gasta, fora do alinhamento das outras mandecadas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_aconite_source_botic",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_veneno"],
+          "requiresClueIds": [],
+          "revealText": "O frasco contém raiz de aconito, erva usada em pequenas doses como remédio da casa e mortal em dose maior. Ele está fora do lugar e com vestígios recentes de manuseio: o veneno que matou Valentina saiu daqui."
+        }
+      ]
+    },
+    {
+      "id": "certidao_casamento",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Certidão de casamento",
+      "shortDescription": "Um documento dentro de uma pasta, no quarto de Rafael.",
+      "imageUrl": "histories/o-ultimo-brinde/object/certidao_casamento.jpg",
+      "locationId": "ala_quartos",
+      "initialDescription": "Dentro de uma pasta de couro, no criado-mudo do quarto de hóspedes, há um documento oficial, antigo, com selos e nomes em caligrafia formal.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_rafael_bigamy",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_rafael"],
+          "requiresClueIds": [],
+          "revealText": "A certidão registra o casamento de Rafael Domínguez com outra mulher, anterior a seu noivado com Valentina e nunca dissolvido. Rafael já era casado quando prometeu se casar de novo."
+        }
+      ]
+    },
+    {
+      "id": "diario_lucia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caderno de Lucía",
+      "shortDescription": "Um caderno encadernado em couro no quarto de Lucía.",
+      "imageUrl": "histories/o-ultimo-brinde/object/diario_lucia.jpg",
+      "locationId": "ala_quartos",
+      "initialDescription": "Sobre a penteadeira do quarto de Lucía, há um caderno de capa de couro, fechado por um laço delicado, com páginas marcadas e a ponta das folhas curvadas de tanto serem folheadas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lucias_diary",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_lucia",
+            "perguntar_sentimentos_lucia"
+          ],
+          "requiresClueIds": [],
+          "revealText": "As páginas do caderno revelam, em caligrafia de Lucía, uma paixão antiga e obsessiva por Rafael e um ressentimento crescente contra Valentina, descrita como quem 'tomou' o que era dela. Há anotações recentes sobre o brinde e sobre a glorieta."
+        }
+      ]
+    },
+    {
+      "id": "certidao_sofia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Certidão no escritório",
+      "shortDescription": "Uma certidão guardada no escritório de Don Esteban.",
+      "imageUrl": "histories/o-ultimo-brinde/object/certidao_sofia.jpg",
+      "locationId": "estudio",
+      "initialDescription": "Dentro de um envelope amarelado, numa gaveta entreaberta da escrivaninha, há uma certidão de nascimento dobrada com cuidado.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_sofia_illegitimate",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_parentesco_sofia",
+            "perguntar_sobre_sofia"
+          ],
+          "requiresClueIds": [],
+          "revealText": "A certidão registra Sofília Cruz como filha de Don Esteban Reyes, fora do casamento. Sofília é, portanto, meia-irmã de Valentina — e não prima —, o que muda a linha de herança da hacienda."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_valentina_dead",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Valentina está morta",
+      "description": "Valentina Reyes foi encontrada morta na glorieta do jardim, ao amanhecer do dia do casamento.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_two_glasses",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Duas taças, só uma bebida",
+      "description": "Havia duas taças servidas na glorieta; apenas a de Valentina foi bebida.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_rafael_absent",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Rafael não compareceu",
+      "description": "Rafael nunca chegou ao brinde; a segunda taça ficou intocada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lucia_found_body",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lucía encontrou o corpo",
+      "description": "Lucía afirma ter sido a primeira a chegar à glorieta ao amanhecer.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_poison_aconite",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Veneno: aconito",
+      "description": "Os sinais no corpo indicam envenenamento por aconito, erva conhecida na casa.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_earring_found",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Brinco na glorieta",
+      "description": "Um brinco de pérola foi encontrado no chão da glorieta.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_invite_card",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cartão do brinde",
+      "description": "Um cartão convidava Rafael a um brinde a dois, à meia-noite, assinado por Valentina.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_wedding_today",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Casamento ao pôr do sol",
+      "description": "O casamento de Valentina com Rafael aconteceria hoje; a véspera foi de jantar de ensaio.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_ponche_dinner",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Jantar de ensaio",
+      "description": "Toda a família celebrou o jantar de ensaio na noite anterior, na hacienda.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_earring_is_lucias",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Brinco de Lucía",
+      "description": "O brinco de pérola encontrado na glorieta pertence a Lucía.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_gardenia_perfume",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Perfume de gardênia",
+      "description": "Há perfume de gardênia na garrafa e na taça, assinatura de quem serviu o brinde.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_carmen_saw_lucia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Carmen viu Lucía na glorieta",
+      "description": "Doña Carmen viu Lucía esgueirando-se em direção à glorieta tarde da noite.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_mateo_confrontation",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Confronto de Mateo",
+      "description": "Mateo confrontou Valentina no jantar, implorando que desistisse do casamento.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_esteban_opposed_wedding",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Esteban contra o casamento",
+      "description": "Don Esteban via Rafael com desconfiança e era contra o casamento.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_sofia_inherits",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sofía entra na herança",
+      "description": "Sem filhos de Valentina, a linha de herança da hacienda passa a incluir Sofília.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bottle_tampered",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Garrafa violada",
+      "description": "A garrafa de champanhe foi violada de propósito, com vestígios de algo dissolvido.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_rafael_secret_meeting",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Encontro secreto de Rafael",
+      "description": "Rafael estava num encontro que prefere não nomear durante o horário do brinde.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_rafael_bigamy",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Rafael já é casado",
+      "description": "Rafael tem um casamento anterior não dissolvido; estava com a primeira esposa na hora do brinde.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_sofia_illegitimate",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sofía é meia-irmã de Valentina",
+      "description": "Sofília é filha ilegítima de Don Esteban, meia-irmã de Valentina.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lucias_diary",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Diário de Lucía",
+      "description": "O caderno de Lucía revela paixão obsessiva por Rafael e ressentimento contra Valentina.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_mateo_airport_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Mateo",
+      "description": "Mateo partiu de carro para o aeroporto por volta das onze da noite.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_sofia_chapel_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Sofía",
+      "description": "Sofía passou a madrugada na capela com o padre, preparando arranjos.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_esteban_office_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Esteban",
+      "description": "Don Esteban esteve fechado no escritório com o advogado durante toda a madrugada.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_rafael_glass_intact",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Taça de Rafael intacta",
+      "description": "A taça destinada a Rafael nunca foi tocada; ele não chegou a ir à glorieta.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_aconite_source_botic",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Origem do veneno",
+      "description": "O aconito saiu da botica da cozinha, de um frasco manuseado recentemente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lucia_admits_presence",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lucía admite presença",
+      "description": "Lucía admite ter estado na glorieta mais cedo, na noite anterior.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lucia_feelings_rafael",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sentimentos de Lucía",
+      "description": "Lucía admite ser apaixonada por Rafael e guardar ressentimento de Valentina.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lucia_prepared_toast",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lucía preparou o brinde",
+      "description": "Lucía admite ter preparado as taças e mexido na garrafa.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lucia_full_confession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Confissão de Lucía",
+      "description": "Lucía confessa ter dissolvido aconito na taça de Valentina, esperando ficar com Rafael.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_rafael_never_hers",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Rafael nunca foi dela",
+      "description": "Lucía matou por um homem que tinha outra esposa e que tampouco seria seu.",
+      "importance": "required"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_ultimo_brinde",
+    "createdAt": "2026-07-02T00:00:00.000Z",
+    "updatedAt": "2026-07-02T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "quem_matou_valentina",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem matou Valentina?",
+        "type": "character",
+        "options": [
+          {
+            "id": "lucia",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Lucía"
+          },
+          {
+            "id": "rafael",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Rafael"
+          },
+          {
+            "id": "esteban",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Don Esteban"
+          },
+          {
+            "id": "sofia",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Sofía"
+          },
+          {
+            "id": "mateo",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Mateo"
+          },
+          {
+            "id": "carmen",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Doña Carmen"
+          }
+        ]
+      },
+      {
+        "id": "motivo",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Qual foi o motivo?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "ciumes_pelo_noivo",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Ciúmes do noivo, por amor a Rafael"
+          },
+          {
+            "id": "heranca",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para entrar na linha de herança da hacienda"
+          },
+          {
+            "id": "contra_o_casamento",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para impedir o casamento desaprovado pela família"
+          },
+          {
+            "id": "vinganca_ex",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Vingança do ex-namorado rejeitado"
+          }
+        ]
+      },
+      {
+        "id": "metodo",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Como Valentina foi morta?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "taca_envenenada",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Veneno dissolvido na taça de champanhe dela"
+          },
+          {
+            "id": "garrafa_envenenada",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Veneno na garrafa inteira"
+          },
+          {
+            "id": "morte_natural",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Morte natural, sem crime"
+          },
+          {
+            "id": "outro_metodo",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Outro método qualquer"
+          }
+        ]
+      },
+      {
+        "id": "origem_veneno",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "De onde veio o veneno?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "botica_da_hacienda",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Da botica de ervas da própria hacienda"
+          },
+          {
+            "id": "jardim",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Colhido às escondidas no jardim"
+          },
+          {
+            "id": "fora_da_casa",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Trazido de fora, por alguém externo"
+          },
+          {
+            "id": "sem_veneno",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Não houve veneno"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O brinde que só ela bebeu",
+      "type": "full_truth",
+      "imageUrl": "histories/o-ultimo-brinde/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "quem_matou_valentina": "lucia",
+          "motivo": "ciumes_pelo_noivo",
+          "metodo": "taca_envenenada",
+          "origem_veneno": "botica_da_hacienda"
+        },
+        "requiresClueIds": [
+          "clue_lucia_full_confession",
+          "clue_rafael_never_hers",
+          "clue_aconite_source_botic"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Lucía dissolveu aconito, tirado da botica da hacienda, na taça de Valentina, por estar apaixonada por Rafael — que, sem ela saber, já era casado.",
+      "epilogue": "O sol finalmente cai sobre o campo de agave, e a luz dourada que deveria iluminar um casamento incide sobre uma confissão. Lucía solta o brinco que apertava na mão e fala, enfim, sem lágrimas. Preparou o brinde, serviu a taça, dissolveu a erva. Esperava que, sem Valentina, Rafael se voltasse para ela. Mas Rafael nem foi ao brinde — e tampouco era seu, pois já tinha outra esposa. Doña Carmen, de pé à porta, apenas confirma, com a quietude de quem sempre soube tudo e escolheu o silêncio. A hacienda fica de pé, mas a família que a habitava se desfaz, como bougainvíleas que caem na primeira ventania da noite. Lucía sai escoltada entre os canteiros brancos. Na glorieta, a segunda taça permanece cheia — ninguém nunca a bebeu."
+    },
+    {
+      "id": "ending_partial_truth_a",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A mão certa, o motivo incerto",
+      "type": "partial_truth",
+      "imageUrl": "histories/o-ultimo-brinde/endings/partial_truth_a.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "quem_matou_valentina": "lucia",
+          "metodo": "taca_envenenada"
+        },
+        "requiresClueIds": ["clue_lucia_prepared_toast"]
+      },
+      "summary": "Você apontou Lucía e o método da taça envenenada, mas não fechou o motivo real nem a origem do veneno.",
+      "epilogue": "Lucía já não consegue negar que preparou o brinde e mexeu na garrafa, mas o silêncio sobre o porquê pesa mais que a meia-confissão. Sem a origem do veneno e sem o nome do amor que a moveu, a verdade permanece pela metade, como uma taça servida e nunca esvaziada. A botica da cozinha segue no lugar de sempre, guardando, atrás dos outros frascos, a raiz que ninguém pensou em ir buscar."
+    },
+    {
+      "id": "ending_partial_truth_b",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O veneno certo, a mão errada",
+      "type": "partial_truth",
+      "imageUrl": "histories/o-ultimo-brinde/endings/partial_truth_b.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "metodo": "taca_envenenada"
+        },
+        "requiresClueIds": ["clue_poison_aconite", "clue_bottle_tampered"]
+      },
+      "summary": "Você descobriu que a morte foi veneno na taça, mas apontou a pessoa errada.",
+      "epilogue": "O envenenamento da taça está provado, mas a acusação recai sobre quem não serviu o brinde. Rafael, Esteban, Sofía ou Mateo — cada um esteve na hacienda, cada um guardava uma paixão ou um segredo —, mas nenhum deles esteve na glorieta quando a taça foi preparada. Lucía permanece atrás da máscara de melhor amiga enlutada, e o brinco de pérola no chão da glorieta continua guardando, em silêncio, o nome de quem esteve ali."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Um brinde que nunca se encerra",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-ultimo-brinde/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade. O brinde que matou Valentina segue sem dono nomeado.",
+      "epilogue": "A manhã termina sem que a verdade se pronuncie. O casamento é desfeito em silêncio, a hacienda se fecha sobre os seus, e cada um carrega para fora o seu segredo — a bigamia de Rafael, a filha ilegítima de Esteban, o amor antigo de Mateo, o silêncio de Carmen. Só Lucía fica para trás, na glorieta, debruçada sobre a taça vazia, repetindo em voz baixa o nome da amiga que perdeu e do homem que nunca a quis. Na prateleira da botica, atrás dos outros frascos, o aconito segue no seu lugar, esperando que alguém, um dia, o encontre."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 7,
+    "suggestConclusionAfterClues": 14,
+    "maxRecommendedInteractions": 24
+  }
+}

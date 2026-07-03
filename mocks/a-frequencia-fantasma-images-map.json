@@ -1,0 +1,115 @@
+{
+  "master": {
+    "prompt": "Create images for Tellery, a premium interactive storytelling app. The story is 'A Frequencia Fantasma', a refined Brazilian noir mystery set in 1940s Radio Aurora, an Art Deco broadcast station at midnight in downtown Sao Paulo. Visual identity: lacquered dark wood, brushed chrome microphones, amber vacuum tubes, analog VU meters, ribbed glass, black Bakelite knobs, acetate records, typed archive labels, piano varnish, and rain-slick city windows. Palette: midnight indigo #182033, warm vacuum-tube amber #D08A2E, oxidized teal #1F6B6A, aged ivory #E7DDC6, cigarette gray #77716A, polished chrome #BFC4C8, deep walnut #321F18, signal red #B6332C. Lighting: moody cinematic low light, practical amber lamps, glowing radio tubes, sharp reflections on chrome, soft haze, elegant shadows, subtle film grain. Style: premium editorial semi-realistic digital painting, adult literary mystery, sophisticated, atmospheric, grounded, not horror, not supernatural despite the title. Recurring motifs: radio waves, circular records, red ON AIR lights, typed labels, coiled cables, piano keys, archival dust. Avoid: text overlays, logos, watermarks, cartoon style, exaggerated horror ghosts, modern equipment, smartphones, neon cyberpunk. In-world labels may appear only as natural typed or handwritten archive details."
+  },
+  "history": {
+    "cover": {
+      "aspectRatio": "16:9",
+      "prompt": "Wide cinematic cover for 'A Frequencia Fantasma'. Show the main studio and control booth of a 1940s Art Deco radio station at midnight. Foreground: a chrome broadcast microphone with a small red ON AIR light, an open script, and soft reflections on dark walnut. Midground: through ribbed glass, the control booth glows with amber VU meters and vacuum tubes. A piano sits to one side under a low lamp. The room feels frozen immediately after a strange voice interrupted the broadcast. Leave darker atmospheric negative space on the left for future app title overlay, but render no text overlay. Mood: elegant, tense, literary, investigative, not supernatural horror."
+    },
+    "thumbnail": {
+      "aspectRatio": "1:1",
+      "prompt": "Square cinematic thumbnail for 'A Frequencia Fantasma'. Close-up still life of a black acetate record sleeve marked by a small typed code tag '12-B', partly pulled from an archive drawer, with a torn paper label and a coiled dark auxiliary cable crossing the corner. Warm amber radio light catches dust on the surface; chrome and walnut blur behind it. The missing record mystery should be instantly readable at small mobile size. No overlay text, no logo, natural in-world label only."
+    }
+  },
+  "location": {
+    "estudio_principal": {
+      "aspectRatio": "16:9",
+      "prompt": "Cinematic location image of the main studio at Radio Aurora, 1940s Art Deco. Show curved walnut acoustic walls, thick rugs, two chrome broadcast microphones, a red ON AIR light, a vertical piano under an amber lamp, music sheets on the stand, and a double glass window into the control booth. Composition: wide establishing shot with studio microphone and piano visible as investigative focal points. Mood: refined midnight tension, elegant silence after a live broadcast incident."
+    },
+    "cabine_controle": {
+      "aspectRatio": "16:9",
+      "prompt": "Cinematic location image of the control booth at Radio Aurora. Show an analog mixing console with VU meters, Bakelite knobs, paper channel labels, hanging headphones, a numbered patch bay, coiled cables, and ribbed glass looking into the studio. Warm amber lights from tubes and meters contrast with deep indigo shadows. Composition: medium-wide establishing shot, the patch bay and console clearly visible. Mood: technical, tense, precise, quietly suspicious."
+    },
+    "arquivo_matrizes": {
+      "aspectRatio": "16:9",
+      "prompt": "Cinematic location image of the archive room for acetate master records. Show narrow metal shelves, typed labels, flat record boxes, a cataloging table, a metal drawer left open, and dust illuminated by a single amber desk lamp. The space is dry, cold, orderly, and secretive. Composition: wide horizontal shot with the open drawer and catalog table as focal points. Mood: archival, intimate, literary, suspenseful."
+    },
+    "sala_transmissores": {
+      "aspectRatio": "16:9",
+      "prompt": "Cinematic location image of the transmitter room at Radio Aurora. Show tall metal transmitter panels, glowing vacuum tubes, large analog voltage gauges, heavy switches, perforated metal doors, and a workbench with maintenance tools. The room is warm, humming, and lit by amber tube glow against indigo shadows. Composition: wide establishing shot emphasizing intact panels and old broadcast machinery. Mood: industrial, atmospheric, grounded, investigative."
+    }
+  },
+  "object": {
+    "microfone_celeste": {
+      "aspectRatio": "1:1",
+      "prompt": "Close-up object image of Celeste's chrome broadcast microphone on a pedestal. The red transmission light is glowing on the support, with an elegant typed script page below it and warm amber studio light reflecting on polished metal. Square still life, shallow depth of field, refined noir atmosphere. Important clue: microphone light on during the pause."
+    },
+    "piano_iris": {
+      "aspectRatio": "4:3",
+      "prompt": "Close-up object image of the vertical piano used by Iris in the radio studio. Show glossy dark wood, ivory keys, a low amber lamp, and the cushioned piano bench slightly open, revealing a clean rectangle amid dust inside the storage compartment. 4:3 composition with enough space to show the bench interior detail. Mood: elegant, musical, suspicious."
+    },
+    "partitura_marcada": {
+      "aspectRatio": "1:1",
+      "prompt": "Square close-up of marked sheet music on the piano. Show aged ivory paper clipped with metal, pencil annotations in the margins, a small handwritten name 'Maria Luiza', and timing marks aligned to a dramatic pause. Warm lamplight, piano keys blurred behind. Natural handwriting only, no overlay. Mood: delicate, artistic, quietly incriminating."
+    },
+    "mesa_som": {
+      "aspectRatio": "4:3",
+      "prompt": "Close-up object image of a 1940s analog radio mixing console. Show Bakelite knobs, paper channel strips, VU meters, a slightly open auxiliary channel, and a small tape mark misaligned from the usual position. Chrome edges and amber meter glow. 4:3 composition, technical and legible. Mood: precise, suspicious, investigative."
+    },
+    "cabo_auxiliar": {
+      "aspectRatio": "1:1",
+      "prompt": "Square close-up of a dark fabric-covered auxiliary cable beside a numbered patch bay. The metal plug ends show freshly disturbed dust, and one small new paper tag bears the letter 'A'. Warm booth light, deep shadows, analog radio texture. Mood: technical clue, ordinary but important."
+    },
+    "tesoura_edicao": {
+      "aspectRatio": "1:1",
+      "prompt": "Square close-up of a small editing scissors on a felt pad beside rolls of marking tape and white labels. Tiny flecks of acetate and fresh glue cling to the blades, catching amber light. Background: blurred control booth console. Mood: intimate, precise, incriminating."
+    },
+    "armario_matrizes": {
+      "aspectRatio": "4:3",
+      "prompt": "Close-up object image of a metal archive drawer for acetate master records. The drawer slot for code 12-B is empty, with a partially torn typed label and a fresh smear of glue on the rail. Surrounding drawers have neat typed tags and flat black record sleeves. 4:3 composition with the empty slot as focal point. Mood: archival mystery, quiet absence."
+    },
+    "livro_registro": {
+      "aspectRatio": "1:1",
+      "prompt": "Square close-up of an archive register book open on a cataloging desk. Blue ink entries list key withdrawals; one line is visibly smudged and corrected around a late-night time. A metal ruler marks the page, amber desk lamp light, dust motes. Natural handwriting only, no overlay. Mood: bureaucratic clue, restrained tension."
+    },
+    "envelope_maria_luiza": {
+      "aspectRatio": "1:1",
+      "prompt": "Square close-up of an aged thick paper envelope tied with thin string, bearing an old Radio Aurora stamp and worn edges. Inside are a singer profile card, old newspaper clippings, and a loose typed label with the name 'Maria Luiza Vidal' and code '12-B'. Warm amber desk lamp, archive shelves blurred behind. Mood: personal history hidden in bureaucracy."
+    },
+    "painel_transmissor": {
+      "aspectRatio": "1:1",
+      "prompt": "Square close-up of a 1940s transmitter panel with glowing vacuum tubes, intact wax seals, heavy switches, and analog voltage gauges. The seals should visibly appear unbroken, suggesting no external tampering. Amber glow and deep indigo shadows. Mood: industrial, technical, exculpatory."
+    }
+  },
+  "characters": {
+    "celeste": {
+      "aspectRatio": "4:5",
+      "prompt": "Character portrait of Celeste Amaral, principal radio announcer. Brazilian woman in her early 40s, medium-light brown skin, sculpted dark hair in 1940s waves, precise lipstick, calm intelligent eyes. Elegant ivory blouse under a deep indigo tailored jacket, small pearl earrings, poised posture near a chrome microphone. Expression: composed but shaken, professional pride under pressure. Background: softly blurred radio studio, amber lamp and red ON AIR light. Premium semi-realistic noir portrait."
+    },
+    "miguel": {
+      "aspectRatio": "4:5",
+      "prompt": "Character portrait of Miguel Farias, radio sound technician. Brazilian Pardo man in his late 30s, warm tan skin, short dark hair, light stubble, tired focused eyes. Wearing rolled-sleeve white shirt, dark suspenders, headphones around neck, small tools in shirt pocket. Expression: defensive, technical, worried. Background: blurred control booth with VU meters and patch bay glowing amber. Refined cinematic realism."
+    },
+    "anita": {
+      "aspectRatio": "4:5",
+      "prompt": "Character portrait of Anita Valenca, radio archive keeper. Brazilian woman in her early 30s, olive skin, dark hair pinned low, serious dark eyes behind round reading glasses. Wearing a modest teal cardigan over an aged ivory blouse, holding a flat archive box against her chest. Expression: quiet resolve, guarded grief, intelligence. Background: blurred archive shelves with typed labels and amber desk lamp. Mood: restrained, emotionally complex, not villainous."
+    },
+    "iris": {
+      "aspectRatio": "4:5",
+      "prompt": "Character portrait of Iris Monteiro, invited singer. Afro-Brazilian woman in her late 20s, deep brown skin, expressive eyes, glossy black hair styled in vintage curls. Wearing a burgundy satin performance dress with subtle gold earrings, one hand resting near piano keys. Expression: charismatic, dramatic, slightly defensive. Background: blurred studio piano, warm amber light, art deco wood. Elegant theatrical noir mood."
+    },
+    "arnaldo": {
+      "aspectRatio": "4:5",
+      "prompt": "Character portrait of Arnaldo Paes, owner and director of Radio Aurora. Brazilian White man in his early 60s, fair skin, silver hair slicked back, trimmed mustache, calculating pale eyes. Wearing a dark walnut-brown three-piece suit, ivory shirt, pocket square, vintage wristwatch. Expression: paternal polish with hidden severity. Background: blurred reception corridor and framed radio certificates, warm amber and shadow. Premium adult mystery portrait."
+    },
+    "raul": {
+      "aspectRatio": "4:5",
+      "prompt": "Character portrait of Raul Mendonca, sponsor and businessman. Brazilian man in his late 40s, light brown skin, sharp features, black hair with silver at the temples, controlled smile. Wearing an immaculate charcoal suit, signal-red tie, gold cufflinks, holding a cigarette case or contract folder. Expression: polite, pragmatic, watchful. Background: blurred radio corridor with rain-slick city window. Sophisticated noir realism."
+    }
+  },
+  "endings": {
+    "full_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Cinematic ending image for the full truth ending of 'A Frequencia Fantasma'. Show the recovered acetate matrix 12-B resting on the archive catalog desk beside the torn label, the auxiliary cable, and the old Maria Luiza envelope. The archive room is warmer now, with amber light revealing dust rather than hiding it. No people. Mood: resolved, bittersweet, dignified memory restored."
+    },
+    "partial_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Cinematic ending image for the partial truth ending. Show the control booth after the incident: the analog console in shadow, auxiliary channel still visible, cable coiled on the desk, but the archive drawer remains open and empty in a reflected pane of glass. No people. Mood: partially resolved, uneasy, elegant, lingering uncertainty."
+    },
+    "wrong_accusation": {
+      "aspectRatio": "16:9",
+      "prompt": "Cinematic ending image for the wrong accusation ending. Show the main radio studio empty after midnight, red ON AIR light off, chrome microphone silent, piano bench closed, and rain streaking the dark window. The atmosphere suggests the real truth remains hidden inside the room. No people, no text overlay. Mood: unresolved, regretful, noir, quiet dread without horror."
+    }
+  }
+}

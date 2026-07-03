@@ -5,3 +5,4 @@ packages/*/dist/
 .turbo/
 .env
 output/
+apps/validator/validator-output*.txt

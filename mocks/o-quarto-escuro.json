@@ -1,0 +1,1752 @@
+{
+  "id": "history_o_quarto_escuro",
+  "createdAt": "2026-07-03T00:00:00.000Z",
+  "updatedAt": "2026-07-03T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-quarto-escuro",
+  "title": "O Quarto Escuro",
+  "subtitle": "Um fotógrafo morto no laboratório, na manhã da retrospectiva que devia coroar 25 anos de carreira",
+  "teaser": "Otto Salgado, o fotógrafo mais temido de Ouro Preto, é encontrado morto dentro do quarto escuro do seu estúdio, na véspera da retrospectiva que celebraria sua vida. A porta estava trancada por dentro. O cofre, aberto e vazio. Cinco pessoas estiveram no estúdio na noite anterior — todas com razão para querer aquele arquivo destruído.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 18,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/o-quarto-escuro/history/cover.jpg",
+  "thumbnailUrl": "histories/o-quarto-escuro/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "Otto Salgado, fotógrafo consagrado, foi encontrado morto dentro do quarto escuro do seu estúdio, na manhã da abertura da sua retrospectiva. A porta estava trancada por dentro e o cofre do escritório, aberto e vazio.",
+    "fullText": "É manhã de sábado em Ouro Preto, abril de 1974. Na Rua Direita, o Estúdio Salgado deveria abrir hoje as portas da retrospectiva que celebraria vinte e cinco anos de carreira de Otto Salgado — o retratista mais requisitado da cidade, o olho que durante um quarto de século registrou batizados, formaturas, poses de políticos e poses de família. Em vez dos preparativos, há um corpo no quarto escuro, o laboratório de revelação onde Otto trabalhava sozinho. Ele está caído junto à bancada, a porta trancada por dentro. No escritório ao lado, o cofre aparece aberto e vazio. Otto era casado com Dona Aurora, seu braço de sombra há trinta anos. Viviam com a sobrinha Vera, assistente do estúdio, que dormia no fundo na noite passada. Na véspera, cinco convidados passaram pelo estúdio para saudar o fotógrafo antes da grande abertura: Hélio Brandão, o prefeito da cidade; Madalena Reis, atriz consagrada dos palcos mineiros; Dr. Tomás Vieira, o cirurgião que seria homenageado na mesma semana; Irmã Bárbara, da diretoria do Orfanato Santo Antônio; e Vera, que tem as chaves do estúdio. Cada um conhecia Otto há muitos anos. Cada um tinha motivo para entrar no laboratório na noite em que ele morreu. Cabe a você examinar o quarto escuro e o escritório, ouvir as cinco versões e descobrir quem, se alguém, trancou Otto com seu próprio segredo.",
+    "callToAction": "Examine o quarto escuro e o escritório, converse com os cinco que estiveram no estúdio na véspera e descubra quem entrou no laboratório na noite em que Otto morreu."
+  },
+  "objective": {
+    "mainQuestion": "Quem matou Otto Salgado, como e por quê?",
+    "description": "Descubra quem entrou no laboratório na noite da morte, como Otto foi morto e o que Otto guardava que valia a pena silenciar para sempre."
+  },
+  "intentDefinitions": [
+    {
+      "id": "perguntar_sobre_morte",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a morte de Otto, o corpo, o quarto escuro ou as circunstâncias.",
+      "examples": [
+        "Como Otto morreu?",
+        "Quem encontrou o corpo?",
+        "O que aconteceu no laboratório?"
+      ],
+      "keywords": [
+        "morte",
+        "morreu",
+        "corpo",
+        "cadáver",
+        "morto",
+        "quarto escuro",
+        "laboratório",
+        "cena"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_otto",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Otto, seu caráter, sua rotina e quem ele era no estúdio.",
+      "examples": [
+        "Como era Otto?",
+        "Otto trabalhava sozinho?",
+        "Quem era o fotógrafo?"
+      ],
+      "keywords": [
+        "Otto",
+        "fotógrafo",
+        "Salgado",
+        "rotina",
+        "caráter",
+        "trabalhava",
+        "sozinho"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_chantagem",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre chantagem, ameaças, pagamentos, dinheiro exigido por Otto ou favores.",
+      "examples": [
+        "Otto chantageava alguém?",
+        "Alguém pagava a Otto?",
+        "Havia ameaças, exigências?"
+      ],
+      "keywords": [
+        "chantagem",
+        "chantagista",
+        "ameaça",
+        "ameaçava",
+        "pagamento",
+        "pagava",
+        "exigia",
+        "dinheiro",
+        "extorsão",
+        "silêncio"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_negativos",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre os negativos, fotos, o cofre, a roleta de chapas e o arquivo de Otto.",
+      "examples": [
+        "Onde estão os negativos?",
+        "O que tinha no cofre?",
+        "Que fotos Otto guardava?"
+      ],
+      "keywords": [
+        "negativos",
+        "fotos",
+        "fotografias",
+        "chapas",
+        "roleta",
+        "cofre",
+        "arquivo",
+        "revelação",
+        "clichês"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_laboratorio",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o quarto escuro, os químicos, o sedativo ou o método da morte.",
+      "examples": [
+        "Que químicos havia no laboratório?",
+        "Havia droga no café?",
+        "Como prenderam Otto lá dentro?"
+      ],
+      "keywords": [
+        "químicos",
+        "revelador",
+        "vapor",
+        "gás",
+        "sedativo",
+        "droga",
+        "café",
+        "tranca",
+        "porta",
+        "asfixia"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_exposicao",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a retrospectiva, os convidados da véspera e o clima da abertura.",
+      "examples": [
+        "Como foi a retrospectiva?",
+        "Quem veio ontem ao estúdio?",
+        "Teve briga na abertura?"
+      ],
+      "keywords": [
+        "retrospectiva",
+        "exposição",
+        "abertura",
+        "convidados",
+        "véspera",
+        "festa",
+        "inauguração"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_aurora",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Aurora, esposa de Otto, o casamento e o que testemunhou.",
+      "examples": [
+        "Aurora, como era o casamento?",
+        "Aurora estava onde ontem?",
+        "O que Aurora viu?"
+      ],
+      "keywords": [
+        "Aurora",
+        "Dona Aurora",
+        "esposa",
+        "casamento",
+        "viúva",
+        "testemunhou",
+        "viu"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_helio",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Hélio, o prefeito, sua relação com Otto e seu paradeiro.",
+      "examples": [
+        "Hélio, como o senhor conhecia Otto?",
+        "Hélio estava onde ontem?",
+        "O prefeito veio à retrospectiva?"
+      ],
+      "keywords": [
+        "Hélio",
+        "prefeito",
+        "Brandão",
+        "política",
+        "câmara",
+        "paradeiro"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_madalena",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Madalena, a atriz, sua amizade com Otto e seu paradeiro.",
+      "examples": [
+        "Madalena, como era sua amizade com Otto?",
+        "Madalena estava onde ontem?",
+        "A atriz veio à retrospectiva?"
+      ],
+      "keywords": [
+        "Madalena",
+        "atriz",
+        "Reis",
+        "teatro",
+        "palco",
+        "paradeiro"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_tomas",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Dr. Tomás, o cirurgião, sua relação com Otto e seu paradeiro.",
+      "examples": [
+        "Dr. Tomás, o senhor conhecia Otto há muito tempo?",
+        "Tomás estava onde ontem?",
+        "O cirurgião veio à retrospectiva?"
+      ],
+      "keywords": [
+        "Tomás",
+        "doutor",
+        "cirurgião",
+        "Vieira",
+        "hospital",
+        "homenageado",
+        "paradeiro"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_barbara",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Irmã Bárbara, da diretoria do orfanato, e seu paradeiro.",
+      "examples": [
+        "Irmã Bárbara, a senhora conhecia Otto?",
+        "Bárbara estava onde ontem?",
+        "A irmã veio à retrospectiva?"
+      ],
+      "keywords": [
+        "Bárbara",
+        "Irmã",
+        "madre",
+        "orfanato",
+        "igreja",
+        "Santo Antônio",
+        "paradeiro"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_vera",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Vera, a sobrinha e assistente de Otto, e o que viu no estúdio.",
+      "examples": [
+        "Vera, você dormiu no estúdio?",
+        "Vera ouviu alguma coisa?",
+        "Vera viu quem chegou?"
+      ],
+      "keywords": [
+        "Vera",
+        "sobrinha",
+        "assistente",
+        "estúdio",
+        "chaves",
+        "quarto dos fundos"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_segredo",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar alguém sobre o que Otto sabia a seu respeito e o que ele guardava.",
+      "examples": [
+        "O que Otto sabia sobre você?",
+        "Que segredo ele tinha?",
+        "Por que Otto incomodava tanto você?"
+      ],
+      "keywords": [
+        "segredo",
+        "sabia",
+        "tinha sobre",
+        "guardava",
+        "documentos",
+        "verdade",
+        "passado"
+      ]
+    },
+    {
+      "id": "perguntar_sobre_alibi",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Questionar o paradeiro de cada um na noite em que Otto morreu.",
+      "examples": [
+        "Onde você estava ontem à noite?",
+        "Com quem estava?",
+        "Pode confirmar o seu álibi?"
+      ],
+      "keywords": [
+        "onde",
+        "paradeiro",
+        "álibi",
+        "noite",
+        "ontem",
+        "com quem",
+        "horas"
+      ]
+    },
+    {
+      "id": "inspecionar_objeto",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono o café"
+      ],
+      "keywords": [
+        "examinar",
+        "inspecionar",
+        "olhar",
+        "objeto",
+        "detalhes",
+        "observar"
+      ]
+    },
+    {
+      "id": "acusar_aurora",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Aurora de ter matado Otto.",
+      "examples": [
+        "Aurora, foi a senhora",
+        "Confronto Aurora sobre a morte",
+        "Acho que foi a Dona Aurora"
+      ],
+      "keywords": ["acusar Aurora", "matou", "responsável", "culpada"]
+    },
+    {
+      "id": "acusar_helio",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Hélio de ter matado Otto.",
+      "examples": [
+        "Hélio, foi o senhor",
+        "Confronto Hélio sobre a morte",
+        "Acho que foi o prefeito"
+      ],
+      "keywords": ["acusar Hélio", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "acusar_madalena",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Madalena de ter matado Otto.",
+      "examples": [
+        "Madalena, foi você",
+        "Confronto Madalena sobre a morte",
+        "Acho que foi a atriz"
+      ],
+      "keywords": ["acusar Madalena", "matou", "responsável", "culpada"]
+    },
+    {
+      "id": "acusar_tomas",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Dr. Tomás de ter matado Otto.",
+      "examples": [
+        "Dr. Tomás, foi o senhor",
+        "Confronto Tomás sobre a morte",
+        "Acho que foi o cirurgião"
+      ],
+      "keywords": ["acusar Tomás", "matou", "responsável", "culpado"]
+    },
+    {
+      "id": "acusar_barbara",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Irmã Bárbara de ter matado Otto.",
+      "examples": [
+        "Irmã Bárbara, foi a senhora",
+        "Confronto Bárbara sobre a morte",
+        "Acho que foi a irmã"
+      ],
+      "keywords": ["acusar Bárbara", "matou", "responsável", "culpada"]
+    },
+    {
+      "id": "acusar_vera",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Vera de ter matado Otto.",
+      "examples": [
+        "Vera, foi você",
+        "Confronto Vera sobre a morte",
+        "Acho que foi a sobrinha"
+      ],
+      "keywords": ["acusar Vera", "matou", "responsável", "culpada"]
+    },
+    {
+      "id": "pressionar_confissao",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
+    },
+    {
+      "id": "fora_do_assunto",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair do estúdio",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "aurora",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dona Aurora",
+      "role": "Esposa de Otto há trinta anos",
+      "shortDescription": "Esposa de Otto há trinta anos e dona da casa. Estava na retrospectiva da véspera e foi quem trouxe o café da manhã ao estúdio.",
+      "imageUrl": "histories/o-quarto-escuro/characters/aurora.jpg",
+      "personality": "Senhora de ferro por trás de modos cuidadosos. Trinta anos de casamento a ensinaram a ouvir atrás das portas e a contar o que convém. Há uma dignidade ferida em tudo o que diz.",
+      "speakingStyle": "Voz baixa e medida, vocabulário de casa antiga, frases que pesam cada palavra. Fala do mar com a correção de viúva exemplar, mas os olhos denunciam o que a boca cala.",
+      "publicKnowledge": [
+        "Era casada com Otto havia trinta anos e cuidava da casa da Rua Direita.",
+        "Trouxe o café da manhã ao estúdio e foi quem primeiro encontrou a porta do laboratório trancada.",
+        "Esteve na retrospectiva da véspera, ao lado dos convidados.",
+        "Otto trabalhava até tarde no laboratório e ela já não esperava por ele acordada."
+      ],
+      "privateKnowledge": [
+        "Sabia das traições antigas do marido, mas jamais admitiu em público.",
+        "Viu o Dr. Tomás deixar o estúdio perto das duas da manhã, com a manga manchada.",
+        "Reconheceu no café do Otto um cheiro estranho e notou que ele nunca punha açúcar.",
+        "Descobriu há poucas semanas, lendo correspondência, que o marido recebia pagamentos regulares de pessoas da cidade."
+      ],
+      "openingLine": "Trinta anos de casada. Aprendi que uma esposa fecha as portas que precisam ser fechadas e abre só as que convém. Hoje tive que abrir a do laboratório. Faça suas perguntas, mas poupem-me de consolações baratas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_otto_dead",
+          "triggerIntents": [
+            "perguntar_sobre_morte",
+            "perguntar_sobre_aurora",
+            "perguntar_sobre_otto"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Aurora relata, com a compostura de quem já chorou o que tinha para chorar, que encontrou Otto caído junto à bancada do quarto escuro ao levar-lhe o café da manhã, na manhã da retrospectiva.",
+          "responseGuidance": "Deve falar do achado com a frieza de quem cumpre um último dever conjugal."
+        },
+        {
+          "clueId": "clue_chemical_vapors",
+          "triggerIntents": [
+            "perguntar_sobre_morte",
+            "perguntar_sobre_laboratorio",
+            "perguntar_sobre_aurora"
+          ],
+          "requiresClueIds": ["clue_otto_dead"],
+          "revealText": "Aurora descreve o cheiro do quarto escuro ao abrir a porta: ácido e éter tão densos que a fizeram recuar — os reveladores fotográficos tinham sido derramados pela bancada, como se alguém os houvesse virado de propósito.",
+          "responseGuidance": "Deve falar do cheiro como quem ainda o sente no nariz, sem tirar conclusões."
+        },
+        {
+          "clueId": "clue_door_locked_inside",
+          "triggerIntents": [
+            "perguntar_sobre_morte",
+            "perguntar_sobre_laboratorio",
+            "perguntar_sobre_aurora"
+          ],
+          "requiresClueIds": ["clue_otto_dead"],
+          "revealText": "Aurora conta que a porta do quarto escuro estava trancada por dentro quando chegou e que teve que mandar arrombar — Otto estava trancado com os seus químicos, sem saída.",
+          "responseGuidance": "Deve relatar isso como fato estranho e decisivo, sem explicar como teria sido possível."
+        },
+        {
+          "clueId": "clue_aurora_knew_affairs",
+          "triggerIntents": ["perguntar_sobre_aurora", "perguntar_sobre_otto"],
+          "requiresClueIds": [],
+          "revealText": "Dona Aurora admite, com frieza controlada, que o casamento há muito era só de fachada e que Otto mantinha casos com outras mulheres ao longo dos anos.",
+          "responseGuidance": "Deve falar das traições como quem relata o tempo, sem rancor visível, sem se fazer de vítima."
+        },
+        {
+          "clueId": "clue_aurora_inherits_estate",
+          "triggerIntents": ["perguntar_sobre_aurora", "perguntar_sobre_otto"],
+          "requiresClueIds": [],
+          "revealText": "Aurora confirma que, pelo testamento, é herdeira do estúdio e da casa da Rua Direita — situação que não muda há anos.",
+          "responseGuidance": "Deve tratar a herança com desdém de quem nunca precisou do dinheiro do marido."
+        },
+        {
+          "clueId": "clue_aurora_saw_tomas_leaving",
+          "triggerIntents": [
+            "perguntar_sobre_tomas",
+            "perguntar_sobre_aurora",
+            "perguntar_sobre_alibi"
+          ],
+          "requiresClueIds": ["clue_otto_dead"],
+          "revealText": "Aurora revela que, ao descer para fechar a porta da rua perto das duas da manhã, viu o Dr. Tomás sair apressado do estúdio, com uma mancha escura na manga do paletó.",
+          "responseGuidance": "Deve oferecer isso como fato, sem acusar — apenas o que os olhos viram."
+        },
+        {
+          "clueId": "clue_sedative_in_coffee",
+          "triggerIntents": [
+            "perguntar_sobre_laboratorio",
+            "perguntar_sobre_aurora",
+            "perguntar_sobre_morte"
+          ],
+          "requiresClueIds": ["clue_coffee_half_full"],
+          "revealText": "Aurora nota que o café que Otto deixou pela metade tem um cheiro adocicado que ela não conhece — e lembra que o marido nunca punha açúcar, muito menos naquele horário.",
+          "responseGuidance": "Deve observar isso com a precisão de quem conhece os hábitos do morto melhor do que ninguém."
+        },
+        {
+          "clueId": "clue_tomas_access_sedative",
+          "triggerIntents": [
+            "perguntar_sobre_laboratorio",
+            "perguntar_sobre_tomas",
+            "perguntar_sobre_aurora"
+          ],
+          "requiresClueIds": ["clue_sedative_hospital_source"],
+          "revealText": "Aurora reconhece no frasco hospitalar o tipo de sedativo usado em cirurgias — e lembra que o Dr. Tomás, como cirurgião respeitado, teria acesso fácil a ele.",
+          "responseGuidance": "Deve dizer isso como quem encaixa uma peça, sem fazer a acusação no lugar do investigador."
+        },
+        {
+          "clueId": "clue_tomas_chemical_stain",
+          "triggerIntents": [
+            "perguntar_sobre_tomas",
+            "perguntar_sobre_aurora",
+            "perguntar_sobre_laboratorio"
+          ],
+          "requiresClueIds": ["clue_aurora_saw_tomas_leaving"],
+          "revealText": "Aurora descreve com precisão a mancha na manga do Dr. Tomás: escura, com aquele brilho oleoso característico dos reveladores fotográficos — produto que só faz sentido no quarto escuro.",
+          "responseGuidance": "Deve falar da mancha como quem reconhece um cheiro e uma cor de longa data."
+        },
+        {
+          "clueId": "clue_otto_blackmailer",
+          "triggerIntents": [
+            "perguntar_sobre_chantagem",
+            "perguntar_sobre_aurora",
+            "perguntar_sobre_otto"
+          ],
+          "requiresClueIds": ["clue_otto_agenda_code"],
+          "revealText": "Aurora admite, a contragosto, que descobriu há poucas semanas correspondência e recibos que indicavam pagamentos regulares a Otto — e que o marido, há muitos anos, vivia não só de retratos, mas de segredos alheios.",
+          "responseGuidance": "Deve confessar a descoberta com a vergonha de quem lavou roupa suja pela primeira vez."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar ter matado Otto, pois é inocente disso.",
+        "Não revelar a chantagem antes de confrontada com a agenda codificada.",
+        "Manter o tom de viúva de ferro, sem se fazer de suspeita nem de vítima."
+      ]
+    },
+    {
+      "id": "helio",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Hélio Brandão",
+      "role": "Prefeito de Ouro Preto",
+      "shortDescription": "Prefeito de Ouro Preto e antigo cliente do estúdio. Compareceu à retrospectiva da véspera.",
+      "imageUrl": "histories/o-quarto-escuro/characters/helio.jpg",
+      "personality": "Carismático no palanque, carrancudo em particular. Veste o sorriso público como um paletó que tira ao entrar em casa. Carrega o peso de uma juventude que preferia esquecer.",
+      "speakingStyle": "Fala no tom pausado de quem discursa, usa clichês de político para desviar de pergunta direta, gagueja só quando a pergunta chega perto demais.",
+      "publicKnowledge": [
+        "É o prefeito de Ouro Preto, no segundo ano de mandato.",
+        "Cliente antigo do estúdio — Otto fotografou sua posse e a formatura dos filhos.",
+        "Compareceu à retrospectiva da véspera para cumprimentar o fotógrafo.",
+        "Conhece Otto há mais de vinte anos."
+      ],
+      "privateKnowledge": [
+        "Era chantageado por Otto por causa de uma fotografia de juventude que o ligava a um episódio que destruiria a carreira.",
+        "Pagava quantias mensais a Otto há anos, sempre em dinheiro vivo.",
+        "Na noite da morte, depois da retrospectiva, recolheu-se cedo à sua casa, sozinho.",
+        "Não matou Otto, mas teme que o segredo venha à tona."
+      ],
+      "openingLine": "Conhecia o Salgado desde os tempos do meu primeiro mandato na câmara. Fotógrafo respeitável, respeitadíssimo. O que aconteceu ontem é uma tragédia para a cidade inteira. Pois não? O que o senhor precisa?",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_helio_alibi_home",
+          "triggerIntents": [
+            "perguntar_sobre_helio",
+            "perguntar_sobre_alibi",
+            "perguntar_sobre_exposicao"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Hélio afirma que, ao fim da retrospectiva, por volta das onze da noite, recolheu-se direto à sua casa na Rua da Bahia, onde permaneceu sozinho até o amanhecer.",
+          "responseGuidance": "Deve oferecer o álibi com a naturalidade de quem nada tem a esconder quanto à morte."
+        },
+        {
+          "clueId": "clue_helio_blackmailed",
+          "triggerIntents": [
+            "perguntar_sobre_segredo",
+            "perguntar_sobre_chantagem",
+            "perguntar_sobre_helio"
+          ],
+          "requiresClueIds": ["clue_otto_blackmailer"],
+          "revealText": "Hélio admite, com a voz mudando de tom, que Otto o vinha pressionando há anos por uma fotografia antiga que, se divulgada, encerraria sua carreira política — e que pagava para mantê-la guardada.",
+          "responseGuidance": "Deve confessar a chantagem sem nomear o conteúdo exato da fotografia, preservando o que ainda pode do seu nome."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar ter matado Otto, pois é inocente disso.",
+        "Não revelar o conteúdo exato da fotagem que o compromete.",
+        "Manter o tom de político encurralado, mas cooperativo quanto à morte."
+      ]
+    },
+    {
+      "id": "madalena",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Madalena Reis",
+      "role": "Atriz consagrada do teatro mineiro",
+      "shortDescription": "Atriz consagrada dos palcos mineiros e amiga de longa data de Otto. Veio de Belo Horizonte para a retrospectiva.",
+      "imageUrl": "histories/o-quarto-escuro/characters/madalena.jpg",
+      "personality": "Teatral até na intimidade, generosa com o aplauso e impiedosa consigo mesma. Veste o drama como um xale. Há no fundo uma ferida antiga que ela transformou em arte.",
+      "speakingStyle": "Voz de palco mesmo na sala, frases longas, metáforas de bastidores. Chora bonito, quando precisa; ri mais bonito ainda.",
+      "publicKnowledge": [
+        "É a primeira atriz do Teatro Municipal, há mais de vinte anos nos palcos.",
+        "Amiga pessoal de Otto desde a primeira peça que ele fotografou.",
+        "Veio de Belo Horizonte especialmente para a retrospectiva.",
+        "Estava na abertura da véspera."
+      ],
+      "privateKnowledge": [
+        "Otto a chantageava com fotografias de um episódio íntimo de juventude, do tempo em que precisou tomar uma decisão drástica e proibida.",
+        "Há três semanas fizera um pagamento alto a Otto, em dinheiro, para adiar mais uma ameaça.",
+        "Na noite da morte, depois da retrospectiva, esteve em ensaio noturno no Teatro Municipal até a madrugada.",
+        "Não matou Otto, mas teme que o segredo venha à tona agora que ele morreu."
+      ],
+      "openingLine": "Otto e eu éramos quase irmãos. Ele me fotografou em pé pela primeira vez quando eu ainda não sabia mexer nos braços direito. Vinte e tantos anos depois, ele me fotografa de novo — e some assim, no escuro, sem me deixar dizer a última fala. É de partir o coração.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_madalena_alibi_theater",
+          "triggerIntents": [
+            "perguntar_sobre_madalena",
+            "perguntar_sobre_alibi",
+            "perguntar_sobre_exposicao"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Madalena afirma que, ao deixar a retrospectiva por volta das dez e meia, foi direto ao Teatro Municipal, onde ensaiou com o elenco até depois das duas da manhã — colegas podem confirmar.",
+          "responseGuidance": "Deve oferecer o álibi com a segurança de quem tem testemunhas."
+        },
+        {
+          "clueId": "clue_madalena_blackmailed",
+          "triggerIntents": [
+            "perguntar_sobre_segredo",
+            "perguntar_sobre_chantagem",
+            "perguntar_sobre_madalena"
+          ],
+          "requiresClueIds": ["clue_otto_blackmailer"],
+          "revealText": "Madalena admite, entre lágrimas teatrais e verdadeiras, que Otto a vinha chantageando há anos com fotografias de um episódio íntimo do seu passado — episódio que, se revelado, destruiria sua carreira e sua vida.",
+          "responseGuidance": "Deve confessar a chantagem com a dramaticidade da atriz, mas preservando os detalhes do segredo."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar ter matado Otto, pois é inocente disso.",
+        "Não revelar o conteúdo exato das fotografias que a comprometem.",
+        "Manter o tom de amiga enlutada, sem nunca soar ameaçadora."
+      ]
+    },
+    {
+      "id": "tomas",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dr. Tomás Vieira",
+      "role": "Cirurgião respeitado e homenageado da semana",
+      "shortDescription": "Cirurgião respeitado, homenageado pela Cruz Vermelha na mesma semana. Conhecia Otto desde a faculdade.",
+      "imageUrl": "histories/o-quarto-escuro/characters/tomas.jpg",
+      "personality": "Controlado, polido, professoral. A compostura é o paletó que veste — por baixo há um homem que aprendeu, há muito, a não mostrar as mãos trêmulas.",
+      "speakingStyle": "Voz grave e didática, vocabulário médico quando quer distância, frases medidas que se rompem só quando a pressão vem.",
+      "publicKnowledge": [
+        "Cirurgião de renome, com consultório e plantão no Santa Casa.",
+        "Seria homenageado pela Cruz Vermelha nesta mesma semana.",
+        "Conhecia Otto desde a faculdade, há mais de trinta anos.",
+        "Compareceu à retrospectiva da véspera."
+      ],
+      "privateKnowledge": [
+        "Era chantageado por Otto por causa de uma fotografia que provava um erro cirúrgico antigo, encoberto por um laudo falso.",
+        "Otto vinha subindo as exigências, sobretudo depois que a homenagem pela Cruz Vermelha foi anunciada.",
+        "Na noite da morte, esteve no estúdio depois da retrospectiva, sob pretexto de levar um presente ao amigo.",
+        "Matou Otto: drobou o café com sedativo, esperou-o adormecer, e o confinou no laboratório com os vapores de revelador derramado. Levou os negativos do cofre."
+      ],
+      "openingLine": "Otto era meu amigo mais antigo desta cidade. Entramos juntos na faculdade, em quarenta e poucos. Eu o homenagearia no discurso da retrospectiva. Em vez disso, aqui estamos, a falar dele no passado. Pois não, o que o senhor precisa saber?",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_tomas_motive_honor",
+          "triggerIntents": [
+            "perguntar_sobre_tomas",
+            "perguntar_sobre_exposicao",
+            "perguntar_sobre_otto"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Dr. Tomás confirma que seria homenageado pela Cruz Vermelha no sábado, no encerramento da mesma semana da retrospectiva de Otto — uma sequência de honrarias que ele tratava com naturalidade.",
+          "responseGuidance": "Deve falar da homenagem com modéstia profissional, deixando entrever o peso que tem para ele."
+        },
+        {
+          "clueId": "clue_tomas_hospital_alibi",
+          "triggerIntents": [
+            "perguntar_sobre_tomas",
+            "perguntar_sobre_alibi"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Dr. Tomás afirma que, ao deixar a retrospectiva por volta das onze, foi direto à Santa Casa para um plantão que se estendeu pela madrugada — plantão que, segundo ele, pode ser confirmado.",
+          "responseGuidance": "Deve oferecer o álibi com segurança profissional, mas sem grandes detalhes."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_tomas_killed_otto",
+          "createdAt": "2026-07-03T00:00:00.000Z",
+          "updatedAt": "2026-07-03T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Tomás matou Otto para silenciar a chantagem sobre um erro cirúrgico antigo, justo na semana da sua homenagem.",
+          "truth": "Otto chantageava Tomás havia anos por causa de uma fotografia que provava um erro cirúrgico fatal, encoberto por um laudo falso, no início da carreira. Com a homenagem pela Cruz Vermelha anunciada, Otto subiu as exigências e ameaçou expor tudo. Na noite da retrospectiva, Tomás ficou para trás no estúdio. Drogou o café de Otto com um sedativo de uso hospitalar, esperou o amigo adormecer, levou-o ao laboratório, derramou o revelador para encher o recinto de vapores e trancou a porta por dentro. Em seguida abriu o cofre — cuja combinação Otto, irônico, dera a ele anos antes — e levou a roleta com os negativos. Voltou à Santa Casa e registrou o plantão retroativamente.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_tomas_stage_1_admit_blackmail",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "perguntar_sobre_segredo",
+                "perguntar_sobre_chantagem",
+                "acusar_tomas",
+                "perguntar_sobre_tomas"
+              ],
+              "requiresClueIds": [
+                "clue_otto_blackmailer",
+                "clue_otto_recording_tomas"
+              ],
+              "revealsClueIds": ["clue_tomas_admits_blackmail"],
+              "behavior": "Admitir, com a dignidade ferida de quem foi empurrado ao fundo, que Otto o chantageava há anos por um erro antigo, mas negar qualquer violência.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Sim. O Otto sabia de uma coisa que eu fiz… ou que deixei de fazer… há trinta anos. Cobrava pelo silêncio. Eu pagava. Isso me envergonha, mas não me faz assassino.",
+                "Eu pagava pelo silêncio dele como se paga um imposto velho. Horrível, mas necessário. Não cheguei a tocar no Otto naquela noite."
+              ]
+            },
+            {
+              "id": "secret_tomas_stage_2_admit_presence",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": [
+                "acusar_tomas",
+                "perguntar_sobre_alibi",
+                "perguntar_sobre_tomas",
+                "pressionar_confissao"
+              ],
+              "requiresClueIds": [
+                "clue_tomas_admits_blackmail",
+                "clue_aurora_saw_tomas_leaving"
+              ],
+              "revealsClueIds": ["clue_tomas_admits_presence"],
+              "behavior": "Quebrar parcialmente: admitir que voltou ao estúdio depois da retrospectiva para tentar uma última negociação com Otto, mas insistir que o deixou vivo.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tudo bem. Sim, eu voltei ao estúdio. Queria falar com ele uma última vez, homem a homem, antes da homenagem. Conversamos. Ele me mandou embora. Eu saí. Quando deixei o Otto, ele estava vivo.",
+                "Estive lá. Conversamos, discutimos, ele riu de mim como sempre ria. Saí de lá com a manga suja de revelador, sim — encostei na bancada sem querer. Mas o deixei respirando."
+              ]
+            },
+            {
+              "id": "secret_tomas_stage_3_full_confession",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": [
+                "acusar_tomas",
+                "pressionar_confissao",
+                "perguntar_sobre_laboratorio"
+              ],
+              "requiresClueIds": [
+                "clue_tomas_admits_presence",
+                "clue_sedative_hospital_source",
+                "clue_tomas_chemical_stain"
+              ],
+              "revealsClueIds": ["clue_tomas_full_confession"],
+              "behavior": "Confessar completamente: drogou o café, confinou Otto no laboratório com os vapores do revelador, abriu o cofre com a combinação que o próprio Otto lhe dera e levou os negativos.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Fui eu. Pus o sedativo no café —ele nem sentiu o gosto, como sempre. Esperei adormecer, levei-o ao laboratório, derramei o revelador pela bancada e tranquei a porta por dentro. Depois abri o cofre — a ironia é que ele mesmo me dera a combinação, anos atrás, numa noite de uísque. Levei a roleta com os negativos. Voltei ao plantão como se nada tivesse acontecido.",
+                "Matei o meu amigo mais antigo para que um laudo falso de trinta anos não me tirasse tudo na semana em que me homenageariam. Nenhuma homenagem vai apagar isso. Sirva-se."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar o método nem o roubo dos negativos antes do estágio 3.",
+        "Não revelar o conteúdo da fotografia que o compromete, a não ser em termos gerais.",
+        "Manter o tom de médico controlado, que se rompe apenas na confissão final.",
+        "Defender a memória pública de Otto como amigo, mesmo depois de confessar."
+      ]
+    },
+    {
+      "id": "barbara",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Irmã Bárbara",
+      "role": "Diretora do Orfanato Santo Antônio",
+      "shortDescription": "Irmã da Ordem e diretora do Orfanato Santo Antônio. Cliente antiga do estúdio, onde mandava retratar as crianças.",
+      "imageUrl": "histories/o-quarto-escuro/characters/barbara.jpg",
+      "personality": "Prática, enxuta, de sorriso curto. Aprendeu, no convento, a oferecer o essencial e a guardar o resto. Há uma fadiga antiga nos seus ombros.",
+      "speakingStyle": "Frases curtas e diretas, vocabulário simples de quem cuida de crianças, um humor seco que aparece de vez em quando.",
+      "publicKnowledge": [
+        "Pertence à Ordem e dirige o Orfanato Santo Antônio há quinze anos.",
+        "Cliente antiga do estúdio — Otto fotografava as crianças em adoção.",
+        "Compareceu à retrospectiva da véspera.",
+        "Conhece Otto há mais de vinte anos."
+      ],
+      "privateKnowledge": [
+        "Era chantageada por Otto por causa de uma fotografia que registrava um desvio de dinheiro do orfanato para um sobrinho doente — único pecado que ela não se perdoa.",
+        "Na noite da morte, depois da retrospectiva, recolheu-se ao convento e passou a madrugada em adoração na capela, com a Madre Superiora.",
+        "Não matou Otto, mas teme que o desvio venha à tona agora que o chantagista morreu."
+      ],
+      "openingLine": "Conhecia o senhor Otto desde que entrei no Santo Antônio. Ele fotografava as crianças com carinho, isso lhe reconheço. O que aconteceu ontem é uma desgraça. Pergunte o que precisar, filha.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_barbara_alibi_church",
+          "triggerIntents": [
+            "perguntar_sobre_barbara",
+            "perguntar_sobre_alibi",
+            "perguntar_sobre_exposicao"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Irmã Bárbara afirma que, ao deixar a retrospectiva, voltou direto ao convento e passou toda a madrugada em adoração na capela, junto à Madre Superiora, que pode confirmar.",
+          "responseGuidance": "Deve oferecer o álibi com simplicidade de quem nada tem a esconder quanto à morte."
+        },
+        {
+          "clueId": "clue_barbara_blackmailed",
+          "triggerIntents": [
+            "perguntar_sobre_segredo",
+            "perguntar_sobre_chantagem",
+            "perguntar_sobre_barbara"
+          ],
+          "requiresClueIds": ["clue_otto_blackmailer"],
+          "revealText": "Irmã Bárbara admite, com a voz embargada, que Otto a chantageava por causa de uma fotografia que registrava um desvio de recursos do orfanato — um pecado antigo, explica, feito em desespero de causa.",
+          "responseGuidance": "Deve confessar a chantagem sem se absolver, e sem detalhar demais a quem foi o dinheiro desviado."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar ter matado Otto, pois é inocente disso.",
+        "Não detalhar o destino do dinheiro desviado, para preservar quem ainda vive.",
+        "Manter o tom de religiosa prática, sem drama e sem vitimização."
+      ]
+    },
+    {
+      "id": "vera",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Vera Salgado",
+      "role": "Sobrinha de Otto e sua assistente no estúdio",
+      "shortDescription": "Sobrinha de Otto e sua assistente no estúdio. Dormia no quarto dos fundos na noite em que o tio morreu.",
+      "imageUrl": "histories/o-quarto-escuro/characters/vera.jpg",
+      "personality": "Atenta, calada, eficiente. Aprendeu cedo a revelar o que os outros não queriam ver. Há nela uma lealdade cansada a um tio que ela amava e temia em partes iguais.",
+      "speakingStyle": "Voz baixa e precisa, vocabulário técnico de estúdio, frases curtas que poupam adjetivos. Responde o suficiente; nunca uma palavra a mais.",
+      "publicKnowledge": [
+        "É sobrinha de Otto, órfã de mãe, criada no estúdio desde os doze anos.",
+        "É a assistente do tio — cuida da química, do arquivo e das encomendas.",
+        "Dorme no quarto dos fundos do estúdio quando há trabalho até tarde.",
+        "Tinha as chaves do estúdio na noite da morte."
+      ],
+      "privateKnowledge": [
+        "Sabia que o tio falsificava a autenticidade de algumas fotografias antigas para vender caro a colecionadores — era sua cúmplice forçada desde os dezesseis anos.",
+        "Otto também a usava para receber os pagamentos dos chantageados, sem nunca lhe dizer a origem.",
+        "Na noite da morte, ouviu o tio conversar alto com o Dr. Tomás perto das duas da manhã e depois viu o cirurgião deixar o estúdio às pressas.",
+        "Não matou Otto, mas vive aterrorizada com o que pode aparecer no arquivo."
+      ],
+      "openingLine": "Tio me criou neste estúdio. Aprendi a revelar fotos antes de aprender a costurar. Hoje de manhã, quando Dona Aurora chamou, eu já sabia, pelo silêncio, que alguma coisa tinha acontecido. Pois não. Pergunte.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_vera_saw_tomas_arrive",
+          "triggerIntents": [
+            "perguntar_sobre_vera",
+            "perguntar_sobre_tomas",
+            "perguntar_sobre_alibi"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Vera conta que dormia no quarto dos fundos quando acordou com vozes no estúdio por volta das duas da manhã — reconheceu a voz do Dr. Tomás em discussão acalorada com o tio, e logo depois ouviu a porta da rua se fechar.",
+          "responseGuidance": "Deve oferecer isso como quem relata o que ouviu, sem tirar conclusões."
+        },
+        {
+          "clueId": "clue_otto_blackmailer",
+          "triggerIntents": [
+            "perguntar_sobre_chantagem",
+            "perguntar_sobre_vera",
+            "perguntar_sobre_otto"
+          ],
+          "requiresClueIds": ["clue_otto_agenda_code", "clue_payment_records"],
+          "revealText": "Vera admite, com a voz firme de quem já não aguenta calar, que o tio vivia de segredos: recebia pagamentos regulares de pessoas importantes da cidade, em troca de manter certas fotografias em segredo no cofre — era, há muitos anos, um chantagista.",
+          "responseGuidance": "Deve confessar a verdade sobre o tio sem rancor, mas também sem protegê-lo depois de morto."
+        },
+        {
+          "clueId": "clue_vera_forced_accomplice",
+          "triggerIntents": [
+            "perguntar_sobre_segredo",
+            "perguntar_sobre_vera",
+            "perguntar_sobre_chantagem"
+          ],
+          "requiresClueIds": ["clue_otto_blackmailer"],
+          "revealText": "Vera revela que era cúmplice forçada do tio em dois negócios: ajudava a falsificar a autenticidade de fotos antigas vendidas a colecionadores e a receber os pagamentos dos chantageados, sem nunca saber o que cada segredo continha.",
+          "responseGuidance": "Deve assumir a cumplicidade com a dureza de quem carrega isso há anos."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar ter matado Otto, pois é inocente disso.",
+        "Não revelar a chantagem do tio antes de confrontada com a agenda e os recibos.",
+        "Manter o tom de sobrinha leal e cansada, sem teatralidade."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "laboratorio",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Quarto escuro",
+      "shortDescription": "O laboratório de revelação onde Otto foi encontrado morto.",
+      "imageUrl": "histories/o-quarto-escuro/location/laboratorio.jpg",
+      "initialDescription": "O quarto escuro é um cubículo sem janelas, forrado de prateleiras pretas, com uma bancada úmida, três cubas de revelação e uma lâmpada vermelha ainda acesa. O cheiro de ácido e éter ainda preenche o ar, denso, do teto ao chão de cimento.",
+      "ambientClueIds": [
+        "clue_otto_dead",
+        "clue_chemical_vapors",
+        "clue_door_locked_inside"
+      ],
+      "objectIds": ["cafeca", "frasco_sedativo"]
+    },
+    {
+      "id": "escritorio",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Escritório do estúdio",
+      "shortDescription": "O escritório onde Otto guardava o cofre e o arquivo.",
+      "imageUrl": "histories/o-quarto-escuro/location/escritorio.jpg",
+      "initialDescription": "O escritório é um cômodo pequeno e ordenado, com uma escrivaninha de couro, um calendário antigo na parede e, no canto, um cofre de ferro encravado na parede. Há uma estante de cadernos encadernados e um toca-fitas sobre a mesa.",
+      "ambientClueIds": [],
+      "objectIds": [
+        "cofre",
+        "roleta_negativos",
+        "bilhete_ameaca",
+        "agenda_otto",
+        "gravacao_otto",
+        "recibos"
+      ]
+    },
+    {
+      "id": "estudio",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sala de retratos",
+      "shortDescription": "A sala principal do estúdio, com o fundo pintado e os aparelhos fotográficos.",
+      "imageUrl": "histories/o-quarto-escuro/location/estudio.jpg",
+      "initialDescription": "A sala de retratos tem pé-direito alto, um fundo pintado de paisagem de Minas, tripés de câmeras de madeira e um piano encostado na parede. Há retratos antigos nas molduras e o cheiro de pó e verniz antigo.",
+      "ambientClueIds": [],
+      "objectIds": []
+    },
+    {
+      "id": "sala_exposicao",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sala da retrospectiva",
+      "shortDescription": "A sala onde foi montada a retrospectiva de Otto, na noite anterior.",
+      "imageUrl": "histories/o-quarto-escuro/location/sala_exposicao.jpg",
+      "initialDescription": "A sala da retrospectiva é longa, com paredes forradas de fotografias emolduradas em preto, taças de champanhe ainda sobre a mesinha de serve e flores brancas começando a murchar. As cortinas foram fechadas às pressas pela manhã.",
+      "ambientClueIds": [],
+      "objectIds": []
+    }
+  ],
+  "objects": [
+    {
+      "id": "cafeca",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Café meio cheio",
+      "shortDescription": "Uma xícara de café deixada pela metade sobre a bancada.",
+      "imageUrl": "histories/o-quarto-escuro/object/cafeca.jpg",
+      "locationId": "laboratorio",
+      "initialDescription": "Sobre a bancada úmida do laboratório, ao lado das cubas de revelação, há uma xícara de porcelana branca com café pela metade, frio, com uma fina pele escura na superfície.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_coffee_half_full",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_laboratorio",
+            "perguntar_sobre_morte"
+          ],
+          "requiresClueIds": [],
+          "revealText": "A xícara de café pela metade indica que Otto bebia algo quando foi surpreendido — e que deixou a bebida de lado de repente, sem terminar."
+        }
+      ]
+    },
+    {
+      "id": "frasco_sedativo",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Frasco de sedativo",
+      "shortDescription": "Um frasco hospitalar atirado no lixo do laboratório.",
+      "imageUrl": "histories/o-quarto-escuro/object/frasco_sedativo.jpg",
+      "locationId": "laboratorio",
+      "initialDescription": "No cesto de lixo do laboratório, meio escondido sob papéis de revelação usados, há um pequeno frasco de vidro sem rótulo, do tipo usado em hospitais, com vestígios de líquido no fundo.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_sedative_hospital_source",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_laboratorio",
+            "perguntar_sobre_morte"
+          ],
+          "requiresClueIds": [],
+          "revealText": "O frasco é do tipo usado para sedativos cirúrgicos em ambiente hospitalar, com vestígios recentes do mesmo líquido adocicado que se sente no café de Otto. Alguém com acesso a hospital derramou ali o que adormeceu o fotógrafo."
+        }
+      ]
+    },
+    {
+      "id": "cofre",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cofre do escritório",
+      "shortDescription": "O cofre de ferro embutido na parede do escritório.",
+      "imageUrl": "histories/o-quarto-escuro/object/cofre.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "No canto do escritório, um cofre de ferro embutido na parede está escancarado, a porta aberta para dentro, o interior vazio exceto por uma gaveta de aço também aberta.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_safe_open_empty",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_negativos",
+            "perguntar_sobre_morte"
+          ],
+          "requiresClueIds": [],
+          "revealText": "O cofre está aberto sem sinal de arrombamento — quem o abriu sabia a combinação. Está completamente vazio, como se alguém tivesse levado tudo o que Otto guardava lá dentro."
+        }
+      ]
+    },
+    {
+      "id": "roleta_negativos",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Roleta de negativos",
+      "shortDescription": "Uma roleta de chapas, vazia, dentro do cofre.",
+      "imageUrl": "histories/o-quarto-escuro/object/roleta_negativos.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "Dentro do cofre aberto há uma roleta metálica de chapas fotográficas, com os compartimentos abertos e vazios — apenas os encaixes escuros restam.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_negatives_missing",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_negativos",
+            "perguntar_sobre_morte"
+          ],
+          "requiresClueIds": [],
+          "revealText": "A roleta de negativos está completamente vazia — todas as chapas que Otto guardava ali foram levadas. O que quer que estivesse registrado naquelas fotografias, alguém fez questão de tirá-las da cena."
+        }
+      ]
+    },
+    {
+      "id": "bilhete_ameaca",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bilhete sobre a mesa",
+      "shortDescription": "Um bilhete dobrado sobre a escrivaninha de Otto.",
+      "imageUrl": "histories/o-quarto-escuro/object/bilhete_ameaca.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "Sobre a escrivaninha de couro, há um bilheto pequeno, dobrado ao meio, com uma caligrafia apressada em tinta azul.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_otto_threatened_back",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_negativos",
+            "perguntar_sobre_chantagem"
+          ],
+          "requiresClueIds": [],
+          "revealText": "O bilhete, sem assinatura, contém uma ameaça direta a Otto: 'Pare, ou eu paro você. Não quero o seu dinheiro, quero o silêncio.' — sugerindo que alguém, entre os chantageados, já não estava disposto a continuar pagando."
+        }
+      ]
+    },
+    {
+      "id": "agenda_otto",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Agenda de Otto",
+      "shortDescription": "Uma agenda encadernada, com anotações em código.",
+      "imageUrl": "histories/o-quarto-escuro/object/agenda_otto.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "Na gaveta da escrivaninha, há uma agenda pequena, de capa preta, com páginas cobertas de iniciais, datas e valores anotados a lápis em colunas apertadas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_otto_agenda_code",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_negativos",
+            "perguntar_sobre_chantagem"
+          ],
+          "requiresClueIds": [],
+          "revealText": "A agenda de Otto, em vez de compromissos de estúdio, registra iniciais, datas e valores ao longo de anos — um livro-caixa cifrado de pagamentos recebidos regularmente, indicando que o fotógrafo vivia de algo muito além de retratos."
+        }
+      ]
+    },
+    {
+      "id": "gravacao_otto",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Fita no toca-fitas",
+      "shortDescription": "Uma fita cassete deixada pronta no toca-fitas da escrivaninha.",
+      "imageUrl": "histories/o-quarto-escuro/object/gravacao_otto.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "Sobre a escrivaninha, o toca-fitas tem uma fita cassete já rebobinada, com uma etiqueta colada à mão, em posição de tocar.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_otto_recording_tomas",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_negativos",
+            "perguntar_sobre_chantagem"
+          ],
+          "requiresClueIds": [],
+          "revealText": "A fita contém a voz de Otto pressionando o Dr. Tomás: lembra, com ironia tranquila, um 'incidente na sala de cirurgia' de trinta anos atrás e exige um último pagamento antes da homenagem — caso contrário, 'as chapas serão reveladas de verdade'."
+        }
+      ]
+    },
+    {
+      "id": "recibos",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Maço de recibos",
+      "shortDescription": "Um maço de recibos avulsos dentro de uma pasta.",
+      "imageUrl": "histories/o-quarto-escuro/object/recibos.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "Dentro de uma pasta de cartolina, na segunda gaveta, há um maço de recibos datilografados, sem assinatura, com valores em dinheiro e datas dos últimos meses.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_payment_records",
+          "triggerIntents": [
+            "inspecionar_objeto",
+            "perguntar_sobre_negativos",
+            "perguntar_sobre_chantagem"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Os recibos, sem nome do pagador, registram pagamentos mensais em dinheiro ao longo de anos — quantias altas e regulares, superiores ao que um estúdio de retratos arrecadaria. Há um pagamento recente, de três semanas atrás, no valor mais alto de todos."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_otto_dead",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Otto está morto",
+      "description": "Otto Salgado foi encontrado morto no quarto escuro do estúdio, na manhã da retrospectiva.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_chemical_vapors",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Vapores de revelador",
+      "description": "O laboratório estava saturado dos vapores de revelador derramado pela bancada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_door_locked_inside",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Porta trancada por dentro",
+      "description": "A porta do quarto escuro estava trancada por dentro quando Aurora chegou.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_coffee_half_full",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Café pela metade",
+      "description": "Otto deixou o café pela metade sobre a bancada, como se tivesse sido surpreendido.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_safe_open_empty",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cofre aberto sem arrombamento",
+      "description": "O cofre do escritório foi aberto por quem sabia a combinação e estava completamente vazio.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_negatives_missing",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Negativos levados",
+      "description": "Todas as chapas da roleta dentro do cofre foram levadas.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_otto_blackmailer",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Otto era chantagista",
+      "description": "Otto vivia, há muitos anos, de chantagear figurões da cidade com fotografias comprometedoras.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_sedative_in_coffee",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sedativo no café",
+      "description": "O café de Otto tinha cheiro de sedativo — e Otto nunca punha açúcar.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_sedative_hospital_source",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Origem hospitalar do sedativo",
+      "description": "O sedativo usado vinha de um frasco hospitalar; alguém com acesso a hospital o trouxe.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tomas_access_sedative",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tomás tinha acesso ao sedativo",
+      "description": "Como cirurgião, Dr. Tomás tinha acesso fácil ao tipo de sedativo encontrado no laboratório.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tomas_chemical_stain",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Mancha de revelador em Tomás",
+      "description": "Tomás foi visto deixando o estúdio com mancha de revelador fotográfico na manga.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_aurora_saw_tomas_leaving",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Aurora viu Tomás sair",
+      "description": "Aurora viu o Dr. Tomás deixar o estúdio às pressas por volta das duas da manhã.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tomas_admits_blackmail",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tomás admite chantagem",
+      "description": "Tomás admite que Otto o chantageava há anos por um erro cirúrgico antigo.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tomas_admits_presence",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tomás admite presença",
+      "description": "Tomás admite ter voltado ao estúdio depois da retrospectiva para negociar com Otto.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tomas_full_confession",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Confissão de Tomás",
+      "description": "Tomás confessa ter drogado o café, confinado Otto no laboratório e levado os negativos do cofre.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tomas_motive_honor",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tomás seria homenageado",
+      "description": "Tomás seria homenageado pela Cruz Vermelha na mesma semana — Otto ameaçava expor tudo antes da homenagem.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_helio_blackmailed",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Hélio era chantageado",
+      "description": "Hélio era chantageado por Otto por uma fotografia política que destruiria sua carreira.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_madalena_blackmailed",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Madalena era chantageada",
+      "description": "Madalena era chantageada por Otto por fotografias de um episódio íntimo do passado.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_barbara_blackmailed",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bárbara era chantageada",
+      "description": "Irmã Bárbara era chantageada por Otto por uma fotografia que registrava um desvio no orfanato.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_vera_forced_accomplice",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Vera era cúmplice forçada",
+      "description": "Vera era cúmplice forçada de Otto na falsificação de fotos e no recebimento dos pagamentos.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_vera_saw_tomas_arrive",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Vera ouviu Tomás no estúdio",
+      "description": "Vera ouviu Tomás discutir com Otto por volta das duas da manhã e sair do estúdio às pressas.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_otto_agenda_code",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Agenda cifrada",
+      "description": "A agenda de Otto registra, em código, anos de pagamentos recebidos.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_otto_recording_tomas",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Gravação contra Tomás",
+      "description": "Uma fita registra Otto pressionando Tomás por um erro cirúrgico antigo.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_payment_records",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Recibos de pagamentos",
+      "description": "Um maço de recibos registra pagamentos mensais altos e regulares a Otto ao longo dos anos.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_otto_threatened_back",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bilhete ameaçador a Otto",
+      "description": "Um bilhete anônimo ameaçava Otto: 'Pare, ou eu paro você.'",
+      "importance": "required"
+    },
+    {
+      "id": "clue_aurora_knew_affairs",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Aurora sabia das traições",
+      "description": "Aurora sabia das traições antigas de Otto, mas mantinha a fachada de casamento.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_aurora_inherits_estate",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Aurora herda o estúdio",
+      "description": "Aurora é herdeira do estúdio e da casa, situação que não muda há anos.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_helio_alibi_home",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Hélio",
+      "description": "Hélio recolheu-se à sua casa sozinho após a retrospectiva.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_madalena_alibi_theater",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Madalena",
+      "description": "Madalena esteve em ensaio noturno no Teatro Municipal até a madrugada.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_barbara_alibi_church",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Bárbara",
+      "description": "Irmã Bárbara passou a madrugada em adoração na capela, com a Madre Superiora.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_tomas_hospital_alibi",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de plantão",
+      "description": "Tomás alega ter ido direto da retrospectiva para um plantão na Santa Casa, que se estendeu pela madrugada.",
+      "importance": "red_herring"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_quarto_escuro",
+    "createdAt": "2026-07-03T00:00:00.000Z",
+    "updatedAt": "2026-07-03T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "quem_matou_otto",
+        "createdAt": "2026-07-03T00:00:00.000Z",
+        "updatedAt": "2026-07-03T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem matou Otto?",
+        "type": "character",
+        "options": [
+          {
+            "id": "aurora",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Dona Aurora"
+          },
+          {
+            "id": "helio",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Hélio Brandão"
+          },
+          {
+            "id": "madalena",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Madalena Reis"
+          },
+          {
+            "id": "tomas",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Dr. Tomás Vieira"
+          },
+          {
+            "id": "barbara",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Irmã Bárbara"
+          },
+          {
+            "id": "vera",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Vera Salgado"
+          }
+        ]
+      },
+      {
+        "id": "motivo",
+        "createdAt": "2026-07-03T00:00:00.000Z",
+        "updatedAt": "2026-07-03T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Qual foi o motivo?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "silenciar_erro_cirurgico",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Silenciar a chantagem sobre um erro cirúrgico antigo"
+          },
+          {
+            "id": "proteger_carreira_politica",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Proteger uma carreira política exposta em foto"
+          },
+          {
+            "id": "por_heranca",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Herdar o estúdio e a casa"
+          },
+          {
+            "id": "vinganca_pessoal",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Vingança pessoal antiga contra Otto"
+          }
+        ]
+      },
+      {
+        "id": "metodo",
+        "createdAt": "2026-07-03T00:00:00.000Z",
+        "updatedAt": "2026-07-03T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Como Otto foi morto?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "sedativo_e_vapores",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Sedativo no café e vapores de revelador no laboratório trancado"
+          },
+          {
+            "id": "acidente_quimicos",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Acidente com os químicos do laboratório"
+          },
+          {
+            "id": "golpe_cabeca",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Golpe na cabeça dentro do laboratório"
+          },
+          {
+            "id": "veneno_classe",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Veneno clássico dissolvido na bebida"
+          }
+        ]
+      },
+      {
+        "id": "verdade_otto",
+        "createdAt": "2026-07-03T00:00:00.000Z",
+        "updatedAt": "2026-07-03T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem Otto realmente era?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "era_chantagista",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um chantagista que vivia de segredos alheios"
+          },
+          {
+            "id": "era_falsario",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um falsário de fotografias antigas"
+          },
+          {
+            "id": "era_informante",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um informante da polícia política"
+          },
+          {
+            "id": "era_inocente",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um fotógrafo inocente, sem segundas intenções"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O amigo mais antigo",
+      "type": "full_truth",
+      "imageUrl": "histories/o-quarto-escuro/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "quem_matou_otto": "tomas",
+          "motivo": "silenciar_erro_cirurgico",
+          "metodo": "sedativo_e_vapores",
+          "verdade_otto": "era_chantagista"
+        },
+        "requiresClueIds": [
+          "clue_tomas_full_confession",
+          "clue_otto_blackmailer",
+          "clue_sedative_hospital_source",
+          "clue_tomas_motive_honor"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Otto era chantagista havia anos, e o Dr. Tomás, prestes a ser homenageado pela Cruz Vermelha, drogou o café do amigo, confinou-o no laboratório com os vapores do revelador e levou os negativos do cofre.",
+      "epilogue": "A lâmpada vermelha do quarto escuro ainda pisca quando o Dr. Tomás, paletó dobrado no braço, finalmente se entrega à própria compostura. Conta tudo sem alarde, como quem dita um prontuário. O sedativo no café, o amigo adormecido, o revelador derramado pela bancada, a porta trancada por dentro — e, por fim, o cofre aberto com uma combinação que Otto, em noite de uísque, lhe confiara anos antes. A ironia não lhe escapa: matou o amigo mais antigo para que um laudo falso de trinta anos não lhe tirasse, na semana da homenagem, tudo o que construíra. Na parede da sala da retrospectiva, os retratos de Otto continuam a observar a cidade — agora já não como um olho de requinte, mas como o de um homem que vivia do silêncio alheio. Vera recolhe as chaves do estúdio sem uma lágrima. Aurora fecha a porta da Rua Direita pela última vez. E na gaveta da escrivaninha, sob o maço de recibos, ainda repousa a agenda codificada — livro-caixa de uma cidade inteira que, por vinte e cinco anos, pagou para não ser vista."
+    },
+    {
+      "id": "ending_partial_truth_a",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A mão certa, o motivo incerto",
+      "type": "partial_truth",
+      "imageUrl": "histories/o-quarto-escuro/endings/partial_truth_a.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "quem_matou_otto": "tomas",
+          "metodo": "sedativo_e_vapores"
+        },
+        "requiresClueIds": ["clue_tomas_admits_presence"]
+      },
+      "summary": "Você apontou Tomás e o método do sedativo com os vapores, mas não fechou o motivo real nem a verdade sobre Otto.",
+      "epilogue": "Tomás já não consegue negar que esteve no estúdio e que o café de Otto foi drogado, mas o silêncio sobre o porquê pesa mais que a meia-confissão. Sem o laudo falso de trinta anos e sem o nome do chantagista que Otto era, a verdade fica pela metade, como um negativo que nunca chegou a ser revelado. A fita no toca-fitas segue rebobinada sobre a escrivaninha, guardando a voz de Otto que ninguém pensou em ouvir até o fim."
+    },
+    {
+      "id": "ending_partial_truth_b",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O chantagista certo, a mão errada",
+      "type": "partial_truth",
+      "imageUrl": "histories/o-quarto-escuro/endings/partial_truth_b.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "verdade_otto": "era_chantagista",
+          "metodo": "sedativo_e_vapores"
+        },
+        "requiresClueIds": ["clue_otto_blackmailer", "clue_sedative_hospital_source"]
+      },
+      "summary": "Você descobriu que Otto era chantagista e que morreu pelo método do sedativo, mas apontou a pessoa errada.",
+      "epilogue": "A verdade sobre Otto — chantagista de uma cidade inteira — está posta, e o método do sedativo hospitalar também. Mas a acusação recai sobre quem não esteve no laboratório naquela madrugada. Aurora, Hélio, Madalena, Bárbara ou Vera — cada um pagava pelo próprio silêncio, cada um tinha razão para odiar Otto —, mas nenhum derramou o revelador pela bancada. O Dr. Tomás permanece atrás da compostura de sempre, e a mancha escura na manga do paletó, que ninguém foi buscar, continua guardando em silêncio o nome de quem esteve ali."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Um negativo que nunca se revela",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-quarto-escuro/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade. O amigo mais antigo de Otto segue sem nome, e o laboratório segue fechado.",
+      "epilogue": "A manhã termina sem que a verdade se pronuncie. A retrospectiva é desmontada em silêncio, as fotografias recolhidas das paredes, e cada um dos cinco convidados deixa o estúdio carregando o seu próprio segredo — a fotagem política de Hélio, o episódio de Madalena, o laudo falso de Tomás, o desvio de Bárbara, a cumplicidade cansada de Vera. Só Aurora fica para trás, debruçada sobre o café pela metade, repetindo em voz baixa que o marido nunca punha açúcar. Na gaveta da escrivaninha, a agenda codificada segue no seu lugar, esperando que alguém, um dia, decifre as iniciais e os valores de uma cidade inteira que pagou, durante vinte e cinco anos, para não ser vista."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 8,
+    "suggestConclusionAfterClues": 16,
+    "maxRecommendedInteractions": 28
+  }
+}

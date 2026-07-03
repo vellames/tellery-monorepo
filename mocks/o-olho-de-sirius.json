@@ -1,0 +1,1804 @@
+{
+  "id": "history_o_olho_de_sirius",
+  "createdAt": "2026-07-02T00:00:00.000Z",
+  "updatedAt": "2026-07-02T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-olho-de-sirius",
+  "title": "O Olho de Sirius",
+  "subtitle": "Um astrônomo aos pés do telescópio, na noite em que um cometa raro cortava o céu",
+  "teaser": "No Observatório Serra Alta, o astrônomo-chefe Otávio Salgado é encontrado morto aos pés do grande telescópio, na madrugada da passagem do cometa Iris. Uma tempestade isolou a montanha. Cinco pessoas dormiam no prédio. Uma delas sabia exatamente o que o silêncio das estrelas podia esconder.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 16,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/o-olho-de-sirius/history/cover.jpg",
+  "thumbnailUrl": "histories/o-olho-de-sirius/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "Otávio Salgado está morto aos pés do telescópio. A tempestade isolou o observatório. Cinco pessoas dormiam no prédio.",
+    "fullText": "São 5h da manhã no Observatório Serra Alta, no alto da serra, e a tempestade que subiu à noite ainda bloqueia a única estrada. Cleusa, a encarregada da hospedagem, subiu à cúpula para avisar que o café estava pronto e encontrou Otávio Salgado — astrônomo-chefe do observatório, 62 anos — caído ao pé da grande montagem do telescópio, sem vida. Não há sinal de luta ampla, mas o contrapeso de latão da montagem equatorial está deslocado e há um filete de sangue na borda. Otávio vestia o pijama; faltava o óculos. Para completar, a passagem do cometa Iris — evento pelo qual todos haviam subido a montanha — ainda estava marcada para a madrugada, e a cúpula estava aberta para o céu. Cinco pessoas dormiam no prédio isolado pela tempestade: Helena, co-diretora e co-autora das grandes publicações de Otávio; Tomé, o filho técnico de Otávio; Ingrid, uma pesquisadora visitante e doadora importante do instituto; Lucas, aluno de doutorado orientado por Otávio; e a própria Cleusa, que vive no observatório. Cabe a você examinar a cúpula e o prédio, ouvir as cinco versões e descobrir quem silenciou Otávio antes que o cometa cruzasse o céu.",
+    "callToAction": "Examine a cúpula do telescópio e o resto do observatório, converse com Helena, Tomé, Ingrid, Lucas e Cleusa, e reconstrua a última madrugada de Otávio Salgado."
+  },
+  "objective": {
+    "mainQuestion": "Quem causou a morte de Otávio Salgado, como e por quê?",
+    "description": "Descubra se a morte foi acidental ou provocada, quem foi o responsável, qual foi o método e o motivo real, e onde está a evidência que confirma a verdade."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_death",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a morte de Otávio, o corpo, a cena ou as circunstâncias.",
+      "examples": [
+        "Como Otávio morreu?",
+        "Quem encontrou o corpo?",
+        "Houve violência?"
+      ],
+      "keywords": [
+        "morte",
+        "morreu",
+        "corpo",
+        "cadáver",
+        "morta",
+        "queda"
+      ]
+    },
+    {
+      "id": "ask_about_telescope",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o telescópio, a montagem, o contrapeso ou a cúpula.",
+      "examples": [
+        "Como funciona o telescópio?",
+        "Quem mexeu no contrapeso?",
+        "A cúpula ficou aberta?"
+      ],
+      "keywords": [
+        "telescópio",
+        "luneta",
+        "contrapeso",
+        "montagem",
+        "cúpula",
+        "lente"
+      ]
+    },
+    {
+      "id": "ask_about_comet",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o cometa Iris, a observação da madrugada ou o cronograma da noite.",
+      "examples": [
+        "Quando o cometa ia passar?",
+        "Por que todos subiram a montanha?",
+        "A observação foi ontem?"
+      ],
+      "keywords": [
+        "cometa",
+        "Iris",
+        "observação",
+        "passagem",
+        "cronograma",
+        "madrugada"
+      ]
+    },
+    {
+      "id": "ask_about_discovery",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a descoberta de Sirius-9, o exoplaneta, o paper ou a autoria científica.",
+      "examples": [
+        "O que é Sirius-9?",
+        "Quem descobriu o exoplaneta?",
+        "Como foi o paper da descoberta?"
+      ],
+      "keywords": [
+        "Sirius",
+        "exoplaneta",
+        "descoberta",
+        "paper",
+        "artigo",
+        "publicação",
+        "autoria"
+      ]
+    },
+    {
+      "id": "ask_about_data",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre os dados, planilhas, registros fotométricos, logs ou curvas de luz.",
+      "examples": [
+        "Tem alguma planilha?",
+        "Os dados batem?",
+        "Quem mexe nos logs?"
+      ],
+      "keywords": [
+        "dados",
+        "planilha",
+        "log",
+        "registro",
+        "curva de luz",
+        "fotometria",
+        "arquivo"
+      ]
+    },
+    {
+      "id": "ask_about_retraction",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre retratação, correção, denúncia de fraude ou um artigo que ia ser publicado.",
+      "examples": [
+        "Otávio ia retratar algo?",
+        "Havia denúncia de fraude?",
+        "Qual paper ia sair?"
+      ],
+      "keywords": [
+        "retratação",
+        "retract",
+        "fraude",
+        "denúncia",
+        "correção",
+        "erratum",
+        "falsificação"
+      ]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava na madrugada, a que horas dormiu ou saiu do quarto.",
+      "examples": [
+        "Qual é o seu álibi?",
+        "Onde você estava de madrugada?",
+        "A que horas foi dormir?"
+      ],
+      "keywords": [
+        "álibi",
+        "madrugada",
+        "quarto",
+        "dormi",
+        "deitado",
+        "esteve"
+      ]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar por que alguém faria mal a Otávio.",
+      "examples": [
+        "Qual seria o motivo?",
+        "Quem ganhava com a morte dele?",
+        "Por que alguém faria isso?"
+      ],
+      "keywords": [
+        "motivo",
+        "por quê",
+        "ganharia",
+        "razão",
+        "interesse",
+        "vingança"
+      ]
+    },
+    {
+      "id": "ask_about_storm",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a tempestade, a estrada bloqueada e o isolamento da montanha.",
+      "examples": [
+        "A tempestade cortou a estrada?",
+        "Ninguém pôde descer?",
+        "Quando veio a temporal?"
+      ],
+      "keywords": [
+        "tempestade",
+        "estrada",
+        "bloqueada",
+        "isolado",
+        "descer",
+        "montanha"
+      ]
+    },
+    {
+      "id": "ask_about_otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Otávio, sua rotina, sua saúde ou sua reputação.",
+      "examples": [
+        "Como Otávio estava ultimamente?",
+        "Ele tinha problemas de saúde?",
+        "Otávio andava tenso?"
+      ],
+      "keywords": [
+        "Otávio",
+        "chefe",
+        "rotina",
+        "saúde",
+        "tenso",
+        "reputação"
+      ]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono a bancada"
+      ],
+      "keywords": [
+        "examinar",
+        "inspecionar",
+        "olhar",
+        "objeto",
+        "detalhes"
+      ]
+    },
+    {
+      "id": "ask_about_helena",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Helena, sua carreira, sua co-autoria com Otávio ou seu comportamento.",
+      "examples": [
+        "Helena, como você estava ontem?",
+        "Por que Helena estava tensa?",
+        "Helena é co-autora de quê?"
+      ],
+      "keywords": [
+        "Helena",
+        "co-diretora",
+        "Mariani",
+        "co-autora",
+        "carreira"
+      ]
+    },
+    {
+      "id": "ask_about_tome",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Tomé, seu trabalho como técnico, sua relação com o pai.",
+      "examples": [
+        "Tomé, o que você faz no observatório?",
+        "Como Tomé lidava com o pai?",
+        "Tomé mexeu no telescópio?"
+      ],
+      "keywords": [
+        "Tomé",
+        "técnico",
+        "filho",
+        "manutenção",
+        "relação"
+      ]
+    },
+    {
+      "id": "ask_about_ingrid",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Ingrid, sua doação ao instituto, seu processo ou seu trabalho.",
+      "examples": [
+        "Ingrid, por que você subiu a montanha?",
+        "O que Ingrid financia?",
+        "Ingrid ameaçou processo?"
+      ],
+      "keywords": [
+        "Ingrid",
+        "doadora",
+        "doação",
+        "processo",
+        "financia"
+      ]
+    },
+    {
+      "id": "ask_about_lucas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Lucas, seu doutorado, sua orientação com Otávio.",
+      "examples": [
+        "Lucas, como era a orientação?",
+        "Lucas corria risco no doutorado?",
+        "O que Lucas pesquisava?"
+      ],
+      "keywords": [
+        "Lucas",
+        "aluno",
+        "doutorado",
+        "orientação",
+        "pesquisa"
+      ]
+    },
+    {
+      "id": "ask_about_cleusa",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Cleusa, sua rotina no observatório, como achou o corpo.",
+      "examples": [
+        "Cleusa, como encontrou o corpo?",
+        "Que horas Cleusa subiu?",
+        "Cleusa ouviu barulho?"
+      ],
+      "keywords": [
+        "Cleusa",
+        "faxineira",
+        "cozinha",
+        "café",
+        "encontrou"
+      ]
+    },
+    {
+      "id": "accuse_helena",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Helena de ter causado a morte de Otávio.",
+      "examples": [
+        "Helena, foi você",
+        "Confronto Helena sobre a morte",
+        "Acho que foi a Helena"
+      ],
+      "keywords": [
+        "acusar Helena",
+        "responsável",
+        "culpada",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "accuse_tome",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Tomé de ter causado a morte de Otávio.",
+      "examples": [
+        "Tomé, foi você",
+        "Confronto Tomé sobre a morte",
+        "Acho que foi o Tomé"
+      ],
+      "keywords": [
+        "acusar Tomé",
+        "responsável",
+        "culpado",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "accuse_ingrid",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Ingrid de ter causado a morte de Otávio.",
+      "examples": [
+        "Ingrid, foi você",
+        "Confronto Ingrid sobre a morte",
+        "Acho que foi a Ingrid"
+      ],
+      "keywords": [
+        "acusar Ingrid",
+        "responsável",
+        "culpada",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "accuse_lucas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Lucas de ter causado a morte de Otávio.",
+      "examples": [
+        "Lucas, foi você",
+        "Confronto Lucas sobre a morte",
+        "Acho que foi o Lucas"
+      ],
+      "keywords": [
+        "acusar Lucas",
+        "responsável",
+        "culpado",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "press_for_confession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair do observatório",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": [
+        "fora",
+        "ignorar",
+        "ação",
+        "mudar",
+        "revelar tudo"
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": "helena",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Helena",
+      "role": "Co-diretora e co-autora das publicações do observatório",
+      "shortDescription": "Astrônoma respeitada e co-diretora do observatório, companheira de publicações de Otávio há duas décadas.",
+      "imageUrl": "histories/o-olho-de-sirius/characters/helena.jpg",
+      "personality": "Inteligente, controlada e ambiciosa. Mantém a compostura sob pressão e trata a carreira como construção cuidadosa de reputação.",
+      "speakingStyle": "Fala em frases completas e medidas, com vocabulário acadêmico. Escolhe cada palavra; raramente se contradiz.",
+      "publicKnowledge": [
+        "É co-diretora do Observatório Serra Alta há doze anos.",
+        "Co-assina com Otávio todas as grandes publicações do instituto, inclusive a do exoplaneta Sirius-9.",
+        "Subiu à montanha para a observação do cometa Iris como todos os outros."
+      ],
+      "privateKnowledge": [
+        "Os dados de Sirius-9 que consagraram seu nome foram manipulados por ela há cinco anos.",
+        "Otávio descobriu a inconsistência nos logs originais e preparava um paper de retratação.",
+        "Encontrou Otávio na cúpula antes da madrugada para tentar dissuadi-lo da retratação.",
+        "É a responsável pela morte, mas construiu uma narrativa de acidente para se defender."
+      ],
+      "openingLine": "Otávio era meu parceiro de carreira há vinte anos. Não me peçam para resumir o que sinto em uma manhã dessas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_helena_codirector",
+          "triggerIntents": ["ask_about_helena", "ask_about_discovery"],
+          "requiresClueIds": [],
+          "revealText": "Helena confirma que é co-diretora e co-autora de todas as grandes publicações de Otávio, inclusive a do exoplaneta Sirius-9.",
+          "responseGuidance": "Deve falar da parceria com orgulho contido e tom profissional."
+        },
+        {
+          "clueId": "clue_helena_did_not_observe",
+          "triggerIntents": ["ask_about_alibi", "ask_about_comet"],
+          "requiresClueIds": [],
+          "revealText": "Helena admite que, apesar de ter subido a montanha para o cometa, não estava na cúpula na madrugada da observação — diz ter ficado no escritório com 'trabalho de paper'.",
+          "responseGuidance": "Deve justificar a ausência da observação como dedicação ao trabalho, sem nervosismo."
+        },
+        {
+          "clueId": "clue_helena_tense_otavio",
+          "triggerIntents": ["ask_about_otavio", "ask_about_helena"],
+          "requiresClueIds": ["clue_helena_codirector"],
+          "revealText": "Helena reconhece que Otávio estava incomumente tenso nas últimas semanas e evitava falar sobre o próximo paper, mas atribui o comportamento a cansaço.",
+          "responseGuidance": "Deve reconhecer a tensão, mas minimizá-la como algo rotineiro de um acadêmico veterano."
+        },
+        {
+          "clueId": "clue_bruise_on_helena",
+          "triggerIntents": ["ask_about_alibi", "ask_about_helena"],
+          "requiresClueIds": ["clue_helena_was_at_dome"],
+          "revealText": "Ao gesticular, Helena deixa ver uma marca recente no antebraço esquerdo, compatível com uma defiance forte durante uma discussão.",
+          "responseGuidance": "Ela deve puxar a manga para esconder a marca sem deixar de responder, e descartá-la como 'bati na bancada'."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_helena_fraud",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Helena falsificou os dados de Sirius-9 e matou Otávio para impedi-lo de retratar a descoberta.",
+          "truth": "Há cinco anos, Helena manipulou as curvas de luz de Sirius-9 para forçar a detecção de um exoplaneta que provavelmente não existe. A descoberta consagrou seu nome e garantiu verbas e cargos. Otávio descobriu a inconsistência nos logs originais e preparava um paper de retratação que destruiria a reputação dela. Na madrugada do cometa, Helena subiu à cúpula para tentar dissuadi-lo; na discussão, Otávio sofreu um golpe na cabeça com o contrapeso de latão da montagem equatorial. Helena abriu a cúpula e largou o corpo ao pé do telescópio para simular uma queda acidental durante a observação do cometa.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_helena_stage_0_deny",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": [
+                "ask_about_death",
+                "accuse_helena",
+                "ask_about_alibi"
+              ],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento na morte e defender que tudo indica um acidente trágico durante a observação.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Otávio deve ter tropeçado na montagem. É uma escada íngreme, uma cúpula escura, um homem de 62 anos de madrugada.",
+                "Não me peçam para acusar colegas. Acidente com telescópio não é incomum quando se está cansado."
+              ]
+            },
+            {
+              "id": "secret_helena_stage_1_was_at_dome",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "ask_about_alibi",
+                "ask_about_death",
+                "accuse_helena"
+              ],
+              "requiresClueIds": ["clue_footprint_dome"],
+              "revealsClueIds": ["clue_helena_was_at_dome"],
+              "behavior": "Admitir que subiu à cúpula antes da madrugada, mas insistir que Otávio estava vivo quando saiu.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu subi uma vez, sim, para verificar a montagem. Otávio estava ajustando o contrapeso. Conversei dois minutos e desci.",
+                "Não vi nada de errado. Ele estava concentrado, como sempre antes de uma observação."
+              ]
+            },
+            {
+              "id": "secret_helena_stage_2_dispute",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": [
+                "ask_about_retraction",
+                "ask_about_discovery",
+                "ask_about_motive",
+                "accuse_helena"
+              ],
+              "requiresClueIds": [
+                "clue_helena_was_at_dome",
+                "clue_retraction_draft"
+              ],
+              "revealsClueIds": ["clue_helena_otavio_dispute"],
+              "behavior": "Admitir que havia uma discussão científica acirrada sobre Sirius-9, mas negar que tivesse implicações pessoais ou fatais.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tinha uma divergência sobre a robustez dos dados antigos. Acontece em qualquer carreira. Não vira briga, muito menos motivo para morrer.",
+                "Otávio queria revisar um paper antigo. Eu discordava da forma. Era ciência, não guerra."
+              ]
+            },
+            {
+              "id": "secret_helena_stage_3_data_knowledge",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": [
+                "ask_about_data",
+                "ask_about_retraction",
+                "ask_about_motive",
+                "accuse_helena"
+              ],
+              "requiresClueIds": [
+                "clue_helena_otavio_dispute",
+                "clue_tampered_logs"
+              ],
+              "revealsClueIds": ["clue_helena_knew_data_tampered"],
+              "behavior": "Admitir que sabia que os logs antigos tinham inconsistências, mas insistir que nunca os manipulou deliberadamente.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu sabia que os logs de cinco anos atrás tinham ruído, todo mundo sabia. Mas nunca toquei nos valores.",
+                "Se houvesse manipulação, teria sido um erro de processamento. Eu nunca, nunca falsificaria dados."
+              ]
+            },
+            {
+              "id": "secret_helena_stage_4_partial_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": [
+                "accuse_helena",
+                "ask_about_motive",
+                "press_for_confession"
+              ],
+              "requiresClueIds": [
+                "clue_helena_knew_data_tampered",
+                "clue_drivelog_helena_sirius"
+              ],
+              "revealsClueIds": ["clue_helena_argued_otavio"],
+              "behavior": "Admitir que discutiu acaloradamente com Otávio na cúpula sobre a retratação, mas negar a agressão.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu subi para pedir que ele não publicasse a retratação do jeito que queria. Discutimos. Eu saí. Quando saí, ele estava vivo.",
+                "Foi a discussão mais dura da minha vida. Mas eu não levantei a mão. Nunca."
+              ]
+            },
+            {
+              "id": "secret_helena_stage_5_full_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 5,
+              "triggerIntents": [
+                "accuse_helena",
+                "press_for_confession",
+                "ask_about_motive"
+              ],
+              "requiresClueIds": [
+                "clue_helena_argued_otavio",
+                "clue_bruise_on_helena"
+              ],
+              "revealsClueIds": [
+                "clue_helena_pushed_otavio",
+                "clue_helena_motive_fraud"
+              ],
+              "behavior": "Confessar completamente o que aconteceu: a manipulação dos dados de Sirius-9, o confronto na cúpula, o golpe acidental-mas-fatal com o contrapeso e a encenação do acidente.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Tá. Eu subi para impedi-lo. Discutimos, ele me empurrou, eu segurei o contrapeso para não cair... e ele tropeçou. Quando vi, ele estava no chão. Abri a cúpula para parecer acidente. Foi um minuto, e eu destruí vinte anos de carreira.",
+                "Eu falsifiquei Sirius-9. Tinha medo do que a retratação ia fazer comigo. Não foi premeditado. Mas ele morreu por causa daquela mentira, e isso é só meu."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar a manipulação dos dados antes do estágio 3.",
+        "Não confessar a presença na cúpula na hora da morte antes do estágio 1.",
+        "Não revelar a sequência completa da morte antes do estágio 5.",
+        "Manter o tom de uma acadêmica controlada, não de uma vilã exibida."
+      ]
+    },
+    {
+      "id": "tome",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Tomé",
+      "role": "Técnico de manutenção do observatório, filho de Otávio",
+      "shortDescription": "Técnico de manutenção do observatório e filho de Otávio, com uma relação difícil com o pai.",
+      "imageUrl": "histories/o-olho-de-sirius/characters/tome.jpg",
+      "personality": "Prático, magoado e orgulhoso. Carrega ressentimento antigo contra o pai, mas tem um álibi sólido e não esconde o desconforto de ser suspeito natural.",
+      "speakingStyle": "Fala direto, com gírias de oficina e humor ácido. Evita floreios acadêmicos que o pai valorizava.",
+      "publicKnowledge": [
+        "É técnico de manutenção do observatório há seis anos.",
+        "É filho de Otávio com sua primeira esposa.",
+        "Foi o último a revisar a montagem equatorial do telescópio antes da observação do cometa."
+      ],
+      "privateKnowledge": [
+        "Tinha uma relação distante e ressentida com Otávio, que priorizou a carreira à família.",
+        "Esteve na oficina da garagem revendo uma peça da cúpula durante a madrugada.",
+        "É inocente, mas sabe que ser filho ressentido e técnico da montagem o torna suspeito óbvio."
+      ],
+      "openingLine": "Sim, eu mexo no contrapeso todo dia. Sim, eu e meu pai não nos dávamos bem. Não precisa enrolar, pode perguntar.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_tome_technician",
+          "triggerIntents": ["ask_about_tome", "ask_about_telescope"],
+          "requiresClueIds": [],
+          "revealText": "Tomé confirma que é o técnico de manutenção e que revisou a montagem equatorial do telescópio na véspera, incluindo o contrapeso de latão.",
+          "responseGuidance": "Deve falar do trabalho com naturalidade técnica, sem se vitimizar."
+        },
+        {
+          "clueId": "clue_tome_strained_father",
+          "triggerIntents": ["ask_about_tome", "ask_about_otavio"],
+          "requiresClueIds": [],
+          "revealText": "Tomé admite abertamente que a relação com o pai era distante e carregada de ressentimento, mas nega com firmeza qualquer envolvimento na morte.",
+          "responseGuidance": "Deve reconhecer o ressentimento sem teatralidade, e tratar o estigma de suspeito como consequência inevitável."
+        },
+        {
+          "clueId": "clue_tome_counterweight_use",
+          "triggerIntents": ["ask_about_telescope", "ask_about_death"],
+          "requiresClueIds": ["clue_tome_technician"],
+          "revealText": "Tomé explica que o contrapeso de latão da montagem solta e desliza para calibrar o telescópio, e que uma batida dele pode, sim, causar um ferimento sério — mas insiste que na véspera havia deixado tudo travado.",
+          "responseGuidance": "Deve oferecer a explicação técnica com honestidade, mesmo sabendo que isso pode incriminá-lo."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_tome_alibi",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Tomé tem um álibi sólido: estava na oficina da garagem com Cleusa durante a morte, mas esconde que bisbilhotava as contas do observatório.",
+          "truth": "Na madrugada da morte, Tomé estava na oficina da garagem, ao lado da cozinha, reajustando uma engrenagem da cúpula. Cleusa, que estava na cozinha fazendo o café, viu Tomé entrando e saindo da oficina durante todo o intervalo em que Otávio morreu — o que dá a ele álibi. Tomé esconde o motivo real de estar ali: estava revendo as planilhas de despesas do observatório para confrontar o pai sobre salários atrasados de técnicos. É inocente da morte, mas não quer expor a briga financeira.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_tome_stage_1_garage_alibi",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_alibi", "accuse_tome"],
+              "requiresClueIds": ["clue_tome_strained_father"],
+              "revealsClueIds": ["clue_tome_garage_alibi"],
+              "behavior": "Revelar que estava na oficina da garagem reajustando uma peça durante toda a madrugada, com Cleusa por perto.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu tava na oficina da garagem a noite toda, reajustando a engrenagem da cúpula. A Cleusa tava na cozinha do lado, me viu entrar e sair umas três vezes.",
+                "Eu sei que parece conveniente. Mas eu não subi à cúpula de madrugada. Pergunta pra Cleusa."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar a morte — Tomé é inocente.",
+        "Não inventar álibi falso: o álibi real é a oficina + Cleusa.",
+        "Manter o tom de quem colabora com ranço, não de quem mente."
+      ]
+    },
+    {
+      "id": "ingrid",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Ingrid",
+      "role": "Pesquisadora visitante e principal doadora do instituto",
+      "shortDescription": "Pesquisadora visitante e principal doadora do instituto, com interesses conflitantes na linha editorial do observatório.",
+      "imageUrl": "histories/o-olho-de-sirius/characters/ingrid.jpg",
+      "personality": "Empresarial, articulada e acostumada a comprar influência com verbas. Trata o observatório como um investimento cujo retorno inclui reconhecimento público.",
+      "speakingStyle": "Fala com clareza executiva, cita contratos e prazos, e não esconde que financia grande parte do instituto.",
+      "publicKnowledge": [
+        "É pesquisadora associada e a maior doadora individual do Observatório Serra Alta.",
+        "Subiu à montanha para a observação do cometa e para discutir o financiamento do próximo ano.",
+        "Tinha uma divergência pública com Otávio sobre a linha editorial das publicações."
+      ],
+      "privateKnowledge": [
+        "Ameaçou romper o financiamento e processar o instituto se seu nome fosse associado a retratações.",
+        "Estava no alojamento dormindo durante a morte; não ouviu nada por causa da tempestade.",
+        "É inocente, mas teme que a briga por dinheiro a coloque como suspeita."
+      ],
+      "openingLine": "Financio metade do que vocês veem aqui. Isso me torna suspeita ou informante — escolham.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_ingrid_donor",
+          "triggerIntents": ["ask_about_ingrid", "ask_about_discovery"],
+          "requiresClueIds": [],
+          "revealText": "Ingrid confirma que é a principal doadora do observatório e que tinha uma divergência pública com Otávio sobre a linha editorial das publicações.",
+          "responseGuidance": "Deve falar do financiamento com franqueza executiva, sem constrangimento."
+        },
+        {
+          "clueId": "clue_ingrid_threat",
+          "triggerIntents": ["ask_about_motive", "ask_about_ingrid"],
+          "requiresClueIds": ["clue_ingrid_donor"],
+          "revealText": "Ingrid admite que ameaçou cortar o financiamento e ir a juízo se o nome dela ou do instituto fosse associado a retratações, mas nega qualquer violência.",
+          "responseGuidance": "Deve reconhecer a ameaça como tática de negociação, com frieza, e descartar a violência como algo 'de amadores'."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_ingrid_alibi",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Ingrid dormiu no alojamento durante a morte e não ouviu nada por causa da tempestade.",
+          "truth": "Ingrid estava no alojamento dormindo quando Otávio morreu. A tempestade cobriu qualquer som vindo da cúpula. Ela não tem testemunha direta, mas seu registro de acessos ao prédio mostra que não subiu à cúpula. É inocente; só teme que o histórico de atrito financeiro a incrimine.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_ingrid_stage_1_quarters_alibi",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_alibi", "accuse_ingrid"],
+              "requiresClueIds": ["clue_ingrid_threat"],
+              "revealsClueIds": ["clue_ingrid_quarters_alibi"],
+              "behavior": "Revelar que estava no alojamento dormindo durante a madrugada e que a tempestade abafou qualquer som, oferecendo o registro de acessos como prova.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu dormia no alojamento. A tempestade fazia a casa inteira ranger. Não ouvi nada. E o registro de acesso mostra que não subi à cúpula.",
+                "Processo é negócio. Faca é de amador. Eu não mato quem me deve dinheiro — eu o cobro em juízo."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar a morte — Ingrid é inocente.",
+        "Não esconder o atrito financeiro, mas não exagerar para não parecer culposa.",
+        "Manter o tom executivo, frio e controlado."
+      ]
+    },
+    {
+      "id": "lucas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Lucas",
+      "role": "Aluno de doutorado orientando de Otávio",
+      "shortDescription": "Aluno de doutorado orientado por Otávio, no último ano, com tese dependente de dados antigos do observatório.",
+      "imageUrl": "histories/o-olho-de-sirius/characters/lucas.jpg",
+      "personality": "Brilhante, ansioso e inseguro. Cultiva reverência pelo orientador mas teme que a verdade sobre os dados antigos afunde sua tese.",
+      "speakingStyle": "Fala rápido, tropeça em jargões técnicos quando nervoso, e corrige a si mesmo o tempo todo.",
+      "publicKnowledge": [
+        "É aluno de doutorado de Otávio, no último ano.",
+        "Sua tese usa dados fotométricos antigos do observatório, incluindo a linha de Sirius-9.",
+        "Subiu à montanha para a observação do cometa e para revisar dados com o orientador."
+      ],
+      "privateKnowledge": [
+        "Sabia que Otávio revisava os dados antigos e temia que a tese inteira desmoronasse.",
+        "Esteve no laboratório de processamento de dados durante a madrugada, sem subir à cúpula.",
+        "É inocente, mas teme que o medo de perder a tese pareça um motivo."
+      ],
+      "openingLine": "Eu... eu mal dormi. Ele ia revisar tudo. Se os dados não fecharem, minha tese não fecha. Mas eu nunca, nunca faria mal a ele.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lucas_thesis",
+          "triggerIntents": ["ask_about_lucas", "ask_about_data"],
+          "requiresClueIds": [],
+          "revealText": "Lucas confirma que sua tese depende dos dados antigos do observatório, inclusive da linha de Sirius-9, e que Otávio havia começado a revisar esses dados.",
+          "responseGuidance": "Deve falar da tese com ansiedade genuína, sem esconder o medo de que tudo desmorone."
+        },
+        {
+          "clueId": "clue_lucas_knew_review",
+          "triggerIntents": ["ask_about_retraction", "ask_about_otavio"],
+          "requiresClueIds": ["clue_lucas_thesis"],
+          "revealText": "Lucas admite que sabia da revisão de Otávio aos dados antigos e temia uma retratação, mas nega qualquer conflito com o orientador.",
+          "responseGuidance": "Deve reconhecer o medo, mas defender a relação com Otávio como de admiração."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_lucas_alibi",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Lucas esteve no laboratório de processamento de dados durante a madrugada, sem subir à cúpula.",
+          "truth": "Na madrugada da morte, Lucas estava no laboratório de processamento de dados, no subsolo do prédio, rodando uma checagem fotométrica. O servidor registrou a sessão ativa dele a noite toda. Ele não subiu à cúpula. É inocente; apenas teme que o medo de perder a tese pareça um motivo, e por isso titubeia ao falar da revisão.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_lucas_stage_1_lab_alibi",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_alibi", "accuse_lucas"],
+              "requiresClueIds": ["clue_lucas_knew_review"],
+              "revealsClueIds": ["clue_lucas_lab_alibi"],
+              "behavior": "Revelar que esteve no laboratório de processamento de dados a madrugada toda, com a sessão no servidor como prova.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu tava no lab de processamento, no subsolo, rodando uma checagem. O servidor registrou minha sessão a noite toda. Eu não... eu nem subi a escada.",
+                "Eu tinha medo, sim, da tese desmoronar. Mas medo não é crime. Eu nunca faria mal a ele."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar a morte — Lucas é inocente.",
+        "Pode titubear e parecer nervoso, mas o álibi do laboratório é real.",
+        "Manter o tom de aluno ansioso, não de assassino."
+      ]
+    },
+    {
+      "id": "cleusa",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cleusa",
+      "role": "Encarregada da hospedagem e da cozinha do observatório",
+      "shortDescription": "Encarregada da hospedagem e da cozinha, que vive no observatório e encontrou o corpo ao levar o café.",
+      "imageUrl": "histories/o-olho-de-sirius/characters/cleusa.jpg",
+      "personality": "Observadora, bondosa e prática. Conhece a rotina de todos e nota o que ninguém mais nota.",
+      "speakingStyle": "Fala com calma mineira, mistura conselhos e comentários diretos, e usa palavras simples e afetivas.",
+      "publicKnowledge": [
+        "Vive no observatório há quinze anos e cuida da hospedagem e da cozinha.",
+        "Foi quem encontrou o corpo de Otávio ao levar o café da manhã à cúpula.",
+        "Conhece a rotina noturna de cada morador e visitante."
+      ],
+      "privateKnowledge": [
+        "Viu Helena subindo para a cúpula e descendo nervosa perto da hora da morte.",
+        "Confirmou o álibi de Tomé na oficina da garagem durante a madrugada.",
+        "É testemunha neutra: não suspeita de ninguém em particular, mas viu mais do que diz."
+      ],
+      "openingLine": "Fui levar o café, como toda manhã. A porta da cúpula tava entreaberta. Quando cheguei lá em cima... bem. O Doutor Otávio já estava no chão.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_cleusa_found_body",
+          "triggerIntents": ["ask_about_death", "ask_about_cleusa"],
+          "requiresClueIds": [],
+          "revealText": "Cleusa confirma que encontrou o corpo de Otávio ao pé do telescópio por volta das 5h, quando subiu para avisar que o café estava pronto.",
+          "responseGuidance": "Deve relatar a descoberta com comoção contida, sem drama exagerado."
+        },
+        {
+          "clueId": "clue_cleusa_saw_helena",
+          "triggerIntents": ["ask_about_alibi", "ask_about_helena"],
+          "requiresClueIds": ["clue_cleusa_found_body"],
+          "revealText": "Cleusa conta que, antes do amanhecer, viu Helena subindo para a cúpula e descendo pouco depois visivelmente aborrecida.",
+          "responseGuidance": "Deve falar da observação com naturalidade, sem acusar, apenas relatando o que viu."
+        },
+        {
+          "clueId": "clue_cleusa_tome_alibi",
+          "triggerIntents": ["ask_about_alibi", "ask_about_tome"],
+          "requiresClueIds": ["clue_cleusa_found_body"],
+          "revealText": "Cleusa confirma que Tomé esteve na oficina da garagem ao lado da cozinha durante quase toda a madrugada, entrando e saindo enquanto ela preparava o café.",
+          "responseGuidance": "Deve confirmar o álibi de Tomé com franqueza, sem favoritismo aparente."
+        },
+        {
+          "clueId": "clue_cleusa_dome_ajar",
+          "triggerIntents": ["ask_about_telescope", "ask_about_death"],
+          "requiresClueIds": ["clue_cleusa_found_body"],
+          "revealText": "Cleusa observa que a porta da cúpula estava entreaberta e o contrapeso de latão deslocado quando ela chegou, detalhe que a incomodou porque Otávio sempre trancava tudo.",
+          "responseGuidance": "Deve destacar o desarranjo como algo fora do padrão de Otávio, sem tirar conclusões."
+        },
+        {
+          "clueId": "clue_dome_slit_open",
+          "triggerIntents": ["ask_about_telescope", "ask_about_comet"],
+          "requiresClueIds": ["clue_cleusa_found_body"],
+          "revealText": "Cleusa lembra que a fenda do teto da cúpula estava aberta para o céu quando ela chegou, como se alguém tivesse preparado uma observação ou encenado um acidente durante a noite.",
+          "responseGuidance": "Deve falar da fenda aberta como mais um detalhe estranho da cena, sem acusar ninguém."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca acusar ninguém — Cleusa é testemunha, não investigadora.",
+        "Não afirmar com certeza quem viu além de Helena; apenas relatar o que observou.",
+        "Manter o tom bondoso e observador, sem partidarismo."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "cupula",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cúpula do telescópio",
+      "shortDescription": "Sala circular no topo do observatório que abriga o grande telescópio e sua montagem equatorial.",
+      "imageUrl": "histories/o-olho-de-sirius/location/cupula.jpg",
+      "initialDescription": "A cúpula é uma sala circular no alto do observatório, com paredes de metal pintado e uma fenda no teto que se abre para o céu ainda escuro da tempestade. No centro domina a montagem equatorial do grande telescópio, com seu tubo inclinado e o contrapeso de latão brilhante na extremidade de uma haste. Uma escada em espiral de metal sobe até aqui. Há marcas no piso de borracha e um brilho úmido na base da montagem.",
+      "ambientClueIds": ["clue_dome_slit_open"],
+      "objectIds": ["contrapeso_latao", "oculos_otavio"]
+    },
+    {
+      "id": "escritorio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Escritório dos astrônomos",
+      "shortDescription": "Sala com mesas de trabalho, pranchetas de observação e os computadores de análise.",
+      "imageUrl": "histories/o-olho-de-sirius/location/escritorio.jpg",
+      "initialDescription": "O escritório fica no segundo andar, com uma parede de janelas voltada para o vale escuro. Há mesas de trabalho com pranchetas de observação, um computador ligado com a tela travada, e uma estante baixa com caixas-arquivo etiquetadas por ano. Sobre uma das mesas repousam folhas impressas e um caderno aberto.",
+      "ambientClueIds": [],
+      "objectIds": ["caderno_otavio", "rascunho_retratacao", "caixa_sirius"]
+    },
+    {
+      "id": "laboratorio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Laboratório de processamento de dados",
+      "shortDescription": "Sala no subsolo com os servidores e estações de análise fotométrica.",
+      "imageUrl": "histories/o-olho-de-sirius/location/laboratorio.jpg",
+      "initialDescription": "O laboratório fica no subsolo, refrigerado e barulhento com o zumbido dos servidores. Há três estações de trabalho com monitores, uma bancada com discos externos e um quadro de horários de uso colado na parede. Um dos terminais mostra uma sessão encerrada mas recente.",
+      "ambientClueIds": [],
+      "objectIds": ["servidor_logs", "quadro_horarios"]
+    },
+    {
+      "id": "sala_hospedagem",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Corredor da hospedagem",
+      "shortDescription": "Corredor dos quartos de hospedagem, com o painel de acessos do prédio.",
+      "imageUrl": "histories/o-olho-de-sirius/location/sala_hospedagem.jpg",
+      "initialDescription": "O corredor da hospedagem reúne os quartos dos visitantes e da Cleusa. Junto à porta há um painel eletrônico de acessos que registra quem entra e sai das áreas restritas. O chão de madeira range com a umidade da tempestade.",
+      "ambientClueIds": [],
+      "objectIds": ["painel_acessos"]
+    },
+    {
+      "id": "oficina",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Oficina da garagem",
+      "shortDescription": "Oficina ao nível do solo, junto à cozinha, onde Tomé faz a manutenção da cúpula.",
+      "imageUrl": "histories/o-olho-de-sirius/location/oficina.jpg",
+      "initialDescription": "A oficina fica ao lado da cozinha, no nível do solo. Há um banco de trabalho com ferramentas, uma engrenagem desmontada da cúpula sobre um pano, e gavetas etiquetadas com peças de reposição. O ar cheira a graxa e metal.",
+      "ambientClueIds": [],
+      "objectIds": ["engrenagem_cupula", "planilha_despesas"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "contrapeso_latao",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Contrapeso da montagem equatorial",
+      "shortDescription": "Peso de latão na extremidade da haste do telescópio.",
+      "imageUrl": "histories/o-olho-de-sirius/object/contrapeso_latao.jpg",
+      "locationId": "cupula",
+      "initialDescription": "O contrapeso de latão brilha na ponta da haste da montagem equatorial. É uma peça maciça, mais pesada do que parece, que desliza para calibrar o telescópio.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_counterweight_displaced",
+          "triggerIntents": ["inspect_object", "ask_about_telescope"],
+          "requiresClueIds": [],
+          "revealText": "O contrapeso está solto e fora da posição de calibração, como se a haste tivesse sido girada ou sacudida com força durante a madrugada."
+        },
+        {
+          "clueId": "clue_counterweight_blood",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": [],
+          "revealText": "Há um filete de sangue escuro na base da montagem equatorial, junto ao corpo, que bate com a altura do contrapeso."
+        },
+        {
+          "clueId": "clue_counterweight_wiped",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": ["clue_counterweight_displaced"],
+          "revealText": "Há uma área do contrapeso mais limpa que o restante, como se alguém tivesse esfregado a superfície para apagar marcas recentes — mas uma fina estria de sangue permanece na borda inferior."
+        }
+      ]
+    },
+    {
+      "id": "oculos_otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Óculos de Otávio",
+      "shortDescription": "Óculos de armação fina encontrados longe do corpo.",
+      "imageUrl": "histories/o-olho-de-sirius/object/oculos_otavio.jpg",
+      "locationId": "cupula",
+      "initialDescription": "Um par de óculos de armação fina repousa sobre uma caixa de controles, a alguns passos do corpo.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_glasses_out_of_place",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": [],
+          "revealText": "Os óculos estão inteiros, mas foram parar longe do corpo sobre uma caixa de controles, o que não condiz com uma queda simples de frente."
+        }
+      ]
+    },
+    {
+      "id": "caderno_otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caderno de anotações de Otávio",
+      "shortDescription": "Caderno aberto sobre a mesa do escritório.",
+      "imageUrl": "histories/o-olho-de-sirius/object/caderno_otavio.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "O caderno de capa preta de Otávio está aberto sobre a mesa, com anotações à caneta nas últimas páginas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_otavio_suspected",
+          "triggerIntents": ["inspect_object", "ask_about_otavio"],
+          "requiresClueIds": [],
+          "revealText": "As notas recentes mostram que Otávio vinha comparando os logs antigos de Sirius-9 e anotando divergências, com a palavra 'inconsistência' repetida à margem."
+        },
+        {
+          "clueId": "clue_otavio_inconsistency",
+          "triggerIntents": ["inspect_object", "ask_about_data"],
+          "requiresClueIds": ["clue_otavio_suspected"],
+          "revealText": "Uma das páginas lista três datas de observação em que as curvas de luz registradas não batem com os arquivos brutos, como se tivessem sido suavizadas depois."
+        }
+      ]
+    },
+    {
+      "id": "rascunho_retratacao",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Rascunho de retratação",
+      "shortDescription": "Folhas impressas com o esboço de um artigo de retratação.",
+      "imageUrl": "histories/o-olho-de-sirius/object/rascunho_retratacao.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "Três folhas impressas, com marcas de caneta vermelha, descansam sob o caderno de Otávio.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_retraction_draft",
+          "triggerIntents": ["inspect_object", "ask_about_retraction"],
+          "requiresClueIds": [],
+          "revealText": "As folhas são um rascunho de um paper de retratação que aponta inconsistências nos dados de Sirius-9 e propõe corrigir a publicação original — sem nomear um culpado, mas com a co-autoria de Helena destacada."
+        }
+      ]
+    },
+    {
+      "id": "caixa_sirius",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caixa-arquivo Sirius-9",
+      "shortDescription": "Caixa etiquetada com os dados da campanha de Sirius-9.",
+      "imageUrl": "histories/o-olho-de-sirius/object/caixa_sirius.jpg",
+      "locationId": "escritorio",
+      "initialDescription": "Uma caixa-arquivo cinza, etiquetada 'SIRIUS-9 / CAMPANHA 2021', repousa aberta sobre a estante baixa, com discos e folhas impressas no interior.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_tampered_logs",
+          "triggerIntents": ["inspect_object", "ask_about_data"],
+          "requiresClueIds": [],
+          "revealText": "Os logs brutos dentro da caixa apresentam datas e tamanhos de arquivo que não coincidem com as datas registradas no servidor, como se tivessem sido copiados e regravados depois."
+        },
+        {
+          "clueId": "clue_drivelog_helena_sirius",
+          "triggerIntents": ["inspect_object", "ask_about_helena"],
+          "requiresClueIds": ["clue_tampered_logs"],
+          "revealText": "Os metadados dos arquivos manipulados indicam que a última edição foi feita por uma conta de usuário chamada 'h.mariani', antes mesmo de o paper original ser submetido."
+        }
+      ]
+    },
+    {
+      "id": "servidor_logs",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Terminal do servidor de logs",
+      "shortDescription": "Terminal no subsolo que registra sessões e acessos.",
+      "imageUrl": "histories/o-olho-de-sirius/object/servidor_logs.jpg",
+      "locationId": "laboratorio",
+      "initialDescription": "Um dos terminais do laboratório exibe o registro de sessões e acessos do servidor central, com uma janela de log aberta.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lucas_lab_alibi",
+          "triggerIntents": ["inspect_object", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "O log do servidor registra uma sessão ativa do usuário 'lucas.phd' durante toda a madrugada, com processamentos fotométricos contínuos do subsolo."
+        }
+      ]
+    },
+    {
+      "id": "quadro_horarios",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Quadro de horários do laboratório",
+      "shortDescription": "Quadro de reservas das estações de processamento.",
+      "imageUrl": "histories/o-olho-de-sirius/object/quadro_horarios.jpg",
+      "locationId": "laboratorio",
+      "initialDescription": "Um quadro de cortiça na parede lista as reservas das estações de processamento por dia e horário, com etiquetas coloridas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lab_helena_session",
+          "triggerIntents": ["inspect_object", "ask_about_helena"],
+          "requiresClueIds": [],
+          "revealText": "O quadro mostra que Helena havia reservado uma estação de processamento para a madrugada, mas o log do servidor indica que a sessão dela nunca foi iniciada."
+        }
+      ]
+    },
+    {
+      "id": "painel_acessos",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Painel eletrônico de acessos",
+      "shortDescription": "Painel no corredor da hospedagem que registra entradas nas áreas restritas.",
+      "imageUrl": "histories/o-olho-de-sirius/object/painel_acessos.jpg",
+      "locationId": "sala_hospedagem",
+      "initialDescription": "O painel eletrônico junto à porta da hospedagem exibe uma lista cronológica de acessos às áreas restritas do prédio.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_ingrid_quarters_alibi",
+          "triggerIntents": ["inspect_object", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "O painel mostra que a credencial de Ingrid não registrou nenhuma movimentação durante a madrugada,indicando que ela permaneceu no alojamento o tempo todo."
+        },
+        {
+          "clueId": "clue_footprint_dome",
+          "triggerIntents": ["inspect_object", "ask_about_death"],
+          "requiresClueIds": [],
+          "revealText": "O painel registra que a credencial de Helena foi usada para acessar a escada da cúpula às 3h47 e novamente às 4h12 da madrugada — o que Helena não havia mencionado."
+        }
+      ]
+    },
+    {
+      "id": "engrenagem_cupula",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Engrenagem da cúpula",
+      "shortDescription": "Peça desmontada da cúpula sobre o banco da oficina.",
+      "imageUrl": "histories/o-olho-de-sirius/object/engrenagem_cupula.jpg",
+      "locationId": "oficina",
+      "initialDescription": "Uma engrenagem metálica de bom tamanho, desmontada da mecânica da cúpula, repousa sobre um pano no banco de trabalho da oficina.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_tome_garage_alibi",
+          "triggerIntents": ["inspect_object", "ask_about_tome"],
+          "requiresClueIds": [],
+          "revealText": "A engrenagem está com graxa fresca e ferramentas ao redor, indicando que alguém trabalhou nela durante a madrugada — consistente com o álibi de Tomé na oficina."
+        }
+      ]
+    },
+    {
+      "id": "planilha_despesas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Planilha de despesas do observatório",
+      "shortDescription": "Folhas com anotações de salários atrasados.",
+      "imageUrl": "histories/o-olho-de-sirius/object/planilha_despesas.jpg",
+      "locationId": "oficina",
+      "initialDescription": "Folhas impressas, com marcações a caneta, estão dobradas ao pé da engrenagem sobre o banco de trabalho.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_tome_salary_dispute",
+          "triggerIntents": ["inspect_object", "ask_about_tome"],
+          "requiresClueIds": [],
+          "revealText": "A planilha lista salários atrasados de técnicos, com nome de Tomé circulado e a palavra 'cobrar' escrita à mão — revelando o motivo real de ele estar na oficina durante a madrugada."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_cleusa_found_body",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cleusa encontrou o corpo",
+      "description": "Cleusa encontrou Otávio morto ao pé do telescópio por volta das 5h, ao levar o café.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_cleusa_dome_ajar",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cúpula entreaberta e desarranjada",
+      "description": "A porta da cúpula estava entreaberta e o contrapeso deslocado, o que destoa do hábito de Otávio de trancar tudo.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_dome_slit_open",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Fenda da cúpula aberta",
+      "description": "A fenda do teto estava aberta para o céu, sugerindo observação noturna ou encenação de acidente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_counterweight_blood",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sangue na base da montagem",
+      "description": "Há um filete de sangue na base da montagem equatorial, junto ao corpo.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_counterweight_displaced",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Contrapeso fora da posição",
+      "description": "O contrapeso de latão estava solto e fora da posição de calibração, como se a haste fosse sacudida com força.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_counterweight_wiped",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Contrapeso limpo pela metade",
+      "description": "Parte do contrapeso foi esfregada para apagar marcas recentes, mas uma estria de sangue permanece na borda inferior.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_glasses_out_of_place",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Óculos longe do corpo",
+      "description": "Os óculos de Otávio, intactos, foram encontrados longe do corpo sobre uma caixa de controles, o que não condiz com uma queda simples.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_footprint_dome",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Helena subiu à cúpula de madrugada",
+      "description": "O painel de acessos registra que Helena usou a credencial na escada da cúpula às 3h47 e às 4h12 da madrugada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_helena_codirector",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Helena é co-diretora e co-autora",
+      "description": "Helena é co-diretora e co-autora de todas as grandes publicações de Otávio, inclusive a de Sirius-9.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_helena_did_not_observe",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Helena não observou o cometa",
+      "description": "Apesar de ter subido para o cometa, Helena não estava na cúpula na madrugada da observação — diz ter ficado no escritório.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_helena_tense_otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Otávio estava tenso com Helena",
+      "description": "Otávio estava incomumente tenso nas últimas semanas e evitava falar sobre o próximo paper com Helena.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_helena_was_at_dome",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Helena admite ter subido à cúpula",
+      "description": "Helena admite que subiu à cúpula antes da madrugada, mas insiste que Otávio estava vivo quando saiu.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_cleusa_saw_helena",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cleusa viu Helena subir e descer nervosa",
+      "description": "Cleusa viu Helena subindo para a cúpula e descendo visivelmente aborrecida perto da hora da morte.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_otavio_suspected",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Otávio rastreava inconsistências",
+      "description": "O caderno de Otávio mostra que ele comparava os logs antigos de Sirius-9 e anotava divergências.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_otavio_inconsistency",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Curvas de luz não batiam",
+      "description": "Otávio listou três datas em que as curvas de luz registradas não batiam com os arquivos brutos, como se fossem suavizadas depois.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_retraction_draft",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Rascunho de retratação",
+      "description": "Há um rascunho de paper de retratação que aponta inconsistências nos dados de Sirius-9, com a co-autoria de Helena destacada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tampered_logs",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Logs de Sirius-9 adulterados",
+      "description": "Os logs brutos de Sirius-9 apresentam datas e tamanhos de arquivo que não coincidem com as datas do servidor, como se tivessem sido regravados depois.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_drivelog_helena_sirius",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Edição por conta de Helena",
+      "description": "Os metadados dos arquivos manipulados indicam que a última edição foi feita pela conta 'h.mariani', antes mesmo do paper original.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_helena_otavio_dispute",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Disputa sobre Sirius-9",
+      "description": "Helena admite uma divergão científica acirrada com Otávio sobre a robustez dos dados de Sirius-9.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_helena_knew_data_tampered",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Helena sabia das inconsistências",
+      "description": "Helena admite saber que os logs antigos tinham inconsistências, mas nega tê-los manipulado.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_helena_argued_otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Helena discutiu com Otávio na cúpula",
+      "description": "Helena admite que subiu à cúpula para pedir que Otávio não publicasse a retratação e que discutiram acaloradamente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bruise_on_helena",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Marcão no braço de Helena",
+      "description": "Helena tem uma marca recente no antebraço, compatível com uma defiantã forte durante uma discussão.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_helena_pushed_otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Otávio sofreu o golpe na cúpula",
+      "description": "Helena admite que Otávio sofreu o golpe fatal com o contrapeso durante a discussão na cúpula.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_helena_motive_fraud",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00.000Z",
+      "deletedAt": null,
+      "title": "Motivo: encobrir a fraude",
+      "description": "Helena admite que falsificou os dados de Sirius-9 e que a retratação destruiria sua reputação, fornecendo o motivo.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tome_technician",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tomé é o técnico da montagem",
+      "description": "Tomé é o técnico de manutenção e revisou a montagem equatorial na véspera, incluindo o contrapeso.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_tome_strained_father",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Relação difícil com o pai",
+      "description": "Tomé admite que a relação com Otávio era distante e ressentida, tornando-o suspeito natural.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_tome_counterweight_use",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tomé explica o contrapeso",
+      "description": "Tomé explica como o contrapeso funciona e que uma batida dele pode ferir gravemente, mas que havia deixado tudo travado.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_tome_garage_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Tomé na oficina",
+      "description": "Tomé estava na oficina da garagem durante a madrugada, com Cleusa por perto, o que lhe dá álibi.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_cleusa_tome_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cleusa confirma álibi de Tomé",
+      "description": "Cleusa confirma que Tomé esteve na oficina ao lado da cozinha durante quase toda a madrugada.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_tome_salary_dispute",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Motivo real de Tomé: salários atrasados",
+      "description": "Tomé estava na oficina conferindo salários atrasados de técnicos para cobrar o pai, e não por envolvimento na morte.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_ingrid_donor",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Ingrid é a principal doadora",
+      "description": "Ingrid é a maior doadora do observatório e tinha divergência pública com Otávio sobre a linha editorial.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_ingrid_threat",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Ingrid ameaçou processo",
+      "description": "Ingrid ameaçou cortar financiamento e processar o instituto se seu nome fosse associado a retratações.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_ingrid_quarters_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Ingrid no alojamento",
+      "description": "O painel de acessos confirma que Ingrid não se moveu do alojamento durante a madrugada.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_lucas_thesis",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tese de Lucas depende dos dados",
+      "description": "A tese de doutorado de Lucas usa os dados antigos de Sirius-9, que Otávio começou a revisar.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_lucas_knew_review",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lucas sabia da revisão",
+      "description": "Lucas sabia da revisão de Otávio aos dados antigos e temia uma retratação que afundaria sua tese.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_lucas_lab_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Lucas no laboratório",
+      "description": "O log do servidor registra a sessão de Lucas ativa durante toda a madrugada, no subsolo, sem subir à cúpula.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_lab_helena_session",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sessão de Helena nunca iniciada",
+      "description": "Helena havia reservado uma estação de processamento para a madrugada, mas o log mostra que a sessão dela nunca foi iniciada.",
+      "importance": "supporting"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_olho_de_sirius",
+    "createdAt": "2026-07-02T00:00:00.000Z",
+    "updatedAt": "2026-07-02T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_killed_otavio",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem causou a morte de Otávio?",
+        "type": "character",
+        "options": [
+          {
+            "id": "helena",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Helena"
+          },
+          {
+            "id": "tome",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Tomé"
+          },
+          {
+            "id": "ingrid",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Ingrid"
+          },
+          {
+            "id": "lucas",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Lucas"
+          }
+        ]
+      },
+      {
+        "id": "how_otavio_died",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Como Otávio morreu?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "counterweight_blow",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Golpe com o contrapeso do telescópio"
+          },
+          {
+            "id": "fall_from_stairs",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Queda da escada em espiral"
+          },
+          {
+            "id": "natural_causes",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Causas naturais durante a observação"
+          },
+          {
+            "id": "push_over_railing",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Empurrão sobre o corrimão da cúpula"
+          }
+        ]
+      },
+      {
+        "id": "why_otavio_killed",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Por que Otávio foi morto?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "hide_fraud",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para encobrir a fraude dos dados de Sirius-9"
+          },
+          {
+            "id": "inheritance_dispute",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Por disputa de herança familiar"
+          },
+          {
+            "id": "funding_pressure",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Por pressão de financiamento"
+          },
+          {
+            "id": "academic_rivalry",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Por rivalidade acadêmica pela tese"
+          }
+        ]
+      },
+      {
+        "id": "where_evidence",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Onde está a evidência que confirma a verdade?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "sirius_box_metadatas",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Nos metadados dos logs de Sirius-9 (conta h.mariani)"
+          },
+          {
+            "id": "access_panel",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "No painel de acessos da cúpula"
+          },
+          {
+            "id": "workshop_tools",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Nas ferramentas da oficina da garagem"
+          },
+          {
+            "id": "lucas_server_session",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Na sessão do servidor de Lucas"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A luz que faltava",
+      "type": "full_truth",
+      "imageUrl": "histories/o-olho-de-sirius/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "who_killed_otavio": "helena",
+          "how_otavio_died": "counterweight_blow",
+          "why_otavio_killed": "hide_fraud",
+          "where_evidence": "sirius_box_metadatas"
+        },
+        "requiresClueIds": [
+          "clue_helena_pushed_otavio",
+          "clue_helena_motive_fraud",
+          "clue_drivelog_helena_sirius"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Helena falsificou os dados de Sirius-9, matou Otávio com o contrapeso durante a discussão na cúpula para impedir a retratação, e forjou um acidente de observação.",
+      "epilogue": "Quando a tempestade amaina e a estrada reabre, Helena já não sustenta o tom de co-autora ofendida. Os metadados falaram por ela. O cometa Iris, que ninguém na montanha conseguiu observar, cruza o céu limpo da noite seguinte sem que ninguém na cúpula levante os olhos para ele. Otávio, que sempre quis ser lembrado pela verdade das estrelas, acaba sendo lembrado por uma verdade menor e humana: a de que nenhuma carreira sobrevive à própria mentira. Serra Alta continua de pé, mas o nome Sirius-9, escrito nos posters e nas verbas, passa a ser pronunciado em voz baixa, como uma cicatriz."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Constelação incompleta",
+      "type": "partial_truth",
+      "condition": {
+        "conclusionMatches": {
+          "who_killed_otavio": "helena"
+        },
+        "requiresClueIds": ["clue_helena_pushed_otavio"]
+      },
+      "imageUrl": "histories/o-olho-de-sirius/endings/partial_truth.jpg",
+      "summary": "Você identificou Helena como responsável pela morte de Otávio, mas não fechou o método exato, o motivo real e o paradeiro da evidência decisiva.",
+      "epilogue": "Helena não consegue mais negar que esteve na cúpula, mas o silêncio sobre os dados de Sirius-9 pesa mais do que a confissão parcial. Sem os metadados e sem o rascunho de retratação na balança, o caso se arrasta entre a acusação e a dúvida. O cometa Iris atravessa o céu na noite seguinte, indiferente, e o telescópio de Serra Alta permanece apontado para um lugar onde ninguém mais quer olhar."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O suspeito errado",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-olho-de-sirius/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade do caso. Tomé tinha álibi, Ingrid estava no alojamento, Lucas no laboratório e não houve acidente.",
+      "epilogue": "A tempestade passa, a estrada reabre, e a versão do acidente during a observação se instala como a mais confortável. Otávio é enterrado como um astrônomo morto por uma queda triste. Helena permanece no observatório, assina sozinha os próximos papers e nunca mais abre a caixa-arquivo de Sirius-9. Nas noites claras, o telescópio de Serra Alta continua apontado para Sirius — para o lugar onde, segundo o artigo original, orbita um planeta que provavelmente nunca existiu."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 8,
+    "suggestConclusionAfterClues": 16,
+    "maxRecommendedInteractions": 26
+  }
+}

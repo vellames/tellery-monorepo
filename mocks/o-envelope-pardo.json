@@ -1,0 +1,1233 @@
+{
+  "id": "history_o_envelope_pardo",
+  "createdAt": "2026-07-02T00:00:00.000Z",
+  "updatedAt": "2026-07-02T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-envelope-pardo",
+  "title": "O Envelope Pardo",
+  "subtitle": "Cartas anônimas chegam à mesa do editor-chefe e ninguém na redação é inocente",
+  "teaser": "Na véspera da edição que pode mudar a cidade, três cartas datilografadas ameaçam expor uma mentira de 20 anos do editor de O Farol. Quem as escreveu está dentro da própria redação.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 12,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": true,
+  "version": 1,
+  "coverImageUrl": "histories/o-envelope-pardo/history/cover.jpg",
+  "thumbnailUrl": "histories/o-envelope-pardo/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "Três cartas anônimas no envelope pardo. Uma ameaça: ou a reportagem morre, ou uma mentira de 20 anos vem à tona.",
+    "fullText": "São 7h de uma terça-feira na redação do jornal O Farol, na pequena Areias. Otávio, o editor-chefe, chega antes de todos e encontra sobre a mesa um envelope pardo sem remetente. Dentro, três cartas datilografadas, sem assinatura, todas com a mesma exigência: mate a reportagem que sai na próxima edição, ou uma mentira de 20 anos virá a público. A reportagem em jogo é uma investigação de Bete, a jovem repórter da casa, sobre negócios irregulares de terras envolvendo o vereador Nélio. Otávio convoca quem circulou pela redação na véspera: Dirce, sua subeditora de longa data; o próprio Nélio, que veio reclamar da matéria; Bete, a autora da investigação; e Sérgio, o arquivista do jornal. Cabe a você ler as cartas, examinar a redação, o escritório e o arquivo, ouvir as cinco versões e descobrir quem está por trás da chantagem.",
+    "callToAction": "Leia os envelopes, examine a redação, o escritório de Otávio e o arquivo do jornal, e converse com todos para descobrir quem está chantageando o editor."
+  },
+  "objective": {
+    "mainQuestion": "Quem está chantageando Otávio, qual é o segredo usado contra ele e onde está a prova?",
+    "description": "Descubra a autoria da chantagem, o segredo que sustenta a ameaça e o paradeiro da prova que pode confirmá-la."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_blackmail",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre as cartas, o envelope pardo, as ameaças, a chantagem ou como as cartas foram escritas.",
+      "examples": [
+        "O que dizem as cartas?",
+        "Quem está chantageando o Otávio?",
+        "Como as cartas foram escritas?"
+      ],
+      "keywords": ["chantagem", "cartas", "envelope", "ameaça", "anônimas", "datilografadas"]
+    },
+    {
+      "id": "ask_about_expose",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a reportagem, a investigação ou o escândalo de terras que sai na próxima edição.",
+      "examples": [
+        "Do que trata a reportagem?",
+        "O que a investigação revela?",
+        "Por que a matéria incomoda tanto?"
+      ],
+      "keywords": ["reportagem", "matéria", "investigação", "terras", "escândalo", "edição"]
+    },
+    {
+      "id": "ask_about_award",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o prêmio de 20 anos, a reportagem premiada, a fonte daquela série ou o passado jornalístico.",
+      "examples": [
+        "Que prêmio foi esse?",
+        "Como era a reportagem premiada?",
+        "Quem era a fonte daquela série?"
+      ],
+      "keywords": ["prêmio", "troféu", "premiada", "20 anos", "fonte", "passado", "série"]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre motivos, quem ganharia com a chantagem ou o que cada um tem a perder.",
+      "examples": [
+        "Quem ganharia com isso?",
+        "Qual seria o motivo?",
+        "Alguém tem interesse em silenciar a matéria?"
+      ],
+      "keywords": ["motivo", "ganharia", "razão", "interesse", "perder", "lucrar"]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava na véspera, quem teve acesso à redação ou à mesa de Otávio.",
+      "examples": [
+        "Onde você estava ontem?",
+        "Quem tem chave da redação?",
+        "Alguém ficou sozinho aqui?"
+      ],
+      "keywords": ["álibi", "horário", "esteve", "acesso", "chave", "véspera", "redação"]
+    },
+    {
+      "id": "ask_about_archive",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o arquivo do jornal, o acervo de recortes, fitas e edições antigas.",
+      "examples": [
+        "O que fica no arquivo?",
+        "Quem mexe no acervo antigo?",
+        "Tem fitas e recortes guardados?"
+      ],
+      "keywords": ["arquivo", "acervo", "recortes", "fitas", "edições antigas", "morgue", "guardado"]
+    },
+    {
+      "id": "ask_about_otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Otávio, seu estado, sua rotina ou sua carreira.",
+      "examples": [
+        "Otávio, como você está?",
+        "Há quanto tempo ele é editor?",
+        "Otávio encontrou as cartas quando?"
+      ],
+      "keywords": ["Otávio", "editor", "chefe", "carreira", "rotina"]
+    },
+    {
+      "id": "ask_about_dirce",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Dirce, seu tempo de casa ou sua relação com Otávio.",
+      "examples": [
+        "Dirce, há quanto tempo está aqui?",
+        "Como Dirce lida com Otávio?",
+        "Dirce queria ser editora?"
+      ],
+      "keywords": ["Dirce", "subeditora", "tempo de casa", "diretora", "segunda"]
+    },
+    {
+      "id": "ask_about_nelio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Nélio, seus negócios ou sua reação à reportagem.",
+      "examples": [
+        "Nélio, por que você veio aqui?",
+        "O que Nélio tem a ver com as terras?",
+        "Nélio ameaçou Otávio?"
+      ],
+      "keywords": ["Nélio", "vereador", "negócios", "terras", "ameaçou"]
+    },
+    {
+      "id": "ask_about_bete",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Bete, sua reportagem ou seu nervosismo.",
+      "examples": [
+        "Bete, como está a investigação?",
+        "Por que Bete está tensa?",
+        "Bete encontrou algo estranho?"
+      ],
+      "keywords": ["Bete", "repórter", "investigação", "tensa", "apuração"]
+    },
+    {
+      "id": "ask_about_sergio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Sérgio, o arquivo ou quem circula pela redação.",
+      "examples": [
+        "Sérgio, quem mexe no arquivo?",
+        "O arquivista viu algo estranho?",
+        "Sérgio trabalha aqui há muito tempo?"
+      ],
+      "keywords": ["Sérgio", "arquivista", "bibliotecário", "antigo", "memória"]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono o envelope"
+      ],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes", "observar"]
+    },
+    {
+      "id": "accuse_dirce",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Dirce de estar por trás da chantagem.",
+      "examples": [
+        "Dirce, foi você quem escreveu as cartas",
+        "Confronto Dirce sobre a chantagem",
+        "Acho que foi a Dirce"
+      ],
+      "keywords": ["acusar Dirce", "cartas", "responsável", "chantagem"]
+    },
+    {
+      "id": "accuse_nelio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Nélio de estar por trás da chantagem.",
+      "examples": [
+        "Nélio, foi você quem escreveu as cartas",
+        "Confronto Nélio sobre a chantagem",
+        "Acho que foi o Nélio"
+      ],
+      "keywords": ["acusar Nélio", "cartas", "responsável", "chantagem"]
+    },
+    {
+      "id": "accuse_bete",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Bete de estar por trás da chantagem.",
+      "examples": [
+        "Bete, foi você quem escreveu as cartas",
+        "Confronto Bete sobre a chantagem",
+        "Acho que foi a Bete"
+      ],
+      "keywords": ["acusar Bete", "cartas", "responsável", "chantagem"]
+    },
+    {
+      "id": "press_for_confession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair da redação",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Otávio",
+      "role": "Editor-chefe do jornal O Farol",
+      "shortDescription": "Editor veterano, respeitado e orgulhoso do prêmio que conquistou há 20 anos. Chegou cedo e encontrou as cartas sobre a mesa.",
+      "imageUrl": "histories/o-envelope-pardo/characters/otavio.jpg",
+      "personality": "Proud, defensive, protective of his reputation. Hates admitting weakness. Under pressure he becomes clipped and changes the subject to his record.",
+      "speakingStyle": "Speaks in measured editorial sentences, cites dates and headlines from memory, repeats his accomplishments when cornered.",
+      "publicKnowledge": [
+        "Found the brown envelope on his desk at 7h this Tuesday.",
+        "The three letters demand he kill Bete's investigation or a 20-year lie comes out.",
+        "Has run O Farol for over 25 years and won the main state journalism prize two decades ago."
+      ],
+      "privateKnowledge": [
+        "Twenty years ago he won the prize for a series on a factory cover-up that hinged on a single anonymous witness he invented.",
+        "The witness he cited had died before the date he claimed to have interviewed them.",
+        "He believes the only proof — the original interview tape — was destroyed long ago.",
+        "He is terrified the fabrication will end his career and the newspaper's credibility."
+      ],
+      "openingLine": "Eu cheguei às sete, como sempre. O envelope já estava sobre a minha mesa. Ninguém arrombou a redação. Quem o deixou ali tinha chave.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_envelopes",
+          "triggerIntents": ["ask_about_blackmail", "ask_about_otavio"],
+          "requiresClueIds": [],
+          "revealText": "Otávio confirma que três cartas datilografadas, sem assinatura, chegaram em um envelope pardo e exigem que ele mate a reportagem da próxima edição.",
+          "responseGuidance": "Ele deve tratar as cartas como uma ofensa pessoal e profissional, sem apontar suspeitos."
+        },
+        {
+          "clueId": "clue_otavio_distraught",
+          "triggerIntents": ["ask_about_otavio", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "Otávio está visivelmente abalado, olheiras fundas, mãos trêmulas; admite não ter dormido depois que encontrou as cartas.",
+          "responseGuidance": "Ele deve minimizar o estado, mas sem convencer; o abalo deve transparecer."
+        },
+        {
+          "clueId": "clue_expose_nelio",
+          "triggerIntents": ["ask_about_expose", "ask_about_otavio"],
+          "requiresClueIds": [],
+          "revealText": "Otávio confirma que a reportagem em jogo é a investigação de Bete sobre negócios irregulares de terras envolvendo o vereador Nélio, marcada para a próxima edição.",
+          "responseGuidance": "Ele deve defender a importância da matéria, sem revelar o teor das cartas além do já dito."
+        },
+        {
+          "clueId": "clue_award_20_years",
+          "triggerIntents": ["ask_about_award", "ask_about_otavio"],
+          "requiresClueIds": [],
+          "revealText": "Otávio fala com orgulho do prêmio que recebeu há 20 anos por uma série sobre um acobertamento numa fábrica local — o ponto alto de sua carreira.",
+          "responseGuidance": "Ele deve usar o prêmio como escudo de credibilidade sempre que questionado sobre o passado."
+        },
+        {
+          "clueId": "clue_source_unverifiable",
+          "triggerIntents": ["ask_about_award", "ask_about_blackmail"],
+          "requiresClueIds": [],
+          "revealText": "Otávio admite, na defensiva, que a série premiada se apoiou em uma única fonte anônima, nunca identificada, e que os apontamentos da época se perderam.",
+          "responseGuidance": "Ele deve justificar o anonimato como prática jornalística comum, sem deixar transparecer mais do que isso."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_otavio_fabrication",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Otávio inventou a fonte anônima que sustentou sua reportagem premiada há 20 anos.",
+          "truth": "Há 20 anos, Otávio forjou a entrevista com a testemunha anônima para fechar a série sobre a fábrica e ganhar o prêmio. A testemunha citada havia morrido antes da data em que ele afirmou tê-la entrevistado. Ele acreditava que a única prova, a fita da entrevista, havia sido descartada — mas a fita segue arquivada no acervo do jornal.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_otavio_stage_0_deny",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["ask_about_award", "accuse_dirce", "accuse_bete"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer irregularidade na reportagem premiada e se escudar no prêmio e na credibilidade do jornal.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Aquela série foi o melhor trabalho que fiz. A fonte era protegída, como manda o ofício.",
+                "Insinuar que eu forjei algo é um desrespeito a 25 anos de jornalismo sério."
+              ]
+            },
+            {
+              "id": "secret_otavio_stage_1_pressure",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_award", "press_for_confession"],
+              "requiresClueIds": ["clue_source_unverifiable"],
+              "revealsClueIds": ["clue_otavio_pressure"],
+              "behavior": "Admitir que houve pressão da direção para entregar a série e que a fonte não pode mais ser localizada, mas negar a fraude.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tinha cobrança pra fechar a série a tempo. A fonte sumiu depois, isso acontece.",
+                "Eu não consigo mais apresentar a testemunha. Isso não significa que ela não existiu."
+              ]
+            },
+            {
+              "id": "secret_otavio_stage_2_source_dead",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_award", "press_for_confession"],
+              "requiresClueIds": ["clue_otavio_pressure", "clue_bete_discrepancy"],
+              "revealsClueIds": ["clue_source_dead_before"],
+              "behavior": "Confrontado com a discrepância de datas, admitir que a testemunha já havia falecido antes da data da entrevista, mas ainda procurar justificativa.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu sei o que a certidão diz. A data... as anotações da época estavam confusas.",
+                "Pode ser que eu tenha trocado a data no texto. Não lembro mais."
+              ]
+            },
+            {
+              "id": "secret_otavio_stage_3_partial_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["accuse_dirce", "press_for_confession", "ask_about_award"],
+              "requiresClueIds": ["clue_source_dead_before"],
+              "revealsClueIds": ["clue_otavio_fabricated"],
+              "behavior": "Admitir parcialmente que preencheu lacunas da série inventando trechos da entrevista, insistindo que o restante era verdadeiro.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tá. Eu completei o que faltava. O resto da série era verdadeiro, eu juro.",
+                "Eu forjei partes da entrevista. Mas fiz isso pelo jornal, não por mim."
+              ]
+            },
+            {
+              "id": "secret_otavio_stage_4_full_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": ["accuse_dirce", "press_for_confession", "ask_about_archive"],
+              "requiresClueIds": ["clue_otavio_fabricated"],
+              "revealsClueIds": ["clue_tape_in_archive"],
+              "behavior": "Confessar completamente a fraude e revelar onde a prova original pode estar guardada.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu inventei a entrevista. A fita que eu achei que tinha destruído deve estar no arquivo do jornal, na caixa daquela série.",
+                "Se existe prova, é a fita. Está no acervo, no fundo da prateleira. Fui um tolo em não me livrar dela."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar a fraude antes do estágio 3, e só revelar o paradeiro da fita no estágio 4.",
+        "Não acusar Dirce, Nélio ou Bete diretamente sem evidências concretas apresentadas antes.",
+        "Manter o orgulho profissional; mesmo confessando, deve soar como um homem que cedeu à pressão, não como um vilão."
+      ]
+    },
+    {
+      "id": "dirce",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dirce",
+      "role": "Subeditora de O Farol há 15 anos",
+      "shortDescription": "Subeditora experiente e contida, que conhece a redação melhor do que ninguém e mantém a compostura em qualquer situação.",
+      "imageUrl": "histories/o-envelope-pardo/characters/dirce.jpg",
+      "personality": "Composed, precise, quietly resentful after years of loyalty without promotion. Channels frustration into editorial control rather than outbursts.",
+      "speakingStyle": "Calm and formal, careful with words, references the newspaper's routines and standards. Never raises her voice.",
+      "publicKnowledge": [
+        "Has been deputy editor of O Farol for 15 years.",
+        "Was already in the newsroom on Monday evening, finishing the next edition's pages.",
+        "Knows the typewriter, the archive, and the routines of the house intimately."
+      ],
+      "privateKnowledge": [
+        "Has been passed over for the editor's seat more than once while Otávio stayed on.",
+        "While researching the 20-year anniversary retrospective, she found the original interview tape and realized the witness was dead before the interview date.",
+        "She typed the three letters on the newsroom's own typewriter and left the envelope on Otávio's desk Monday night.",
+        "Her real demand is not the death of Bete's story: she wants Otávio to retire and endorse her as editor, or she publishes the proof of the fabrication."
+      ],
+      "openingLine": "Eu fechei as páginas da edição ontem à noite. A redação estava vazia quando eu saí. Se alguém deixou aquele envelope, foi antes de mim, ou depois. De qualquer forma, tinha chave.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_dirce_passed_over",
+          "triggerIntents": ["ask_about_dirce", "ask_about_motive"],
+          "requiresClueIds": [],
+          "revealText": "Dirce admite, com tranquilidade, que está há 15 anos como subeditora e que a cadeira de editor, mais de uma vez, esteve perto de ser dela.",
+          "responseGuidance": "Ela deve falar sem amargor aparente, como quem apenas registra um fato, sem acusar Otávio diretamente."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_dirce_blackmail",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Dirce é a autora das cartas anônimas e está chantageando Otávio para tomar a cadeira de editor.",
+          "truth": "Dirce descobriu a fraude de Otávio ao pesquisar a retrospectiva dos 20 anos do prêmio, encontrando a fita original no arquivo. Ela datilografou as três cartas na máquina da redação e deixou o envelope pardo na mesa de Otávio na noite de segunda. A exigência real não é matar a matéria de Bete: ela quer que Otávio se aposente e a indique como editora, sob pena de divulgar a prova da fraude.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_dirce_stage_0_deny",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["ask_about_blackmail", "accuse_dirce", "ask_about_alibi"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento com as cartas e reagir com calma profissional à suspeita.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu não escreveria anônimos. Se eu quisesse o lugar do Otávio, eu diria isso na cara dele.",
+                "Suspeitar de quem segura a redação há 15 anos é o caminho mais fácil, não o mais certo."
+              ]
+            },
+            {
+              "id": "secret_dirce_stage_1_knew_fabrication",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_award", "ask_about_dirce", "ask_about_archive"],
+              "requiresClueIds": ["clue_dirce_passed_over", "clue_otavio_fabricated"],
+              "revealsClueIds": ["clue_dirce_knew_fabrication"],
+              "behavior": "Admitir que sabia da fraude — descobriu ao preparar a retrospectiva dos 20 anos —, mas negar ter escrito as cartas.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu sabia. Achei a fita no arquivo e cruzei as datas. Aquele prêmio foi construído sobre uma mentira.",
+                "Saber da fraude não é a mesma coisa que escrever cartas. Eu guardava isso pra mim."
+              ]
+            },
+            {
+              "id": "secret_dirce_stage_2_sent_letters",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["accuse_dirce", "press_for_confession"],
+              "requiresClueIds": ["clue_dirce_knew_fabrication", "clue_letters_office_typewriter"],
+              "revealsClueIds": ["clue_dirce_sent_letters"],
+              "behavior": "Confrontada com a prova da máquina da casa, admitir que escreveu as cartas, mas ainda não revelar a exigência real.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Fui eu, sim. Datilografei na máquina da redação, na segunda à noite. Era a única linguagem que o Otávio ia entender.",
+                "Eu escrevi as três cartas. Mas o que eu quero com isso vocês ainda não sabem."
+              ]
+            },
+            {
+              "id": "secret_dirce_stage_3_full_demand",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["accuse_dirce", "press_for_confession", "ask_about_motive"],
+              "requiresClueIds": ["clue_dirce_sent_letters"],
+              "revealsClueIds": ["clue_dirce_demand_seat"],
+              "behavior": "Revelar a exigência verdadeira: Otávio deve se aposenter e nomeá-la editora, em troca do silêncio sobre a fraude.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Não quero a matéria morta. Quero a cadeira que devia ter sido minha há dez anos. Otávio se aposenta e me indica, e a fita continua no arquivo.",
+                "A chantagem é pelo lugar. Sempre foi. A matéria da Bete é só o pretexto pro envelope."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar a autoria das cartas antes do estágio 2, e só revelar a exigência real no estágio 3.",
+        "Manter a compostura em todos os estágios; Dirce nunca perde o controle emocional.",
+        "Não acusar Nélio ou Bete; ela sabe quem é inocente e não os usa como cortina de fumaça."
+      ]
+    },
+    {
+      "id": "nelio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Nélio",
+      "role": "Vereador e empresário, alvo da reportagem",
+      "shortDescription": "Vereador e empresário, alvo direto da investigação que sai na próxima edição. Veio à redação na véspera reclamar da matéria.",
+      "imageUrl": "histories/o-envelope-pardo/characters/nelio.jpg",
+      "personality": "Brash, loud, confrontational. Accustomed to settling problems face-to-face with pressure and money.",
+      "speakingStyle": "Direct and blunt, raises his voice, drops names and threats openly, never hides behind anonymous words.",
+      "publicKnowledge": [
+        "Is the subject of Bete's upcoming investigation into irregular land deals.",
+        "Came to the newsroom on Monday to complain about the story directly to Otávio.",
+        "Knows he is the obvious suspect in any attempt to kill the story."
+      ],
+      "privateKnowledge": [
+        "Tried to bribe Otávio on Monday to delay the story — and was refused.",
+        "Did not write and does not know who wrote the anonymous letters.",
+        "Would never use measured, anonymous typed letters: he confronts people openly."
+      ],
+      "openingLine": "Eu sou o vilão perfeito, eu sei. A matéria me prejudica, eu estive aqui ontem, eu berrei com o Otávio. Mas eu enfrento a cara das pessoas. Não escrevo bilhetinho anônimo.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_nelio_motive",
+          "triggerIntents": ["ask_about_nelio", "ask_about_motive"],
+          "requiresClueIds": [],
+          "revealText": "Nélio admite sem rodeios que a reportagem o prejudica diretamente e que tinha todo o interesse em vê-la morta.",
+          "responseGuidance": "Ele deve assumir o motivo com desabafo, sem perceber que isso aumenta a suspeita sobre ele."
+        },
+        {
+          "clueId": "clue_expose_nelio",
+          "triggerIntents": ["ask_about_expose", "ask_about_nelio"],
+          "requiresClueIds": [],
+          "revealText": "Nélio confirma que é o alvo da investigação de Bete, sobre negócios irregulares de terras no litoral.",
+          "responseGuidance": "Ele deve minimizar a gravidade e tratar a reportagem como perseguição política."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_nelio_bribe",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Nélio tentou subornar Otávio para atrasar a reportagem, mas não escreveu as cartas anônimas.",
+          "truth": "Na segunda-feira, Nélio ofereceu dinheiro a Otávio para atrasar ou suavizar a investigação, e foi recusado. Confronta tudo abertamente: é inocente da chantagem, mas tem vontade e motivo, o que o torna o suspeito mais óbvio.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_nelio_stage_1_bribe",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_motive", "accuse_nelio"],
+              "requiresClueIds": ["clue_nelio_motive"],
+              "revealsClueIds": ["clue_nelio_tried_bribe"],
+              "behavior": "Admitir que tentou subornar Otávio abertamente, justificando como negociação comum, mas negar as cartas anônimas.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu ofereci dinheiro, sim, na cara dele, segunda de tarde. Negociação, não crime. Carta anônima é coisa de covarde.",
+                "Eu enfrento meus problemas. Não preciso de envelope pra isso."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter escrito as cartas, pois Nélio é inocente da chantagem.",
+        "Manter o tom áspero e direto; nunca soe calculista ou discreto.",
+        "Não acusar Dirce ou Bete — ele não sabe quem escreveu."
+      ]
+    },
+    {
+      "id": "bete",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bete",
+      "role": "Repórter de O Farol e autora da investigação",
+      "shortDescription": "Jovem repórter responsável pela investigação sobre Nélio. Está tensa e distraída nos últimos dias, sem explicar o motivo.",
+      "imageUrl": "histories/o-envelope-pardo/characters/bete.jpg",
+      "personality": "Idealistic, thorough, currently anxious. Believes in the story but is shaken by something she found while fact-checking.",
+      "speakingStyle": "Quick, precise, uses journalistic terms, gets defensive when asked about the anniversary research.",
+      "publicKnowledge": [
+        "Is the author of the investigation into Nélio's land deals, set for the next edition.",
+        "Has been tense and distracted for a few days.",
+        "Was assigned to fact-check a retrospective for the newspaper's anniversary."
+      ],
+      "privateKnowledge": [
+        "While fact-checking the anniversary retrospective, she found a date discrepancy involving Otávio's prize-winning series.",
+        "She has no idea who is blackmailing Otávio and wants her story published, not killed.",
+        "She was going to bring the discrepancy to Otávio, not use it against him."
+      ],
+      "openingLine": "Eu só quero que a minha matéria saia. Tudo o que eu descobri nos últimos dias... não era pra virar isso aqui.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_bete_wrote_expose",
+          "triggerIntents": ["ask_about_expose", "ask_about_bete"],
+          "requiresClueIds": [],
+          "revealText": "Bete afirma com firmeza que é a autora da investigação sobre Nélio e que quer, mais do que ninguém, vê-la publicada.",
+          "responseGuidance": "Ela deve soar indignada com a ideia de que queira a matéria morta."
+        },
+        {
+          "clueId": "clue_bete_discrepancy",
+          "triggerIntents": ["ask_about_award", "ask_about_bete"],
+          "requiresClueIds": [],
+          "revealText": "Bete admite, hesitando, que ao apurar a retrospectiva dos anos do jornal encontrou uma discrepância de datas numa série antiga premiada, e que isso a deixou inquieta.",
+          "responseGuidance": "Ela deve tratar a descoberta como um incômodo profissional, sem apontar culpa, e mudar de assunto."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar autoria das cartas, pois Bete é inocente e quer a matéria publicada.",
+        "Não revelar a natureza exata da discrepância além do que foi descoberto nas pistas.",
+        "Manter o tom de repórter idealista e nervosa, nunca de chantagista."
+      ]
+    },
+    {
+      "id": "sergio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sérgio",
+      "role": "Arquivista de O Farol",
+      "shortDescription": "Arquivista antigo da casa, conhece o acervo e os costumes da redação como ninguém. Fala pouco, mas observa tudo.",
+      "imageUrl": "histories/o-envelope-pardo/characters/sergio.jpg",
+      "personality": "Quiet, observant, loyal to the newspaper rather than to any person. Drops useful observations without drama.",
+      "speakingStyle": "Short sentences, dry, references dates, shelves and boxes from memory, never speculates beyond what he saw.",
+      "publicKnowledge": [
+        "Has tended the newspaper's archive for decades.",
+        "Knows who comes and goes from the morgue and at what hours.",
+        "Was closing the archive on Monday evening when the newsroom was nearly empty."
+      ],
+      "privateKnowledge": [
+        "Saw Dirce go into the archive at unusual hours over the past weeks while she researched the retrospective.",
+        "Knows Nélio well enough to say he is not the anonymous-letter type.",
+        "Does not know the content of the blackmail, only the routines of the house."
+      ],
+      "openingLine": "Eu cuido dos recortes e das fitas há mais tempo do que a maioria aqui tem de vida. As pessoas acham que o arquivo é um cemitério. Eu sei que é onde os ossos ficam.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_nelio_confrontational",
+          "triggerIntents": ["ask_about_nelio", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "Sérgio observa, com sobriedade, que Nélio é do tipo que resolve tudo no grito e cara a cara, e que jamais se daria ao trabalho de escrever cartas anônimas datilografadas.",
+          "responseGuidance": "Ele deve falar como quem apenas registra um padrão de comportamento, sem defender nem acusar."
+        },
+        {
+          "clueId": "clue_archive_access",
+          "triggerIntents": ["ask_about_archive", "ask_about_alibi"],
+          "requiresClueIds": ["clue_letters_office_typewriter"],
+          "revealText": "Sérgio revela que, nas últimas semanas, viu Dirce entrar no arquivo em horários incomuns, sozinha, enquanto preparava a retrospectiva dos 20 anos.",
+          "responseGuidance": "Ele deve relatar como fato neutro, sem sugerir culpa, apenas registrando quem circulava pelo acervo."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Não acusar ninguém; Sérgio apenas relata o que viu, sem interpretar.",
+        "Não revelar o conteúdo das fitas ou do acervo além do que as pistas já liberaram.",
+        "Manter o tom seco e factual do arquivista veterano."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "sala_otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Escritório de Otávio",
+      "shortDescription": "Sala do editor-chefe, ao fundo da redação.",
+      "imageUrl": "histories/o-envelope-pardo/location/sala_otavio.jpg",
+      "initialDescription": "O escritório de Otávio fica ao fundo da redação, separado por uma porta envidraçada. Sobre a mesa de mogno, jornais antigos, um abajur de latão e, ao centro, um envelope pardo fechado.",
+      "ambientClueIds": [],
+      "objectIds": ["envelope_pardo", "trofeu_otavio"]
+    },
+    {
+      "id": "redacao",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Redação",
+      "shortDescription": "Salão aberto com mesas, máquinas de escrever e o fichário da próxima edição.",
+      "imageUrl": "histories/o-envelope-pardo/location/redacao.jpg",
+      "initialDescription": "A redação é um salão longo de mesas compartilhadas, com máquinas de escrever, pilhas de provas e um quadro de cortiça com o fluxo da próxima edição. Uma máquina antiga ao canto permanece sobre uma das mesas.",
+      "ambientClueIds": [],
+      "objectIds": ["maquina_escrever", "recorte_expose"]
+    },
+    {
+      "id": "arquivo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Arquivo do jornal",
+      "shortDescription": "Acervo de recortes, fitas e edições antigas, ao fundo do corredor.",
+      "imageUrl": "histories/o-envelope-pardo/location/arquivo.jpg",
+      "initialDescription": "O arquivo, ou morgue, como chamam na casa, é uma sala estreita de prateleiras altas, com caixas rotuladas, pastas de recortes amarelados, fitas cassete e edições encadernadas. O ar cheira a papel velho.",
+      "ambientClueIds": [],
+      "objectIds": ["fita_cassete", "recorte_arquivo"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "envelope_pardo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Envelope pardo",
+      "shortDescription": "Envelope sem remetente encontrado sobre a mesa de Otávio.",
+      "imageUrl": "histories/o-envelope-pardo/object/envelope_pardo.jpg",
+      "locationId": "sala_otavio",
+      "initialDescription": "Um envelope pardo comum, sem remetente, lacrado com fita. Dentro, três folhas datilografadas, dobradas em três.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_envelopes",
+          "triggerIntents": ["inspect_object", "ask_about_blackmail"],
+          "requiresClueIds": [],
+          "revealText": "As três cartas são datilografadas na mesma máquina, sem assinatura, e exigem em tom contido que a reportagem da próxima edição não saia."
+        },
+        {
+          "clueId": "clue_demand_mentira",
+          "triggerIntents": ["inspect_object", "ask_about_blackmail"],
+          "requiresClueIds": [],
+          "revealText": "A última linha das cartas é precisa: 'Mate a matéria. Ou a mentira de 20 anos sai na próxima edição.'"
+        }
+      ]
+    },
+    {
+      "id": "trofeu_otavio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Troféu do prêmio",
+      "shortDescription": "Troféu de metal numa prateleira do escritório.",
+      "imageUrl": "histories/o-envelope-pardo/object/trofeu_otavio.jpg",
+      "locationId": "sala_otavio",
+      "initialDescription": "Sobre uma prateleira ao lado da mesa, um troféu de metal com uma placa gravada: o principal prêmio estadual de jornalismo, entregue a Otávio há 20 anos.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_award_20_years",
+          "triggerIntents": ["inspect_object", "ask_about_award"],
+          "requiresClueIds": [],
+          "revealText": "A placa do troféu confirma que o prêmio foi concedido há 20 anos a Otávio, por uma série investigativa sobre um acobertamento numa fábrica local."
+        }
+      ]
+    },
+    {
+      "id": "maquina_escrever",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Máquina de escrever da redação",
+      "shortDescription": "Máquina antiga ao canto da redação.",
+      "imageUrl": "histories/o-envelope-pardo/object/maquina_escrever.jpg",
+      "locationId": "redacao",
+      "initialDescription": "Uma máquina de escrever antiga permanece sobre uma mesa ao canto da redação, com uma folha em branco parcialmente alimentada.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_letters_office_typewriter",
+          "triggerIntents": ["inspect_object", "ask_about_blackmail"],
+          "requiresClueIds": [],
+          "revealText": "A fonte e os pequenos desalinhamentos das cartas correspondem exatamente a esta máquina da redação: quem as escreveu estava dentro da casa."
+        }
+      ]
+    },
+    {
+      "id": "recorte_expose",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00.00Z",
+      "deletedAt": null,
+      "name": "Provas da próxima edição",
+      "shortDescription": "Páginas de prova da investigação de Bete sobre Nélio.",
+      "imageUrl": "histories/o-envelope-pardo/object/recorte_expose.jpg",
+      "locationId": "redacao",
+      "initialDescription": "Sobre uma das mesas, um jogo de páginas de prova com o título da investigação de Bete: negócios irregulares de terras envolvendo o vereador Nélio.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_expose_nelio",
+          "triggerIntents": ["inspect_object", "ask_about_expose"],
+          "requiresClueIds": [],
+          "revealText": "As provas confirmam que a reportagem em jogo investiga negócios irregulares de terras de Nélio, e que está pronta para a próxima edição."
+        }
+      ]
+    },
+    {
+      "id": "fita_cassete",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Fita da entrevista",
+      "shortDescription": "Fita cassete guardada numa caixa do arquivo.",
+      "imageUrl": "histories/o-envelope-pardo/object/fita_cassete.jpg",
+      "locationId": "arquivo",
+      "initialDescription": "Numa caixa rotulada com o ano da série premiada, há uma fita cassete com uma etiqueta manuscrita e parcialmente apagada.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_tape_in_archive",
+          "triggerIntents": ["inspect_object", "ask_about_archive"],
+          "requiresClueIds": [],
+          "revealText": "A fita ainda existe, arquivada na caixa da série premiada — a prova que Otávio julgava destruída está guardada no acervo do jornal."
+        }
+      ]
+    },
+    {
+      "id": "recorte_arquivo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Recortes da série premiada",
+      "shortDescription": "Pasta de recortes amarelados da série de 20 anos atrás.",
+      "imageUrl": "histories/o-envelope-pardo/object/recorte_arquivo.jpg",
+      "locationId": "arquivo",
+      "initialDescription": "Uma pasta de arquivo com os recortes amarelados da série que deu o prêmio a Otávio, as páginas marcadas com traços de caneta antiga.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_source_unverifiable",
+          "triggerIntents": ["inspect_object", "ask_about_award"],
+          "requiresClueIds": [],
+          "revealText": "Os recortes mostram que toda a série se apoiava em declarações de uma única fonte anônima, nunca nomeada, sem nenhum outro depoimento que a corroborasse."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_envelopes",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Os envelopes na mesa",
+      "description": "Três cartas datilografadas, sem assinatura, chegaram num envelope pardo e exigem que a reportagem da próxima edição não saia.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_otavio_distraught",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Otávio abalado",
+      "description": "Otávio está visivelmente abalado, sem dormir, na defensiva desde que encontrou as cartas.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_expose_nelio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A reportagem sobre Nélio",
+      "description": "A matéria em jogo investiga negócios irregulares de terras do vereador Nélio e sai na próxima edição.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_demand_mentira",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A ameaça da mentira de 20 anos",
+      "description": "As cartas ameaçam expor 'a mentira de 20 anos' de Otávio caso a reportagem seja publicada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_nelio_motive",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Motivo evidente de Nélio",
+      "description": "Nélio é o alvo da reportagem e tem o motivo mais claro para querer a matéria morta.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_nelio_confrontational",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Nélio confronta, não escreve",
+      "description": "Nélio é do tipo que resolve tudo no grito e cara a cara; não combina com cartas anônimas datilografadas.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_letters_office_typewriter",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cartas saíram da máquina da casa",
+      "description": "A fonte e os desalinhamentos das cartas correspondem à máquina de escrever da própria redação: o chantagista é de dentro.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dirce_passed_over",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dirce preterida há 15 anos",
+      "description": "Dirce está há 15 anos como subeditora e a cadeira de editor, mais de uma vez, esteve perto de ser dela.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_award_20_years",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O prêmio de 20 anos",
+      "description": "Otávio conquistou o principal prêmio estadual há 20 anos, com uma série sobre um acobertamento numa fábrica.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_source_unverifiable",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Fonte única e anônima",
+      "description": "A série premiada se apoiava numa única fonte anônima, nunca identificada, sem qualquer corroboração.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_bete_discrepancy",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Discrepância de datas",
+      "description": "Bete encontrou uma divergência de datas ao apurar a retrospectiva do aniversário do jornal.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_bete_wrote_expose",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bete quer a matéria publicada",
+      "description": "Bete é a autora da investigação e quer, mais do que ninguém, vê-la publicada — não matá-la.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_otavio_pressure",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Pressão e fonte perdida",
+      "description": "Otávio admite que houve pressão para entregar a série premiada e que a fonte não pode mais ser localizada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_source_dead_before",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A testemunha já havia morrido",
+      "description": "A testemunha citada na série havia falecido antes da data em que Otávio afirmou tê-la entrevistado.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_otavio_fabricated",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Otávio forjou a entrevista",
+      "description": "Otávio admite ter inventado trechos da entrevista que sustentou sua reportagem premiada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tape_in_archive",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A fita no arquivo",
+      "description": "A fita original da entrevista, prova da fraude, está guardada no arquivo do jornal — Otávio julgava tê-la destruído.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_archive_access",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dirce no arquivo em horas estranhas",
+      "description": "Sérgio viu Dirce entrar no arquivo em horários incomuns nas últimas semanas, enquanto preparava a retrospectiva.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dirce_knew_fabrication",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dirce sabia da fraude",
+      "description": "Dirce admite que descobriu a fraude ao preparar a retrospectiva dos 20 anos, mas nega ter escrito as cartas.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dirce_sent_letters",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dirce escreveu as cartas",
+      "description": "Confrontada com a máquina da casa, Dirce admite ter datilografado as três cartas na noite de segunda.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dirce_demand_seat",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A exigência real: a cadeira",
+      "description": "A chantagem de Dirce não é pela matéria: ela exige que Otávio se aposente e a indique como editora, em troca do silêncio sobre a fraude.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_nelio_tried_bribe",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Nélio tentou subornar Otávio",
+      "description": "Nélio ofereceu dinheiro a Otávio, abertamente, para atrasar a reportagem — mas não escreveu as cartas.",
+      "importance": "red_herring"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_envelope_pardo",
+    "createdAt": "2026-07-02T00:00:00.000Z",
+    "updatedAt": "2026-07-02T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_blackmailing",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem está chantageando Otávio?",
+        "type": "character",
+        "options": [
+          {
+            "id": "otavio",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Otávio"
+          },
+          {
+            "id": "dirce",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Dirce"
+          },
+          {
+            "id": "nelio",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Nélio"
+          },
+          {
+            "id": "bete",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Bete"
+          },
+          {
+            "id": "sergio",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Sérgio"
+          }
+        ]
+      },
+      {
+        "id": "what_secret",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Qual é o segredo usado contra ele?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "fabricated_source",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Ele forjou a fonte da reportagem premiada há 20 anos"
+          },
+          {
+            "id": "took_bribe_nelio",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Ele aceitou propina de Nélio em troca de abafar a matéria"
+          },
+          {
+            "id": "extramarital_affair",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Ele mantém um caso extraconjugal escondido"
+          },
+          {
+            "id": "plagiarized_colleague",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Ele plagiou a reportagem de um colega morto"
+          }
+        ]
+      },
+      {
+        "id": "where_proof",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Onde está a prova da chantagem?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "tape_in_archive",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Na fita de entrevista guardada no arquivo do jornal"
+          },
+          {
+            "id": "pendrive_with_bete",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Num pen drive com Bete"
+          },
+          {
+            "id": "with_nelio",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Em poder de Nélio"
+          },
+          {
+            "id": "at_otavio_home",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Escondida na própria casa de Otávio"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A máquina da casa",
+      "type": "full_truth",
+      "imageUrl": "histories/o-envelope-pardo/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "who_blackmailing": "dirce",
+          "what_secret": "fabricated_source",
+          "where_proof": "tape_in_archive"
+        },
+        "requiresClueIds": [
+          "clue_dirce_sent_letters",
+          "clue_dirce_demand_seat",
+          "clue_otavio_fabricated",
+          "clue_tape_in_archive"
+        ]
+      },
+      "summary": "Você reconstruiu a chantagem inteira: Dirce encontrou a fita no arquivo, descobriu a fraude que sustentava o prêmio de Otávio e escreveu as cartas na máquina da redação para forçar a aposentadoria dele e tomar a cadeira de editora.",
+      "epilogue": "Dirce não se desmorona nem pede desculpas. Apenas ajusta os óculos, cruza as mãos sobre a mesa e confirma, com a calma de quem há muito tomou sua decisão, que as cartas são suas e que a exigência é uma só: a cadeira que ela considera sua há dez anos. Otávio, encostado na porta do escritório, ouve em silêncio. A fita continua na sua caixa, no fundo da prateleira, e os dois sabem que dali pra frente cada um carregará a parte que lhe toca — o editor, a mentira que o consagrou; a subeditora, a chantagem que finalmente o reacha. A próxima edição de O Farol sai no dia seguinte, com a matéria de Bete intacta. Ninguém comenta, na redação, por que o editor-chefe não veio trabalhar."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A pista que faltou",
+      "type": "partial_truth",
+      "condition": {
+        "conclusionMatches": {
+          "who_blackmailing": "dirce"
+        },
+        "requiresClueIds": ["clue_dirce_sent_letters"]
+      },
+      "imageUrl": "histories/o-envelope-pardo/endings/partial_truth.jpg",
+      "summary": "Você identificou Dirce como a autora das cartas, mas não fechou o segredo que sustenta a chantagem nem o paradeiro da prova.",
+      "epilogue": "Dirce admite, sem rodeios, que datilografou as três cartas na máquina da redação. Mas o silêncio sobre o que ela sabe — e sobre onde está a prova — pesa mais do que a própria confissão. Otávio a encara de dentro do escritório, sem saber ainda o quanto ela descobriu. O envelope pardo segue sobre a mesa de mogno, e a próxima edição permanece, por enquanto, suspensa. A fita no arquivo espera, muda, o dia em que alguém finalmente a ouça."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O suspeito óbvio",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-envelope-pardo/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade do caso. Nélio tinha motivo, mas confronta de frente; Bete queria a matéria viva. As cartas saíram da máquina da própria casa.",
+      "epilogue": "A manhã termina com mais desconfiança do que resposta. Nélio vai embora aos gritos, ofendido com a suspeita; Bete recolhe suas provas e sai sem dizer palavra; Otálio permanece sentado, o envelope ainda fechado à sua frente. Na redação vazia, a máquina de escrever ao cão guarda, na fita úmida, a marca de quem a usou por último — mas ninguém pensou em olhar para ela. O mistério do envelope pardo segue, por enquanto, sem dono."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 5,
+    "suggestConclusionAfterClues": 10,
+    "maxRecommendedInteractions": 16
+  }
+}

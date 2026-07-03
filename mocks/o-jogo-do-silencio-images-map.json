@@ -1,0 +1,95 @@
+{
+  "master": {
+    "prompt": "Create an image for Tellery, a premium interactive storytelling app. The image belongs to the story \"O Jogo do Silêncio\", an elegant Brazilian-inspired literary mystery set inside Clube Atlas, a private seaside casino club, late at night after closing, when a demand for silence-money is discovered hidden inside a hollowed-out roulette ball. Art direction: premium cinematic editorial illustration, semi-realistic digital painting, refined adult noir mystery, smoky and hushed atmosphere, sophisticated and tense but not frightening, inquisitive rather than violent. The visual tone should feel like a prestige streaming noir drama, not like a traditional game. Setting identity: Clube Atlas is an opulent seaside casino club with deep navy walls, faded gold trim, burgundy velvet upholstery, green felt gaming tables, brass roulette wheels, crystal ashtrays, dim chandeliers, cigar smoke drifting through low light, and large dark windows hinting at the sea outside. Color palette: deep midnight navy #0E1B2C, faded antique gold #B68A2E, deep burgundy #5A1A22, warm neon-amber glow #E8C56A, dark walnut wood #241812, pearl smoke gray #A8A6A0, black lacquer #10100E, muted teal-green felt #1F3D34, brass #8C6A2E. Lighting: low warm chandelier light, soft pools of amber and gold on green felt tables, deep navy and burgundy shadows, faint neon glow reflections on brass and glass, drifting cigar smoke catching the light. Style: refined, polished, moody, premium, adult, literary, cinematic, semi-realistic, soft depth of field, subtle film grain, elegant composition, believable materials, emotionally grounded realism. Recurring motifs: roulette wheels and balls, casino chips, velvet drapery, brass fittings, cigar smoke, typewriter keys, leather ledgers, dim chandeliers, sea-dark windows. Avoid horror, gore, blood, weapons, police crime-scene aesthetics, skulls, monsters, childish illustration, cartoon style, anime, fantasy RPG visuals, game UI, neon cyberpunk, text overlays, logos, watermarks."
+  },
+  "history": {
+    "cover": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a wide cinematic cover image for the interactive mystery story \"O Jogo do Silêncio\". Show the interior of Clube Atlas, a private seaside casino club, late at night. The main focus is a roulette ball resting on the edge of a green felt gaming table, with a thin precise cut along its side and a small folded typewritten note half-visible beside it. Around it: dim gold chandeliers, blurred roulette wheels and card tables in the background, burgundy velvet drapes, and tall dark windows suggesting the sea just beyond the glass. Composition: wide horizontal hero-card framing for a mobile storytelling app. Place the roulette ball and note slightly right of center. Leave darker atmospheric negative space on the left side for future app title and CTA overlay, but do not render any text overlay. No people in the foreground. Mood: opulent, hushed, tense, literary, quietly threatening."
+    },
+    "thumbnail": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a cinematic close-up thumbnail for the interactive mystery story \"O Jogo do Silêncio\". Show a single roulette ball with a fine cut along its side, resting on dark green felt, with the corner of a small typewritten note just visible emerging from the cut. Soft gold chandelier bokeh and the blurred edge of a casino chip appear around it. Composition: square close-up still life, the roulette ball and note dominate the frame, strong focal hierarchy, shallow depth of field, high contrast between warm gold highlights and deep navy shadow. The cut ball should remain instantly readable as \"something hidden was found\" even at small mobile thumbnail size. Mood: refined, tense, suspicious, elegant, literary."
+    }
+  },
+  "location": {
+    "salao_principal": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for \"Salão principal\" inside Clube Atlas. Show the main gaming floor at night, after closing: a roulette table and card tables covered in dark green felt, chips still stacked in neat trays, chandeliers dimmed to a warm amber glow, and burgundy velvet ropes marking empty walkways. On the roulette table, a wooden ball tray sits half-open, and one roulette ball rests slightly apart from the others, catching the light on a thin cut along its side. Tall dark windows in the background hint at the sea outside. Composition: medium-wide horizontal shot with the roulette table as the clear focal point, chandelier light pooling on the green felt. Mood: opulent, hushed, quietly suspicious, cinematic noir. Important visual clues: cut roulette ball, chip tray, empty gaming floor, dim chandeliers, sea-dark windows."
+    },
+    "escritorio_gerente": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for \"Escritório do gerente\" inside Clube Atlas. Show a small private office: a dark walnut desk, a wall safe partially hidden behind a framed painting, and an antique typewriter resting on a side table with a worn ink ribbon. A crystal ashtray on the desk holds a faint pile of ash with a scorched paper fragment. A leather-bound logbook lies open nearby. A single desk lamp casts warm gold light, while the rest of the room fades into navy shadow. Composition: medium-wide horizontal shot with the typewriter and desk as the clear focal point, the safe visible in the background. Mood: controlled, tense, refined, quietly incriminating. Important visual clues: antique typewriter, scorched paper in ashtray, open logbook, wall safe, desk lamp."
+    },
+    "guarda_volumes": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic location image for \"Guarda-volumes\" inside Clube Atlas. Show a narrow cloakroom at night: rows of elegant coats hanging on numbered hooks under dim amber light, a small wooden counter near the entrance, and one coat slightly askew with its numbered tag looking freshly reattached. Deep navy shadows fill the corners of the room, with a faint burgundy velvet curtain at the entrance. Composition: medium-wide horizontal shot with the row of coats as the clear focal point, one coat subtly emphasized. Mood: quiet, intimate, suspicious, elegant. Important visual clues: numbered coat tags, slightly askew coat, dim cloakroom light, wooden counter."
+    }
+  },
+  "object": {
+    "bola_roleta": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for \"Bola de roleta vazada\", the central clue in the mystery. Show a heavy dark roulette ball resting on green felt, with a thin, precise cut along one side, just wide enough to have hidden a small folded note. A corner of a typewritten note peeks out from the cut. Warm gold chandelier light reflects softly off the ball's polished surface, with a blurred casino chip and table edge in the background. Composition: close-up still life, the cut roulette ball dominates the frame, with fine surface detail and the hidden note clearly visible. Mood: intimate, suspicious, elegant, quietly alarming."
+    },
+    "bandeja_fichas": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for \"Bandeja de fichas do caixa\". Show a lacquered wooden tray holding neat stacks of casino chips organized by color and value, with a small notepad resting beside it showing handwritten tally marks. One stack looks noticeably shorter than it should be. Warm gold light catches the chip edges, with a soft navy shadow behind the tray. Composition: square close-up still life, the chip tray is the clear focal point, with legible tally marks on the notepad. Mood: orderly, quietly suspicious, refined. Important visual clues: casino chip stacks, uneven stack height, handwritten notepad, tray edge."
+    },
+    "maquina_escrever": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for \"Máquina de escrever do escritório\". Show an antique black typewriter resting on a walnut side table, its ink ribbon visibly worn and a few keys slightly more polished from frequent use than the others. A single sheet of paper peeks from the roller, with faint letter impressions visible. Warm desk-lamp light falls across the keys, with soft navy shadow around the edges. Composition: square close-up still life, the typewriter dominates the frame, with legible key and ribbon detail. Mood: quiet, deliberate, investigative, refined. Important visual clues: worn ink ribbon, uneven key wear, paper in the roller, desk lamp glow."
+    },
+    "cinzeiro_escritorio": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for \"Cinzeiro do escritório\". Show a crystal ashtray resting on a dark walnut desk, holding a small pile of ash and a partially burned fragment of paper with faint typewritten letters still visible along its unburned edge. Warm gold desk-lamp light catches the crystal facets, with soft navy shadow around the desk. Composition: square close-up still life, the ashtray and burned fragment are the clear focal point, with legible partial lettering. Mood: quiet, incriminating, refined, tense. Important visual clues: crystal ashtray, ash pile, burned paper fragment, faint typewritten letters."
+    },
+    "livro_turno": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for \"Livro de registro de turno\". Show a leather-bound logbook open on a walnut desk, its pages filled with handwritten entries of names, dates and times over the past weeks. One name appears several times in the entries for late-night visits to the office, faintly underlined. Warm desk-lamp light falls across the open pages, with soft navy shadow around the edges. Composition: square close-up still life, the open logbook is the main focus, with legible handwriting detail. Mood: orderly, quiet, investigative, refined. Important visual clues: leather logbook, handwritten entries, underlined name, desk lamp glow."
+    },
+    "casaco_gloria": {
+      "aspectRatio": "1:1",
+      "prompt": "Create a close-up object image for \"Casaco de Dona Glória\". Show an elegant fine wool coat hanging on a numbered cloakroom hook, its inner lining slightly visible with a small torn fabric pocket, empty and frayed at the edges. The numbered tag on the hook looks freshly reattached, with a faint sheen of fresh adhesive at one corner. Dim amber cloakroom light falls across the coat, with soft navy shadow behind it. Composition: square close-up still life, the coat and its torn inner pocket are the clear focal point. Mood: quiet, elegant, suspicious, intimate. Important visual clues: torn inner pocket, empty lining, freshly reattached tag, numbered hook."
+    },
+    "caderneta_vermelha": {
+      "aspectRatio": "4:3",
+      "prompt": "Create a close-up object image for \"Caderneta vermelha\", a key clue in the mystery. Show a small notebook with a worn red leather cover and yellowed pages, lying slightly open on a wooden cloakroom counter. Tight, aged handwriting is visible across the open pages, evoking an old and carefully guarded confession. Dim amber light falls across the cover, with soft navy shadow around the counter. Composition: close-up still life, the red notebook dominates the frame, with fine leather texture and legible handwriting detail. Mood: intimate, weighty, quietly ominous, literary. Important visual clues: worn red leather cover, yellowed pages, tight aged handwriting, wooden counter."
+    }
+  },
+  "characters": {
+    "viriato": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Viriato, manager of Clube Atlas. Viriato is a Brazilian adult man in his early 50s. He is controlled, meticulous, and averse to scandal, having just found a demand for silence-money hidden inside a roulette ball on his own desk. Appearance: impeccably dressed club manager, dark tailored suit or vest, neatly combed graying hair, a composed but faintly strained expression, perhaps a pocket square or subtle cufflinks. His posture is upright and formal, hands often clasped. Composition: vertical bust or upper-body portrait, the dim gold-lit casino office softly blurred behind him, with navy shadow and warm lamp light on one side of his face. He should look human, believable, emotionally grounded, and not villainous. Mood: restrained authority, professional composure, quiet unease, careful calculation."
+    },
+    "gloria": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Dona Glória, the club's oldest and most loyal patron. Glória is a Brazilian adult woman in her late 60s. She is proud, elegant, and reserved, visibly shaken since the demand note appeared, though trying hard to maintain her composure. She carries a private secret from decades ago that she has never let anyone see. Appearance: refined elderly socialite, an elegant evening gown or tailored dress, pearl jewelry, silver-streaked hair styled elegantly, a composed but faintly haunted expression in her eyes. Composition: vertical bust or upper-body portrait, the dim gold-lit casino floor softly blurred behind her, with warm amber light and burgundy shadow on one side of her face. She should look dignified, human, and emotionally complex rather than obviously guilty. Mood: wounded dignity, restrained fear, guarded composure, quiet gravity."
+    },
+    "afonso": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Afonso, the roulette croupier at Clube Atlas. Afonso is a Brazilian adult man in his early 30s. He is charming and controlled in public, with a contained anxiety that slips through in small moments when pressed. He is the true author of the blackmail, driven by a secret gambling debt, but not portrayed as an obvious villain. Appearance: sharp casino uniform with a dark waistcoat and bow tie, neatly slicked hair, practiced professional smile that doesn't quite reach his eyes, perhaps rolled cuffs revealing a nervous habit like tapping fingers. Composition: vertical bust or upper-body portrait, the blurred roulette table and chandelier light behind him, with warm gold light and navy shadow on one side of his face. He should look human, charismatic, and morally complex rather than obviously guilty. Mood: practiced charm, hidden desperation, controlled anxiety, relatable humanity."
+    },
+    "lucia": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Lúcia, the club's bookkeeper. Lúcia is a Brazilian adult woman in her early 40s. She is precise, reserved, and slightly defensive, having been found working late on an unauthorized internal audit unrelated to the blackmail. Appearance: practical, tidy professional attire, a cardigan or blazer over a simple blouse, hair pulled back neatly, reading glasses resting on her nose or pushed up into her hair, a ledger or folder held close to her chest. Composition: vertical bust or upper-body portrait, the dim office softly blurred behind her, with warm lamp light and navy shadow on one side of her face. She should look competent, human, and cautious rather than sinister. Mood: guarded competence, quiet defensiveness, controlled worry, understated integrity."
+    },
+    "brandao": {
+      "aspectRatio": "4:5",
+      "prompt": "Create a character portrait for Dr. Brandão, a lawyer and longtime club member. Brandão is a Brazilian adult man in his early 60s. He is articulate, calm, and accustomed to handling delicate matters with professional discretion. He is Glória's personal lawyer and close friend, innocent of the blackmail but drawn into suspicion. Appearance: distinguished older gentleman, a well-tailored dark suit, silver hair neatly combed, wire-rimmed glasses, a calm and slightly weary expression, perhaps a signet ring. Composition: vertical bust or upper-body portrait, the dim gold-lit casino lounge softly blurred behind him, with warm amber light and burgundy shadow on one side of his face. He should look composed, human, and trustworthy rather than evasive. Mood: calm authority, professional discretion, quiet patience, measured confidence."
+    }
+  },
+  "endings": {
+    "full_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the full truth ending of \"O Jogo do Silêncio\". Show a second roulette ball, now split open on the manager's desk, revealing a small bundle of cash and a folded typewritten note inside. The office is lit by warm gold desk-lamp light, with the typewriter and logbook visible nearby, no longer threatening. The atmosphere feels calmer and more reflective, the tension resolved but bittersweet. Composition: wide horizontal image, no people, focus on the opened roulette ball and its revealed contents as symbols of resolution. Mood: reflective, resolved, bittersweet, elegant, literary noir."
+    },
+    "partial_truth": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the partial truth ending of \"O Jogo do Silêncio\". Show the manager's office at night, the typewriter and burned paper fragment still visible on the desk, but no second roulette ball or hidden money in sight. Deep navy shadows gather at the edges of the room, and the desk lamp casts a narrower, more uncertain pool of gold light than before. Composition: wide horizontal image, focus on the typewriter and empty desk surface, with deeper shadows around the frame. No characters. Mood: ambiguous, elegant, unresolved, quiet discomfort."
+    },
+    "wrong_accusation": {
+      "aspectRatio": "16:9",
+      "prompt": "Create a cinematic ending image for the wrong accusation ending of \"O Jogo do Silêncio\". Show the empty gaming floor of Clube Atlas late at night, chandeliers dimmed further, the roulette wheel still and silent, chips left uncounted on the green felt. The atmosphere suggests the real blackmailer walked away unnoticed while suspicion fell elsewhere. The lighting is warm but heavier with shadow, quietly regretful without becoming scary. Composition: wide horizontal image, focus on the still roulette wheel slightly off-center, surrounded by dim chandeliers and soft shadow, no characters. Mood: unresolved, quiet, regretful, elegant, literary noir."
+    }
+  }
+}

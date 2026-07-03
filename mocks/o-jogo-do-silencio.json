@@ -1,0 +1,1462 @@
+{
+  "id": "history_o_jogo_do_silencio",
+  "createdAt": "2026-07-03T00:00:00.000Z",
+  "updatedAt": "2026-07-03T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-jogo-do-silencio",
+  "title": "O Jogo do Silêncio",
+  "subtitle": "Alguém no clube sabe demais, e agora quer ser pago para calar a boca",
+  "teaser": "No Clube Atlas, à beira-mar, uma bola de roleta vazada esconde uma exigência datilografada: pague até o amanhecer ou um segredo de 25 anos vem à luz. O gerente trancou as portas e chamou quem ainda estava no salão. Um deles está por trás da chantagem.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 14,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/o-jogo-do-silencio/history/cover.jpg",
+  "thumbnailUrl": "histories/o-jogo-do-silencio/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "Uma bola de roleta vazada esconde uma exigência datilografada. Alguém no clube quer ser calado com dinheiro até o amanhecer.",
+    "fullText": "São 23h40 no Clube Atlas, um cassino privado à beira-mar. O salão já deveria estar vazio quando Viriato, o gerente, encontra sobre sua mesa uma bola de roleta com um corte fino na lateral. Dentro dela, um bilhete datilografado: pague uma quantia alta até o amanhecer, ou um segredo antigo de Dona Glória, cliente mais fiel do clube, será entregue à imprensa. Viriato tranca as portas do Atlas e reúne quem ainda circulava pelo prédio àquela hora: Glória, a própria ameaçada; Afonso, o croupier da mesa de roleta; Lúcia, a contabilista do clube; e Dr. Brandão, advogado e membro antigo, amigo de longa data de Glória. Alguém entre eles sabe o suficiente sobre o passado dela para chantageá-la — e agora quer envolver o próprio clube na exigência. Cabe a você percorrer o salão, o escritório e o guarda-volumes, ouvir as quatro versões e descobrir quem escreveu o bilhete, o que sabe e onde está a prova.",
+    "callToAction": "Examine o salão, o escritório e o guarda-volumes, converse com Glória, Afonso, Lúcia e Dr. Brandão, e descubra quem está chantageando o clube."
+  },
+  "objective": {
+    "mainQuestion": "Quem está chantageando o Clube Atlas, que segredo usa como arma e onde está a prova que sustenta a ameaça?",
+    "description": "Descubra a autoria da chantagem, o segredo antigo por trás dela e o paradeiro do dinheiro ou da prova reunida contra Dona Glória."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_extortion",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a chantagem em si, a exigência de pagamento ou quem estaria por trás dela.",
+      "examples": [
+        "Quem está chantageando o clube?",
+        "O que a exigência pedia?",
+        "Alguém já tinha recebido ameaças antes?"
+      ],
+      "keywords": ["chantagem", "extorsão", "exigência", "ameaça", "pagamento"]
+    },
+    {
+      "id": "ask_about_demand_letters",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o bilhete datilografado, seu conteúdo ou como foi escrito.",
+      "examples": [
+        "O que dizia o bilhete?",
+        "O bilhete foi datilografado ou escrito à mão?",
+        "Havia assinatura no bilhete?"
+      ],
+      "keywords": ["bilhete", "carta", "datilografado", "exigência", "texto"]
+    },
+    {
+      "id": "ask_about_roulette_ball",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a bola de roleta vazada usada para escrever o bilhete.",
+      "examples": [
+        "Como a bola foi vazada?",
+        "De onde veio essa bola?",
+        "Quem teria acesso a ela?"
+      ],
+      "keywords": ["bola", "roleta", "vazada", "corte", "mesa"]
+    },
+    {
+      "id": "ask_about_typewriter",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a máquina de escrever do escritório e quem tem acesso a ela.",
+      "examples": [
+        "De quem é essa máquina de escrever?",
+        "Quem usa a máquina do escritório?",
+        "A máquina fica trancada?"
+      ],
+      "keywords": ["máquina", "escrever", "escritório", "datilografia", "fita"]
+    },
+    {
+      "id": "ask_about_red_ledger",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a caderneta vermelha de Dona Glória e seu conteúdo.",
+      "examples": [
+        "O que é essa caderneta vermelha?",
+        "O que está escrito nela?",
+        "De quem é a caderneta?"
+      ],
+      "keywords": ["caderneta", "vermelha", "diário", "anotações", "segredo"]
+    },
+    {
+      "id": "ask_about_chips",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre fichas do cassino, o caixa ou discrepâncias nos valores.",
+      "examples": [
+        "Está faltando ficha no caixa?",
+        "Como funciona a troca de fichas?",
+        "Alguma ficha some com frequência?"
+      ],
+      "keywords": ["fichas", "caixa", "bandeja", "troca", "valores"]
+    },
+    {
+      "id": "ask_about_cloakroom",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o guarda-volumes, os casacos guardados ou quem tem acesso a eles.",
+      "examples": [
+        "Quem tem acesso ao guarda-volumes?",
+        "Os casacos ficam vigiados?",
+        "Alguém foi visto no guarda-volumes?"
+      ],
+      "keywords": ["guarda-volumes", "casaco", "etiqueta", "pino", "acesso"]
+    },
+    {
+      "id": "ask_about_office",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o escritório do gerente, o cofre ou quem circula por ali.",
+      "examples": [
+        "Quem tem chave do escritório?",
+        "O cofre foi aberto?",
+        "Quem esteve no escritório essa noite?"
+      ],
+      "keywords": ["escritório", "cofre", "gerente", "sala", "chave"]
+    },
+    {
+      "id": "ask_about_gaming_floor",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o salão principal, as mesas de jogo ou o movimento da noite.",
+      "examples": [
+        "Como estava o salão hoje?",
+        "Quem jogava na mesa de roleta?",
+        "O salão estava cheio?"
+      ],
+      "keywords": ["salão", "mesas", "roleta", "movimento", "jogo"]
+    },
+    {
+      "id": "ask_about_yesterday",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre as últimas semanas ou noites anteriores no clube.",
+      "examples": [
+        "Isso já vinha acontecendo antes?",
+        "O que mudou nas últimas semanas?",
+        "Alguém notou algo estranho antes de hoje?"
+      ],
+      "keywords": ["semanas", "antes", "anteriormente", "vinha", "notado"]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava ou o que fazia em horários específicos da noite.",
+      "examples": [
+        "Onde você estava às 22h?",
+        "Você pode provar onde estava?",
+        "Alguém te viu nesse horário?"
+      ],
+      "keywords": ["álibi", "horário", "onde estava", "prova", "viu"]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar por que alguém faria essa chantagem ou o que ganharia com isso.",
+      "examples": [
+        "Qual seria o motivo?",
+        "Quem ganharia com essa exigência?",
+        "Por que fazer isso agora?"
+      ],
+      "keywords": ["motivo", "por quê", "ganharia", "razão", "interesse"]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono a bola de roleta"
+      ],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+    },
+    {
+      "id": "ask_about_viriato",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Viriato, sua rotina como gerente ou como achou o bilhete.",
+      "examples": [
+        "Viriato, onde você achou o bilhete?",
+        "Como você administra o clube?",
+        "Você trancou tudo essa noite?"
+      ],
+      "keywords": ["Viriato", "gerente", "administra", "achou", "trancou"]
+    },
+    {
+      "id": "ask_about_gloria",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Dona Glória, seu comportamento ou seu histórico no clube.",
+      "examples": [
+        "Glória, por que você está tão pálida?",
+        "Há quanto tempo você frequenta o clube?",
+        "Você já recebeu ameaças antes?"
+      ],
+      "keywords": ["Glória", "cliente", "pálida", "histórico", "frequenta"]
+    },
+    {
+      "id": "ask_about_afonso",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Afonso, seu trabalho na mesa de roleta ou seus hábitos.",
+      "examples": [
+        "Afonso, há quanto tempo você é croupier?",
+        "O que você fazia essa noite?",
+        "Você teve acesso ao guarda-volumes?"
+      ],
+      "keywords": ["Afonso", "croupier", "mesa", "roleta", "hábitos"]
+    },
+    {
+      "id": "ask_about_lucia",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Lúcia, seu trabalho com os livros do clube ou sua rotina.",
+      "examples": [
+        "Lúcia, o que você estava conferindo?",
+        "Você notou algo errado nos livros?",
+        "Por que você ficou até tarde?"
+      ],
+      "keywords": ["Lúcia", "contabilista", "livros", "conferindo", "rotina"]
+    },
+    {
+      "id": "ask_about_brandao",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Dr. Brandão, sua relação com Glória ou sua presença no clube essa noite.",
+      "examples": [
+        "Dr. Brandão, como conheceu Glória?",
+        "Por que você veio ao clube hoje?",
+        "Você sabia do segredo dela?"
+      ],
+      "keywords": ["Brandão", "advogado", "relação", "presença", "conheceu"]
+    },
+    {
+      "id": "accuse_gloria",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Dona Glória de estar envolvida na chantagem contra o próprio clube.",
+      "examples": [
+        "Glória, isso é armação sua",
+        "Acho que você mesma inventou a chantagem",
+        "Confronto Glória sobre a exigência"
+      ],
+      "keywords": ["acusar Glória", "armação", "envolvida", "responsável"]
+    },
+    {
+      "id": "accuse_afonso",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Afonso de estar por trás da chantagem.",
+      "examples": [
+        "Afonso, foi você quem escreveu o bilhete",
+        "Confronto Afonso sobre a caderneta",
+        "Acho que foi o Afonso"
+      ],
+      "keywords": ["acusar Afonso", "bilhete", "chantagem", "responsável"]
+    },
+    {
+      "id": "accuse_lucia",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Lúcia de estar por trás da chantagem.",
+      "examples": [
+        "Lúcia, foi você quem escreveu o bilhete",
+        "Confronto Lúcia sobre os livros",
+        "Acho que foi a Lúcia"
+      ],
+      "keywords": ["acusar Lúcia", "bilhete", "chantagem", "responsável"]
+    },
+    {
+      "id": "accuse_brandao",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Dr. Brandão de estar por trás da chantagem.",
+      "examples": [
+        "Brandão, foi você quem escreveu o bilhete",
+        "Confronto Brandão sobre o segredo",
+        "Acho que foi o Brandão"
+      ],
+      "keywords": ["acusar Brandão", "bilhete", "chantagem", "responsável"]
+    },
+    {
+      "id": "press_for_confession",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": ["admite", "admitir", "confessa", "verdade", "chega de enrolar"]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair do clube",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    },
+    {
+      "id": "connect_typewriter_to_letters",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Conectar a máquina de escrever do escritório ao bilhete encontrado na bola.",
+      "examples": [
+        "O bilhete foi escrito nessa máquina",
+        "Isso combina com a máquina do escritório",
+        "A fita da máquina prova algo"
+      ],
+      "keywords": ["conectar", "máquina", "bilhete", "combina", "fita"]
+    },
+    {
+      "id": "connect_ball_to_croupier",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Conectar o manuseio da bola de roleta a quem trabalha na mesa de jogo.",
+      "examples": [
+        "Só o croupier manusearia essa bola",
+        "Isso aponta pra quem trabalha na mesa",
+        "A bola liga alguém à mesa de roleta"
+      ],
+      "keywords": ["conectar", "bola", "croupier", "mesa", "manuseio"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "viriato",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Viriato",
+      "role": "Gerente do Clube Atlas",
+      "shortDescription": "Gerente de meia-idade, discreto e meticuloso, que administra o clube há quinze anos.",
+      "imageUrl": "histories/o-jogo-do-silencio/characters/viriato.jpg",
+      "personality": "Controlado, protocolar e avesso a escândalos. Prefere resolver tudo internamente antes de considerar a polícia.",
+      "speakingStyle": "Fala em tom baixo e formal, escolhendo as palavras com cuidado, como quem está sempre calculando o impacto de cada frase no clube.",
+      "publicKnowledge": [
+        "Encontrou a bola de roleta vazada sobre sua própria mesa por volta das 23h40.",
+        "Trancou as portas do clube imediatamente e reuniu quem ainda estava no prédio.",
+        "Sabe que apenas Glória, Afonso, Lúcia e Dr. Brandão permaneceram depois do horário normal de saída."
+      ],
+      "privateKnowledge": [
+        "A máquina de escrever do escritório é de uso comum da equipe administrativa, sem controle rígido de acesso.",
+        "O guarda-volumes não tem câmera, apenas um livro de registro de turno manual.",
+        "Prefere não acionar a polícia enquanto houver chance de resolver o caso internamente e proteger a reputação do clube."
+      ],
+      "openingLine": "Encontrei isso na minha própria mesa, dentro de uma bola de roleta cortada. Alguém neste prédio escreveu isto.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_no_breakin",
+          "triggerIntents": ["ask_about_office", "ask_about_viriato"],
+          "requiresClueIds": [],
+          "revealText": "Viriato confirma que todas as portas externas estavam trancadas e que não há sinal de arrombamento em lugar nenhum do clube.",
+          "responseGuidance": "Ele deve insistir que só alguém de dentro poderia ter deixado a bola em sua mesa."
+        },
+        {
+          "clueId": "clue_who_was_present",
+          "triggerIntents": ["ask_about_gaming_floor", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Viriato lista que, além dele, apenas Glória, Afonso, Lúcia e Dr. Brandão ainda estavam no clube quando encontrou a bola.",
+          "responseGuidance": "Ele deve ser factual e evitar apontar suspeitos diretamente."
+        },
+        {
+          "clueId": "clue_typewriter_letters",
+          "triggerIntents": ["ask_about_demand_letters", "ask_about_extortion"],
+          "requiresClueIds": [],
+          "revealText": "Viriato mostra o bilhete: texto datilografado, sem assinatura, exigindo pagamento até o amanhecer ou a exposição de um segredo antigo de Glória.",
+          "responseGuidance": "Ele deve tratar o conteúdo como grave, mas evitar especular sobre qual seria o segredo."
+        },
+        {
+          "clueId": "clue_typewriter_location",
+          "triggerIntents": ["ask_about_typewriter", "ask_about_office"],
+          "requiresClueIds": ["clue_typewriter_letters"],
+          "revealText": "Viriato explica que a única máquina de escrever do clube fica no escritório dele, de uso comum da equipe, sem controle rígido de quem a utiliza.",
+          "responseGuidance": "Ele deve admitir que isso amplia a lista de suspeitos, e não a reduz."
+        },
+        {
+          "clueId": "clue_cloakroom_access",
+          "triggerIntents": ["ask_about_cloakroom"],
+          "requiresClueIds": [],
+          "revealText": "Viriato confirma que o guarda-volumes não tem câmera, mas qualquer funcionário do salão pode circular por ali durante o expediente.",
+          "responseGuidance": "Ele deve mencionar que isso inclui o croupier da mesa mais próxima do guarda-volumes."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Não acusar diretamente nenhum dos quatro sem evidências de acesso, motivo ou confissão.",
+        "Não afirmar que já chamou a polícia — Viriato prefere resolver internamente enquanto for possível.",
+        "Não revelar o conteúdo da caderneta vermelha; Viriato não sabe o que ela contém.",
+        "Manter o tom formal e contido, sem drama policial pesado."
+      ]
+    },
+    {
+      "id": "gloria",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dona Glória",
+      "role": "Cliente mais antiga do clube",
+      "shortDescription": "Socialite elegante, frequentadora fiel do Atlas há décadas, visivelmente abalada desde que o bilhete apareceu.",
+      "imageUrl": "histories/o-jogo-do-silencio/characters/gloria.jpg",
+      "personality": "Orgulhosa e reservada, acostumada a manter a compostura em público mesmo sob grande pressão interna.",
+      "speakingStyle": "Fala com elegância medida, mas trai o nervosismo em pausas longas e mudanças bruscas de assunto.",
+      "publicKnowledge": [
+        "É cliente do Clube Atlas há mais de vinte anos.",
+        "É a pessoa citada no bilhete como alvo da ameaça de exposição.",
+        "Estava no salão jogando quando Viriato encontrou o bilhete."
+      ],
+      "privateKnowledge": [
+        "Há 25 anos esteve envolvida em um atropelamento fatal que encobriu, registrado em detalhes numa caderneta vermelha que mantém desde então.",
+        "Vem pagando quantias em dinheiro a alguém desconhecido nas últimas semanas, sempre em envelopes deixados no guarda-volumes.",
+        "Deixou a caderneta esquecida no bolso do próprio casaco no guarda-volumes, sem perceber, numa das últimas visitas."
+      ],
+      "openingLine": "Eu não sei quem escreveu isso, mas sei exatamente o que essa pessoa está ameaçando revelar. E isso me aterroriza.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_gloria_nervous",
+          "triggerIntents": ["ask_about_gloria", "ask_about_extortion"],
+          "requiresClueIds": [],
+          "revealText": "Glória admite estar profundamente perturbada, mas evita dizer exatamente qual segredo o bilhete ameaça expor.",
+          "responseGuidance": "Ela deve parecer sincera no medo, mas evasiva sobre os detalhes."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_gloria_paying_blackmail",
+          "createdAt": "2026-07-03T00:00:00.000Z",
+          "updatedAt": "2026-07-03T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Glória vem pagando um chantagista há semanas para esconder um atropelamento fatal que encobriu 25 anos atrás.",
+          "truth": "Há 25 anos, Glória atropelou um pedestre numa estrada deserta e, por medo e influência da família, encobriu o caso, registrando os detalhes numa caderneta vermelha que guardou por décadas como forma de expiação silenciosa. Recentemente esqueceu a caderneta no bolso do casaco no guarda-volumes do clube. Alguém a encontrou e começou a exigir pagamentos em dinheiro para não revelar o conteúdo, e agora amplia a ameaça para incluir o próprio clube.",
+          "defaultStrategy": "avoid",
+          "revealStages": [
+            {
+              "id": "secret_gloria_stage_0_deny",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["accuse_gloria", "ask_about_extortion"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar ter armado a chantagem contra o próprio clube e desviar para o próprio medo de exposição.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu jamais faria isso comigo mesma. Eu sou a vítima aqui, não a autora.",
+                "Por que eu inventaria uma ameaça contra o único lugar onde ainda me sinto em paz?"
+              ]
+            },
+            {
+              "id": "secret_gloria_stage_1_admits_paying",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_extortion", "ask_about_gloria"],
+              "requiresClueIds": ["clue_gloria_nervous"],
+              "revealsClueIds": ["clue_gloria_paying"],
+              "behavior": "Admitir que já vinha pagando quantias a alguém nas últimas semanas, sem revelar o motivo.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Isso não é a primeira exigência. Eu já vinha pagando, em segredo, há semanas.",
+                "Eu deixava envelopes no guarda-volumes. Não sei quem os retirava."
+              ]
+            },
+            {
+              "id": "secret_gloria_stage_2_admits_pressure",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_motive", "ask_about_red_ledger"],
+              "requiresClueIds": ["clue_gloria_paying", "clue_ledger_hit_run"],
+              "revealsClueIds": ["clue_gloria_secret_pressure"],
+              "behavior": "Confirmar que a caderneta vermelha é sua e que registra um erro grave do seu passado, sem entrar em detalhes do atropelamento.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Essa caderneta é minha. Eu a escrevi há 25 anos, para nunca esquecer o que fiz.",
+                "Eu cometi um erro terrível na estrada, há muito tempo, e escondi. Vivi com isso desde então."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não revelar os detalhes exatos do atropelamento antes do estágio 2.",
+        "Nunca confessar ter escrito o próprio bilhete de chantagem — Glória é inocente da autoria.",
+        "Manter o tom de dignidade ferida, sem vilanização; o medo deve soar genuíno."
+      ]
+    },
+    {
+      "id": "afonso",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Afonso",
+      "role": "Croupier da mesa de roleta",
+      "shortDescription": "Croupier experiente, cordial com os clientes, trabalha na mesa de roleta principal há alguns anos.",
+      "imageUrl": "histories/o-jogo-do-silencio/characters/afonso.jpg",
+      "personality": "Charmoso e controlado em público, mas com uma ansiedade contida que escapa em pequenos deslizes quando pressionado.",
+      "speakingStyle": "Fala de forma leve e profissional, usando o tom de quem está sempre no controle da mesa, mesmo quando não está.",
+      "publicKnowledge": [
+        "Trabalha como croupier na mesa de roleta principal do Clube Atlas.",
+        "Estava no salão quando Viriato anunciou o bilhete encontrado.",
+        "Tem acesso frequente ao guarda-volumes durante o expediente, para ajudar clientes."
+      ],
+      "privateKnowledge": [
+        "Acumulou uma dívida de jogo alta e secreta com um agiota fora do clube.",
+        "Encontrou a caderneta vermelha de Glória no bolso do casaco dela, no guarda-volumes, semanas atrás.",
+        "Usou a máquina de escrever do escritório do gerente, fora do expediente, para redigir os bilhetes de chantagem.",
+        "Escondeu o dinheiro recebido e uma cópia do bilhete dentro de uma segunda bola de roleta vazada, guardada entre suas próprias peças de trabalho."
+      ],
+      "openingLine": "Eu passo o dia inteiro perto de dinheiro que não é meu. Isso não faz de mim um suspeito, faz de mim o croupier.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_afonso_typewriter_access",
+          "triggerIntents": ["ask_about_typewriter", "connect_typewriter_to_letters"],
+          "requiresClueIds": ["clue_typewriter_match", "clue_afonso_knew_content"],
+          "revealText": "Afonso admite, sem conseguir evitar, que sabia onde ficava a máquina de escrever do escritório e que já a usou antes para anotações do turno.",
+          "responseGuidance": "Ele deve tentar minimizar o uso da máquina como algo rotineiro, sem admitir ainda a autoria do bilhete."
+        },
+        {
+          "clueId": "clue_afonso_motive_gambling",
+          "triggerIntents": ["ask_about_motive", "ask_about_afonso"],
+          "requiresClueIds": ["clue_afonso_knew_content"],
+          "revealText": "Afonso deixa escapar uma menção a uma dívida antiga com um agiota, mas tenta tratar o assunto como encerrado.",
+          "responseGuidance": "Ele deve parecer visivelmente incomodado e tentar mudar de assunto rapidamente."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_afonso_blackmailer",
+          "createdAt": "2026-07-03T00:00:00.000Z",
+          "updatedAt": "2026-07-03T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Afonso encontrou a caderneta vermelha de Glória e passou a chantageá-la para pagar uma dívida de jogo.",
+          "truth": "Afonso acumulou uma dívida de jogo secreta e, ajudando uma cliente no guarda-volumes, encontrou a caderneta vermelha de Glória caída no bolso do casaco. Ao ler o relato do atropelamento encoberto, viu uma saída para sua dívida e começou a exigir pagamentos em dinheiro, deixados em envelopes no próprio guarda-volumes. Nesta noite, ampliou a exigência para incluir o clube inteiro, escrevendo o novo bilhete na máquina do escritório e escondendo-o dentro de uma bola de roleta vazada sobre a mesa de Viriato. Guarda o dinheiro recebido e uma cópia do bilhete dentro de uma segunda bola de roleta entre suas peças de trabalho.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_afonso_stage_0_deny",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["accuse_afonso", "ask_about_extortion"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento e tratar a acusação como um exagero contra quem só trabalha perto do dinheiro dos outros.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu giro uma roleta, não escrevo bilhetes. Isso não tem nada a ver comigo.",
+                "Só porque eu trabalho perto das mesas não significa que eu chantageie ninguém."
+              ]
+            },
+            {
+              "id": "secret_afonso_stage_1_cloakroom_access",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_cloakroom", "ask_about_afonso"],
+              "requiresClueIds": ["clue_cloakroom_access"],
+              "revealsClueIds": ["clue_afonso_knew_cloakroom"],
+              "behavior": "Admitir que costuma ajudar clientes no guarda-volumes durante o expediente, mas negar ter tocado em nada além disso.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu ajudo clientes com os casacos, sim. É parte do trabalho perto da mesa.",
+                "Passar pelo guarda-volumes não significa revirar bolso de ninguém."
+              ]
+            },
+            {
+              "id": "secret_afonso_stage_2_saw_ledger",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_red_ledger", "ask_about_cloakroom"],
+              "requiresClueIds": ["clue_afonso_knew_cloakroom", "clue_red_ledger_found"],
+              "revealsClueIds": ["clue_afonso_knew_ledger"],
+              "behavior": "Admitir, com hesitação, que viu uma caderneta vermelha cair do casaco de uma cliente semanas atrás, sem dizer o que fez com ela.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu vi uma caderneta cair de um casaco, uma vez. Devolvi ao bolso, foi só isso.",
+                "Não me lembro bem de quem era aquele casaco. Podia ser de qualquer cliente."
+              ]
+            },
+            {
+              "id": "secret_afonso_stage_3_knew_content",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["ask_about_red_ledger", "press_for_confession"],
+              "requiresClueIds": ["clue_afonso_knew_ledger", "clue_ledger_hit_run"],
+              "revealsClueIds": ["clue_afonso_knew_content"],
+              "behavior": "Admitir que leu parte do que estava escrito na caderneta antes de devolvê-la, e que soube do atropelamento encoberto.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tá bem, eu li um trecho. Vi o suficiente pra entender que era grave.",
+                "Não fui atrás daquilo por maldade. Mas eu vi o que estava escrito lá."
+              ]
+            },
+            {
+              "id": "secret_afonso_stage_4_partial_confession",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": ["accuse_afonso", "connect_ball_to_croupier", "press_for_confession"],
+              "requiresClueIds": ["clue_afonso_typewriter_access", "clue_burnt_draft"],
+              "revealsClueIds": ["clue_afonso_partial_confession"],
+              "behavior": "Admitir parcialmente que escreveu os bilhetes anteriores, insistindo que só queria pagar a dívida e nunca pretendeu prejudicar o clube.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Tá, fui eu. Eu devia dinheiro e vi uma saída fácil. Não devia ter feito isso.",
+                "Eu só queria resolver minha dívida. Não pensei que ia longe assim."
+              ]
+            },
+            {
+              "id": "secret_afonso_stage_5_full_confession",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 5,
+              "triggerIntents": ["press_for_confession", "accuse_afonso"],
+              "requiresClueIds": ["clue_afonso_partial_confession"],
+              "revealsClueIds": ["clue_money_location", "clue_copy_in_ball"],
+              "behavior": "Confessar completamente, revelando que escondeu o dinheiro recebido e uma cópia do bilhete dentro de uma segunda bola de roleta entre suas peças de trabalho.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "O dinheiro está numa outra bola de roleta, escondida entre minhas peças de trabalho. Tem uma cópia do bilhete lá também.",
+                "Eu escrevi tudo na máquina do Viriato, à noite, quando ninguém via. Está tudo guardado na bola, no meu armário."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar antes do estágio 4, e só revelar o paradeiro do dinheiro e da cópia no estágio 5.",
+        "Não afirmar que Lúcia ou Dr. Brandão têm qualquer envolvimento — Afonso agiu solitariamente.",
+        "Manter o tom de alguém pressionado por dívida, sem vilanização gratuita; o gesto deve soar desesperado, não cruel."
+      ]
+    },
+    {
+      "id": "lucia",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Lúcia",
+      "role": "Contabilista do clube",
+      "shortDescription": "Contabilista discreta e organizada, responsável pelos livros financeiros do Clube Atlas.",
+      "imageUrl": "histories/o-jogo-do-silencio/characters/lucia.jpg",
+      "personality": "Precisa e reservada, prefere números a conversas e fica visivelmente incomodada quando questionada sobre seu trabalho fora do horário normal.",
+      "speakingStyle": "Fala de forma objetiva e um pouco defensiva, como quem está acostumada a justificar cada centavo diante de auditorias.",
+      "publicKnowledge": [
+        "É responsável pelos livros financeiros e pela conferência diária do caixa do clube.",
+        "Estava no escritório administrativo, fora do horário normal, quando o bilhete foi encontrado.",
+        "Notou discrepâncias recentes nos registros de fichas do caixa."
+      ],
+      "privateKnowledge": [
+        "Vinha conduzindo, por conta própria, uma auditoria interna não autorizada sobre discrepâncias no caixa das últimas semanas.",
+        "Pretendia entregar um relatório completo a Viriato assim que reunisse provas suficientes.",
+        "Não sabe quem está por trás da chantagem, mas suspeitava de irregularidades financeiras antes mesmo do bilhete aparecer."
+      ],
+      "openingLine": "Eu estava aqui fora de horário porque os números não estavam fechando. Isso não faz de mim a autora de nada.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lucia_audit",
+          "triggerIntents": ["ask_about_lucia", "ask_about_chips"],
+          "requiresClueIds": [],
+          "revealText": "Lúcia admite que ficou até tarde por estar revisando os livros por conta própria, sem autorização formal de Viriato.",
+          "responseGuidance": "Ela deve parecer defensiva sobre estar trabalhando fora do horário, sem detalhar o motivo ainda."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_lucia_secret_audit",
+          "createdAt": "2026-07-03T00:00:00.000Z",
+          "updatedAt": "2026-07-03T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Lúcia conduzia uma auditoria não autorizada sobre discrepâncias no caixa, sem qualquer relação com a chantagem.",
+          "truth": "Lúcia notou, semanas atrás, pequenas discrepâncias recorrentes nos registros de fichas do caixa e decidiu investigar por conta própria antes de levar o caso a Viriato, temendo acusar alguém sem provas sólidas. Sua auditoria não tem relação com o bilhete de chantagem; ela é inocente da autoria, mas seu comportamento reservado a tornou suspeita.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_lucia_stage_1_explains_audit",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["accuse_lucia", "ask_about_motive"],
+              "requiresClueIds": ["clue_lucia_audit"],
+              "revealsClueIds": ["clue_lucia_innocent"],
+              "behavior": "Explicar que a auditoria era para identificar a origem das discrepâncias no caixa, com a intenção de reportar formalmente, não de lucrar com elas.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu ia entregar um relatório completo ao Viriato. Não escondi isso por má-fé, escondi porque queria ter certeza antes de acusar alguém.",
+                "Se eu quisesse lucrar com as discrepâncias, não estaria documentando tudo com tanto cuidado."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter escrito o bilhete de chantagem — Lúcia é inocente da autoria.",
+        "Não acusar diretamente Afonso sem que o jogador tenha reunido evidências suficientes.",
+        "Manter o tom de alguém competente e cautelosa, não de vilã disfarçada."
+      ]
+    },
+    {
+      "id": "brandao",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dr. Brandão",
+      "role": "Advogado e membro antigo do clube",
+      "shortDescription": "Advogado bem-vestido, membro do Atlas há muitos anos e amigo próximo de Dona Glória.",
+      "imageUrl": "histories/o-jogo-do-silencio/characters/brandao.jpg",
+      "personality": "Articulado e calmo, acostumado a lidar com situações delicadas com discrição profissional.",
+      "speakingStyle": "Fala com vocabulário formal e argumentação cuidadosa, típica de quem lida com contratos e negociações.",
+      "publicKnowledge": [
+        "É advogado e membro do Clube Atlas há muitos anos.",
+        "É amigo próximo de Dona Glória, com quem tem relação profissional além da amizade.",
+        "Chegou ao clube mais tarde nesta noite, depois de um compromisso em outro lugar."
+      ],
+      "privateKnowledge": [
+        "É o advogado pessoal de Glória e conhece, em linhas gerais, que ela guarda um segredo antigo, mas nunca leu a caderneta vermelha.",
+        "Estava, no horário em que o primeiro bilhete de chantagem teria sido deixado, num jantar em outro estabelecimento, com recibo e testemunhas.",
+        "Sugeriu recentemente a Glória que formalizasse um acordo de confidencialidade, o que foi mal interpretado por alguns como sinal de que sabia mais do que devia."
+      ],
+      "openingLine": "Eu sou advogado, sou treinado para parecer suspeito mesmo quando não tenho nada a esconder. Mas hoje, realmente não tenho.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_brandao_alibi",
+          "triggerIntents": ["ask_about_alibi", "ask_about_brandao"],
+          "requiresClueIds": [],
+          "revealText": "Dr. Brandão afirma que, no horário em que o primeiro bilhete de chantagem teria sido deixado, estava num jantar em outro estabelecimento.",
+          "responseGuidance": "Ele deve oferecer o álibi com tranquilidade profissional, sem parecer defensivo demais."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_brandao_confidentiality_advice",
+          "createdAt": "2026-07-03T00:00:00.000Z",
+          "updatedAt": "2026-07-03T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Dr. Brandão sugeriu um acordo de confidencialidade a Glória, o que o tornou suspeito sem ligação real com a chantagem.",
+          "truth": "Dr. Brandão sabe, em linhas gerais, que Glória guarda um segredo do passado, mas nunca teve acesso à caderneta vermelha nem soube de seu conteúdo exato. Recentemente sugeriu a ela formalizar um acordo de confidencialidade com funcionários do clube, por precaução profissional, o que alimentou suspeitas infundadas sobre seu envolvimento. Seu álibi na noite do primeiro bilhete é confirmado por recibo e testemunhas de um jantar em outro estabelecimento.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_brandao_stage_1_confirms_alibi",
+              "createdAt": "2026-07-03T00:00:00.000Z",
+              "updatedAt": "2026-07-03T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["accuse_brandao", "ask_about_alibi"],
+              "requiresClueIds": ["clue_brandao_alibi"],
+              "revealsClueIds": ["clue_brandao_innocent"],
+              "behavior": "Reforçar o álibi com detalhes verificáveis, como o nome do restaurante e testemunhas, e explicar a sugestão do acordo de confidencialidade como precaução profissional.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Tenho o recibo do jantar e ao menos duas pessoas que confirmam minha presença naquele horário.",
+                "Sugeri o acordo de confidencialidade como qualquer advogado sugeriria. Isso não é prova de nada além de cautela profissional."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar ter escrito o bilhete de chantagem — Dr. Brandão é inocente da autoria.",
+        "Não revelar detalhes do atropelamento encoberto, pois nunca teve acesso à caderneta vermelha.",
+        "Manter o tom profissional e calmo, mesmo sob pressão de acusações."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "salao_principal",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Salão principal",
+      "shortDescription": "Salão de jogos do clube, com mesas de roleta e cartas, já vazio a essa hora.",
+      "imageUrl": "histories/o-jogo-do-silencio/location/salao_principal.jpg",
+      "initialDescription": "O salão principal se estende sob luzes baixas e douradas, com mesas de roleta e cartas cobertas por panos verdes. A essa hora, as mesas estão vazias, mas ainda cheiram a fumaça de charuto.",
+      "ambientClueIds": ["clue_ball_fingerprints"],
+      "objectIds": ["bola_roleta", "bandeja_fichas"]
+    },
+    {
+      "id": "escritorio_gerente",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Escritório do gerente",
+      "shortDescription": "Sala reservada de Viriato, com um cofre pequeno e a única máquina de escrever do clube.",
+      "imageUrl": "histories/o-jogo-do-silencio/location/escritorio_gerente.jpg",
+      "initialDescription": "O escritório é pequeno e organizado, com um cofre embutido na parede, uma escrivaninha de madeira escura e uma máquina de escrever antiga sobre uma mesa auxiliar.",
+      "ambientClueIds": [],
+      "objectIds": ["maquina_escrever", "cinzeiro_escritorio", "livro_turno"]
+    },
+    {
+      "id": "guarda_volumes",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Guarda-volumes",
+      "shortDescription": "Sala estreita onde os casacos e pertences dos clientes ficam guardados durante a noite.",
+      "imageUrl": "histories/o-jogo-do-silencio/location/guarda_volumes.jpg",
+      "initialDescription": "Fileiras de casacos pendem em cabides numerados, sob uma luz fraca e amarelada. Um pequeno balcão de madeira marca a entrada da sala.",
+      "ambientClueIds": [],
+      "objectIds": ["casaco_gloria", "caderneta_vermelha"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "bola_roleta",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bola de roleta vazada",
+      "shortDescription": "Bola de roleta com um corte fino na lateral, encontrada na mesa de Viriato.",
+      "imageUrl": "histories/o-jogo-do-silencio/object/bola_roleta.jpg",
+      "locationId": "salao_principal",
+      "initialDescription": "A bola é pesada, de material escuro, com um corte fino e preciso em uma das laterais, como se tivesse sido aberta com uma ferramenta pequena.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_demand_in_ball",
+          "triggerIntents": ["inspect_object", "ask_about_roulette_ball"],
+          "requiresClueIds": [],
+          "revealText": "Dentro da bola há um pequeno bilhete dobrado, datilografado, exigindo pagamento até o amanhecer sob ameaça de expor um segredo antigo."
+        },
+        {
+          "clueId": "clue_ball_fingerprints",
+          "triggerIntents": ["inspect_object", "connect_ball_to_croupier"],
+          "requiresClueIds": [],
+          "revealText": "O corte na bola é preciso, do tipo feito com uma ferramenta fina usada para manutenção das próprias bolas de roleta pela equipe da mesa."
+        }
+      ]
+    },
+    {
+      "id": "bandeja_fichas",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bandeja de fichas do caixa",
+      "shortDescription": "Bandeja com as fichas do caixa da mesa de roleta, usada para conferência de valores.",
+      "imageUrl": "histories/o-jogo-do-silencio/object/bandeja_fichas.jpg",
+      "locationId": "salao_principal",
+      "initialDescription": "A bandeja de madeira laqueada guarda pilhas de fichas coloridas, organizadas por valor, ao lado de um pequeno bloco de anotações do croupier.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_chip_shortage",
+          "triggerIntents": ["inspect_object", "ask_about_chips"],
+          "requiresClueIds": [],
+          "revealText": "Faltam algumas fichas de alto valor na contagem da bandeja, um padrão que se repete nas últimas semanas segundo o bloco de anotações."
+        },
+        {
+          "clueId": "clue_ghost_chip_link",
+          "triggerIntents": ["inspect_object", "ask_about_chips"],
+          "requiresClueIds": [],
+          "revealText": "Uma anotação no bloco liga a saída recorrente de fichas a pagamentos feitos por uma cliente antiga e frequente, sem nome completo registrado."
+        }
+      ]
+    },
+    {
+      "id": "maquina_escrever",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Máquina de escrever do escritório",
+      "shortDescription": "Máquina de escrever antiga, de uso comum da equipe administrativa do clube.",
+      "imageUrl": "histories/o-jogo-do-silencio/object/maquina_escrever.jpg",
+      "locationId": "escritorio_gerente",
+      "initialDescription": "A máquina de escrever repousa sobre uma mesa auxiliar, com uma fita de tinta gasta e algumas teclas visivelmente mais usadas que outras.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_typewriter_match",
+          "triggerIntents": ["inspect_object", "connect_typewriter_to_letters"],
+          "requiresClueIds": [],
+          "revealText": "As letras impressas pela máquina têm falhas idênticas às do bilhete encontrado na bola de roleta, especialmente na letra 'a', levemente desalinhada."
+        }
+      ]
+    },
+    {
+      "id": "cinzeiro_escritorio",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cinzeiro do escritório",
+      "shortDescription": "Cinzeiro de vidro sobre a escrivaninha, com resquícios de papel queimado.",
+      "imageUrl": "histories/o-jogo-do-silencio/object/cinzeiro_escritorio.jpg",
+      "locationId": "escritorio_gerente",
+      "initialDescription": "O cinzeiro de vidro guarda um pequeno amontoado de cinzas e um fragmento de papel parcialmente queimado, com letras datilografadas ainda visíveis na borda.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_burnt_draft",
+          "triggerIntents": ["inspect_object", "ask_about_demand_letters"],
+          "requiresClueIds": [],
+          "revealText": "O fragmento de papel queimado é um rascunho anterior do mesmo bilhete, com uma frase quase idêntica à versão encontrada na bola de roleta."
+        }
+      ]
+    },
+    {
+      "id": "livro_turno",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Livro de registro de turno",
+      "shortDescription": "Caderno onde a equipe anota entradas e saídas de áreas restritas do clube.",
+      "imageUrl": "histories/o-jogo-do-silencio/object/livro_turno.jpg",
+      "locationId": "escritorio_gerente",
+      "initialDescription": "O livro de capa preta está aberto sobre a escrivaninha, com anotações manuscritas de horários e nomes ao longo das últimas semanas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_night_log_access",
+          "triggerIntents": ["inspect_object", "ask_about_office"],
+          "requiresClueIds": [],
+          "revealText": "O livro mostra que o croupier da mesa de roleta entrou no escritório sozinho, fora do horário normal, em pelo menos três noites nas últimas semanas."
+        }
+      ]
+    },
+    {
+      "id": "casaco_gloria",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Casaco de Dona Glória",
+      "shortDescription": "Casaco elegante de Glória, pendurado em seu cabide numerado no guarda-volumes.",
+      "imageUrl": "histories/o-jogo-do-silencio/object/casaco_gloria.jpg",
+      "locationId": "guarda_volumes",
+      "initialDescription": "O casaco de lã fina está pendurado num cabide com etiqueta numerada, com um dos bolsos internos ligeiramente puído.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_red_ledger_found",
+          "triggerIntents": ["inspect_object", "ask_about_cloakroom"],
+          "requiresClueIds": [],
+          "revealText": "No bolso interno do casaco há um pequeno bolso de tecido rasgado, do tamanho exato de uma caderneta, hoje vazio."
+        },
+        {
+          "clueId": "clue_coat_tag_recent",
+          "triggerIntents": ["inspect_object", "ask_about_cloakroom"],
+          "requiresClueIds": [],
+          "revealText": "A etiqueta numerada do cabide parece ter sido recolocada recentemente, com a cola ainda fresca em uma das pontas."
+        }
+      ]
+    },
+    {
+      "id": "caderneta_vermelha",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caderneta vermelha",
+      "shortDescription": "Pequena caderneta de capa vermelha, encontrada solta numa gaveta do balcão do guarda-volumes.",
+      "imageUrl": "histories/o-jogo-do-silencio/object/caderneta_vermelha.jpg",
+      "locationId": "guarda_volumes",
+      "initialDescription": "A caderneta tem capa de couro vermelho desgastado e páginas amareladas, cobertas por uma caligrafia apertada e antiga.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_ledger_hit_run",
+          "triggerIntents": ["inspect_object", "ask_about_red_ledger"],
+          "requiresClueIds": [],
+          "revealText": "As páginas registram, em detalhe, um atropelamento fatal ocorrido 25 anos atrás numa estrada deserta, encoberto na época pela autora do relato."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_demand_in_ball",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bilhete dentro da bola",
+      "description": "Um bilhete datilografado exigindo pagamento até o amanhecer foi encontrado dentro de uma bola de roleta vazada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_no_breakin",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sem arrombamento",
+      "description": "Todas as portas externas estavam trancadas e não há sinal de invasão no clube.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_who_was_present",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Quem estava presente",
+      "description": "Apenas Glória, Afonso, Lúcia e Dr. Brandão permaneciam no clube quando o bilhete foi encontrado.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_typewriter_letters",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Conteúdo do bilhete",
+      "description": "O bilhete é datilografado, sem assinatura, e exige pagamento sob ameaça de expor um segredo antigo de Glória.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_gloria_nervous",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Glória perturbada",
+      "description": "Glória está profundamente perturbada com o bilhete, mas evita detalhar o segredo ameaçado.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_chip_shortage",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Fichas faltando",
+      "description": "Fichas de alto valor têm faltado recorrentemente na contagem do caixa nas últimas semanas.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_brandao_alibi",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Dr. Brandão",
+      "description": "Dr. Brandão afirma estar em um jantar em outro estabelecimento no horário do primeiro bilhete.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_lucia_audit",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lúcia fora de horário",
+      "description": "Lúcia admite ter ficado até tarde revisando os livros por conta própria, sem autorização formal.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_typewriter_match",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Máquina combina com o bilhete",
+      "description": "As falhas de impressão da máquina de escrever do escritório combinam com as do bilhete encontrado.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_burnt_draft",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Rascunho queimado",
+      "description": "Um rascunho anterior do bilhete foi encontrado parcialmente queimado no cinzeiro do escritório.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_gloria_paying",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Glória já pagava",
+      "description": "Glória admite já vinha pagando quantias a alguém desconhecido nas últimas semanas, em envelopes no guarda-volumes.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_red_ledger_found",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bolso vazio do casaco",
+      "description": "O casaco de Glória tem um bolso interno rasgado, do tamanho de uma caderneta, hoje vazio.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_ledger_hit_run",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Relato do atropelamento",
+      "description": "A caderneta vermelha registra um atropelamento fatal encoberto há 25 anos.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lucia_innocent",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Auditoria de Lúcia explicada",
+      "description": "Lúcia investigava discrepâncias no caixa por conta própria, com a intenção de reportar formalmente, sem relação com a chantagem.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_brandao_innocent",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Brandão confirmado",
+      "description": "O álibi de Dr. Brandão é confirmado por recibo e testemunhas de um jantar em outro estabelecimento.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_ghost_chip_link",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Fichas ligadas a Glória",
+      "description": "Uma anotação liga a saída recorrente de fichas a pagamentos de uma cliente antiga e frequente.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_cloakroom_access",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Acesso ao guarda-volumes",
+      "description": "O croupier da mesa mais próxima tem acesso frequente ao guarda-volumes durante o expediente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_ball_fingerprints",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Corte profissional na bola",
+      "description": "O corte na bola de roleta é do tipo feito com ferramenta de manutenção usada pela equipe da mesa.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_gloria_secret_pressure",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Glória confirma a caderneta",
+      "description": "Glória confirma que a caderneta vermelha é sua e registra um erro grave do passado.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_typewriter_location",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Máquina de uso comum",
+      "description": "A única máquina de escrever do clube fica no escritório do gerente, sem controle rígido de quem a utiliza.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_afonso_knew_cloakroom",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Afonso no guarda-volumes",
+      "description": "Afonso admite ajudar clientes no guarda-volumes com frequência durante o expediente.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_night_log_access",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Entradas noturnas no escritório",
+      "description": "O livro de turno mostra o croupier entrando sozinho no escritório fora do horário normal em várias noites.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_coat_tag_recent",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Etiqueta recolocada",
+      "description": "A etiqueta do cabide do casaco de Glória parece ter sido recolocada recentemente.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_afonso_knew_ledger",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Afonso viu a caderneta",
+      "description": "Afonso admite ter visto uma caderneta vermelha cair do casaco de uma cliente semanas atrás.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_afonso_knew_content",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Afonso leu a caderneta",
+      "description": "Afonso admite ter lido parte do conteúdo da caderneta antes de devolvê-la.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_afonso_typewriter_access",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Afonso e a máquina",
+      "description": "Afonso admite saber onde fica a máquina de escrever e já tê-la usado antes.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_afonso_motive_gambling",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dívida de jogo de Afonso",
+      "description": "Afonso deixa escapar uma menção a uma dívida antiga com um agiota.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_afonso_partial_confession",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Confissão parcial de Afonso",
+      "description": "Afonso admite parcialmente ter escrito os bilhetes anteriores para pagar sua dívida.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_money_location",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Paradeiro do dinheiro",
+      "description": "Afonso revela que o dinheiro recebido está escondido dentro de uma segunda bola de roleta entre suas peças de trabalho.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_copy_in_ball",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cópia do bilhete escondida",
+      "description": "Uma cópia do bilhete de chantagem está guardada junto ao dinheiro, na segunda bola de roleta.",
+      "importance": "required"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_jogo_do_silencio",
+    "createdAt": "2026-07-03T00:00:00.000Z",
+    "updatedAt": "2026-07-03T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_is_blackmailer",
+        "createdAt": "2026-07-03T00:00:00.000Z",
+        "updatedAt": "2026-07-03T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem está chantageando o clube?",
+        "type": "character",
+        "options": [
+          {
+            "id": "afonso",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Afonso"
+          },
+          {
+            "id": "lucia",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Lúcia"
+          },
+          {
+            "id": "brandao",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Dr. Brandão"
+          }
+        ]
+      },
+      {
+        "id": "what_secret_used",
+        "createdAt": "2026-07-03T00:00:00.000Z",
+        "updatedAt": "2026-07-03T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Que segredo está sendo usado como arma?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "hit_and_run",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um atropelamento fatal encoberto há 25 anos"
+          },
+          {
+            "id": "tax_fraud",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Uma fraude fiscal antiga"
+          },
+          {
+            "id": "affair",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um caso extraconjugal antigo"
+          },
+          {
+            "id": "money_laundering",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um esquema de lavagem de dinheiro"
+          }
+        ]
+      },
+      {
+        "id": "where_is_proof",
+        "createdAt": "2026-07-03T00:00:00.000Z",
+        "updatedAt": "2026-07-03T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Onde está o dinheiro e a prova da chantagem?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "second_ball",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Numa segunda bola de roleta, entre as peças de trabalho do croupier"
+          },
+          {
+            "id": "office_safe",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "No cofre do escritório do gerente"
+          },
+          {
+            "id": "cloakroom_coat",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Escondido em outro casaco no guarda-volumes"
+          },
+          {
+            "id": "with_lawyer",
+            "createdAt": "2026-07-03T00:00:00.000Z",
+            "updatedAt": "2026-07-03T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Guardado pelo advogado do clube"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A bola que guardava demais",
+      "type": "full_truth",
+      "imageUrl": "histories/o-jogo-do-silencio/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "who_is_blackmailer": "afonso",
+          "what_secret_used": "hit_and_run",
+          "where_is_proof": "second_ball"
+        },
+        "requiresClueIds": [
+          "clue_afonso_partial_confession",
+          "clue_ledger_hit_run",
+          "clue_money_location",
+          "clue_copy_in_ball"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Afonso encontrou a caderneta vermelha de Glória, descobriu o atropelamento encoberto e passou a chantageá-la para pagar uma dívida de jogo, escondendo dinheiro e provas numa segunda bola de roleta.",
+      "epilogue": "O salão vazio parece ainda maior quando Afonso para de negar. Ele conta tudo em voz baixa, como quem já ensaiou a confissão várias vezes sem coragem de fazê-la. Viriato busca a segunda bola de roleta entre as peças de trabalho do croupier e encontra exatamente o que foi descrito: dinheiro e uma cópia do bilhete. Glória permanece em silêncio, mais aliviada por não ter sido exposta do que surpresa com o nome do chantagista. Não há aplausos nem vingança, só um clube que vai reabrir na manhã seguinte com um croupier a menos e um segredo antigo que, por ora, continua guardado — mas agora, ao menos, sob os termos de quem o carrega."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Quase todo o quadro",
+      "type": "partial_truth",
+      "condition": {
+        "conclusionMatches": {
+          "who_is_blackmailer": "afonso"
+        },
+        "requiresClueIds": ["clue_afonso_partial_confession"]
+      },
+      "imageUrl": "histories/o-jogo-do-silencio/endings/partial_truth.jpg",
+      "summary": "Você identificou Afonso como autor da chantagem, mas não fechou o segredo exato usado como arma nem o paradeiro do dinheiro e da prova.",
+      "epilogue": "Afonso já não consegue negar sua autoria, mas as perguntas sobre o quê exatamente ele sabia e onde escondeu o dinheiro ficam sem resposta clara. Viriato revira o escritório e o guarda-volumes sem sucesso, enquanto Glória observa tudo com o mesmo silêncio de sempre, aliviada apenas em parte. O clube reabrirá pela manhã com uma confissão incompleta e uma sensação de que a bola de roleta ainda guarda alguma coisa que ninguém encontrou."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-07-03T00:00:00.000Z",
+      "updatedAt": "2026-07-03T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A mesa errada",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-jogo-do-silencio/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade fixa do caso. Nem Lúcia, nem Dr. Brandão, nem Glória escreveram o bilhete de chantagem.",
+      "epilogue": "A madrugada avança sem uma confissão real. Lúcia guarda seus livros com a dignidade ferida de quem foi injustamente suspeita, Dr. Brandão se despede com a cortesia fria de um advogado ofendido, e Glória permanece tensa, sabendo que o verdadeiro chantagista ainda está livre para tentar de novo. Viriato tranca o escritório sem saber que a resposta estava a poucos passos, guardada dentro de uma bola de roleta que ninguém pensou em abrir de novo."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 10,
+    "suggestConclusionAfterClues": 20,
+    "maxRecommendedInteractions": 32
+  }
+}

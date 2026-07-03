@@ -132,6 +132,14 @@ describe('SessionInteractionService', () => {
     const detected = [
       { intentId: 'intent-1', confidence: 0.9, reasoning: 'clear' },
     ];
+    const detectedWithDescription = [
+      {
+        intentId: 'intent-1',
+        confidence: 0.9,
+        reasoning: 'clear',
+        description: 'accuse',
+      },
+    ];
 
     it('detects intents for a character state', async () => {
       sessions.findById.mockResolvedValue(
@@ -182,7 +190,7 @@ describe('SessionInteractionService', () => {
           ]),
         })
       );
-      expect(result.detectedIntents).toEqual(detected);
+      expect(result.detectedIntents).toEqual(detectedWithDescription);
       expect(objectAgent.run).not.toHaveBeenCalled();
       expect(characterAgent.run).toHaveBeenCalled();
     });

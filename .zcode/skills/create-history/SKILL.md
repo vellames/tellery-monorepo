@@ -182,7 +182,7 @@ Run the audit script bundled with this skill. It checks:
 **Run:**
 
 ```sh
-node .opencode/skills/create-history/scripts/audit.js mocks/<slug>.json
+node .zcode/skills/create-history/scripts/audit.js mocks/<slug>.json
 ```
 
 Expected output: `OK — nenhuma inconsistência.` and `<all>/<all> pistas alcançáveis`.

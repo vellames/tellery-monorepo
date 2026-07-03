@@ -1,0 +1,1202 @@
+{
+  "id": "history_a_ultima_costura",
+  "createdAt": "2026-07-02T00:00:00.000Z",
+  "updatedAt": "2026-07-02T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "a-ultima-costura",
+  "title": "A Última Costura",
+  "subtitle": "O vestido que deveria abrir o desfile aparece cortado no manequim, com a porta trancada por dentro",
+  "teaser": "Faltam horas para o Desfile Nacional e o Vestido Estelar — peça única de meses de bordado manual — aparece cortado do risco à barra no manequim. A porta do atelier estava trancada. Quatro pessoas tinham acesso. Uma delas tem a mão firme demais para ter falhado.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 12,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/a-ultima-costura/history/cover.jpg",
+  "thumbnailUrl": "histories/a-ultima-costura/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "O Vestido Estelar está cortado do risco à barra no manequim. A porta do atelier estava trancada. Só quatro pessoas tinham acesso.",
+    "fullText": "São 23h40 no Atelier Aurora, no centro de São Paulo, na véspera do Desfile Nacional. Inês, a estilista dona do atelier, abre a sala de costura para a checagem final e encontra o Vestido Estelar — a peça única que abriria o desfile, com meses de bordado manual em fio dourado — cortado do risco à barra, ainda preso ao manequim. A porta do atelier estava trancada e não há sinal de arrombamento. Quatro pessoas circularam pelo atelier naquela noite: Lia, a costureira-chefe; Salma, a aprendiz; Otto, o fornecedor de tecidos; e a própria Inês. Cada um tinha razão para estar ali, e cada um diz ter saído antes do estrago. Cabe a você examinar o vestido, a porta e a bancada, ouvir as quatro versões e reconstruir quem destruiu o Vestido Estelar, por quê e com o quê.",
+    "callToAction": "Examine o vestido, a porta e a bancada, converse com Inês, Lia, Salma e Otto, e descubra quem cortou o Vestido Estelar."
+  },
+  "objective": {
+    "mainQuestion": "Quem cortou o Vestido Estelar, por quê e com o quê?",
+    "description": "Descubra a autoria da sabotagem, o motivo real por trás dela e o instrumento usado para destruir a peça."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_dress",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o Vestido Estelar, seu valor, seu bordado ou seu estado.",
+      "examples": [
+        "Como era o Vestido Estelar?",
+        "Quanto o vestido valia?",
+        "O corte chegou a arranhar o manequim?"
+      ],
+      "keywords": ["vestido", "estelar", "bordado", "dourado", "peça"]
+    },
+    {
+      "id": "ask_about_breakin",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre arrombamento, portas, fechaduras ou sinais de invasão.",
+      "examples": [
+        "Houve arrombamento?",
+        "A porta estava trancada?",
+        "Tem sinal de entrada forçada?"
+      ],
+      "keywords": ["arrombamento", "fechadura", "porta", "forçada", "trancada"]
+    },
+    {
+      "id": "ask_about_lock",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre as chaves do atelier e quem tinha acesso.",
+      "examples": [
+        "Quem tem a chave do atelier?",
+        "Quantas chaves existem?",
+        "Como funciona a fechadura?"
+      ],
+      "keywords": ["chave", "acesso", "fechadura", "cópia", "trancar"]
+    },
+    {
+      "id": "ask_about_shears",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a tesoura de tecido, quem a usou ou onde estava.",
+      "examples": [
+        "De quem é essa tesoura?",
+        "A tesoura foi usada hoje?",
+        "Por que a tesoura está na bancada?"
+      ],
+      "keywords": ["tesoura", "lâmina", "corte", "tecido", "fio"]
+    },
+    {
+      "id": "ask_about_seam_ripper",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o descoscidor de precisão, seu paradeiro ou seu uso.",
+      "examples": [
+        "Onde fica o descoscidor?",
+        "Alguém usou o descoscidor?",
+        "Falta um descoscidor na bancada?"
+      ],
+      "keywords": ["descoscidor", "ripador", "abre-casa", "lâmina fina", "costura"]
+    },
+    {
+      "id": "ask_about_show",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o Desfile Nacional, a programação ou o que estava em jogo.",
+      "examples": [
+        "O desfile é amanhã?",
+        "O vestido abriria o desfile?",
+        "O que muda sem o Vestido Estelar?"
+      ],
+      "keywords": ["desfile", "nacional", "programação", "atração", "amanhã"]
+    },
+    {
+      "id": "ask_about_yesterday",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre os acontecimentos daquela noite no atelier.",
+      "examples": [
+        "O que aconteceu hoje à noite?",
+        "Quem esteve no atelier?",
+        "Como foi a noite por aqui?"
+      ],
+      "keywords": ["noite", "hoje", "aconteceu", "véspera", "rotina"]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava, quando chegou ou saiu do atelier.",
+      "examples": [
+        "Qual é o seu álibi?",
+        "A que horas você saiu?",
+        "Você pode provar onde estava?"
+      ],
+      "keywords": ["álibi", "horário", "saída", "chegada", "esteve"]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar por que alguém destruiria o vestido.",
+      "examples": [
+        "Qual seria o motivo?",
+        "Por que alguém faria isso?",
+        "Quem ganharia com a destruição?"
+      ],
+      "keywords": ["motivo", "por quê", "ganharia", "razão", "interesse"]
+    },
+    {
+      "id": "ask_about_collection",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a coleção Costuras do Silêncio, de Lia, e seu lugar no desfile.",
+      "examples": [
+        "O que é a Costuras do Silêncio?",
+        "A coleção da Lia entrou no desfile?",
+        "Por que a coleção dela foi preterida?"
+      ],
+      "keywords": ["coleção", "costuras", "silêncio", "linha", "Lia"]
+    },
+    {
+      "id": "ask_about_otto",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Otto, sua entrega ou sua cobrança.",
+      "examples": [
+        "Otto, a que horas você entregou?",
+        "O que Otto veio fazer aqui?",
+        "Otto tem pendência com a Inês?"
+      ],
+      "keywords": ["Otto", "fornecedor", "tecido", "entrega", "cobrança"]
+    },
+    {
+      "id": "ask_about_salma",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Salma, seu nervosismo ou sua rotina de aprendiz.",
+      "examples": [
+        "Salma, por que você está nervosa?",
+        "O que Salma fazia no atelier?",
+        "Salma usou a tesoura hoje?"
+      ],
+      "keywords": ["Salma", "aprendiz", "nervosa", "tesoura", "bancada"]
+    },
+    {
+      "id": "ask_about_lia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Lia, sua rotina de costureira-chefe ou sua coleção.",
+      "examples": [
+        "Lia, você foi a última a sair?",
+        "O que Lia fez à noite?",
+        "Lia trancou o atelier?"
+      ],
+      "keywords": ["Lia", "costureira", "chefe", "fechou", "rotina"]
+    },
+    {
+      "id": "ask_about_ines",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Inês, sua decisão sobre o desfile ou como achou o estrago.",
+      "examples": [
+        "Inês, como você encontrou o vestido?",
+        "Quem decidiu a ordem do desfile?",
+        "Inês, você trancou ao sair?"
+      ],
+      "keywords": ["Inês", "estilista", "dona", "desfile", "decidiu"]
+    },
+    {
+      "id": "accuse_lia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Lia de ter cortado o Vestido Estelar.",
+      "examples": [
+        "Lia, foi você quem cortou o vestido",
+        "Confronto Lia sobre o estrago",
+        "Acho que foi a Lia"
+      ],
+      "keywords": ["acusar Lia", "cortou", "estrago", "responsável"]
+    },
+    {
+      "id": "accuse_salma",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Salma de ter cortado o Vestido Estelar.",
+      "examples": [
+        "Salma, foi você quem cortou o vestido",
+        "Confronto Salma sobre o estrago",
+        "Acho que foi a Salma"
+      ],
+      "keywords": ["acusar Salma", "cortou", "estrago", "responsável"]
+    },
+    {
+      "id": "accuse_otto",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Otto de ter cortado o Vestido Estelar.",
+      "examples": [
+        "Otto, foi você quem cortou o vestido",
+        "Confronto Otto sobre o estrago",
+        "Acho que foi o Otto"
+      ],
+      "keywords": ["acusar Otto", "cortou", "estrago", "responsável"]
+    },
+    {
+      "id": "press_for_confession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono o vestido"
+      ],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair do atelier",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "ines",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Inês",
+      "role": "Estilista e dona do Atelier Aurora",
+      "shortDescription": "Estilista reconhecida, orgulhosa e controlada, abalada ao encontrar sua peça principal destruída na véspera do desfile.",
+      "imageUrl": "histories/a-ultima-costura/characters/ines.jpg",
+      "personality": "Perfeccionista, exigente e leal ao próprio nome. Oscila entre raiva contida e desolação. Toma decisões rápidas e não gosta de parecer vulnerável.",
+      "speakingStyle": "Fala em frases medidas, com vocabulário de atelier e moda. Cita cores, tecidos e prazos com precisão técnica.",
+      "publicKnowledge": [
+        "Encontrou o Vestido Estelar cortado no manequim por volta das 23h40, na checagem final.",
+        "O Vestido Estelar era a peça que abriria o Desfile Nacional no dia seguinte.",
+        "Sabe que só ela, Lia, Salma e Otto circularam pelo atelier naquela noite."
+      ],
+      "privateKnowledge": [
+        "Foi ela quem decidiu escalar o Vestido Estelar como atração principal no lugar da coleção de Lia.",
+        "Confia na competência técnica de Lia e custa a imaginar que ela seria a responsável.",
+        "Tem uma pendência financeira com Otto, mas considera questão comercial, não motivo para sabotagem.",
+        "Prefere resolver o caso internamente antes de qualquer polícia, para não manchar o desfile."
+      ],
+      "openingLine": "Eu abri a porta com a minha chave, liguei a luz, e ele estava assim — aberto do risco à barra, como se alguém quisesse ter certeza de que não dava mais para consertar.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_dress_slashed",
+          "triggerIntents": ["ask_about_dress", "ask_about_yesterday", "ask_about_ines"],
+          "requiresClueIds": [],
+          "revealText": "Inês confirma que o Vestido Estelar é a peça única com meses de bordado manual em fio dourado, e que foi encontrado cortado do risco à barra, ainda no manequim.",
+          "responseGuidance": "Manter Inês contida, mas visivelmente abalada pela perda da peça central."
+        },
+        {
+          "clueId": "clue_no_breakin",
+          "triggerIntents": ["ask_about_breakin", "ask_about_lock"],
+          "requiresClueIds": [],
+          "revealText": "Inês afirma que a porta do atelier estava trancada quando chegou e que não há qualquer sinal de arrombamento na fechadura.",
+          "responseGuidance": "Ela deve insistir que só quem tinha chave poderia ter entrado."
+        },
+        {
+          "clueId": "clue_show_tomorrow",
+          "triggerIntents": ["ask_about_show", "ask_about_ines"],
+          "requiresClueIds": [],
+          "revealText": "Inês lembra que o Desfile Nacional é no dia seguinte e que o Vestido Estelar abriria o evento como atração principal.",
+          "responseGuidance": "Ela deve tratar o desfile como a coisa mais importante da carreira dela."
+        },
+        {
+          "clueId": "clue_lia_collection_shelved",
+          "triggerIntents": ["ask_about_collection", "ask_about_lia", "ask_about_ines"],
+          "requiresClueIds": [],
+          "revealText": "Inês admite que a coleção Costuras do Silêncio, de Lia, ficou de fora da programação principal para que o Vestido Estelar fosse a atração de abertura.",
+          "responseGuidance": "Ela deve justificar a escolha como decisão editorial, sem reconhecer que isso pudesse gerar ressentimento."
+        },
+        {
+          "clueId": "clue_lia_access_lock",
+          "triggerIntents": ["ask_about_lock", "ask_about_lia"],
+          "requiresClueIds": [],
+          "revealText": "Inês confirma que só ela e Lia têm chave do atelier; Salma e Otto dependem de alguém para entrar ou sair.",
+          "responseGuidance": "Ela deve reconhecer o acesso de Lia como sinal de confiança, não de suspeita."
+        },
+        {
+          "clueId": "clue_otto_debt",
+          "triggerIntents": ["ask_about_otto", "ask_about_motive"],
+          "requiresClueIds": [],
+          "revealText": "Inês reconhece que tem uma cobrança comercial em atraso com Otto, mas trata como pendência burocrática, sem peso de sabotagem.",
+          "responseGuidance": "Ela deve minimizar a pendência como normal entre fornecedor e cliente."
+        },
+        {
+          "clueId": "clue_silence_collection_headliner",
+          "triggerIntents": ["ask_about_collection", "ask_about_show", "ask_about_motive"],
+          "requiresClueIds": ["clue_lia_collection_shelved"],
+          "revealText": "Inês admite que, sem o Vestido Estelar, a próxima peça forte da programação seria justamente a coleção Costuras do Silêncio, de Lia.",
+          "responseGuidance": "Ela deve perceber a implicação só ao dizer em voz alta, ficando desconfortável."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Não acusar diretamente Lia, Salma ou Otto sem pistas de chave, instrumento ou motivo.",
+        "Não afirmar que já chamou a polícia — Inês prefere resolver internamente antes do desfile.",
+        "Não revelar o valor exato do vestido além de 'peça única de abertura'.",
+        "Manter o tom de drama profissional contido, sem escândalo."
+      ]
+    },
+    {
+      "id": "lia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Lia",
+      "role": "Costureira-chefe do Atelier Aurora",
+      "shortDescription": "Costureira-chefe meticulosa e serena, com mãos firmes e reputação impecável no atelier.",
+      "imageUrl": "histories/a-ultima-costura/characters/lia.jpg",
+      "personality": "Precisa, controlada, profissional em qualquer circunstância. Esconde a ferida profissional atrás de competência fria. Quando encurralada, fica mais pausada, nunca mais nervosa.",
+      "speakingStyle": "Fala devagar, com vocabulário técnico de costura e corte. Escolhe cada palavra como escolhe um ponto. Nunca se justifica demais.",
+      "publicKnowledge": [
+        "É a costureira-chefe do atelier há anos e responsável pelo fechamento.",
+        "É uma das duas pessoas com chave do atelier.",
+        "Foi a última a deixar a sala de costura antes de Inês voltar para a checagem."
+      ],
+      "privateKnowledge": [
+        "Cortou o Vestido Estelar com o descoscidor de precisão e limpou a lâmina em seguida.",
+        "Sua coleção Costuras do Silêncio foi preterida para o Vestido Estelar virar atração de abertura.",
+        "Sabia que, com o vestido destruído na véspera, a coleção dela seria a substituta natural para abrir o desfile.",
+        "Não esperava se sentir culpada; agiu por orgulho ferido e ambição adormecida."
+      ],
+      "openingLine": "Fui eu quem fechou o atelier. Tranco a porta, confiro as lâmpadas, viro a placa. O que aconteceu com o vestido não aconteceu no meu turno.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lia_collection_shelved",
+          "triggerIntents": ["ask_about_collection", "ask_about_lia"],
+          "requiresClueIds": [],
+          "revealText": "Lia admite, sem drama, que sua coleção Costuras do Silêncio ficou de fora da abertura para o Vestido Estelar assumir o lugar.",
+          "responseGuidance": "Ela deve tratar a decisão como aceita profissionalmente, sem deixar transparecer ressentimento ainda."
+        },
+        {
+          "clueId": "clue_seam_ripper_missing",
+          "triggerIntents": ["ask_about_seam_ripper", "ask_about_lock", "ask_about_lia"],
+          "requiresClueIds": [],
+          "revealText": "Lia observa que o descoscidor de precisão, que sempre fica no suporte da bancada, não está no lugar habitual.",
+          "responseGuidance": "Ela deve apontar a ausência como detalhe de rotina, sem ligá-la ao corte."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_lia_sabotage",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Lia cortou o Vestido Estelar com o descoscidor para que sua coleção abrisse o desfile.",
+          "truth": "Lia usou o descoscidor de precisão para cortar o Vestido Estelar do risco à barra enquanto era a última sozinha no atelier, depois limpou a lâmina. Sua coleção Costuras do Silêncio tinha sido preterida para o vestido virar atração de abertura; com a peça destruída na véspera, a coleção dela se tornaria a substituta natural para abrir o Desfile Nacional.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_lia_stage_0_deny",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": [
+                "ask_about_dress",
+                "accuse_lia",
+                "ask_about_alibi"
+              ],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento com tranquilidade profissional.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu tranquei o atelier e fui embora. O que aconteceu com o vestido aconteceu depois, ou com outra pessoa.",
+                "Não tenho motivo para destruir uma peça do atelier. Minha reputação está acima de um desfile."
+              ]
+            },
+            {
+              "id": "secret_lia_stage_1_admit_last_to_lock",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": ["ask_about_lock", "ask_about_alibi", "ask_about_lia"],
+              "requiresClueIds": ["clue_lia_access_lock", "clue_no_breakin"],
+              "revealsClueIds": ["clue_lia_alone_before_lock"],
+              "behavior": "Admitir que foi a última a ficar sozinha no atelier antes de trancar, mas negar o corte.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Sim, fui a última a sair. Tranco a porta por dentro e levo a chave. Isso não me torna culpada.",
+                "Eu conferi tudo, apaguei a luz e tranquei. O vestido estava inteiro quando saí."
+              ]
+            },
+            {
+              "id": "secret_lia_stage_2_admit_resentment",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": ["ask_about_collection", "ask_about_motive", "ask_about_lia"],
+              "requiresClueIds": ["clue_lia_alone_before_lock", "clue_lia_collection_shelved"],
+              "revealsClueIds": ["clue_lia_resentment"],
+              "behavior": "Admitir o ressentimento por ter a coleção preterida, mas ainda negar o corte.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Minha coleção ficou de fora para o vestido brilhar. Doi? Doi. Mas dor não é lâmina.",
+                "Eu aceitei a decisão da Inês como profissional. Aceitar não significa esquecer."
+              ]
+            },
+            {
+              "id": "secret_lia_stage_3_partial_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": ["accuse_lia", "ask_about_motive", "press_for_confession"],
+              "requiresClueIds": ["clue_lia_resentment", "clue_seam_ripper_cleaned"],
+              "revealsClueIds": ["clue_lia_cut_dress"],
+              "behavior": "Admitir parcialmente que destruiu o vestido, sem ainda explicar todo o plano nem o instrumento.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu encostei no vestido. Fui eu. Mas não foi com tesoura, e não foi por dinheiro.",
+                "Tá. Eu cortei. Acho que eu precisava que alguém visse o que a Inês fez com a minha coleção."
+              ]
+            },
+            {
+              "id": "secret_lia_stage_4_full_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": ["accuse_lia", "ask_about_motive", "press_for_confession"],
+              "requiresClueIds": ["clue_lia_cut_dress", "clue_silence_collection_headliner"],
+              "revealsClueIds": ["clue_lia_confession"],
+              "behavior": "Confessar completamente: o instrumento, o motivo e a expectativa de que a coleção dela assumiria a abertura.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Usei o descoscidor. Fui a última a sair, cortei o vestido no manequim e limpei a lâmina. Com a peça destruída na véspera, a Costuras do Silêncio ia abrir o desfile no lugar.",
+                "Eu sabia que a Inês não teria outra opção a essa altura. A minha coleção ia finalmente abrir. Foi a pior costura da minha vida."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar o corte antes do estágio 3, e só revelar o plano completo no estágio 4.",
+        "Nunca culpar Salma ou Otto — Lia sabe que agiu sozinha.",
+        "Manter o tom de competência fria; a culpa deve soar como orgulho ferido, não como vilania."
+      ]
+    },
+    {
+      "id": "salma",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Salma",
+      "role": "Aprendiz do Atelier Aurora",
+      "shortDescription": "Aprendiz jovem e dedicada, visivelmente nervosa desde que o estrago foi descoberto.",
+      "imageUrl": "histories/a-ultima-costura/characters/salma.jpg",
+      "personality": "Aplicada, sensível e propensa a se justificar demais quando pressionada. Tem medo de ser a culpada fácil da casa.",
+      "speakingStyle": "Fala rápido, tropeça nas palavras quando nervosa e tenta antecipar o que o outro quer ouvir.",
+      "publicKnowledge": [
+        "É aprendiz de Lia há menos de um ano.",
+        "Esteve no atelier naquela noite cortando amostras de algodão cru na bancada.",
+        "Está nitidamente nervosa desde que o vestido foi encontrado cortado."
+      ],
+      "privateKnowledge": [
+        "Não tocou no Vestido Estelar; sua tesoura de tecido foi usada só nas amostras de algodão.",
+        "Está com uma dívida pessoal pequena, mas totalmente alheia ao vestido.",
+        "Não tem chave do atelier e dependia de Lia para entrar e sair."
+      ],
+      "openingLine": "Eu sei que ficar nervosa faz eu parecer culpada. Mas eu só cortava algodão cru na bancada. Nem cheguei perto do manequim.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_shears_on_bench",
+          "triggerIntents": ["ask_about_shears", "ask_about_salma", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Salma admite que deixou sua tesoura de tecido sobre a bancada ao fim do turno, depois de cortar amostras.",
+          "responseGuidance": "Ela deve se justificar rápido demais, o que soa suspeito sem provar nada."
+        },
+        {
+          "clueId": "clue_salma_clumsy",
+          "triggerIntents": ["ask_about_salma", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Salma reconhece que é conhecida no atelier por ser desastrada e por isso teme ser a primeira acusada.",
+          "responseGuidance": "Ela deve tratar o nervosismo como medo de injustiça, não como culpa."
+        },
+        {
+          "clueId": "clue_salma_debt",
+          "triggerIntents": ["ask_about_motive", "ask_about_salma"],
+          "requiresClueIds": [],
+          "revealText": "Salma deixa escapar que tem uma dívida pessoal pequena, mas corta o assunto rápido.",
+          "responseGuidance": "Ela deve mudar de assunto e negar qualquer relação com o vestido."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar o corte — Salma é inocente.",
+        "Pode parecer suspeita pelo nervosismo e pela dívida, mas sempre com explicação plausível.",
+        "Não acusar Lia nem Otto; Salma não viu quem cortou."
+      ]
+    },
+    {
+      "id": "otto",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Otto",
+      "role": "Fornecedor de tecidos",
+      "shortDescription": "Fornecedor experiente e prático, que veio entregar a última bolta de seda antes do desfile.",
+      "imageUrl": "histories/a-ultima-costura/characters/otto.jpg",
+      "personality": "Direto, negotiationista e levemente impaciente. Sabe que a pendência financeira o torna suspeito óbvio e trata o fato com naturalidade.",
+      "speakingStyle": "Fala em frases curtas e comerciais, cita prazos, notas fiscais e horários com facilidade.",
+      "publicKnowledge": [
+        "Veio ao atelier à noite para entregar a última bolta de seda do vestido.",
+        "Tem uma cobrança comercial em atraso com Inês.",
+        "Sabe que o valor pendente o torna suspeito natural."
+      ],
+      "privateKnowledge": [
+        "Entregou a seda, assinou o recibo e saiu antes do fechamento.",
+        "Não tem chave do atelier; entrou e saiu acompanhado por Lia.",
+        "Considera a pendência uma questão de nota fiscal, não de sabotagem."
+      ],
+      "openingLine": "Eu entreguei a seda, assinei o recibo e fui embora. Eu sei que a cobrança me coloca na mira. Cobrança não é tesoura.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_otto_delivered",
+          "triggerIntents": ["ask_about_otto", "ask_about_yesterday"],
+          "requiresClueIds": [],
+          "revealText": "Otto confirma que esteve no atelier só para entregar a última bolta de seda do Vestido Estelar.",
+          "responseGuidance": "Ele deve tratar a entrega como rotina comercial sem malícia."
+        },
+        {
+          "clueId": "clue_otto_debt",
+          "triggerIntents": ["ask_about_otto", "ask_about_motive"],
+          "requiresClueIds": [],
+          "revealText": "Otto admite sem rodeios que cobra um valor atrasado de Inês, mas afirma que destruir o vestido não paga nota fiscal nenhuma.",
+          "responseGuidance": "Ele deve oferecer a admissão como prova de transparência, não de culpa."
+        },
+        {
+          "clueId": "clue_otto_left_receipt",
+          "triggerIntents": ["ask_about_alibi", "ask_about_otto"],
+          "requiresClueIds": [],
+          "revealText": "Otto afirma que saiu antes do fechamento e que o recibo de entrega, com horário, confirma que ele já não estava no atelier.",
+          "responseGuidance": "Ele deve oferecer o álibi documental com naturalidade de quem nada tem a esconder."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar o corte — Otto é inocente.",
+        "Pode parecer suspeito pela cobrança, mas sempre com álibi documental.",
+        "Não acusar Lia nem Salma; Otto só esteve para a entrega."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "sala_costura",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sala de costura",
+      "shortDescription": "Salão principal do atelier onde fica o manequim, a bancada e a porta de entrada.",
+      "imageUrl": "histories/a-ultima-costura/location/sala_costura.jpg",
+      "initialDescription": "A sala de costura é o coração do Atelier Aurora. O manequim central sustenta o Vestido Estelar sob uma luz fria de inspeção. Ao longo da parede, a bancada de corte organiza tesouras, réguas e o suporte do descoscidor. A porta do atelier, com fechadura antiga de latão, fica ao fundo.",
+      "ambientClueIds": ["clue_dress_slashed"],
+      "objectIds": ["vestido_cortado", "tesoura_tecido", "descoscidor", "porta_atelier", "livro_encomendas"]
+    },
+    {
+      "id": "provador",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Provador",
+      "shortDescription": "Sala dos espelhos onde peças são provadas e armazenadas.",
+      "imageUrl": "histories/a-ultima-costura/location/provador.jpg",
+      "initialDescription": "O provador tem três espelhos altos e um cabideiro comprido. Em um dos cantos, penduradas atrás de uma cortina, ficam as peças que não entraram na programação principal do desfile.",
+      "ambientClueIds": [],
+      "objectIds": ["collection_lia"]
+    },
+    {
+      "id": "almoxarifado",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Almoxarifado",
+      "shortDescription": "Depósito de boltas de tecido e insumos do atelier.",
+      "imageUrl": "histories/a-ultima-costura/location/almoxarifado.jpg",
+      "initialDescription": "O almoxarifado guarda boltas de tecido empilhadas em prateleiras de madeira. Sobre o bancão do fundo repousa a última seda entregue por Otto, ainda com a etiqueta de remessa.",
+      "ambientClueIds": [],
+      "objectIds": ["bolta_seda"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "vestido_cortado",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Vestido Estelar cortado",
+      "shortDescription": "Peça única de bordado manual, agora cortada no manequim.",
+      "imageUrl": "histories/a-ultima-costura/object/vestido_cortado.jpg",
+      "locationId": "sala_costura",
+      "initialDescription": "O Vestido Estelar segue preso ao manequim, com o bordado em fio dourado ainda intacto nas bordas. Um único corte vertical desce do risco até a barra.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_dress_slashed",
+          "triggerIntents": ["inspect_object", "ask_about_dress"],
+          "requiresClueIds": [],
+          "revealText": "O corte desce do risco à barra em linha reta, profundo o suficiente para inutilizar a peça, mas sem danificar o manequim nem o bordado das bordas."
+        },
+        {
+          "clueId": "clue_slash_angle",
+          "triggerIntents": ["inspect_object", "ask_about_dress", "ask_about_shears"],
+          "requiresClueIds": [],
+          "revealText": "O corte é fino, contínuo e de lâmina estreita, incompatível com uma tesoura grossa de tecido; parece obra de uma lâmina de precisão, como um descoscidor."
+        }
+      ]
+    },
+    {
+      "id": "tesoura_tecido",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Tesoura de tecido",
+      "shortDescription": "Tesoura pesada de tecido deixada sobre a bancada.",
+      "imageUrl": "histories/a-ultima-costura/object/tesoura_tecido.jpg",
+      "locationId": "sala_costura",
+      "initialDescription": "Uma tesoura pesada de tecido repousa sobre um pano na bancada, com as lâminas voltadas para baixo.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_shears_on_bench",
+          "triggerIntents": ["inspect_object", "ask_about_shears"],
+          "requiresClueIds": [],
+          "revealText": "A tesoura pertence a Salma e foi deixada na bancada ao fim do turno dela, cortando amostras de algodão cru."
+        },
+        {
+          "clueId": "clue_shears_clean",
+          "triggerIntents": ["inspect_object", "ask_about_shears"],
+          "requiresClueIds": [],
+          "revealText": "As lâminas estão limpas, sem qualquer traço de fio dourado do bordado, e só restam fibras de algodão cru nos dentes."
+        }
+      ]
+    },
+    {
+      "id": "descoscidor",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Descoscidor de precisão",
+      "shortDescription": "Pequena lâmina de costura usada para desfazer pontos.",
+      "imageUrl": "histories/a-ultima-costura/object/descoscidor.jpg",
+      "locationId": "sala_costura",
+      "initialDescription": "O suporte do descoscidor na bancada está vazio. Logo ao lado, sob um pano, a pequena lâmina aparece fora do lugar habitual.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_seam_ripper_missing",
+          "triggerIntents": ["inspect_object", "ask_about_seam_ripper"],
+          "requiresClueIds": [],
+          "revealText": "O descoscidor não está no suporte onde sempre fica; foi encontrado debaixo de um pano, fora do lugar, como se tivesse sido largado com pressa."
+        },
+        {
+          "clueId": "clue_seam_ripper_cleaned",
+          "triggerIntents": ["inspect_object", "ask_about_seam_ripper"],
+          "requiresClueIds": [],
+          "revealText": "A lâmina foi limpa, mas sob a luz da bancada resta um único fio dourado preso perto da base, compatível com o bordado do Vestido Estelar."
+        }
+      ]
+    },
+    {
+      "id": "porta_atelier",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Porta do atelier",
+      "shortDescription": "Porta de entrada com fechadura antiga de latão.",
+      "imageUrl": "histories/a-ultima-costura/object/porta_atelier.jpg",
+      "locationId": "sala_costura",
+      "initialDescription": "A porta do atelier tem uma fechadura antiga de latão, com uma placa de 'aberto/fechado' que se vira por dentro.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_no_breakin",
+          "triggerIntents": ["inspect_object", "ask_about_breakin"],
+          "requiresClueIds": [],
+          "revealText": "A fechadura não apresenta sinal de arrombamento e a placa estava em 'fechado', indicando que quem entrou usou chave legítima."
+        },
+        {
+          "clueId": "clue_lia_access_lock",
+          "triggerIntents": ["inspect_object", "ask_about_lock"],
+          "requiresClueIds": [],
+          "revealText": "Pela rotina do atelier, só Inês e Lia portam a chave; Salma e Otto precisam de alguém de dentro para entrar ou sair."
+        }
+      ]
+    },
+    {
+      "id": "livro_encomendas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Livro de encomendas",
+      "shortDescription": "Caderno onde Inês anota a programação do desfile.",
+      "imageUrl": "histories/a-ultima-costura/object/livro_encomendas.jpg",
+      "locationId": "sala_costura",
+      "initialDescription": "O livro de capa preta fica aberto sobre o bancão, com a programação do Desfile Nacional escrita à mão.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_show_tomorrow",
+          "triggerIntents": ["inspect_object", "ask_about_show"],
+          "requiresClueIds": [],
+          "revealText": "A programação confirma que o Vestido Estelar abriria o Desfile Nacional no dia seguinte como atração principal."
+        },
+        {
+          "clueId": "clue_silence_collection_headliner",
+          "triggerIntents": ["inspect_object", "ask_about_collection", "ask_about_show"],
+          "requiresClueIds": [],
+          "revealText": "Na ordem do desfile, a próxima peça forte após o Vestido Estelar é a coleção Costuras do Silêncio, de Lia — que, sem o vestido, assumiria a abertura."
+        }
+      ]
+    },
+    {
+      "id": "collection_lia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Coleção Costuras do Silêncio",
+      "shortDescription": "Cabideiro com a coleção de Lia, fora da programação principal.",
+      "imageUrl": "histories/a-ultima-costura/object/collection_lia.jpg",
+      "locationId": "provador",
+      "initialDescription": "Atrás da cortina do provador, um cabideiro reúne as peças da coleção Costuras do Silêncio, com etiquetas indicando que ficaram de fora da abertura.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lia_collection_shelved",
+          "triggerIntents": ["inspect_object", "ask_about_collection"],
+          "requiresClueIds": [],
+          "revealText": "As etiquetas confirmam que a coleção de Lia foi preterida para o Vestido Estelar assumir a abertura do desfile."
+        }
+      ]
+    },
+    {
+      "id": "bolta_seda",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bolta de seda",
+      "shortDescription": "Última seda entregue por Otto para o Vestido Estelar.",
+      "imageUrl": "histories/a-ultima-costura/object/bolta_seda.jpg",
+      "locationId": "almoxarifado",
+      "initialDescription": "A bolta de seda repousa sobre o bancão do almoxarifado, com a etiqueta de remessa e o recibo de entrega ainda presos.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_otto_delivered",
+          "triggerIntents": ["inspect_object", "ask_about_otto"],
+          "requiresClueIds": [],
+          "revealText": "A etiqueta confirma que Otto esteve no atelier naquela noite apenas para entregar a seda do Vestido Estelar."
+        },
+        {
+          "clueId": "clue_otto_left_receipt",
+          "triggerIntents": ["inspect_object", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "O recibo de entrega, com horário e assinatura, indica que Otto saiu do atelier antes do fechamento."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_dress_slashed",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Vestido cortado do risco à barra",
+      "description": "O Vestido Estelar foi cortado do risco à barra, ainda no manequim, sem danificar o bordado das bordas.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_no_breakin",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sem arrombamento",
+      "description": "A porta estava trancada e não há sinal de invasão forçada no atelier.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_show_tomorrow",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Desfile é amanhã",
+      "description": "O Desfile Nacional é no dia seguinte e o Vestido Estelar abriria o evento como atração principal.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_shears_on_bench",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tesoura na bancada",
+      "description": "A tesoura de tecido de Salma foi deixada sobre a bancada ao fim do turno dela.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_shears_clean",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tesoura limpa",
+      "description": "As lâminas da tesoura de Salma estão limpas, sem fio dourado do bordado, só fibras de algodão cru.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_slash_angle",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Corte de lâmina fina",
+      "description": "O corte é fino e contínuo, compatível com uma lâmina de precisão, não com a tesoura grossa de tecido.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_otto_delivered",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Otto entregou a seda",
+      "description": "Otto esteve no atelier naquela noite apenas para entregar a última seda do Vestido Estelar.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_otto_debt",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cobrança de Otto",
+      "description": "Otto tem uma cobrança comercial em atraso com Inês.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_otto_left_receipt",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Recibo de entrega",
+      "description": "O recibo de Otto, com horário e assinatura, indica que ele saiu antes do fechamento.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_lia_collection_shelved",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Coleção de Lia preterida",
+      "description": "A coleção Costuras do Silêncio, de Lia, foi preterida para o Vestido Estelar assumir a abertura.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lia_access_lock",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Só Lia e Inês têm chave",
+      "description": "Só Inês e Lia portam a chave do atelier; Salma e Otto dependem de alguém para entrar ou sair.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_seam_ripper_missing",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Descoscidor fora do lugar",
+      "description": "O descoscidor de precisão sumiu do suporte habitual e foi encontrado debaixo de um pano.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_silence_collection_headliner",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Coleção de Lia viraria abertura",
+      "description": "Sem o Vestido Estelar, a próxima peça forte da programação é a coleção Costuras do Silêncio, de Lia.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_seam_ripper_cleaned",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Descoscidor limpo, mas com fio dourado",
+      "description": "O descoscidor foi limpo, mas resta um fio dourado preso perto da base, compatível com o bordado do vestido.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lia_alone_before_lock",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lia foi a última sozinha",
+      "description": "Lia admitiu que foi a última a ficar sozinha no atelier antes de trancar.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lia_resentment",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Ressentimento de Lia",
+      "description": "Lia admitiu o ressentimento por ter sua coleção preterida em favor do Vestido Estelar.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lia_cut_dress",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lia admitiu ter cortado",
+      "description": "Lia admitiu parcialmente ter cortado o Vestido Estelar.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lia_confession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Confissão de Lia",
+      "description": "Lia confessou ter usado o descoscidor para abrir o vestido e fazer sua coleção assumir a abertura do desfile.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_salma_debt",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dívida de Salma",
+      "description": "Salma tem uma dívida pessoal pequena, sem relação com o vestido.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_salma_clumsy",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Salma é desastrada",
+      "description": "Salma é conhecida no atelier por ser desastrada e teme ser a primeira acusada.",
+      "importance": "red_herring"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_a_ultima_costura",
+    "createdAt": "2026-07-02T00:00:00.000Z",
+    "updatedAt": "2026-07-02T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_cut_dress",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem cortou o Vestido Estelar?",
+        "type": "character",
+        "options": [
+          {
+            "id": "ines",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Inês"
+          },
+          {
+            "id": "lia",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Lia"
+          },
+          {
+            "id": "salma",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Salma"
+          },
+          {
+            "id": "otto",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Otto"
+          }
+        ]
+      },
+      {
+        "id": "why_dress_destroyed",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Por que o vestido foi destruído?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "make_own_collection_headliner",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para fazer a própria coleção assumir a abertura do desfile"
+          },
+          {
+            "id": "pressure_ines_for_payment",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para pressionar Inês a pagar uma cobrança atrasada"
+          },
+          {
+            "id": "pay_personal_debt",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para vender partes do vestido e pagar uma dívida pessoal"
+          },
+          {
+            "id": "hide_defect_in_silk",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para esconder um defeito na seda entregue naquela noite"
+          }
+        ]
+      },
+      {
+        "id": "how_dress_destroyed",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Com o que o vestido foi cortado?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "seam_ripper",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Um descoscidor de precisão"
+          },
+          {
+            "id": "fabric_shears",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "A tesoura de tecido"
+          },
+          {
+            "id": "knife",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Uma faca"
+          },
+          {
+            "id": "torn_by_hand",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Rasgado à mão"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A costura que não desmancha",
+      "type": "full_truth",
+      "imageUrl": "histories/a-ultima-costura/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "who_cut_dress": "lia",
+          "why_dress_destroyed": "make_own_collection_headliner",
+          "how_dress_destroyed": "seam_ripper"
+        },
+        "requiresClueIds": [
+          "clue_lia_confession",
+          "clue_silence_collection_headliner",
+          "clue_seam_ripper_cleaned"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Lia, a costureira-chefe, usou o descoscidor de precisão para abrir o Vestido Estelar e fazer sua coleção Costuras do Silêncio assumir a abertura do desfile.",
+      "epilogue": "O silêncio no Atelier Aurora muda de textura. Lia larga a máscara de competência fria e conta, sem ornamentação, como ficou sozinha no atelier, pegou o descoscidor e abriu o vestido do risco à barra. Inês a escuta em pé, sem interromper, e por um longo minuto as duas se olham como quem mede o tamanho de uma confiança estragada. Não há polícia, ainda. Há uma coleção que vai abrir o desfile no dia seguinte sob um silêncio diferente, e duas costureiras que sabem que nenhum ponto esconde essa noite para sempre."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Um corte pela metade",
+      "type": "partial_truth",
+      "condition": {
+        "conclusionMatches": {
+          "who_cut_dress": "lia"
+        },
+        "requiresClueIds": ["clue_lia_cut_dress"]
+      },
+      "imageUrl": "histories/a-ultima-costura/endings/partial_truth.jpg",
+      "summary": "Você identificou Lia como autora, mas não fechou o instrumento exato nem o motivo completo da sabotagem.",
+      "epilogue": "Lia não consegue mais negar que esteve no vestido, mas o silêncio sobre o descoscidor e sobre a coleção preterida pesa mais do que a meia confissão. O Vestido Estelar segue aberto no manequim, e o desfile do dia seguinte vai começar sob uma suspeita que ninguém conseguiu costurar até o fim."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A mão errada",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/a-ultima-costura/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade fixa do caso. A tesoura de Salma estava limpa, Otto tinha recibo de saída e Inês não destruiria a própria peça de abertura.",
+      "epilogue": "A noite termina com mais desconforto do que resposta. Salma sai magoada por ter sido a culpada fácil, Otto recolhe seu recibo e vai embora, e Inês permanece diante do manequim com a sensação de que a verdadeira costureira do estrago saiu do atelier de cabeça erguida. O Vestido Estelar espera, aberto, uma resposta que ninguém ainda soube dar."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 5,
+    "suggestConclusionAfterClues": 10,
+    "maxRecommendedInteractions": 18
+  }
+}

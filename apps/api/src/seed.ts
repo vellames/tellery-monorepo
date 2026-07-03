@@ -496,6 +496,17 @@ async function main(): Promise<void> {
     'o-hospede-do-quarto-12.json',
     'a-corda-partida.json',
     'o-expresso-almirante.json',
+    'a-ultima-cena.json',
+    'o-ultimo-brinde.json',
+    'o-olho-de-sirius.json',
+    'a-pipa-de-1924.json',
+    'a-receita-secreta.json',
+    'o-relicario-de-santa-luzia.json',
+    'a-ultima-costura.json',
+    'o-envelope-pardo.json',
+    'o-quarto-escuro.json',
+    'o-jogo-do-silencio.json',
+    'a-frequencia-fantasma.json'
   ];
   for (const fileName of historyFiles) {
     await seedHistory(fileName, force);

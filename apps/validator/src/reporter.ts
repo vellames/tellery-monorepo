@@ -26,6 +26,16 @@ export function writeReport(result: RunResult, outputPath: string): void {
     sections.push(`  Reasoning: ${turn.reasoning}`);
     sections.push(`  Sent:      ${turn.message ?? '-'}`);
 
+    if (turn.detectedIntents.length > 0) {
+      sections.push('  Detected intents:');
+      for (const intent of turn.detectedIntents) {
+        const label = intent.description ?? intent.intentId;
+        sections.push(
+          `    - ${label} (confidence ${intent.confidence}): ${intent.reasoning}`
+        );
+      }
+    }
+
     if (turn.reply) {
       sections.push(`  Reply:     ${turn.reply}`);
     }

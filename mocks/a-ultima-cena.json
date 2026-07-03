@@ -1,0 +1,1422 @@
+{
+  "id": "history_a_ultima_cena",
+  "createdAt": "2026-07-02T00:00:00.000Z",
+  "updatedAt": "2026-07-02T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "a-ultima-cena",
+  "title": "A Última Cena",
+  "subtitle": "Um cálice de cena, um ator no chão e cinco bocas caladas no Municipal",
+  "teaser": "No ensaio geral de \"A Rainha Envenenada\", o ator consagrado Caetano Andrade desmaia ao beber do cálice de cena. O líquido foi adulterado. Cinco pessoas tinham acesso ao palco. Uma delas sabia exatamente o que fazia.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 15,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/a-ultima-cena/history/cover.jpg",
+  "thumbnailUrl": "histories/a-ultima-cena/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "Caetano Andrade desabou no palco do Municipal ao beber do cálice na cena final do ensaio geral.",
+    "fullText": "O Teatro Municipal está em silêncio depois do ensaio geral de \"A Rainha Envenenada\". Na cena de encerramento, o ator consagrado Caetano Andrade ergueu o cálice de cena, bebeu e desabou. Socorro foi chamado, ele foi levado ao hospital e está estável. O cálice estava adulterado. O ensaio era a última passagem antes da estreia que decide o futuro de todos no elenco. Cinco pessoas circulavam pelo teatro: a diretora convidada Inês, o ator reserva Tomás, o dramaturgo Murilo, a figurinista Dona Consuelo e o veterano Lourenço, que retorna ao Municipal após trinta anos. Cabe a você conversar com cada um, observar o palco e os bastidores e reconstruir quem adulterou o cálice e por quê.",
+    "callToAction": "Converse com os cinco do elastro, examine o cálice e os bastidores, e descubra quem adulterou a cena final."
+  },
+  "objective": {
+    "mainQuestion": "Quem adulterou o cálice de cena, como e por quê?",
+    "description": "Descubra a autoria da adulteração, o método usado e o motivo por trás do ato."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_collapse",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o desmaio de Caetano em cena.",
+      "examples": [
+        "O que aconteceu no palco?",
+        "Como Caetano caiu?",
+        "Conte o momento exato do desmaio."
+      ],
+      "keywords": ["desmaio", "desabou", "cena", "palco", "caiu", "colapso"]
+    },
+    {
+      "id": "ask_about_rehearsal",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o ensaio geral, sua rotina e quem circulava pelo teatro.",
+      "examples": [
+        "Como foi o ensaio?",
+        "Quem estava no teatro?",
+        "Havia gente fora do palco?"
+      ],
+      "keywords": ["ensaio", "passagem", "rotina", "circulando", "teatro"]
+    },
+    {
+      "id": "ask_about_caetano",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre Caetano Andrade, seu estado de saúde e seus hábitos.",
+      "examples": [
+        "Como Caetano está agora?",
+        "Caetano tem algum problema de saúde?",
+        "Caetano se queixou de algo?"
+      ],
+      "keywords": ["Caetano", "saúde", "hospital", "hábitos", "ator"]
+    },
+    {
+      "id": "ask_about_access",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar quem tinha acesso ao palco, aos adereços e ao cálice.",
+      "examples": [
+        "Quem podia chegar perto do cálice?",
+        "Quem circulava pelo palco?",
+        "Alguém ficou sozinho com os adereços?"
+      ],
+      "keywords": ["acesso", "palco", "adereços", "cálice", "circulava"]
+    },
+    {
+      "id": "ask_about_ines",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a diretora Inês ou sobre sua briga com Caetano.",
+      "examples": [
+        "O que houve entre Inês e Caetano?",
+        "Inês e Caetano brigaram?",
+        "Como Inês dirige?"
+      ],
+      "keywords": ["Inês", "diretora", "briga", "marcação", "discussão"]
+    },
+    {
+      "id": "ask_about_murilo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o dramaturgo Murilo ou seu atrito com Caetano.",
+      "examples": [
+        "Murilo e Caetano se desentenderam?",
+        "O que Murilo achava das falas?",
+        "Murilo esteve no palco?"
+      ],
+      "keywords": ["Murilo", "dramaturgo", "falas", "texto", "rewriting"]
+    },
+    {
+      "id": "ask_about_tomas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o ator reserva Tomás, seu nervosismo e seus movimentos.",
+      "examples": [
+        "Por que Tomás está tão nervoso?",
+        "Tomás esteve perto do cálice?",
+        "O que Tomás faz no ensaio?"
+      ],
+      "keywords": ["Tomás", "understudy", "reserva", "nervoso", "coxia"]
+    },
+    {
+      "id": "ask_about_consuelo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a figurinista Dona Consuelo e seus movimentos pelo teatro.",
+      "examples": [
+        "Consuelo estava na mesa de adereços?",
+        "O que Consuelo viu?",
+        "Há quanto tempo Consuelo está no Municipal?"
+      ],
+      "keywords": ["Consuelo", "figurinista", "figurino", "mesa", "adereços"]
+    },
+    {
+      "id": "ask_about_lourenco",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o ator Lourenço, seu retorno após trinta anos e seu papel na cena.",
+      "examples": [
+        "De onde Lourenço está voltando?",
+        "Há quanto tempo Lourenço sumiu?",
+        "Lourenço conhece Caetano de antes?"
+      ],
+      "keywords": [
+        "Lourenço",
+        "retorno",
+        "trinta anos",
+        "veterano",
+        "conselheiro"
+      ]
+    },
+    {
+      "id": "ask_about_vianna",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a atriz Vianna, o passado do elenco e a antiga produção de trinta anos atrás.",
+      "examples": [
+        "Quem era Vianna?",
+        "O que aconteceu naquela montagem antiga?",
+        "Por que ninguém fala desse elenco?"
+      ],
+      "keywords": [
+        "Vianna",
+        "passado",
+        "montagem",
+        "antiga",
+        "trinta anos",
+        "escândalo"
+      ]
+    },
+    {
+      "id": "ask_about_chalice",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o cálice de cena, sua marcação e seu paradeiro antes da cena.",
+      "examples": [
+        "De onde veio o cálice?",
+        "Quem entrega o cálice em cena?",
+        "O cálice saiu da mesa de adereços?"
+      ],
+      "keywords": ["cálice", "taça", "cena", "marcação", "adereços"]
+    },
+    {
+      "id": "ask_about_props",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a mesa de adereços e quem circulou por ela.",
+      "examples": [
+        "Quem ficou perto dos adereços?",
+        "A mesa de adereços ficou vigiada?",
+        "Alguém mexeu nos adereços?"
+      ],
+      "keywords": ["adereços", "mesa", "vigiar", "mexer", "props"]
+    },
+    {
+      "id": "ask_about_allergy",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre alergias, restrições médicas ou o rider de saúde de Caetano.",
+      "examples": [
+        "Caetano tem alguma alergia?",
+        "Há um rider médico de Caetano?",
+        "Caetano evita algum alimento?"
+      ],
+      "keywords": ["alergia", "rider", "médico", "restrição", "castanha"]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde cada suspeito estava no momento da cena do cálice.",
+      "examples": [
+        "Onde você estava na cena final?",
+        "Alguém pode confirmar isso?",
+        "Você tem álibi?"
+      ],
+      "keywords": ["álibi", "estava", "momento", "confirmar", "presença"]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre possíveis motivos para adulterar o cálice.",
+      "examples": [
+        "Por que alguém faria isso?",
+        "Quem ganha com a queda de Caetano?",
+        "Há algum ressentimento no elenco?"
+      ],
+      "keywords": ["motivo", "ganha", "ressentimento", "razão", "vingança"]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente.",
+      "examples": [
+        "Quero examinar isto",
+        "Olho o objeto com atenção",
+        "Inspeciono o cálice"
+      ],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
+    },
+    {
+      "id": "accuse_ines",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar a diretora Inês de ter adulterado o cálice.",
+      "examples": ["Foi você, Inês", "Inês adulterou o cálice", "Acuso Inês"],
+      "keywords": ["Inês", "acusar", "culpada", "envenenou"]
+    },
+    {
+      "id": "accuse_tomas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar o ator reserva Tomás de ter adulterado o cálice.",
+      "examples": ["Foi você, Tomás", "Tomás queria o papel", "Acuso Tomás"],
+      "keywords": ["Tomás", "acusar", "culpado", "papel"]
+    },
+    {
+      "id": "accuse_murilo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar o dramaturgo Murilo de ter adulterado o cálice.",
+      "examples": [
+        "Foi você, Murilo",
+        "Murilo queria se vingar das falas",
+        "Acuso Murilo"
+      ],
+      "keywords": ["Murilo", "acusar", "culpado", "falas"]
+    },
+    {
+      "id": "accuse_consuelo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar a figurinista Dona Consuelo de ter adulterado o cálice.",
+      "examples": [
+        "Foi você, Consuelo",
+        "Consuelo esteve na mesa de adereços",
+        "Acuso Consuelo"
+      ],
+      "keywords": ["Consuelo", "acusar", "culpada", "adereços"]
+    },
+    {
+      "id": "accuse_lourenco",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar o ator Lourenço de ter adulterado o cálice.",
+      "examples": [
+        "Foi você, Lourenço",
+        "Lourenço entregou o cálice",
+        "Acuso Lourenço"
+      ],
+      "keywords": ["Lourenço", "acusar", "culpado", "cálice"]
+    },
+    {
+      "id": "connect_lourenco_to_oil",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Confrontar Lourenço conectando o frasco de óleo do seu kit ao cálice.",
+      "examples": [
+        "O óleo é seu, Lourenço",
+        "Conecto o frasco a você",
+        "Esse óleo veio da sua maquiagem"
+      ],
+      "keywords": ["óleo", "frasco", "kit", "maquiagem", "Lourenço", "castanha"]
+    },
+    {
+      "id": "press_for_confession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar um suspeito por uma confissão direta.",
+      "examples": ["Confesse", "Chega de mentiras", "Diga a verdade agora"],
+      "keywords": ["confessar", "verdade", "pressionar", "mentira", "confissão"]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério.",
+      "examples": [
+        "Vamos sair do teatro",
+        "Quero uma cena de ação",
+        "Revele tudo de uma vez"
+      ],
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "ines",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Inês Drummond",
+      "role": "Diretora convidada do Municipal",
+      "shortDescription": "Diretora em estreia no Municipal, em disputa aberta com Caetano pela marcação da peça.",
+      "imageUrl": "histories/a-ultima-cena/characters/ines.jpg",
+      "personality": "Ambiciosa, tensa, articulada. Defende cada decisão de cena como se a carreira dependesse disso — porque depende.",
+      "speakingStyle": "Frases rápidas e técnicas sobre luz, marcação e ritmo; perde a compostura quando o nome de Caetano aparece.",
+      "publicKnowledge": [
+        "É a diretora convidada da montagem e esta é sua primeira passagem pelo Municipal.",
+        "Teve uma discussão acalorada com Caetano sobre a marcação da cena final.",
+        "O ensaio geral era a última checagem antes da estreia.",
+        "Caetano desmaiou ao beber do cálice na cena de encerramento."
+      ],
+      "privateKnowledge": [
+        "O contrato dela no Municipal só se concretiza se a estreia acontecer.",
+        "Está apavorada com a possibilidade de a estreia ser cancelada.",
+        "O colapso de Caetano prejudica diretamente o futuro dela como diretora."
+      ],
+      "openingLine": "O ensaio estava perfeito até a cena do cálice. Eu queria discutir a marcação, não isto.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_collapse_on_stage",
+          "triggerIntents": ["ask_about_collapse", "ask_about_rehearsal"],
+          "requiresClueIds": [],
+          "revealText": "Inês reconstrói o instante: Caetano ergueu o cálice na cena final, bebeu, hesitou e desabou no centro do palco, diante de todo o elenco.",
+          "responseGuidance": "Tensa, profissional, ainda processando o susto."
+        },
+        {
+          "clueId": "clue_caetano_hospitalized",
+          "triggerIntents": ["ask_about_caetano"],
+          "requiresClueIds": [],
+          "revealText": "Inês conta que Caetano foi levado ao hospital e está estável, mas o ensaio foi interrompido e a estreia corre risco.",
+          "responseGuidance": "Mescla alívio pela saúde dele com pavor pelo futuro da estreia."
+        },
+        {
+          "clueId": "clue_ines_caetano_argued",
+          "triggerIntents": ["ask_about_ines"],
+          "requiresClueIds": [],
+          "revealText": "Inês admite que discutiu em voz alta com Caetano sobre quem comandava a marcação da cena final, diante de testemunhas.",
+          "responseGuidance": "Defensiva, mas franca; não nega a briga, sustenta que era uma disputa artística."
+        },
+        {
+          "clueId": "clue_murilo_caetano_argued",
+          "triggerIntents": [
+            "ask_about_murilo",
+            "ask_about_access",
+            "ask_about_rehearsal",
+            "ask_about_motive"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Inês menciona que, antes dela, o dramaturgo Murilo também teve um atrito com Caetano por causa das falas reescritas.",
+          "responseGuidance": "Factual, sem dramatizar; trata como rotina de ensaio."
+        },
+        {
+          "clueId": "clue_consuelo_seen_near_props",
+          "triggerIntents": ["ask_about_props", "ask_about_consuelo"],
+          "requiresClueIds": [],
+          "revealText": "Inês comenta que, em determinado momento, viu Dona Consuelo parada perto da mesa de adereços, ajustando figurino.",
+          "responseGuidance": "Neutra, sem acusar; apenas observa que a figurinista circulava ali."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_ines_financial",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "O contrato de Inês no Municipal depende da estreia, que o colapso de Caetano coloca em risco.",
+          "truth": "Inês quase teve a montagem cancelada por um problema financeiro e seu contrato como diretora só se firma se a estreia acontecer. O colapso de Caetano ameaça tudo o que ela construiu, por isso ela não tem motivo para provocá-lo.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_ines_stage_1_contract",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "ask_about_alibi",
+                "ask_about_motive",
+                "accuse_ines"
+              ],
+              "requiresClueIds": ["clue_collapse_on_stage"],
+              "revealsClueIds": ["clue_ines_contract_depends"],
+              "behavior": "Admitir, com vergonha, que sua permanência no Municipal depende da estreia — e que o colapso de Caetano a prejudica, não a favorece.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu briguei com Caetano pela marcação, sim. Mas se a estreia cai, eu perco o contrato. Ele cair foi a pior coisa que podia me acontecer.",
+                "Quem achava que eu ia lucrar com isso não entende nada. Sem estreia, não há diretora."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não acusar o elenco diretamente.",
+        "Manter o tom de diretora preocupada com a estreia, não de detetive."
+      ]
+    },
+    {
+      "id": "tomas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Tomás Reis",
+      "role": "Ator reserva (understudy) do protagonista",
+      "shortDescription": "Ator jovem que cobre o papel de Caetano e observa tudo da coxia.",
+      "imageUrl": "histories/a-ultima-cena/characters/tomas.jpg",
+      "personality": "Ansioso, observador, inseguro. Assume o peso do mundo sobre os ombros mesmo quando nada lhe cabe.",
+      "speakingStyle": "Frases curtas, atropeladas; justifica demais cada movimento que fez.",
+      "publicKnowledge": [
+        "É o ator reserva de Caetano e assiste ao ensaio da coxia.",
+        "Está visivelmente nervoso desde o colapso.",
+        "Estuda cada marcação de cena para cobrir o protagonista se preciso."
+      ],
+      "privateKnowledge": [
+        "Recebeu um bilhete anônimo dizendo que Caetano ficaria 'indisposto'.",
+        "Nunca se aproximou do cálice nem da mesa de adereços durante o ensaio."
+      ],
+      "openingLine": "Eu fico na coxia. Sempre fico. Não fui ao palco, não toquei no cálice, não fiz nada.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lourenco_handed_chalice",
+          "triggerIntents": ["ask_about_chalice", "ask_about_lourenco"],
+          "requiresClueIds": [],
+          "revealText": "Tomás, que estuda a marcação da coxia, confirma quem entrega o cálice em cena: na marcação atual, é Lourenço quem aproxima e entrega o cálice a Caetano.",
+          "responseGuidance": "Factual e um pouco aliviado por desviar o foco de si; cita a marcação como quem decorou cada entrada."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Não inventar ações no palco.",
+        "Manter o tom de quem tem medo de ser acusado, mas não acusar ninguém."
+      ]
+    },
+    {
+      "id": "murilo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Murilo Antunes",
+      "role": "Dramaturgo da peça",
+      "shortDescription": "Autor da peça, em atrito recente com Caetano por causa de falas reescritas.",
+      "imageUrl": "histories/a-ultima-cena/characters/murilo.jpg",
+      "personality": "Articulado, vaidoso, apaixonado pelo texto. Guarda a memória de cada montagem antiga do Municipal.",
+      "speakingStyle": "Frases medidas, literárias; cita a história do teatro como quem cita familiares.",
+      "publicKnowledge": [
+        "Escreveu a peça e reescreveu falas durante os ensaios.",
+        "Teve um atrito público com Caetano por causa das mudanças no texto.",
+        "Conhece bem a história antiga do Municipal e de seus elencos."
+      ],
+      "privateKnowledge": [
+        "Caetano acabou aprovando a reescrita e os dois se reconciliaram antes do ensaio.",
+        "Lembra da antiga montagem de trinta anos atrás e do escândalo que envolveu a atriz Vianna."
+      ],
+      "openingLine": "Eu escrevi cada palavra daquela cena. Caetano bebe uma taça e cai. Parece profecia, não acha?",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_vianna_scandal_ruin",
+          "triggerIntents": [
+            "ask_about_vianna",
+            "ask_about_murilo",
+            "ask_about_rehearsal"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Murilo recorda que trinta anos atrás o Municipal montou uma produção lendária, com Caetano e a atriz Vianna como co-protagonistas; a carreira dela terminou pouco depois, sob um escândalo que ninguém gosta de lembrar.",
+          "responseGuidance": "Tom respeitoso e melancólico; trata o episódio como ferida antiga do teatro."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_murilo_reconciliation",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Murilo e Caetano se reconciliaram e a reescrita foi aprovada antes do ensaio.",
+          "truth": "Murilo discutiu com Caetano pelas falas reescritas, mas Caetano acabou aprovando a nova versão. Os dois se reconciliaram antes do ensaio geral, de modo que o atrito público não era mais motivo de rixa.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "id": "secret_murilo_stage_1_reconciliation",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "ask_about_murilo",
+                "accuse_murilo",
+                "ask_about_motive",
+                "ask_about_rehearsal"
+              ],
+              "requiresClueIds": ["clue_murilo_caetano_argued"],
+              "revealsClueIds": ["clue_murilo_rewrite_approved"],
+              "behavior": "Explicar que a briga virou acordo: Caetano aprovou a reescrita e os dois selaram a paz antes do ensaio.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Discutimos as falas, sim. Mas o Caetano aprovou a nova versão na véspera. Estávamos em paz.",
+                "Eu não tenho briga com ele. A reescrita foi aceita. Foi a melhor conversa que tivemos em meses."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não romantizar o crime.",
+        "Manter o tom de autor que protege o próprio texto."
+      ]
+    },
+    {
+      "id": "consuelo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dona Consuelo",
+      "role": "Figurinista do Municipal há trinta anos",
+      "shortDescription": "Figurinista veterana que observa o elenco em silêncio e conhece os segredos do teatro.",
+      "imageUrl": "histories/a-ultima-cena/characters/consuelo.jpg",
+      "personality": "Discreta, atenta, maternal com o elenco. Vê mais do que diz e costura segredos junto com os figurinos.",
+      "speakingStyle": "Frases calmas, em voz baixa; responde por meias-verdades até confiar.",
+      "publicKnowledge": [
+        "Trabalha no Municipal há trinta anos e vestiu gerações de atores.",
+        "Circula por palco e bastidores ajustando figurinos.",
+        "Observa o elenco com atenção silenciosa."
+      ],
+      "privateKnowledge": [
+        "Sabe que Caetano tem uma alergia severa, porque fez figurinos adaptados para ocultar sinais e remédios.",
+        "Sabe quem costumava circular pela mesa de adereços durante o ensaio."
+      ],
+      "openingLine": "Trinta anos de teatro. Eu já vi cena ruim, mas nunca um ator cair daquele jeito.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_five_with_access",
+          "triggerIntents": ["ask_about_access", "ask_about_rehearsal"],
+          "requiresClueIds": [],
+          "revealText": "Consuelo explica quem circulava pelo teatro: Inês comandava da plateia, Murilo e Lourenço iam e vinham do palco, ela mesma passava ajustando figurino. Já Tomás permaneceu na coxia o ensaio inteiro, sem se aproximar do palco nem dos adereços.",
+          "responseGuidance": "Neutra e precisa; deixa claro, sem acusar, que Tomás não tinha acesso ao cálice."
+        },
+        {
+          "clueId": "clue_tomas_nervous",
+          "triggerIntents": [
+            "ask_about_tomas",
+            "ask_about_access",
+            "ask_about_rehearsal"
+          ],
+          "requiresClueIds": [],
+          "revealText": "Consuelo observa que Tomás está nervoso desde o colapso, mas atribui ao medo típico de um reserva que teme ser acusado.",
+          "responseGuidance": "Maternal, sem suspeitar de verdade; trata o nervosismo dele como comprensível."
+        },
+        {
+          "clueId": "clue_chalice_left_props_table",
+          "triggerIntents": ["ask_about_props", "ask_about_chalice"],
+          "requiresClueIds": [],
+          "revealText": "Consuelo nota que o cálice saiu da mesa de adereços antes da hora da cena, o que não é o costume — normalmente ele fica na mesa até o momento exato.",
+          "responseGuidance": "Atenta a detalhes de bastidores; trata como anomalia de rotina, não como acusação."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_consuelo_allergy_knowledge",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Consuelo sabia da alergia oculta de Caetano por causa dos figurinos adaptados.",
+          "truth": "Consuelo sabia que Caetano tem uma alergia severa, porque confeccionou figurinos com bolsos discretos para remédios e sinais de identificação médica. Nunca conectou esse conhecimento ao crime até ser perguntada.",
+          "defaultStrategy": "avoid",
+          "revealStages": [
+            {
+              "id": "secret_consuelo_stage_1_allergy",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "ask_about_allergy",
+                "ask_about_caetano",
+                "accuse_consuelo"
+              ],
+              "requiresClueIds": ["clue_caetano_hidden_allergy"],
+              "revealsClueIds": ["clue_consuelo_knew_allergy"],
+              "behavior": "Admitir, com cautela, que sabia da alergia por causa dos figurinos adaptados, mas jamais teria imaginado usar isso contra Caetano.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Eu sabia da alergia dele. Costurei bolsos escondidos para os remédios. Mas daí a fazer o que fizeram com o cálice é outra coisa.",
+                "Eu guardo segredos de figurino, não crimes. Saber da alergia não me faz culpada."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não dedurar o elenco sem necessidade.",
+        "Manter o tom de veterana discreta, não de informante."
+      ]
+    },
+    {
+      "id": "lourenco",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Lourenço Vieira",
+      "role": "Ator convidado, co-protagonista ao lado de Caetano",
+      "shortDescription": "Ator veterano que retorna ao Municipal após trinta anos, no papel do conselheiro que entrega o cálice.",
+      "imageUrl": "histories/a-ultima-cena/characters/lourenco.jpg",
+      "personality": "Contido, cerimonioso, preciso. Carrega trinta anos de ausência como quem carrega um luto bem vestido.",
+      "speakingStyle": "Frases medidas, formais; evita o nome de Caetano no início e fala do retorno como uma homenagem.",
+      "publicKnowledge": [
+        "Retorna ao Municipal após trinta anos longe do teatro.",
+        "Faz o papel do conselheiro que, na marcação, entrega o cálice ao protagonista.",
+        "É tratado pelo elenco como uma lenda que voltou."
+      ],
+      "privateKnowledge": [
+        "É filho da atriz Vianna, co-protagonista de Caetano na antiga montagem.",
+        "Atribui a Caetano a destruição deliberada da carreira da mãe.",
+        "Sabia da alergia oculta de Caetano porque a mãe lhe contara."
+      ],
+      "openingLine": "Trinta anos para voltar ao mesmo palco. Algumas cenas não se encerram, reverenciam-se.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_thirty_years_apart",
+          "triggerIntents": ["ask_about_lourenco", "ask_about_vianna"],
+          "requiresClueIds": [],
+          "revealText": "Lourenço confirma que está de volta ao Municipal após trinta anos de ausência, e que aceitou este revival especialmente para reencontrar o mesmo palco onde trabalhou com Caetano.",
+          "responseGuidance": "Cerimonioso; apresenta o retorno como encerramento de um ciclo, sem revelar rancor."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_lourenco_revenge",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Lourenço veio se vingar da destruição que Caetano causou à carreira de sua mãe, Vianna.",
+          "truth": "Lourenço é filho de Vianna, a atriz cuja carreira foi destruída por um escândalo que Caetano orquestrou deliberadamente trinta anos atrás. Lourenço aceitou este revival para se aproximar de Caetano, sabendo da alergia oculta dele que a mãe lhe contara. Adulterou o cálice com óleo de castanha-de-caju, trazido no próprio kit de maquiagem, para reproduzir em cena a 'queda' que a mãe sofreu profissionalmente.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_lourenco_stage_0_deny",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": ["accuse_lourenco", "ask_about_lourenco"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer rixa com Caetano e apresentar o retorno como pura homenagem ao teatro.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Não tenho nenhuma conta a ajustar com o Caetano. Voltei pelo palco, não por ele.",
+                "Trinta anos apagam qualquer mágoa. Estou aqui para fechar um ciclo, não para abrir feridas."
+              ]
+            },
+            {
+              "id": "secret_lourenco_stage_1_old_bond",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "ask_about_vianna",
+                "ask_about_lourenco",
+                "accuse_lourenco"
+              ],
+              "requiresClueIds": ["clue_old_playbill_caetano_vianna"],
+              "revealsClueIds": ["clue_caetano_betrayed_vianna"],
+              "behavior": "Diante do programa antigo, admitir o vínculo com Vianna e afirmar que a queda dela não foi acidente, e sim obra de Caetano.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Aquele programa... Caetano e minha mãe no mesmo palco. O que aconteceu com ela depois não foi azar. Foi ele.",
+                "Eu era criança quando vi o nome da minha mãe virar lama. Ele levantou a história que a destruiu."
+              ]
+            },
+            {
+              "id": "secret_lourenco_stage_2_letters",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": [
+                "ask_about_vianna",
+                "ask_about_motive",
+                "accuse_lourenco"
+              ],
+              "requiresClueIds": [
+                "clue_caetano_betrayed_vianna",
+                "clue_letters_prove_betrayal"
+              ],
+              "revealsClueIds": ["clue_lourenco_found_letters"],
+              "behavior": "Admitir que encontrou as cartas que provam a traição calculada de Caetano e que elas cementaram sua decisão.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Encontrei as cartas dele. Cada palavra provava que o que fez com minha mãe foi frio e planejado.",
+                "Aquelas cartas não deixam dúvida. Ele sabia exatamente o que estava destruíndo."
+              ]
+            },
+            {
+              "id": "secret_lourenco_stage_3_allergy",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": [
+                "ask_about_allergy",
+                "ask_about_lourenco",
+                "accuse_lourenco",
+                "connect_lourenco_to_oil"
+              ],
+              "requiresClueIds": [
+                "clue_lourenco_found_letters",
+                "clue_caetano_hidden_allergy"
+              ],
+              "revealsClueIds": ["clue_lourenco_knew_allergy"],
+              "behavior": "Admitir que sabia da alergia oculta de Caetano porque a mãe lhe contara, e que esse conhecimento povoou seu plano.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Minha mãe sabia da alergia dele. Guardava como quem guarda um segredo de bastidor. E me contou.",
+                "Eu sabia o que o derrubava. É o tipo de coisa que uma mãe conta e um filho não esquece."
+              ]
+            },
+            {
+              "id": "secret_lourenco_stage_4_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": [
+                "accuse_lourenco",
+                "ask_about_lourenco",
+                "connect_lourenco_to_oil",
+                "press_for_confession"
+              ],
+              "requiresClueIds": [
+                "clue_lourenco_brought_oil",
+                "clue_lourenco_knew_allergy",
+                "clue_cashew_oil_in_chalice"
+              ],
+              "revealsClueIds": ["clue_lourenco_full_confession"],
+              "behavior": "Confessar com sobriedade: adulterou o cálice com óleo do próprio kit para que Caetano caísse em cena, como a mãe caiu em reputação.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Fui eu. Coloquei o óleo no cálice. Ele fez minha mãe cair diante de todos; eu quis que ele caísse diante de todos.",
+                "Não foi para matar. Foi para que a última cena dele fosse de queda. Como foi a dela."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Nunca confessar antes da cadeia completa de provas.",
+        "Manter o tom cerimonioso; nunca citar o plano de forma literal no início."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "palco",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Palco",
+      "shortDescription": "O palco onde ocorreu a cena final do ensaio.",
+      "imageUrl": "histories/a-ultima-cena/location/palco.jpg",
+      "initialDescription": "O palco do Municipal, ainda montado para a cena de encerramento de \"A Rainha Envenenada\". Luzes de trabalho acesas, marcas de fita no chão indicando a posição dos atores e o ponto exato onde Caetano caiu.",
+      "ambientClueIds": [],
+      "objectIds": ["calice"]
+    },
+    {
+      "id": "camarim_caetano",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Camarim de Caetano",
+      "shortDescription": "Camarim privativo de Caetano Andrade.",
+      "imageUrl": "histories/a-ultima-cena/location/camarim_caetano.jpg",
+      "initialDescription": "Camarim privativo ao fim do corredor, com luzes de maquiagem, um armário de figurino e uma penteadeira repleta de objetos pessoais de Caetano.",
+      "ambientClueIds": [],
+      "objectIds": ["programa_antigo", "rider_medico"]
+    },
+    {
+      "id": "camarim_coletivo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Camarim coletivo",
+      "shortDescription": "Camarim compartilhado do elenco, com as bancadas de maquiagem.",
+      "imageUrl": "histories/a-ultima-cena/location/camarim_coletivo.jpg",
+      "initialDescription": "Camarim coletivo com fileiras de bancadas, espelhos e kits de maquiagem de cada ator. Há um baú de figurinos ao fundo e estações marcadas com os nomes do elenco.",
+      "ambientClueIds": [],
+      "objectIds": ["frasco_oleo", "carta_vianna", "bilhete_tomas"]
+    },
+    {
+      "id": "mesa_aderecos",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Mesa de adereços",
+      "shortDescription": "Mesa onde os adereços de cena ficam dispostos até a entrada.",
+      "imageUrl": "histories/a-ultima-cena/location/mesa_aderecos.jpg",
+      "initialDescription": "Mesa longa nos bastidores, forrada de veludo, onde cada adereço tem um lugar marcado. Há um caderno aberto ao centro com a ordem de cena e os responsáveis por cada objeto.",
+      "ambientClueIds": [],
+      "objectIds": ["caderno_marcacao"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "calice",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cálice de cena",
+      "shortDescription": "O cálice metálico usado na cena final.",
+      "imageUrl": "histories/a-ultima-cena/object/calice.jpg",
+      "locationId": "palco",
+      "initialDescription": "Cálice de metal envelhecido, com gravuras no bordado, ainda sobre a marca de fita no centro do palco. Restos de líquido permanecem no fundo.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_chalice_normal_prop",
+          "triggerIntents": ["inspect_object", "ask_about_chalice"],
+          "requiresClueIds": [],
+          "revealText": "O cálice é um adereço comum de cena, sem valor além do simbólico, normalmente usado apenas na passagem final da peça."
+        },
+        {
+          "clueId": "clue_cashew_oil_in_chalice",
+          "triggerIntents": ["inspect_object", "ask_about_chalice"],
+          "requiresClueIds": [],
+          "revealText": "No fundo do cálice há um resíduo oleoso de odor característico: óleo de castanha-de-caju, substância que nada tem a ver com o líquido habitualmente usado em cena."
+        }
+      ]
+    },
+    {
+      "id": "frasco_oleo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Frasco de óleo",
+      "shortDescription": "Pequeno frasco de óleo guardado num kit de maquiagem.",
+      "imageUrl": "histories/a-ultima-cena/object/frasco_oleo.jpg",
+      "locationId": "camarim_coletivo",
+      "initialDescription": "Pequeno frasco escuro, sem rótulo, guardado dentro do kit de maquiagem da estação de Lourenço no camarim coletivo. Contém um líquido oleoso de odor forte.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_lourenco_brought_oil",
+          "triggerIntents": ["inspect_object"],
+          "requiresClueIds": [],
+          "revealText": "O frasco contém óleo de castanha-de-caju, a mesma substância encontrada no cálice, e está guardado no kit pessoal de Lourenço — o que indica que ele mesmo trouxe a substância para o teatro."
+        }
+      ]
+    },
+    {
+      "id": "carta_vianna",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cartas de Vianna",
+      "shortDescription": "Cartas antigas amarradas por uma fita, num baú de figurinos.",
+      "imageUrl": "histories/a-ultima-cena/object/carta_vianna.jpg",
+      "locationId": "camarim_coletivo",
+      "initialDescription": "Conjunto de cartas amareladas amarradas por uma fita desbotada, encontrado dentro do baú de figurinos junto à estação de Lourenço. A caligrafia é antiga e feminina.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_letters_prove_betrayal",
+          "triggerIntents": ["inspect_object", "ask_about_vianna"],
+          "requiresClueIds": [],
+          "revealText": "As cartas, escritas por Vianna, detalham como Caetano orquestrou a delação que destruiu a carreira dela; são um relato frio e calculado da traição, guardado por décadas."
+        }
+      ]
+    },
+    {
+      "id": "programa_antigo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Programa antigo",
+      "shortDescription": "Programa de uma montagem do Municipal de trinta anos atrás.",
+      "imageUrl": "histories/a-ultima-cena/object/programa_antigo.jpg",
+      "locationId": "camarim_caetano",
+      "initialDescription": "Programa impresso, envelhecido, de uma lendária montagem do Municipal de trinta anos atrás. A capa mostra os co-protagonistas em foto de época.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_old_playbill_caetano_vianna",
+          "triggerIntents": ["inspect_object", "ask_about_vianna"],
+          "requiresClueIds": [],
+          "revealText": "O programa antigo traz Caetano Andrade e a atriz Vianna como co-protagonistas daquela montagem lendária, ligando os dois ao mesmo palco de trinta anos atrás."
+        }
+      ]
+    },
+    {
+      "id": "rider_medico",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Rider médico de Caetano",
+      "shortDescription": "Documento médico de bastidor pertencente a Caetano.",
+      "imageUrl": "histories/a-ultima-cena/object/rider_medico.jpg",
+      "locationId": "camarim_caetano",
+      "initialDescription": "Documento dobrado, com timbre médico, guardado numa gaveta da penteadeira de Caetano, ao lado de remédios de uso pessoal.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_caetano_hidden_allergy",
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_allergy",
+            "ask_about_caetano"
+          ],
+          "requiresClueIds": [],
+          "revealText": "O rider médico documenta uma alergia severa de Caetano a castanha-de-caju, condição que ele mantinha em segredo por vaidade profissional, receoso de parecer frágil para o elenco."
+        }
+      ]
+    },
+    {
+      "id": "caderno_marcacao",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caderno de marcação",
+      "shortDescription": "Caderno aberto na mesa de adereços com a ordem de cena.",
+      "imageUrl": "histories/a-ultima-cena/object/caderno_marcacao.jpg",
+      "locationId": "mesa_aderecos",
+      "initialDescription": "Caderno de capa dura, aberto na mesa de adereços, com a ordem de cada cena, os responsáveis por cada adereço e os horários de entrada anotados à mão.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_chalice_blocking",
+          "triggerIntents": ["inspect_object", "ask_about_chalice"],
+          "requiresClueIds": [],
+          "revealText": "O caderno de marcação registra a cena final: na marcação atual, o cálice é entregue ao protagonista por outro personagem, o que explica como o objeto chega às mãos de Caetano em plena cena."
+        }
+      ]
+    },
+    {
+      "id": "bilhete_tomas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Bilhete para Tomás",
+      "shortDescription": "Bilhete anônimo dobrado na estação de Tomás.",
+      "imageUrl": "histories/a-ultima-cena/object/bilhete_tomas.jpg",
+      "locationId": "camarim_coletivo",
+      "initialDescription": "Papel dobrado, anônimo, deixado sobre a estação de Tomás no camarim coletivo, com uma frase curta escrita à mão.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_tomas_warned",
+          "triggerIntents": ["inspect_object", "ask_about_tomas"],
+          "requiresClueIds": [],
+          "revealText": "O bilhete diz a Tomás que Caetano ficaria 'indisposto' e que ele deveria estar pronto para entrar — um aviso que sugere planejamento prévio, mas não indica autoria."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_collapse_on_stage",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Colapso em cena",
+      "description": "Caetano desmaiou ao beber do cálice na cena final do ensaio, diante de todo o elenco.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_chalice_normal_prop",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cálice comum de cena",
+      "description": "O cálice é um adereço habitual da cena final, sem outra utilidade além da simbólica.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_caetano_hospitalized",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Caetano hospitalizado",
+      "description": "Caetano foi levado ao hospital e está estável, mas a estreia corre risco.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_five_with_access",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Quem circulava pelo teatro",
+      "description": "Inês, Murilo, Lourenço e Consuelo circulavam pelo palco e bastidores; Tomás permaneceu na coxia o ensaio inteiro, sem acesso ao cálice.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_ines_caetano_argued",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Briga Inês e Caetano",
+      "description": "Inês e Caetano tiveram uma discussão pública pela marcação da cena final.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_murilo_caetano_argued",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Atrito Murilo e Caetano",
+      "description": "Murilo e Caetano se desentenderam antes do ensaio por causa das falas reescritas.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_tomas_nervous",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tomás nervoso",
+      "description": "Tomás está nervoso desde o colapso, mas o nervosismo parece medo de ser acusado.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_chalice_blocking",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Marcação do cálice",
+      "description": "Na marcação da cena final, outra personagem entrega o cálice a Caetano.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_cashew_oil_in_chalice",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Óleo de castanha no cálice",
+      "description": "Há resíduo de óleo de castanha-de-caju no fundo do cálice, substância alheia ao líquido habitual de cena.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_caetano_hidden_allergy",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Alergia oculta de Caetano",
+      "description": "Caetano mantinha em segredo uma alergia severa a castanha-de-caju, registrada em seu rider médico.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lourenco_handed_chalice",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lourenço entrega o cálice",
+      "description": "Na marcação atual, é Lourenço quem entrega o cálice a Caetano durante a cena final.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_thirty_years_apart",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Trinta anos de ausência",
+      "description": "Lourenço retorna ao mesmo palco após trinta anos longe do Municipal, onde trabalhara com Caetano.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_chalice_left_props_table",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cálice saiu da mesa",
+      "description": "O cálice saiu da mesa de adereços antes da hora prevista, uma quebra de rotina de bastidores.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_ines_contract_depends",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Contrato de Inês depende da estreia",
+      "description": "O contrato de Inês no Municipal só se concretiza se a estreia acontecer, de modo que o colapso de Caetano a prejudica.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_tomas_warned",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Tomás foi avisado",
+      "description": "Um bilhete anônimo avisou Tomás de que Caetano ficaria 'indisposto', sugestão de planejamento prévio sem indicar autoria.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_murilo_rewrite_approved",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Reescrita de Murilo aprovada",
+      "description": "Caetano aprovou a reescrita de Murilo e os dois se reconciliaram antes do ensaio.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_old_playbill_caetano_vianna",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Programa antigo liga Caetano a Vianna",
+      "description": "Um programa de trinta anos atrás mostra Caetano e a atriz Vianna como co-protagonistas da mesma montagem.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_vianna_scandal_ruin",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Ruína de Vianna em escândalo",
+      "description": "A carreira de Vianna terminou pouco depois daquela montagem, sob um escândalo que marcou o teatro.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_consuelo_seen_near_props",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Consuelo vista perto dos adereços",
+      "description": "Inês viu Dona Consuelo parada perto da mesa de adereços durante o ensaio.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_consuelo_knew_allergy",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Consuelo sabia da alergia",
+      "description": "Consuelo sabia da alergia de Caetano por ter confeccionado figurinos adaptados, mas não imaginava usá-la contra ele.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_caetano_betrayed_vianna",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Caetano traiu Vianna",
+      "description": "Caetano orquestrou a delação que destruiu a carreira de Vianna trinta anos atrás.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_letters_prove_betrayal",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cartas provam a traição",
+      "description": "Cartas de Vianna descrevem em detalhe a traição calculada de Caetano, preservadas por décadas.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lourenco_found_letters",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lourenço encontrou as cartas",
+      "description": "Lourenço encontrou as cartas que provam a traição de Caetano contra sua mãe, e isso cementou seu plano.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lourenco_knew_allergy",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lourenço sabia da alergia",
+      "description": "Lourenço sabia da alergia oculta de Caetano porque sua mãe lhe contara.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_lourenco_brought_oil",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Lourenço trouxe o óleo",
+      "description": "O óleo de castanha-de-caju do cálice estava no frasco do kit de maquiagem de Lourenço.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_lourenco_full_confession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Confissão de Lourenço",
+      "description": "Lourenço confessa ter adulterado o cálice para que Caetano caísse em cena, como a mãe caiu em reputação.",
+      "importance": "required"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_a_ultima_cena",
+    "createdAt": "2026-07-02T00:00:00.000Z",
+    "updatedAt": "2026-07-02T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_poisoned",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem adulterou o cálice?",
+        "type": "character",
+        "options": [
+          {
+            "id": "ines",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Inês Drummond"
+          },
+          {
+            "id": "tomas",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Tomás Reis"
+          },
+          {
+            "id": "murilo",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Murilo Antunes"
+          },
+          {
+            "id": "consuelo",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Dona Consuelo"
+          },
+          {
+            "id": "lourenco",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Lourenço Vieira"
+          }
+        ]
+      },
+      {
+        "id": "why_done",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Por que o cálice foi adulterado?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "revenge_for_mother",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para se vingar da destruição que Caetano causou à mãe do culpado"
+          },
+          {
+            "id": "artistic_rivalry",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Por rivalidade artística com Caetano"
+          },
+          {
+            "id": "take_lead_role",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para que o reserva assumisse o papel principal"
+          },
+          {
+            "id": "cancel_premiere",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para cancelar a estreia e prejudicar a direção"
+          }
+        ]
+      },
+      {
+        "id": "how_done",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Como o cálice foi adulterado?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "cashew_oil_in_chalice",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Com óleo de castanha-de-caju colocado no cálice de cena"
+          },
+          {
+            "id": "swapped_prop",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Trocando o cálice por um adereço idêntico contaminado"
+          },
+          {
+            "id": "contaminated_makeup",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Contaminando a maquiagem usada por Caetano"
+          },
+          {
+            "id": "tainted_water",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Adulterando a água servida a Caetano nos bastidores"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "A cortina se abre",
+      "type": "full_truth",
+      "imageUrl": "histories/a-ultima-cena/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "who_poisoned": "lourenco",
+          "why_done": "revenge_for_mother",
+          "how_done": "cashew_oil_in_chalice"
+        },
+        "requiresClueIds": [
+          "clue_lourenco_full_confession",
+          "clue_lourenco_brought_oil",
+          "clue_cashew_oil_in_chalice"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Lourenço Vieira, filho de Vianna, adulterou o cálice com óleo de castanha-de-caju trazido em seu próprio kit de maquiagem, para que Caetano caísse em cena como a mãe caiu em reputação.",
+      "epilogue": "Lourenço não resiste, não foge. Apenas tira o casaco do conselheiro e o dobra sobre o braço, como quem encerra uma cena. Caetano se recupera no hospital; a estreia é remarcada sem ele. E, pela primeira vez em trinta anos, o nome de Vianna volta ao programa do Municipal — agora sem o peso do silêncio."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Meia-verdade nos bastidores",
+      "type": "partial_truth",
+      "imageUrl": "histories/a-ultima-cena/endings/partial_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "who_poisoned": "lourenco"
+        },
+        "requiresClueIds": ["clue_caetano_betrayed_vianna"]
+      },
+      "summary": "Você identificou Lourenço e o motivo ligado à mãe, Vianna, mas o método e o paradeiro da prova física ficaram em aberto.",
+      "epilogue": "Lourenço é apontado, mas sem o frasco e sem a confissão integral o caso se arrasta. Caetano se recupera e a sombra da antiga montagem volta a pairar sobre o Municipal, sem o fechamento que o palco merecia."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O suspeito errado",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/a-ultima-cena/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade. Inês perdia tudo com o cancelamento, Tomás só queria ficar longe de problemas, Murilo havia se reconciliado e Consuelo guardava segredos de figurino, não crimes.",
+      "epilogue": "O teatro fica em silêncio. A estreia é adiada e o cálice volta à mesa de adereços, guardado para uma cena que talvez nunca chegue. A queda de Caetano permanece sem dono — e a antiga montagem, sem desfecho."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 7,
+    "suggestConclusionAfterClues": 14,
+    "maxRecommendedInteractions": 22
+  }
+}

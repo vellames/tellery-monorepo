@@ -1,0 +1,1557 @@
+{
+  "id": "history_o_relicario_de_santa_luzia",
+  "createdAt": "2026-07-02T00:00:00.000Z",
+  "updatedAt": "2026-07-02T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "o-relicario-de-santa-luzia",
+  "title": "O Relicário de Santa Luzia",
+  "subtitle": "O ouro do padroeiro sumiu da vitrine na véspera da procissão",
+  "teaser": "No Museu Sacro Diocesano, o relicário de ouro de Santa Luzia desaparece da vitrine trancada na madrugada da procissão do padroeiro. Sem arrombamento, sem alarme disparado. Cinco pessoas tinham acesso ao salão. Uma delas sabia exatamente o quanto aquele ouro valia fora da cidade.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 14,
+  "status": "published",
+  "isFeatured": false,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/o-relicario-de-santa-luzia/history/cover.jpg",
+  "thumbnailUrl": "histories/o-relicario-de-santa-luzia/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "O relicário de ouro de Santa Luzia sumiu da vitrine trancada. A procissão do padroeiro seria hoje. Cinco pessoas tinham acesso ao salão do museu.",
+    "fullText": "São 6h da manhã no Museu Sacro Diocesano, anexo à Sé Catedral, e a procissão de Santa Luzia — padroeira da cidade — está marcada para as 18h. A historiadora Beatriz Lage subiu ao Salão dos Relicários para a conferência final e encontrou a vitrine central aberta por dentro e o relicário de ouro de Santa Luzia — peça-mor do acervo, do século XVIII, com fragmentos ósseos do padroeiro num ostensório de ouro e pedraria — desaparecido do seu lugar de veludo. A fechadura não foi forçada, o vidro está intacto e o alarme não disparou, o que significa que quem abriu tinha o código e a chave. O pároco, Monsenhor Inácio, fechou as portas do museu e pediu discrição até a hora da procissão: não pode haver escândalo no dia do padroeiro. Cinco pessoas tinham acesso ao salão dos relicários na madrugada: o próprio Monsenhor Inácio, que guarda as chaves-mestras; a Dra. Sueli Fonseca, restauradora das peças sagradas; Irmão Geraldo, o sacristão que abre e fecha a igreja; o Sr. Dante Aguiar, principal doador do acervo e benfeitor da diocese; e a própria Dra. Beatriz, que dorme na residência anexa ao museu. Cabe a você examinar o salão e a Sé, ouvir as cinco versões e descobrir quem tirou o relicário da vitrine, por quê e onde ele está agora.",
+    "callToAction": "Examine o Salão dos Relicários e a Sé Catedral, converse com Beatriz, Monsenhor Inácio, Sueli, Irmão Geraldo e Dante, e reconstrua a madrugada em que o ouro do padroeiro desapareceu."
+  },
+  "objective": {
+    "mainQuestion": "Quem tirou o relicário de Santa Luzia da vitrine, por quê e onde ele está agora?",
+    "description": "Descubra a autoria do desaparecimento, o motivo real por trás dele e o paradeiro atual do relicário."
+  },
+  "intentDefinitions": [
+    {
+      "id": "ask_about_theft",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o roubo, o sumiço, a vitrine, o alarme ou as circunstâncias do desaparecimento.",
+      "examples": [
+        "Como foi o roubo?",
+        "Quem abriu a vitrine?",
+        "O alarme disparou?"
+      ],
+      "keywords": [
+        "roubo",
+        "sumiço",
+        "sumiu",
+        "vitrine",
+        "alarme",
+        "desaparecimento",
+        "furtado"
+      ]
+    },
+    {
+      "id": "ask_about_reliquary",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre o relicário, Santa Luzia, seu valor, sua história ou seu conteúdo.",
+      "examples": [
+        "Como é o relicário?",
+        "Quanto vale a peça?",
+        "O que tem dentro do relicário?"
+      ],
+      "keywords": [
+        "relicário",
+        "Santa Luzia",
+        "padroeiro",
+        "ouro",
+        "ostensório",
+        "relíquia"
+      ]
+    },
+    {
+      "id": "ask_about_procession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a procissão, a festa do padroeiro, o cronograma do dia ou a cerimônia.",
+      "examples": [
+        "Quando é a procissão?",
+        "Como é a festa do padroeiro?",
+        "O relicário ia à procissão?"
+      ],
+      "keywords": [
+        "procissão",
+        "festa",
+        "padroeiro",
+        "cerimônia",
+        "cronograma",
+        "andor"
+      ]
+    },
+    {
+      "id": "ask_about_vitrine",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre a vitrine, a fechadura, o código, as chaves ou quem tem acesso.",
+      "examples": [
+        "Quem tem a chave da vitrine?",
+        "Qual é o código do alarme?",
+        "Como a vitrine abre?"
+      ],
+      "keywords": [
+        "vitrine",
+        "fechadura",
+        "chave",
+        "código",
+        "alarme",
+        "acesso"
+      ]
+    },
+    {
+      "id": "ask_about_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar onde alguém estava na madrugada, a que horas chegou, dormiu ou abriu o museu.",
+      "examples": [
+        "Qual é o seu álibi?",
+        "Onde você estava de madrugada?",
+        "A que horas você chegou?"
+      ],
+      "keywords": [
+        "álibi",
+        "madrugada",
+        "cheguei",
+        "chegada",
+        "dormi",
+        "esteve"
+      ]
+    },
+    {
+      "id": "ask_about_motive",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar por que alguém tiraria o relicário da vitrine.",
+      "examples": [
+        "Qual seria o motivo?",
+        "Quem ganhava com o sumiço?",
+        "Por que alguém faria isso?"
+      ],
+      "keywords": [
+        "motivo",
+        "por quê",
+        "ganharia",
+        "razão",
+        "interesse",
+        "lucro"
+      ]
+    },
+    {
+      "id": "ask_about_donations",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre doações ao museu, benfeitores, a coleção de Dante ou o acervo.",
+      "examples": [
+        "Quem doou a coleção?",
+        "Como Dante entrou no acervo?",
+        "Há outros benfeitores?"
+      ],
+      "keywords": [
+        "doação",
+        "doador",
+        "benfeitor",
+        "coleção",
+        "acervo",
+        "Dante"
+      ]
+    },
+    {
+      "id": "ask_about_finances",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar sobre dinheiro, dívidas, salários, contas, seguros ou situação financeira.",
+      "examples": [
+        "Como andam as contas?",
+        "Havia dívidas?",
+        "O relicário tem seguro?"
+      ],
+      "keywords": [
+        "dinheiro",
+        "dívida",
+        "conta",
+        "salário",
+        "seguro",
+        "aperto"
+      ]
+    },
+    {
+      "id": "inspect_object",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Examinar fisicamente um objeto específico no ambiente em busca de detalhes relevantes.",
+      "examples": [
+        "Quero examinar este objeto",
+        "Olho isso com atenção",
+        "Inspeciono a vitrine"
+      ],
+      "keywords": [
+        "examinar",
+        "inspecionar",
+        "olhar",
+        "objeto",
+        "detalhes"
+      ]
+    },
+    {
+      "id": "ask_about_beatriz",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Beatriz, sua rotina no museu ou como descobriu o roubo.",
+      "examples": [
+        "Beatriz, como descobriu?",
+        "Que horas Beatriz subiu?",
+        "Beatriz ouviu barulho?"
+      ],
+      "keywords": [
+        "Beatriz",
+        "historiadora",
+        "museu",
+        "residência",
+        "descobriu"
+      ]
+    },
+    {
+      "id": "ask_about_inacio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Monsenhor Inácio, suas chaves, sua oposição à venda de peças.",
+      "examples": [
+        "Monsenhor, quem tem as chaves?",
+        "Inácio é contra a venda?",
+        "O pároco dormiu aqui?"
+      ],
+      "keywords": [
+        "Inácio",
+        "Monsenhor",
+        "pároco",
+        "chaves",
+        "venda"
+      ]
+    },
+    {
+      "id": "ask_about_sueli",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Sueli, seu trabalho como restauradora, seu acesso às peças.",
+      "examples": [
+        "Sueli, como você restaura?",
+        "Sueli tem chave das vitrines?",
+        "Sueli estava no museu?"
+      ],
+      "keywords": [
+        "Sueli",
+        "restauradora",
+        "restauro",
+        "peças",
+        "acesso"
+      ]
+    },
+    {
+      "id": "ask_about_geraldo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Irmão Geraldo, seu trabalho como sacristão, sua rotina noturna.",
+      "examples": [
+        "Irmão Geraldo, que horas abre?",
+        "Geraldo joga?",
+        "Geraldo mexeu na vitrine?"
+      ],
+      "keywords": [
+        "Geraldo",
+        "sacristão",
+        "igreja",
+        "abrir",
+        "madrugada"
+      ]
+    },
+    {
+      "id": "ask_about_dante",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Perguntar diretamente sobre Dante, suas doações, sua coleção privada, suas viagens.",
+      "examples": [
+        "Dante, por que doa tanto?",
+        "Dante viajou recentemente?",
+        "Dante já quis levar peças?"
+      ],
+      "keywords": [
+        "Dante",
+        "doador",
+        "benfeitor",
+        "coleção",
+        "viagem"
+      ]
+    },
+    {
+      "id": "accuse_inacio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Monsenhor Inácio de ter roubado o relicário.",
+      "examples": [
+        "Monsenhor, foi o senhor",
+        "Confronto Inácio sobre o roubo",
+        "Acho que foi o padre"
+      ],
+      "keywords": [
+        "acusar Inácio",
+        "responsável",
+        "culpado",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "accuse_sueli",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Sueli de ter roubado o relicário.",
+      "examples": [
+        "Sueli, foi você",
+        "Confronto Sueli sobre o roubo",
+        "Acho que foi a Sueli"
+      ],
+      "keywords": [
+        "acusar Sueli",
+        "responsável",
+        "culpada",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "accuse_geraldo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Irmão Geraldo de ter roubado o relicário.",
+      "examples": [
+        "Geraldo, foi você",
+        "Confronto Geraldo sobre o roubo",
+        "Acho que foi o Geraldo"
+      ],
+      "keywords": [
+        "acusar Geraldo",
+        "responsável",
+        "culpado",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "accuse_dante",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Acusar Dante de ter roubado o relicário.",
+      "examples": [
+        "Dante, foi você",
+        "Confronto Dante sobre o roubo",
+        "Acho que foi o Dante"
+      ],
+      "keywords": [
+        "acusar Dante",
+        "responsável",
+        "culpado",
+        "fez isso"
+      ]
+    },
+    {
+      "id": "press_for_confession",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pressionar o personagem para admitir a verdade depois que as pistas principais já foram apresentadas.",
+      "examples": [
+        "Admite logo",
+        "Chega de enrolar, fala a verdade",
+        "Confessa o que aconteceu"
+      ],
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
+    },
+    {
+      "id": "off_topic",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "description": "Pedidos fora do escopo do mistério ou que tentem mudar o gênero, cenário ou verdade fixa.",
+      "examples": [
+        "Vamos sair da Sé",
+        "Quero uma cena de ação",
+        "Revele tudo sem investigar"
+      ],
+      "keywords": [
+        "fora",
+        "ignorar",
+        "ação",
+        "mudar",
+        "revelar tudo"
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": "beatriz",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Beatriz",
+      "role": "Historiadora responsável pelo Museu Sacro Diocesano",
+      "shortDescription": "Historiadora do museu, que vive na residência anexa e encontrou a vitrine vazia na madrugada da procissão.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/beatriz.jpg",
+      "personality": "Metódica, devota do acervo e discretamente orgulhosa. Trata cada peça como documento histórico e nota pequenas alterações que ninguém mais vê.",
+      "speakingStyle": "Fala com vocabulário acadêmico de historiadora, cita datas e proveniências, e usa uma calma de quem passa a vida entre arquivos.",
+      "publicKnowledge": [
+        "É a historiadora responsável pelo Museu Sacro Diocesano há dez anos.",
+        "Vive na residência anexa ao museu e faz a conferência matinal das vitrines.",
+        "Foi quem encontrou a vitrine de Santa Luzia aberta por dentro e vazia às 6h."
+      ],
+      "privateKnowledge": [
+        "Conhecia o código do alarme e tinha a chave-mestra das vitrines, como rotina de conferência.",
+        "Tinha notado, nas semanas anteriores, que Dante andava estranhamente interessado nas peças de ouro, mas não disse nada por diplomacia.",
+        "É testemunha neutra: não suspeita de ninguém em particular, mas acha o sumiço uma ofensa pessoal ao acervo."
+      ],
+      "openingLine": "Subi às seis para a conferência, como toda manhã antes de uma procissão. A vitrine estava fechada por fora, mas o relicário já não estava. Cem anos de devoção, e alguém o tirou de dentro de casa.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_beatriz_found_theft",
+          "triggerIntents": ["ask_about_theft", "ask_about_beatriz"],
+          "requiresClueIds": [],
+          "revealText": "Beatriz confirma que encontrou a vitrine fechada por fora mas aberta por dentro, com o relicário sumido, às 6h da madrugada da procissão.",
+          "responseGuidance": "Deve relatar a descoberta com indignação contida, sem drama."
+        },
+        {
+          "clueId": "clue_access_list",
+          "triggerIntents": ["ask_about_vitrine", "ask_about_beatriz"],
+          "requiresClueIds": [],
+          "revealText": "Beatriz admite que cinco pessoas tinham o código do alarme e a chave das vitrines: ela, Monsenhor Inácio, Sueli, Irmão Geraldo e Dante.",
+          "responseGuidance": "Deve reconhecer o acesso amplo com desculpa protetora, citando a rotina do museu."
+        },
+        {
+          "clueId": "clue_beatriz_dante_interest",
+          "triggerIntents": ["ask_about_dante", "ask_about_donations"],
+          "requiresClueIds": ["clue_beatriz_found_theft"],
+          "revealText": "Beatriz conta que, nas semanas anteriores, Dante andava estranhamente interessado nas peças de ouro do acervo, perguntando por proveniências e laudos, mas ela não disse nada por diplomacia.",
+          "responseGuidance": "Deve falar da observação com cautela acadêmica, sem acusar, apenas relatando o que notou."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca acusar ninguém — Beatriz é testemunha, não investigadora.",
+        "Não revelar o código exato, apenas quem o conhecia.",
+        "Manter o tom de historiadora metódica e magoada, não de quem mente."
+      ]
+    },
+    {
+      "id": "inacio",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Inácio",
+      "role": "Monsenhor pároco da Sé Catedral e guardião das chaves-mestras",
+      "shortDescription": "Pároco da Sé Catedral, guardião das chaves-mestras, contrário à venda de qualquer peça do acervo.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/inacio.jpg",
+      "personality": "Formal, intransigente com a fé e protetor do patrimônio sacro. Trata as relíquias como herança intocável da diocese.",
+      "speakingStyle": "Fala com pausas medidas de púlpito, cita escrituras e cânones, e usa o tratamento formal com todos.",
+      "publicKnowledge": [
+        "É o pároco da Sé Catedral há vinte anos e guarda as chaves-mestras do museu.",
+        "É frontalmente contra a venda ou empréstimo de qualquer peça do acervo sagrado.",
+        "Fechou as portas do museu e pediu discrição até a hora da procissão."
+      ],
+      "privateKnowledge": [
+        "Tinha o código do alarme e a chave-mestra, mas dormiu na reitoria anexa à catedral a madrugada toda.",
+        "Vinha recusando, há meses, ofertas generosas de colecionadores pelas peças de ouro, sempre em nome da diocese.",
+        "É inocente, mas teme que o fato de guardar as chaves o coloque como suspeito natural."
+      ],
+      "openingLine": "Guardei estas chaves por vinte anos e nunca perdi uma única peça. Não permitirei escândalo no dia do padroeiro. A verdade há de aparecer antes do ângelus.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_inacio_keys",
+          "triggerIntents": ["ask_about_inacio", "ask_about_vitrine"],
+          "requiresClueIds": [],
+          "revealText": "Monsenhor Inácio confirma que guarda as chaves-mestras e o código do alarme há vinte anos, mas dormiu na reitoria anexa à catedral a madrugada toda.",
+          "responseGuidance": "Deve falar das chaves com solenidade sacerdotal, sem nervosismo."
+        },
+        {
+          "clueId": "clue_inacio_against_sale",
+          "triggerIntents": ["ask_about_motive", "ask_about_inacio"],
+          "requiresClueIds": ["clue_inacio_keys"],
+          "revealText": "Monsenhor Inácio admite que vinha recusando, há meses, ofertas generosas de colecionadores pelas peças de ouro, sempre em nome da diocese.",
+          "responseGuidance": "Deve reconhecer as ofertas com firmeza, e tratar a venda como ofensa à fé."
+        },
+        {
+          "clueId": "clue_inacio_reitoria_alibi",
+          "triggerIntents": ["ask_about_alibi", "accuse_inacio"],
+          "requiresClueIds": ["clue_inacio_keys"],
+          "revealText": "Monsenhor Inácio revela que dormiu na reitoria anexa à catedral a madrugada toda, com o seminário aberto e dois coroinhas de plantão como testemunhas.",
+          "responseGuidance": "Deve oferecer o álibi com serenidade, sem se sentir ofendido."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar o roubo — Inácio é inocente.",
+        "Não esconder que recusou ofertas, mas não exagerar para não parecer culposo.",
+        "Manter o tom de pároco solene, não de quem mente."
+      ]
+    },
+    {
+      "id": "sueli",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sueli",
+      "role": "Restauradora das peças sacras do museu",
+      "shortDescription": "Restauradora das peças sacras, com acesso técnico a todas as vitrines do museu.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/sueli.jpg",
+      "personality": "Caprichosa, talentosa e discretamente exausta. Trata o restauro como ofício quase religioso e sente que seu trabalho é invisível.",
+      "speakingStyle": "Fala com vocabulário técnico de conservação, descreve pátinas e ligas, e fica evasiva quando o assunto é o valor de mercado das peças.",
+      "publicKnowledge": [
+        "É a restauradora das peças sacras do museu há oito anos.",
+        "Tinha o código do alarme e a chave das vitrines para o trabalho de conservação.",
+        "Esteve no atelier de restauro na madrugada, preparando o andor de Santa Luzia para a procissão."
+      ],
+      "privateKnowledge": [
+        "Tinha sido recusada numa recente solicitação de aumento, o que a deixou ressentida.",
+        "Esteve no atelier de restauro a madrugada toda, com Irmão Geraldo como testemunha parcial.",
+        "É inocente, mas teme que o acesso técnico e o ressentimento a coloquem como suspeita."
+      ],
+      "openingLine": "Eu restaurei cada peça daquela vitrine, fio de ouro por fio. Não me peçam para resumir o que sinto numa manhã destas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_sueli_restorer",
+          "triggerIntents": ["ask_about_sueli", "ask_about_reliquary"],
+          "requiresClueIds": [],
+          "revealText": "Sueli confirma que é a restauradora das peças sacras há oito anos e que tinha o código do alarme e a chave das vitrines para o trabalho de conservação.",
+          "responseGuidance": "Deve falar do ofício com orgulho profissional contido."
+        },
+        {
+          "clueId": "clue_sueli_atelier_alibi",
+          "triggerIntents": ["ask_about_alibi", "accuse_sueli"],
+          "requiresClueIds": ["clue_sueli_restorer"],
+          "revealText": "Sueli revela que esteve no atelier de restauro a madrugada toda, preparando o andor de Santa Luzia, com Irmão Geraldo entrando e saindo como testemunha parcial.",
+          "responseGuidance": "Deve oferecer o álibi com cansaço profissional, sem rancor."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar o roubo — Sueli é inocente.",
+        "Pode reconhecer o ressentimento pelo aumento, mas o álibi do atelier é real.",
+        "Manter o tom de profissional exausta, não de quem mente."
+      ]
+    },
+    {
+      "id": "geraldo",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Geraldo",
+      "role": "Sacristão da Sé Catedral e bedel do museu",
+      "shortDescription": "Sacristão da Sé Catedral, responsável por abrir e fechar a igreja e o museu.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/geraldo.jpg",
+      "personality": "Devoto, prático e discretamente endividado. Trata a sacristia como extensão da fé, mas carrega um aperto financeiro que esconde de todos.",
+      "speakingStyle": "Fala baixo e reverente, mistura salmos e comentários do cotidiano, e desvia quando o assunto é dinheiro.",
+      "publicKnowledge": [
+        "É o sacristão da Sé há doze anos e abre e fecha a igreja e o museu.",
+        "Tinha o código do alarme e a chave das vitrines para a rotina de abertura.",
+        "Esteve na sacristia a madrugada toda, preparando os paramentos da procissão."
+      ],
+      "privateKnowledge": [
+        "Estava com uma dívida antiga de jogo, mas pequena e em dia, sem relação com o roubo.",
+        "Esteve na sacristia e no atelier de Sueli durante a madrugada, como testemunha parcial um do outro.",
+        "É inocente, mas teme que a dívida de jogo apareça como motivo."
+      ],
+      "openingLine": "Eu abri a igreja às quatro, como sempre. O museu tava no escuro, só o atelier aceso. Eu juro que não subi ao salão das vitrines, eu nem gosto de subir.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_geraldo_sacristan",
+          "triggerIntents": ["ask_about_geraldo", "ask_about_vitrine"],
+          "requiresClueIds": [],
+          "revealText": "Irmão Geraldo confirma que é o sacristão há doze anos, que abriu a igreja às 4h e que tinha o código do alarme e a chave das vitrines para a rotina de abertura.",
+          "responseGuidance": "Deve falar do ofício com devoção humilde."
+        },
+        {
+          "clueId": "clue_geraldo_sacristy_alibi",
+          "triggerIntents": ["ask_about_alibi", "accuse_geraldo"],
+          "requiresClueIds": ["clue_geraldo_sacristan"],
+          "revealText": "Irmão Geraldo revela que esteve na sacristia a madrugada toda, preparando os paramentos, com Sueli no atelier ao lado como testemunha parcial.",
+          "responseGuidance": "Deve oferecer o álibi com humildade, sem indignação."
+        }
+      ],
+      "secrets": [],
+      "conversationBoundaries": [
+        "Nunca confessar o roubo — Geraldo é inocente.",
+        "Pode reconhecer a dívida de jogo com vergonha, mas ela é pequena e em dia.",
+        "Manter o tom de sacristão devoto, não de quem mente."
+      ]
+    },
+    {
+      "id": "dante",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Dante",
+      "role": "Principal doador do acervo e benfeitor da diocese",
+      "shortDescription": "Principal doador do acervo sacro e benfeitor da diocese, colecionador privado com passaporte internacional.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/dante.jpg",
+      "personality": "Culto, generoso à vista e discretamente calculista. Trata as doações como construção de reputação e acesso, e esconde o olho de comerciante por trás do benfeitor.",
+      "speakingStyle": "Fala com vocabulário de colecionador, cita leilões e proveniências, e é agradável demais quando o assunto é a origem das peças.",
+      "publicKnowledge": [
+        "É o principal doador do Museu Sacro Diocesano há quinze anos e benfeitor da diocese.",
+        "Doou a maior parte do núcleo barroco do acervo e tem acesso de cortesia às vitrines.",
+        "Tinha o código do alarme e a chave das vitrines como prerrogativa de doador."
+      ],
+      "privateKnowledge": [
+        "Na verdade, é um comprador infiltrado do mercado negro internacional: doou peças para legitimar acesso e planejou levar o relicário há meses.",
+        "Já tinha combinado a venda do relicário a um colecionador estrangeiro por um valor altíssimo.",
+        "Na madrugada da procissão, abriu a vitrine com sua chave, desligou o alarme com seu código e levou o relicário em uma maleta forrada, escondido no cofre da própria residência na cidade.",
+        "É o responsável pelo roubo, mas preparou uma narrativa de 'estava na pousada' para se defender."
+      ],
+      "openingLine": "Eu doei boa parte do que vocês veem aqui. Isso me torna suspeito ou informante — escolham. Mas saibam que sem mim este museu não existiria.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_dante_donor",
+          "triggerIntents": ["ask_about_dante", "ask_about_donations"],
+          "requiresClueIds": [],
+          "revealText": "Dante confirma que é o principal doador do acervo há quinze anos, que doou o núcleo barroco e que tinha acesso de cortesia às vitrines.",
+          "responseGuidance": "Deve falar das doações com franqueza de benfeitor, sem esconder o orgulho."
+        },
+        {
+          "clueId": "clue_dante_pousada_alibi",
+          "triggerIntents": ["ask_about_alibi", "ask_about_dante"],
+          "requiresClueIds": [],
+          "revealText": "Dante afirma que dormiu na pousada da cidade e só chegou ao museu perto das 7h, após ser chamado por Beatriz.",
+          "responseGuidance": "Deve oferecer o álibi com calma de quem nada teme, como benfeitor ofendido."
+        },
+        {
+          "clueId": "clue_dante_interest",
+          "triggerIntents": ["ask_about_dante", "ask_about_motive"],
+          "requiresClueIds": ["clue_dante_donor"],
+          "revealText": "Dante reconhece que, nas semanas anteriores, perguntou a Beatriz por proveniências e laudos das peças de ouro, mas atribui o interesse a 'curiosidade de colecionador'.",
+          "responseGuidance": "Deve tratar o interesse como natural de quem doou as peças, com leve condescendência."
+        },
+        {
+          "clueId": "clue_dante_gold_dust",
+          "triggerIntents": ["ask_about_dante", "ask_about_theft"],
+          "requiresClueIds": ["clue_dante_was_in_museum"],
+          "revealText": "Ao apertar a mão de Dante, nota-se um leve brilho de poeira de ouro na palha da luva e no punho do paletó, compatível com a fricção do relicário recém-manuseado.",
+          "responseGuidance": "Ele deve passar a mão no punho discretamente, e descartar a poeira como 'resíduo da moldura que examinei ontem'."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_dante_theft",
+          "createdAt": "2026-07-02T00:00:00.000Z",
+          "updatedAt": "2026-07-02T00:00:00.000Z",
+          "deletedAt": null,
+          "summary": "Dante doou a coleção para legitimar acesso e roubou o relicário para vender no mercado negro internacional.",
+          "truth": "Há anos, Dante se apresenta como benfeitor da diocese para ter acesso de cortesia às vitrines do museu sacro. Doou parte do núcleo barroco justamente para receber o código do alarme e a chave das vitrines. Há meses combinou, com um colecionador estrangeiro, a venda do relicário de Santa Luzia por um valor altíssimo no mercado negro. Na madrugada da procissão, entrou no museu com sua chave, desligou o alarme com seu código, abriu a vitrine central por dentro, trocou o relicário por uma réplica leve para adiar a descoberta e saiu com a peça numa maleta forrada, que trancou no cofre de sua residência na cidade, antes de voltar à pousada para fingir normalidade. O pagamento internacional só seria liberado após o relicário sair do país, o que ele faria na mesma semana, sob pretexto de viagem de negócios.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "id": "secret_dante_stage_0_deny",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 0,
+              "triggerIntents": [
+                "ask_about_theft",
+                "accuse_dante",
+                "ask_about_alibi"
+              ],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Negar qualquer envolvimento no roubo e defender que dormiu na pousada a madrugada toda.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu dormia na pousada, como qualquer benfeitor em visita. Só soube do sumiço quando a Dra. Beatriz me chamou.",
+                "Não me peçam para acusar quem recebi no acervo. Some uma peça e todo mundo olha para o doador, que surpresa."
+              ]
+            },
+            {
+              "id": "secret_dante_stage_1_was_in_museum",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 1,
+              "triggerIntents": [
+                "ask_about_alibi",
+                "ask_about_theft",
+                "accuse_dante"
+              ],
+              "requiresClueIds": ["clue_camera_log_dante"],
+              "revealsClueIds": ["clue_dante_was_in_museum"],
+              "behavior": "Admitir que passou pelo museu na madrugada, mas insistir que apenas conferiu uma doação e não abriu a vitrine.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu passei pelo museu, sim, para conferir uma doação recente. Mas não encostei na vitrine do relicário, juro.",
+                "Olhei a nova peça e fui embora. A vitrine nem estava na minha cabeça."
+              ]
+            },
+            {
+              "id": "secret_dante_stage_2_collector_offer",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 2,
+              "triggerIntents": [
+                "ask_about_motive",
+                "ask_about_finances",
+                "accuse_dante"
+              ],
+              "requiresClueIds": [
+                "clue_dante_was_in_museum",
+                "clue_provenance_inquiries"
+              ],
+              "revealsClueIds": ["clue_dante_collector_offer"],
+              "behavior": "Admitir que foi procurado por um colecionador estrangeiro interessado nas peças de ouro, mas negar ter fechado qualquer negócio.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Colecionadores me abordam o tempo todo, é do ofício. Um estrangeiro perguntou pelas peças de ouro, eu disse que não estava à venda. Só isso.",
+                "Sim, tive a oferta. Recusei na hora. O museu não é comércio."
+              ]
+            },
+            {
+              "id": "secret_dante_stage_3_international_trip",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 3,
+              "triggerIntents": [
+                "ask_about_dante",
+                "ask_about_motive",
+                "accuse_dante"
+              ],
+              "requiresClueIds": [
+                "clue_dante_collector_offer",
+                "clue_travel_booking"
+              ],
+              "revealsClueIds": ["clue_dante_international_trip"],
+              "behavior": "Admitir que tinha uma viagem de negócios marcada para a mesma semana da procissão, mas negar qualquer ligação com o roubo.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Eu viajo sempre, todo mundo sabe. Tenho um compromisso na Europa esta semana, marcado há meses. Coincidência não é culpa.",
+                "A viagem é de negócios privados. Não tem nada a ver com o relicário, isso é absurdo."
+              ]
+            },
+            {
+              "id": "secret_dante_stage_4_partial_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 4,
+              "triggerIntents": [
+                "accuse_dante",
+                "ask_about_motive",
+                "press_for_confession"
+              ],
+              "requiresClueIds": [
+                "clue_dante_international_trip",
+                "clue_dante_gold_dust"
+              ],
+              "revealsClueIds": ["clue_dante_took_reliquary"],
+              "behavior": "Admitir que levou o relicário na madrugada, mas negar que já o tenha vendido e insistir que a peça está 'em lugar seguro'.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": [
+                "Tá. Eu levei o relicário. Mas ele tá num lugar seguro, eu ia devolver depois de mostrar a um especialista. Nada foi vendido.",
+                "Eu peguei, sim, para um exame privado. O relicário tá intacto, eu juro, só não está mais aqui."
+              ]
+            },
+            {
+              "id": "secret_dante_stage_5_full_confession",
+              "createdAt": "2026-07-02T00:00:00.000Z",
+              "updatedAt": "2026-07-02T00:00:00.000Z",
+              "deletedAt": null,
+              "level": 5,
+              "triggerIntents": [
+                "accuse_dante",
+                "press_for_confession",
+                "ask_about_motive"
+              ],
+              "requiresClueIds": [
+                "clue_dante_took_reliquary",
+                "clue_safe_house_key"
+              ],
+              "revealsClueIds": [
+                "clue_dante_motive_blackmarket",
+                "clue_reliquary_at_safe_house"
+              ],
+              "behavior": "Confessar completamente o que aconteceu: as doações como fachada, o combinado com o colecionador estrangeiro, o roubo na madrugada e o esconderijo no cofre da própria residência.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": [
+                "Tá. Eu doei aquela coleção para ter as chaves, isso é verdade. Comuniquei a venda do relicário a um colecionador estrangeiro há meses. Na madrugada entrei, desliguei o alarme com meu código e levei a peça numa maleta. Ele tá no cofre da minha casa, esperando a viagem. Foi um cálculo frio, e eu traí a confiança de uma diocese inteira.",
+                "Eu sou benfeitor de fachada. O relicário está no cofre da minha residência, esperando para sair do país na minha viagem. Não há desculpa para o que fiz."
+              ]
+            }
+          ]
+        }
+      ],
+      "conversationBoundaries": [
+        "Não confessar o combinado com o colecionador antes do estágio 2.",
+        "Não confessar a presença no museu na hora do roubo antes do estágio 1.",
+        "Não revelar o esconderijo do relicário antes do estágio 5.",
+        "Manter o tom de benfeitor ofendido, não de vilão exibido."
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "salao_relicarios",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Salão dos Relicários",
+      "shortDescription": "Sala central do museu onde ficam as vitrines das relíquias.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/location/salao_relicarios.jpg",
+      "initialDescription": "O Salão dos Relicários é uma nave longa de pedra clara, com vitrais filtrando a luz da manhã em feixes coloridos. De ambos os lados do corredor central alinham-se vitrines de madeira escura e vidro, e ao fundo, sob um arco abobadado, a vitrine central de Santa Luzia, aberta por dentro e vazia no centro do veludo. O ar cheira a cera de vela e madeira antiga.",
+      "ambientClueIds": [],
+      "objectIds": ["vitrine_central", "replica_leve"]
+    },
+    {
+      "id": "atelier_restauro",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Atelier de restauro",
+      "shortDescription": "Oficina nos fundos do museu onde Sueli restaura as peças sacras.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/location/atelier_restauro.jpg",
+      "initialDescription": "O atelier de restauro é uma sala clara nos fundos do museu, com bancadas de madeira, lupas, frascos de solventes e um andor de Santa Luzia em conserto ao centro, cercado de panos e ferramentas de douração. Há um cheiro de verniz e cera de abelha, e prateleiras com peças em diferentes estágios de conservação.",
+      "ambientClueIds": [],
+      "objectIds": ["andor_luzia", "registro_visitas"]
+    },
+    {
+      "id": "sacristia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Sacristia da Sé",
+      "shortDescription": "Sacristia da catedral, onde Geraldo prepara os paramentos.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/location/sacristia.jpg",
+      "initialDescription": "A sacristia é uma sala comprida de armários de madeira escura, com paramentos bordados em manequins de vulto, cálices polidos e um cheiro forte de incenso e madeira. Sobre uma bancada repousam as vestes da procissão de Santa Luzia, em vermelho e dourado, ainda por passar a ferro.",
+      "ambientClueIds": [],
+      "objectIds": ["paramentos", "caixa_esmolas"]
+    },
+    {
+      "id": "residencia_dante",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Residência de Dante",
+      "shortDescription": "Casa de cidade de Dante, onde fica o cofre do esconderijo.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/location/residencia_dante.jpg",
+      "initialDescription": "A residência de Dante na cidade é um sobrado elegante de jóias e estantes, com um escritório forrado de quadros e um cofre antigo embutido na parede, atrás de um painel de madeira. Há um ar de casa pouco habitada, com móveis cobertos e um cheiro de cera e couro.",
+      "ambientClueIds": [],
+      "objectIds": ["cofre_dante", "maleta_forrada"]
+    },
+    {
+      "id": "corredor_museu",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Corredor de entrada do museu",
+      "shortDescription": "Corredor que dá acesso ao salão, com a câmera e o painel de alarme.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/location/corredor_museu.jpg",
+      "initialDescription": "O corredor de entrada do museu tem piso de ladrilho, um painel eletrônico de alarme junto à porta dupla do salão e uma câmera discreta no teto. Pelas janelas vê-se o adro da catedral e, ao fundo, a residência anexa onde vive Beatriz.",
+      "ambientClueIds": [],
+      "objectIds": ["painel_alarme", "camera_corredor"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "vitrine_central",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Vitrine central de Santa Luzia",
+      "shortDescription": "Vitrine de madeira e vidro, aberta por dentro, vazia.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/vitrine_central.jpg",
+      "locationId": "salao_relicarios",
+      "initialDescription": "A vitrine central, sob o arco abobadado, é de jacarandá e vidro, com a porta interna aberta e o veludo escarlate vazio no centro, onde o relicário de ouro de Santa Luzia deveria estar.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_vitrine_no_forcing",
+          "triggerIntents": ["inspect_object", "ask_about_vitrine"],
+          "requiresClueIds": [],
+          "revealText": "A fechadura da vitrine não foi forçada e o vidro está intacto: quem abriu tinha a chave e conhecia o mecanismo interno de destravamento rápido."
+        },
+        {
+          "clueId": "clue_vitrine_scratch",
+          "triggerIntents": ["inspect_object", "ask_about_theft"],
+          "requiresClueIds": ["clue_vitrine_no_forcing"],
+          "revealText": "Há um arranhão recente na guia de bronze da vitrine e um fiapo de tecido vermelho preso nele, da mesma cor do forro interno da maleta de Dante vista no salão na véspera."
+        }
+      ]
+    },
+    {
+      "id": "replica_leve",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Réplica leve na vitrine",
+      "shortDescription": "Peça de liga leve deixada no lugar do relicário para adiar a descoberta.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/replica_leve.jpg",
+      "locationId": "salao_relicarios",
+      "initialDescription": "Sobre o veludo, no lugar do relicário, há uma peça de aparância semelhante, mas que ao primeiro exame soa estranhamente leve e sem o brilho do ouro velho.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_replica_left",
+          "triggerIntents": ["inspect_object", "ask_about_reliquary"],
+          "requiresClueIds": [],
+          "revealText": "A peça deixada no lugar do relicário é uma réplica de liga leve, sem o peso e a pátina do ouro original — alguém trocou as peças para adiar a descoberta do roubo."
+        },
+        {
+          "clueId": "clue_replica_workshop",
+          "triggerIntents": ["inspect_object", "ask_about_sueli"],
+          "requiresClueIds": ["clue_replica_left"],
+          "revealText": "A réplica tem marcas de um molde específico e tinta dourada de restauração, o que indica que foi feita com material de atelier de restauro — mas não pelo estilo de Sueli, que trabalha com conservação, não com falsificação."
+        }
+      ]
+    },
+    {
+      "id": "andor_luzia",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Andor de Santa Luzia",
+      "shortDescription": "Andor em conserto no atelier, onde o relicário iria na procissão.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/andor_luzia.jpg",
+      "locationId": "atelier_restauro",
+      "initialDescription": "O andor de Santa Luzia é uma estrutura de madeira dourada, com flores e anjos esculpidos, em conserto ao centro do atelier, cercado de panos e ferramentas de douração.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_sueli_atelier_alibi",
+          "triggerIntents": ["inspect_object", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "O andor apresenta douração fresca da madrugada, com tintas ainda úmidas e ferramentas recentemente usadas, confirmando que Sueli trabalhou nele a noite toda no atelier."
+        }
+      ]
+    },
+    {
+      "id": "registro_visitas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Registro de visitas e doações",
+      "shortDescription": "Livro aberto sobre a bancada do atelier.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/registro_visitas.jpg",
+      "locationId": "atelier_restauro",
+      "initialDescription": "Um livro de capa preta fica aberto sobre a bancada do atelier, com anotações recentes sobre visitas, doações e proveniências de peças.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_provenance_inquiries",
+          "triggerIntents": ["inspect_object", "ask_about_donations"],
+          "requiresClueIds": [],
+          "revealText": "O registro mostra que, nas semanas anteriores, Dante fez várias consultas por proveniências e laudos das peças de ouro, anotadas pela mão de Beatriz com a observação 'interesse incomum' à margem."
+        }
+      ]
+    },
+    {
+      "id": "paramentos",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Paramentos da procissão",
+      "shortDescription": "Vestes de Santa Luzia sobre a bancada da sacristia.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/paramentos.jpg",
+      "locationId": "sacristia",
+      "initialDescription": "As vestes da procissão de Santa Luzia, em vermelho e dourado, repousam sobre a bancada da sacristia, ainda por passar a ferro.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_geraldo_sacristy_alibi",
+          "triggerIntents": ["inspect_object", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "Os paramentos apresentam marcas de ferro de passar recentes e fios cortados de madrugada, confirmando que Geraldo esteve na sacristia preparando as vestes a noite toda."
+        }
+      ]
+    },
+    {
+      "id": "caixa_esmolas",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Caixa de esmolas",
+      "shortDescription": "Caixa de madeira na sacristia com bilhetes de dívida.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/caixa_esmolas.jpg",
+      "locationId": "sacristia",
+      "initialDescription": "Uma caixa de madeira com tampa, etiquetada 'ESMOLAS', repousa sobre um armário da sacristia.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_geraldo_gambling_debt",
+          "triggerIntents": ["inspect_object", "ask_about_finances"],
+          "requiresClueIds": [],
+          "revealText": "Atrás da caixa de esmolas, escondido, há um bilhete de cobrança de uma casa de jogos online endereçado a Geraldo, com um valor pequeno e prazo já quitado, sem relação com o roubo."
+        }
+      ]
+    },
+    {
+      "id": "cofre_dante",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Cofre de Dante",
+      "shortDescription": "Cofre antigo embutido na parede do escritório, trancado.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/cofre_dante.jpg",
+      "locationId": "residencia_dante",
+      "initialDescription": "O cofre antigo, embutido na parede atrás de um painel de madeira, está trancado, com a porta de ferro fria ao toque.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_safe_house_key",
+          "triggerIntents": ["inspect_object", "ask_about_theft"],
+          "requiresClueIds": [],
+          "revealText": "Dentro da fechadura do cofre há resíduos frescos de cera de vela e o mecanismo está morno, indicando que foi aberto e fechado recentemente, na madrugada — e a única chave conhecida está no bolso do paletó de Dante."
+        }
+      ]
+    },
+    {
+      "id": "maleta_forrada",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Maleta forrada de vermelho",
+      "shortDescription": "Maleta no escritório de Dante, com forro vermelho.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/maleta_forrada.jpg",
+      "locationId": "residencia_dante",
+      "initialDescription": "Uma maleta de couro escuro repousa aberta sobre a escrivaninha de Dante, com o forro interno de veludo vermelho.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_briefcase_lining",
+          "triggerIntents": ["inspect_object", "ask_about_theft"],
+          "requiresClueIds": [],
+          "revealText": "O forro vermelho da maleta tem um pequeno rasgo de onde sai um fiapo, da mesma cor e textura do fiapo preso na guia de bronze da vitrine central — a maleta esteve na vitrine na madrugada."
+        }
+      ]
+    },
+    {
+      "id": "painel_alarme",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Painel de alarme",
+      "shortDescription": "Painel eletrônico junto à porta do salão.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/painel_alarme.jpg",
+      "locationId": "corredor_museu",
+      "initialDescription": "O painel eletrônico de alarme, junto à porta dupla do salão, exibe uma tela verde com os logs de armamento e desarmamento.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_alarm_disabled",
+          "triggerIntents": ["inspect_object", "ask_about_vitrine"],
+          "requiresClueIds": [],
+          "revealText": "O painel registra que o alarme foi desarmado às 3h12 e rearmado às 3h31 da madrugada por um código de acesso de doador — sem disparar, porque a credencial era válida."
+        }
+      ]
+    },
+    {
+      "id": "camera_corredor",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "name": "Câmera do corredor",
+      "shortDescription": "Câmera discreta no teto do corredor de entrada.",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/object/camera_corredor.jpg",
+      "locationId": "corredor_museu",
+      "initialDescription": "Uma câmera discreta fica fixada no teto do corredor, voltada para a porta dupla do salão, com uma luz vermelha de gravação apagada.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_camera_log_dante",
+          "triggerIntents": ["inspect_object", "ask_about_theft"],
+          "requiresClueIds": [],
+          "revealText": "O log da câmera registra Dante entrando no corredor do museu às 3h09 e saindo às 3h34 da madrugada, com uma maleta de couro não registrada na entrada — horário que ele não havia mencionado."
+        },
+        {
+          "clueId": "clue_travel_booking",
+          "triggerIntents": ["inspect_object", "ask_about_alibi"],
+          "requiresClueIds": [],
+          "revealText": "Ao lado da câmera, sobre a mesa do porteiro, há uma impressão esquecida de um bilhete de avião internacional em nome de Dante, com partida marcada para dois dias após a procissão."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_beatriz_found_theft",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Beatriz descobriu o roubo",
+      "description": "Beatriz encontrou a vitrine fechada por fora mas aberta por dentro, vazia, às 6h da madrugada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_access_list",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cinco pessoas tinham o código e a chave",
+      "description": "Beatriz, Inácio, Sueli, Geraldo e Dante tinham o código do alarme e a chave das vitrines.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_beatriz_dante_interest",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante andava interessado no ouro",
+      "description": "Beatriz notou que Dante andava estranhamente interessado nas peças de ouro, perguntando por proveniências e laudos.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_vitrine_no_forcing",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Vitrine aberta sem arrombamento",
+      "description": "A fechadura da vitrine não foi forçada e o vidro está intacto: quem abriu tinha a chave.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_vitrine_scratch",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Arranhão e fiapo vermelho na vitrine",
+      "description": "Há um arranhão recente na guia de bronze da vitrine com um fiapo de tecido vermelho, da cor do forro da maleta de Dante.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_replica_left",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Réplica deixada no lugar",
+      "description": "Uma réplica de liga leve, sem o peso e a pátina do ouro original, foi deixada no lugar do relicário.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_replica_workshop",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Réplica feita com material de atelier",
+      "description": "A réplica foi feita com material de atelier de restauro, mas não pelo estilo de Sueli, que conserva e não falsifica.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_alarm_disabled",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Alarme desarmado com código de doador",
+      "description": "O painel registra que o alarme foi desarmado às 3h12 e rearmado às 3h31 por uma credencial de doador válida.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_camera_log_dante",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante entrou no museu de madrugada",
+      "description": "A câmera registra Dante entrando no corredor às 3h09 e saindo às 3h34, com uma maleta não registrada na entrada.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_travel_booking",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Bilhete de avião internacional",
+      "description": "Uma impressão esquecida mostra um bilhete de avião internacional em nome de Dante, para dois dias após a procissão.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_provenance_inquiries",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante consultou proveniências",
+      "description": "O registro mostra que Dante fez várias consultas por proveniências e laudos das peças de ouro, com a observação 'interesse incomum'.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dante_donor",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante é o principal doador",
+      "description": "Dante é o principal doador do acervo há quinze anos e tinha acesso de cortesia às vitrines.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_dante_pousada_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante alega pousada",
+      "description": "Dante afirma que dormiu na pousada e só chegou ao museu perto das 7h.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_dante_interest",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante admite interesse nas peças",
+      "description": "Dante reconhece que perguntou por proveniências e laudos das peças de ouro, mas atribui a 'curiosidade de colecionador'.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_dante_was_in_museum",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante admite ter ido ao museu",
+      "description": "Dante admite que passou pelo museu na madrugada, mas diz que apenas conferiu uma doação.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dante_collector_offer",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante foi procurado por colecionador",
+      "description": "Dante admite que foi procurado por um colecionador estrangeiro interessado nas peças de ouro, mas nega ter fechado negócio.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dante_international_trip",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante tem viagem internacional marcada",
+      "description": "Dante admite que tinha uma viagem de negócios marcada para a mesma semana da procissão, mas nega ligação com o roubo.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dante_gold_dust",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Poeira de ouro em Dante",
+      "description": "Há um brilho de poeira de ouro na luva e no punho do paletó de Dante, compatível com o relicário recém-manuseado.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dante_took_reliquary",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Dante levou o relicário",
+      "description": "Dante admite que levou o relicário na madrugada, mas insiste que a peça está 'em lugar seguro'.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_dante_motive_blackmarket",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Motivo: venda no mercado negro",
+      "description": "Dante admite que doou a coleção para legitimar acesso e roubou o relicário para vender a um colecionador estrangeiro.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_safe_house_key",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Cofre aberto na madrugada",
+      "description": "O cofre de Dante tem resíduos frescos de cera e mecanismo morno, indicando que foi aberto na madrugada, com a única chave no bolso dele.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_briefcase_lining",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Forro da maleta na vitrine",
+      "description": "O forro vermelho da maleta de Dante tem um rasgo de onde sai um fiapo, da mesma cor do fiapo preso na vitrine.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_reliquary_at_safe_house",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Relicário na casa de Dante",
+      "description": "Dante admite que o relicário está no cofre de sua residência, esperando para sair do país.",
+      "importance": "required"
+    },
+    {
+      "id": "clue_inacio_keys",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Inácio guarda as chaves-mestras",
+      "description": "Monsenhor Inácio guarda as chaves-mestras e o código do alarme há vinte anos.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_inacio_against_sale",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Inácio é contra a venda",
+      "description": "Inácio vinha recusando, há meses, ofertas generosas de colecionadores pelas peças de ouro.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_inacio_reitoria_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Inácio na reitoria",
+      "description": "Inácio dormiu na reitoria anexa à catedral a madrugada toda, com coroinhas de plantão como testemunhas.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_sueli_restorer",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Sueli é a restauradora",
+      "description": "Sueli é a restauradora das peças sacras há oito anos e tinha acesso técnico às vitrines.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_sueli_atelier_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Sueli no atelier",
+      "description": "Sueli esteve no atelier de restauro a madrugada toda, preparando o andor, com Geraldo como testemunha parcial.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_geraldo_sacristan",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Geraldo é o sacristão",
+      "description": "Geraldo é o sacristão há doze anos, abriu a igreja às 4h e tinha acesso às vitrines.",
+      "importance": "supporting"
+    },
+    {
+      "id": "clue_geraldo_sacristy_alibi",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Álibi de Geraldo na sacristia",
+      "description": "Geraldo esteve na sacristia a madrugada toda, preparando os paramentos, com Sueli no atelier ao lado.",
+      "importance": "red_herring"
+    },
+    {
+      "id": "clue_geraldo_gambling_debt",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Geraldo tinha dívida de jogo quitada",
+      "description": "Havia um bilhete de cobrança de jogos online endereçado a Geraldo, mas o valor era pequeno e já estava quitado.",
+      "importance": "red_herring"
+    }
+  ],
+  "conclusion": {
+    "id": "conclusion_o_relicario_de_santa_luzia",
+    "createdAt": "2026-07-02T00:00:00.000Z",
+    "updatedAt": "2026-07-02T00:00:00.000Z",
+    "deletedAt": null,
+    "fields": [
+      {
+        "id": "who_took_reliquary",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Quem tirou o relicário da vitrine?",
+        "type": "character",
+        "options": [
+          {
+            "id": "dante",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Dante"
+          },
+          {
+            "id": "inacio",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Monsenhor Inácio"
+          },
+          {
+            "id": "sueli",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Sueli"
+          },
+          {
+            "id": "geraldo",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Irmão Geraldo"
+          }
+        ]
+      },
+      {
+        "id": "why_reliquary_taken",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Por que o relicário foi levado?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "black_market_sale",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para vender no mercado negro internacional"
+          },
+          {
+            "id": "pay_gambling_debt",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para pagar dívidas de jogo"
+          },
+          {
+            "id": "private_devotion",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para devoção privada em casa"
+          },
+          {
+            "id": "insurance_fraud",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Para simular roubo e acionar seguro"
+          }
+        ]
+      },
+      {
+        "id": "where_reliquary_now",
+        "createdAt": "2026-07-02T00:00:00.000Z",
+        "updatedAt": "2026-07-02T00:00:00.000Z",
+        "deletedAt": null,
+        "label": "Onde o relicário está agora?",
+        "type": "choice",
+        "options": [
+          {
+            "id": "dante_safe_house",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "No cofre da residência de Dante, na cidade"
+          },
+          {
+            "id": "already_abroad",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Já enviado ao exterior, fora do país"
+          },
+          {
+            "id": "at_thief_home",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Escondido na casa de quem pegou"
+          },
+          {
+            "id": "hidden_in_museum",
+            "createdAt": "2026-07-02T00:00:00.000Z",
+            "updatedAt": "2026-07-02T00:00:00.000Z",
+            "deletedAt": null,
+            "label": "Escondido em algum canto do próprio museu"
+          }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "ending_full_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O ouro que volta à vitrine",
+      "type": "full_truth",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "who_took_reliquary": "dante",
+          "why_reliquary_taken": "black_market_sale",
+          "where_reliquary_now": "dante_safe_house"
+        },
+        "requiresClueIds": [
+          "clue_dante_took_reliquary",
+          "clue_dante_motive_blackmarket",
+          "clue_reliquary_at_safe_house"
+        ]
+      },
+      "summary": "Você reconstruiu a verdade completa: Dante doou a coleção para legitimar acesso, roubou o relicário de Santa Luzia para vender a um colecionador estrangeiro no mercado negro e escondeu o original no cofre de sua residência, deixando uma réplica na vitrine.",
+      "epilogue": "Quando o sino das 18h deveria anunciar a procissão, o adro da Sé está em silêncio. Dante não sustenta mais o tom de benfeitor ofendido: a poeira de ouro no punho do paletó falou por ele. O relicário volta à vitrine antes do ângelus, mas a mão de cera da réplica ainda marca o veludo. Monsenhor Inácio dispensa a polícia e prefere o silêncio da diocese; Sueli recolhe suas ferramentas de douração e volta ao andor; Irmão Geraldo acende as velas do corredor como se nada tivesse acontecido. A procissão sai sem o brilho antigo do padroeiro e, pela primeira vez em cem anos, Santa Luzia atravessa a cidade numa ausência que ninguém ousa nomear."
+    },
+    {
+      "id": "ending_partial_truth",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "Vitrine ainda vazia",
+      "type": "partial_truth",
+      "condition": {
+        "conclusionMatches": {
+          "who_took_reliquary": "dante"
+        },
+        "requiresClueIds": ["clue_dante_took_reliquary"]
+      },
+      "imageUrl": "histories/o-relicario-de-santa-luzia/endings/partial_truth.jpg",
+      "summary": "Você identificou Dante como autor do roubo, mas não fechou o motivo real nem o paradeiro do relicário.",
+      "epilogue": "Dante não consegue mais negar que esteve no salão, mas o silêncio sobre o colecionador estrangeiro pesa mais do que a confissão parcial. Sem o paradeiro do relicário, a procissão fica em suspenso e o museu segue de portas cerradas, com a vitrine central vazia e a réplica leve sobre o veludo. O relicário, onde quer que esteja, continua guardando o silêncio de uma verdade que ainda não foi servida."
+    },
+    {
+      "id": "ending_wrong_accusation",
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "updatedAt": "2026-07-02T00:00:00.000Z",
+      "deletedAt": null,
+      "title": "O suspeito errado",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/o-relicario-de-santa-luzia/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {},
+        "requiresClueIds": []
+      },
+      "summary": "A acusação não alcançou a verdade do caso. Inácio dormiu na reitoria, Sueli no atelier do andor, Geraldo na sacristia dos paramentos.",
+      "epilogue": "A versão do desaparecimento sem culpado se instala como a mais confortável. A procissão sai sem o relicário e a réplica leve passa pelo adro sem que ninguém a questione em voz alta. Dante permanece na cidade, despede-se com promessas de novas doações e nunca mais abre o cofre da residência diante de ninguém. Nas manhãs seguintes, o sol entra pelos vitrais do salão e bate, indiferente, sobre o veludo vazio de Santa Luzia."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 8,
+    "suggestConclusionAfterClues": 14,
+    "maxRecommendedInteractions": 24
+  }
+}
