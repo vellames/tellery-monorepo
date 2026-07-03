@@ -37,14 +37,7 @@
         "Quem encontrou o corpo?",
         "Houve violência?"
       ],
-      "keywords": [
-        "morte",
-        "morreu",
-        "corpo",
-        "cadáver",
-        "morta",
-        "queda"
-      ]
+      "keywords": ["morte", "morreu", "corpo", "cadáver", "morta", "queda"]
     },
     {
       "id": "ask_about_telescope",
@@ -160,14 +153,7 @@
         "Onde você estava de madrugada?",
         "A que horas foi dormir?"
       ],
-      "keywords": [
-        "álibi",
-        "madrugada",
-        "quarto",
-        "dormi",
-        "deitado",
-        "esteve"
-      ]
+      "keywords": ["álibi", "madrugada", "quarto", "dormi", "deitado", "esteve"]
     },
     {
       "id": "ask_about_motive",
@@ -220,14 +206,7 @@
         "Ele tinha problemas de saúde?",
         "Otávio andava tenso?"
       ],
-      "keywords": [
-        "Otávio",
-        "chefe",
-        "rotina",
-        "saúde",
-        "tenso",
-        "reputação"
-      ]
+      "keywords": ["Otávio", "chefe", "rotina", "saúde", "tenso", "reputação"]
     },
     {
       "id": "inspect_object",
@@ -240,13 +219,7 @@
         "Olho isso com atenção",
         "Inspeciono a bancada"
       ],
-      "keywords": [
-        "examinar",
-        "inspecionar",
-        "olhar",
-        "objeto",
-        "detalhes"
-      ]
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
     },
     {
       "id": "ask_about_helena",
@@ -259,13 +232,7 @@
         "Por que Helena estava tensa?",
         "Helena é co-autora de quê?"
       ],
-      "keywords": [
-        "Helena",
-        "co-diretora",
-        "Mariani",
-        "co-autora",
-        "carreira"
-      ]
+      "keywords": ["Helena", "co-diretora", "Mariani", "co-autora", "carreira"]
     },
     {
       "id": "ask_about_tome",
@@ -278,13 +245,7 @@
         "Como Tomé lidava com o pai?",
         "Tomé mexeu no telescópio?"
       ],
-      "keywords": [
-        "Tomé",
-        "técnico",
-        "filho",
-        "manutenção",
-        "relação"
-      ]
+      "keywords": ["Tomé", "técnico", "filho", "manutenção", "relação"]
     },
     {
       "id": "ask_about_ingrid",
@@ -297,13 +258,7 @@
         "O que Ingrid financia?",
         "Ingrid ameaçou processo?"
       ],
-      "keywords": [
-        "Ingrid",
-        "doadora",
-        "doação",
-        "processo",
-        "financia"
-      ]
+      "keywords": ["Ingrid", "doadora", "doação", "processo", "financia"]
     },
     {
       "id": "ask_about_lucas",
@@ -316,13 +271,7 @@
         "Lucas corria risco no doutorado?",
         "O que Lucas pesquisava?"
       ],
-      "keywords": [
-        "Lucas",
-        "aluno",
-        "doutorado",
-        "orientação",
-        "pesquisa"
-      ]
+      "keywords": ["Lucas", "aluno", "doutorado", "orientação", "pesquisa"]
     },
     {
       "id": "ask_about_cleusa",
@@ -335,13 +284,7 @@
         "Que horas Cleusa subiu?",
         "Cleusa ouviu barulho?"
       ],
-      "keywords": [
-        "Cleusa",
-        "faxineira",
-        "cozinha",
-        "café",
-        "encontrou"
-      ]
+      "keywords": ["Cleusa", "faxineira", "cozinha", "café", "encontrou"]
     },
     {
       "id": "accuse_helena",
@@ -354,12 +297,7 @@
         "Confronto Helena sobre a morte",
         "Acho que foi a Helena"
       ],
-      "keywords": [
-        "acusar Helena",
-        "responsável",
-        "culpada",
-        "fez isso"
-      ]
+      "keywords": ["acusar Helena", "responsável", "culpada", "fez isso"]
     },
     {
       "id": "accuse_tome",
@@ -372,12 +310,7 @@
         "Confronto Tomé sobre a morte",
         "Acho que foi o Tomé"
       ],
-      "keywords": [
-        "acusar Tomé",
-        "responsável",
-        "culpado",
-        "fez isso"
-      ]
+      "keywords": ["acusar Tomé", "responsável", "culpado", "fez isso"]
     },
     {
       "id": "accuse_ingrid",
@@ -390,12 +323,7 @@
         "Confronto Ingrid sobre a morte",
         "Acho que foi a Ingrid"
       ],
-      "keywords": [
-        "acusar Ingrid",
-        "responsável",
-        "culpada",
-        "fez isso"
-      ]
+      "keywords": ["acusar Ingrid", "responsável", "culpada", "fez isso"]
     },
     {
       "id": "accuse_lucas",
@@ -408,12 +336,7 @@
         "Confronto Lucas sobre a morte",
         "Acho que foi o Lucas"
       ],
-      "keywords": [
-        "acusar Lucas",
-        "responsável",
-        "culpado",
-        "fez isso"
-      ]
+      "keywords": ["acusar Lucas", "responsável", "culpado", "fez isso"]
     },
     {
       "id": "press_for_confession",
@@ -446,13 +369,7 @@
         "Quero uma cena de ação",
         "Revele tudo sem investigar"
       ],
-      "keywords": [
-        "fora",
-        "ignorar",
-        "ação",
-        "mudar",
-        "revelar tudo"
-      ]
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
     }
   ],
   "characters": [

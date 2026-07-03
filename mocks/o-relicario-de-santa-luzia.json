@@ -178,14 +178,7 @@
         "Havia dívidas?",
         "O relicário tem seguro?"
       ],
-      "keywords": [
-        "dinheiro",
-        "dívida",
-        "conta",
-        "salário",
-        "seguro",
-        "aperto"
-      ]
+      "keywords": ["dinheiro", "dívida", "conta", "salário", "seguro", "aperto"]
     },
     {
       "id": "inspect_object",
@@ -198,13 +191,7 @@
         "Olho isso com atenção",
         "Inspeciono a vitrine"
       ],
-      "keywords": [
-        "examinar",
-        "inspecionar",
-        "olhar",
-        "objeto",
-        "detalhes"
-      ]
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
     },
     {
       "id": "ask_about_beatriz",
@@ -236,13 +223,7 @@
         "Inácio é contra a venda?",
         "O pároco dormiu aqui?"
       ],
-      "keywords": [
-        "Inácio",
-        "Monsenhor",
-        "pároco",
-        "chaves",
-        "venda"
-      ]
+      "keywords": ["Inácio", "Monsenhor", "pároco", "chaves", "venda"]
     },
     {
       "id": "ask_about_sueli",
@@ -255,13 +236,7 @@
         "Sueli tem chave das vitrines?",
         "Sueli estava no museu?"
       ],
-      "keywords": [
-        "Sueli",
-        "restauradora",
-        "restauro",
-        "peças",
-        "acesso"
-      ]
+      "keywords": ["Sueli", "restauradora", "restauro", "peças", "acesso"]
     },
     {
       "id": "ask_about_geraldo",
@@ -274,13 +249,7 @@
         "Geraldo joga?",
         "Geraldo mexeu na vitrine?"
       ],
-      "keywords": [
-        "Geraldo",
-        "sacristão",
-        "igreja",
-        "abrir",
-        "madrugada"
-      ]
+      "keywords": ["Geraldo", "sacristão", "igreja", "abrir", "madrugada"]
     },
     {
       "id": "ask_about_dante",
@@ -293,13 +262,7 @@
         "Dante viajou recentemente?",
         "Dante já quis levar peças?"
       ],
-      "keywords": [
-        "Dante",
-        "doador",
-        "benfeitor",
-        "coleção",
-        "viagem"
-      ]
+      "keywords": ["Dante", "doador", "benfeitor", "coleção", "viagem"]
     },
     {
       "id": "accuse_inacio",
@@ -312,12 +275,7 @@
         "Confronto Inácio sobre o roubo",
         "Acho que foi o padre"
       ],
-      "keywords": [
-        "acusar Inácio",
-        "responsável",
-        "culpado",
-        "fez isso"
-      ]
+      "keywords": ["acusar Inácio", "responsável", "culpado", "fez isso"]
     },
     {
       "id": "accuse_sueli",
@@ -330,12 +288,7 @@
         "Confronto Sueli sobre o roubo",
         "Acho que foi a Sueli"
       ],
-      "keywords": [
-        "acusar Sueli",
-        "responsável",
-        "culpada",
-        "fez isso"
-      ]
+      "keywords": ["acusar Sueli", "responsável", "culpada", "fez isso"]
     },
     {
       "id": "accuse_geraldo",
@@ -348,12 +301,7 @@
         "Confronto Geraldo sobre o roubo",
         "Acho que foi o Geraldo"
       ],
-      "keywords": [
-        "acusar Geraldo",
-        "responsável",
-        "culpado",
-        "fez isso"
-      ]
+      "keywords": ["acusar Geraldo", "responsável", "culpado", "fez isso"]
     },
     {
       "id": "accuse_dante",
@@ -366,12 +314,7 @@
         "Confronto Dante sobre o roubo",
         "Acho que foi o Dante"
       ],
-      "keywords": [
-        "acusar Dante",
-        "responsável",
-        "culpado",
-        "fez isso"
-      ]
+      "keywords": ["acusar Dante", "responsável", "culpado", "fez isso"]
     },
     {
       "id": "press_for_confession",
@@ -404,13 +347,7 @@
         "Quero uma cena de ação",
         "Revele tudo sem investigar"
       ],
-      "keywords": [
-        "fora",
-        "ignorar",
-        "ação",
-        "mudar",
-        "revelar tudo"
-      ]
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
     }
   ],
   "characters": [

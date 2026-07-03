@@ -102,7 +102,9 @@ export function discoverReferenceImages(
       entry.category === CHARACTERS_CATEGORY &&
       isUsable(entry) &&
       // avoid duplicating an entry already picked as cover (defensive)
-      !selected.some((s) => s.category === entry.category && s.key === entry.key)
+      !selected.some(
+        (s) => s.category === entry.category && s.key === entry.key
+      )
   );
 
   if (characterEntries.length > MAX_CHARACTERS) {
@@ -163,7 +165,9 @@ function readManifest(manifestPath: string): ImageGeneratorManifest {
   }
 
   if (typeof parsed !== 'object' || parsed === null) {
-    throw new Error(`Image-generator manifest must be an object: ${manifestPath}`);
+    throw new Error(
+      `Image-generator manifest must be an object: ${manifestPath}`
+    );
   }
 
   return parsed as ImageGeneratorManifest;

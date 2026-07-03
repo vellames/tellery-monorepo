@@ -323,7 +323,13 @@
         "Chega de enrolar, fala a verdade",
         "Confessa o que aconteceu"
       ],
-      "keywords": ["admite", "admitir", "confessa", "verdade", "chega de enrolar"]
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "chega de enrolar"
+      ]
     },
     {
       "id": "off_topic",
@@ -557,8 +563,14 @@
       "clueRevealRules": [
         {
           "clueId": "clue_afonso_typewriter_access",
-          "triggerIntents": ["ask_about_typewriter", "connect_typewriter_to_letters"],
-          "requiresClueIds": ["clue_typewriter_match", "clue_afonso_knew_content"],
+          "triggerIntents": [
+            "ask_about_typewriter",
+            "connect_typewriter_to_letters"
+          ],
+          "requiresClueIds": [
+            "clue_typewriter_match",
+            "clue_afonso_knew_content"
+          ],
           "revealText": "Afonso admite, sem conseguir evitar, que sabia onde ficava a máquina de escrever do escritório e que já a usou antes para anotações do turno.",
           "responseGuidance": "Ele deve tentar minimizar o uso da máquina como algo rotineiro, sem admitir ainda a autoria do bilhete."
         },
@@ -619,7 +631,10 @@
               "deletedAt": null,
               "level": 2,
               "triggerIntents": ["ask_about_red_ledger", "ask_about_cloakroom"],
-              "requiresClueIds": ["clue_afonso_knew_cloakroom", "clue_red_ledger_found"],
+              "requiresClueIds": [
+                "clue_afonso_knew_cloakroom",
+                "clue_red_ledger_found"
+              ],
               "revealsClueIds": ["clue_afonso_knew_ledger"],
               "behavior": "Admitir, com hesitação, que viu uma caderneta vermelha cair do casaco de uma cliente semanas atrás, sem dizer o que fez com ela.",
               "allowedToRevealTruth": false,
@@ -634,8 +649,14 @@
               "updatedAt": "2026-07-03T00:00:00.000Z",
               "deletedAt": null,
               "level": 3,
-              "triggerIntents": ["ask_about_red_ledger", "press_for_confession"],
-              "requiresClueIds": ["clue_afonso_knew_ledger", "clue_ledger_hit_run"],
+              "triggerIntents": [
+                "ask_about_red_ledger",
+                "press_for_confession"
+              ],
+              "requiresClueIds": [
+                "clue_afonso_knew_ledger",
+                "clue_ledger_hit_run"
+              ],
               "revealsClueIds": ["clue_afonso_knew_content"],
               "behavior": "Admitir que leu parte do que estava escrito na caderneta antes de devolvê-la, e que soube do atropelamento encoberto.",
               "allowedToRevealTruth": false,
@@ -650,8 +671,15 @@
               "updatedAt": "2026-07-03T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_afonso", "connect_ball_to_croupier", "press_for_confession"],
-              "requiresClueIds": ["clue_afonso_typewriter_access", "clue_burnt_draft"],
+              "triggerIntents": [
+                "accuse_afonso",
+                "connect_ball_to_croupier",
+                "press_for_confession"
+              ],
+              "requiresClueIds": [
+                "clue_afonso_typewriter_access",
+                "clue_burnt_draft"
+              ],
               "revealsClueIds": ["clue_afonso_partial_confession"],
               "behavior": "Admitir parcialmente que escreveu os bilhetes anteriores, insistindo que só queria pagar a dívida e nunca pretendeu prejudicar o clube.",
               "allowedToRevealTruth": true,

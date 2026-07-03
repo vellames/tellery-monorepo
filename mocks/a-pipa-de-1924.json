@@ -37,14 +37,7 @@
         "Quem encontrou o corpo?",
         "Houve violência?"
       ],
-      "keywords": [
-        "morte",
-        "morreu",
-        "corpo",
-        "cadáver",
-        "morta",
-        "queda"
-      ]
+      "keywords": ["morte", "morreu", "corpo", "cadáver", "morta", "queda"]
     },
     {
       "id": "ask_about_wine",
@@ -57,15 +50,7 @@
         "Quem cuida das pipas?",
         "O vinho estava bom?"
       ],
-      "keywords": [
-        "vinho",
-        "pipa",
-        "lote",
-        "1924",
-        "adega",
-        "tinto",
-        "uva"
-      ]
+      "keywords": ["vinho", "pipa", "lote", "1924", "adega", "tinto", "uva"]
     },
     {
       "id": "ask_about_centennial",
@@ -200,13 +185,7 @@
         "Olho isso com atenção",
         "Inspeciono a bancada"
       ],
-      "keywords": [
-        "examinar",
-        "inspecionar",
-        "olhar",
-        "objeto",
-        "detalhes"
-      ]
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes"]
     },
     {
       "id": "ask_about_bento",
@@ -219,13 +198,7 @@
         "Como Bento lidava com o pai?",
         "Bento mexeu no lote de 1924?"
       ],
-      "keywords": [
-        "Bento",
-        "enólogo",
-        "filho",
-        "produção",
-        "relação"
-      ]
+      "keywords": ["Bento", "enólogo", "filho", "produção", "relação"]
     },
     {
       "id": "ask_about_margo",
@@ -238,13 +211,7 @@
         "Qual é o litígio entre as famílias?",
         "Margô ameaçou processo?"
       ],
-      "keywords": [
-        "Margô",
-        "rival",
-        "litígio",
-        "processo",
-        "família"
-      ]
+      "keywords": ["Margô", "rival", "litígio", "processo", "família"]
     },
     {
       "id": "ask_about_salles",
@@ -257,13 +224,7 @@
         "Quanto Salles deve à vinícola?",
         "Salles deu calote?"
       ],
-      "keywords": [
-        "Salles",
-        "negociante",
-        "compra",
-        "contrato",
-        "calote"
-      ]
+      "keywords": ["Salles", "negociante", "compra", "contrato", "calote"]
     },
     {
       "id": "ask_about_dora",
@@ -276,13 +237,7 @@
         "Dora corria risco no emprego?",
         "O que Dora serviu no jantar?"
       ],
-      "keywords": [
-        "Dora",
-        "sommelière",
-        "emprego",
-        "serviço",
-        "jantar"
-      ]
+      "keywords": ["Dora", "sommelière", "emprego", "serviço", "jantar"]
     },
     {
       "id": "ask_about_nair",
@@ -295,13 +250,7 @@
         "Que horas Nair desceu?",
         "Nair ouviu barulho?"
       ],
-      "keywords": [
-        "Nair",
-        "governanta",
-        "cozinha",
-        "corpo",
-        "encontrou"
-      ]
+      "keywords": ["Nair", "governanta", "cozinha", "corpo", "encontrou"]
     },
     {
       "id": "accuse_bento",
@@ -314,12 +263,7 @@
         "Confronto Bento sobre a morte",
         "Acho que foi o Bento"
       ],
-      "keywords": [
-        "acusar Bento",
-        "responsável",
-        "culpado",
-        "fez isso"
-      ]
+      "keywords": ["acusar Bento", "responsável", "culpado", "fez isso"]
     },
     {
       "id": "accuse_margo",
@@ -332,12 +276,7 @@
         "Confronto Margô sobre a morte",
         "Acho que foi a Margô"
       ],
-      "keywords": [
-        "acusar Margô",
-        "responsável",
-        "culpada",
-        "fez isso"
-      ]
+      "keywords": ["acusar Margô", "responsável", "culpada", "fez isso"]
     },
     {
       "id": "accuse_salles",
@@ -350,12 +289,7 @@
         "Confronto Salles sobre a morte",
         "Acho que foi o Salles"
       ],
-      "keywords": [
-        "acusar Salles",
-        "responsável",
-        "culpado",
-        "fez isso"
-      ]
+      "keywords": ["acusar Salles", "responsável", "culpado", "fez isso"]
     },
     {
       "id": "accuse_dora",
@@ -368,12 +302,7 @@
         "Confronto Dora sobre a morte",
         "Acho que foi a Dora"
       ],
-      "keywords": [
-        "acusar Dora",
-        "responsável",
-        "culpada",
-        "fez isso"
-      ]
+      "keywords": ["acusar Dora", "responsável", "culpada", "fez isso"]
     },
     {
       "id": "press_for_confession",
@@ -406,13 +335,7 @@
         "Quero uma cena de ação",
         "Revele tudo sem investigar"
       ],
-      "keywords": [
-        "fora",
-        "ignorar",
-        "ação",
-        "mudar",
-        "revelar tudo"
-      ]
+      "keywords": ["fora", "ignorar", "ação", "mudar", "revelar tudo"]
     }
   ],
   "characters": [

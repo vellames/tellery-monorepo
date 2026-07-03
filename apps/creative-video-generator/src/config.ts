@@ -102,7 +102,10 @@ export function deriveImagesMapPath(
   slug: string
 ): string | null {
   const dir = path.dirname(inputPath);
-  const candidate = path.join(dir, `${slug}${IMAGES_MAP_SUFFIX}${JSON_EXTENSION}`);
+  const candidate = path.join(
+    dir,
+    `${slug}${IMAGES_MAP_SUFFIX}${JSON_EXTENSION}`
+  );
   return fs.existsSync(candidate) ? candidate : null;
 }
 
@@ -273,7 +276,11 @@ function parseArgs(argv: string[]): {
     );
   }
 
-  if (!Number.isFinite(duration) || duration < MIN_DURATION || duration > MAX_DURATION) {
+  if (
+    !Number.isFinite(duration) ||
+    duration < MIN_DURATION ||
+    duration > MAX_DURATION
+  ) {
     throw new Error(
       `--duration must be between ${MIN_DURATION} and ${MAX_DURATION} seconds (got "${duration}")`
     );

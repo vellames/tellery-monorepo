@@ -40,7 +40,9 @@ export async function generateVideoPrompt(
 
   const captionPath = path.join(outputDir, `${slug}-social-caption.txt`);
   fs.writeFileSync(captionPath, prompt.socialCaption.caption, 'utf8');
-  console.log(`[creative-video-generator] social caption saved: ${captionPath}`);
+  console.log(
+    `[creative-video-generator] social caption saved: ${captionPath}`
+  );
 
   return prompt;
 }
@@ -114,7 +116,9 @@ function buildLlmMessages(
     (context.opening.shortText
       ? `- curta: ${context.opening.shortText}\n`
       : '') +
-    (context.opening.fullText ? `- completa: ${context.opening.fullText}\n` : '') +
+    (context.opening.fullText
+      ? `- completa: ${context.opening.fullText}\n`
+      : '') +
     (context.opening.callToAction
       ? `- chamada para ação: ${context.opening.callToAction}\n`
       : '') +
@@ -188,7 +192,11 @@ function coerceVideoPrompt(raw: unknown): VideoPrompt {
     );
   }
 
-  const obj = raw as { shots?: unknown; styleNote?: unknown; socialCaption?: unknown };
+  const obj = raw as {
+    shots?: unknown;
+    styleNote?: unknown;
+    socialCaption?: unknown;
+  };
   if (!Array.isArray(obj.shots) || obj.shots.length === 0) {
     throw new Error(
       `LLM response is missing a non-empty "shots" array: ${JSON.stringify(raw).slice(0, 200)}`
@@ -198,14 +206,27 @@ function coerceVideoPrompt(raw: unknown): VideoPrompt {
   const shots: VideoShot[] = [];
   for (const [index, item] of obj.shots.entries()) {
     if (typeof item !== 'object' || item === null) {
-      throw new Error(`LLM shot #${index + 1} is not an object: ${JSON.stringify(item).slice(0, 100)}`);
+      throw new Error(
+        `LLM shot #${index + 1} is not an object: ${JSON.stringify(item).slice(0, 100)}`
+      );
     }
-    const shot = item as { timecode?: unknown; visual?: unknown; narration?: unknown };
-    if (typeof shot.timecode !== 'string' || shot.timecode.trim().length === 0) {
-      throw new Error(`LLM shot #${index + 1} is missing "timecode": ${JSON.stringify(shot).slice(0, 100)}`);
+    const shot = item as {
+      timecode?: unknown;
+      visual?: unknown;
+      narration?: unknown;
+    };
+    if (
+      typeof shot.timecode !== 'string' ||
+      shot.timecode.trim().length === 0
+    ) {
+      throw new Error(
+        `LLM shot #${index + 1} is missing "timecode": ${JSON.stringify(shot).slice(0, 100)}`
+      );
     }
     if (typeof shot.visual !== 'string' || shot.visual.trim().length === 0) {
-      throw new Error(`LLM shot #${index + 1} is missing "visual": ${JSON.stringify(shot).slice(0, 100)}`);
+      throw new Error(
+        `LLM shot #${index + 1} is missing "visual": ${JSON.stringify(shot).slice(0, 100)}`
+      );
     }
     const narration =
       typeof shot.narration === 'string' && shot.narration.trim().length > 0
@@ -253,7 +274,10 @@ function coerceSocialCaption(raw: unknown): SocialCaption {
   }
 
   const hashtags = obj.hashtags
-    .filter((item): item is string => typeof item === 'string' && item.trim().length > 0)
+    .filter(
+      (item): item is string =>
+        typeof item === 'string' && item.trim().length > 0
+    )
     .map((item) => item.trim());
 
   if (hashtags.length === 0) {
@@ -273,7 +297,9 @@ function shotsToSeedancePrompt(prompt: VideoPrompt): string {
   const header = prompt.styleNote ? `${prompt.styleNote}\n\n` : '';
   const body = prompt.shots
     .map((shot) => {
-      const narration = shot.narration ? ` Narração VO: "${shot.narration}".` : '';
+      const narration = shot.narration
+        ? ` Narração VO: "${shot.narration}".`
+        : '';
       return `[${shot.timecode}] ${shot.visual}${narration}`;
     })
     .join('\n');
@@ -353,10 +379,15 @@ export async function generateVideo(
   slug: string,
   referenceImages: ReferenceImage[]
 ): Promise<RunResult> {
-  const outputPath = path.join(config.outputDir, `${slug}.${OUTPUT_VIDEO_FORMAT}`);
+  const outputPath = path.join(
+    config.outputDir,
+    `${slug}.${OUTPUT_VIDEO_FORMAT}`
+  );
 
   if (!config.force && fs.existsSync(outputPath)) {
-    console.log(`[creative-video-generator] skipped (already exists): ${outputPath}`);
+    console.log(
+      `[creative-video-generator] skipped (already exists): ${outputPath}`
+    );
     return {
       status: 'generated',
       videoPath: outputPath,
@@ -404,13 +435,13 @@ export async function generateVideo(
 async function download(url: string, outputPath: string): Promise<void> {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`Failed to download video (${response.status}) from ${url}`);
+    throw new Error(
+      `Failed to download video (${response.status}) from ${url}`
+    );
   }
   const buffer = Buffer.from(await response.arrayBuffer());
   fs.writeFileSync(outputPath, buffer);
-  console.log(
-    `    → ${(buffer.length / 1024 / 1024).toFixed(1)}MB downloaded`
-  );
+  console.log(`    → ${(buffer.length / 1024 / 1024).toFixed(1)}MB downloaded`);
 }
 
 function formatInference(result: { inferenceTime: number | null }): string {
@@ -430,15 +461,13 @@ export function writeManifest(
     payload,
     result,
   };
-  fs.writeFileSync(
-    manifestPath,
-    JSON.stringify(filePayload, null, 2),
-    'utf8'
-  );
+  fs.writeFileSync(manifestPath, JSON.stringify(filePayload, null, 2), 'utf8');
   console.log(`[creative-video-generator] manifest:  ${manifestPath}`);
 }
 
-export function summarizeByStatus(result: RunResult): Record<RunStatus, number> {
+export function summarizeByStatus(
+  result: RunResult
+): Record<RunStatus, number> {
   const zero: Record<RunStatus, number> = {
     generated: 0,
     dry_run: 0,

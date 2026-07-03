@@ -11,7 +11,12 @@ import {
 import { OpenRouterJsonClient } from './llm-client';
 import { prepareReferenceImages } from './reference-images';
 import { S3ReferenceUploader } from './s3-client';
-import { HistoryFile, ImageMapFile, ReferenceImage, VideoPrompt } from './types';
+import {
+  HistoryFile,
+  ImageMapFile,
+  ReferenceImage,
+  VideoPrompt,
+} from './types';
 import { WavespeedClient } from './wavespeed-client';
 import fs from 'fs';
 
@@ -49,25 +54,37 @@ async function main(): Promise<void> {
     ? readJson<ImageMapFile>(config.imagesMapPath, 'Image map file')
     : null;
 
-  console.log(`[creative-video-generator] input:      ${path.resolve(config.inputPath)}`);
+  console.log(
+    `[creative-video-generator] input:      ${path.resolve(config.inputPath)}`
+  );
   console.log(`[creative-video-generator] slug:       ${config.slug}`);
-  console.log(`[creative-video-generator] output:     ${path.resolve(config.outputDir)}`);
+  console.log(
+    `[creative-video-generator] output:     ${path.resolve(config.outputDir)}`
+  );
   console.log(`[creative-video-generator] model:      ${config.model}`);
-  console.log(`[creative-video-generator] llm model:  ${config.llmModel || '(skipped via --prompt-file)'}`);
-  console.log(`[creative-video-generator] reasoning:  ${config.reasoningEffort ?? 'off'}`);
+  console.log(
+    `[creative-video-generator] llm model:  ${config.llmModel || '(skipped via --prompt-file)'}`
+  );
+  console.log(
+    `[creative-video-generator] reasoning:  ${config.reasoningEffort ?? 'off'}`
+  );
   console.log(`[creative-video-generator] aspect:     ${config.aspectRatio}`);
   console.log(`[creative-video-generator] duration:   ${config.duration}s`);
   console.log(`[creative-video-generator] resolution: ${config.resolution}`);
-  console.log(`[creative-video-generator] audio:      ${config.generateAudio ? 'on' : 'off'}`);
+  console.log(
+    `[creative-video-generator] audio:      ${config.generateAudio ? 'on' : 'off'}`
+  );
   console.log(
     `[creative-video-generator] references: ${config.useReferenceImages ? 'on' : 'off'}`
   );
   if (config.useReferenceImages) {
     console.log(`[creative-video-generator] images dir: ${config.imagesDir}`);
   }
-  if (config.promptOnly) console.log('[creative-video-generator] mode: prompt-only');
+  if (config.promptOnly)
+    console.log('[creative-video-generator] mode: prompt-only');
   if (config.dryRun) console.log('[creative-video-generator] mode: dry-run');
-  if (config.promptFile) console.log(`[creative-video-generator] prompt file: ${config.promptFile}`);
+  if (config.promptFile)
+    console.log(`[creative-video-generator] prompt file: ${config.promptFile}`);
 
   const context = extractContext(history, imageMap, config.prefixMaster);
 
@@ -88,10 +105,14 @@ async function main(): Promise<void> {
 
   if (config.promptOnly) {
     console.log('');
-    console.log('[creative-video-generator] === VIDEO PROMPT (prompt-only) ===');
+    console.log(
+      '[creative-video-generator] === VIDEO PROMPT (prompt-only) ==='
+    );
     console.log(JSON.stringify(videoPrompt, null, 2));
     console.log('[creative-video-generator] ===============================');
-    console.log('[creative-video-generator] prompt-only complete — no payload built, WaveSpeed not called.');
+    console.log(
+      '[creative-video-generator] prompt-only complete — no payload built, WaveSpeed not called.'
+    );
     return;
   }
 

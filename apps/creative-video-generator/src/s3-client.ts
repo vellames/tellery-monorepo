@@ -74,9 +74,7 @@ export class S3ReferenceUploader {
     });
   }
 
-  async uploadAndSign(
-    files: UploadRequest[]
-  ): Promise<UploadedReference[]> {
+  async uploadAndSign(files: UploadRequest[]): Promise<UploadedReference[]> {
     const results: UploadedReference[] = [];
     for (const file of files) {
       await this.upload(file);
@@ -123,5 +121,10 @@ export function buildReferenceKey(
   key: string,
   ext = 'jpg'
 ): string {
-  return path.join('creative-video-references', slug, category, `${key}.${ext}`);
+  return path.join(
+    'creative-video-references',
+    slug,
+    category,
+    `${key}.${ext}`
+  );
 }

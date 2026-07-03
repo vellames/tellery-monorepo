@@ -213,14 +213,7 @@
         "Madalena estava onde ontem?",
         "A atriz veio à retrospectiva?"
       ],
-      "keywords": [
-        "Madalena",
-        "atriz",
-        "Reis",
-        "teatro",
-        "palco",
-        "paradeiro"
-      ]
+      "keywords": ["Madalena", "atriz", "Reis", "teatro", "palco", "paradeiro"]
     },
     {
       "id": "perguntar_sobre_tomas",
@@ -742,10 +735,7 @@
         },
         {
           "clueId": "clue_tomas_hospital_alibi",
-          "triggerIntents": [
-            "perguntar_sobre_tomas",
-            "perguntar_sobre_alibi"
-          ],
+          "triggerIntents": ["perguntar_sobre_tomas", "perguntar_sobre_alibi"],
           "requiresClueIds": [],
           "revealText": "Dr. Tomás afirma que, ao deixar a retrospectiva por volta das onze, foi direto à Santa Casa para um plantão que se estendeu pela madrugada — plantão que, segundo ele, pode ser confirmado.",
           "responseGuidance": "Deve oferecer o álibi com segurança profissional, mas sem grandes detalhes."
@@ -1723,7 +1713,10 @@
           "verdade_otto": "era_chantagista",
           "metodo": "sedativo_e_vapores"
         },
-        "requiresClueIds": ["clue_otto_blackmailer", "clue_sedative_hospital_source"]
+        "requiresClueIds": [
+          "clue_otto_blackmailer",
+          "clue_sedative_hospital_source"
+        ]
       },
       "summary": "Você descobriu que Otto era chantagista e que morreu pelo método do sedativo, mas apontou a pessoa errada.",
       "epilogue": "A verdade sobre Otto — chantagista de uma cidade inteira — está posta, e o método do sedativo hospitalar também. Mas a acusação recai sobre quem não esteve no laboratório naquela madrugada. Aurora, Hélio, Madalena, Bárbara ou Vera — cada um pagava pelo próprio silêncio, cada um tinha razão para odiar Otto —, mas nenhum derramou o revelador pela bancada. O Dr. Tomás permanece atrás da compostura de sempre, e a mancha escura na manga do paletó, que ninguém foi buscar, continua guardando em silêncio o nome de quem esteve ali."

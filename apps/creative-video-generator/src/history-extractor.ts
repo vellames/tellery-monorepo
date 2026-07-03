@@ -48,7 +48,7 @@ export function extractContext(
   const objectImage = imageMap?.object ?? {};
   const characterImage = imageMap?.characters ?? {};
 
-  const artDirection = prefixMaster ? imageMap?.master?.prompt ?? null : null;
+  const artDirection = prefixMaster ? (imageMap?.master?.prompt ?? null) : null;
 
   return {
     title: history.title ?? history.slug ?? 'Untitled story',

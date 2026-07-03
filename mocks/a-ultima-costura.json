@@ -89,7 +89,13 @@
         "Alguém usou o descoscidor?",
         "Falta um descoscidor na bancada?"
       ],
-      "keywords": ["descoscidor", "ripador", "abre-casa", "lâmina fina", "costura"]
+      "keywords": [
+        "descoscidor",
+        "ripador",
+        "abre-casa",
+        "lâmina fina",
+        "costura"
+      ]
     },
     {
       "id": "ask_about_show",
@@ -321,7 +327,11 @@
       "clueRevealRules": [
         {
           "clueId": "clue_dress_slashed",
-          "triggerIntents": ["ask_about_dress", "ask_about_yesterday", "ask_about_ines"],
+          "triggerIntents": [
+            "ask_about_dress",
+            "ask_about_yesterday",
+            "ask_about_ines"
+          ],
           "requiresClueIds": [],
           "revealText": "Inês confirma que o Vestido Estelar é a peça única com meses de bordado manual em fio dourado, e que foi encontrado cortado do risco à barra, ainda no manequim.",
           "responseGuidance": "Manter Inês contida, mas visivelmente abalada pela perda da peça central."
@@ -342,7 +352,11 @@
         },
         {
           "clueId": "clue_lia_collection_shelved",
-          "triggerIntents": ["ask_about_collection", "ask_about_lia", "ask_about_ines"],
+          "triggerIntents": [
+            "ask_about_collection",
+            "ask_about_lia",
+            "ask_about_ines"
+          ],
           "requiresClueIds": [],
           "revealText": "Inês admite que a coleção Costuras do Silêncio, de Lia, ficou de fora da programação principal para que o Vestido Estelar fosse a atração de abertura.",
           "responseGuidance": "Ela deve justificar a escolha como decisão editorial, sem reconhecer que isso pudesse gerar ressentimento."
@@ -363,7 +377,11 @@
         },
         {
           "clueId": "clue_silence_collection_headliner",
-          "triggerIntents": ["ask_about_collection", "ask_about_show", "ask_about_motive"],
+          "triggerIntents": [
+            "ask_about_collection",
+            "ask_about_show",
+            "ask_about_motive"
+          ],
           "requiresClueIds": ["clue_lia_collection_shelved"],
           "revealText": "Inês admite que, sem o Vestido Estelar, a próxima peça forte da programação seria justamente a coleção Costuras do Silêncio, de Lia.",
           "responseGuidance": "Ela deve perceber a implicação só ao dizer em voz alta, ficando desconfortável."
@@ -410,7 +428,11 @@
         },
         {
           "clueId": "clue_seam_ripper_missing",
-          "triggerIntents": ["ask_about_seam_ripper", "ask_about_lock", "ask_about_lia"],
+          "triggerIntents": [
+            "ask_about_seam_ripper",
+            "ask_about_lock",
+            "ask_about_lia"
+          ],
           "requiresClueIds": [],
           "revealText": "Lia observa que o descoscidor de precisão, que sempre fica no suporte da bancada, não está no lugar habitual.",
           "responseGuidance": "Ela deve apontar a ausência como detalhe de rotina, sem ligá-la ao corte."
@@ -452,7 +474,11 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 1,
-              "triggerIntents": ["ask_about_lock", "ask_about_alibi", "ask_about_lia"],
+              "triggerIntents": [
+                "ask_about_lock",
+                "ask_about_alibi",
+                "ask_about_lia"
+              ],
               "requiresClueIds": ["clue_lia_access_lock", "clue_no_breakin"],
               "revealsClueIds": ["clue_lia_alone_before_lock"],
               "behavior": "Admitir que foi a última a ficar sozinha no atelier antes de trancar, mas negar o corte.",
@@ -468,8 +494,15 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 2,
-              "triggerIntents": ["ask_about_collection", "ask_about_motive", "ask_about_lia"],
-              "requiresClueIds": ["clue_lia_alone_before_lock", "clue_lia_collection_shelved"],
+              "triggerIntents": [
+                "ask_about_collection",
+                "ask_about_motive",
+                "ask_about_lia"
+              ],
+              "requiresClueIds": [
+                "clue_lia_alone_before_lock",
+                "clue_lia_collection_shelved"
+              ],
               "revealsClueIds": ["clue_lia_resentment"],
               "behavior": "Admitir o ressentimento por ter a coleção preterida, mas ainda negar o corte.",
               "allowedToRevealTruth": false,
@@ -484,8 +517,15 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 3,
-              "triggerIntents": ["accuse_lia", "ask_about_motive", "press_for_confession"],
-              "requiresClueIds": ["clue_lia_resentment", "clue_seam_ripper_cleaned"],
+              "triggerIntents": [
+                "accuse_lia",
+                "ask_about_motive",
+                "press_for_confession"
+              ],
+              "requiresClueIds": [
+                "clue_lia_resentment",
+                "clue_seam_ripper_cleaned"
+              ],
               "revealsClueIds": ["clue_lia_cut_dress"],
               "behavior": "Admitir parcialmente que destruiu o vestido, sem ainda explicar todo o plano nem o instrumento.",
               "allowedToRevealTruth": false,
@@ -500,8 +540,15 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_lia", "ask_about_motive", "press_for_confession"],
-              "requiresClueIds": ["clue_lia_cut_dress", "clue_silence_collection_headliner"],
+              "triggerIntents": [
+                "accuse_lia",
+                "ask_about_motive",
+                "press_for_confession"
+              ],
+              "requiresClueIds": [
+                "clue_lia_cut_dress",
+                "clue_silence_collection_headliner"
+              ],
               "revealsClueIds": ["clue_lia_confession"],
               "behavior": "Confessar completamente: o instrumento, o motivo e a expectativa de que a coleção dela assumiria a abertura.",
               "allowedToRevealTruth": true,
@@ -544,7 +591,11 @@
       "clueRevealRules": [
         {
           "clueId": "clue_shears_on_bench",
-          "triggerIntents": ["ask_about_shears", "ask_about_salma", "ask_about_yesterday"],
+          "triggerIntents": [
+            "ask_about_shears",
+            "ask_about_salma",
+            "ask_about_yesterday"
+          ],
           "requiresClueIds": [],
           "revealText": "Salma admite que deixou sua tesoura de tecido sobre a bancada ao fim do turno, depois de cortar amostras.",
           "responseGuidance": "Ela deve se justificar rápido demais, o que soa suspeito sem provar nada."
@@ -635,7 +686,13 @@
       "imageUrl": "histories/a-ultima-costura/location/sala_costura.jpg",
       "initialDescription": "A sala de costura é o coração do Atelier Aurora. O manequim central sustenta o Vestido Estelar sob uma luz fria de inspeção. Ao longo da parede, a bancada de corte organiza tesouras, réguas e o suporte do descoscidor. A porta do atelier, com fechadura antiga de latão, fica ao fundo.",
       "ambientClueIds": ["clue_dress_slashed"],
-      "objectIds": ["vestido_cortado", "tesoura_tecido", "descoscidor", "porta_atelier", "livro_encomendas"]
+      "objectIds": [
+        "vestido_cortado",
+        "tesoura_tecido",
+        "descoscidor",
+        "porta_atelier",
+        "livro_encomendas"
+      ]
     },
     {
       "id": "provador",
@@ -682,7 +739,11 @@
         },
         {
           "clueId": "clue_slash_angle",
-          "triggerIntents": ["inspect_object", "ask_about_dress", "ask_about_shears"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_dress",
+            "ask_about_shears"
+          ],
           "requiresClueIds": [],
           "revealText": "O corte é fino, contínuo e de lâmina estreita, incompatível com uma tesoura grossa de tecido; parece obra de uma lâmina de precisão, como um descoscidor."
         }
@@ -782,7 +843,11 @@
         },
         {
           "clueId": "clue_silence_collection_headliner",
-          "triggerIntents": ["inspect_object", "ask_about_collection", "ask_about_show"],
+          "triggerIntents": [
+            "inspect_object",
+            "ask_about_collection",
+            "ask_about_show"
+          ],
           "requiresClueIds": [],
           "revealText": "Na ordem do desfile, a próxima peça forte após o Vestido Estelar é a coleção Costuras do Silêncio, de Lia — que, sem o vestido, assumiria a abertura."
         }

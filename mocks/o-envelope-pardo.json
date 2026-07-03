@@ -37,7 +37,14 @@
         "Quem está chantageando o Otávio?",
         "Como as cartas foram escritas?"
       ],
-      "keywords": ["chantagem", "cartas", "envelope", "ameaça", "anônimas", "datilografadas"]
+      "keywords": [
+        "chantagem",
+        "cartas",
+        "envelope",
+        "ameaça",
+        "anônimas",
+        "datilografadas"
+      ]
     },
     {
       "id": "ask_about_expose",
@@ -50,7 +57,14 @@
         "O que a investigação revela?",
         "Por que a matéria incomoda tanto?"
       ],
-      "keywords": ["reportagem", "matéria", "investigação", "terras", "escândalo", "edição"]
+      "keywords": [
+        "reportagem",
+        "matéria",
+        "investigação",
+        "terras",
+        "escândalo",
+        "edição"
+      ]
     },
     {
       "id": "ask_about_award",
@@ -63,7 +77,15 @@
         "Como era a reportagem premiada?",
         "Quem era a fonte daquela série?"
       ],
-      "keywords": ["prêmio", "troféu", "premiada", "20 anos", "fonte", "passado", "série"]
+      "keywords": [
+        "prêmio",
+        "troféu",
+        "premiada",
+        "20 anos",
+        "fonte",
+        "passado",
+        "série"
+      ]
     },
     {
       "id": "ask_about_motive",
@@ -76,7 +98,14 @@
         "Qual seria o motivo?",
         "Alguém tem interesse em silenciar a matéria?"
       ],
-      "keywords": ["motivo", "ganharia", "razão", "interesse", "perder", "lucrar"]
+      "keywords": [
+        "motivo",
+        "ganharia",
+        "razão",
+        "interesse",
+        "perder",
+        "lucrar"
+      ]
     },
     {
       "id": "ask_about_alibi",
@@ -89,7 +118,15 @@
         "Quem tem chave da redação?",
         "Alguém ficou sozinho aqui?"
       ],
-      "keywords": ["álibi", "horário", "esteve", "acesso", "chave", "véspera", "redação"]
+      "keywords": [
+        "álibi",
+        "horário",
+        "esteve",
+        "acesso",
+        "chave",
+        "véspera",
+        "redação"
+      ]
     },
     {
       "id": "ask_about_archive",
@@ -102,7 +139,15 @@
         "Quem mexe no acervo antigo?",
         "Tem fitas e recortes guardados?"
       ],
-      "keywords": ["arquivo", "acervo", "recortes", "fitas", "edições antigas", "morgue", "guardado"]
+      "keywords": [
+        "arquivo",
+        "acervo",
+        "recortes",
+        "fitas",
+        "edições antigas",
+        "morgue",
+        "guardado"
+      ]
     },
     {
       "id": "ask_about_otavio",
@@ -128,7 +173,13 @@
         "Como Dirce lida com Otávio?",
         "Dirce queria ser editora?"
       ],
-      "keywords": ["Dirce", "subeditora", "tempo de casa", "diretora", "segunda"]
+      "keywords": [
+        "Dirce",
+        "subeditora",
+        "tempo de casa",
+        "diretora",
+        "segunda"
+      ]
     },
     {
       "id": "ask_about_nelio",
@@ -180,7 +231,14 @@
         "Olho isso com atenção",
         "Inspeciono o envelope"
       ],
-      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes", "observar"]
+      "keywords": [
+        "examinar",
+        "inspecionar",
+        "olhar",
+        "objeto",
+        "detalhes",
+        "observar"
+      ]
     },
     {
       "id": "accuse_dirce",
@@ -232,7 +290,14 @@
         "Chega de enrolar, fala a verdade",
         "Confessa o que aconteceu"
       ],
-      "keywords": ["admite", "admitir", "confessa", "verdade", "fala logo", "chega de enrolar"]
+      "keywords": [
+        "admite",
+        "admitir",
+        "confessa",
+        "verdade",
+        "fala logo",
+        "chega de enrolar"
+      ]
     },
     {
       "id": "off_topic",
@@ -325,7 +390,11 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 0,
-              "triggerIntents": ["ask_about_award", "accuse_dirce", "accuse_bete"],
+              "triggerIntents": [
+                "ask_about_award",
+                "accuse_dirce",
+                "accuse_bete"
+              ],
               "requiresClueIds": [],
               "revealsClueIds": [],
               "behavior": "Negar qualquer irregularidade na reportagem premiada e se escudar no prêmio e na credibilidade do jornal.",
@@ -358,7 +427,10 @@
               "deletedAt": null,
               "level": 2,
               "triggerIntents": ["ask_about_award", "press_for_confession"],
-              "requiresClueIds": ["clue_otavio_pressure", "clue_bete_discrepancy"],
+              "requiresClueIds": [
+                "clue_otavio_pressure",
+                "clue_bete_discrepancy"
+              ],
               "revealsClueIds": ["clue_source_dead_before"],
               "behavior": "Confrontado com a discrepância de datas, admitir que a testemunha já havia falecido antes da data da entrevista, mas ainda procurar justificativa.",
               "allowedToRevealTruth": false,
@@ -373,7 +445,11 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 3,
-              "triggerIntents": ["accuse_dirce", "press_for_confession", "ask_about_award"],
+              "triggerIntents": [
+                "accuse_dirce",
+                "press_for_confession",
+                "ask_about_award"
+              ],
               "requiresClueIds": ["clue_source_dead_before"],
               "revealsClueIds": ["clue_otavio_fabricated"],
               "behavior": "Admitir parcialmente que preencheu lacunas da série inventando trechos da entrevista, insistindo que o restante era verdadeiro.",
@@ -389,7 +465,11 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 4,
-              "triggerIntents": ["accuse_dirce", "press_for_confession", "ask_about_archive"],
+              "triggerIntents": [
+                "accuse_dirce",
+                "press_for_confession",
+                "ask_about_archive"
+              ],
               "requiresClueIds": ["clue_otavio_fabricated"],
               "revealsClueIds": ["clue_tape_in_archive"],
               "behavior": "Confessar completamente a fraude e revelar onde a prova original pode estar guardada.",
@@ -456,7 +536,11 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 0,
-              "triggerIntents": ["ask_about_blackmail", "accuse_dirce", "ask_about_alibi"],
+              "triggerIntents": [
+                "ask_about_blackmail",
+                "accuse_dirce",
+                "ask_about_alibi"
+              ],
               "requiresClueIds": [],
               "revealsClueIds": [],
               "behavior": "Negar qualquer envolvimento com as cartas e reagir com calma profissional à suspeita.",
@@ -472,8 +556,15 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 1,
-              "triggerIntents": ["ask_about_award", "ask_about_dirce", "ask_about_archive"],
-              "requiresClueIds": ["clue_dirce_passed_over", "clue_otavio_fabricated"],
+              "triggerIntents": [
+                "ask_about_award",
+                "ask_about_dirce",
+                "ask_about_archive"
+              ],
+              "requiresClueIds": [
+                "clue_dirce_passed_over",
+                "clue_otavio_fabricated"
+              ],
               "revealsClueIds": ["clue_dirce_knew_fabrication"],
               "behavior": "Admitir que sabia da fraude — descobriu ao preparar a retrospectiva dos 20 anos —, mas negar ter escrito as cartas.",
               "allowedToRevealTruth": false,
@@ -489,7 +580,10 @@
               "deletedAt": null,
               "level": 2,
               "triggerIntents": ["accuse_dirce", "press_for_confession"],
-              "requiresClueIds": ["clue_dirce_knew_fabrication", "clue_letters_office_typewriter"],
+              "requiresClueIds": [
+                "clue_dirce_knew_fabrication",
+                "clue_letters_office_typewriter"
+              ],
               "revealsClueIds": ["clue_dirce_sent_letters"],
               "behavior": "Confrontada com a prova da máquina da casa, admitir que escreveu as cartas, mas ainda não revelar a exigência real.",
               "allowedToRevealTruth": false,
@@ -504,7 +598,11 @@
               "updatedAt": "2026-07-02T00:00:00.000Z",
               "deletedAt": null,
               "level": 3,
-              "triggerIntents": ["accuse_dirce", "press_for_confession", "ask_about_motive"],
+              "triggerIntents": [
+                "accuse_dirce",
+                "press_for_confession",
+                "ask_about_motive"
+              ],
               "requiresClueIds": ["clue_dirce_sent_letters"],
               "revealsClueIds": ["clue_dirce_demand_seat"],
               "behavior": "Revelar a exigência verdadeira: Otávio deve se aposenter e nomeá-la editora, em troca do silêncio sobre a fraude.",
