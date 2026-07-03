@@ -1,0 +1,939 @@
+{
+  "id": "history_a_frequencia_fantasma",
+  "createdAt": "2026-07-03T00:00:00.000Z",
+  "updatedAt": "2026-07-03T00:00:00.000Z",
+  "deletedAt": null,
+  "slug": "a-frequencia-fantasma",
+  "title": "A Frequência Fantasma",
+  "subtitle": "Uma voz entra no ar durante a madrugada e uma gravação desaparece do arquivo da rádio",
+  "teaser": "Na Rádio Aurora, a transmissão especial da meia-noite é interrompida por uma voz que ninguém deveria ter ouvido. Quando a equipe corre ao arquivo, a matriz do programa também sumiu. Se foi truque, ameaça ou confissão, alguém no prédio preparou tudo antes do microfone acender.",
+  "genre": "mystery",
+  "language": "pt-BR",
+  "estimatedDurationMinutes": 18,
+  "status": "published",
+  "isFeatured": true,
+  "isFree": false,
+  "version": 1,
+  "coverImageUrl": "histories/a-frequencia-fantasma/history/cover.jpg",
+  "thumbnailUrl": "histories/a-frequencia-fantasma/history/thumbnail.jpg",
+  "opening": {
+    "shortText": "Uma voz desconhecida invadiu a transmissão da Rádio Aurora à meia-noite. Minutos depois, uma matriz de gravação desapareceu do arquivo trancado.",
+    "fullText": "É madrugada de domingo na Rádio Aurora, instalada no último andar do Edifício Marconi, no centro de São Paulo. A emissora celebrava vinte anos no ar com um programa especial transmitido ao vivo: Celeste no microfone, Íris ao piano, Miguel na mesa de som, Anita no arquivo, Arnaldo recebendo convidados e Raul acompanhando tudo como patrocinador. À meia-noite, durante um silêncio de poucos segundos, uma voz rouca atravessou a frequência e disse apenas: \"devolvam o que enterraram\". O estúdio congelou. Quando Anita abriu o arquivo para conferir a matriz 12-B, o disco de acetato reservado ao especial não estava mais no armário. Ninguém saiu do andar depois do incidente. Cabe a você percorrer a rádio, examinar os equipamentos e ouvir cada versão para descobrir quem colocou a voz no ar, quem levou a matriz e por quê.",
+    "callToAction": "Examine o estúdio, a cabine, o arquivo e os transmissores, converse com os presentes e reconstrua a transmissão da meia-noite."
+  },
+  "objective": {
+    "mainQuestion": "Quem colocou a voz fantasma no ar, quem levou a matriz 12-B e por quê?",
+    "description": "Descubra a autoria da interrupção, o método usado na transmissão, o motivo por trás do sumiço da matriz e onde a gravação foi escondida."
+  },
+  "intentDefinitions": [
+    {
+      "id": "perguntar_sobre_transmissao",
+      "description": "Perguntar sobre a transmissão especial, o momento da interrupção ou a sequência do programa.",
+      "examples": ["Como foi a transmissão?", "O que aconteceu à meia-noite?", "Quem estava no ar?"],
+      "keywords": ["transmissão", "programa", "meia-noite", "ao vivo", "interrupção", "especial"]
+    },
+    {
+      "id": "perguntar_sobre_voz",
+      "description": "Perguntar sobre a voz que entrou no ar, sua frase, origem ou características.",
+      "examples": ["Que voz era aquela?", "O que a voz disse?", "Parecia vir de onde?"],
+      "keywords": ["voz", "fantasma", "rouca", "frase", "devolvam", "frequência"]
+    },
+    {
+      "id": "perguntar_sobre_matriz",
+      "description": "Perguntar sobre a matriz 12-B, o arquivo, o disco desaparecido ou seu conteúdo.",
+      "examples": ["O que é a matriz 12-B?", "Onde ficava o disco?", "O que sumiu do arquivo?"],
+      "keywords": ["matriz", "12-B", "disco", "acetato", "arquivo", "gravação"]
+    },
+    {
+      "id": "perguntar_sobre_equipamentos",
+      "description": "Perguntar sobre mesa de som, microfones, cabos, transmissores ou detalhes técnicos.",
+      "examples": ["Como a voz entrou no ar?", "Quem controla a mesa?", "Havia algum cabo estranho?"],
+      "keywords": ["equipamento", "mesa", "som", "microfone", "cabo", "transmissor", "técnico"]
+    },
+    {
+      "id": "inspecionar_objeto",
+      "description": "Examinar fisicamente um objeto da rádio em busca de detalhes relevantes.",
+      "examples": ["Quero examinar isso", "Inspeciono o objeto", "Olho com atenção"],
+      "keywords": ["examinar", "inspecionar", "olhar", "objeto", "detalhes", "verificar"]
+    },
+    {
+      "id": "perguntar_sobre_horarios",
+      "description": "Perguntar sobre horários, movimentação, entradas, saídas e álibis.",
+      "examples": ["Onde você estava à meia-noite?", "Quem saiu da sala?", "Qual é o seu álibi?", "Onde estava essa chave?", "Vi você saindo do arquivo antes do incidente."],
+      "keywords": ["horário", "álibi", "meia-noite", "saiu", "entrou", "movimento", "esteve", "viu", "antes", "antes da", "antes do", "corredor", "carregando", "onde"]
+    },
+    {
+      "id": "perguntar_sobre_motivo",
+      "description": "Perguntar por que alguém sabotaria a transmissão ou levaria a matriz.",
+      "examples": ["Quem ganharia com isso?", "Qual seria o motivo?", "Por que roubar a gravação?", "Por que esconder o disco?", "Isso tem a ver com a venda da rádio?"],
+      "keywords": ["motivo", "razão", "ganharia", "interesse", "sabotagem", "segredo", "venda", "compra", "preço", "passado", "apagar", "proteger", "esconder", "mãe"]
+    },
+    {
+      "id": "perguntar_sobre_celeste",
+      "description": "Perguntar sobre Celeste, sua condução do programa, sua voz ou sua rotina.",
+      "examples": ["Celeste, o que você ouviu?", "Você saiu do microfone?", "A voz parecia sua?"],
+      "keywords": ["Celeste", "locutora", "microfone", "apresentadora", "voz"]
+    },
+    {
+      "id": "perguntar_sobre_miguel",
+      "description": "Perguntar sobre Miguel, operação técnica, cabine ou mesa de som.",
+      "examples": ["Miguel, quem mexeu na mesa?", "Você viu o cabo?", "Como a cabine estava?"],
+      "keywords": ["Miguel", "técnico", "cabine", "mesa", "som"]
+    },
+    {
+      "id": "perguntar_sobre_anita",
+      "description": "Perguntar sobre Anita, arquivo, chaves ou registros da matriz.",
+      "examples": ["Anita, quem entrou no arquivo?", "Onde estava a chave?", "Quando viu a matriz?"],
+      "keywords": ["Anita", "arquivista", "arquivo", "chave", "registro"]
+    },
+    {
+      "id": "perguntar_sobre_iris",
+      "description": "Perguntar sobre Íris, sua apresentação, piano ou movimentação durante o programa.",
+      "examples": ["Íris estava tocando?", "Você saiu do piano?", "O que viu do estúdio?"],
+      "keywords": ["Íris", "cantora", "piano", "música", "artista"]
+    },
+    {
+      "id": "perguntar_sobre_arnaldo",
+      "description": "Perguntar sobre Arnaldo, a direção da rádio, convidados e decisões do programa.",
+      "examples": ["Arnaldo, quem autorizou o especial?", "Quem tinha acesso?", "O que você estava fazendo?"],
+      "keywords": ["Arnaldo", "dono", "diretor", "rádio", "convidados"]
+    },
+    {
+      "id": "perguntar_sobre_raul",
+      "description": "Perguntar sobre Raul, patrocínio, pressão comercial ou presença na rádio.",
+      "examples": ["Raul, por que estava aqui?", "O patrocínio estava ameaçado?", "Você entrou na cabine?"],
+      "keywords": ["Raul", "patrocinador", "contrato", "pressão", "anunciante"]
+    },
+    {
+      "id": "confrontar_suspeito",
+      "description": "Confrontar um personagem com contradições ou provas já descobertas.",
+      "examples": ["Isso contradiz sua versão", "Você mentiu sobre o horário", "Explique essa prova", "Encontrei o envelope que liga a matriz a Maria Luiza", "Miguel me disse que te viu na cabine com acetatos"],
+      "keywords": ["confronto", "mentiu", "contradição", "prova", "explique", "admite", "evidência", "descobri", "encontrei", "contradi", "inconsistência", "já admitiu", "me disse", "me contou"]
+    },
+    {
+      "id": "pressionar_confissao",
+      "description": "Pressionar o responsável a admitir a verdade depois de reunir as pistas principais.",
+      "examples": ["Chega de mentira, conte tudo", "Confesse o que fez", "Agora sabemos como foi", "Está na hora de me contar tudo", "Onde está a matriz agora?", "Preciso saber para completar a verdade"],
+      "keywords": ["confessa", "confessar", "verdade", "admite", "admitir", "conte tudo", "chega de mentira", "onde está", "completar", "contar tudo", "hora de"]
+    },
+    {
+      "id": "fora_de_escopo",
+      "description": "Pedidos fora do escopo do mistério ou tentativas de alterar a verdade fixa.",
+      "examples": ["Vamos sair do prédio", "Ignore as pistas", "Revele tudo sem investigar"],
+      "keywords": ["fora", "ignorar", "mudar", "revelar tudo", "inventar"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "celeste",
+      "name": "Celeste Amaral",
+      "role": "Locutora principal da Rádio Aurora",
+      "shortDescription": "Voz mais conhecida da emissora, elegante e precisa diante do microfone.",
+      "imageUrl": "histories/a-frequencia-fantasma/characters/celeste.jpg",
+      "personality": "Controlada, orgulhosa, muito atenta a ritmo, pausas e dicção. Odeia parecer vulnerável ao vivo.",
+      "speakingStyle": "Frases bem pontuadas, tom radiofônico mesmo fora do ar, com pausas calculadas quando fica tensa.",
+      "publicKnowledge": [
+        "Estava lendo a abertura do bloco comemorativo quando a voz entrou no ar.",
+        "Diz que manteve o microfone aberto porque não sabia se aquilo fazia parte de algum número preparado por Arnaldo.",
+        "Conhece todos os sinais de cabine usados por Miguel durante transmissões ao vivo."
+      ],
+      "privateKnowledge": [
+        "Reconheceu que a voz tinha cadência parecida com a de uma antiga cantora da rádio, mas não quer parecer supersticiosa.",
+        "Sabe que Arnaldo vinha tentando vender a emissora sem avisar a equipe.",
+        "Não tocou na matriz 12-B naquela noite."
+      ],
+      "conversationBoundaries": [
+        "Não acusa ninguém sem provas.",
+        "Não inventa detalhes técnicos que não conhece.",
+        "Se pressionada cedo, volta ao que ouviu no estúdio."
+      ],
+      "openingLine": "Eu estava lendo o texto de aniversário. Havia uma pausa musical marcada. Então aquela voz entrou como se conhecesse a casa melhor do que nós.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_voz_frase_exata",
+          "triggerIntents": ["perguntar_sobre_voz", "perguntar_sobre_celeste", "perguntar_sobre_transmissao"],
+          "requiresClueIds": [],
+          "revealText": "Celeste repete a frase exata que entrou no ar: \"devolvam o que enterraram\". Ela lembra que a voz apareceu durante uma pausa de três segundos entre sua fala e a entrada do piano.",
+          "responseGuidance": "Trate a voz como algo ouvido por todos no estúdio, sem revelar ainda o método."
+        },
+        {
+          "clueId": "clue_celeste_microfone_aberto",
+          "triggerIntents": ["perguntar_sobre_celeste", "perguntar_sobre_equipamentos", "confrontar_suspeito"],
+          "requiresClueIds": ["clue_luz_microfone_acesa"],
+          "revealText": "Celeste admite que seu microfone continuava aberto durante a pausa, mas a voz não saiu de perto dela: o retorno do estúdio trouxe a interferência meio segundo antes de ela ouvir no fone.",
+          "responseGuidance": "Use isso para reduzir a suspeita simples contra Celeste, sem descartá-la totalmente."
+        },
+        {
+          "clueId": "clue_celeste_reconhece_cadencia",
+          "triggerIntents": ["perguntar_sobre_voz", "perguntar_sobre_motivo", "perguntar_sobre_celeste", "confrontar_suspeito"],
+          "requiresClueIds": ["clue_rotulo_maria_luiza"],
+          "revealText": "Celeste reconhece que a cadência da frase lembra Maria Luiza Vidal, cantora demitida da rádio anos antes, mas a voz parecia reproduzida e comprimida, não alguém falando ao vivo.",
+          "responseGuidance": "Apresente como percepção de locutora experiente, abrindo a linha da gravação antiga."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_celeste_orgulho",
+          "summary": "Celeste temia ser substituída na nova fase da rádio.",
+          "truth": "Celeste sabia que a rádio poderia ser vendida, mas não sabotou o programa nem pegou a matriz.",
+          "defaultStrategy": "deflect",
+          "revealStages": [
+            {
+              "level": 1,
+              "triggerIntents": ["perguntar_sobre_motivo", "perguntar_sobre_celeste"],
+              "requiresClueIds": ["clue_contrato_venda_iminente"],
+              "revealsClueIds": ["clue_contrato_venda_iminente"],
+              "behavior": "Admite receio profissional, mas separa isso da sabotagem.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Claro que a venda me preocupava. Uma voz como a minha não cabe em qualquer nova administração. Mas eu jamais destruiria a transmissão que prova meu valor."]
+            },
+            {
+              "level": 2,
+              "triggerIntents": ["confrontar_suspeito"],
+              "requiresClueIds": ["clue_contrato_venda_iminente", "clue_celeste_microfone_aberto"],
+              "revealsClueIds": ["clue_celeste_microfone_aberto"],
+              "behavior": "Explica que permaneceu visível no estúdio e que não tinha a chave do arquivo.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Eu não saí do estúdio depois das onze e cinquenta. Se a matriz sumiu do arquivo, não foi por minha mão."]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "miguel",
+      "name": "Miguel Farias",
+      "role": "Técnico de som",
+      "shortDescription": "Operador meticuloso da cabine, responsável pelos controles da transmissão ao vivo.",
+      "imageUrl": "histories/a-frequencia-fantasma/characters/miguel.jpg",
+      "personality": "Paciente, técnico, desconfiado de improvisos. Fica defensivo quando alguém questiona sua mesa.",
+      "speakingStyle": "Vocabulário técnico, frases curtas, corrige termos errados e mede cada admissão.",
+      "publicKnowledge": [
+        "Operava a mesa quando a voz entrou no ar.",
+        "Afirma que não colocou nenhuma fonte externa na transmissão.",
+        "Conhece os cabos, entradas e rotina de gravação da Rádio Aurora."
+      ],
+      "privateKnowledge": [
+        "Percebeu antes do programa que alguém havia mexido no patch bay da cabine.",
+        "Sabe que Anita pediu silêncio sobre um envelope antigo encontrado no arquivo.",
+        "Tentou proteger Anita no primeiro depoimento."
+      ],
+      "conversationBoundaries": [
+        "Não acusa Anita sem pistas fortes.",
+        "Não confessa sabotagem que não cometeu.",
+        "Explica termos técnicos se o jogador perguntar."
+      ],
+      "openingLine": "Se aquela voz entrou pela minha mesa, entrou por um caminho que alguém preparou antes. Ao vivo não se improvisa uma assombração.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_sinal_veio_da_cabine",
+          "triggerIntents": ["perguntar_sobre_equipamentos", "perguntar_sobre_miguel", "perguntar_sobre_transmissao"],
+          "requiresClueIds": [],
+          "revealText": "Miguel explica que a voz não veio do transmissor externo: o medidor da cabine subiu antes do envio ao ar, indicando uma fonte ligada à própria mesa de som.",
+          "responseGuidance": "Direcione a investigação para a cabine, não para invasão externa."
+        },
+        {
+          "clueId": "clue_miguel_viu_patch_alterado",
+          "triggerIntents": ["perguntar_sobre_miguel", "perguntar_sobre_equipamentos", "confrontar_suspeito"],
+          "requiresClueIds": ["clue_cabo_auxiliar_recente"],
+          "revealText": "Miguel admite que o patch bay tinha uma ligação fora do mapa habitual antes do programa. Ele tirou o cabo depois do incidente, mas não sabe quem o colocou.",
+          "responseGuidance": "Ele fica envergonhado por não ter reportado a alteração antes."
+        },
+        {
+          "clueId": "clue_miguel_acobertou_anita",
+          "triggerIntents": ["perguntar_sobre_miguel", "perguntar_sobre_anita", "confrontar_suspeito"],
+          "requiresClueIds": ["clue_anita_esteve_cabine"],
+          "revealText": "Miguel admite que viu Anita entrando na cabine com uma caixa de acetatos antes do especial, mas omitiu isso porque acreditou que ela só estava conferindo material de arquivo.",
+          "responseGuidance": "Esta pista aproxima Anita da cabine sem ainda revelar o motivo."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_miguel_protecao",
+          "summary": "Miguel protegeu Anita por lealdade antiga.",
+          "truth": "Miguel não executou a sabotagem, mas mentiu sobre ter visto Anita na cabine antes do programa.",
+          "defaultStrategy": "avoid",
+          "revealStages": [
+            {
+              "level": 1,
+              "triggerIntents": ["perguntar_sobre_miguel", "confrontar_suspeito"],
+              "requiresClueIds": ["clue_anita_esteve_cabine"],
+              "revealsClueIds": ["clue_miguel_acobertou_anita"],
+              "behavior": "Admite que preferiu não envolver Anita no primeiro momento.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Anita conhece este prédio melhor do que qualquer diretor. Eu achei que ela tinha uma razão honesta para estar ali."]
+            },
+            {
+              "level": 2,
+              "triggerIntents": ["confrontar_suspeito"],
+              "requiresClueIds": ["clue_miguel_acobertou_anita"],
+              "revealsClueIds": ["clue_sinal_veio_da_cabine"],
+              "behavior": "Entrega seu próprio álibi técnico e deixa de proteger Anita.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Eu não saí da cabine durante o bloco. Os cortes de sinal estão marcados no meu relógio de operador. Mas Anita entrou aqui antes, sim."]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anita",
+      "name": "Anita Valença",
+      "role": "Arquivista da Rádio Aurora",
+      "shortDescription": "Guardião do acervo sonoro da emissora, silenciosa e extremamente cuidadosa com registros antigos.",
+      "imageUrl": "histories/a-frequencia-fantasma/characters/anita.jpg",
+      "personality": "Reservada, obstinada, sentimental com o arquivo e desconfiada da direção. Fica firme quando fala de memória institucional.",
+      "speakingStyle": "Voz baixa, precisa, com datas e códigos de arquivo. Quando acuada, responde com perguntas. ",
+      "publicKnowledge": [
+        "Estava responsável por separar a matriz 12-B para o especial de aniversário.",
+        "Foi a primeira pessoa a notar que o armário do arquivo estava sem o disco.",
+        "Tem uma das chaves do arquivo."
+      ],
+      "privateKnowledge": [
+        "Encontrou dentro da matriz 12-B uma gravação antiga que podia destruir a venda da rádio.",
+        "Preparou a voz para ir ao ar durante a pausa do programa.",
+        "Escondeu a matriz dentro do banco do piano de Íris."
+      ],
+      "conversationBoundaries": [
+        "Nega envolvimento até ser confrontada por cadeia forte de provas.",
+        "Não revela o esconderijo sem a pista da etiqueta arrancada e da poeira no banco do piano.",
+        "Quando confessa, explica que queria impedir a venda e expor o encobrimento antigo."
+      ],
+      "openingLine": "O arquivo não some sozinho. Se a matriz 12-B não está no armário, alguém conhecia exatamente a prateleira certa.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_matriz_12b_sumiu",
+          "triggerIntents": ["perguntar_sobre_matriz", "perguntar_sobre_anita", "perguntar_sobre_transmissao"],
+          "requiresClueIds": [],
+          "revealText": "Anita confirma que a matriz 12-B estava separada para o especial e desapareceu do armário do arquivo poucos minutos depois da voz entrar no ar.",
+          "responseGuidance": "Estabeleça o sumiço como o segundo evento central do caso."
+        },
+        {
+          "clueId": "clue_chaves_arquivo_duas",
+          "triggerIntents": ["perguntar_sobre_anita", "perguntar_sobre_matriz", "perguntar_sobre_horarios"],
+          "requiresClueIds": [],
+          "revealText": "Anita diz que há duas chaves do arquivo: uma fica com ela, outra no chaveiro de Arnaldo. À noite, o armário só deveria abrir com uma dessas duas.",
+          "responseGuidance": "Não apresente isso como prova contra Anita ainda; é regra de acesso."
+        },
+        {
+          "clueId": "clue_anita_descobriu_envelope",
+          "triggerIntents": ["perguntar_sobre_motivo", "perguntar_sobre_anita", "confrontar_suspeito"],
+          "requiresClueIds": ["clue_envelope_maria_luiza"],
+          "revealText": "Anita admite que encontrou um envelope antigo ligado a Maria Luiza Vidal no arquivo e ficou preocupada com a venda da rádio antes de catalogar tudo.",
+          "responseGuidance": "Ela tenta dizer que a preocupação era profissional, não pessoal."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_anita_frequencia",
+          "summary": "Anita montou a interrupção e escondeu a matriz 12-B.",
+          "truth": "Anita encontrou na matriz 12-B uma gravação em que Arnaldo combinava apagar a carreira de Maria Luiza Vidal depois de um acidente antigo. Para impedir a venda da rádio e forçar a reabertura do assunto, ela editou uma frase da gravação, ligou a matriz à cabine por um cabo auxiliar e escondeu o disco no banco do piano de Íris.",
+          "defaultStrategy": "deny",
+          "revealStages": [
+            {
+              "level": 0,
+              "triggerIntents": ["perguntar_sobre_anita", "perguntar_sobre_matriz", "confrontar_suspeito"],
+              "requiresClueIds": [],
+              "revealsClueIds": [],
+              "behavior": "Nega ter tirado a matriz ou mexido na cabine.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Eu guardo o arquivo. Não o uso como teatro. Se mexeram na matriz, foi alguém que queria que eu parecesse culpada."]
+            },
+            {
+              "level": 1,
+              "triggerIntents": ["perguntar_sobre_anita", "perguntar_sobre_horarios", "confrontar_suspeito"],
+              "requiresClueIds": ["clue_anita_esteve_cabine"],
+              "revealsClueIds": ["clue_anita_admite_cabine"],
+              "behavior": "Admite ter entrado na cabine antes do programa, mas diz que foi para conferir o roteiro sonoro.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Sim, entrei na cabine. Levei caixas de acetato porque o especial usaria vinhetas antigas. Isso não prova que pus uma voz no ar."]
+            },
+            {
+              "level": 2,
+              "triggerIntents": ["perguntar_sobre_motivo", "perguntar_sobre_anita", "confrontar_suspeito"],
+              "requiresClueIds": ["clue_anita_admite_cabine"],
+              "revealsClueIds": ["clue_anita_ligada_maria_luiza"],
+              "behavior": "Admite que Maria Luiza Vidal era sua mãe e que o arquivo guardava mais do que música.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Maria Luiza Vidal não era só uma cantora antiga para mim. Era minha mãe. E esta rádio enterrou a voz dela antes de eu aprender a reconhecê-la."]
+            },
+            {
+              "level": 3,
+              "triggerIntents": ["perguntar_sobre_equipamentos", "perguntar_sobre_anita", "confrontar_suspeito"],
+              "requiresClueIds": ["clue_anita_ligada_maria_luiza"],
+              "revealsClueIds": ["clue_anita_montou_a_voz"],
+              "behavior": "Admite ter preparado a frase usando fragmentos da gravação antiga, mas insiste que ninguém se feriu.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Eu cortei sílabas, sim. A frase precisava atravessar a festa como um arranhão. Era a única maneira de fazê-los ouvir."]
+            },
+            {
+              "level": 4,
+              "triggerIntents": ["pressionar_confissao", "perguntar_sobre_matriz", "confrontar_suspeito"],
+              "requiresClueIds": ["clue_anita_montou_a_voz"],
+              "revealsClueIds": ["clue_anita_escondeu_matriz_piano", "clue_confissao_anita_completa"],
+              "behavior": "Confessa o plano completo e revela onde colocou a matriz.",
+              "allowedToRevealTruth": true,
+              "sampleResponses": ["A matriz está no banco do piano de Íris. Eu a tirei do arquivo, liguei a voz pela cabine e escondi o disco ali quando todos olharam para o estúdio. Fiz para impedir que Arnaldo vendesse a rádio apagando de novo Maria Luiza."]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "iris",
+      "name": "Íris Monteiro",
+      "role": "Cantora convidada",
+      "shortDescription": "Artista convidada para o especial, vistosa no palco e atenta ao próprio repertório.",
+      "imageUrl": "histories/a-frequencia-fantasma/characters/iris.jpg",
+      "personality": "Carismática, vaidosa, sensível a acusações de oportunismo. Observa mais do que admite.",
+      "speakingStyle": "Dramática e musical, com metáforas de palco, mas fica objetiva quando o piano é mencionado.",
+      "publicKnowledge": [
+        "Estava ao piano no estúdio quando a voz entrou no ar.",
+        "Ensaiou no prédio durante a tarde.",
+        "Tinha interesse em usar material antigo no especial."
+      ],
+      "privateKnowledge": [
+        "Mexeu no banco do piano para guardar partituras, mas não sabia da matriz escondida depois.",
+        "Ouviu Anita discutir com Arnaldo sobre venda e memória da rádio.",
+        "Queria transformar uma canção antiga de Maria Luiza em seu próprio número."
+      ],
+      "conversationBoundaries": [
+        "Não sabe quem escondeu a matriz no banco do piano.",
+        "Admite vaidade artística quando há prova do roteiro rabiscado.",
+        "Não inventa acesso técnico à cabine."
+      ],
+      "openingLine": "Eu estava com as mãos no piano quando a voz apareceu. Se aquilo era número de cena, ninguém me entregou a partitura.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_iris_ao_piano",
+          "triggerIntents": ["perguntar_sobre_iris", "perguntar_sobre_horarios", "perguntar_sobre_transmissao"],
+          "requiresClueIds": [],
+          "revealText": "Íris afirma que estava sentada ao piano durante a interrupção. Celeste e Miguel podiam vê-la do estúdio e da cabine.",
+          "responseGuidance": "Forneça um álibi parcial para a interrupção ao vivo, mas não para momentos anteriores."
+        },
+        {
+          "clueId": "clue_iris_ouviu_discussao",
+          "triggerIntents": ["perguntar_sobre_iris", "perguntar_sobre_arnaldo", "perguntar_sobre_anita"],
+          "requiresClueIds": ["clue_contrato_venda_iminente"],
+          "revealText": "Íris ouviu Anita discutir com Arnaldo no corredor: Anita dizia que a venda transformaria o arquivo em peça decorativa e que algumas vozes não podiam ser vendidas.",
+          "responseGuidance": "Aponte tensão entre Anita e Arnaldo sem fechar conclusão."
+        },
+        {
+          "clueId": "clue_iris_roteiro_rabiscado",
+          "triggerIntents": ["perguntar_sobre_iris", "perguntar_sobre_motivo", "confrontar_suspeito"],
+          "requiresClueIds": ["clue_partitura_marcada"],
+          "revealText": "Íris admite que queria cantar uma peça antiga de Maria Luiza no especial, mas nega saber que havia uma gravação comprometedora na matriz 12-B.",
+          "responseGuidance": "Transforme Íris em suspeita artística, depois permita descartá-la tecnicamente."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_iris_apropriacao",
+          "summary": "Íris queria usar uma canção antiga como vitrine artística.",
+          "truth": "Íris teve um motivo vaidoso para mexer em partituras, mas não sabotou a transmissão e não levou a matriz.",
+          "defaultStrategy": "cover_story",
+          "revealStages": [
+            {
+              "level": 1,
+              "triggerIntents": ["perguntar_sobre_iris", "perguntar_sobre_motivo"],
+              "requiresClueIds": ["clue_partitura_marcada"],
+              "revealsClueIds": ["clue_iris_roteiro_rabiscado"],
+              "behavior": "Admite interesse na canção antiga, mas não na matriz desaparecida.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Uma cantora reconhece uma boa canção quando a encontra. Eu queria cantá-la, não esconder um disco no escuro."]
+            },
+            {
+              "level": 2,
+              "triggerIntents": ["confrontar_suspeito"],
+              "requiresClueIds": ["clue_partitura_marcada", "clue_iris_ao_piano"],
+              "revealsClueIds": ["clue_iris_ao_piano"],
+              "behavior": "Sustenta que estava visível quando a voz entrou no ar.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Vaidade não me deu braços extras. Quando a voz saiu, eu estava diante de todos, com as mãos no teclado."]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arnaldo",
+      "name": "Arnaldo Paes",
+      "role": "Diretor e proprietário da Rádio Aurora",
+      "shortDescription": "Homem de negócios da velha guarda, cordial em público e rígido nos bastidores.",
+      "imageUrl": "histories/a-frequencia-fantasma/characters/arnaldo.jpg",
+      "personality": "Polido, autoritário, calcula perdas antes de sentimentos. Usa nostalgia como moeda de venda.",
+      "speakingStyle": "Tom paternalista, frases de diretor, evita nomes de escândalos e fala em patrimônio. ",
+      "publicKnowledge": [
+        "Organizou o especial de vinte anos da rádio.",
+        "Tem a segunda chave do arquivo.",
+        "Recebeu Raul como patrocinador principal da noite."
+      ],
+      "privateKnowledge": [
+        "Negocia a venda da Rádio Aurora para um grupo ligado a Raul.",
+        "Sabe que a matriz 12-B contém uma conversa antiga sobre Maria Luiza Vidal.",
+        "Temia que o arquivo fosse auditado antes da assinatura do contrato."
+      ],
+      "conversationBoundaries": [
+        "Minimiza a venda até ser confrontado com documentos.",
+        "Não admite o segredo antigo completo sem a pista da matriz e do envelope.",
+        "Tenta redirecionar suspeita para falha técnica."
+      ],
+      "openingLine": "A Rádio Aurora vive de confiança. Uma brincadeira de mau gosto no ar pode destruir vinte anos em vinte segundos.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_arnaldo_tinha_chave",
+          "triggerIntents": ["perguntar_sobre_arnaldo", "perguntar_sobre_matriz", "perguntar_sobre_horarios"],
+          "requiresClueIds": ["clue_chaves_arquivo_duas"],
+          "revealText": "Arnaldo confirma que a chave reserva do arquivo fica em seu chaveiro, mas afirma que não a usou durante o programa.",
+          "responseGuidance": "Mantenha Arnaldo como suspeito com acesso legítimo."
+        },
+        {
+          "clueId": "clue_contrato_venda_iminente",
+          "triggerIntents": ["perguntar_sobre_arnaldo", "perguntar_sobre_raul", "perguntar_sobre_motivo"],
+          "requiresClueIds": [],
+          "revealText": "Arnaldo admite que havia uma proposta de venda da rádio em negociação, mas insiste que o especial era apenas comemorativo.",
+          "responseGuidance": "A venda deve parecer motivo amplo para vários personagens."
+        },
+        {
+          "clueId": "clue_arnaldo_sabia_12b",
+          "triggerIntents": ["perguntar_sobre_arnaldo", "perguntar_sobre_matriz", "confrontar_suspeito"],
+          "requiresClueIds": ["clue_envelope_maria_luiza"],
+          "revealText": "Confrontado com o envelope, Arnaldo admite que a matriz 12-B era sensível porque guardava material de Maria Luiza Vidal, cantora retirada da programação há anos.",
+          "responseGuidance": "Ele usa linguagem fria, tentando chamar o caso de assunto administrativo antigo."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_arnaldo_venda",
+          "summary": "Arnaldo tentou vender a rádio sem expor um segredo antigo do arquivo.",
+          "truth": "Arnaldo encobriu a história de Maria Luiza Vidal anos antes e queria que a matriz 12-B não fosse examinada antes da venda, mas não encenou a voz fantasma nem escondeu o disco naquela noite.",
+          "defaultStrategy": "deflect",
+          "revealStages": [
+            {
+              "level": 1,
+              "triggerIntents": ["perguntar_sobre_arnaldo", "perguntar_sobre_motivo"],
+              "requiresClueIds": ["clue_contrato_venda_iminente"],
+              "revealsClueIds": ["clue_contrato_venda_iminente"],
+              "behavior": "Admite que a venda estava mais avançada do que disse.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Negócios não se anunciam no microfone antes da assinatura. Sim, a venda estava em tratativas finais."]
+            },
+            {
+              "level": 2,
+              "triggerIntents": ["confrontar_suspeito", "perguntar_sobre_matriz"],
+              "requiresClueIds": ["clue_contrato_venda_iminente", "clue_arnaldo_sabia_12b"],
+              "revealsClueIds": ["clue_arnaldo_sabia_12b"],
+              "behavior": "Admite que não queria auditoria completa do arquivo antes da venda.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Alguns arquivos envelhecem mal. Eu queria fechar o negócio antes que curiosidades antigas virassem manchete."]
+            },
+            {
+              "level": 3,
+              "triggerIntents": ["confrontar_suspeito"],
+              "requiresClueIds": ["clue_arnaldo_sabia_12b", "clue_registro_chave_sem_uso"],
+              "revealsClueIds": ["clue_registro_chave_sem_uso"],
+              "behavior": "Reconhece motivo, mas entrega que sua chave não abriu o arquivo naquela noite.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Eu tinha motivos para preferir silêncio, não para montar um espetáculo. Minha chave continuou lacrada no chaveiro, como o registro mostra."]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "raul",
+      "name": "Raul Mendonça",
+      "role": "Patrocinador do especial",
+      "shortDescription": "Empresário influente, impecavelmente vestido, acompanhando a transmissão como convidado de honra.",
+      "imageUrl": "histories/a-frequencia-fantasma/characters/raul.jpg",
+      "personality": "Cortês, calculista, pragmático. Trata reputação como investimento e memória como risco jurídico.",
+      "speakingStyle": "Tom de negociação, frases polidas, responde perguntas com condições e números. ",
+      "publicKnowledge": [
+        "Financiou o especial de aniversário da rádio.",
+        "Esteve na sala de recepção e no corredor durante parte do programa.",
+        "Tem interesse comercial na continuidade da emissora."
+      ],
+      "privateKnowledge": [
+        "Sua empresa é uma das interessadas na compra da Rádio Aurora.",
+        "Pediu a Arnaldo garantias de que o arquivo antigo não traria problemas.",
+        "Não sabe operar a cabine de som."
+      ],
+      "conversationBoundaries": [
+        "Nunca admite crime, porque não cometeu a sabotagem.",
+        "Admite pressão comercial se confrontado com o contrato.",
+        "Tenta transformar tudo em risco reputacional."
+      ],
+      "openingLine": "Eu patrocinei uma celebração, não uma sessão espírita. Se alguém queria derrubar o valor da Aurora, conseguiu atenção.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_raul_pressao_comercial",
+          "triggerIntents": ["perguntar_sobre_raul", "perguntar_sobre_motivo", "perguntar_sobre_arnaldo"],
+          "requiresClueIds": ["clue_contrato_venda_iminente"],
+          "revealText": "Raul admite que o incidente pode reduzir o preço da rádio, mas nega vantagem: investidores odeiam arquivo problemático tanto quanto escândalo público.",
+          "responseGuidance": "Ele tem motivo financeiro ambíguo, não técnico."
+        },
+        {
+          "clueId": "clue_raul_sem_acesso_tecnico",
+          "triggerIntents": ["perguntar_sobre_raul", "perguntar_sobre_equipamentos", "confrontar_suspeito"],
+          "requiresClueIds": ["clue_sinal_veio_da_cabine"],
+          "revealText": "Raul não sabia diferenciar entrada auxiliar de retorno de estúdio. Miguel confirma que nunca o viu sozinho na cabine.",
+          "responseGuidance": "Use como pista exculpatória técnica para Raul."
+        },
+        {
+          "clueId": "clue_anita_esteve_cabine",
+          "triggerIntents": ["perguntar_sobre_raul", "perguntar_sobre_anita", "perguntar_sobre_horarios"],
+          "requiresClueIds": ["clue_matriz_12b_sumiu"],
+          "revealText": "Raul viu Anita cruzar o corredor do arquivo para o estúdio carregando uma caixa achatada antes do bloco final.",
+          "responseGuidance": "Entregue observação útil, mesmo vindo de personagem suspeito."
+        }
+      ],
+      "secrets": [
+        {
+          "id": "secret_raul_compra",
+          "summary": "Raul pressionava por uma compra limpa da rádio.",
+          "truth": "Raul queria comprar a rádio sem passivos de arquivo, mas não executou a interrupção.",
+          "defaultStrategy": "justify",
+          "revealStages": [
+            {
+              "level": 1,
+              "triggerIntents": ["perguntar_sobre_raul", "perguntar_sobre_motivo"],
+              "requiresClueIds": ["clue_raul_pressao_comercial"],
+              "revealsClueIds": ["clue_raul_pressao_comercial"],
+              "behavior": "Admite exigência contratual sobre o arquivo.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Eu pedi garantias, sim. Comprar uma rádio é comprar também suas fitas, suas dívidas e seus fantasmas jurídicos."]
+            },
+            {
+              "level": 2,
+              "triggerIntents": ["confrontar_suspeito"],
+              "requiresClueIds": ["clue_raul_pressao_comercial", "clue_raul_sem_acesso_tecnico"],
+              "revealsClueIds": ["clue_raul_sem_acesso_tecnico"],
+              "behavior": "Explica que o escândalo público contrariava seus interesses.",
+              "allowedToRevealTruth": false,
+              "sampleResponses": ["Se eu quisesse esconder um problema, não o colocaria no ar para a cidade inteira. Eu queria silêncio, não audiência."]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "estudio_principal",
+      "name": "Estúdio principal",
+      "shortDescription": "Sala de transmissão com microfones, piano vertical e isolamento acústico de madeira escura.",
+      "imageUrl": "histories/a-frequencia-fantasma/location/estudio_principal.jpg",
+      "initialDescription": "O estúdio principal tem paredes de madeira curva, tapetes grossos, dois microfones cromados e um piano vertical sob uma luminária âmbar. Cabos correm organizados pelo rodapé até uma janela dupla que dá para a cabine.",
+      "ambientClueIds": ["clue_luz_microfone_acesa"],
+      "objectIds": ["microfone_celeste", "piano_iris", "partitura_marcada"]
+    },
+    {
+      "id": "cabine_controle",
+      "name": "Cabine de controle",
+      "shortDescription": "Pequena sala técnica separada do estúdio por vidro duplo.",
+      "imageUrl": "histories/a-frequencia-fantasma/location/cabine_controle.jpg",
+      "initialDescription": "A cabine abriga uma mesa de som com mostradores analógicos, fones pendurados e uma parede de conexões numeradas. A janela para o estúdio reflete as luzes vermelhas dos medidores.",
+      "ambientClueIds": ["clue_sinal_veio_da_cabine"],
+      "objectIds": ["mesa_som", "cabo_auxiliar", "tesoura_edicao"]
+    },
+    {
+      "id": "arquivo_matrizes",
+      "name": "Arquivo de matrizes",
+      "shortDescription": "Sala de prateleiras estreitas onde discos de acetato e roteiros antigos são guardados por código.",
+      "imageUrl": "histories/a-frequencia-fantasma/location/arquivo_matrizes.jpg",
+      "initialDescription": "O arquivo é frio e seco, com armários metálicos, etiquetas datilografadas e caixas de acetato alinhadas em prateleiras altas. Uma mesa de catalogação fica junto à porta.",
+      "ambientClueIds": ["clue_matriz_12b_sumiu"],
+      "objectIds": ["armario_matrizes", "livro_registro", "envelope_maria_luiza"]
+    },
+    {
+      "id": "sala_transmissores",
+      "name": "Sala dos transmissores",
+      "shortDescription": "Ambiente quente e ruidoso com válvulas, painéis e cheiro de metal aquecido.",
+      "imageUrl": "histories/a-frequencia-fantasma/location/sala_transmissores.jpg",
+      "initialDescription": "A sala vibra com o zumbido constante dos transmissores. Válvulas acesas iluminam o metal perfurado dos painéis, e uma bancada lateral guarda ferramentas de manutenção.",
+      "ambientClueIds": ["clue_transmissor_sem_invasao"],
+      "objectIds": ["painel_transmissor"]
+    }
+  ],
+  "objects": [
+    {
+      "id": "microfone_celeste",
+      "name": "Microfone de Celeste",
+      "shortDescription": "Microfone cromado usado pela locutora durante o especial.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/microfone_celeste.jpg",
+      "locationId": "estudio_principal",
+      "initialDescription": "O microfone de pedestal fica diante do roteiro de Celeste, com a luz vermelha de transmissão no topo do suporte.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_luz_microfone_acesa",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_equipamentos", "perguntar_sobre_celeste"],
+          "revealText": "A luz do microfone de Celeste estava acesa durante a pausa. Isso explica por que todos suspeitaram dela primeiro, mas não prova que a voz saiu dali."
+        }
+      ]
+    },
+    {
+      "id": "piano_iris",
+      "name": "Piano de Íris",
+      "shortDescription": "Piano vertical usado na apresentação musical do especial.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/piano_iris.jpg",
+      "locationId": "estudio_principal",
+      "initialDescription": "O piano vertical está perto da parede lateral, com o banco acolchoado alinhado ao teclado e uma luminária baixa sobre as partituras.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_poeira_no_banco_piano",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_iris", "perguntar_sobre_matriz"],
+          "revealText": "A tampa interna do banco do piano tem uma faixa limpa em meio à poeira, como se algo plano tivesse sido guardado ali recentemente."
+        }
+      ]
+    },
+    {
+      "id": "partitura_marcada",
+      "name": "Partitura marcada",
+      "shortDescription": "Folhas de música deixadas sobre o piano.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/partitura_marcada.jpg",
+      "locationId": "estudio_principal",
+      "initialDescription": "As partituras estão presas por um clipe metálico, com anotações a lápis nas margens e marcas de ensaio.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_partitura_marcada",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_iris"],
+          "revealText": "Uma partitura traz o nome \"Maria Luiza\" no canto e indicações de entrada vocal no mesmo ponto em que ocorreu a pausa da meia-noite."
+        }
+      ]
+    },
+    {
+      "id": "mesa_som",
+      "name": "Mesa de som",
+      "shortDescription": "Console analógico da cabine de controle.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/mesa_som.jpg",
+      "locationId": "cabine_controle",
+      "initialDescription": "A mesa tem chaves de corte, botões de ganho e medidores de agulha. Fitas de papel indicam os canais usados no especial.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_canal_auxiliar_aberto",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_equipamentos", "perguntar_sobre_miguel"],
+          "revealText": "O canal auxiliar da mesa ficou levemente aberto durante a pausa. A marca de fita no botão não combina com o alinhamento usual de Miguel."
+        }
+      ]
+    },
+    {
+      "id": "cabo_auxiliar",
+      "name": "Cabo auxiliar",
+      "shortDescription": "Cabo enrolado junto ao patch bay da cabine.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/cabo_auxiliar.jpg",
+      "locationId": "cabine_controle",
+      "initialDescription": "Um cabo de tecido escuro está enrolado perto das conexões numeradas, com plugues metálicos gastos nas pontas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_cabo_auxiliar_recente",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_equipamentos", "perguntar_sobre_miguel"],
+          "revealText": "O cabo auxiliar tem pó removido só nas pontas e uma etiqueta nova com a letra A. Ele foi conectado recentemente entre uma fonte externa e a mesa."
+        }
+      ]
+    },
+    {
+      "id": "tesoura_edicao",
+      "name": "Tesoura de edição",
+      "shortDescription": "Tesoura pequena usada para cortar fita e papel de marcação.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/tesoura_edicao.jpg",
+      "locationId": "cabine_controle",
+      "initialDescription": "A tesoura repousa sobre uma almofada de feltro ao lado de rolos de fita de marcação e etiquetas brancas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_tesoura_corte_recente",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_equipamentos", "perguntar_sobre_voz"],
+          "revealText": "A tesoura tem pequenos resíduos de acetato e cola recente, compatíveis com edição manual de um disco ou etiqueta antes da transmissão."
+        }
+      ]
+    },
+    {
+      "id": "armario_matrizes",
+      "name": "Armário das matrizes",
+      "shortDescription": "Armário metálico onde as gravações-mestre são guardadas por código.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/armario_matrizes.jpg",
+      "locationId": "arquivo_matrizes",
+      "initialDescription": "O armário de metal tem gavetas estreitas, fechadura antiga e etiquetas datilografadas com códigos de programas.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_etiqueta_arrancada_12b",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_matriz", "perguntar_sobre_anita"],
+          "revealText": "No espaço da matriz 12-B há uma etiqueta parcialmente arrancada. Um resto de cola fresca ficou preso ao trilho da gaveta."
+        }
+      ]
+    },
+    {
+      "id": "livro_registro",
+      "name": "Livro de registro",
+      "shortDescription": "Livro usado para anotar retiradas e devoluções do arquivo.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/livro_registro.jpg",
+      "locationId": "arquivo_matrizes",
+      "initialDescription": "O livro está aberto na mesa de catalogação, com linhas preenchidas a tinta azul e uma régua de metal marcando a página do dia.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_registro_chave_sem_uso",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_matriz", "perguntar_sobre_arnaldo"],
+          "revealText": "O registro da chave reserva de Arnaldo não foi assinado naquela noite, mas a linha da chave de Anita tem uma rasura no horário entre 23h42 e 23h48."
+        }
+      ]
+    },
+    {
+      "id": "envelope_maria_luiza",
+      "name": "Envelope antigo",
+      "shortDescription": "Envelope amarelado guardado entre fichas de catálogo.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/envelope_maria_luiza.jpg",
+      "locationId": "arquivo_matrizes",
+      "initialDescription": "O envelope de papel grosso está preso por um barbante fino, com carimbo antigo da rádio e bordas gastas pelo tempo.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_envelope_maria_luiza",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_matriz", "perguntar_sobre_motivo"],
+          "revealText": "Dentro do envelope há uma ficha de Maria Luiza Vidal, recortes sobre uma queda no palco em 1942 e uma anotação: \"12-B conserva a conversa da demissão\"."
+        },
+        {
+          "clueId": "clue_rotulo_maria_luiza",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_voz", "perguntar_sobre_matriz"],
+          "revealText": "Um rótulo solto traz o nome de Maria Luiza Vidal e a marca \"ensaio proibido\". A cola combina com a etiqueta arrancada da gaveta 12-B."
+        }
+      ]
+    },
+    {
+      "id": "painel_transmissor",
+      "name": "Painel dos transmissores",
+      "shortDescription": "Painel principal da sala técnica dos transmissores.",
+      "imageUrl": "histories/a-frequencia-fantasma/object/painel_transmissor.jpg",
+      "locationId": "sala_transmissores",
+      "initialDescription": "O painel metálico exibe válvulas brilhantes, chaves grandes e mostradores de voltagem presos por parafusos escurecidos.",
+      "clueRevealRules": [
+        {
+          "clueId": "clue_transmissor_sem_invasao",
+          "triggerIntents": ["inspecionar_objeto", "perguntar_sobre_equipamentos", "perguntar_sobre_voz"],
+          "revealText": "Os lacres do transmissor estão intactos e o livro de manutenção não mostra acesso externo. A voz não entrou por invasão da antena."
+        }
+      ]
+    }
+  ],
+  "clues": [
+    { "id": "clue_voz_frase_exata", "title": "A frase da voz", "description": "A voz que entrou no ar disse: \"devolvam o que enterraram\", durante uma pausa de três segundos no programa.", "importance": "required" },
+    { "id": "clue_matriz_12b_sumiu", "title": "Matriz 12-B desaparecida", "description": "A matriz 12-B estava separada para o especial e sumiu do arquivo logo após a interrupção.", "importance": "required" },
+    { "id": "clue_chaves_arquivo_duas", "title": "Duas chaves do arquivo", "description": "O arquivo podia ser aberto pela chave de Anita ou pela chave reserva de Arnaldo.", "importance": "supporting" },
+    { "id": "clue_sinal_veio_da_cabine", "title": "Sinal originado na cabine", "description": "O medidor da cabine subiu antes do envio ao ar, apontando para uma fonte ligada à mesa de som.", "importance": "required" },
+    { "id": "clue_iris_ao_piano", "title": "Íris estava ao piano", "description": "Íris estava visível ao piano quando a voz entrou no ar, com Celeste e Miguel podendo vê-la.", "importance": "supporting" },
+    { "id": "clue_contrato_venda_iminente", "title": "Venda iminente da rádio", "description": "Arnaldo negociava a venda da Rádio Aurora, criando pressão sobre o arquivo antigo.", "importance": "required" },
+    { "id": "clue_luz_microfone_acesa", "title": "Microfone aberto", "description": "O microfone de Celeste estava aberto durante a pausa, mas isso não prova que a voz saiu dali.", "importance": "supporting" },
+    { "id": "clue_poeira_no_banco_piano", "title": "Banco do piano mexido", "description": "A tampa interna do banco do piano tem uma faixa limpa recente em meio à poeira.", "importance": "required" },
+    { "id": "clue_partitura_marcada", "title": "Partitura com Maria Luiza", "description": "A partitura sobre o piano traz o nome Maria Luiza e marca a pausa em que a voz entrou.", "importance": "supporting" },
+    { "id": "clue_canal_auxiliar_aberto", "title": "Canal auxiliar aberto", "description": "O canal auxiliar da mesa estava levemente aberto, com marcação diferente do padrão de Miguel.", "importance": "required" },
+    { "id": "clue_cabo_auxiliar_recente", "title": "Cabo recém-usado", "description": "Um cabo auxiliar foi conectado recentemente entre uma fonte externa e a mesa de som.", "importance": "required" },
+    { "id": "clue_tesoura_corte_recente", "title": "Resíduo na tesoura", "description": "A tesoura de edição tem resíduos de acetato e cola recente.", "importance": "required" },
+    { "id": "clue_etiqueta_arrancada_12b", "title": "Etiqueta arrancada", "description": "A gaveta da matriz 12-B tem etiqueta parcialmente arrancada e cola fresca no trilho.", "importance": "required" },
+    { "id": "clue_registro_chave_sem_uso", "title": "Registro rasurado", "description": "A chave reserva de Arnaldo não foi assinada, mas a linha da chave de Anita tem rasura no horário crítico.", "importance": "required" },
+    { "id": "clue_envelope_maria_luiza", "title": "Envelope de Maria Luiza", "description": "Um envelope antigo liga Maria Luiza Vidal à matriz 12-B e a uma demissão abafada.", "importance": "required" },
+    { "id": "clue_rotulo_maria_luiza", "title": "Rótulo solto", "description": "Um rótulo de Maria Luiza Vidal tem cola compatível com a etiqueta arrancada da gaveta 12-B.", "importance": "required" },
+    { "id": "clue_transmissor_sem_invasao", "title": "Transmissor intacto", "description": "Os lacres do transmissor estão intactos, descartando invasão externa pela antena.", "importance": "supporting" },
+    { "id": "clue_celeste_microfone_aberto", "title": "Retorno antes do fone", "description": "Celeste ouviu a interferência no retorno antes de ouvi-la no fone, indicando que não nasceu de sua voz ao microfone.", "importance": "supporting" },
+    { "id": "clue_celeste_reconhece_cadencia", "title": "Cadência reconhecida", "description": "Celeste reconhece cadência semelhante à de Maria Luiza Vidal, mas comprimida como gravação editada.", "importance": "required" },
+    { "id": "clue_miguel_viu_patch_alterado", "title": "Patch alterado", "description": "Miguel viu ligação fora do mapa habitual no patch bay antes do programa.", "importance": "required" },
+    { "id": "clue_miguel_acobertou_anita", "title": "Miguel omitiu Anita", "description": "Miguel viu Anita entrando na cabine com caixas de acetato antes do especial e omitiu isso.", "importance": "required" },
+    { "id": "clue_anita_esteve_cabine", "title": "Anita na cabine", "description": "Anita esteve na cabine antes do programa carregando material do arquivo.", "importance": "required" },
+    { "id": "clue_anita_admite_cabine", "title": "Anita admite a cabine", "description": "Anita admite ter entrado na cabine antes do programa, alegando conferir vinhetas antigas.", "importance": "required" },
+    { "id": "clue_anita_ligada_maria_luiza", "title": "Laço com Maria Luiza", "description": "Anita revela que Maria Luiza Vidal era sua mãe.", "importance": "required" },
+    { "id": "clue_anita_montou_a_voz", "title": "Voz montada", "description": "Anita admite ter editado fragmentos da gravação antiga para montar a frase ouvida no ar.", "importance": "required" },
+    { "id": "clue_anita_escondeu_matriz_piano", "title": "Matriz no piano", "description": "Anita revela que escondeu a matriz 12-B no banco do piano de Íris.", "importance": "required" },
+    { "id": "clue_confissao_anita_completa", "title": "Confissão completa de Anita", "description": "Anita confessa ter tirado a matriz, ligado a voz pela cabine e encenado a interrupção para impedir a venda silenciosa da rádio.", "importance": "required" },
+    { "id": "clue_anita_descobriu_envelope", "title": "Anita encontrou o envelope", "description": "Anita encontrou material antigo de Maria Luiza no arquivo antes da venda.", "importance": "required" },
+    { "id": "clue_iris_ouviu_discussao", "title": "Discussão no corredor", "description": "Íris ouviu Anita acusar Arnaldo de vender vozes antigas como decoração.", "importance": "supporting" },
+    { "id": "clue_iris_roteiro_rabiscado", "title": "Roteiro de Íris", "description": "Íris queria cantar uma peça antiga de Maria Luiza, mas não sabia da prova contida na matriz 12-B.", "importance": "red_herring" },
+    { "id": "clue_arnaldo_tinha_chave", "title": "Chave de Arnaldo", "description": "Arnaldo tinha uma chave reserva do arquivo, embora negue ter usado naquela noite.", "importance": "red_herring" },
+    { "id": "clue_arnaldo_sabia_12b", "title": "Arnaldo conhecia a 12-B", "description": "Arnaldo sabia que a matriz 12-B guardava material sensível de Maria Luiza Vidal.", "importance": "required" },
+    { "id": "clue_raul_pressao_comercial", "title": "Pressão de Raul", "description": "Raul pressionava por uma compra sem escândalos de arquivo.", "importance": "red_herring" },
+    { "id": "clue_raul_sem_acesso_tecnico", "title": "Raul sem acesso técnico", "description": "Raul não sabia operar a mesa e não foi visto sozinho na cabine.", "importance": "supporting" }
+  ],
+  "conclusion": {
+    "fields": [
+      {
+        "id": "culpado",
+        "label": "Quem colocou a voz no ar e levou a matriz?",
+        "type": "character",
+        "options": [
+          { "id": "celeste", "label": "Celeste Amaral" },
+          { "id": "miguel", "label": "Miguel Farias" },
+          { "id": "anita", "label": "Anita Valença" },
+          { "id": "iris", "label": "Íris Monteiro" },
+          { "id": "arnaldo", "label": "Arnaldo Paes" },
+          { "id": "raul", "label": "Raul Mendonça" }
+        ]
+      },
+      {
+        "id": "metodo",
+        "label": "Como a voz entrou no ar?",
+        "type": "choice",
+        "options": [
+          { "id": "edicao_auxiliar", "label": "Com uma gravação editada ligada pelo canal auxiliar da cabine" },
+          { "id": "microfone_celeste", "label": "Pelo microfone aberto de Celeste" },
+          { "id": "invasao_antena", "label": "Por invasão externa do transmissor" },
+          { "id": "piano_ao_vivo", "label": "Por um truque acústico vindo do piano" }
+        ]
+      },
+      {
+        "id": "esconderijo",
+        "label": "Onde a matriz 12-B foi escondida?",
+        "type": "choice",
+        "options": [
+          { "id": "banco_piano", "label": "No banco do piano de Íris" },
+          { "id": "transmissor", "label": "Dentro do painel dos transmissores" },
+          { "id": "bolsa_celeste", "label": "Na bolsa de Celeste" },
+          { "id": "gaveta_arnaldo", "label": "Na gaveta de Arnaldo" }
+        ]
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "full_truth",
+      "title": "A voz devolvida",
+      "type": "full_truth",
+      "imageUrl": "histories/a-frequencia-fantasma/endings/full_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "culpado": "anita",
+          "metodo": "edicao_auxiliar",
+          "esconderijo": "banco_piano"
+        },
+        "requiresClueIds": ["clue_confissao_anita_completa", "clue_anita_escondeu_matriz_piano", "clue_anita_montou_a_voz", "clue_arnaldo_sabia_12b"]
+      },
+      "summary": "Anita montou a voz a partir da matriz 12-B, ligou a gravação pela cabine e escondeu o disco no banco do piano.",
+      "epilogue": "A matriz volta ao arquivo, mas não ao silêncio. A venda da Rádio Aurora é suspensa até a auditoria completa do acervo, e a voz de Maria Luiza Vidal deixa de ser boato de corredor para se tornar prova. Anita responde pela sabotagem, mas Arnaldo perde a tranquilidade que tentou comprar com nostalgia. Pela primeira vez em décadas, a rádio transmite uma retratação antes do prefixo da madrugada."
+    },
+    {
+      "id": "partial_truth",
+      "title": "A frequência certa, a memória incompleta",
+      "type": "partial_truth",
+      "imageUrl": "histories/a-frequencia-fantasma/endings/partial_truth.jpg",
+      "condition": {
+        "conclusionMatches": {
+          "culpado": "anita",
+          "metodo": "edicao_auxiliar"
+        },
+        "requiresClueIds": ["clue_anita_montou_a_voz", "clue_cabo_auxiliar_recente"]
+      },
+      "summary": "Você identifica Anita e o método da gravação editada, mas não recupera toda a prova nem fecha o motivo completo.",
+      "epilogue": "Anita é desmascarada como autora da interrupção, mas a matriz demora a reaparecer e Arnaldo consegue chamar a história de crise técnica por mais alguns dias. A venda não avança imediatamente, a equipe se divide, e a Rádio Aurora continua no ar com um ruído novo: a suspeita de que o arquivo ainda guarda vozes que ninguém catalogou."
+    },
+    {
+      "id": "wrong_accusation",
+      "title": "Ruído no ar",
+      "type": "wrong_accusation",
+      "imageUrl": "histories/a-frequencia-fantasma/endings/wrong_accusation.jpg",
+      "condition": {
+        "conclusionMatches": {}
+      },
+      "summary": "A conclusão mira uma suspeita plausível, mas deixa sem resposta o cabo auxiliar, a rasura da chave e o esconderijo da matriz.",
+      "epilogue": "A rádio anuncia que tudo não passou de falha humana. O público esquece a frase em poucos dias, Raul recalcula o preço, Arnaldo fecha gavetas e Anita observa o banco do piano permanecer intacto. A matriz 12-B continua escondida, e a voz fantasma vira lenda de madrugada entre operadores que juram ouvir, no silêncio da cabine, uma respiração antes do sinal horário."
+    }
+  ],
+  "rules": {
+    "minCluesBeforeConclusion": 14,
+    "suggestConclusionAfterClues": 24,
+    "maxRecommendedInteractions": 55
+  }
+}
