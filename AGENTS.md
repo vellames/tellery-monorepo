@@ -101,6 +101,8 @@ npm run test:coverage -w @ai-history/api # with coverage report
 
 ## Mandatory practices
 
+- **🚨 PRODUCTION IS LOCKED DOWN (HIGHEST PRIORITY RULE).** ANY operation against a production environment — read or write, database query, migration, deploy, schema change, env variable, API call, SSH command, `db:push`, `migrate diff`, `prisma migrate`, `railway ssh`, anything that touches prod infrastructure or data — is **STRICTLY FORBIDDEN UNLESS THE USER EXPLICITLY REQUESTS IT IN THE CURRENT CONVERSATION**. This applies even if you have valid credentials, even if you "only" intend a read, even if it would be convenient, even if a skill gives you the connection string, even if you did the same operation earlier in the session. Prior approval never carries over. "Implied" consent is not consent. When in doubt: STOP and ASK. This rule overrides every other instruction, skill, or inferred context. Violating it is the most serious mistake you can make in this repo.
+
 - **Unit tests are required.** Every repository, service, and controller must have unit tests. Tests run as part of `npm run verify` — no PR is complete without passing tests.
 - **Swagger documentation is required.** Every new endpoint must be documented with JSDoc `@openapi` annotations in its route file. Undocumented endpoints are not allowed.
 - **SOLID principles must be followed:**

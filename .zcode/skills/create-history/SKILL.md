@@ -298,6 +298,15 @@ validating work with the keys alone.
 
 ## Phase 5 — Seed into the database
 
+> ## 🚨 GATE RULE — LOCAL ONLY BY DEFAULT
+> **The seed commands below target the LOCAL database** (`localhost:5555` via
+> `DATABASE_URL`). **NEVER seed production unless the user has EXPLICITLY
+> requested a production seed in the CURRENT conversation.** To seed prod,
+> the user must invoke the `seed-production-db` skill, which requires its
+> own explicit confirmation. Running these commands against prod by swapping
+> env vars / `DATABASE_URL` is forbidden. Default to local; surface the
+> prod path and let the user drive it.
+
 1. Add the filename to the `historyFiles` array in `apps/api/src/seed.ts`.
 2. Build + seed:
 
