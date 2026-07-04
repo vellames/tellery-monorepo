@@ -7,6 +7,7 @@ const refreshMock = vi.fn();
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ push: pushMock, refresh: refreshMock }),
+  useSearchParams: () => new URLSearchParams(),
 }));
 vi.mock('sonner', () => ({
   toast: { success: vi.fn(), error: vi.fn() },

@@ -104,20 +104,27 @@ const TERMS_URL = 'https://app.tellery.ai/terms';
 export function InteractiveLanding({ copy }: InteractiveLandingProps) {
   const searchParams = useSearchParams();
   const registerUrl = useMemo(
-    () => withForwardedParams(REGISTER_URL, new URLSearchParams(searchParams ?? '')),
-    [searchParams],
+    () =>
+      withForwardedParams(
+        REGISTER_URL,
+        new URLSearchParams(searchParams ?? '')
+      ),
+    [searchParams]
   );
   const signInUrl = useMemo(
-    () => withForwardedParams(SIGN_IN_URL, new URLSearchParams(searchParams ?? '')),
-    [searchParams],
+    () =>
+      withForwardedParams(SIGN_IN_URL, new URLSearchParams(searchParams ?? '')),
+    [searchParams]
   );
   const privacyUrl = useMemo(
-    () => withForwardedParams(PRIVACY_URL, new URLSearchParams(searchParams ?? '')),
-    [searchParams],
+    () =>
+      withForwardedParams(PRIVACY_URL, new URLSearchParams(searchParams ?? '')),
+    [searchParams]
   );
   const termsUrl = useMemo(
-    () => withForwardedParams(TERMS_URL, new URLSearchParams(searchParams ?? '')),
-    [searchParams],
+    () =>
+      withForwardedParams(TERMS_URL, new URLSearchParams(searchParams ?? '')),
+    [searchParams]
   );
 
   function handlePointerMove(event: PointerEvent<HTMLDivElement>) {

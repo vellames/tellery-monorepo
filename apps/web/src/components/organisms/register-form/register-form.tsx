@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Formik, Form, useFormikContext } from 'formik';
 import * as yup from 'yup';
 import { Loader2, Lock, Mail, User } from 'lucide-react';
@@ -12,6 +13,7 @@ import { useRegister } from '@/lib/hooks/use-auth';
 import { useLeadTracking } from '@/lib/hooks/use-lead-tracking';
 import { trackSubmitLeadForm } from '@/lib/analytics/gtm-events';
 import { config } from '@/lib/config';
+import { withQueryParams } from '@/lib/with-query-params';
 
 interface RegisterFormValues {
   name: string;
@@ -58,6 +60,11 @@ export function RegisterForm() {
   const register = useRegister();
   const t = useTranslations('register');
   const tCommon = useTranslations('common');
+  const searchParams = useSearchParams();
+  const loginHref = withQueryParams(
+    config.routes.login,
+    searchParams?.toString()
+  );
 
   const {
     setFieldValue: trackField,
@@ -201,7 +208,7 @@ export function RegisterForm() {
             size="lg"
             className="w-full"
             nativeButton={false}
-            render={<Link href={config.routes.login} />}
+            render={<Link href={loginHref} />}
           >
             {tCommon('backToLogin')}
           </Button>

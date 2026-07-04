@@ -3,9 +3,27 @@ import { getTranslations } from 'next-intl/server';
 import { LoginForm } from '@/components/organisms';
 import { Button } from '@/components/ui/button';
 import { config } from '@/lib/config';
+import { withQueryParams } from '@/lib/with-query-params';
 
-export default async function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const t = await getTranslations('auth');
+  const params = new URLSearchParams();
+  const resolvedSearchParams = await searchParams;
+  for (const [key, value] of Object.entries(resolvedSearchParams)) {
+    if (value === undefined) continue;
+    const values = Array.isArray(value) ? value : [value];
+    for (const v of values) {
+      params.append(key, v);
+    }
+  }
+  const registerHref = withQueryParams(
+    config.routes.register,
+    params.toString()
+  );
 
   return (
     <div className="space-y-8">
@@ -23,7 +41,7 @@ export default async function LoginPage() {
           size="lg"
           className="mt-3 w-full font-semibold"
           nativeButton={false}
-          render={<Link href={config.routes.register} />}
+          render={<Link href={registerHref} />}
         >
           {t('createAccount')}
         </Button>
