@@ -25,6 +25,8 @@ const BOT_WEBVIEW = 'bot';
 const TIKTOK_WEBVIEW = 'tiktok';
 const META_WEBVIEW = 'facebook_instagram';
 const REGULAR_BROWSER = 'browser';
+const SIGNUP_FUNNEL_METRIC = 'signup_funnel';
+const SIGNUP_TIME_ON_PAGE_METRIC = 'signup_time_on_page';
 
 type SignupBreadcrumbName =
   (typeof SignupBreadcrumb)[keyof typeof SignupBreadcrumb];
@@ -36,16 +38,25 @@ interface LeadMonitoringContext {
   deviceInfo?: Record<string, unknown>;
 }
 
+let signupMetricAttributes: Record<string, string | number | boolean> = {
+  traffic_source: UNKNOWN_VALUE,
+  webview: UNKNOWN_VALUE,
+};
+
 export function setLeadMonitoringContext({
   localUuid,
   leadId,
   queryParams,
   deviceInfo,
 }: LeadMonitoringContext): void {
+  const trafficSource = detectTrafficSource(queryParams);
+  const webview = detectWebview(deviceInfo?.userAgent);
+  const connection = getConnection(deviceInfo);
+
   Sentry.setUser({ id: localUuid });
   Sentry.setTag('lead_id', leadId ?? 'pending');
-  Sentry.setTag('traffic_source', detectTrafficSource(queryParams));
-  Sentry.setTag('webview', detectWebview(deviceInfo?.userAgent));
+  Sentry.setTag('traffic_source', trafficSource);
+  Sentry.setTag('webview', webview);
 
   const viewport = formatViewport(deviceInfo);
   if (viewport) Sentry.setTag('viewport', viewport);
@@ -55,15 +66,22 @@ export function setLeadMonitoringContext({
     Sentry.setTag('device_memory', String(deviceMemory));
   }
 
-  const connection = getConnection(deviceInfo);
   if (connection?.effectiveType) {
     Sentry.setTag('connection_type', String(connection.effectiveType));
   }
 
+  signupMetricAttributes = pruneUndefinedAttributes({
+    traffic_source: trafficSource,
+    webview,
+    connection_type: stringifyAttribute(connection?.effectiveType),
+    device_memory: numberAttribute(deviceMemory),
+  });
+  Sentry.setAttributes(signupMetricAttributes);
+
   Sentry.setContext('lead', {
     id: leadId,
     localUuid,
-    trafficSource: detectTrafficSource(queryParams),
+    trafficSource,
     queryParamsLength: queryParams?.length ?? 0,
   });
   Sentry.setContext('device', sanitizeDeviceContext(deviceInfo));
@@ -73,12 +91,25 @@ export function addSignupBreadcrumb(
   name: SignupBreadcrumbName,
   data?: Record<string, unknown>
 ): void {
+  const metricAttributes = getSignupMetricAttributes(name, data);
+
   Sentry.addBreadcrumb({
     category: SIGNUP_BREADCRUMB_CATEGORY,
     message: name,
     level: 'info',
     data,
   });
+  Sentry.metrics.count(SIGNUP_FUNNEL_METRIC, 1, {
+    attributes: metricAttributes,
+  });
+
+  const timeOnPageMs = numberAttribute(data?.timeOnPageMs);
+  if (name === SignupBreadcrumb.PAGE_HIDDEN && timeOnPageMs !== undefined) {
+    Sentry.metrics.distribution(SIGNUP_TIME_ON_PAGE_METRIC, timeOnPageMs, {
+      unit: 'millisecond',
+      attributes: metricAttributes,
+    });
+  }
 }
 
 export function captureSignupException(
@@ -133,6 +164,55 @@ function getConnection(
   if (!connection || typeof connection !== 'object') return null;
 
   return connection as Record<string, unknown>;
+}
+
+function getSignupMetricAttributes(
+  step: SignupBreadcrumbName,
+  data?: Record<string, unknown>
+): Record<string, string | number | boolean> {
+  return pruneUndefinedAttributes({
+    step,
+    traffic_source: getMetricTrafficSource(data),
+    webview: stringifyAttribute(signupMetricAttributes.webview),
+    connection_type: stringifyAttribute(signupMetricAttributes.connection_type),
+    device_memory: numberAttribute(signupMetricAttributes.device_memory),
+    has_query_params: booleanAttribute(data?.hasQueryParams),
+  });
+}
+
+function getMetricTrafficSource(data?: Record<string, unknown>): string {
+  const search = stringifyAttribute(data?.search);
+  if (search) return detectTrafficSource(search);
+
+  return (
+    stringifyAttribute(signupMetricAttributes.traffic_source) ?? UNKNOWN_VALUE
+  );
+}
+
+function pruneUndefinedAttributes(
+  attributes: Record<string, string | number | boolean | undefined>
+): Record<string, string | number | boolean> {
+  return Object.fromEntries(
+    Object.entries(attributes).filter(([, value]) => value !== undefined)
+  ) as Record<string, string | number | boolean>;
+}
+
+function stringifyAttribute(value: unknown): string | undefined {
+  if (typeof value === 'string' && value.length > 0) return value;
+
+  return undefined;
+}
+
+function numberAttribute(value: unknown): number | undefined {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+
+  return undefined;
+}
+
+function booleanAttribute(value: unknown): boolean | undefined {
+  if (typeof value === 'boolean') return value;
+
+  return undefined;
 }
 
 function sanitizeDeviceContext(

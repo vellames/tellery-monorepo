@@ -30,7 +30,12 @@ vi.mock('@sentry/nextjs', () => ({
   flush: vi.fn(),
   init: vi.fn(),
   logger: { info: vi.fn() },
+  metrics: {
+    count: vi.fn(),
+    distribution: vi.fn(),
+  },
   replayIntegration: vi.fn(() => ({ name: 'Replay' })),
+  setAttributes: vi.fn(),
   setContext: vi.fn(),
   setTag: vi.fn(),
   setUser: vi.fn(),
