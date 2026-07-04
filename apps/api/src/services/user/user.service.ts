@@ -7,6 +7,7 @@ import {
   IPasswordHasher,
   ITokenService,
   IEmailVerificationService,
+  ILeadRepository,
 } from '../../interfaces';
 import {
   AvailableCreditsResponseDto,
@@ -21,6 +22,7 @@ import { HttpError } from '../../utils/http-error';
 export class UserService {
   constructor(
     private readonly users: IUserRepository,
+    private readonly leads: ILeadRepository,
     private readonly passwordHasher: IPasswordHasher,
     private readonly tokenService: ITokenService,
     private readonly emailVerification: IEmailVerificationService
@@ -28,7 +30,8 @@ export class UserService {
 
   async create(
     data: CreateUserDto,
-    locale: SupportedLanguage = 'pt-BR'
+    locale: SupportedLanguage = 'pt-BR',
+    leadId?: string
   ): Promise<AuthResponseDto> {
     const existing = await this.users.findByEmail(data.email);
     if (existing) {
@@ -51,6 +54,14 @@ export class UserService {
       .catch((error) => {
         console.error('[email] failed to send verification', error);
       });
+
+    if (leadId) {
+      try {
+        await this.leads.linkUser(leadId, user.id);
+      } catch (error) {
+        console.error('[lead] failed to link lead to user', error);
+      }
+    }
 
     return { user: this.toResponseDto(user), token };
   }

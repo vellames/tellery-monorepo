@@ -6,6 +6,10 @@ export const createUserSchema = z.object({
   password: z.string().min(1),
 });
 
+export const registerSchema = createUserSchema.extend({
+  leadId: z.string().uuid().optional(),
+});
+
 export const updateUserSchema = z.object({
   name: z.string().min(1).optional(),
   email: z.string().email().optional(),

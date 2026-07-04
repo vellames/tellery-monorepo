@@ -6,9 +6,10 @@ import { Checkbox } from '@/components/ui/checkbox';
 interface CheckboxFieldProps {
   name: string;
   label: React.ReactNode;
+  onChange?: (checked: boolean) => void;
 }
 
-export function CheckboxField({ name, label }: CheckboxFieldProps) {
+export function CheckboxField({ name, label, onChange }: CheckboxFieldProps) {
   const [, meta, helpers] = useField<boolean>(name);
   const hasError = Boolean(meta.touched && meta.error);
 
@@ -18,7 +19,10 @@ export function CheckboxField({ name, label }: CheckboxFieldProps) {
         <Checkbox
           id={name}
           checked={meta.value ?? false}
-          onCheckedChange={(v) => helpers.setValue(Boolean(v))}
+          onCheckedChange={(v) => {
+            helpers.setValue(Boolean(v));
+            onChange?.(Boolean(v));
+          }}
           onBlur={() => helpers.setTouched(true)}
           aria-invalid={hasError}
           className="mt-0.5"

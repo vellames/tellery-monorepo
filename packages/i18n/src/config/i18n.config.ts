@@ -35,7 +35,15 @@ export const initI18n = async () => {
       },
 
       defaultNS: 'common',
-      ns: ['common', 'user', 'session', 'prompts', 'subscription', 'email'],
+      ns: [
+        'common',
+        'user',
+        'session',
+        'prompts',
+        'subscription',
+        'email',
+        'lead',
+      ],
     });
 
   return i18next;

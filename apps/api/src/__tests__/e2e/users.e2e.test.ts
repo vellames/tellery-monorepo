@@ -7,6 +7,7 @@ import {
   IPasswordHasher,
   ITokenService,
   IEmailVerificationService,
+  ILeadRepository,
 } from '../../interfaces';
 import { User } from '@prisma/client';
 import { UserController } from '../../controllers/user/user.controller';
@@ -24,8 +25,11 @@ const mockTokenService: DeepMockProxy<ITokenService> =
 mockTokenService.sign.mockReturnValue('signed-token');
 const mockEmailVerification: DeepMockProxy<IEmailVerificationService> =
   mockDeep<IEmailVerificationService>();
+const mockLeadRepo: DeepMockProxy<ILeadRepository> =
+  mockDeep<ILeadRepository>();
 const userService = new UserService(
   mockRepo,
+  mockLeadRepo,
   mockPasswordHasher,
   mockTokenService,
   mockEmailVerification

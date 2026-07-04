@@ -7,6 +7,7 @@ import {
   IPasswordHasher,
   ITokenService,
   IEmailVerificationService,
+  ILeadRepository,
 } from '../../interfaces';
 import { User } from '@prisma/client';
 import { UserController } from '../../controllers/user/user.controller';
@@ -30,8 +31,11 @@ const realTokenService: ITokenService = new JwtTokenService(
 );
 const mockEmailVerification: DeepMockProxy<IEmailVerificationService> =
   mockDeep<IEmailVerificationService>();
+const mockLeadRepo: DeepMockProxy<ILeadRepository> =
+  mockDeep<ILeadRepository>();
 const userService = new UserService(
   mockRepo,
+  mockLeadRepo,
   mockPasswordHasher,
   realTokenService,
   mockEmailVerification

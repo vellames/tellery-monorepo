@@ -3,8 +3,8 @@ import { StatusCodes } from 'http-status-codes';
 import { SupportedLanguage } from '@ai-history/i18n';
 import { UserService } from '../../services/user/user.service';
 import {
-  createUserSchema,
   loginSchema,
+  registerSchema,
   updateMeSchema,
   changePasswordSchema,
   verifyEmailSchema,
@@ -22,7 +22,7 @@ export class UserController {
 
   register = async (req: Request, res: Response): Promise<void> => {
     const t = req.t as TranslationFunction;
-    const parsed = createUserSchema.safeParse(req.body);
+    const parsed = registerSchema.safeParse(req.body);
     if (!parsed.success) {
       sendValidationError(
         res,
@@ -32,10 +32,13 @@ export class UserController {
       return;
     }
 
+    const { leadId, ...createUserDto } = parsed.data;
+
     try {
       const auth = await this.userService.create(
-        parsed.data,
-        req.language as SupportedLanguage
+        createUserDto,
+        req.language as SupportedLanguage,
+        leadId
       );
       sendSuccess(res, auth, undefined, StatusCodes.CREATED);
     } catch (error) {

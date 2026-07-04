@@ -5,6 +5,7 @@ import {
   IPasswordHasher,
   ITokenService,
   IEmailVerificationService,
+  ILeadRepository,
 } from '../../../interfaces';
 import { UserService } from '../user.service';
 import { HttpError } from '../../../utils/http-error';
@@ -25,6 +26,7 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
 
 describe('UserService', () => {
   let repo: DeepMockProxy<IUserRepository>;
+  let leadRepo: DeepMockProxy<ILeadRepository>;
   let passwordHasher: DeepMockProxy<IPasswordHasher>;
   let tokenService: DeepMockProxy<ITokenService>;
   let emailVerification: DeepMockProxy<IEmailVerificationService>;
@@ -32,6 +34,7 @@ describe('UserService', () => {
 
   beforeEach(() => {
     repo = mockDeep<IUserRepository>();
+    leadRepo = mockDeep<ILeadRepository>();
     passwordHasher = mockDeep<IPasswordHasher>();
     passwordHasher.hash.mockResolvedValue('hashed-password');
     tokenService = mockDeep<ITokenService>();
@@ -44,6 +47,7 @@ describe('UserService', () => {
     emailVerification.sendVerification.mockResolvedValue(undefined);
     service = new UserService(
       repo,
+      leadRepo,
       passwordHasher,
       tokenService,
       emailVerification
@@ -52,6 +56,7 @@ describe('UserService', () => {
 
   afterEach(() => {
     mockReset(repo);
+    mockReset(leadRepo);
     mockReset(passwordHasher);
     mockReset(tokenService);
     mockReset(emailVerification);
@@ -129,6 +134,55 @@ describe('UserService', () => {
 
       expect(passwordHasher.hash).not.toHaveBeenCalled();
       expect(repo.create).not.toHaveBeenCalled();
+    });
+
+    it('should link the lead to the new user when leadId is provided', async () => {
+      repo.findByEmail.mockResolvedValue(null);
+      repo.create.mockResolvedValue(mockUser());
+
+      await service.create(
+        {
+          name: 'Ana Teste',
+          email: 'ana@teste.local',
+          password: 'password123',
+        },
+        'pt-BR',
+        'lead-1'
+      );
+
+      expect(leadRepo.linkUser).toHaveBeenCalledWith('lead-1', 'user-1');
+    });
+
+    it('should not link a lead when leadId is omitted', async () => {
+      repo.findByEmail.mockResolvedValue(null);
+      repo.create.mockResolvedValue(mockUser());
+
+      await service.create({
+        name: 'Ana Teste',
+        email: 'ana@teste.local',
+        password: 'password123',
+      });
+
+      expect(leadRepo.linkUser).not.toHaveBeenCalled();
+    });
+
+    it('should still succeed when lead linking fails', async () => {
+      repo.findByEmail.mockResolvedValue(null);
+      repo.create.mockResolvedValue(mockUser());
+      leadRepo.linkUser.mockRejectedValue(new Error('db down'));
+
+      const result = await service.create(
+        {
+          name: 'Ana Teste',
+          email: 'ana@teste.local',
+          password: 'password123',
+        },
+        'pt-BR',
+        'lead-1'
+      );
+
+      expect(leadRepo.linkUser).toHaveBeenCalledWith('lead-1', 'user-1');
+      expect(result.token).toBe('signed-token');
     });
 
     it('should not expose password in the response', async () => {

@@ -6,6 +6,7 @@ import { HealthController } from '../controllers/health.controller';
 import { HistoryController } from '../controllers/history.controller';
 import { SessionController } from '../controllers/session.controller';
 import { SubscriptionController } from '../controllers/subscription/subscription.controller';
+import { LeadController } from '../controllers/lead/lead.controller';
 import { UserController } from '../controllers/user/user.controller';
 import { CharacterAgent } from '../engine/character/character-agent.service';
 import { IntentDetectionService } from '../engine/intent/intent-detection.service';
@@ -14,6 +15,7 @@ import { OpenRouterStructuredChatModel } from '../engine/llm/openrouter-structur
 import {
   IHistoryDefinitionRepository,
   IImageUrlSigner,
+  ILeadRepository,
   ISessionRepository,
   IPasswordHasher,
   ITokenService,
@@ -29,6 +31,7 @@ import {
 } from '../interfaces';
 import {
   HistoryDefinitionRepository,
+  LeadRepository,
   LlmCallRecorder,
   PlanRepository,
   SessionRepository,
@@ -50,6 +53,7 @@ import { EmailTokenService } from '../services/email/email-token.service';
 import { EmailVerificationService } from '../services/email/email-verification.service';
 import { StripeService } from '../services/subscription/stripe.service';
 import { SubscriptionService } from '../services/subscription/subscription.service';
+import { LeadService } from '../services/lead/lead.service';
 import { createAuthMiddleware } from '../middleware/auth.middleware';
 import { createSessionOwnershipMiddleware } from '../middleware/session-ownership.middleware';
 import type { RequestHandler } from 'express';
@@ -71,6 +75,9 @@ export class DIContainer {
     new HistoryDefinitionRepository(this.prisma);
   private readonly sessionRepository: ISessionRepository =
     new SessionRepository(this.prisma);
+  private readonly leadRepository: ILeadRepository = new LeadRepository(
+    this.prisma
+  );
   private readonly llmCallRecorder = new LlmCallRecorder(
     this.sessionRepository
   );
@@ -104,11 +111,14 @@ export class DIContainer {
     });
   private readonly userService = new UserService(
     this.userRepository,
+    this.leadRepository,
     this.passwordHasher,
     this.tokenService,
     this.emailVerificationService
   );
   private readonly userController = new UserController(this.userService);
+  private readonly leadService = new LeadService(this.leadRepository);
+  private readonly leadController = new LeadController(this.leadService);
   private readonly stripeService: IStripeService = new StripeService({
     secretKey: appConfig.stripe.secretKey,
     webhookSecret: appConfig.stripe.webhookSecret,
@@ -226,6 +236,10 @@ export class DIContainer {
 
   getUserController(): UserController {
     return this.userController;
+  }
+
+  getLeadController(): LeadController {
+    return this.leadController;
   }
 
   getSubscriptionController(): SubscriptionController {

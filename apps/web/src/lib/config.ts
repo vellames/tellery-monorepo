@@ -33,5 +33,7 @@ export const config = {
     subscriptionPlanApi: '/api/subscriptions/plan',
     subscriptionCheckoutApi: '/api/subscriptions/checkout',
     subscriptionPortalApi: '/api/subscriptions/portal',
+    leadApi: '/api/leads',
+    leadDetailApi: (id: string) => `/api/leads/${id}`,
   },
 } as const;

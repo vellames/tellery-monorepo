@@ -90,6 +90,7 @@ model User {
 
   sessions     HistorySession[]
   subscription Subscription?
+  leads        Lead[]
 }
 
 // ─── History (authored content) ───────────────────────────────────────────────
@@ -924,5 +925,29 @@ model CreditGrant {
   userId           String
 
   @@index([subscriptionId])
+  @@index([userId])
+}
+
+// ─── Registration funnel leads ───────────────────────────────────────────────
+
+model Lead {
+  id                       String   @id @default(uuid())
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+  deletedAt                DateTime?
+
+  localUuid                String
+  queryParams              String?
+  name                     String?
+  email                    String?
+  isPasswordTouched        Boolean  @default(false)
+  isConfirmPasswordTouched Boolean  @default(false)
+  isPrivacyAccepted        Boolean  @default(false)
+  isTermsAccepted          Boolean  @default(false)
+
+  userId                   String?
+  user                     User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([localUuid])
   @@index([userId])
 }

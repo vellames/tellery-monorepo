@@ -12,6 +12,7 @@ interface FormikFieldProps {
   placeholder?: string;
   autoComplete?: string;
   icon?: React.ReactNode;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
 
 export function FormikField({
@@ -21,6 +22,7 @@ export function FormikField({
   placeholder,
   autoComplete,
   icon,
+  onFocus,
 }: FormikFieldProps) {
   const [field, meta] = useField(name);
   const hasError = Boolean(meta.touched && meta.error);
@@ -44,6 +46,7 @@ export function FormikField({
           aria-invalid={hasError}
           className={cn(icon && 'pl-10')}
           {...field}
+          onFocus={onFocus}
         />
       </div>
       {hasError && <p className="text-destructive text-sm">{meta.error}</p>}
