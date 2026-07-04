@@ -299,6 +299,7 @@ validating work with the keys alone.
 ## Phase 5 — Seed into the database
 
 > ## 🚨 GATE RULE — LOCAL ONLY BY DEFAULT
+>
 > **The seed commands below target the LOCAL database** (`localhost:5555` via
 > `DATABASE_URL`). **NEVER seed production unless the user has EXPLICITLY
 > requested a production seed in the CURRENT conversation.** To seed prod,
