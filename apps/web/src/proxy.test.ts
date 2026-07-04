@@ -31,6 +31,14 @@ describe('proxy', () => {
     }
   );
 
+  it('allows the Sentry tunnel without session', () => {
+    expect(proxy(makeReq('/monitoring')).status).toBe(200);
+  });
+
+  it('allows the Sentry example page without session', () => {
+    expect(proxy(makeReq('/sentry-example-page')).status).toBe(200);
+  });
+
   it('redirects authenticated users away from auth routes to home', () => {
     const res = proxy(makeReq('/', 'ai-history.session=tok'));
     expect(res.status).toBe(307);

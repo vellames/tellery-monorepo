@@ -12,10 +12,15 @@ const PUBLIC_INFO_ROUTES: string[] = [
   appConfig.routes.terms,
 ];
 
+const TECHNICAL_ROUTES: string[] = ['/monitoring', '/sentry-example-page'];
+
 export function proxy(req: NextRequest): NextResponse {
   const { pathname } = req.nextUrl;
   const isAuthRoute = AUTH_ROUTES.includes(pathname);
-  const isPublic = isAuthRoute || PUBLIC_INFO_ROUTES.includes(pathname);
+  const isPublic =
+    isAuthRoute ||
+    PUBLIC_INFO_ROUTES.includes(pathname) ||
+    TECHNICAL_ROUTES.includes(pathname);
   const hasSession = Boolean(
     req.cookies.get(appConfig.auth.sessionCookie)?.value
   );
@@ -37,5 +42,7 @@ export function proxy(req: NextRequest): NextResponse {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\.).*)'],
+  matcher: [
+    '/((?!api|monitoring|sentry-example-page|_next/static|_next/image|favicon.ico|.*\\.).*)',
+  ],
 };
