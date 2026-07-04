@@ -12,6 +12,7 @@ import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
 
 const GA_MEASUREMENT_ID = 'G-B07W6NN076';
+const GTM_ID = 'GTM-NBX9MRQK';
 
 const mulish = Mulish({ subsets: ['latin'], variable: '--font-sans' });
 const cormorant = Cormorant_Garamond({
@@ -45,7 +46,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${mulish.variable} ${cormorant.variable}`}>
       <head>
-        <GoogleTagManager gtmId="GTM-NBX9MRQK" />
+        <GoogleTagManager gtmId={GTM_ID} />
       </head>
       <body>
         <NextIntlClientProvider
