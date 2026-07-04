@@ -10,6 +10,10 @@ import {
   getTimeZone,
   getTranslations,
 } from 'next-intl/server';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleTagManager } from '@next/third-parties/google';
+
+const GA_MEASUREMENT_ID = 'G-B07W6NN076';
 
 const mulish = Mulish({ subsets: ['latin'], variable: '--font-sans' });
 const cormorant = Cormorant_Garamond({
@@ -41,6 +45,9 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={cn(mulish.variable, cormorant.variable)}
     >
+      <head>
+        <GoogleTagManager gtmId="CHANGE_ME" />
+      </head>
       <body>
         <NextIntlClientProvider
           locale={locale}
@@ -49,6 +56,7 @@ export default async function RootLayout({
         >
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );

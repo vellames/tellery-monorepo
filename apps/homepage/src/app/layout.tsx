@@ -8,7 +8,10 @@ import {
   getTimeZone,
   getTranslations,
 } from 'next-intl/server';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
+
+const GA_MEASUREMENT_ID = 'G-B07W6NN076';
 
 const mulish = Mulish({ subsets: ['latin'], variable: '--font-sans' });
 const cormorant = Cormorant_Garamond({
@@ -41,6 +44,9 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={`${mulish.variable} ${cormorant.variable}`}>
+      <head>
+        <GoogleTagManager gtmId="CHANGE_ME" />
+      </head>
       <body>
         <NextIntlClientProvider
           locale={locale}
@@ -52,6 +58,7 @@ export default async function RootLayout({
             privacyHref={`${process.env.NEXT_PUBLIC_WEB_URL ?? 'http://localhost:3000'}/privacy`}
           />
         </NextIntlClientProvider>
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );
