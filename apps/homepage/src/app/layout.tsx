@@ -45,7 +45,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${mulish.variable} ${cormorant.variable}`}>
       <head>
-        <GoogleTagManager gtmId="CHANGE_ME" />
+        <GoogleTagManager gtmId="GTM-NBX9MRQK" />
       </head>
       <body>
         <NextIntlClientProvider
