@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Formik, Form, useFormikContext } from 'formik';
@@ -13,6 +13,11 @@ import { useRegister } from '@/lib/hooks/use-auth';
 import { useLeadTracking } from '@/lib/hooks/use-lead-tracking';
 import { trackSubmitLeadForm } from '@/lib/analytics/gtm-events';
 import { config } from '@/lib/config';
+import {
+  addSignupBreadcrumb,
+  captureSignupException,
+  SignupBreadcrumb,
+} from '@/lib/monitoring/sentry';
 import { withQueryParams } from '@/lib/with-query-params';
 
 interface RegisterFormValues {
@@ -61,6 +66,8 @@ export function RegisterForm() {
   const t = useTranslations('register');
   const tCommon = useTranslations('common');
   const searchParams = useSearchParams();
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const breadcrumbGuardsRef = useRef(new Set<string>());
   const loginHref = withQueryParams(
     config.routes.login,
     searchParams?.toString()
@@ -75,6 +82,73 @@ export function RegisterForm() {
     markTermsAccepted,
     flushAndReturnLeadId,
   } = useLeadTracking();
+
+  const addSignupBreadcrumbOnce = (
+    name: (typeof SignupBreadcrumb)[keyof typeof SignupBreadcrumb],
+    data?: Record<string, unknown>
+  ) => {
+    if (breadcrumbGuardsRef.current.has(name)) return;
+    breadcrumbGuardsRef.current.add(name);
+    addSignupBreadcrumb(name, data);
+  };
+
+  const markAnyInputFocus = () => {
+    markFirstInputFocus();
+    addSignupBreadcrumbOnce(SignupBreadcrumb.FIRST_FIELD_FOCUS);
+  };
+
+  useEffect(() => {
+    const addBreadcrumbOnce = (
+      name: (typeof SignupBreadcrumb)[keyof typeof SignupBreadcrumb],
+      data?: Record<string, unknown>
+    ) => {
+      if (breadcrumbGuardsRef.current.has(name)) return;
+      breadcrumbGuardsRef.current.add(name);
+      addSignupBreadcrumb(name, data);
+    };
+
+    addSignupBreadcrumb(SignupBreadcrumb.PAGE_LOADED, {
+      path: window.location.pathname,
+      search: window.location.search,
+      viewport: `${window.innerWidth}x${window.innerHeight}`,
+    });
+
+    const form = formRef.current;
+    let observer: IntersectionObserver | null = null;
+    if (!form || !('IntersectionObserver' in window)) {
+      addBreadcrumbOnce(SignupBreadcrumb.FORM_VISIBLE);
+    } else {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry?.isIntersecting) return;
+          addBreadcrumbOnce(SignupBreadcrumb.FORM_VISIBLE, {
+            ratio: entry.intersectionRatio,
+          });
+          observer?.disconnect();
+        },
+        { threshold: 0.25 }
+      );
+
+      observer.observe(form);
+    }
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState !== 'hidden') return;
+
+      addSignupBreadcrumb(SignupBreadcrumb.PAGE_HIDDEN, {
+        timeOnPageMs: Math.round(performance.now()),
+        scrollY: window.scrollY,
+        viewport: `${window.innerWidth}x${window.innerHeight}`,
+      });
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      observer?.disconnect();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
 
   const schema = useMemo(
     () =>
@@ -107,6 +181,7 @@ export function RegisterForm() {
       validationSchema={schema}
       onSubmit={(values, { setSubmitting }) => {
         const leadId = flushAndReturnLeadId();
+        addSignupBreadcrumb(SignupBreadcrumb.SUBMIT_CLICKED, { leadId });
         trackSubmitLeadForm();
         register.mutate(
           {
@@ -115,12 +190,24 @@ export function RegisterForm() {
             password: values.password,
             leadId: leadId ?? undefined,
           },
-          { onSettled: () => setSubmitting(false) }
+          {
+            onSuccess: () => {
+              addSignupBreadcrumb(SignupBreadcrumb.REGISTER_SUCCESS, {
+                leadId,
+              });
+            },
+            onError: (error) => {
+              captureSignupException(error, SignupBreadcrumb.REGISTER_ERROR, {
+                leadId,
+              });
+            },
+            onSettled: () => setSubmitting(false),
+          }
         );
       }}
     >
       {({ setFieldValue }) => (
-        <Form className="space-y-4">
+        <Form ref={formRef} className="space-y-4">
           <LeadFieldSync onField={trackField} />
 
           <FormikField
@@ -128,7 +215,7 @@ export function RegisterForm() {
             label={t('name')}
             autoComplete="name"
             icon={<User className="size-4" />}
-            onFocus={markFirstInputFocus}
+            onFocus={markAnyInputFocus}
           />
           <FormikField
             name="email"
@@ -137,6 +224,7 @@ export function RegisterForm() {
             placeholder={t('emailPlaceholder')}
             autoComplete="email"
             icon={<Mail className="size-4" />}
+            onFocus={markAnyInputFocus}
           />
           <FormikField
             name="password"
@@ -144,7 +232,11 @@ export function RegisterForm() {
             type="password"
             autoComplete="new-password"
             icon={<Lock className="size-4" />}
-            onFocus={markPasswordTouched}
+            onFocus={() => {
+              markAnyInputFocus();
+              markPasswordTouched();
+              addSignupBreadcrumbOnce(SignupBreadcrumb.PASSWORD_FOCUS);
+            }}
           />
           <FormikField
             name="confirmPassword"
@@ -152,7 +244,11 @@ export function RegisterForm() {
             type="password"
             autoComplete="new-password"
             icon={<Lock className="size-4" />}
-            onFocus={markConfirmPasswordTouched}
+            onFocus={() => {
+              markAnyInputFocus();
+              markConfirmPasswordTouched();
+              addSignupBreadcrumbOnce(SignupBreadcrumb.CONFIRM_PASSWORD_FOCUS);
+            }}
           />
           <CheckboxField
             name="terms"
@@ -171,7 +267,10 @@ export function RegisterForm() {
             }
             onChange={(checked) => {
               setFieldValue('terms', checked);
-              if (checked) markTermsAccepted();
+              if (checked) {
+                markTermsAccepted();
+                addSignupBreadcrumbOnce(SignupBreadcrumb.TERMS_CHECKED);
+              }
             }}
           />
           <CheckboxField
@@ -191,7 +290,10 @@ export function RegisterForm() {
             }
             onChange={(checked) => {
               setFieldValue('privacy', checked);
-              if (checked) markPrivacyAccepted();
+              if (checked) {
+                markPrivacyAccepted();
+                addSignupBreadcrumbOnce(SignupBreadcrumb.PRIVACY_CHECKED);
+              }
             }}
           />
           <Button

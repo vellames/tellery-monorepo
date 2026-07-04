@@ -6,6 +6,12 @@ import { updateLeadRequest } from '@/lib/api/leads';
 import { createLeadRequest } from '@/lib/api/leads';
 import { getLocalUuid } from '@/lib/local-uuid';
 import { collectDeviceInfo } from '@/lib/device-info';
+import {
+  addSignupBreadcrumb,
+  captureSignupException,
+  setLeadMonitoringContext,
+  SignupBreadcrumb,
+} from '@/lib/monitoring/sentry';
 import type { UpdateLeadPayload } from '@/lib/types/lead';
 
 const DEBOUNCE_MS = 800;
@@ -138,6 +144,11 @@ export function useLeadTracking() {
     const queryParams = rawQueryParams || undefined;
     const deviceInfo = collectDeviceInfo();
 
+    setLeadMonitoringContext({ localUuid, queryParams, deviceInfo });
+    addSignupBreadcrumb(SignupBreadcrumb.LEAD_CREATE_STARTED, {
+      hasQueryParams: Boolean(queryParams),
+    });
+
     createLeadRequest({ localUuid, queryParams, deviceInfo })
       .then((lead) => {
         leadIdRef.current = lead.id;
@@ -151,8 +162,18 @@ export function useLeadTracking() {
           isPrivacyAccepted: lead.isPrivacyAccepted,
           isTermsAccepted: lead.isTermsAccepted,
         };
+        setLeadMonitoringContext({
+          localUuid,
+          leadId: lead.id,
+          queryParams,
+          deviceInfo,
+        });
+        addSignupBreadcrumb(SignupBreadcrumb.LEAD_CREATED, { leadId: lead.id });
       })
-      .catch(() => {
+      .catch((error) => {
+        captureSignupException(error, SignupBreadcrumb.LEAD_CREATE_ERROR, {
+          hasQueryParams: Boolean(queryParams),
+        });
         /* tracking must never break the form */
       });
   }, []);

@@ -21,3 +21,19 @@ vi.mock('next/link', () => ({
     </a>
   ),
 }));
+
+vi.mock('@sentry/nextjs', () => ({
+  addBreadcrumb: vi.fn(),
+  captureException: vi.fn(),
+  captureRequestError: vi.fn(),
+  captureRouterTransitionStart: vi.fn(),
+  flush: vi.fn(),
+  init: vi.fn(),
+  logger: { info: vi.fn() },
+  replayIntegration: vi.fn(() => ({ name: 'Replay' })),
+  setContext: vi.fn(),
+  setTag: vi.fn(),
+  setUser: vi.fn(),
+  startSpan: vi.fn((_options, callback) => callback()),
+  withSentryConfig: vi.fn((config) => config),
+}));

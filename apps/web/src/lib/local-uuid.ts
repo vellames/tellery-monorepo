@@ -18,12 +18,18 @@ export function getLocalUuid(): string {
     return generateUuid();
   }
 
-  const stored = window.localStorage.getItem(LOCAL_UUID_KEY);
-  if (stored) {
-    return stored;
+  const uuid = generateUuid();
+
+  try {
+    const stored = window.localStorage.getItem(LOCAL_UUID_KEY);
+    if (stored) {
+      return stored;
+    }
+
+    window.localStorage.setItem(LOCAL_UUID_KEY, uuid);
+  } catch {
+    // Some in-app browsers block storage; keep the signup flow working.
   }
 
-  const uuid = generateUuid();
-  window.localStorage.setItem(LOCAL_UUID_KEY, uuid);
   return uuid;
 }

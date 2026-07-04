@@ -1,6 +1,7 @@
 import { describe, expect, it, vi, type Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { act } from 'react';
+import * as Sentry from '@sentry/nextjs';
 import type { ReactNode } from 'react';
 import { ErrorBoundary } from '@/components/error-boundary';
 
@@ -43,7 +44,7 @@ describe('ErrorBoundary', () => {
     expect(typeof reset).toBe('function');
   });
 
-  it('logs the error to the console', () => {
+  it('captures and logs the error', () => {
     const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
     render(
@@ -52,6 +53,7 @@ describe('ErrorBoundary', () => {
       </ErrorBoundary>
     );
 
+    expect(Sentry.captureException).toHaveBeenCalled();
     expect(spy).toHaveBeenCalled();
     spy.mockRestore();
   });

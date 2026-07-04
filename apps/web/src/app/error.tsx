@@ -1,5 +1,6 @@
 'use client';
 
+import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -18,6 +19,7 @@ export default function RouteError({
   const router = useRouter();
 
   useEffect(() => {
+    Sentry.captureException(error);
     console.error('[RouteError]', error);
   }, [error]);
 
