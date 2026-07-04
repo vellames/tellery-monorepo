@@ -5,7 +5,7 @@ export default function PrivacyPage() {
         Política de Privacidade
       </h1>
       <p className="text-muted-foreground mt-1 text-sm">
-        Última atualização: julho de 2026
+        Última atualização: 4 de julho de 2026
       </p>
 
       <div className="mt-8 space-y-6 text-sm leading-relaxed">
@@ -52,10 +52,26 @@ export default function PrivacyPage() {
             </li>
             <li>
               <span className="text-foreground font-medium">
-                Dados técnicos:
+                Dados técnicos e de dispositivo:
               </span>{' '}
+              tipo de navegador, sistema operacional, resoluções de tela e de
+              janela, idioma e fuso horário do navegador, capacidade de memória
+              e número de núcleos do processador, suporte a toque, densidade de
+              pixels, características da conexão de rede (quando disponíveis),
               endereço IP e informações básicas de navegação, utilizados para
-              segurança e estabilidade do serviço.
+              segurança, estabilidade e melhoria do serviço.
+            </li>
+            <li>
+              <span className="text-foreground font-medium">
+                Dados de visitantes e análise de conversão:
+              </span>{' '}
+              coletamos, antes mesmo da criação da conta, um identificador
+              aleatório gerado e armazenado no seu navegador, além de parâmetros
+              de navegação (como origens de campanha ou links de referência),
+              com a finalidade de compreender como os visitantes chegam à página
+              de cadastro e em que ponto do formulário desistem, ajudando-nos a
+              melhorar a experiência de uso. Esses dados não permitem, por si
+              só, a identificação direta de uma pessoa.
             </li>
           </ul>
         </section>
@@ -70,7 +86,10 @@ export default function PrivacyPage() {
             principalmente nas seguintes bases: execução de contrato (para
             fornecer o serviço que você solicitou), cumprimento de obrigação
             legal ou regulatória, exercício regular de direitos e legítimo
-            interesse da empresa na operação e na melhoria do aplicativo.
+            interesse da empresa na operação e na melhoria do aplicativo. A
+            coleta de dados técnicos e de navegação de visitantes, descrita na
+            seção anterior, apoia-se no legítimo interesse de analisar e
+            aprimorar a experiência de uso, não envolvendo dados sensíveis.
           </p>
         </section>
 
@@ -128,7 +147,12 @@ export default function PrivacyPage() {
             Utilizamos apenas cookies essenciais ao funcionamento do serviço,
             como o de sessão (que mantém você autenticado) e o de preferência de
             idioma. Não utilizamos cookies de publicidade nem de rastreamento de
-            terceiros para fins de marketing.
+            terceiros para fins de marketing. Também armazenamos, no
+            armazenamento local do seu navegador (localStorage), um
+            identificador aleatório que nos ajuda a agrupar a atividade de um
+            mesmo navegador para análise do funil de cadastro. Esse
+            identificador permanece no seu navegador até que você o apague
+            manualmente por meio das configurações do navegador.
           </p>
         </section>
 
