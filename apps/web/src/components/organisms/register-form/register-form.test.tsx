@@ -1,6 +1,7 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import * as Sentry from '@sentry/nextjs';
 
 const pushMock = vi.fn();
 const refreshMock = vi.fn();
@@ -73,5 +74,152 @@ describe('RegisterForm', () => {
       })
     );
     await waitFor(() => expect(pushMock).toHaveBeenCalledWith('/home'));
+  });
+});
+
+/**
+ * IntersectionObserver entry shape used by the visibility tests. Only the
+ * fields the component reads are populated — the rest are not accessed.
+ */
+type MockEntry = {
+  isIntersecting: boolean;
+  intersectionRatio: number;
+  boundingClientRect: { width: number; height: number };
+};
+
+describe('RegisterForm visibility telemetry', () => {
+  let ioCallback: ((entries: IntersectionObserverEntry[]) => void) | null =
+    null;
+  const originalIO = window.IntersectionObserver;
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.useFakeTimers();
+    ioCallback = null;
+    // Regular function (not arrow) so `new IntersectionObserver(cb)` works.
+    function StubIntersectionObserver(
+      this: unknown,
+      cb: (entries: IntersectionObserverEntry[]) => void
+    ) {
+      ioCallback = cb;
+      return {
+        observe: vi.fn(),
+        disconnect: vi.fn(),
+        unobserve: vi.fn(),
+      } as unknown as IntersectionObserver;
+    }
+    window.IntersectionObserver =
+      StubIntersectionObserver as unknown as typeof IntersectionObserver;
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+    window.IntersectionObserver = originalIO;
+    ioCallback = null;
+  });
+
+  function emitEntry(entry: MockEntry) {
+    ioCallback?.([entry as unknown as IntersectionObserverEntry]);
+  }
+
+  function expectBreadcrumb(message: string) {
+    expect(vi.mocked(Sentry.addBreadcrumb)).toHaveBeenCalledWith(
+      expect.objectContaining({ message })
+    );
+  }
+
+  it('fires signup_form_mounted with geometry baseline and IO support', () => {
+    renderWithProviders(<RegisterForm />);
+
+    expectBreadcrumb('signup_form_mounted');
+    const call = vi
+      .mocked(Sentry.addBreadcrumb)
+      .mock.calls.find((c) => c[0]?.message === 'signup_form_mounted');
+    expect(call?.[0]?.data).toEqual(
+      expect.objectContaining({
+        hasFormRef: true,
+        hasIntersectionObserver: true,
+      })
+    );
+  });
+
+  it('fires signup_form_visible when the observer reports intersection', () => {
+    renderWithProviders(<RegisterForm />);
+
+    emitEntry({
+      isIntersecting: true,
+      intersectionRatio: 1,
+      boundingClientRect: { width: 400, height: 600 },
+    });
+
+    expectBreadcrumb('signup_form_visible');
+    const call = vi
+      .mocked(Sentry.addBreadcrumb)
+      .mock.calls.find((c) => c[0]?.message === 'signup_form_visible');
+    expect(call?.[0]?.data).toEqual(
+      expect.objectContaining({ ratio: 1, rectWidth: 400, rectHeight: 600 })
+    );
+  });
+
+  it('fires signup_form_visible_timeout as an error after 5s without visibility', () => {
+    renderWithProviders(<RegisterForm />);
+
+    vi.advanceTimersByTime(5001);
+
+    expectBreadcrumb('signup_form_visible_timeout');
+    expect(vi.mocked(Sentry.captureException)).toHaveBeenCalledWith(
+      expect.any(Error),
+      expect.objectContaining({
+        tags: { signup_event: 'signup_form_visible_timeout' },
+      })
+    );
+    const captureHint = vi.mocked(Sentry.captureException).mock
+      .calls[0]?.[1] as
+      | { contexts?: { signup?: Record<string, unknown> } }
+      | undefined;
+    expect(captureHint?.contexts?.signup).toEqual(
+      expect.objectContaining({
+        lastIntersectionRatio: null,
+        lastIsIntersecting: null,
+      })
+    );
+  });
+
+  it('does not fire the timeout after the form becomes visible', () => {
+    renderWithProviders(<RegisterForm />);
+
+    emitEntry({
+      isIntersecting: true,
+      intersectionRatio: 1,
+      boundingClientRect: { width: 400, height: 600 },
+    });
+    vi.advanceTimersByTime(5001);
+
+    const sawTimeout = vi
+      .mocked(Sentry.addBreadcrumb)
+      .mock.calls.some((c) => c[0]?.message === 'signup_form_visible_timeout');
+    expect(sawTimeout).toBe(false);
+    expect(vi.mocked(Sentry.captureException)).not.toHaveBeenCalled();
+  });
+
+  it('clears the visibility timeout on unmount', () => {
+    const { unmount } = renderWithProviders(<RegisterForm />);
+    unmount();
+
+    vi.advanceTimersByTime(5001);
+
+    expect(vi.mocked(Sentry.captureException)).not.toHaveBeenCalled();
+  });
+
+  it('falls back to immediate signup_form_visible when IntersectionObserver is absent', () => {
+    // Simulate an environment (e.g. jsdom default, some webviews) without IO.
+    // @ts-expect-error: deleting a non-optional global for the test.
+    delete window.IntersectionObserver;
+
+    renderWithProviders(<RegisterForm />);
+
+    expectBreadcrumb('signup_form_visible');
+    expectBreadcrumb('signup_form_mounted'); // baseline still fires
+    expect(vi.mocked(Sentry.captureException)).not.toHaveBeenCalled();
   });
 });

@@ -20,6 +20,13 @@ import {
 } from '@/lib/monitoring/sentry';
 import { withQueryParams } from '@/lib/with-query-params';
 
+/**
+ * Watchdog window for the form to become visible. If the IntersectionObserver
+ * hasn't reported visibility by this deadline, we capture an error so the
+ * failure surfaces as a Sentry issue instead of a silent blank screen.
+ */
+const FORM_VISIBLE_TIMEOUT_MS = 5000;
+
 interface RegisterFormValues {
   name: string;
   email: string;
@@ -59,6 +66,20 @@ function LeadFieldSync({
   }, [values.email, onField]);
 
   return null;
+}
+
+/**
+ * Returns the element's bounding rect, or `undefined` if the element is missing
+ * or `getBoundingClientRect` throws. Telemetry must never break the form, so a
+ * measurement failure degrades to "no data" rather than throwing.
+ */
+function safeRect(el: HTMLFormElement | null): DOMRect | undefined {
+  if (!el) return undefined;
+  try {
+    return el.getBoundingClientRect();
+  } catch {
+    return undefined;
+  }
 }
 
 export function RegisterForm() {
@@ -114,15 +135,42 @@ export function RegisterForm() {
     });
 
     const form = formRef.current;
+    const hasObserver = 'IntersectionObserver' in window;
+
+    // Baseline: capture the form's geometry + feature support at mount, before
+    // the observer has a chance to fire. This runs even if the observer never
+    // reports visibility, so we can distinguish "form never mounted" / "form
+    // mounted at 0×0 (layout collapse)" / "observer never fired".
+    const mountRect = safeRect(form);
+    addSignupBreadcrumb(SignupBreadcrumb.FORM_MOUNTED, {
+      hasFormRef: Boolean(form),
+      hasIntersectionObserver: hasObserver,
+      rectWidth: mountRect?.width,
+      rectHeight: mountRect?.height,
+      rectX: mountRect?.x,
+      rectY: mountRect?.y,
+      viewport: `${window.innerWidth}x${window.innerHeight}`,
+    });
+
     let observer: IntersectionObserver | null = null;
-    if (!form || !('IntersectionObserver' in window)) {
+    let lastEntry: IntersectionObserverEntry | null = null;
+    let visibilityTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
+    if (!form || !hasObserver) {
+      // No form ref or no IntersectionObserver — fall back to "visible" so the
+      // funnel doesn't stall. The FORM_MOUNTED breadcrumb above carries the
+      // reason (hasFormRef / hasIntersectionObserver).
       addBreadcrumbOnce(SignupBreadcrumb.FORM_VISIBLE);
     } else {
       observer = new IntersectionObserver(
         ([entry]) => {
-          if (!entry?.isIntersecting) return;
+          if (!entry) return;
+          lastEntry = entry;
+          if (!entry.isIntersecting) return;
           addBreadcrumbOnce(SignupBreadcrumb.FORM_VISIBLE, {
             ratio: entry.intersectionRatio,
+            rectWidth: entry.boundingClientRect.width,
+            rectHeight: entry.boundingClientRect.height,
           });
           observer?.disconnect();
         },
@@ -130,11 +178,43 @@ export function RegisterForm() {
       );
 
       observer.observe(form);
+
+      // Watchdog: if the form hasn't become visible by the deadline, capture
+      // an error with the current geometry + last observer entry so the
+      // failure surfaces as a Sentry issue rather than a silent blank screen.
+      visibilityTimeoutId = setTimeout(() => {
+        if (breadcrumbGuardsRef.current.has(SignupBreadcrumb.FORM_VISIBLE)) {
+          return;
+        }
+
+        const timeoutRect = safeRect(form);
+        const error = new Error(
+          'Signup form did not become visible within timeout'
+        );
+        captureSignupException(error, SignupBreadcrumb.FORM_VISIBLE_TIMEOUT, {
+          hasFormRef: Boolean(form),
+          rectWidth: timeoutRect?.width,
+          rectHeight: timeoutRect?.height,
+          lastIntersectionRatio: lastEntry?.intersectionRatio ?? null,
+          lastIsIntersecting: lastEntry?.isIntersecting ?? null,
+          viewport: `${window.innerWidth}x${window.innerHeight}`,
+        });
+      }, FORM_VISIBLE_TIMEOUT_MS);
     }
 
     const handleVisibilityChange = () => {
       if (document.visibilityState !== 'hidden') return;
 
+      // Final geometry snapshot on tab hide — complements PAGE_HIDDEN when the
+      // user abandons before the visibility timeout fires.
+      const exitRect = safeRect(form);
+      addSignupBreadcrumb(SignupBreadcrumb.FORM_RECT_SNAPSHOT, {
+        rectWidth: exitRect?.width,
+        rectHeight: exitRect?.height,
+        becameVisible: breadcrumbGuardsRef.current.has(
+          SignupBreadcrumb.FORM_VISIBLE
+        ),
+      });
       addSignupBreadcrumb(SignupBreadcrumb.PAGE_HIDDEN, {
         timeOnPageMs: Math.round(performance.now()),
         scrollY: window.scrollY,
@@ -145,6 +225,9 @@ export function RegisterForm() {
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
+      if (visibilityTimeoutId !== null) {
+        clearTimeout(visibilityTimeoutId);
+      }
       observer?.disconnect();
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
