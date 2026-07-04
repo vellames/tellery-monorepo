@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { CheckboxField, FormikField } from '@/components/molecules';
 import { useRegister } from '@/lib/hooks/use-auth';
 import { useLeadTracking } from '@/lib/hooks/use-lead-tracking';
+import { trackSubmitLeadForm } from '@/lib/analytics/gtm-events';
 import { config } from '@/lib/config';
 
 interface RegisterFormValues {
@@ -99,6 +100,7 @@ export function RegisterForm() {
       validationSchema={schema}
       onSubmit={(values, { setSubmitting }) => {
         const leadId = flushAndReturnLeadId();
+        trackSubmitLeadForm();
         register.mutate(
           {
             name: values.name,
