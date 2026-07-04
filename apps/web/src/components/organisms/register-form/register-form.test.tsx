@@ -88,9 +88,8 @@ type MockEntry = {
 };
 
 describe('RegisterForm visibility telemetry', () => {
-  let ioCallback:
-    | ((entries: IntersectionObserverEntry[]) => void)
-    | null = null;
+  let ioCallback: ((entries: IntersectionObserverEntry[]) => void) | null =
+    null;
   const originalIO = window.IntersectionObserver;
 
   beforeEach(() => {
@@ -174,7 +173,8 @@ describe('RegisterForm visibility telemetry', () => {
         tags: { signup_event: 'signup_form_visible_timeout' },
       })
     );
-    const captureHint = vi.mocked(Sentry.captureException).mock.calls[0]?.[1] as
+    const captureHint = vi.mocked(Sentry.captureException).mock
+      .calls[0]?.[1] as
       | { contexts?: { signup?: Record<string, unknown> } }
       | undefined;
     expect(captureHint?.contexts?.signup).toEqual(

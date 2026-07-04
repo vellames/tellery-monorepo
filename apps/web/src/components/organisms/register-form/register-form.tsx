@@ -73,9 +73,7 @@ function LeadFieldSync({
  * or `getBoundingClientRect` throws. Telemetry must never break the form, so a
  * measurement failure degrades to "no data" rather than throwing.
  */
-function safeRect(
-  el: HTMLFormElement | null
-): DOMRect | undefined {
+function safeRect(el: HTMLFormElement | null): DOMRect | undefined {
   if (!el) return undefined;
   try {
     return el.getBoundingClientRect();
