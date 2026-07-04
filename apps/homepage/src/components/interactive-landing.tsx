@@ -1,7 +1,20 @@
 'use client';
 
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 import type { PointerEvent } from 'react';
+
+/**
+ * Forwards the current URL's query params to an outbound web-app URL so that
+ * attribution/marketing params (e.g. utm_*) are preserved across the jump from
+ * the homepage to the app.
+ */
+function withForwardedParams(base: string, params: URLSearchParams): string {
+  const query = params.toString();
+  if (query.length === 0) return base;
+  return `${base}?${query}`;
+}
 
 type NavCopy = {
   how: string;
@@ -89,6 +102,24 @@ const PRIVACY_URL = 'https://app.tellery.ai/privacy';
 const TERMS_URL = 'https://app.tellery.ai/terms';
 
 export function InteractiveLanding({ copy }: InteractiveLandingProps) {
+  const searchParams = useSearchParams();
+  const registerUrl = useMemo(
+    () => withForwardedParams(REGISTER_URL, new URLSearchParams(searchParams ?? '')),
+    [searchParams],
+  );
+  const signInUrl = useMemo(
+    () => withForwardedParams(SIGN_IN_URL, new URLSearchParams(searchParams ?? '')),
+    [searchParams],
+  );
+  const privacyUrl = useMemo(
+    () => withForwardedParams(PRIVACY_URL, new URLSearchParams(searchParams ?? '')),
+    [searchParams],
+  );
+  const termsUrl = useMemo(
+    () => withForwardedParams(TERMS_URL, new URLSearchParams(searchParams ?? '')),
+    [searchParams],
+  );
+
   function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
     const shell = event.currentTarget;
     const rect = shell.getBoundingClientRect();
@@ -115,10 +146,10 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
           <a href="#premium">{copy.nav.premium}</a>
         </nav>
         <div className="header-actions">
-          <a className="header-sign-in" href={SIGN_IN_URL}>
+          <a className="header-sign-in" href={signInUrl}>
             {copy.nav.signIn}
           </a>
-          <a className="header-cta" href={REGISTER_URL}>
+          <a className="header-cta" href={registerUrl}>
             {copy.nav.createAccount}
           </a>
         </div>
@@ -131,7 +162,7 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
             <h1>{copy.hero.title}</h1>
             <p className="hero-subtitle">{copy.hero.subtitle}</p>
             <div className="hero-actions">
-              <a className="primary-button magnetic-button" href={REGISTER_URL}>
+              <a className="primary-button magnetic-button" href={registerUrl}>
                 {copy.hero.primaryCta}
               </a>
               <a className="secondary-button" href="#how">
@@ -262,7 +293,7 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
           <p className="eyebrow">{copy.finalCta.eyebrow}</p>
           <h2>{copy.finalCta.title}</h2>
           <p>{copy.finalCta.subtitle}</p>
-          <a className="primary-button magnetic-button" href={REGISTER_URL}>
+          <a className="primary-button magnetic-button" href={registerUrl}>
             {copy.finalCta.cta}
           </a>
         </section>
@@ -278,10 +309,10 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
             © {new Date().getFullYear()} Tellery. {copy.footer.copyright}
           </p>
           <nav aria-label="Legal links">
-            <a href={PRIVACY_URL} target="_blank" rel="noreferrer">
+            <a href={privacyUrl} target="_blank" rel="noreferrer">
               {copy.footer.privacy}
             </a>
-            <a href={TERMS_URL} target="_blank" rel="noreferrer">
+            <a href={termsUrl} target="_blank" rel="noreferrer">
               {copy.footer.terms}
             </a>
           </nav>

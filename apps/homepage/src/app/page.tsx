@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { Suspense } from 'react';
 import {
   InteractiveLanding,
   type LandingCopy,
@@ -82,5 +83,9 @@ export default async function HomePage() {
     },
   };
 
-  return <InteractiveLanding copy={copy} />;
+  return (
+    <Suspense fallback={null}>
+      <InteractiveLanding copy={copy} />
+    </Suspense>
+  );
 }
