@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
+// Cookiebot desativado em favor do banner próprio (CookieConsentBanner).
+// Para reativar, descomente o import e o <Script id="cookiebot" /> no <head>.
+// import Script from 'next/script';
 import { Cormorant_Garamond, Mulish } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import {
@@ -9,10 +11,12 @@ import {
   getTranslations,
 } from 'next-intl/server';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { CookieConsentBanner } from '@ai-history/ui';
 import './globals.css';
 
 const GA_MEASUREMENT_ID = 'G-B07W6NN076';
 const GTM_ID = 'GTM-NBX9MRQK';
+const PRIVACY_URL = 'https://app.tellery.ai/privacy';
 
 const mulish = Mulish({ subsets: ['latin'], variable: '--font-sans' });
 const cormorant = Cormorant_Garamond({
@@ -46,13 +50,17 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${mulish.variable} ${cormorant.variable}`}>
       <head>
-        <Script
-          id="cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="c33c63d0-7dc9-4bb6-a0af-2aa1bcb3df86"
-          data-blockingmode="auto"
-          strategy="beforeInteractive"
-        />
+        {/*
+          Cookiebot desativado em favor do banner próprio.
+          Para reativar, restaure o bloco comentado abaixo:
+          <Script
+            id="cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="c33c63d0-7dc9-4bb6-a0af-2aa1bcb3df86"
+            data-blockingmode="auto"
+            strategy="beforeInteractive"
+          />
+        */}
         <GoogleTagManager gtmId={GTM_ID} />
       </head>
       <body>
@@ -62,6 +70,7 @@ export default async function RootLayout({
           timeZone={timeZone}
         >
           {children}
+          <CookieConsentBanner privacyHref={PRIVACY_URL} />
         </NextIntlClientProvider>
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
