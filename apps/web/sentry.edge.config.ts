@@ -10,8 +10,13 @@ const SENTRY_DSN =
   'https://370fedd6fd2ac7717585e0d27a0c84fa@o1243734.ingest.us.sentry.io/4511677440983040';
 const DEFAULT_TRACES_SAMPLE_RATE = 0.1;
 
+// Disable Sentry while running locally (npm run dev) so dev-only noise — e.g. an
+// API that isn't running — never reaches the project. An undefined DSN tells the
+// SDK to stay initialized but not to send any events.
+const IS_LOCAL_DEVELOPMENT = process.env.NODE_ENV === 'development';
+
 Sentry.init({
-  dsn: SENTRY_DSN,
+  dsn: IS_LOCAL_DEVELOPMENT ? undefined : SENTRY_DSN,
   environment: process.env.NEXT_PUBLIC_APP_ENV ?? process.env.NODE_ENV,
 
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.

@@ -11,8 +11,13 @@ const DEFAULT_TRACES_SAMPLE_RATE = 0.1;
 const DEFAULT_REPLAY_SESSION_SAMPLE_RATE = 0.5;
 const ERROR_REPLAY_SAMPLE_RATE = 1.0;
 
+// Disable Sentry while running locally so dev-only noise never reaches the
+// project. An undefined DSN tells the SDK to stay initialized but not to send
+// any events.
+const IS_LOCAL_DEVELOPMENT = process.env.NODE_ENV === 'development';
+
 Sentry.init({
-  dsn: SENTRY_DSN,
+  dsn: IS_LOCAL_DEVELOPMENT ? undefined : SENTRY_DSN,
   environment: process.env.NEXT_PUBLIC_APP_ENV ?? process.env.NODE_ENV,
 
   // Add optional integrations for additional features
