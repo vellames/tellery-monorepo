@@ -941,6 +941,7 @@ model Lead {
   deviceInfo               Json?
   name                     String?
   email                    String?
+  isFirstInputFocus        Boolean  @default(false)
   isPasswordTouched        Boolean  @default(false)
   isConfirmPasswordTouched Boolean  @default(false)
   isPrivacyAccepted        Boolean  @default(false)

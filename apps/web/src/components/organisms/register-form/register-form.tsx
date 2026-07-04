@@ -60,6 +60,7 @@ export function RegisterForm() {
 
   const {
     setFieldValue: trackField,
+    markFirstInputFocus,
     markPasswordTouched,
     markConfirmPasswordTouched,
     markPrivacyAccepted,
@@ -118,6 +119,7 @@ export function RegisterForm() {
             label={t('name')}
             autoComplete="name"
             icon={<User className="size-4" />}
+            onFocus={markFirstInputFocus}
           />
           <FormikField
             name="email"

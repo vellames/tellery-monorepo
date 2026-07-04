@@ -13,6 +13,7 @@ const DEBOUNCE_MS = 800;
 type FieldName =
   | 'name'
   | 'email'
+  | 'isFirstInputFocus'
   | 'isPasswordTouched'
   | 'isConfirmPasswordTouched'
   | 'isPrivacyAccepted'
@@ -23,6 +24,7 @@ type FieldValue = string | boolean;
 interface ServerSnapshot {
   name: string | null;
   email: string | null;
+  isFirstInputFocus: boolean;
   isPasswordTouched: boolean;
   isConfirmPasswordTouched: boolean;
   isPrivacyAccepted: boolean;
@@ -32,6 +34,7 @@ interface ServerSnapshot {
 const EMPTY_SNAPSHOT: ServerSnapshot = {
   name: null,
   email: null,
+  isFirstInputFocus: false,
   isPasswordTouched: false,
   isConfirmPasswordTouched: false,
   isPrivacyAccepted: false,
@@ -116,6 +119,7 @@ export function useLeadTracking() {
     }, []);
   };
 
+  const markFirstInputFocus = useTouchedGuard('isFirstInputFocus');
   const markPasswordTouched = useTouchedGuard('isPasswordTouched');
   const markConfirmPasswordTouched = useTouchedGuard(
     'isConfirmPasswordTouched'
@@ -141,6 +145,7 @@ export function useLeadTracking() {
         serverSnapshotRef.current = {
           name: lead.name,
           email: lead.email,
+          isFirstInputFocus: lead.isFirstInputFocus,
           isPasswordTouched: lead.isPasswordTouched,
           isConfirmPasswordTouched: lead.isConfirmPasswordTouched,
           isPrivacyAccepted: lead.isPrivacyAccepted,
@@ -167,6 +172,7 @@ export function useLeadTracking() {
   return {
     leadId,
     setFieldValue,
+    markFirstInputFocus,
     markPasswordTouched,
     markConfirmPasswordTouched,
     markPrivacyAccepted,

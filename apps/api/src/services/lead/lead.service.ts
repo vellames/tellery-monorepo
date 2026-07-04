@@ -57,6 +57,7 @@ export class LeadService {
       deviceInfo: lead.deviceInfo as Record<string, unknown> | null,
       name: lead.name,
       email: lead.email,
+      isFirstInputFocus: lead.isFirstInputFocus,
       isPasswordTouched: lead.isPasswordTouched,
       isConfirmPasswordTouched: lead.isConfirmPasswordTouched,
       isPrivacyAccepted: lead.isPrivacyAccepted,

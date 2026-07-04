@@ -48,6 +48,8 @@ export class LeadRepository extends BaseRepository implements ILeadRepository {
 
     if (data.name !== undefined) updateData.name = data.name;
     if (data.email !== undefined) updateData.email = data.email;
+    if (data.isFirstInputFocus !== undefined)
+      updateData.isFirstInputFocus = data.isFirstInputFocus;
     if (data.isPasswordTouched !== undefined)
       updateData.isPasswordTouched = data.isPasswordTouched;
     if (data.isConfirmPasswordTouched !== undefined)

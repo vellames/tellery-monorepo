@@ -7,6 +7,7 @@ export interface CreateLeadDto {
 export interface UpdateLeadDto {
   name?: string;
   email?: string;
+  isFirstInputFocus?: boolean;
   isPasswordTouched?: boolean;
   isConfirmPasswordTouched?: boolean;
   isPrivacyAccepted?: boolean;
@@ -20,6 +21,7 @@ export interface LeadResponseDto {
   deviceInfo: Record<string, unknown> | null;
   name: string | null;
   email: string | null;
+  isFirstInputFocus: boolean;
   isPasswordTouched: boolean;
   isConfirmPasswordTouched: boolean;
   isPrivacyAccepted: boolean;

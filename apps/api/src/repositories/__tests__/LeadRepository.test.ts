@@ -12,6 +12,7 @@ type PrismaLead = {
   deviceInfo: Prisma.JsonValue;
   name: string | null;
   email: string | null;
+  isFirstInputFocus: boolean;
   isPasswordTouched: boolean;
   isConfirmPasswordTouched: boolean;
   isPrivacyAccepted: boolean;
@@ -29,6 +30,7 @@ const mockLead = (overrides: Partial<PrismaLead> = {}): PrismaLead => ({
   deviceInfo: null,
   name: null,
   email: null,
+  isFirstInputFocus: false,
   isPasswordTouched: false,
   isConfirmPasswordTouched: false,
   isPrivacyAccepted: false,

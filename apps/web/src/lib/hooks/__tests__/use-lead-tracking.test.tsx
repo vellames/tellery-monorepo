@@ -41,6 +41,7 @@ const baseLead: Lead = {
   deviceInfo: null,
   name: null,
   email: null,
+  isFirstInputFocus: false,
   isPasswordTouched: false,
   isConfirmPasswordTouched: false,
   isPrivacyAccepted: false,

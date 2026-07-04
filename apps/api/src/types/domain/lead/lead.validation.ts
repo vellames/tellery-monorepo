@@ -12,6 +12,7 @@ export const updateLeadSchema = z
   .object({
     name: z.string().optional(),
     email: z.string().optional(),
+    isFirstInputFocus: z.boolean().optional(),
     isPasswordTouched: z.boolean().optional(),
     isConfirmPasswordTouched: z.boolean().optional(),
     isPrivacyAccepted: z.boolean().optional(),
