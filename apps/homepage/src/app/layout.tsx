@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Cormorant_Garamond, Mulish } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { CookieConsentBanner } from '@ai-history/ui';
 import {
   getLocale,
   getMessages,
@@ -46,6 +46,13 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${mulish.variable} ${cormorant.variable}`}>
       <head>
+        <Script
+          id="cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="c33c63d0-7dc9-4bb6-a0af-2aa1bcb3df86"
+          data-blockingmode="auto"
+          strategy="beforeInteractive"
+        />
         <GoogleTagManager gtmId={GTM_ID} />
       </head>
       <body>
@@ -55,9 +62,6 @@ export default async function RootLayout({
           timeZone={timeZone}
         >
           {children}
-          <CookieConsentBanner
-            privacyHref={`${process.env.NEXT_PUBLIC_WEB_URL ?? 'http://localhost:3000'}/privacy`}
-          />
         </NextIntlClientProvider>
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
