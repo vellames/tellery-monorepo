@@ -6,6 +6,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const body = (await req.json().catch(() => null)) as {
     localUuid?: string;
     queryParams?: string;
+    deviceInfo?: Record<string, unknown>;
   } | null;
 
   if (!body?.localUuid) {

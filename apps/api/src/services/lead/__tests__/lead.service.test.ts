@@ -11,6 +11,7 @@ const mockLead = (overrides: Partial<Lead> = {}): Lead => ({
   deletedAt: null,
   localUuid: 'browser-uuid-1',
   queryParams: null,
+  deviceInfo: null,
   name: null,
   email: null,
   isPasswordTouched: false,
@@ -51,16 +52,19 @@ describe('LeadService', () => {
     it('should create a new lead when no active lead exists', async () => {
       repo.findActiveByLocalUuid.mockResolvedValue(null);
       repo.create.mockResolvedValue(mockLead({ id: 'new-lead' }));
+      const deviceInfo = { userAgent: 'Mozilla/5.0' };
 
       const result = await service.createOrGetActive({
         localUuid: 'browser-uuid-1',
         queryParams: '?ref=x',
+        deviceInfo,
       });
 
       expect(result.id).toBe('new-lead');
       expect(repo.create).toHaveBeenCalledWith({
         localUuid: 'browser-uuid-1',
         queryParams: '?ref=x',
+        deviceInfo,
       });
     });
 

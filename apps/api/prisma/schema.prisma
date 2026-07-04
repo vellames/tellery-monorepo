@@ -938,6 +938,7 @@ model Lead {
 
   localUuid                String
   queryParams              String?
+  deviceInfo               Json?
   name                     String?
   email                    String?
   isPasswordTouched        Boolean  @default(false)

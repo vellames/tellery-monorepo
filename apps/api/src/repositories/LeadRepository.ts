@@ -1,4 +1,4 @@
-import { PrismaClient, Lead } from '@prisma/client';
+import { PrismaClient, Lead, Prisma } from '@prisma/client';
 import { ILeadRepository } from '../interfaces';
 import { CreateLeadDto, UpdateLeadDto } from '../types/domain/lead/lead.dto';
 import { PrismaTransaction } from '../types/database.types';
@@ -15,6 +15,7 @@ export class LeadRepository extends BaseRepository implements ILeadRepository {
       data: {
         localUuid: data.localUuid,
         queryParams: data.queryParams,
+        deviceInfo: data.deviceInfo as Prisma.InputJsonValue,
       },
     });
   }

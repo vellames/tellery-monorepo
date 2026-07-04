@@ -15,6 +15,10 @@ vi.mock('@/lib/local-uuid', () => ({
   getLocalUuid: () => 'browser-uuid-1',
 }));
 
+vi.mock('@/lib/device-info', () => ({
+  collectDeviceInfo: () => ({ userAgent: 'test-agent' }),
+}));
+
 import { useLeadTracking } from '../use-lead-tracking';
 import type { Lead } from '@/lib/types/lead';
 
@@ -34,6 +38,7 @@ const baseLead: Lead = {
   id: 'lead-1',
   localUuid: 'browser-uuid-1',
   queryParams: null,
+  deviceInfo: null,
   name: null,
   email: null,
   isPasswordTouched: false,
@@ -72,6 +77,7 @@ describe('useLeadTracking', () => {
     expect(mockCreateLeadRequest).toHaveBeenCalledWith({
       localUuid: 'browser-uuid-1',
       queryParams: undefined,
+      deviceInfo: { userAgent: 'test-agent' },
     });
   });
 

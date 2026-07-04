@@ -5,6 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { updateLeadRequest } from '@/lib/api/leads';
 import { createLeadRequest } from '@/lib/api/leads';
 import { getLocalUuid } from '@/lib/local-uuid';
+import { collectDeviceInfo } from '@/lib/device-info';
 import type { UpdateLeadPayload } from '@/lib/types/lead';
 
 const DEBOUNCE_MS = 800;
@@ -131,8 +132,9 @@ export function useLeadTracking() {
     const rawQueryParams =
       typeof window !== 'undefined' ? window.location.search : '';
     const queryParams = rawQueryParams || undefined;
+    const deviceInfo = collectDeviceInfo();
 
-    createLeadRequest({ localUuid, queryParams })
+    createLeadRequest({ localUuid, queryParams, deviceInfo })
       .then((lead) => {
         leadIdRef.current = lead.id;
         setLeadId(lead.id);

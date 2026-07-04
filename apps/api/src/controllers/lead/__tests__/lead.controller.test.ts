@@ -10,6 +10,7 @@ const leadDto = {
   id: 'lead-1',
   localUuid: 'browser-uuid-1',
   queryParams: null,
+  deviceInfo: null,
   name: null,
   email: null,
   isPasswordTouched: false,
@@ -46,8 +47,16 @@ describe('LeadController', () => {
   describe('create', () => {
     it('should return 201 with the lead when body is valid', async () => {
       leadService.createOrGetActive.mockResolvedValue(leadDto);
+      const deviceInfo = {
+        userAgent: 'Mozilla/5.0',
+        timezone: 'America/Sao_Paulo',
+      };
       req = {
-        body: { localUuid: 'browser-uuid-1', queryParams: '?ref=x' },
+        body: {
+          localUuid: 'browser-uuid-1',
+          queryParams: '?ref=x',
+          deviceInfo,
+        },
         t,
       };
 
@@ -56,6 +65,7 @@ describe('LeadController', () => {
       expect(leadService.createOrGetActive).toHaveBeenCalledWith({
         localUuid: 'browser-uuid-1',
         queryParams: '?ref=x',
+        deviceInfo,
       });
       expect(status).toHaveBeenCalledWith(StatusCodes.CREATED);
       expect(json).toHaveBeenCalledWith({

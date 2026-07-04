@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { LeadRepository } from '../LeadRepository';
 
@@ -9,6 +9,7 @@ type PrismaLead = {
   deletedAt: Date | null;
   localUuid: string;
   queryParams: string | null;
+  deviceInfo: Prisma.JsonValue;
   name: string | null;
   email: string | null;
   isPasswordTouched: boolean;
@@ -25,6 +26,7 @@ const mockLead = (overrides: Partial<PrismaLead> = {}): PrismaLead => ({
   deletedAt: null,
   localUuid: 'browser-uuid-1',
   queryParams: null,
+  deviceInfo: null,
   name: null,
   email: null,
   isPasswordTouched: false,
@@ -50,7 +52,11 @@ describe('LeadRepository', () => {
 
   describe('create', () => {
     it('should create a lead with the provided data', async () => {
-      const input = { localUuid: 'browser-uuid-1', queryParams: '?ref=x' };
+      const input = {
+        localUuid: 'browser-uuid-1',
+        queryParams: '?ref=x',
+        deviceInfo: { userAgent: 'Mozilla/5.0' },
+      };
       const created = mockLead(input);
       prisma.lead.create.mockResolvedValue(created);
 
@@ -61,6 +67,7 @@ describe('LeadRepository', () => {
         data: {
           localUuid: input.localUuid,
           queryParams: input.queryParams,
+          deviceInfo: input.deviceInfo,
         },
       });
     });
@@ -75,6 +82,7 @@ describe('LeadRepository', () => {
         data: {
           localUuid: 'browser-uuid-1',
           queryParams: undefined,
+          deviceInfo: undefined,
         },
       });
     });

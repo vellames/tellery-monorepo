@@ -54,6 +54,7 @@ export class LeadService {
       id: lead.id,
       localUuid: lead.localUuid,
       queryParams: lead.queryParams,
+      deviceInfo: lead.deviceInfo as Record<string, unknown> | null,
       name: lead.name,
       email: lead.email,
       isPasswordTouched: lead.isPasswordTouched,

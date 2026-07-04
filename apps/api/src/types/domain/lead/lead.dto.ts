@@ -1,6 +1,7 @@
 export interface CreateLeadDto {
   localUuid: string;
   queryParams?: string;
+  deviceInfo?: Record<string, unknown>;
 }
 
 export interface UpdateLeadDto {
@@ -16,6 +17,7 @@ export interface LeadResponseDto {
   id: string;
   localUuid: string;
   queryParams: string | null;
+  deviceInfo: Record<string, unknown> | null;
   name: string | null;
   email: string | null;
   isPasswordTouched: boolean;

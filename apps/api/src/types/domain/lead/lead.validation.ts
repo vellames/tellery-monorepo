@@ -4,6 +4,7 @@ export const createLeadSchema = z
   .object({
     localUuid: z.string().min(1),
     queryParams: z.string().optional(),
+    deviceInfo: z.record(z.string(), z.unknown()).optional(),
   })
   .strict();
 
