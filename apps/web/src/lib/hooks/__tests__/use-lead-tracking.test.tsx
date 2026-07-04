@@ -2,6 +2,9 @@ import { renderHook, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { StatusCodes } from 'http-status-codes';
+import * as Sentry from '@sentry/nextjs';
+import { ApiError, EMPTY_RESPONSE_BODY } from '@/lib/api/error';
 
 const mockCreateLeadRequest = vi.fn();
 const mockUpdateLeadRequest = vi.fn();
@@ -221,5 +224,34 @@ describe('useLeadTracking', () => {
     expect(mockUpdateLeadRequest).toHaveBeenCalledWith('lead-1', {
       name: 'Ana',
     });
+  });
+
+  it('keeps leadId null and tags the failure type when create rejects', async () => {
+    const captureException = vi.mocked(Sentry.captureException);
+    // Simulate a corrupted/empty body coming back from the BFF (TikTok webview case).
+    mockCreateLeadRequest.mockRejectedValue(
+      new ApiError(EMPTY_RESPONSE_BODY, StatusCodes.OK)
+    );
+
+    const { result } = renderHook(() => useLeadTracking(), {
+      wrapper: createWrapper(),
+    });
+
+    await act(async () => {
+      await vi.waitFor(() => expect(mockCreateLeadRequest).toHaveBeenCalled());
+      // Flush any pending microtasks so the .catch runs.
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    expect(result.current.leadId).toBeNull();
+
+    expect(captureException).toHaveBeenCalledTimes(1);
+    const [, captureOptions] = captureException.mock.calls[0];
+    const signupContext = (
+      captureOptions as { contexts: { signup: Record<string, unknown> } }
+    ).contexts.signup;
+    expect(signupContext.failureType).toBe('empty_body');
+    expect(signupContext.httpStatus).toBe(StatusCodes.OK);
   });
 });

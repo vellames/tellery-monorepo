@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { updateLeadRequest } from '@/lib/api/leads';
 import { createLeadRequest } from '@/lib/api/leads';
+import { classifyApiFailure, isApiError } from '@/lib/api/error';
 import { getLocalUuid } from '@/lib/local-uuid';
 import { collectDeviceInfo } from '@/lib/device-info';
 import {
@@ -173,6 +174,8 @@ export function useLeadTracking() {
       .catch((error) => {
         captureSignupException(error, SignupBreadcrumb.LEAD_CREATE_ERROR, {
           hasQueryParams: Boolean(queryParams),
+          failureType: classifyApiFailure(error),
+          httpStatus: isApiError(error) ? error.status : undefined,
         });
         /* tracking must never break the form */
       });

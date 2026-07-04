@@ -3,6 +3,8 @@ import {
   ApiError,
   REQUEST_FAILED,
   NETWORK_FAILURE_STATUS,
+  EMPTY_RESPONSE_BODY,
+  classifyApiFailure,
   extractErrorMessage,
   isApiError,
   isNetworkError,
@@ -61,5 +63,40 @@ describe('isNetworkError', () => {
   it('returns false for other statuses and non-ApiError values', () => {
     expect(isNetworkError(new ApiError('boom', 500))).toBe(false);
     expect(isNetworkError(new Error('boom'))).toBe(false);
+  });
+});
+
+describe('classifyApiFailure', () => {
+  it('classifies network failures (status 0)', () => {
+    expect(
+      classifyApiFailure(
+        new ApiError('Failed to fetch', NETWORK_FAILURE_STATUS)
+      )
+    ).toBe('network');
+  });
+
+  it('classifies empty-body responses by the marker message', () => {
+    expect(classifyApiFailure(new ApiError(EMPTY_RESPONSE_BODY, 200))).toBe(
+      'empty_body'
+    );
+  });
+
+  it('classifies 5xx responses as server errors', () => {
+    expect(classifyApiFailure(new ApiError('err', 500))).toBe('server_error');
+    expect(classifyApiFailure(new ApiError('err', 502))).toBe('server_error');
+    expect(classifyApiFailure(new ApiError('err', 503))).toBe('server_error');
+  });
+
+  it('classifies 4xx responses as client errors', () => {
+    expect(classifyApiFailure(new ApiError('err', 400))).toBe('client_error');
+    expect(classifyApiFailure(new ApiError('err', 401))).toBe('client_error');
+    expect(classifyApiFailure(new ApiError('err', 404))).toBe('client_error');
+    expect(classifyApiFailure(new ApiError('err', 422))).toBe('client_error');
+  });
+
+  it('classifies non-ApiError inputs as unexpected', () => {
+    expect(classifyApiFailure(new Error('boom'))).toBe('unexpected');
+    expect(classifyApiFailure('boom')).toBe('unexpected');
+    expect(classifyApiFailure(null)).toBe('unexpected');
   });
 });
