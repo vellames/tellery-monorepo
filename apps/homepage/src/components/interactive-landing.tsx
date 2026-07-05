@@ -100,6 +100,7 @@ const REGISTER_URL = 'https://app.tellery.ai/register';
 const SIGN_IN_URL = 'https://app.tellery.ai';
 const PRIVACY_URL = 'https://app.tellery.ai/privacy';
 const TERMS_URL = 'https://app.tellery.ai/terms';
+const START_STORY_URL = 'https://app.tellery.ai/ad-stories/o-bilhete-na-mesa-7';
 
 export function InteractiveLanding({ copy }: InteractiveLandingProps) {
   const searchParams = useSearchParams();
@@ -124,6 +125,14 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
   const termsUrl = useMemo(
     () =>
       withForwardedParams(TERMS_URL, new URLSearchParams(searchParams ?? '')),
+    [searchParams]
+  );
+  const startStoryUrl = useMemo(
+    () =>
+      withForwardedParams(
+        START_STORY_URL,
+        new URLSearchParams(searchParams ?? '')
+      ),
     [searchParams]
   );
 
@@ -169,7 +178,10 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
             <h1>{copy.hero.title}</h1>
             <p className="hero-subtitle">{copy.hero.subtitle}</p>
             <div className="hero-actions">
-              <a className="primary-button magnetic-button" href={registerUrl}>
+              <a
+                className="primary-button magnetic-button"
+                href={startStoryUrl}
+              >
                 {copy.hero.primaryCta}
               </a>
               <a className="secondary-button" href="#how">
@@ -300,7 +312,7 @@ export function InteractiveLanding({ copy }: InteractiveLandingProps) {
           <p className="eyebrow">{copy.finalCta.eyebrow}</p>
           <h2>{copy.finalCta.title}</h2>
           <p>{copy.finalCta.subtitle}</p>
-          <a className="primary-button magnetic-button" href={registerUrl}>
+          <a className="primary-button magnetic-button" href={startStoryUrl}>
             {copy.finalCta.cta}
           </a>
         </section>
