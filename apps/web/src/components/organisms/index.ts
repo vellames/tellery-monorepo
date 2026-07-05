@@ -1,4 +1,5 @@
 export { StoryDetailContent } from './story-detail-content/story-detail-content';
+export { StoryStartActions } from './story-start-actions/story-start-actions';
 export { TempUserBanner } from './temp-user-banner/temp-user-banner';
 export { TempUserLauncher } from './temp-user-launcher/temp-user-launcher';
 export { LinkAccountForm } from './link-account-form/link-account-form';

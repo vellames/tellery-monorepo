@@ -11,6 +11,7 @@ import { isActiveSubscription } from '@/lib/types/subscription';
 import { config } from '@/lib/config';
 import {
   StoryDetailContent,
+  StoryStartActions,
   TempUserBanner,
   TempUserLauncher,
 } from '@/components/organisms';
@@ -90,16 +91,25 @@ export default async function AdStoryPage({
   }
   const hasActiveSubscription = isActiveSubscription(subscription);
 
+  const requiresSubscription = !history.isFree && !hasActiveSubscription;
+
   return (
     <>
-      <TempUserBanner dismissible={false} />
+      <StoryStartActions
+        historyId={history.id}
+        activeSessionId={activeSessionId}
+        availableCredits={availableCredits}
+        requiresSubscription={requiresSubscription}
+      />
       <StoryDetailContent
         history={history}
         activeSessionId={activeSessionId}
         availableCredits={availableCredits}
         hasActiveSubscription={hasActiveSubscription}
         hideBackLink
+        hideStartActions
       />
+      <TempUserBanner dismissible={false} />
     </>
   );
 }

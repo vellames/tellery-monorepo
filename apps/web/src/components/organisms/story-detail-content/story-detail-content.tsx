@@ -1,14 +1,9 @@
 import Link from 'next/link';
-import { ArrowLeft, Clock, Info, Play, Search, Target } from 'lucide-react';
+import { ArrowLeft, Clock, Search, Target } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { config } from '@/lib/config';
 import type { HistoryDetail } from '@/lib/types/history';
-import {
-  StartSessionForm,
-  StartSessionButton,
-  AbandonSessionButton,
-  SubscribeRequiredNotice,
-} from '@/components/molecules';
+import { StoryStartActions } from '../story-start-actions/story-start-actions';
 
 export interface StoryDetailContentProps {
   history: HistoryDetail;
@@ -20,6 +15,12 @@ export interface StoryDetailContentProps {
    * (e.g. /ad-stories) where there is no stories catalog to go back to.
    */
   hideBackLink?: boolean;
+  /**
+   * When true, omits the start/continue CTA block. Useful for landing pages
+   * that render the CTA in a more prominent spot (e.g. /ad-stories) and want
+   * to avoid duplicating it inside the detail content.
+   */
+  hideStartActions?: boolean;
 }
 
 export async function StoryDetailContent({
@@ -28,12 +29,12 @@ export async function StoryDetailContent({
   availableCredits,
   hasActiveSubscription,
   hideBackLink = false,
+  hideStartActions = false,
 }: StoryDetailContentProps) {
   const tObj = await getTranslations('stories');
   const tGenre = await getTranslations('common.genres');
   const tUpcoming = await getTranslations('home.upcoming');
 
-  const hasSessionsLeft = availableCredits > 0;
   const requiresSubscription = !history.isFree && !hasActiveSubscription;
 
   return (
@@ -89,31 +90,13 @@ export async function StoryDetailContent({
         <p className="text-foreground/80 leading-7">{history.objective}</p>
       </section>
 
-      {activeSessionId ? (
-        <div className="flex flex-col gap-3">
-          <div className="border-gold/20 bg-clue/40 flex items-start gap-3 rounded-2xl border p-4">
-            <Info className="text-gold mt-0.5 size-5 shrink-0" />
-            <p className="text-foreground/70 text-sm leading-6">
-              {tObj('activeSessionDisclaimer')}
-            </p>
-          </div>
-          <Link
-            href={config.routes.session(activeSessionId)}
-            className="shadow-button mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f4d78f] to-[#f9e8b7] px-8 py-5 text-base font-bold text-[#4a111b] transition hover:scale-[1.01]"
-          >
-            <Play className="size-5 fill-current" />
-            {tObj('continueButton')}
-          </Link>
-          <div className="mt-1 flex justify-center">
-            <AbandonSessionButton sessionId={activeSessionId} />
-          </div>
-        </div>
-      ) : requiresSubscription ? (
-        <SubscribeRequiredNotice />
-      ) : hasSessionsLeft ? (
-        <StartSessionForm historyId={history.id} />
-      ) : (
-        <StartSessionButton unavailable />
+      {!hideStartActions && (
+        <StoryStartActions
+          historyId={history.id}
+          activeSessionId={activeSessionId}
+          availableCredits={availableCredits}
+          requiresSubscription={requiresSubscription}
+        />
       )}
     </div>
   );
