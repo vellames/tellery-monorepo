@@ -23,6 +23,7 @@ const user = {
   id: '1',
   name: 'Ana Updated',
   email: 'ana.updated@b.c',
+  accountType: 'permanent' as const,
   ssn: '29537995593',
   emailVerifiedAt: null,
   createdAt: '',

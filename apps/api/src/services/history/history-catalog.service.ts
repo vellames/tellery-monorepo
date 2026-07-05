@@ -50,6 +50,18 @@ export class HistoryCatalogService {
     return this.toSignedDetailDto(history);
   }
 
+  async getBySlug(slug: string): Promise<HistoryDetailDto> {
+    const history = await this.histories.findPublishedDetailBySlug(slug);
+    if (!history) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        slug,
+        'session:errors.unknownHistory'
+      );
+    }
+    return this.toSignedDetailDto(history);
+  }
+
   private async toSignedDto(
     history: HistoryCatalogItem
   ): Promise<HistoryCatalogItemDto> {

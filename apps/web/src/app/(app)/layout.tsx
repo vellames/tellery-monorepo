@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { AppHeader, BottomNav } from '@/components/organisms';
+import { AppHeader, BottomNav, TempUserBanner } from '@/components/organisms';
 import { getSessionUser } from '@/lib/auth/session';
 import { fetchSubscription } from '@/lib/api/subscription-data';
 import { fetchSessions } from '@/lib/api/session';
 import { isActiveSubscription } from '@/lib/types/subscription';
+import { isTemporaryUser } from '@/lib/types/auth';
 import { config } from '@/lib/config';
 
 export default async function AppLayout({
@@ -37,6 +38,7 @@ export default async function AppLayout({
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-9 px-4 py-5 sm:px-6 lg:px-8">
         <AppHeader user={user} hasActiveSubscription={hasActiveSubscription} />
         <BottomNav hasSessions={hasSessions} />
+        {isTemporaryUser(user) && <TempUserBanner dismissible={false} />}
         {children}
         <footer className="text-muted-foreground border-border mt-2 flex flex-col items-center justify-between gap-2 border-t pt-6 text-xs sm:flex-row">
           <div className="flex items-center gap-4">

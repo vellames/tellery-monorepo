@@ -7,6 +7,8 @@
     "currentPasswordIncorrect": "Senha atual incorreta",
     "unknownUser": "Usuário desconhecido: {{id}}",
     "invalidVerificationToken": "Link de verificação inválido ou expirado",
-    "emailAlreadyVerified": "E-mail já verificado"
-  }
+    "emailAlreadyVerified": "E-mail já verificado",
+    "notTemporary": "Esta conta não é temporária"
+  },
+  "temporaryName": "Jogador"
 }

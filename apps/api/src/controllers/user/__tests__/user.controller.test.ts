@@ -34,6 +34,7 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
+        accountType: 'permanent' as const,
         ssn: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
@@ -122,6 +123,7 @@ describe('UserController', () => {
           id: 'user-1',
           name: 'Ana Teste',
           email: 'ana@teste.local',
+          accountType: 'permanent' as const,
           ssn: null,
           emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
@@ -198,6 +200,7 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Teste',
         email: 'ana@teste.local',
+        accountType: 'permanent' as const,
         ssn: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
@@ -316,6 +319,7 @@ describe('UserController', () => {
         id: 'user-1',
         name: 'Ana Updated',
         email: 'ana.updated@teste.local',
+        accountType: 'permanent' as const,
         ssn: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
@@ -558,11 +562,218 @@ describe('UserController', () => {
     });
   });
 
+  describe('createTemporary', () => {
+    const authPayload = {
+      user: {
+        id: 'user-1',
+        name: 'Jogador',
+        email: null,
+        accountType: 'temporary' as const,
+        ssn: null,
+        emailVerifiedAt: null,
+        createdAt: '2026-01-01T00:00:00.000Z',
+        updatedAt: '2026-01-01T00:00:00.000Z',
+      },
+      token: 'signed-token',
+    };
+
+    it('should return 201 with the temp user and token', async () => {
+      userService.createTemporary.mockResolvedValue(authPayload);
+      req = { body: {}, t, language: 'pt-BR' } as Partial<Request>;
+
+      await controller.createTemporary(req as Request, res as Response);
+
+      expect(t).toHaveBeenCalledWith('user:temporaryName');
+      expect(userService.createTemporary).toHaveBeenCalledWith(
+        'user:temporaryName',
+        undefined
+      );
+      expect(status).toHaveBeenCalledWith(StatusCodes.CREATED);
+      expect(json).toHaveBeenCalledWith({
+        success: true,
+        data: authPayload,
+        message: undefined,
+      });
+    });
+
+    it('should resolve the default name via the translation function', async () => {
+      userService.createTemporary.mockResolvedValue(authPayload);
+      req = { body: {}, t, language: 'en' } as Partial<Request>;
+
+      await controller.createTemporary(req as Request, res as Response);
+
+      expect(t).toHaveBeenCalledWith('user:temporaryName');
+      expect(userService.createTemporary).toHaveBeenCalledWith(
+        'user:temporaryName',
+        undefined
+      );
+    });
+
+    it('should forward leadId when provided', async () => {
+      userService.createTemporary.mockResolvedValue(authPayload);
+      req = {
+        body: { leadId: '123e4567-e89b-12d3-a456-426614174000' },
+        t,
+        language: 'pt-BR',
+      } as Partial<Request>;
+
+      await controller.createTemporary(req as Request, res as Response);
+
+      expect(userService.createTemporary).toHaveBeenCalledWith(
+        'user:temporaryName',
+        '123e4567-e89b-12d3-a456-426614174000'
+      );
+    });
+
+    it('should return 500 on unexpected errors', async () => {
+      userService.createTemporary.mockRejectedValue(
+        new Error('Something went wrong')
+      );
+      req = { body: {}, t, language: 'pt-BR' } as Partial<Request>;
+
+      await controller.createTemporary(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    });
+  });
+
+  describe('convertTemporary', () => {
+    const authPayload = {
+      user: {
+        id: 'user-1',
+        name: 'Ana Convertida',
+        email: 'ana@teste.local',
+        accountType: 'permanent' as const,
+        ssn: null,
+        emailVerifiedAt: null,
+        createdAt: '2026-01-01T00:00:00.000Z',
+        updatedAt: '2026-01-01T00:00:00.000Z',
+      },
+      token: 'signed-token',
+    };
+
+    it('should return 200 with the converted user and token', async () => {
+      userService.convertTemporary.mockResolvedValue(authPayload);
+      req = {
+        user: { id: 'user-1', email: '' },
+        body: {
+          name: 'Ana Convertida',
+          email: 'ana@teste.local',
+          password: 'password123',
+        },
+        t,
+        language: 'pt-BR',
+      } as Partial<Request>;
+
+      await controller.convertTemporary(req as Request, res as Response);
+
+      expect(userService.convertTemporary).toHaveBeenCalledWith(
+        'user-1',
+        {
+          name: 'Ana Convertida',
+          email: 'ana@teste.local',
+          password: 'password123',
+        },
+        'pt-BR'
+      );
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+      expect(json).toHaveBeenCalledWith({
+        success: true,
+        data: authPayload,
+        message: undefined,
+      });
+    });
+
+    it('should return 422 when body is invalid', async () => {
+      req = {
+        user: { id: 'user-1', email: '' },
+        body: { name: '', email: 'not-an-email', password: '123' },
+        t,
+      } as Partial<Request>;
+
+      await controller.convertTemporary(req as Request, res as Response);
+
+      expect(userService.convertTemporary).not.toHaveBeenCalled();
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+    });
+
+    it('should return 422 when the account is not temporary', async () => {
+      userService.convertTemporary.mockRejectedValue(
+        new HttpError(
+          StatusCodes.UNPROCESSABLE_ENTITY,
+          'Account is not temporary',
+          'user:errors.notTemporary'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: '' },
+        body: {
+          name: 'Ana',
+          email: 'ana@teste.local',
+          password: 'password123',
+        },
+        t,
+      } as Partial<Request>;
+
+      await controller.convertTemporary(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          error: 'user:errors.notTemporary',
+        })
+      );
+    });
+
+    it('should return 409 when email is already in use', async () => {
+      userService.convertTemporary.mockRejectedValue(
+        new HttpError(
+          StatusCodes.CONFLICT,
+          'Email already in use',
+          'user:errors.emailAlreadyInUse'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: '' },
+        body: {
+          name: 'Ana',
+          email: 'ana@teste.local',
+          password: 'password123',
+        },
+        t,
+      } as Partial<Request>;
+
+      await controller.convertTemporary(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.CONFLICT);
+    });
+
+    it('should return 500 on unexpected errors', async () => {
+      userService.convertTemporary.mockRejectedValue(
+        new Error('Something went wrong')
+      );
+      req = {
+        user: { id: 'user-1', email: '' },
+        body: {
+          name: 'Ana',
+          email: 'ana@teste.local',
+          password: 'password123',
+        },
+        t,
+      } as Partial<Request>;
+
+      await controller.convertTemporary(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    });
+  });
+
   describe('verifyEmail', () => {
     const verifiedDto = {
       id: 'user-1',
       name: 'Ana Teste',
       email: 'ana@teste.local',
+      accountType: 'permanent' as const,
       ssn: null,
       emailVerifiedAt: '2026-07-01T00:00:00.000Z',
       createdAt: '2026-01-01T00:00:00.000Z',

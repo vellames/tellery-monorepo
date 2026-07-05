@@ -6,6 +6,7 @@ const user: User = {
   id: '1',
   name: 'Ana Updated',
   email: 'ana.updated@b.c',
+  accountType: 'permanent',
   ssn: '29537995593',
   emailVerifiedAt: null,
   createdAt: '',

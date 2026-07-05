@@ -262,6 +262,190 @@ router.post('/verify-email', async (req, res) => {
 
 /**
  * @openapi
+ * /users/temporary:
+ *   post:
+ *     tags: [Users]
+ *     summary: Create a temporary (guest) user
+ *     description: Creates a guest account with no email or password, returning a JWT so the visitor can start playing immediately. The account can later be converted into a permanent one via /users/convert.
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     requestBody:
+ *       required: false
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               leadId:
+ *                 type: string
+ *                 format: uuid
+ *                 description: Optional marketing lead id to link to the new guest user.
+ *     responses:
+ *       201:
+ *         description: Temporary user created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     user:
+ *                       type: object
+ *                       properties:
+ *                         id:
+ *                           type: string
+ *                           format: uuid
+ *                         name:
+ *                           type: string
+ *                         email:
+ *                           type: string
+ *                           nullable: true
+ *                         accountType:
+ *                           type: string
+ *                           enum: [permanent, temporary]
+ *                         createdAt:
+ *                           type: string
+ *                           format: date-time
+ *                         updatedAt:
+ *                           type: string
+ *                           format: date-time
+ *                     token:
+ *                       type: string
+ *                       description: JWT access token used to authenticate subsequent requests.
+ *       500:
+ *         description: Unexpected server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ */
+router.post('/temporary', async (req, res) => {
+  await DIContainer.getInstance().getUserController().createTemporary(req, res);
+});
+
+/**
+ * @openapi
+ * /users/convert:
+ *   post:
+ *     tags: [Users]
+ *     summary: Convert a temporary user into a permanent account
+ *     description: Promotes the authenticated guest user to a permanent account by setting a name, email and password. The existing sessions and credits are preserved. A new JWT (with the real email) and an email verification message are issued.
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [name, email, password]
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Ana Teste
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: ana@teste.local
+ *               password:
+ *                 type: string
+ *                 minLength: 6
+ *                 example: password123
+ *     responses:
+ *       200:
+ *         description: Account converted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     user:
+ *                       type: object
+ *                       properties:
+ *                         id:
+ *                           type: string
+ *                           format: uuid
+ *                         name:
+ *                           type: string
+ *                         email:
+ *                           type: string
+ *                           format: email
+ *                         accountType:
+ *                           type: string
+ *                           enum: [permanent, temporary]
+ *                         createdAt:
+ *                           type: string
+ *                           format: date-time
+ *                         updatedAt:
+ *                           type: string
+ *                           format: date-time
+ *                     token:
+ *                       type: string
+ *                       description: New JWT access token carrying the real email.
+ *       401:
+ *         description: Missing or invalid authentication
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *       409:
+ *         description: Email already in use
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *       422:
+ *         description: Invalid request body or the account is not temporary
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ */
+router.post('/convert', authenticate, async (req, res) => {
+  await DIContainer.getInstance()
+    .getUserController()
+    .convertTemporary(req, res);
+});
+
+/**
+ * @openapi
  * /users/resend-verification:
  *   post:
  *     tags: [Users]

@@ -8,8 +8,9 @@ type PrismaUser = {
   updatedAt: Date;
   deletedAt: Date | null;
   name: string;
-  email: string;
-  password: string;
+  email: string | null;
+  password: string | null;
+  accountType: 'permanent' | 'temporary';
   ssn: string | null;
   emailVerifiedAt: Date | null;
   availableCredits: number;
@@ -23,6 +24,7 @@ const mockUser = (overrides: Partial<PrismaUser> = {}): PrismaUser => ({
   name: 'Ana Teste',
   email: 'ana@teste.local',
   password: 'password123',
+  accountType: 'permanent',
   ssn: null,
   emailVerifiedAt: null,
   availableCredits: 3,
@@ -306,6 +308,154 @@ describe('UserRepository', () => {
         data: { emailVerifiedAt: expect.any(Date) },
       });
       expect(prisma.user.update).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('createTemporary', () => {
+    it('should create a temporary user with null email/password and accountType temporary', async () => {
+      const created = mockUser({
+        email: null,
+        password: null,
+        accountType: 'temporary',
+        name: 'Jogador',
+      });
+      prisma.user.create.mockResolvedValue(created);
+
+      const result = await repo.createTemporary({ name: 'Jogador' });
+
+      expect(result).toEqual(created);
+      expect(prisma.user.create).toHaveBeenCalledWith({
+        data: {
+          name: 'Jogador',
+          email: null,
+          password: null,
+          accountType: 'temporary',
+        },
+      });
+    });
+
+    it('should forward the transaction when provided', async () => {
+      const created = mockUser({ accountType: 'temporary' });
+      const tx = {
+        user: { create: jest.fn().mockResolvedValue(created) },
+      };
+
+      await repo.createTemporary({ name: 'Jogador' }, tx as never);
+
+      expect(tx.user.create).toHaveBeenCalledWith({
+        data: {
+          name: 'Jogador',
+          email: null,
+          password: null,
+          accountType: 'temporary',
+        },
+      });
+      expect(prisma.user.create).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('convertToPermanent', () => {
+    it('should update the user to permanent with name, email and hashed password', async () => {
+      const converted = mockUser({
+        name: 'Ana',
+        email: 'ana@teste.local',
+        password: 'hashed-password',
+        accountType: 'permanent',
+      });
+      prisma.user.update.mockResolvedValue(converted);
+
+      const result = await repo.convertToPermanent('user-1', {
+        name: 'Ana',
+        email: 'ana@teste.local',
+        password: 'hashed-password',
+      });
+
+      expect(result).toEqual(converted);
+      expect(prisma.user.update).toHaveBeenCalledWith({
+        where: { id: 'user-1' },
+        data: {
+          name: 'Ana',
+          email: 'ana@teste.local',
+          password: 'hashed-password',
+          accountType: 'permanent',
+        },
+      });
+    });
+
+    it('should forward the transaction when provided', async () => {
+      const converted = mockUser({ accountType: 'permanent' });
+      const tx = {
+        user: { update: jest.fn().mockResolvedValue(converted) },
+      };
+
+      await repo.convertToPermanent(
+        'user-1',
+        {
+          name: 'Ana',
+          email: 'ana@teste.local',
+          password: 'hashed-password',
+        },
+        tx as never
+      );
+
+      expect(tx.user.update).toHaveBeenCalledWith({
+        where: { id: 'user-1' },
+        data: {
+          name: 'Ana',
+          email: 'ana@teste.local',
+          password: 'hashed-password',
+          accountType: 'permanent',
+        },
+      });
+      expect(prisma.user.update).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('findTemporaryById', () => {
+    it('should return the user when it is temporary and not deleted', async () => {
+      const tempUser = mockUser({
+        accountType: 'temporary',
+        email: null,
+        password: null,
+      });
+      prisma.user.findFirst.mockResolvedValue(tempUser);
+
+      const result = await repo.findTemporaryById('user-1');
+
+      expect(result).toEqual(tempUser);
+      expect(prisma.user.findFirst).toHaveBeenCalledWith({
+        where: { id: 'user-1', accountType: 'temporary', deletedAt: null },
+      });
+    });
+
+    it('should return null when the user is permanent', async () => {
+      prisma.user.findFirst.mockResolvedValue(null);
+
+      const result = await repo.findTemporaryById('user-1');
+
+      expect(result).toBeNull();
+    });
+
+    it('should return null when the user does not exist', async () => {
+      prisma.user.findFirst.mockResolvedValue(null);
+
+      const result = await repo.findTemporaryById('nonexistent');
+
+      expect(result).toBeNull();
+    });
+
+    it('should forward the transaction when provided', async () => {
+      const tempUser = mockUser({ accountType: 'temporary' });
+      const tx = {
+        user: { findFirst: jest.fn().mockResolvedValue(tempUser) },
+      };
+
+      await repo.findTemporaryById('user-1', tx as never);
+
+      expect(tx.user.findFirst).toHaveBeenCalledWith({
+        where: { id: 'user-1', accountType: 'temporary', deletedAt: null },
+      });
+      expect(prisma.user.findFirst).not.toHaveBeenCalled();
     });
   });
 });

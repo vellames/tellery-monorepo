@@ -8,6 +8,8 @@ import {
   updateMeSchema,
   changePasswordSchema,
   verifyEmailSchema,
+  createTemporaryUserSchema,
+  convertTemporaryUserSchema,
 } from '../../types/domain/user/user.validation';
 import { HttpError } from '../../utils/http-error';
 import {
@@ -65,6 +67,64 @@ export class UserController {
 
     try {
       const auth = await this.userService.login(parsed.data);
+      sendSuccess(res, auth);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey ? t(error.messageKey) : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
+
+  createTemporary = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+    const parsed = createTemporaryUserSchema.safeParse(req.body ?? {});
+    if (!parsed.success) {
+      sendValidationError(
+        res,
+        t('common:errors.invalidRequestBody'),
+        parsed.error.issues
+      );
+      return;
+    }
+
+    try {
+      const name = t('user:temporaryName');
+      const auth = await this.userService.createTemporary(
+        name,
+        parsed.data.leadId
+      );
+      sendSuccess(res, auth, undefined, StatusCodes.CREATED);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey ? t(error.messageKey) : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
+
+  convertTemporary = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+    const parsed = convertTemporaryUserSchema.safeParse(req.body);
+    if (!parsed.success) {
+      sendValidationError(
+        res,
+        t('common:errors.invalidRequestBody'),
+        parsed.error.issues
+      );
+      return;
+    }
+
+    try {
+      const auth = await this.userService.convertTemporary(
+        req.user!.id,
+        parsed.data,
+        req.language as SupportedLanguage
+      );
       sendSuccess(res, auth);
     } catch (error) {
       if (error instanceof HttpError) {

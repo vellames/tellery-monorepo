@@ -39,3 +39,11 @@ export function fetchNonFeaturedHistories(
 export async function fetchHistory(historyId: string): Promise<HistoryDetail> {
   return apiFetch<HistoryDetail>(`/histories/${historyId}`);
 }
+
+/**
+ * Resolves a history by its slug via the dedicated `/histories/slug/:slug`
+ * endpoint. Used by the ad landing page (/ad-stories/[slug]).
+ */
+export async function fetchHistoryBySlug(slug: string): Promise<HistoryDetail> {
+  return apiFetch<HistoryDetail>(`/histories/slug/${slug}`);
+}

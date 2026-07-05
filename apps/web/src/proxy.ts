@@ -14,13 +14,16 @@ const PUBLIC_INFO_ROUTES: string[] = [
 
 const TECHNICAL_ROUTES: string[] = ['/monitoring', '/sentry-example-page'];
 
+const PUBLIC_PLAY_PREFIXES: string[] = ['/ad-stories'];
+
 export function proxy(req: NextRequest): NextResponse {
   const { pathname } = req.nextUrl;
   const isAuthRoute = AUTH_ROUTES.includes(pathname);
   const isPublic =
     isAuthRoute ||
     PUBLIC_INFO_ROUTES.includes(pathname) ||
-    TECHNICAL_ROUTES.includes(pathname);
+    TECHNICAL_ROUTES.includes(pathname) ||
+    PUBLIC_PLAY_PREFIXES.some((prefix) => pathname.startsWith(prefix));
   const hasSession = Boolean(
     req.cookies.get(appConfig.auth.sessionCookie)?.value
   );

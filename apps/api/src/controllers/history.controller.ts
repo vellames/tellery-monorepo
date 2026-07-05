@@ -57,4 +57,24 @@ export class HistoryController {
       handleError(res, new Error(t('common:errors.internalError')));
     }
   };
+
+  getBySlug = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+
+    try {
+      const history = await this.historyCatalogService.getBySlug(
+        String(req.params.slug)
+      );
+      sendSuccess(res, history);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey
+          ? t(error.messageKey, { id: error.message })
+          : error.message;
+        handleError(res, new Error(message), error.statusCode);
+        return;
+      }
+      handleError(res, new Error(t('common:errors.internalError')));
+    }
+  };
 }

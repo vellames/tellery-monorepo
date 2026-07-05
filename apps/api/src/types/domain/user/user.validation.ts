@@ -42,3 +42,13 @@ export const changePasswordSchema = z
 export const verifyEmailSchema = z.object({
   token: z.string().min(1),
 });
+
+export const createTemporaryUserSchema = z.object({
+  leadId: z.string().uuid().optional(),
+});
+
+export const convertTemporaryUserSchema = z.object({
+  name: z.string().min(1),
+  email: z.string().email(),
+  password: z.string().min(6),
+});

@@ -48,4 +48,11 @@ describe('proxy', () => {
   it('lets authenticated users through protected routes', () => {
     expect(proxy(makeReq('/home', 'ai-history.session=tok')).status).toBe(200);
   });
+
+  it.each(['/ad-stories', '/ad-stories/some-slug'])(
+    'allows unauthenticated users on the ad landing route %s',
+    (path) => {
+      expect(proxy(makeReq(path)).status).toBe(200);
+    }
+  );
 });

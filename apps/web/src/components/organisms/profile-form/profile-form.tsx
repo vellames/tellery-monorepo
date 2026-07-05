@@ -21,7 +21,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
   const initialValues: UpdateProfilePayload = {
     name: user.name,
-    email: user.email,
+    email: user.email ?? '',
     ssn: user.ssn ?? '',
   };
 

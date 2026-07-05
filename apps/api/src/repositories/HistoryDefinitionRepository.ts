@@ -130,6 +130,15 @@ export class HistoryDefinitionRepository
     });
   }
 
+  async findPublishedDetailBySlug(
+    slug: string
+  ): Promise<HistoryCatalogDetailItem | null> {
+    return this.prisma.history.findFirst({
+      where: { slug, status: 'published', deletedAt: null },
+      select: historyCatalogDetailSelect,
+    });
+  }
+
   async listPublished(
     isFeatured: boolean,
     pagination: PaginationQuery,

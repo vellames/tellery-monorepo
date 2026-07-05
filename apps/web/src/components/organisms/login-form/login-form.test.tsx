@@ -33,6 +33,7 @@ describe('LoginForm', () => {
       id: '1',
       name: '',
       email: '',
+      accountType: 'permanent',
       ssn: null,
       emailVerifiedAt: null,
       createdAt: '',

@@ -1,6 +1,11 @@
 import { PrismaClient, User } from '@prisma/client';
 import { IUserRepository } from '../interfaces';
-import { CreateUserDto, UpdateUserDto } from '../types/domain/user/user.dto';
+import {
+  ConvertTemporaryUserDto,
+  CreateTemporaryUserDto,
+  CreateUserDto,
+  UpdateUserDto,
+} from '../types/domain/user/user.dto';
 import { PrismaTransaction } from '../types/database.types';
 import { BaseRepository } from './base.repository';
 
@@ -17,6 +22,48 @@ export class UserRepository extends BaseRepository implements IUserRepository {
         email: data.email,
         password: data.password,
       },
+    });
+  }
+
+  async createTemporary(
+    data: CreateTemporaryUserDto,
+    tx?: PrismaTransaction
+  ): Promise<User> {
+    const client = tx || this.prisma;
+    return client.user.create({
+      data: {
+        name: data.name,
+        email: null,
+        password: null,
+        accountType: 'temporary',
+      },
+    });
+  }
+
+  async convertToPermanent(
+    id: string,
+    data: ConvertTemporaryUserDto,
+    tx?: PrismaTransaction
+  ): Promise<User> {
+    const client = tx || this.prisma;
+    return client.user.update({
+      where: { id },
+      data: {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        accountType: 'permanent',
+      },
+    });
+  }
+
+  async findTemporaryById(
+    id: string,
+    tx?: PrismaTransaction
+  ): Promise<User | null> {
+    const client = tx || this.prisma;
+    return client.user.findFirst({
+      where: { id, accountType: 'temporary', deletedAt: null },
     });
   }
 

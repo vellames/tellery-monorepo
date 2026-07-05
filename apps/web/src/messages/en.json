@@ -378,5 +378,44 @@
     "description": "We use cookies that are essential to the site and your experience. You may accept or reject optional cookies at any time. <link>Privacy Policy</link>.",
     "accept": "Accept",
     "reject": "Reject"
+  },
+  "convertAccount": {
+    "title": "Save your progress",
+    "description": "You're playing without an account. Create one to keep your progress and unlock all features.",
+    "cta": "Create account",
+    "notNow": "Not now",
+    "page": {
+      "title": "Link account",
+      "subtitle": "Create your account to keep your progress and access it from anywhere."
+    },
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "you@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "Minimum 6 characters",
+    "confirmPassword": "Confirm password",
+    "submit": "Create account",
+    "submitting": "Creating...",
+    "cancel": "Later",
+    "success": "Account created successfully! Welcome!",
+    "failed": "Could not create the account. Please try again.",
+    "errors": {
+      "nameRequired": "Name is required",
+      "nameMin": "Name must be at least 2 characters",
+      "emailRequired": "Email is required",
+      "invalidEmail": "Invalid email",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords don't match"
+    }
+  },
+  "adStories": {
+    "premiumTitle": "This story is exclusive to subscribers",
+    "premiumDescription": "To play this story, create an account or log in.",
+    "premiumCta": "Create account",
+    "creatingUser": "Preparing your experience...",
+    "createUserFailed": "Could not start. Please try again.",
+    "retry": "Try again"
   }
 }

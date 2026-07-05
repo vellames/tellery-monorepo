@@ -120,7 +120,7 @@ export class SubscriptionService {
     let subscription = await this.subscriptions.findByUserId(userId);
     if (!subscription) {
       const customer = await this.stripe.createCustomer({
-        email: user.email,
+        email: user.email ?? '',
         name: user.name,
         userId,
       });

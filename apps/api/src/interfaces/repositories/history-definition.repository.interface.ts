@@ -24,6 +24,9 @@ export interface IHistoryDefinitionRepository extends IBaseRepository {
   findPublishedDetailById(
     historyId: string
   ): Promise<HistoryCatalogDetailItem | null>;
+  findPublishedDetailBySlug(
+    slug: string
+  ): Promise<HistoryCatalogDetailItem | null>;
   listPublished(
     isFeatured: boolean,
     pagination: PaginationQuery,

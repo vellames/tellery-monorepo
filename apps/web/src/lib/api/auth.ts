@@ -1,6 +1,11 @@
 import { clientFetch } from '@/lib/api/client-fetch';
 import { config } from '@/lib/config';
-import type { LoginPayload, RegisterPayload, User } from '@/lib/types/auth';
+import type {
+  ConvertAccountPayload,
+  LoginPayload,
+  RegisterPayload,
+  User,
+} from '@/lib/types/auth';
 
 interface LoginResponse {
   user: User;
@@ -43,4 +48,30 @@ export async function resendVerificationRequest(): Promise<void> {
 
 export async function logoutRequest(): Promise<void> {
   await clientFetch(config.routes.logoutApi, { method: 'POST' });
+}
+
+export async function createTemporaryUserRequest(
+  leadId?: string
+): Promise<User> {
+  const body = await clientFetch<RegisterResponse>(
+    config.routes.temporaryUserApi,
+    {
+      method: 'POST',
+      body: JSON.stringify(leadId ? { leadId } : {}),
+    }
+  );
+  return body.user;
+}
+
+export async function convertAccountRequest(
+  payload: ConvertAccountPayload
+): Promise<User> {
+  const body = await clientFetch<RegisterResponse>(
+    config.routes.convertAccountApi,
+    {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }
+  );
+  return body.user;
 }

@@ -18,6 +18,7 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   name: 'Ana Teste',
   email: 'ana@teste.local',
   password: 'hashed-password',
+  accountType: 'permanent',
   ssn: null,
   emailVerifiedAt: null,
   availableCredits: 3,
@@ -88,6 +89,7 @@ describe('UserService', () => {
           id: 'user-1',
           name: 'Ana Teste',
           email: 'ana@teste.local',
+          accountType: 'permanent',
           ssn: null,
           emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
@@ -223,6 +225,7 @@ describe('UserService', () => {
           id: 'user-1',
           name: 'Ana Teste',
           email: 'ana@teste.local',
+          accountType: 'permanent',
           ssn: null,
           emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
@@ -578,6 +581,231 @@ describe('UserService', () => {
         'Email is already verified'
       );
       expect(emailVerification.sendVerification).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('createTemporary', () => {
+    it('should create a temporary user and sign a jwt with empty email', async () => {
+      const tempUser = mockUser({
+        email: null,
+        password: null,
+        accountType: 'temporary',
+        name: 'Jogador',
+      });
+      repo.createTemporary.mockResolvedValue(tempUser);
+
+      const result = await service.createTemporary('Jogador');
+
+      expect(repo.createTemporary).toHaveBeenCalledWith({ name: 'Jogador' });
+      expect(tokenService.sign).toHaveBeenCalledWith({
+        sub: 'user-1',
+        email: '',
+      });
+      expect(result).toEqual({
+        user: {
+          id: 'user-1',
+          name: 'Jogador',
+          email: null,
+          accountType: 'temporary',
+          ssn: null,
+          emailVerifiedAt: null,
+          createdAt: '2026-01-01T00:00:00.000Z',
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+        token: 'signed-token',
+      });
+    });
+
+    it('should not send email verification (temporary user has no email)', async () => {
+      repo.createTemporary.mockResolvedValue(
+        mockUser({ accountType: 'temporary', email: null })
+      );
+
+      await service.createTemporary('Jogador');
+
+      expect(emailVerification.sendVerification).not.toHaveBeenCalled();
+    });
+
+    it('should link the lead to the temp user when leadId is provided', async () => {
+      repo.createTemporary.mockResolvedValue(
+        mockUser({ accountType: 'temporary' })
+      );
+
+      await service.createTemporary('Jogador', 'lead-1');
+
+      expect(leadRepo.linkUser).toHaveBeenCalledWith('lead-1', 'user-1');
+    });
+
+    it('should not link a lead when leadId is omitted', async () => {
+      repo.createTemporary.mockResolvedValue(
+        mockUser({ accountType: 'temporary' })
+      );
+
+      await service.createTemporary('Jogador');
+
+      expect(leadRepo.linkUser).not.toHaveBeenCalled();
+    });
+
+    it('should still succeed when lead linking fails', async () => {
+      repo.createTemporary.mockResolvedValue(
+        mockUser({ accountType: 'temporary' })
+      );
+      leadRepo.linkUser.mockRejectedValue(new Error('db down'));
+
+      const result = await service.createTemporary('Jogador', 'lead-1');
+
+      expect(leadRepo.linkUser).toHaveBeenCalledWith('lead-1', 'user-1');
+      expect(result.token).toBe('signed-token');
+    });
+
+    it('should not expose password in the response', async () => {
+      repo.createTemporary.mockResolvedValue(
+        mockUser({ accountType: 'temporary' })
+      );
+
+      const result = await service.createTemporary('Jogador');
+
+      expect(result).not.toHaveProperty('password');
+      expect(result.user).not.toHaveProperty('password');
+    });
+  });
+
+  describe('convertTemporary', () => {
+    const dto = {
+      name: 'Ana Convertida',
+      email: 'ana@teste.local',
+      password: 'new-password',
+    };
+
+    it('should convert a temporary user to permanent and reissue the jwt with the real email', async () => {
+      const tempUser = mockUser({
+        accountType: 'temporary',
+        email: null,
+        password: null,
+      });
+      const convertedUser = mockUser({
+        name: 'Ana Convertida',
+        email: 'ana@teste.local',
+        password: 'hashed-password',
+        accountType: 'permanent',
+      });
+      repo.findTemporaryById.mockResolvedValue(tempUser);
+      repo.findByEmail.mockResolvedValue(null);
+      passwordHasher.hash.mockResolvedValue('hashed-password');
+      repo.convertToPermanent.mockResolvedValue(convertedUser);
+
+      const result = await service.convertTemporary('user-1', dto);
+
+      expect(repo.findTemporaryById).toHaveBeenCalledWith('user-1');
+      expect(repo.findByEmail).toHaveBeenCalledWith('ana@teste.local');
+      expect(passwordHasher.hash).toHaveBeenCalledWith('new-password');
+      expect(repo.convertToPermanent).toHaveBeenCalledWith('user-1', {
+        name: 'Ana Convertida',
+        email: 'ana@teste.local',
+        password: 'hashed-password',
+      });
+      expect(tokenService.sign).toHaveBeenCalledWith({
+        sub: 'user-1',
+        email: 'ana@teste.local',
+      });
+      expect(result).toEqual({
+        user: {
+          id: 'user-1',
+          name: 'Ana Convertida',
+          email: 'ana@teste.local',
+          accountType: 'permanent',
+          ssn: null,
+          emailVerifiedAt: null,
+          createdAt: '2026-01-01T00:00:00.000Z',
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+        token: 'signed-token',
+      });
+    });
+
+    it('should throw 422 when the user is not temporary', async () => {
+      repo.findTemporaryById.mockResolvedValue(null);
+
+      await expect(
+        service.convertTemporary('user-1', dto)
+      ).rejects.toMatchObject({ statusCode: 422 });
+
+      expect(repo.findByEmail).not.toHaveBeenCalled();
+      expect(passwordHasher.hash).not.toHaveBeenCalled();
+      expect(repo.convertToPermanent).not.toHaveBeenCalled();
+    });
+
+    it('should throw 409 when the email is already in use by another user', async () => {
+      repo.findTemporaryById.mockResolvedValue(
+        mockUser({ accountType: 'temporary' })
+      );
+      repo.findByEmail.mockResolvedValue(
+        mockUser({ id: 'user-2', email: 'ana@teste.local' })
+      );
+
+      await expect(service.convertTemporary('user-1', dto)).rejects.toThrow(
+        'Email already in use'
+      );
+
+      expect(passwordHasher.hash).not.toHaveBeenCalled();
+      expect(repo.convertToPermanent).not.toHaveBeenCalled();
+    });
+
+    it('should send email verification after conversion (fire-and-forget)', async () => {
+      const convertedUser = mockUser({
+        name: 'Ana Convertida',
+        email: 'ana@teste.local',
+        accountType: 'permanent',
+      });
+      repo.findTemporaryById.mockResolvedValue(
+        mockUser({ accountType: 'temporary' })
+      );
+      repo.findByEmail.mockResolvedValue(null);
+      repo.convertToPermanent.mockResolvedValue(convertedUser);
+
+      await service.convertTemporary('user-1', dto);
+
+      expect(emailVerification.sendVerification).toHaveBeenCalledWith(
+        { id: 'user-1', email: 'ana@teste.local', name: 'Ana Convertida' },
+        'pt-BR'
+      );
+    });
+
+    it('should still succeed when email verification sending fails', async () => {
+      const convertedUser = mockUser({
+        name: 'Ana Convertida',
+        email: 'ana@teste.local',
+        accountType: 'permanent',
+      });
+      repo.findTemporaryById.mockResolvedValue(
+        mockUser({ accountType: 'temporary' })
+      );
+      repo.findByEmail.mockResolvedValue(null);
+      repo.convertToPermanent.mockResolvedValue(convertedUser);
+      emailVerification.sendVerification.mockRejectedValue(
+        new Error('email service down')
+      );
+
+      const result = await service.convertTemporary('user-1', dto);
+
+      expect(result.token).toBe('signed-token');
+    });
+
+    it('should not expose password in the response', async () => {
+      const convertedUser = mockUser({
+        accountType: 'permanent',
+        password: 'hashed-password',
+      });
+      repo.findTemporaryById.mockResolvedValue(
+        mockUser({ accountType: 'temporary' })
+      );
+      repo.findByEmail.mockResolvedValue(null);
+      repo.convertToPermanent.mockResolvedValue(convertedUser);
+
+      const result = await service.convertTemporary('user-1', dto);
+
+      expect(result).not.toHaveProperty('password');
+      expect(result.user).not.toHaveProperty('password');
     });
   });
 });

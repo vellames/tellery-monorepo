@@ -4,6 +4,16 @@ export interface CreateUserDto {
   password: string;
 }
 
+export interface CreateTemporaryUserDto {
+  name: string;
+}
+
+export interface ConvertTemporaryUserDto {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export interface UpdateUserDto {
   name?: string;
   email?: string;
@@ -24,7 +34,8 @@ export interface ChangePasswordDto {
 export interface UserResponseDto {
   id: string;
   name: string;
-  email: string;
+  email: string | null;
+  accountType: 'permanent' | 'temporary';
   ssn: string | null;
   emailVerifiedAt: string | null;
   createdAt: string;

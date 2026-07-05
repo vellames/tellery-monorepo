@@ -35,14 +35,19 @@ import { BoardGroup } from './components/board-group';
 import { LeadCard } from './components/lead-card';
 import { EvidenceModal } from './components/evidence-modal';
 import { CaseModal } from './components/case-modal';
+import { TempUserBanner } from '../temp-user-banner/temp-user-banner';
 
 export interface SessionHubProps {
   session: SessionState;
+  isTemporaryUser?: boolean;
 }
 
 const SESSION_STATUS_SOLVED = 'completed';
 
-export function SessionHub({ session }: SessionHubProps) {
+export function SessionHub({
+  session,
+  isTemporaryUser = false,
+}: SessionHubProps) {
   const t = useTranslations('play');
   const tGenre = useTranslations('common.genres');
   const router = useRouter();
@@ -233,6 +238,8 @@ export function SessionHub({ session }: SessionHubProps) {
           {t('reviewCase')}
         </span>
       </button>
+
+      {isTemporaryUser && <TempUserBanner dismissible={false} />}
 
       {/* ── Investigation board ───────────────────────────────────────── */}
       <section

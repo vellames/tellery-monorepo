@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import type { User } from '@/lib/types/auth';
+import { type User, isTemporaryUser } from '@/lib/types/auth';
 import { CreditsAvailableBadge } from '@/components/molecules';
 import { UserMenu } from '@/components/organisms/user-menu/user-menu';
 import { config } from '@/lib/config';
@@ -38,7 +38,7 @@ export function AppHeader({ user, hasActiveSubscription }: AppHeaderProps) {
           className="px-3 py-2 sm:px-5 sm:py-3"
           hasActiveSubscription={hasActiveSubscription}
         />
-        {!hasActiveSubscription && (
+        {!hasActiveSubscription && !isTemporaryUser(user) && (
           <Link
             href={config.routes.subscription}
             className="bg-primary text-primary-foreground shadow-soft hover:bg-primary/80 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition"

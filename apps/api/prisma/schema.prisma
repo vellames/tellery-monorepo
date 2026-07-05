@@ -71,6 +71,11 @@ enum SubscriptionStatus {
   paused
 }
 
+enum AccountType {
+  permanent
+  temporary
+}
+
 // ─── User ─────────────────────────────────────────────────────────────────────
 
 model User {
@@ -79,10 +84,11 @@ model User {
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  name     String
-  email    String @unique
-  password String
-  ssn      String?
+  name        String
+  email       String? @unique
+  password    String?
+  accountType AccountType @default(permanent)
+  ssn         String?
 
   emailVerifiedAt DateTime?
 

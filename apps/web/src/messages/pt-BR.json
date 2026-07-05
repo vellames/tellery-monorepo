@@ -378,5 +378,44 @@
     "description": "Usamos cookies essenciais ao funcionamento do site e à sua experiência. Você pode aceitar ou rejeitar cookies opcionais a qualquer momento. <link>Política de Privacidade</link>.",
     "accept": "Aceitar",
     "reject": "Rejeitar"
+  },
+  "convertAccount": {
+    "title": "Salve seu progresso",
+    "description": "Você está jogando sem cadastro. Crie sua conta para não perder seu progresso e desbloquear todos os recursos.",
+    "cta": "Criar conta",
+    "notNow": "Agora não",
+    "page": {
+      "title": "Linkar conta",
+      "subtitle": "Crie sua conta para manter seu progresso e acessar de qualquer lugar."
+    },
+    "name": "Nome",
+    "namePlaceholder": "Seu nome",
+    "email": "E-mail",
+    "emailPlaceholder": "voce@email.com",
+    "password": "Senha",
+    "passwordPlaceholder": "Mínimo de 6 caracteres",
+    "confirmPassword": "Confirmar senha",
+    "submit": "Criar conta",
+    "submitting": "Criando...",
+    "cancel": "Depois",
+    "success": "Conta criada com sucesso! Bem-vindo(a)!",
+    "failed": "Não foi possível criar a conta. Tente novamente.",
+    "errors": {
+      "nameRequired": "Nome é obrigatório",
+      "nameMin": "Nome deve ter ao menos 2 caracteres",
+      "emailRequired": "E-mail é obrigatório",
+      "invalidEmail": "E-mail inválido",
+      "passwordRequired": "Senha é obrigatória",
+      "passwordMin": "Senha deve ter ao menos 6 caracteres",
+      "passwordMismatch": "As senhas não conferem"
+    }
+  },
+  "adStories": {
+    "premiumTitle": "Esta história é exclusiva para assinantes",
+    "premiumDescription": "Para jogar esta história, crie sua conta ou faça login.",
+    "premiumCta": "Criar conta",
+    "creatingUser": "Preparando sua experiência...",
+    "createUserFailed": "Não foi possível iniciar. Tente novamente.",
+    "retry": "Tentar novamente"
   }
 }

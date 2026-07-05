@@ -7,6 +7,8 @@
     "currentPasswordIncorrect": "Current password is incorrect",
     "unknownUser": "Unknown user: {{id}}",
     "invalidVerificationToken": "Invalid or expired verification link",
-    "emailAlreadyVerified": "Email is already verified"
-  }
+    "emailAlreadyVerified": "Email is already verified",
+    "notTemporary": "This account is not temporary"
+  },
+  "temporaryName": "Player"
 }

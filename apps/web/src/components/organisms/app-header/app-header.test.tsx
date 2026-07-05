@@ -19,6 +19,7 @@ const mockUser: User = {
   id: '1',
   name: 'Cassiano',
   email: 'cassiano@example.com',
+  accountType: 'permanent',
   ssn: null,
   emailVerifiedAt: null,
   createdAt: '',

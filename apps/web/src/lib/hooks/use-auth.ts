@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import {
+  convertAccountRequest,
   loginRequest,
   logoutRequest,
   registerRequest,
@@ -12,7 +13,11 @@ import {
   verifyEmailRequest,
 } from '@/lib/api/auth';
 import { config } from '@/lib/config';
-import type { LoginPayload, RegisterPayload } from '@/lib/types/auth';
+import type {
+  ConvertAccountPayload,
+  LoginPayload,
+  RegisterPayload,
+} from '@/lib/types/auth';
 
 export function useLogin() {
   const router = useRouter();
@@ -70,6 +75,24 @@ export function useResendVerification() {
     },
     onError: () => {
       toast.error(t('resendFailed'));
+    },
+  });
+}
+
+export function useConvertAccount() {
+  const router = useRouter();
+  const t = useTranslations('convertAccount');
+
+  return useMutation({
+    mutationFn: (payload: ConvertAccountPayload) =>
+      convertAccountRequest(payload),
+    onSuccess: () => {
+      toast.success(t('success'));
+      router.push(config.routes.home);
+      router.refresh();
+    },
+    onError: () => {
+      toast.error(t('failed'));
     },
   });
 }

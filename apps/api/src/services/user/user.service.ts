@@ -12,6 +12,7 @@ import {
 import {
   AvailableCreditsResponseDto,
   AuthResponseDto,
+  ConvertTemporaryUserDto,
   CreateUserDto,
   LoginDto,
   UpdateUserDto,
@@ -44,11 +45,14 @@ export class UserService {
 
     const hashedPassword = await this.passwordHasher.hash(data.password);
     const user = await this.users.create({ ...data, password: hashedPassword });
-    const token = this.tokenService.sign({ sub: user.id, email: user.email });
+    const token = this.tokenService.sign({
+      sub: user.id,
+      email: user.email ?? '',
+    });
 
     this.emailVerification
       .sendVerification(
-        { id: user.id, email: user.email, name: user.name },
+        { id: user.id, email: user.email ?? '', name: user.name },
         locale
       )
       .catch((error) => {
@@ -78,7 +82,7 @@ export class UserService {
 
     const valid = await this.passwordHasher.compare(
       data.password,
-      user.password
+      user.password ?? ''
     );
     if (!valid) {
       throw new HttpError(
@@ -88,8 +92,79 @@ export class UserService {
       );
     }
 
-    const token = this.tokenService.sign({ sub: user.id, email: user.email });
+    const token = this.tokenService.sign({
+      sub: user.id,
+      email: user.email ?? '',
+    });
     return { user: this.toResponseDto(user), token };
+  }
+
+  async createTemporary(
+    name: string,
+    leadId?: string
+  ): Promise<AuthResponseDto> {
+    const user = await this.users.createTemporary({ name });
+    const token = this.tokenService.sign({ sub: user.id, email: '' });
+
+    if (leadId) {
+      try {
+        await this.leads.linkUser(leadId, user.id);
+      } catch (error) {
+        console.error('[lead] failed to link lead to temp user', error);
+      }
+    }
+
+    return { user: this.toResponseDto(user), token };
+  }
+
+  async convertTemporary(
+    userId: string,
+    data: ConvertTemporaryUserDto,
+    locale: SupportedLanguage = 'pt-BR'
+  ): Promise<AuthResponseDto> {
+    const tempUser = await this.users.findTemporaryById(userId);
+    if (!tempUser) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        'Account is not temporary',
+        'user:errors.notTemporary'
+      );
+    }
+
+    const existing = await this.users.findByEmail(data.email);
+    if (existing && existing.id !== userId) {
+      throw new HttpError(
+        StatusCodes.CONFLICT,
+        'Email already in use',
+        'user:errors.emailAlreadyInUse'
+      );
+    }
+
+    const hashedPassword = await this.passwordHasher.hash(data.password);
+    const converted = await this.users.convertToPermanent(userId, {
+      name: data.name,
+      email: data.email,
+      password: hashedPassword,
+    });
+    const token = this.tokenService.sign({
+      sub: converted.id,
+      email: converted.email ?? '',
+    });
+
+    this.emailVerification
+      .sendVerification(
+        {
+          id: converted.id,
+          email: converted.email ?? '',
+          name: converted.name,
+        },
+        locale
+      )
+      .catch((error) => {
+        console.error('[email] failed to send verification', error);
+      });
+
+    return { user: this.toResponseDto(converted), token };
   }
 
   async verifyEmail(token: string): Promise<UserResponseDto> {
@@ -133,7 +208,7 @@ export class UserService {
       );
     }
     await this.emailVerification.sendVerification(
-      { id: user.id, email: user.email, name: user.name },
+      { id: user.id, email: user.email ?? '', name: user.name },
       locale
     );
   }
@@ -230,7 +305,7 @@ export class UserService {
 
     const valid = await this.passwordHasher.compare(
       currentPassword,
-      user.password
+      user.password ?? ''
     );
     if (!valid) {
       throw new HttpError(
@@ -249,6 +324,7 @@ export class UserService {
       id: user.id,
       name: user.name,
       email: user.email,
+      accountType: user.accountType,
       ssn: user.ssn,
       emailVerifiedAt: user.emailVerifiedAt
         ? user.emailVerifiedAt.toISOString()

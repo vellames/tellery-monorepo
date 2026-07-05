@@ -57,6 +57,7 @@ function renderPanel(userOverrides: Partial<User> = {}) {
         id: '1',
         name: 'Ana',
         email: 'a@b.c',
+        accountType: 'permanent',
         ssn: null,
         emailVerifiedAt: '2026-07-01T00:00:00.000Z',
         createdAt: '',

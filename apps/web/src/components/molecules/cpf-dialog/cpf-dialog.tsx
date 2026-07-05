@@ -59,7 +59,7 @@ export function CpfDialog({ open, onClose, user, onSuccess }: CpfDialogProps) {
           validationSchema={schema}
           onSubmit={(values, { setSubmitting }) => {
             updateProfile.mutate(
-              { name: user.name, email: user.email, ssn: values.ssn },
+              { name: user.name, email: user.email ?? '', ssn: values.ssn },
               {
                 onSuccess: () => {
                   onClose();
