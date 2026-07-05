@@ -6,6 +6,9 @@ import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { createTemporaryUserRequest } from '@/lib/api/auth';
+import { createLeadRequest } from '@/lib/api/leads';
+import { getLocalUuid } from '@/lib/local-uuid';
+import { collectDeviceInfo } from '@/lib/device-info';
 
 /**
  * Creates a temporary guest user on mount (client-side, via the BFF), then
@@ -16,6 +19,27 @@ import { createTemporaryUserRequest } from '@/lib/api/auth';
  * works reliably inside in-app browsers (TikTok, Instagram), which sometimes
  * handle server-set cookies on navigation responses inconsistently.
  */
+/**
+ * Creates a lead (capturing the ad URL query params + device info) and then a
+ * temporary user linked to that lead. Lead creation failure never breaks the
+ * temp-user flow — we just proceed without a leadId.
+ */
+async function createTempUserWithLead(): Promise<void> {
+  const queryParams = window.location.search || undefined;
+  let leadId: string | undefined;
+  try {
+    const lead = await createLeadRequest({
+      localUuid: getLocalUuid(),
+      queryParams,
+      deviceInfo: collectDeviceInfo(),
+    });
+    leadId = lead.id;
+  } catch {
+    // Lead tracking must never break the temp-user creation flow.
+  }
+  await createTemporaryUserRequest(leadId);
+}
+
 export function TempUserLauncher() {
   const router = useRouter();
   const t = useTranslations('adStories');
@@ -27,7 +51,7 @@ export function TempUserLauncher() {
     startedRef.current = true;
 
     let cancelled = false;
-    createTemporaryUserRequest()
+    createTempUserWithLead()
       .then(() => {
         if (!cancelled) router.refresh();
       })
@@ -48,7 +72,7 @@ export function TempUserLauncher() {
           onClick={() => {
             setFailed(false);
             startedRef.current = false;
-            createTemporaryUserRequest()
+            createTempUserWithLead()
               .then(() => router.refresh())
               .catch(() => setFailed(true));
           }}
