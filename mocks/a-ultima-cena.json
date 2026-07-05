@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/a-ultima-cena/history/cover.jpg",
-  "thumbnailUrl": "histories/a-ultima-cena/history/thumbnail.jpg",
+  "coverImageUrl": "stories/a-ultima-cena/story/cover.jpg",
+  "thumbnailUrl": "stories/a-ultima-cena/story/thumbnail.jpg",
   "opening": {
     "shortText": "Caetano Andrade desabou no palco do Municipal ao beber do cálice na cena final do ensaio geral.",
     "fullText": "O Teatro Municipal está em silêncio depois do ensaio geral de \"A Rainha Envenenada\". Na cena de encerramento, o ator consagrado Caetano Andrade ergueu o cálice de cena, bebeu e desabou. Socorro foi chamado, ele foi levado ao hospital e está estável. O cálice estava adulterado. O ensaio era a última passagem antes da estreia que decide o futuro de todos no elenco. Cinco pessoas circulavam pelo teatro: a diretora convidada Inês, o ator reserva Tomás, o dramaturgo Murilo, a figurinista Dona Consuelo e o veterano Lourenço, que retorna ao Municipal após trinta anos. Cabe a você conversar com cada um, observar o palco e os bastidores e reconstruir quem adulterou o cálice e por quê.",
@@ -349,7 +349,7 @@
       "name": "Inês Drummond",
       "role": "Diretora convidada do Municipal",
       "shortDescription": "Diretora em estreia no Municipal, em disputa aberta com Caetano pela marcação da peça.",
-      "imageUrl": "histories/a-ultima-cena/characters/ines.jpg",
+      "imageUrl": "stories/a-ultima-cena/characters/ines.jpg",
       "personality": "Ambiciosa, tensa, articulada. Defende cada decisão de cena como se a carreira dependesse disso — porque depende.",
       "speakingStyle": "Frases rápidas e técnicas sobre luz, marcação e ritmo; perde a compostura quando o nome de Caetano aparece.",
       "publicKnowledge": [
@@ -452,7 +452,7 @@
       "name": "Tomás Reis",
       "role": "Ator reserva (understudy) do protagonista",
       "shortDescription": "Ator jovem que cobre o papel de Caetano e observa tudo da coxia.",
-      "imageUrl": "histories/a-ultima-cena/characters/tomas.jpg",
+      "imageUrl": "stories/a-ultima-cena/characters/tomas.jpg",
       "personality": "Ansioso, observador, inseguro. Assume o peso do mundo sobre os ombros mesmo quando nada lhe cabe.",
       "speakingStyle": "Frases curtas, atropeladas; justifica demais cada movimento que fez.",
       "publicKnowledge": [
@@ -488,7 +488,7 @@
       "name": "Murilo Antunes",
       "role": "Dramaturgo da peça",
       "shortDescription": "Autor da peça, em atrito recente com Caetano por causa de falas reescritas.",
-      "imageUrl": "histories/a-ultima-cena/characters/murilo.jpg",
+      "imageUrl": "stories/a-ultima-cena/characters/murilo.jpg",
       "personality": "Articulado, vaidoso, apaixonado pelo texto. Guarda a memória de cada montagem antiga do Municipal.",
       "speakingStyle": "Frases medidas, literárias; cita a história do teatro como quem cita familiares.",
       "publicKnowledge": [
@@ -561,7 +561,7 @@
       "name": "Dona Consuelo",
       "role": "Figurinista do Municipal há trinta anos",
       "shortDescription": "Figurinista veterana que observa o elenco em silêncio e conhece os segredos do teatro.",
-      "imageUrl": "histories/a-ultima-cena/characters/consuelo.jpg",
+      "imageUrl": "stories/a-ultima-cena/characters/consuelo.jpg",
       "personality": "Discreta, atenta, maternal com o elenco. Vê mais do que diz e costura segredos junto com os figurinos.",
       "speakingStyle": "Frases calmas, em voz baixa; responde por meias-verdades até confiar.",
       "publicKnowledge": [
@@ -647,7 +647,7 @@
       "name": "Lourenço Vieira",
       "role": "Ator convidado, co-protagonista ao lado de Caetano",
       "shortDescription": "Ator veterano que retorna ao Municipal após trinta anos, no papel do conselheiro que entrega o cálice.",
-      "imageUrl": "histories/a-ultima-cena/characters/lourenco.jpg",
+      "imageUrl": "stories/a-ultima-cena/characters/lourenco.jpg",
       "personality": "Contido, cerimonioso, preciso. Carrega trinta anos de ausência como quem carrega um luto bem vestido.",
       "speakingStyle": "Frases medidas, formais; evita o nome de Caetano no início e fala do retorno como uma homenagem.",
       "publicKnowledge": [
@@ -805,7 +805,7 @@
       "deletedAt": null,
       "name": "Palco",
       "shortDescription": "O palco onde ocorreu a cena final do ensaio.",
-      "imageUrl": "histories/a-ultima-cena/location/palco.jpg",
+      "imageUrl": "stories/a-ultima-cena/location/palco.jpg",
       "initialDescription": "O palco do Municipal, ainda montado para a cena de encerramento de \"A Rainha Envenenada\". Luzes de trabalho acesas, marcas de fita no chão indicando a posição dos atores e o ponto exato onde Caetano caiu.",
       "ambientClueIds": [],
       "objectIds": ["calice"]
@@ -817,7 +817,7 @@
       "deletedAt": null,
       "name": "Camarim de Caetano",
       "shortDescription": "Camarim privativo de Caetano Andrade.",
-      "imageUrl": "histories/a-ultima-cena/location/camarim_caetano.jpg",
+      "imageUrl": "stories/a-ultima-cena/location/camarim_caetano.jpg",
       "initialDescription": "Camarim privativo ao fim do corredor, com luzes de maquiagem, um armário de figurino e uma penteadeira repleta de objetos pessoais de Caetano.",
       "ambientClueIds": [],
       "objectIds": ["programa_antigo", "rider_medico"]
@@ -829,7 +829,7 @@
       "deletedAt": null,
       "name": "Camarim coletivo",
       "shortDescription": "Camarim compartilhado do elenco, com as bancadas de maquiagem.",
-      "imageUrl": "histories/a-ultima-cena/location/camarim_coletivo.jpg",
+      "imageUrl": "stories/a-ultima-cena/location/camarim_coletivo.jpg",
       "initialDescription": "Camarim coletivo com fileiras de bancadas, espelhos e kits de maquiagem de cada ator. Há um baú de figurinos ao fundo e estações marcadas com os nomes do elenco.",
       "ambientClueIds": [],
       "objectIds": ["frasco_oleo", "carta_vianna", "bilhete_tomas"]
@@ -841,7 +841,7 @@
       "deletedAt": null,
       "name": "Mesa de adereços",
       "shortDescription": "Mesa onde os adereços de cena ficam dispostos até a entrada.",
-      "imageUrl": "histories/a-ultima-cena/location/mesa_aderecos.jpg",
+      "imageUrl": "stories/a-ultima-cena/location/mesa_aderecos.jpg",
       "initialDescription": "Mesa longa nos bastidores, forrada de veludo, onde cada adereço tem um lugar marcado. Há um caderno aberto ao centro com a ordem de cena e os responsáveis por cada objeto.",
       "ambientClueIds": [],
       "objectIds": ["caderno_marcacao"]
@@ -855,7 +855,7 @@
       "deletedAt": null,
       "name": "Cálice de cena",
       "shortDescription": "O cálice metálico usado na cena final.",
-      "imageUrl": "histories/a-ultima-cena/object/calice.jpg",
+      "imageUrl": "stories/a-ultima-cena/object/calice.jpg",
       "locationId": "palco",
       "initialDescription": "Cálice de metal envelhecido, com gravuras no bordado, ainda sobre a marca de fita no centro do palco. Restos de líquido permanecem no fundo.",
       "clueRevealRules": [
@@ -880,7 +880,7 @@
       "deletedAt": null,
       "name": "Frasco de óleo",
       "shortDescription": "Pequeno frasco de óleo guardado num kit de maquiagem.",
-      "imageUrl": "histories/a-ultima-cena/object/frasco_oleo.jpg",
+      "imageUrl": "stories/a-ultima-cena/object/frasco_oleo.jpg",
       "locationId": "camarim_coletivo",
       "initialDescription": "Pequeno frasco escuro, sem rótulo, guardado dentro do kit de maquiagem da estação de Lourenço no camarim coletivo. Contém um líquido oleoso de odor forte.",
       "clueRevealRules": [
@@ -899,7 +899,7 @@
       "deletedAt": null,
       "name": "Cartas de Vianna",
       "shortDescription": "Cartas antigas amarradas por uma fita, num baú de figurinos.",
-      "imageUrl": "histories/a-ultima-cena/object/carta_vianna.jpg",
+      "imageUrl": "stories/a-ultima-cena/object/carta_vianna.jpg",
       "locationId": "camarim_coletivo",
       "initialDescription": "Conjunto de cartas amareladas amarradas por uma fita desbotada, encontrado dentro do baú de figurinos junto à estação de Lourenço. A caligrafia é antiga e feminina.",
       "clueRevealRules": [
@@ -918,7 +918,7 @@
       "deletedAt": null,
       "name": "Programa antigo",
       "shortDescription": "Programa de uma montagem do Municipal de trinta anos atrás.",
-      "imageUrl": "histories/a-ultima-cena/object/programa_antigo.jpg",
+      "imageUrl": "stories/a-ultima-cena/object/programa_antigo.jpg",
       "locationId": "camarim_caetano",
       "initialDescription": "Programa impresso, envelhecido, de uma lendária montagem do Municipal de trinta anos atrás. A capa mostra os co-protagonistas em foto de época.",
       "clueRevealRules": [
@@ -937,7 +937,7 @@
       "deletedAt": null,
       "name": "Rider médico de Caetano",
       "shortDescription": "Documento médico de bastidor pertencente a Caetano.",
-      "imageUrl": "histories/a-ultima-cena/object/rider_medico.jpg",
+      "imageUrl": "stories/a-ultima-cena/object/rider_medico.jpg",
       "locationId": "camarim_caetano",
       "initialDescription": "Documento dobrado, com timbre médico, guardado numa gaveta da penteadeira de Caetano, ao lado de remédios de uso pessoal.",
       "clueRevealRules": [
@@ -960,7 +960,7 @@
       "deletedAt": null,
       "name": "Caderno de marcação",
       "shortDescription": "Caderno aberto na mesa de adereços com a ordem de cena.",
-      "imageUrl": "histories/a-ultima-cena/object/caderno_marcacao.jpg",
+      "imageUrl": "stories/a-ultima-cena/object/caderno_marcacao.jpg",
       "locationId": "mesa_aderecos",
       "initialDescription": "Caderno de capa dura, aberto na mesa de adereços, com a ordem de cada cena, os responsáveis por cada adereço e os horários de entrada anotados à mão.",
       "clueRevealRules": [
@@ -979,7 +979,7 @@
       "deletedAt": null,
       "name": "Bilhete para Tomás",
       "shortDescription": "Bilhete anônimo dobrado na estação de Tomás.",
-      "imageUrl": "histories/a-ultima-cena/object/bilhete_tomas.jpg",
+      "imageUrl": "stories/a-ultima-cena/object/bilhete_tomas.jpg",
       "locationId": "camarim_coletivo",
       "initialDescription": "Papel dobrado, anônimo, deixado sobre a estação de Tomás no camarim coletivo, com uma frase curta escrita à mão.",
       "clueRevealRules": [
@@ -1365,7 +1365,7 @@
       "deletedAt": null,
       "title": "A cortina se abre",
       "type": "full_truth",
-      "imageUrl": "histories/a-ultima-cena/endings/full_truth.jpg",
+      "imageUrl": "stories/a-ultima-cena/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_poisoned": "lourenco",
@@ -1388,7 +1388,7 @@
       "deletedAt": null,
       "title": "Meia-verdade nos bastidores",
       "type": "partial_truth",
-      "imageUrl": "histories/a-ultima-cena/endings/partial_truth.jpg",
+      "imageUrl": "stories/a-ultima-cena/endings/partial_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_poisoned": "lourenco"
@@ -1405,7 +1405,7 @@
       "deletedAt": null,
       "title": "O suspeito errado",
       "type": "wrong_accusation",
-      "imageUrl": "histories/a-ultima-cena/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/a-ultima-cena/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

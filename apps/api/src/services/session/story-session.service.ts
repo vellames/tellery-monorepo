@@ -1,5 +1,5 @@
 import {
-  IHistoryDefinitionRepository,
+  IStoryDefinitionRepository,
   IImageUrlSigner,
   ISessionRepository,
   ISubscriptionRepository,
@@ -26,7 +26,7 @@ export interface SessionListItem {
   thumbnailUrl: string | null;
   startedAt: Date;
   completedAt: Date | null;
-  historyId: string;
+  storyId: string;
   endingType: string | null;
 }
 
@@ -52,10 +52,10 @@ export interface SessionCostResponse {
   breakdown: SessionCostBreakdownItemResponse[];
 }
 
-export class HistorySessionService {
+export class StorySessionService {
   constructor(
     private readonly users: IUserRepository,
-    private readonly histories: IHistoryDefinitionRepository,
+    private readonly stories: IStoryDefinitionRepository,
     private readonly sessions: ISessionRepository,
     private readonly imageUrlSigner: IImageUrlSigner,
     private readonly subscriptions: ISubscriptionRepository
@@ -71,25 +71,21 @@ export class HistorySessionService {
       );
     }
 
-    const history =
-      (input.historyId
-        ? await this.histories.findById(input.historyId)
-        : null) ??
-      (input.historySlug
-        ? await this.histories.findBySlug(input.historySlug)
-        : null);
+    const story =
+      (input.storyId ? await this.stories.findById(input.storyId) : null) ??
+      (input.storySlug ? await this.stories.findBySlug(input.storySlug) : null);
 
-    if (!history) {
+    if (!story) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
-        input.historyId ?? input.historySlug ?? '',
-        'session:errors.unknownHistory'
+        input.storyId ?? input.storySlug ?? '',
+        'session:errors.unknownStory'
       );
     }
 
-    const existingSession = await this.sessions.findActiveByHistory(
+    const existingSession = await this.sessions.findActiveByStory(
       user.id,
-      history.id
+      story.id
     );
     if (existingSession) {
       throw new HttpError(
@@ -100,7 +96,7 @@ export class HistorySessionService {
       );
     }
 
-    if (!history.isFree) {
+    if (!story.isFree) {
       const subscription = await this.subscriptions.findByUserId(user.id);
       if (!isActiveSubscription(subscription)) {
         throw new HttpError(
@@ -123,19 +119,19 @@ export class HistorySessionService {
           'session:errors.noCreditsAvailable'
         );
       }
-      return this.sessions.create({ userId: user.id, history }, tx);
+      return this.sessions.create({ userId: user.id, story }, tx);
     });
 
     return {
       session,
       sessionStatus: session.status,
-      history: {
-        id: history.id,
-        slug: history.slug,
-        title: history.title,
-        subtitle: history.subtitle ?? null,
-        opening: history.opening,
-        objective: history.objective,
+      story: {
+        id: story.id,
+        slug: story.slug,
+        title: story.title,
+        subtitle: story.subtitle ?? null,
+        opening: story.opening,
+        objective: story.objective,
       },
     };
   }
@@ -257,7 +253,7 @@ export class HistorySessionService {
         thumbnailUrl: await this.imageUrlSigner.sign(session.thumbnailUrl),
         startedAt: session.startedAt,
         completedAt: session.completedAt,
-        historyId: session.historyId,
+        storyId: session.storyId,
         endingType: session.ending?.endingSnapshot.type ?? null,
       }))
     );
@@ -275,15 +271,15 @@ export class HistorySessionService {
     response: SessionStateResponse
   ): Promise<SessionStateResponse> {
     const [
-      historyImages,
+      storyImages,
       characterImages,
       objectImages,
       locationImages,
       endingImage,
     ] = await Promise.all([
       Promise.all([
-        this.imageUrlSigner.sign(response.history.coverImageUrl),
-        this.imageUrlSigner.sign(response.history.thumbnailUrl),
+        this.imageUrlSigner.sign(response.story.coverImageUrl),
+        this.imageUrlSigner.sign(response.story.thumbnailUrl),
       ]),
       Promise.all(
         response.characters.map((c) => this.imageUrlSigner.sign(c.imageUrl))
@@ -301,10 +297,10 @@ export class HistorySessionService {
 
     return {
       ...response,
-      history: {
-        ...response.history,
-        coverImageUrl: historyImages[0],
-        thumbnailUrl: historyImages[1],
+      story: {
+        ...response.story,
+        coverImageUrl: storyImages[0],
+        thumbnailUrl: storyImages[1],
       },
       characters: response.characters.map((c, i) => ({
         ...c,

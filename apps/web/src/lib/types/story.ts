@@ -1,4 +1,4 @@
-export interface History {
+export interface Story {
   id: string;
   slug: string;
   title: string;
@@ -11,7 +11,7 @@ export interface History {
   thumbnailUrl: string | null;
 }
 
-export interface HistoryDetail extends History {
+export interface StoryDetail extends Story {
   opening: string;
   objective: string;
 }

@@ -121,7 +121,7 @@ function FunnelSection({ funnel }: { funnel: ConversionFunnel }) {
       ? (funnel.permanentUsers / funnel.temporaryUsers) * 100
       : 0;
   const totalUsers = funnel.temporaryUsers + funnel.permanentUsers;
-  const startedPct = (funnel.startedHistoryRate * 100).toFixed(1);
+  const startedPct = (funnel.startedStoryRate * 100).toFixed(1);
 
   // Buckets are cumulative/overlapping by design: atLeast1 ⊃ atLeast10 ⊃ atLeast20.
   // `zero` and `atLeast1` are mutually exclusive and together cover every session,
@@ -192,7 +192,7 @@ function FunnelSection({ funnel }: { funnel: ConversionFunnel }) {
               />
               <FunnelRow
                 label="Iniciaram pelo menos 1 história"
-                value={funnel.usersStartedHistory}
+                value={funnel.usersStartedStory}
                 pct={Number(startedPct)}
                 hint={`${startedPct}% dos usuários`}
               />
@@ -201,7 +201,7 @@ function FunnelSection({ funnel }: { funnel: ConversionFunnel }) {
         </div>
       </section>
 
-      <TimeToFirstHistorySection summary={funnel.timeToFirstHistory} />
+      <TimeToFirstStorySection summary={funnel.timeToFirstStory} />
 
       <section aria-label="Interações por história iniciada" className="mt-6">
         <h2 className="font-heading mb-1 text-xl font-semibold tracking-tight">
@@ -288,7 +288,7 @@ function FunnelRow({
   );
 }
 
-function TimeToFirstHistorySection({
+function TimeToFirstStorySection({
   summary,
 }: {
   summary: DurationSummary | null;

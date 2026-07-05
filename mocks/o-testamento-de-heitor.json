@@ -14,8 +14,8 @@
   "isFeatured": true,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/o-testamento-de-heitor/history/cover.jpg",
-  "thumbnailUrl": "histories/o-testamento-de-heitor/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-testamento-de-heitor/story/cover.jpg",
+  "thumbnailUrl": "stories/o-testamento-de-heitor/story/thumbnail.jpg",
   "opening": {
     "shortText": "Heitor Vargas morreu na noite anterior, aparentemente de causas naturais. Mas a mudança do testamento ficou pronta para a manhã que não chegou.",
     "fullText": "São 7h da manhã na Estância Almir. Nora, a governanta, encontrou Heitor Vargas — 78 anos, patriarca e dono de tudo — caído em sua poltrona no escritório, sem sinais de violência e sem vida. O Dr. Vasco, médico de família, confirmou o que parecia óbvio: falência do coração, algo esperado dado o histórico cardíaco de Heitor. Mas há um detalhe que pertuba. O advogado de Heitor deveria chegar às 9h para registrar um novo testamento — um que cortava herdeiros, reduzia legados e reescrevia a distribuição da fortuna. Cinco pessoas jantaram com Heitor na noite anterior: Raul, o filho mais velho prestes a ser deserdado; Beatriz, a jovem segunda esposa que herda quase tudo; Dr. Vasco, que receitou a medicação cardíaca; Lia, a secretária que administra as contas; e Téo, o filho caçula que já esbanjou sua parte. Cada um tinha um motivo. Cada um esteve na estância. Cabe a você examinar o escritório, ouvir as cinco versões e descobrir quem, se alguém, silenciou Heitor Vargas antes que o testamento mudasse.",
@@ -403,7 +403,7 @@
       "name": "Nora",
       "role": "Governanta da Estância Almir",
       "shortDescription": "Governanta fiel há trinta anos, encontrou o corpo de Heitor e conhece os movimentos de todos na casa.",
-      "imageUrl": "histories/o-testamento-de-heitor/characters/nora.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/characters/nora.jpg",
       "personality": "Sóbria, observadora, leal à memória de Heitor. Fala com economy de palavras e nunca dramatiza.",
       "speakingStyle": "Frases curtas e precisas, vocabulão de casa antiga, evita fofoca mas cede quando confrontada com fatos.",
       "publicKnowledge": [
@@ -552,7 +552,7 @@
       "name": "Raul",
       "role": "Filho mais velho de Heitor",
       "shortDescription": "Filho mais velho, austero e orgulhoso. Seria deserdado pela mudança do testamento.",
-      "imageUrl": "histories/o-testamento-de-heitor/characters/raul.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/characters/raul.jpg",
       "personality": "Seco, controlado, ressentido. Esconde vergonha atrás de formalidade.",
       "speakingStyle": "Fala em frases medidas, vocabulão formal, evita emoção mas transborda quando acuado.",
       "publicKnowledge": [
@@ -646,7 +646,7 @@
       "name": "Beatriz",
       "role": "Segunda esposa de Heitor",
       "shortDescription": "Jovem segunda esposa de Heitor, herda quase tudo pelo testamento atual. Elegante e contida.",
-      "imageUrl": "histories/o-testamento-de-heitor/characters/beatriz.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/characters/beatriz.jpg",
       "personality": "Composta, vaidosa, calculista por trás de fragilidade aparente. Esconde desespero atrás de elegância.",
       "speakingStyle": "Fala com suavidade controlada, frases educadas que se tornam cortantes quando pressionada.",
       "publicKnowledge": [
@@ -797,7 +797,7 @@
       "name": "Dr. Vasco",
       "role": "Médico de família",
       "shortDescription": "Médico de família há décadas, sereno por fora, que receitou a medicação cardíaca de Heitor.",
-      "imageUrl": "histories/o-testamento-de-heitor/characters/vasco.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/characters/vasco.jpg",
       "personality": "Profissional, calmo, evasivo quando pressionado sobre si mesmo. Fala de medicina com segurança e sobre seu passado com reticência.",
       "speakingStyle": "Vocabulão clínico, frases pausadas, muda de assunto com perguntas sobre a saúde dos outros.",
       "publicKnowledge": [
@@ -911,7 +911,7 @@
       "name": "Lia",
       "role": "Secretária e administradora da estância",
       "shortDescription": "Secretária eficiente que administra as contas e o escritório da estância.",
-      "imageUrl": "histories/o-testamento-de-heitor/characters/lia.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/characters/lia.jpg",
       "personality": "Prática, discreta, controlada. Esconde pânico atrás de eficiência.",
       "speakingStyle": "Fala com clareza administrativa, números e prazos. Fica evasiva quando o assunto se aproxima do desvio.",
       "publicKnowledge": [
@@ -987,7 +987,7 @@
       "name": "Téo",
       "role": "Filho caçula de Heitor",
       "shortDescription": "Filho caçula, charmoso e disperso. Já esbanjou sua herança antecipada e voltou à estância.",
-      "imageUrl": "histories/o-testamento-de-heitor/characters/teo.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/characters/teo.jpg",
       "personality": "Indolente, charmoso, vergonhoso. Esconde desespero atrás de humor amargo.",
       "speakingStyle": "Fala com ironia despreocupada, frases curtas, desvia perguntas com piadas até ser encurralado.",
       "publicKnowledge": [
@@ -1033,7 +1033,7 @@
       "deletedAt": null,
       "name": "Escritório",
       "shortDescription": "O escritório onde Heitor foi encontrado morto.",
-      "imageUrl": "histories/o-testamento-de-heitor/location/escritorio.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/location/escritorio.jpg",
       "initialDescription": "O escritório de Heitor é uma sala ampla de paredes escuras, com estantes de mogno, uma grande poltrona de couro onde o corpo foi encontrado, uma mesa de trabalho coberta de papéis e um cálice de conhaque ainda sobre a bandeja. O ar pesa com silêncio de biblioteca antiga.",
       "ambientClueIds": [],
       "objectIds": [
@@ -1052,7 +1052,7 @@
       "deletedAt": null,
       "name": "Sala de jantar",
       "shortDescription": "A sala onde a família jantou na noite anterior.",
-      "imageUrl": "histories/o-testamento-de-heitor/location/sala_jantar.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/location/sala_jantar.jpg",
       "initialDescription": "A sala de jantar ainda tem os restos da ceia da noite anterior: taças, talheres e marcas de conversa interrompida. A mesa é longa, escura, com lugares para todos os cinco herdeiros e Heitor na cabeceira.",
       "ambientClueIds": ["clue_family_dinner"],
       "objectIds": []
@@ -1064,7 +1064,7 @@
       "deletedAt": null,
       "name": "Adega",
       "shortDescription": "Adega subterrânea onde Heitor guardava o conhaque e vinhos.",
-      "imageUrl": "histories/o-testamento-de-heitor/location/adega.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/location/adega.jpg",
       "initialDescription": "A adega é um cômodo fresco e escuro sob a casa, com prateleiras de garrafas empoeiradas e um barril antigo. O ar cheira a madeira e tempo guardado. Há marcas de passos recentes no pó do chão.",
       "ambientClueIds": [],
       "objectIds": []
@@ -1076,7 +1076,7 @@
       "deletedAt": null,
       "name": "Copa",
       "shortDescription": "Cômodo dos fundos onde Lia trabalha e onde a medicação era preparada.",
-      "imageUrl": "histories/o-testamento-de-heitor/location/copa.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/location/copa.jpg",
       "initialDescription": "A copa é um cômodo estreito com uma escrivaninha coberta de livros de contabilidade, uma prateleira com frascos de remédio e material de escritório. Há uma gaveta entreaberta.",
       "ambientClueIds": [],
       "objectIds": ["recibo_embezzlement", "receita_medica"]
@@ -1090,7 +1090,7 @@
       "deletedAt": null,
       "name": "Frasco de remédio",
       "shortDescription": "Frasco de medicação cardíaca de Heitor, no escritório.",
-      "imageUrl": "histories/o-testamento-de-heitor/object/frasco_remedio.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/object/frasco_remedio.jpg",
       "locationId": "escritorio",
       "initialDescription": "O frasco de medicação cardíaca de Heitor está sobre a mesa do escritório, perto do cálice de conhaque.",
       "clueRevealRules": [
@@ -1117,7 +1117,7 @@
       "deletedAt": null,
       "name": "Testamento",
       "shortDescription": "O testamento atual de Heitor, ainda válido.",
-      "imageUrl": "histories/o-testamento-de-heitor/object/testamento.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/object/testamento.jpg",
       "locationId": "escritorio",
       "initialDescription": "O testamento atual repousa numa gaveta entreaberta da mesa, com várias páginas e selos.",
       "clueRevealRules": [
@@ -1150,7 +1150,7 @@
       "deletedAt": null,
       "name": "Cálice de conhaque",
       "shortDescription": "Cálice de conhaque encontrado ao lado de Heitor.",
-      "imageUrl": "histories/o-testamento-de-heitor/object/calice_conhaque.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/object/calice_conhaque.jpg",
       "locationId": "escritorio",
       "initialDescription": "Um cálice de conhaque pela metade ainda está sobre a bandeja ao lado da poltrona onde Heitor foi encontrado.",
       "clueRevealRules": [
@@ -1174,7 +1174,7 @@
       "deletedAt": null,
       "name": "Carta do advogado",
       "shortDescription": "Carta do advogado confirmando a mudança do testamento.",
-      "imageUrl": "histories/o-testamento-de-heitor/object/carta_advogado.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/object/carta_advogado.jpg",
       "locationId": "escritorio",
       "initialDescription": "Uma carta do advogado de Heitor, sobre a mesa, confirma a visita marcada para a manhã seguinte, para registrar a mudança do testamento.",
       "clueRevealRules": [
@@ -1193,7 +1193,7 @@
       "deletedAt": null,
       "name": "Pílula no chão",
       "shortDescription": "Pílula encontrada no chão do escritório.",
-      "imageUrl": "histories/o-testamento-de-heitor/object/pilula_placebo.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/object/pilula_placebo.jpg",
       "locationId": "escritorio",
       "initialDescription": "No chão do escritório, perto da mesa, há uma pílula solta, fora do frasco.",
       "clueRevealRules": [
@@ -1216,7 +1216,7 @@
       "deletedAt": null,
       "name": "Agenda de Heitor",
       "shortDescription": "Diário pessoal de Heitor com sua rotina.",
-      "imageUrl": "histories/o-testamento-de-heitor/object/agenda_heitor.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/object/agenda_heitor.jpg",
       "locationId": "escritorio",
       "initialDescription": "A agenda de Heitor está aberta sobre a mesa, com anotações da rotina diária, incluindo a medicação noturna.",
       "clueRevealRules": [
@@ -1235,7 +1235,7 @@
       "deletedAt": null,
       "name": "Recibo suspeito",
       "shortDescription": "Recibo amassado na gaveta da copa.",
-      "imageUrl": "histories/o-testamento-de-heitor/object/recibo_embezzlement.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/object/recibo_embezzlement.jpg",
       "locationId": "copa",
       "initialDescription": "Na gaveta entreaberta da copa, há um recibo amassado entre papéis e livros de contabilidade.",
       "clueRevealRules": [
@@ -1257,7 +1257,7 @@
       "deletedAt": null,
       "name": "Receita médica",
       "shortDescription": "Receita da medicação cardíaca de Heitor.",
-      "imageUrl": "histories/o-testamento-de-heitor/object/receita_medica.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/object/receita_medica.jpg",
       "locationId": "copa",
       "initialDescription": "A receita médica da medicação de Heitor está arquivada na copa, assinada pelo Dr. Vasco.",
       "clueRevealRules": [
@@ -1784,7 +1784,7 @@
       "deletedAt": null,
       "title": "O testamento que nunca foi assinado",
       "type": "full_truth",
-      "imageUrl": "histories/o-testamento-de-heitor/endings/full_truth.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_killed_heitor": "beatriz",
@@ -1808,7 +1808,7 @@
       "deletedAt": null,
       "title": "A viúva certa, o motivo errado",
       "type": "partial_truth",
-      "imageUrl": "histories/o-testamento-de-heitor/endings/partial_truth_a.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/endings/partial_truth_a.jpg",
       "condition": {
         "conclusionMatches": {
           "who_killed_heitor": "beatriz",
@@ -1826,7 +1826,7 @@
       "deletedAt": null,
       "title": "O método certo, a mão errada",
       "type": "partial_truth",
-      "imageUrl": "histories/o-testamento-de-heitor/endings/partial_truth_b.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/endings/partial_truth_b.jpg",
       "condition": {
         "conclusionMatches": {
           "how_killed": "medication_swap"
@@ -1846,7 +1846,7 @@
       "deletedAt": null,
       "title": "Morte natural, convenientemente",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-testamento-de-heitor/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-testamento-de-heitor/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

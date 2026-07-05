@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import healthRoutes from './health.routes';
-import historyRoutes from './history.routes';
+import storyRoutes from './story.routes';
 import leadRoutes from './lead/leads.routes';
 import sessionRoutes from './session.routes';
 import subscriptionRoutes from './subscription/subscription.routes';
@@ -10,7 +10,7 @@ import meRoutes from './user/me.routes';
 const router = Router();
 
 router.use(healthRoutes);
-router.use('/histories', historyRoutes);
+router.use('/stories', storyRoutes);
 router.use('/leads', leadRoutes);
 router.use('/session', sessionRoutes);
 router.use('/subscriptions', subscriptionRoutes);

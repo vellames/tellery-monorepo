@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { HistorySessionService } from '../services/session/history-session.service';
+import { StorySessionService } from '../services/session/story-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
 import { SessionConclusionService } from '../services/session/session-conclusion.service';
 import { IAudioStorage, IAudioTranscriptionService } from '../interfaces';
@@ -19,7 +19,7 @@ import { TranslationFunction } from '../types/i18n.types';
 
 export class SessionController {
   constructor(
-    private readonly historySessionService: HistorySessionService,
+    private readonly storySessionService: StorySessionService,
     private readonly sessionInteractionService: SessionInteractionService,
     private readonly sessionConclusionService: SessionConclusionService,
     private readonly audioStorage: IAudioStorage,
@@ -40,7 +40,7 @@ export class SessionController {
     }
 
     try {
-      const response = await this.historySessionService.startSession(
+      const response = await this.storySessionService.startSession(
         req.user!.id,
         parsedBody.data
       );
@@ -57,7 +57,12 @@ export class SessionController {
         });
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -66,7 +71,7 @@ export class SessionController {
 
     try {
       const sessionId = String(req.params.sessionId);
-      const response = await this.historySessionService.getSessionState(
+      const response = await this.storySessionService.getSessionState(
         sessionId,
         req.user!.id
       );
@@ -76,10 +81,15 @@ export class SessionController {
         const message = error.messageKey
           ? t(error.messageKey, { id: error.message })
           : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -88,7 +98,7 @@ export class SessionController {
 
     try {
       const sessionId = String(req.params.sessionId);
-      const response = await this.historySessionService.getSessionCost(
+      const response = await this.storySessionService.getSessionCost(
         sessionId,
         req.user!.id
       );
@@ -98,10 +108,15 @@ export class SessionController {
         const message = error.messageKey
           ? t(error.messageKey, { id: error.message })
           : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -110,17 +125,22 @@ export class SessionController {
 
     try {
       const sessionId = String(req.params.sessionId);
-      await this.historySessionService.abandonSession(sessionId, req.user!.id);
+      await this.storySessionService.abandonSession(sessionId, req.user!.id);
       sendSuccess(res, { sessionId });
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey
           ? t(error.messageKey, { id: error.message })
           : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -134,7 +154,7 @@ export class SessionController {
         : 10;
       const status = req.query.status ? String(req.query.status) : undefined;
 
-      const response = await this.historySessionService.listSessions(
+      const response = await this.storySessionService.listSessions(
         req.user!.id,
         page,
         limit,
@@ -146,10 +166,15 @@ export class SessionController {
         const message = error.messageKey
           ? t(error.messageKey, { id: error.message })
           : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -229,10 +254,15 @@ export class SessionController {
         const message = error.messageKey
           ? t(error.messageKey, { id: error.message })
           : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -261,10 +291,15 @@ export class SessionController {
         const message = error.messageKey
           ? t(error.messageKey, { id: error.message })
           : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 }

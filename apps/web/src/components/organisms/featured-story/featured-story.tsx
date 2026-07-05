@@ -12,17 +12,17 @@ import {
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import type { History } from '@/lib/types/history';
+import type { Story } from '@/lib/types/story';
 
 const AUTO_SLIDE_INTERVAL_MS = 12000;
 
 export interface FeaturedStoryProps {
-  histories: History[];
+  stories: Story[];
   showBadge?: boolean;
 }
 
 export function FeaturedStory({
-  histories,
+  stories,
   showBadge = true,
 }: FeaturedStoryProps) {
   const t = useTranslations('home.featured');
@@ -32,20 +32,20 @@ export function FeaturedStory({
   const [autoSlide, setAutoSlide] = useState(true);
 
   useEffect(() => {
-    if (histories.length <= 1 || paused || !autoSlide) return;
+    if (stories.length <= 1 || paused || !autoSlide) return;
     const id = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % histories.length);
+      setCurrent((prev) => (prev + 1) % stories.length);
     }, AUTO_SLIDE_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [current, histories.length, paused, autoSlide]);
+  }, [current, stories.length, paused, autoSlide]);
 
-  if (histories.length === 0) return null;
+  if (stories.length === 0) return null;
 
-  const hasMultiple = histories.length > 1;
+  const hasMultiple = stories.length > 1;
 
   const selectSlide = (index: number) => {
     setAutoSlide(false);
-    setCurrent((index + histories.length) % histories.length);
+    setCurrent((index + stories.length) % stories.length);
   };
 
   return (
@@ -60,7 +60,7 @@ export function FeaturedStory({
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
-        {histories.map((story) => (
+        {stories.map((story) => (
           <div className="w-full shrink-0" key={story.id}>
             <div className="grid min-h-[460px] grid-cols-1 lg:min-h-[560px] lg:grid-cols-5">
               {/* Right: cover image (renders first in DOM for layering on the left fade) */}
@@ -153,7 +153,7 @@ export function FeaturedStory({
             <ChevronRight className="size-5" />
           </button>
           <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-            {histories.map((_, index) => (
+            {stories.map((_, index) => (
               <button
                 className={cn(
                   'h-2 rounded-full transition-all',

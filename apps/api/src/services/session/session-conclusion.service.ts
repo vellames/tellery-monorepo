@@ -1,7 +1,7 @@
 import { EndingType } from '@prisma/client';
 import { StatusCodes } from 'http-status-codes';
 import { ISessionRepository } from '../../interfaces';
-import type { HistorySessionWithRelations } from '../../repositories/SessionRepository';
+import type { StorySessionWithRelations } from '../../repositories/SessionRepository';
 import { ConclusionBody } from '../../types/http/session.validation';
 import { HttpError } from '../../utils/http-error';
 
@@ -121,7 +121,7 @@ export class SessionConclusionService {
   }
 
   private buildAnswersMap(
-    session: HistorySessionWithRelations,
+    session: StorySessionWithRelations,
     answers: { fieldId: string; optionId: string }[]
   ): Record<string, string> {
     const map: Record<string, string> = {};
@@ -154,10 +154,10 @@ export class SessionConclusionService {
   }
 
   private resolveEnding(
-    session: HistorySessionWithRelations,
+    session: StorySessionWithRelations,
     answersByFieldDefId: Record<string, string>,
     discoveredClueIds: Set<string>
-  ): HistorySessionWithRelations['endingSnapshots'][number] {
+  ): StorySessionWithRelations['endingSnapshots'][number] {
     const eligible = session.endingSnapshots.filter((snapshot) => {
       const matches = this.matchesConclusion(
         snapshot.conclusionMatches as Record<string, string>,
@@ -201,8 +201,8 @@ export class SessionConclusionService {
   }
 
   private computeScore(
-    session: HistorySessionWithRelations,
-    ending: HistorySessionWithRelations['endingSnapshots'][number],
+    session: StorySessionWithRelations,
+    ending: StorySessionWithRelations['endingSnapshots'][number],
     answersByFieldDefId: Record<string, string>
   ): ConclusionScoreDto {
     const discoveredClues = session.clues.filter((c) => c.discovered).length;

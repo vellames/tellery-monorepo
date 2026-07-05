@@ -1,12 +1,8 @@
-import {
-  HistorySession,
-  InteractionRole,
-  LlmCallPurpose,
-} from '@prisma/client';
+import { StorySession, InteractionRole, LlmCallPurpose } from '@prisma/client';
 import type { UpdatedSecretState } from '../../engine/character/character-agent.service';
-import type { HistoryWithDefinitions } from '../../repositories/HistoryDefinitionRepository';
+import type { StoryWithDefinitions } from '../../repositories/StoryDefinitionRepository';
 import type {
-  HistorySessionWithRelations,
+  StorySessionWithRelations,
   SessionListItemWithEnding,
 } from '../../repositories/SessionRepository';
 import { PrismaTransaction } from '../../types/database.types';
@@ -44,18 +40,18 @@ export interface SessionCostSummary {
 
 export interface ISessionRepository extends IBaseRepository {
   create(
-    input: { userId: string; history: HistoryWithDefinitions },
+    input: { userId: string; story: StoryWithDefinitions },
     tx?: PrismaTransaction
-  ): Promise<HistorySessionWithRelations>;
+  ): Promise<StorySessionWithRelations>;
   findById(
     sessionId: string,
     tx?: PrismaTransaction
-  ): Promise<HistorySessionWithRelations | null>;
-  findActiveByHistory(
+  ): Promise<StorySessionWithRelations | null>;
+  findActiveByStory(
     userId: string,
-    historyId: string,
+    storyId: string,
     tx?: PrismaTransaction
-  ): Promise<HistorySession | null>;
+  ): Promise<StorySession | null>;
   abandon(sessionId: string, tx?: PrismaTransaction): Promise<void>;
   list(
     userId?: string,

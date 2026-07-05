@@ -127,7 +127,7 @@
       "free": "Free",
       "duration": "{minutes} min"
     },
-    "history": {
+    "story": {
       "title": "My investigations",
       "subtitle": "Pick up where you left off.",
       "empty": "You haven't started any investigations yet.",

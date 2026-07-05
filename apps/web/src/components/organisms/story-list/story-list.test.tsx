@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { screen } from '@testing-library/react';
 import { StoryList } from '@/components/organisms/story-list/story-list';
 import { renderWithProviders } from '@/test-utils';
-import type { History } from '@/lib/types/history';
+import type { Story } from '@/lib/types/story';
 
-const histories: History[] = [
+const stories: Story[] = [
   {
     id: '1',
     slug: 'o-ultimo-quarto',
@@ -32,8 +32,8 @@ const histories: History[] = [
 ];
 
 describe('StoryList', () => {
-  it('renders the section title and a card per history', () => {
-    renderWithProviders(<StoryList histories={histories} />);
+  it('renders the section title and a card per story', () => {
+    renderWithProviders(<StoryList stories={stories} />);
 
     expect(screen.getByText('Próximas histórias')).toBeInTheDocument();
     expect(screen.getByText('O Último Quarto')).toBeInTheDocument();
@@ -41,14 +41,14 @@ describe('StoryList', () => {
   });
 
   it('renders the see all link to the stories page', () => {
-    renderWithProviders(<StoryList histories={histories} />);
+    renderWithProviders(<StoryList stories={stories} />);
 
     const seeAll = screen.getByText('Ver todas').closest('a');
     expect(seeAll).toHaveAttribute('href', '/stories');
   });
 
-  it('renders nothing when histories is empty', () => {
-    const { container } = renderWithProviders(<StoryList histories={[]} />);
+  it('renders nothing when stories is empty', () => {
+    const { container } = renderWithProviders(<StoryList stories={[]} />);
 
     expect(container.firstChild).toBeNull();
   });

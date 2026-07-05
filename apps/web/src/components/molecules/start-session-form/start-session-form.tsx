@@ -4,17 +4,17 @@ import { useStartSession } from '@/lib/hooks/use-start-session';
 import { StartSessionButton } from '../start-session-button/start-session-button';
 
 export interface StartSessionFormProps {
-  historyId: string;
+  storyId: string;
 }
 
-export function StartSessionForm({ historyId }: StartSessionFormProps) {
+export function StartSessionForm({ storyId }: StartSessionFormProps) {
   const startSession = useStartSession();
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        startSession.mutate(historyId);
+        startSession.mutate(storyId);
       }}
     >
       <StartSessionButton pending={startSession.isPending} />

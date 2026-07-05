@@ -21,7 +21,7 @@ const baseSession: SessionDetail = {
   updatedAt: new Date('2026-07-05T10:00:00Z'),
   deletedAt: null,
   userId: 'user-1',
-  historyId: 'history-1',
+  storyId: 'story-1',
   title: 'The Manor Mystery',
   subtitle: null,
   teaser: '',

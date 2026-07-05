@@ -14,8 +14,8 @@ const baseSession: SessionState = {
   status: 'active',
   startedAt: '2026-01-01T00:00:00.000Z',
   completedAt: null,
-  history: {
-    id: 'history-1',
+  story: {
+    id: 'story-1',
     title: 'O Bilhete na Mesa 7',
     subtitle: 'Um bilhete sem assinatura',
     teaser: 'teaser',

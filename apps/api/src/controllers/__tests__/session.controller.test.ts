@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { SessionController } from '../session.controller';
-import { HistorySessionService } from '../../services/session/history-session.service';
+import { StorySessionService } from '../../services/session/story-session.service';
 import { SessionInteractionService } from '../../services/session/session-interaction.service';
 import { SessionConclusionService } from '../../services/session/session-conclusion.service';
 import { IAudioStorage, IAudioTranscriptionService } from '../../interfaces';
@@ -10,7 +10,7 @@ import { HttpError } from '../../utils/http-error';
 import { TranslationFunction } from '../../types/i18n.types';
 
 describe('SessionController - interact', () => {
-  let historySessionService: DeepMockProxy<HistorySessionService>;
+  let storySessionService: DeepMockProxy<StorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
   let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
   let audioStorage: DeepMockProxy<IAudioStorage>;
@@ -23,13 +23,13 @@ describe('SessionController - interact', () => {
   let t: TranslationFunction;
 
   beforeEach(() => {
-    historySessionService = mockDeep<HistorySessionService>();
+    storySessionService = mockDeep<StorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
     sessionConclusionService = mockDeep<SessionConclusionService>();
     audioStorage = mockDeep<IAudioStorage>();
     audioTranscription = mockDeep<IAudioTranscriptionService>();
     controller = new SessionController(
-      historySessionService,
+      storySessionService,
       sessionInteractionService,
       sessionConclusionService,
       audioStorage,
@@ -42,7 +42,7 @@ describe('SessionController - interact', () => {
   });
 
   afterEach(() => {
-    mockReset(historySessionService);
+    mockReset(storySessionService);
     mockReset(sessionInteractionService);
     mockReset(sessionConclusionService);
   });
@@ -157,7 +157,7 @@ describe('SessionController - interact', () => {
 });
 
 describe('SessionController - start', () => {
-  let historySessionService: DeepMockProxy<HistorySessionService>;
+  let storySessionService: DeepMockProxy<StorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
   let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
   let audioStorage: DeepMockProxy<IAudioStorage>;
@@ -170,13 +170,13 @@ describe('SessionController - start', () => {
   let t: TranslationFunction;
 
   beforeEach(() => {
-    historySessionService = mockDeep<HistorySessionService>();
+    storySessionService = mockDeep<StorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
     sessionConclusionService = mockDeep<SessionConclusionService>();
     audioStorage = mockDeep<IAudioStorage>();
     audioTranscription = mockDeep<IAudioTranscriptionService>();
     controller = new SessionController(
-      historySessionService,
+      storySessionService,
       sessionInteractionService,
       sessionConclusionService,
       audioStorage,
@@ -189,7 +189,7 @@ describe('SessionController - start', () => {
   });
 
   afterEach(() => {
-    mockReset(historySessionService);
+    mockReset(storySessionService);
     mockReset(sessionInteractionService);
     mockReset(sessionConclusionService);
   });
@@ -198,19 +198,19 @@ describe('SessionController - start', () => {
     const response = {
       session: { id: 'session-1' },
       sessionStatus: 'active',
-      history: { id: 'history-1', title: 'O Bilhete na Mesa 7' },
+      story: { id: 'story-1', title: 'O Bilhete na Mesa 7' },
     } as never;
-    historySessionService.startSession.mockResolvedValue(response);
+    storySessionService.startSession.mockResolvedValue(response);
     req = {
-      body: { historyId: 'history-1' },
+      body: { storyId: 'story-1' },
       user: { id: 'user-1', email: 'ana@teste.local' },
       t,
     };
 
     await controller.start(req as Request, res as Response);
 
-    expect(historySessionService.startSession).toHaveBeenCalledWith('user-1', {
-      historyId: 'history-1',
+    expect(storySessionService.startSession).toHaveBeenCalledWith('user-1', {
+      storyId: 'story-1',
     });
     expect(status).toHaveBeenCalledWith(StatusCodes.CREATED);
     expect(json).toHaveBeenCalledWith({
@@ -220,7 +220,7 @@ describe('SessionController - start', () => {
     });
   });
 
-  it('returns 422 when body has neither historyId nor historySlug', async () => {
+  it('returns 422 when body has neither storyId nor storySlug', async () => {
     req = {
       body: {},
       user: { id: 'user-1', email: 'ana@teste.local' },
@@ -229,16 +229,16 @@ describe('SessionController - start', () => {
 
     await controller.start(req as Request, res as Response);
 
-    expect(historySessionService.startSession).not.toHaveBeenCalled();
+    expect(storySessionService.startSession).not.toHaveBeenCalled();
     expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
   });
 
   it('returns 404 when the user is not found', async () => {
-    historySessionService.startSession.mockRejectedValue(
+    storySessionService.startSession.mockRejectedValue(
       new HttpError(StatusCodes.NOT_FOUND, 'user-1', 'user:errors.unknownUser')
     );
     req = {
-      body: { historyId: 'history-1' },
+      body: { storyId: 'story-1' },
       user: { id: 'user-1', email: 'ana@teste.local' },
       t,
     };
@@ -253,7 +253,7 @@ describe('SessionController - start', () => {
 });
 
 describe('SessionController - getSession', () => {
-  let historySessionService: DeepMockProxy<HistorySessionService>;
+  let storySessionService: DeepMockProxy<StorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
   let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
   let audioStorage: DeepMockProxy<IAudioStorage>;
@@ -266,13 +266,13 @@ describe('SessionController - getSession', () => {
   let t: TranslationFunction;
 
   beforeEach(() => {
-    historySessionService = mockDeep<HistorySessionService>();
+    storySessionService = mockDeep<StorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
     sessionConclusionService = mockDeep<SessionConclusionService>();
     audioStorage = mockDeep<IAudioStorage>();
     audioTranscription = mockDeep<IAudioTranscriptionService>();
     controller = new SessionController(
-      historySessionService,
+      storySessionService,
       sessionInteractionService,
       sessionConclusionService,
       audioStorage,
@@ -285,14 +285,14 @@ describe('SessionController - getSession', () => {
   });
 
   afterEach(() => {
-    mockReset(historySessionService);
+    mockReset(storySessionService);
     mockReset(sessionInteractionService);
     mockReset(sessionConclusionService);
   });
 
   it('returns 200 with the session state for the authenticated user', async () => {
     const response = { id: 'session-1', status: 'active', clues: [] } as never;
-    historySessionService.getSessionState.mockResolvedValue(response);
+    storySessionService.getSessionState.mockResolvedValue(response);
     req = {
       params: { sessionId: 'session-1' },
       user: { id: 'user-1', email: 'ana@teste.local' },
@@ -301,7 +301,7 @@ describe('SessionController - getSession', () => {
 
     await controller.getSession(req as Request, res as Response);
 
-    expect(historySessionService.getSessionState).toHaveBeenCalledWith(
+    expect(storySessionService.getSessionState).toHaveBeenCalledWith(
       'session-1',
       'user-1'
     );
@@ -314,7 +314,7 @@ describe('SessionController - getSession', () => {
   });
 
   it('returns 404 when the session does not exist', async () => {
-    historySessionService.getSessionState.mockRejectedValue(
+    storySessionService.getSessionState.mockRejectedValue(
       new HttpError(
         StatusCodes.NOT_FOUND,
         'session-1',
@@ -336,7 +336,7 @@ describe('SessionController - getSession', () => {
   });
 
   it('returns 403 when the session is not owned by the user', async () => {
-    historySessionService.getSessionState.mockRejectedValue(
+    storySessionService.getSessionState.mockRejectedValue(
       new HttpError(
         StatusCodes.FORBIDDEN,
         'session-1',
@@ -356,7 +356,7 @@ describe('SessionController - getSession', () => {
 });
 
 describe('SessionController - getCost', () => {
-  let historySessionService: DeepMockProxy<HistorySessionService>;
+  let storySessionService: DeepMockProxy<StorySessionService>;
   let sessionInteractionService: DeepMockProxy<SessionInteractionService>;
   let sessionConclusionService: DeepMockProxy<SessionConclusionService>;
   let audioStorage: DeepMockProxy<IAudioStorage>;
@@ -369,13 +369,13 @@ describe('SessionController - getCost', () => {
   let t: TranslationFunction;
 
   beforeEach(() => {
-    historySessionService = mockDeep<HistorySessionService>();
+    storySessionService = mockDeep<StorySessionService>();
     sessionInteractionService = mockDeep<SessionInteractionService>();
     sessionConclusionService = mockDeep<SessionConclusionService>();
     audioStorage = mockDeep<IAudioStorage>();
     audioTranscription = mockDeep<IAudioTranscriptionService>();
     controller = new SessionController(
-      historySessionService,
+      storySessionService,
       sessionInteractionService,
       sessionConclusionService,
       audioStorage,
@@ -388,7 +388,7 @@ describe('SessionController - getCost', () => {
   });
 
   afterEach(() => {
-    mockReset(historySessionService);
+    mockReset(storySessionService);
     mockReset(sessionInteractionService);
     mockReset(sessionConclusionService);
   });
@@ -402,7 +402,7 @@ describe('SessionController - getCost', () => {
         { purpose: 'character', costUsd: 0.0002, calls: 2, audioSeconds: null },
       ],
     };
-    historySessionService.getSessionCost.mockResolvedValue(cost);
+    storySessionService.getSessionCost.mockResolvedValue(cost);
     req = {
       params: { sessionId: 'session-1' },
       user: { id: 'user-1', email: 'ana@teste.local' },
@@ -411,7 +411,7 @@ describe('SessionController - getCost', () => {
 
     await controller.getCost(req as Request, res as Response);
 
-    expect(historySessionService.getSessionCost).toHaveBeenCalledWith(
+    expect(storySessionService.getSessionCost).toHaveBeenCalledWith(
       'session-1',
       'user-1'
     );
@@ -424,7 +424,7 @@ describe('SessionController - getCost', () => {
   });
 
   it('returns 404 when the session does not exist', async () => {
-    historySessionService.getSessionCost.mockRejectedValue(
+    storySessionService.getSessionCost.mockRejectedValue(
       new HttpError(
         StatusCodes.NOT_FOUND,
         'session-1',
@@ -443,7 +443,7 @@ describe('SessionController - getCost', () => {
   });
 
   it('returns 403 when the session is not owned by the user', async () => {
-    historySessionService.getSessionCost.mockRejectedValue(
+    storySessionService.getSessionCost.mockRejectedValue(
       new HttpError(
         StatusCodes.FORBIDDEN,
         'session-1',

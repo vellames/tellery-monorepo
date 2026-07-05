@@ -33,11 +33,11 @@ describe('POST /api/session/start', () => {
   it('starts a session and returns the sessionId', async () => {
     vi.mocked(apiFetch).mockResolvedValue({ session: { id: 'session-1' } });
 
-    const res = await POST(makeReq({ historyId: 'history-1' }));
+    const res = await POST(makeReq({ storyId: 'story-1' }));
 
     expect(apiFetch).toHaveBeenCalledWith('/session/start', {
       method: 'POST',
-      body: JSON.stringify({ historyId: 'history-1' }),
+      body: JSON.stringify({ storyId: 'story-1' }),
     });
     expect(res.status).toBe(200);
     expect((await res.json()).sessionId).toBe('session-1');
@@ -48,7 +48,7 @@ describe('POST /api/session/start', () => {
       new ApiError('You have no credits available', 402)
     );
 
-    const res = await POST(makeReq({ historyId: 'history-1' }));
+    const res = await POST(makeReq({ storyId: 'story-1' }));
 
     expect(res.status).toBe(402);
     expect((await res.json()).error).toBe('You have no credits available');

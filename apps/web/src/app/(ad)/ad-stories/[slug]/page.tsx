@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
-import { fetchHistoryBySlug } from '@/lib/api/history';
+import { fetchStoryBySlug } from '@/lib/api/story';
 import { fetchSessions } from '@/lib/api/session';
 import { fetchAvailableCredits } from '@/lib/api/credits-server';
 import { fetchSubscription } from '@/lib/api/subscription-data';
@@ -32,7 +32,7 @@ export default async function AdStoryPage({
   }
 
   // Fluxo 3: not logged in → create a temp user client-side first (the catalog
-  // endpoints require auth, so we cannot resolve the history yet). Once the
+  // endpoints require auth, so we cannot resolve the story yet). Once the
   // launcher creates the temp user and calls router.refresh(), this page
   // re-renders authenticated and falls through to fluxo 2.
   if (!user) {
@@ -40,14 +40,14 @@ export default async function AdStoryPage({
   }
 
   // Fluxo 2: logged in as a temporary user — now we can fetch the (auth-gated)
-  // history catalog. Resolve by slug, then load the full detail by id.
-  const history = await fetchHistoryBySlug(slug).catch(() => null);
-  if (!history) {
+  // story catalog. Resolve by slug, then load the full detail by id.
+  const story = await fetchStoryBySlug(slug).catch(() => null);
+  if (!story) {
     notFound();
   }
 
   // Premium stories require a real account + subscription.
-  if (!history.isFree) {
+  if (!story.isFree) {
     return (
       <div className="mx-auto flex max-w-md flex-col items-center gap-5 px-4 py-16 text-center">
         <h1 className="font-heading text-primary text-2xl font-semibold tracking-tight">
@@ -70,7 +70,7 @@ export default async function AdStoryPage({
   let activeSessionId: string | null = null;
   try {
     const sessions = await fetchSessions(1, 50, 'active');
-    const active = sessions.items.find((s) => s.historyId === history.id);
+    const active = sessions.items.find((s) => s.storyId === story.id);
     activeSessionId = active?.id ?? null;
   } catch {
     // ignore — treat as no active session
@@ -91,18 +91,18 @@ export default async function AdStoryPage({
   }
   const hasActiveSubscription = isActiveSubscription(subscription);
 
-  const requiresSubscription = !history.isFree && !hasActiveSubscription;
+  const requiresSubscription = !story.isFree && !hasActiveSubscription;
 
   return (
     <>
       <StoryStartActions
-        historyId={history.id}
+        storyId={story.id}
         activeSessionId={activeSessionId}
         availableCredits={availableCredits}
         requiresSubscription={requiresSubscription}
       />
       <StoryDetailContent
-        history={history}
+        story={story}
         activeSessionId={activeSessionId}
         availableCredits={availableCredits}
         hasActiveSubscription={hasActiveSubscription}

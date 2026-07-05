@@ -7,14 +7,21 @@ export const requestLogger = (
 ): void => {
   const start = Date.now();
 
+  // On response finish, log the request line. For error responses (>= 400)
+  // also include the body, res.locals, and any error attached to res.locals
+  // so the cause isn't lost — Express only sends the status code to the logger
+  // by default.
   res.on('finish', () => {
     const duration = Date.now() - start;
-    const logLevel = res.statusCode >= 400 ? 'error' : 'info';
-
+    const isError = res.statusCode >= 400;
     const logMessage = `[${new Date().toISOString()}] ${req.method} ${req.path} ${res.statusCode} - ${duration}ms`;
 
-    if (logLevel === 'error') {
-      console.error(logMessage);
+    if (isError) {
+      console.error(logMessage, {
+        statusCode: res.statusCode,
+        body: req.body,
+        locals: res.locals,
+      });
     } else {
       console.log(logMessage);
     }

@@ -2,10 +2,10 @@
   "errors": {
     "unknownSession": "Sessão desconhecida: {{id}}",
     "unknownSessionState": "Estado de sessão desconhecido: {{id}}",
-    "unknownHistory": "História desconhecida: {{id}}",
+    "unknownStory": "História desconhecida: {{id}}",
     "unknownCharacter": "Personagem desconhecido: {{id}}",
     "unknownObject": "Objeto desconhecido: {{id}}",
-    "noHistoryAvailable": "Nenhuma história disponível para iniciar",
+    "noStoryAvailable": "Nenhuma história disponível para iniciar",
     "intentDetectionFailed": "Falha na detecção de intenção",
     "sessionNotOwned": "Você não tem acesso a esta sessão",
     "sessionAlreadyCompleted": "Esta sessão já foi concluída",

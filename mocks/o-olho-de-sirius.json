@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/o-olho-de-sirius/history/cover.jpg",
-  "thumbnailUrl": "histories/o-olho-de-sirius/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-olho-de-sirius/story/cover.jpg",
+  "thumbnailUrl": "stories/o-olho-de-sirius/story/thumbnail.jpg",
   "opening": {
     "shortText": "Otávio Salgado está morto aos pés do telescópio. A tempestade isolou o observatório. Cinco pessoas dormiam no prédio.",
     "fullText": "São 5h da manhã no Observatório Serra Alta, no alto da serra, e a tempestade que subiu à noite ainda bloqueia a única estrada. Cleusa, a encarregada da hospedagem, subiu à cúpula para avisar que o café estava pronto e encontrou Otávio Salgado — astrônomo-chefe do observatório, 62 anos — caído ao pé da grande montagem do telescópio, sem vida. Não há sinal de luta ampla, mas o contrapeso de latão da montagem equatorial está deslocado e há um filete de sangue na borda. Otávio vestia o pijama; faltava o óculos. Para completar, a passagem do cometa Iris — evento pelo qual todos haviam subido a montanha — ainda estava marcada para a madrugada, e a cúpula estava aberta para o céu. Cinco pessoas dormiam no prédio isolado pela tempestade: Helena, co-diretora e co-autora das grandes publicações de Otávio; Tomé, o filho técnico de Otávio; Ingrid, uma pesquisadora visitante e doadora importante do instituto; Lucas, aluno de doutorado orientado por Otávio; e a própria Cleusa, que vive no observatório. Cabe a você examinar a cúpula e o prédio, ouvir as cinco versões e descobrir quem silenciou Otávio antes que o cometa cruzasse o céu.",
@@ -381,7 +381,7 @@
       "name": "Helena",
       "role": "Co-diretora e co-autora das publicações do observatório",
       "shortDescription": "Astrônoma respeitada e co-diretora do observatório, companheira de publicações de Otávio há duas décadas.",
-      "imageUrl": "histories/o-olho-de-sirius/characters/helena.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/characters/helena.jpg",
       "personality": "Inteligente, controlada e ambiciosa. Mantém a compostura sob pressão e trata a carreira como construção cuidadosa de reputação.",
       "speakingStyle": "Fala em frases completas e medidas, com vocabulário acadêmico. Escolhe cada palavra; raramente se contradiz.",
       "publicKnowledge": [
@@ -591,7 +591,7 @@
       "name": "Tomé",
       "role": "Técnico de manutenção do observatório, filho de Otávio",
       "shortDescription": "Técnico de manutenção do observatório e filho de Otávio, com uma relação difícil com o pai.",
-      "imageUrl": "histories/o-olho-de-sirius/characters/tome.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/characters/tome.jpg",
       "personality": "Prático, magoado e orgulhoso. Carrega ressentimento antigo contra o pai, mas tem um álibi sólido e não esconde o desconforto de ser suspeito natural.",
       "speakingStyle": "Fala direto, com gírias de oficina e humor ácido. Evita floreios acadêmicos que o pai valorizava.",
       "publicKnowledge": [
@@ -671,7 +671,7 @@
       "name": "Ingrid",
       "role": "Pesquisadora visitante e principal doadora do instituto",
       "shortDescription": "Pesquisadora visitante e principal doadora do instituto, com interesses conflitantes na linha editorial do observatório.",
-      "imageUrl": "histories/o-olho-de-sirius/characters/ingrid.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/characters/ingrid.jpg",
       "personality": "Empresarial, articulada e acostumada a comprar influência com verbas. Trata o observatório como um investimento cujo retorno inclui reconhecimento público.",
       "speakingStyle": "Fala com clareza executiva, cita contratos e prazos, e não esconde que financia grande parte do instituto.",
       "publicKnowledge": [
@@ -744,7 +744,7 @@
       "name": "Lucas",
       "role": "Aluno de doutorado orientando de Otávio",
       "shortDescription": "Aluno de doutorado orientado por Otávio, no último ano, com tese dependente de dados antigos do observatório.",
-      "imageUrl": "histories/o-olho-de-sirius/characters/lucas.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/characters/lucas.jpg",
       "personality": "Brilhante, ansioso e inseguro. Cultiva reverência pelo orientador mas teme que a verdade sobre os dados antigos afunde sua tese.",
       "speakingStyle": "Fala rápido, tropeça em jargões técnicos quando nervoso, e corrige a si mesmo o tempo todo.",
       "publicKnowledge": [
@@ -817,7 +817,7 @@
       "name": "Cleusa",
       "role": "Encarregada da hospedagem e da cozinha do observatório",
       "shortDescription": "Encarregada da hospedagem e da cozinha, que vive no observatório e encontrou o corpo ao levar o café.",
-      "imageUrl": "histories/o-olho-de-sirius/characters/cleusa.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/characters/cleusa.jpg",
       "personality": "Observadora, bondosa e prática. Conhece a rotina de todos e nota o que ninguém mais nota.",
       "speakingStyle": "Fala com calma mineira, mistura conselhos e comentários diretos, e usa palavras simples e afetivas.",
       "publicKnowledge": [
@@ -884,7 +884,7 @@
       "deletedAt": null,
       "name": "Cúpula do telescópio",
       "shortDescription": "Sala circular no topo do observatório que abriga o grande telescópio e sua montagem equatorial.",
-      "imageUrl": "histories/o-olho-de-sirius/location/cupula.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/location/cupula.jpg",
       "initialDescription": "A cúpula é uma sala circular no alto do observatório, com paredes de metal pintado e uma fenda no teto que se abre para o céu ainda escuro da tempestade. No centro domina a montagem equatorial do grande telescópio, com seu tubo inclinado e o contrapeso de latão brilhante na extremidade de uma haste. Uma escada em espiral de metal sobe até aqui. Há marcas no piso de borracha e um brilho úmido na base da montagem.",
       "ambientClueIds": ["clue_dome_slit_open"],
       "objectIds": ["contrapeso_latao", "oculos_otavio"]
@@ -896,7 +896,7 @@
       "deletedAt": null,
       "name": "Escritório dos astrônomos",
       "shortDescription": "Sala com mesas de trabalho, pranchetas de observação e os computadores de análise.",
-      "imageUrl": "histories/o-olho-de-sirius/location/escritorio.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/location/escritorio.jpg",
       "initialDescription": "O escritório fica no segundo andar, com uma parede de janelas voltada para o vale escuro. Há mesas de trabalho com pranchetas de observação, um computador ligado com a tela travada, e uma estante baixa com caixas-arquivo etiquetadas por ano. Sobre uma das mesas repousam folhas impressas e um caderno aberto.",
       "ambientClueIds": [],
       "objectIds": ["caderno_otavio", "rascunho_retratacao", "caixa_sirius"]
@@ -908,7 +908,7 @@
       "deletedAt": null,
       "name": "Laboratório de processamento de dados",
       "shortDescription": "Sala no subsolo com os servidores e estações de análise fotométrica.",
-      "imageUrl": "histories/o-olho-de-sirius/location/laboratorio.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/location/laboratorio.jpg",
       "initialDescription": "O laboratório fica no subsolo, refrigerado e barulhento com o zumbido dos servidores. Há três estações de trabalho com monitores, uma bancada com discos externos e um quadro de horários de uso colado na parede. Um dos terminais mostra uma sessão encerrada mas recente.",
       "ambientClueIds": [],
       "objectIds": ["servidor_logs", "quadro_horarios"]
@@ -920,7 +920,7 @@
       "deletedAt": null,
       "name": "Corredor da hospedagem",
       "shortDescription": "Corredor dos quartos de hospedagem, com o painel de acessos do prédio.",
-      "imageUrl": "histories/o-olho-de-sirius/location/sala_hospedagem.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/location/sala_hospedagem.jpg",
       "initialDescription": "O corredor da hospedagem reúne os quartos dos visitantes e da Cleusa. Junto à porta há um painel eletrônico de acessos que registra quem entra e sai das áreas restritas. O chão de madeira range com a umidade da tempestade.",
       "ambientClueIds": [],
       "objectIds": ["painel_acessos"]
@@ -932,7 +932,7 @@
       "deletedAt": null,
       "name": "Oficina da garagem",
       "shortDescription": "Oficina ao nível do solo, junto à cozinha, onde Tomé faz a manutenção da cúpula.",
-      "imageUrl": "histories/o-olho-de-sirius/location/oficina.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/location/oficina.jpg",
       "initialDescription": "A oficina fica ao lado da cozinha, no nível do solo. Há um banco de trabalho com ferramentas, uma engrenagem desmontada da cúpula sobre um pano, e gavetas etiquetadas com peças de reposição. O ar cheira a graxa e metal.",
       "ambientClueIds": [],
       "objectIds": ["engrenagem_cupula", "planilha_despesas"]
@@ -946,7 +946,7 @@
       "deletedAt": null,
       "name": "Contrapeso da montagem equatorial",
       "shortDescription": "Peso de latão na extremidade da haste do telescópio.",
-      "imageUrl": "histories/o-olho-de-sirius/object/contrapeso_latao.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/contrapeso_latao.jpg",
       "locationId": "cupula",
       "initialDescription": "O contrapeso de latão brilha na ponta da haste da montagem equatorial. É uma peça maciça, mais pesada do que parece, que desliza para calibrar o telescópio.",
       "clueRevealRules": [
@@ -977,7 +977,7 @@
       "deletedAt": null,
       "name": "Óculos de Otávio",
       "shortDescription": "Óculos de armação fina encontrados longe do corpo.",
-      "imageUrl": "histories/o-olho-de-sirius/object/oculos_otavio.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/oculos_otavio.jpg",
       "locationId": "cupula",
       "initialDescription": "Um par de óculos de armação fina repousa sobre uma caixa de controles, a alguns passos do corpo.",
       "clueRevealRules": [
@@ -996,7 +996,7 @@
       "deletedAt": null,
       "name": "Caderno de anotações de Otávio",
       "shortDescription": "Caderno aberto sobre a mesa do escritório.",
-      "imageUrl": "histories/o-olho-de-sirius/object/caderno_otavio.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/caderno_otavio.jpg",
       "locationId": "escritorio",
       "initialDescription": "O caderno de capa preta de Otávio está aberto sobre a mesa, com anotações à caneta nas últimas páginas.",
       "clueRevealRules": [
@@ -1021,7 +1021,7 @@
       "deletedAt": null,
       "name": "Rascunho de retratação",
       "shortDescription": "Folhas impressas com o esboço de um artigo de retratação.",
-      "imageUrl": "histories/o-olho-de-sirius/object/rascunho_retratacao.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/rascunho_retratacao.jpg",
       "locationId": "escritorio",
       "initialDescription": "Três folhas impressas, com marcas de caneta vermelha, descansam sob o caderno de Otávio.",
       "clueRevealRules": [
@@ -1040,7 +1040,7 @@
       "deletedAt": null,
       "name": "Caixa-arquivo Sirius-9",
       "shortDescription": "Caixa etiquetada com os dados da campanha de Sirius-9.",
-      "imageUrl": "histories/o-olho-de-sirius/object/caixa_sirius.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/caixa_sirius.jpg",
       "locationId": "escritorio",
       "initialDescription": "Uma caixa-arquivo cinza, etiquetada 'SIRIUS-9 / CAMPANHA 2021', repousa aberta sobre a estante baixa, com discos e folhas impressas no interior.",
       "clueRevealRules": [
@@ -1065,7 +1065,7 @@
       "deletedAt": null,
       "name": "Terminal do servidor de logs",
       "shortDescription": "Terminal no subsolo que registra sessões e acessos.",
-      "imageUrl": "histories/o-olho-de-sirius/object/servidor_logs.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/servidor_logs.jpg",
       "locationId": "laboratorio",
       "initialDescription": "Um dos terminais do laboratório exibe o registro de sessões e acessos do servidor central, com uma janela de log aberta.",
       "clueRevealRules": [
@@ -1084,7 +1084,7 @@
       "deletedAt": null,
       "name": "Quadro de horários do laboratório",
       "shortDescription": "Quadro de reservas das estações de processamento.",
-      "imageUrl": "histories/o-olho-de-sirius/object/quadro_horarios.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/quadro_horarios.jpg",
       "locationId": "laboratorio",
       "initialDescription": "Um quadro de cortiça na parede lista as reservas das estações de processamento por dia e horário, com etiquetas coloridas.",
       "clueRevealRules": [
@@ -1103,7 +1103,7 @@
       "deletedAt": null,
       "name": "Painel eletrônico de acessos",
       "shortDescription": "Painel no corredor da hospedagem que registra entradas nas áreas restritas.",
-      "imageUrl": "histories/o-olho-de-sirius/object/painel_acessos.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/painel_acessos.jpg",
       "locationId": "sala_hospedagem",
       "initialDescription": "O painel eletrônico junto à porta da hospedagem exibe uma lista cronológica de acessos às áreas restritas do prédio.",
       "clueRevealRules": [
@@ -1128,7 +1128,7 @@
       "deletedAt": null,
       "name": "Engrenagem da cúpula",
       "shortDescription": "Peça desmontada da cúpula sobre o banco da oficina.",
-      "imageUrl": "histories/o-olho-de-sirius/object/engrenagem_cupula.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/engrenagem_cupula.jpg",
       "locationId": "oficina",
       "initialDescription": "Uma engrenagem metálica de bom tamanho, desmontada da mecânica da cúpula, repousa sobre um pano no banco de trabalho da oficina.",
       "clueRevealRules": [
@@ -1147,7 +1147,7 @@
       "deletedAt": null,
       "name": "Planilha de despesas do observatório",
       "shortDescription": "Folhas com anotações de salários atrasados.",
-      "imageUrl": "histories/o-olho-de-sirius/object/planilha_despesas.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/object/planilha_despesas.jpg",
       "locationId": "oficina",
       "initialDescription": "Folhas impressas, com marcações a caneta, estão dobradas ao pé da engrenagem sobre o banco de trabalho.",
       "clueRevealRules": [
@@ -1663,7 +1663,7 @@
       "deletedAt": null,
       "title": "A luz que faltava",
       "type": "full_truth",
-      "imageUrl": "histories/o-olho-de-sirius/endings/full_truth.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_killed_otavio": "helena",
@@ -1693,7 +1693,7 @@
         },
         "requiresClueIds": ["clue_helena_pushed_otavio"]
       },
-      "imageUrl": "histories/o-olho-de-sirius/endings/partial_truth.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/endings/partial_truth.jpg",
       "summary": "Você identificou Helena como responsável pela morte de Otávio, mas não fechou o método exato, o motivo real e o paradeiro da evidência decisiva.",
       "epilogue": "Helena não consegue mais negar que esteve na cúpula, mas o silêncio sobre os dados de Sirius-9 pesa mais do que a confissão parcial. Sem os metadados e sem o rascunho de retratação na balança, o caso se arrasta entre a acusação e a dúvida. O cometa Iris atravessa o céu na noite seguinte, indiferente, e o telescópio de Serra Alta permanece apontado para um lugar onde ninguém mais quer olhar."
     },
@@ -1704,7 +1704,7 @@
       "deletedAt": null,
       "title": "O suspeito errado",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-olho-de-sirius/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-olho-de-sirius/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

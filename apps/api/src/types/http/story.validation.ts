@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { paginationQuerySchema } from './pagination.validation';
 
-export const listHistoriesQuerySchema = paginationQuerySchema.extend({
+export const listStoriesQuerySchema = paginationQuerySchema.extend({
   isFeatured: z.enum(['true', 'false']).transform((value) => value === 'true'),
   isFree: z
     .enum(['true', 'false'])
@@ -9,4 +9,4 @@ export const listHistoriesQuerySchema = paginationQuerySchema.extend({
     .transform((value) => (value === undefined ? undefined : value === 'true')),
 });
 
-export type ListHistoriesQuery = z.infer<typeof listHistoriesQuerySchema>;
+export type ListStoriesQuery = z.infer<typeof listStoriesQuerySchema>;

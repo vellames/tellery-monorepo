@@ -52,3 +52,20 @@ export const errorHandler = (
         : error.message,
   });
 };
+
+/**
+ * Catch-all for async errors thrown inside route handlers that weren't caught
+ * by a try/catch and therefore never reached `errorHandler`. Express 4 does not
+ * forward rejected async handlers to the error middleware automatically — this
+ * listener (attached via `process.on('unhandledRejection')` in index.ts) is the
+ * safety net that surfaces them. Without it, the request just hangs or the
+ * server logs a bare 500 with no context.
+ */
+export const logUnhandledError = (where: string, error: unknown) => {
+  const err = error instanceof Error ? error : new Error(String(error));
+  console.error(`[unhandled:${where}]`, {
+    message: err.message,
+    name: err.name,
+    stack: err.stack,
+  });
+};

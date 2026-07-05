@@ -36,7 +36,7 @@ describe('S3ImageUrlSigner', () => {
     mockedGetSignedUrl.mockResolvedValue(signed);
 
     const result = await signer.sign(
-      'histories/o-bilhete-na-mesa-7/history/cover.png'
+      'stories/o-bilhete-na-mesa-7/story/cover.png'
     );
 
     expect(result).toBe(signed);
@@ -46,7 +46,7 @@ describe('S3ImageUrlSigner', () => {
     expect(command).toBeInstanceOf(GetObjectCommand);
     expect((command as GetObjectCommand).input).toEqual({
       Bucket: 'my-bucket',
-      Key: 'histories/o-bilhete-na-mesa-7/history/cover.png',
+      Key: 'stories/o-bilhete-na-mesa-7/story/cover.png',
     });
     expect(options).toEqual({ expiresIn: 3600 });
   });

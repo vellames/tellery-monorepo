@@ -2,12 +2,12 @@ import { z } from 'zod';
 
 export const startSessionBodySchema = z
   .object({
-    historyId: z.string().min(1).optional(),
-    historySlug: z.string().min(1).optional(),
+    storyId: z.string().min(1).optional(),
+    storySlug: z.string().min(1).optional(),
   })
-  .refine((data) => Boolean(data.historyId || data.historySlug), {
-    message: 'historyId or historySlug is required',
-    path: ['historyId'],
+  .refine((data) => Boolean(data.storyId || data.storySlug), {
+    message: 'storyId or storySlug is required',
+    path: ['storyId'],
   });
 
 export const interactBodySchema = z.object({

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { StatusCodes } from 'http-status-codes';
-import { fetchHistory } from '@/lib/api/history';
+import { fetchStory } from '@/lib/api/story';
 import { fetchSessions } from '@/lib/api/session';
 import { fetchAvailableCredits } from '@/lib/api/credits-server';
 import { fetchSubscription } from '@/lib/api/subscription-data';
@@ -11,13 +11,13 @@ import { StoryDetailContent } from '@/components/organisms';
 export default async function StoryStartPage({
   params,
 }: {
-  params: Promise<{ historyId: string }>;
+  params: Promise<{ storyId: string }>;
 }) {
-  const { historyId } = await params;
+  const { storyId } = await params;
 
-  let history: Awaited<ReturnType<typeof fetchHistory>>;
+  let story: Awaited<ReturnType<typeof fetchStory>>;
   try {
-    history = await fetchHistory(historyId);
+    story = await fetchStory(storyId);
   } catch (error) {
     if (error instanceof ApiError && error.status === StatusCodes.NOT_FOUND) {
       notFound();
@@ -28,7 +28,7 @@ export default async function StoryStartPage({
   let activeSessionId: string | null = null;
   try {
     const sessions = await fetchSessions(1, 50, 'active');
-    const active = sessions.items.find((s) => s.historyId === historyId);
+    const active = sessions.items.find((s) => s.storyId === storyId);
     activeSessionId = active?.id ?? null;
   } catch {
     // ignore — treat as no active session
@@ -51,7 +51,7 @@ export default async function StoryStartPage({
 
   return (
     <StoryDetailContent
-      history={history}
+      story={story}
       activeSessionId={activeSessionId}
       availableCredits={availableCredits}
       hasActiveSubscription={hasActiveSubscription}

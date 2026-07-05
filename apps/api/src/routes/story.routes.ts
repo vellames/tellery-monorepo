@@ -9,11 +9,11 @@ const authenticate: RequestHandler = (req, res, next) => {
 
 /**
  * @openapi
- * /histories:
+ * /stories:
  *   get:
- *     tags: [History]
- *     summary: List available histories
- *     description: Returns the catalog of published histories available to start.
+ *     tags: [Story]
+ *     summary: List available stories
+ *     description: Returns the catalog of published stories available to start.
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -23,13 +23,13 @@ const authenticate: RequestHandler = (req, res, next) => {
  *         required: true
  *         schema:
  *           type: boolean
- *         description: Filter histories by featured flag. Must be `true` or `false`.
+ *         description: Filter stories by featured flag. Must be `true` or `false`.
  *       - name: isFree
  *         in: query
  *         required: false
  *         schema:
  *           type: boolean
- *         description: Filter histories by access tier. `true` returns only free histories, `false` returns only premium histories. When omitted, all histories are returned regardless of access tier.
+ *         description: Filter stories by access tier. `true` returns only free stories, `false` returns only premium stories. When omitted, all stories are returned regardless of access tier.
  *       - name: page
  *         in: query
  *         required: false
@@ -49,7 +49,7 @@ const authenticate: RequestHandler = (req, res, next) => {
  *         description: Number of items per page.
  *     responses:
  *       200:
- *         description: Available histories
+ *         description: Available stories
  *         content:
  *           application/json:
  *             schema:
@@ -90,7 +90,7 @@ const authenticate: RequestHandler = (req, res, next) => {
  *                             nullable: true
  *                     total:
  *                       type: integer
- *                       description: Total number of matching histories.
+ *                       description: Total number of matching stories.
  *                     page:
  *                       type: integer
  *                     limit:
@@ -111,16 +111,16 @@ const authenticate: RequestHandler = (req, res, next) => {
  *               $ref: "#/components/schemas/ValidationError"
  */
 router.get('/', authenticate, async (req, res) => {
-  await DIContainer.getInstance().getHistoryController().list(req, res);
+  await DIContainer.getInstance().getStoryController().list(req, res);
 });
 
 /**
  * @openapi
- * /histories/slug/{slug}:
+ * /stories/slug/{slug}:
  *   get:
- *     tags: [History]
- *     summary: Get a single history by slug
- *     description: Returns the catalog data of a single published history by its slug.
+ *     tags: [Story]
+ *     summary: Get a single story by slug
+ *     description: Returns the catalog data of a single published story by its slug.
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -130,10 +130,10 @@ router.get('/', authenticate, async (req, res) => {
  *         required: true
  *         schema:
  *           type: string
- *         description: The history slug.
+ *         description: The story slug.
  *     responses:
  *       200:
- *         description: The requested history
+ *         description: The requested story
  *         content:
  *           application/json:
  *             schema:
@@ -180,36 +180,36 @@ router.get('/', authenticate, async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  *       404:
- *         description: History not found
+ *         description: Story not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
 router.get('/slug/:slug', authenticate, async (req, res) => {
-  await DIContainer.getInstance().getHistoryController().getBySlug(req, res);
+  await DIContainer.getInstance().getStoryController().getBySlug(req, res);
 });
 
 /**
  * @openapi
- * /histories/{historyId}:
+ * /stories/{storyId}:
  *   get:
- *     tags: [History]
- *     summary: Get a single history
- *     description: Returns the catalog data of a single published history by id.
+ *     tags: [Story]
+ *     summary: Get a single story
+ *     description: Returns the catalog data of a single published story by id.
  *     security:
  *       - BearerAuth: []
  *     parameters:
  *       - $ref: '#/components/parameters/AcceptLanguage'
- *       - name: historyId
+ *       - name: storyId
  *         in: path
  *         required: true
  *         schema:
  *           type: string
- *         description: The history id.
+ *         description: The story id.
  *     responses:
  *       200:
- *         description: The requested history
+ *         description: The requested story
  *         content:
  *           application/json:
  *             schema:
@@ -256,14 +256,14 @@ router.get('/slug/:slug', authenticate, async (req, res) => {
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  *       404:
- *         description: History not found
+ *         description: Story not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  */
-router.get('/:historyId', authenticate, async (req, res) => {
-  await DIContainer.getInstance().getHistoryController().getById(req, res);
+router.get('/:storyId', authenticate, async (req, res) => {
+  await DIContainer.getInstance().getStoryController().getById(req, res);
 });
 
 export default router;

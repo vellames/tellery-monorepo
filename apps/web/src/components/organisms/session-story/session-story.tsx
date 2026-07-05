@@ -18,11 +18,7 @@ async function fetchPage(
   return (await res.json()) as PaginatedSessions;
 }
 
-export function SessionHistory({
-  activeOnly = false,
-}: {
-  activeOnly?: boolean;
-}) {
+export function SessionStory({ activeOnly = false }: { activeOnly?: boolean }) {
   if (activeOnly) {
     return <SessionSection status="active" compact />;
   }
@@ -42,7 +38,7 @@ function SessionSection({
   status: 'active' | 'completed';
   compact?: boolean;
 }) {
-  const t = useTranslations('home.history');
+  const t = useTranslations('home.story');
   const tGenre = useTranslations('common.genres');
   const queryClient = useQueryClient();
   const [page, setPage] = useState(1);

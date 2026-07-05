@@ -6,10 +6,10 @@ interface StartSessionResponse {
 }
 
 export async function startSessionRequest(
-  historyId: string
+  storyId: string
 ): Promise<{ sessionId: string }> {
   return clientFetch<StartSessionResponse>(config.routes.sessionStartApi, {
     method: 'POST',
-    body: JSON.stringify({ historyId }),
+    body: JSON.stringify({ storyId }),
   });
 }

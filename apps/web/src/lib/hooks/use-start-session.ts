@@ -11,7 +11,7 @@ export function useStartSession() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (historyId: string) => startSessionRequest(historyId),
+    mutationFn: (storyId: string) => startSessionRequest(storyId),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: AVAILABLE_CREDITS_QUERY_KEY });
       router.push(config.routes.session(data.sessionId));

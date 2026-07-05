@@ -1,24 +1,20 @@
-import type { HistorySessionStatus } from '@prisma/client';
+import type { StorySessionStatus } from '@prisma/client';
 
 import { cn } from '@/lib/utils';
 
-const STATUS_STYLES: Record<HistorySessionStatus, string> = {
+const STATUS_STYLES: Record<StorySessionStatus, string> = {
   active: 'bg-warning/15 text-warning ring-warning/30',
   completed: 'bg-success/15 text-success ring-success/30',
   abandoned: 'bg-muted text-muted-foreground ring-border',
 };
 
-const STATUS_LABELS: Record<HistorySessionStatus, string> = {
+const STATUS_LABELS: Record<StorySessionStatus, string> = {
   active: 'Ativa',
   completed: 'Concluída',
   abandoned: 'Abandonada',
 };
 
-export function SessionStatusBadge({
-  status,
-}: {
-  status: HistorySessionStatus;
-}) {
+export function SessionStatusBadge({ status }: { status: StorySessionStatus }) {
   return (
     <span
       className={cn(

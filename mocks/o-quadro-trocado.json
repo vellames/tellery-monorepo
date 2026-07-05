@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/o-quadro-trocado/history/cover.jpg",
-  "thumbnailUrl": "histories/o-quadro-trocado/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-quadro-trocado/story/cover.jpg",
+  "thumbnailUrl": "stories/o-quadro-trocado/story/thumbnail.jpg",
   "opening": {
     "shortText": "O quadro \"Vertigem\" foi trocado por uma cópia durante a madrugada, sem arrombamento.",
     "fullText": "São 9h da manhã na Galeria Sereno, uma pequena galeria de arte prestes a receber uma visualização privada. Otávio, o dono, levanta a luz do holofote sobre \"Vertigem\" — a peça central da noite — e percebe que algo está errado. A textura da tinta e o brilho do verniz não são os do original: é uma cópia. A galeria não foi arrombada e o sistema de alarme não disparou. Quem trocou o quadro tinha acesso legítimo. Na noite anterior, apenas duas pessoas circularam pela galeria depois do fechamento: Sônia, a restauradora que trabalha há anos com o acervo, e Dante, um colecionador que veio avaliar justamente \"Vertigem\". Otávio pede que ambos fiquem até a situação se esclarecer. Cabe a você examinar a moldura, ouvir as três versões e descobrir quem trocou o quadro, por quê e onde o original está agora.",
@@ -245,7 +245,7 @@
       "name": "Otávio",
       "role": "Dono da Galeria Sereno",
       "shortDescription": "Galerista veterano, refinado e protetor da reputação da casa. Quer o original de volta sem transformar o caso em escândalo público.",
-      "imageUrl": "histories/o-quadro-trocado/characters/otavio.jpg",
+      "imageUrl": "stories/o-quadro-trocado/characters/otavio.jpg",
       "personality": "Educado, metódico, orgulhoso do acervo. Evita exposição pública e prefere resolver internamente para preservar a confiança dos colecionadores.",
       "speakingStyle": "Fala com calma medida, vocabulário de galerista, frases corteses que escondem nervosismo controlado.",
       "publicKnowledge": [
@@ -302,7 +302,7 @@
       "name": "Sônia",
       "role": "Restauradora da Galeria Sereno",
       "shortDescription": "Restauradora experiente, nervosa desde a descoberta da troca. Conhece o Vertigem como ninguém.",
-      "imageUrl": "histories/o-quadro-trocado/characters/sonia.jpg",
+      "imageUrl": "stories/o-quadro-trocado/characters/sonia.jpg",
       "personality": "Aplicada, sensível e propensa a se justificar demais quando pressionada. Tem senso de proteção sobre o acervo.",
       "speakingStyle": "Fala com cuidado técnico de restauração, tropeça nas palavras quando nervosa e tenta antecipar o que o outro quer ouvir.",
       "publicKnowledge": [
@@ -473,7 +473,7 @@
       "name": "Dante",
       "role": "Colecionador",
       "shortDescription": "Colecionador articulado e confiante, que veio avaliar o Vertigem na noite anterior.",
-      "imageUrl": "histories/o-quadro-trocado/characters/dante.jpg",
+      "imageUrl": "stories/o-quadro-trocado/characters/dante.jpg",
       "personality": "Calmo, falante e ligeiramente presunçoso. Sabe que é suspeito óbvio e usa a franqueza como escudo.",
       "speakingStyle": "Fala com segurança e vocabulão de colecionador, citando leilões e proveniência com naturalidade.",
       "publicKnowledge": [
@@ -553,7 +553,7 @@
       "deletedAt": null,
       "name": "Sala principal",
       "shortDescription": "Salão de exposição onde o Vertigem é (era) o centro.",
-      "imageUrl": "histories/o-quadro-trocado/location/sala_principal.jpg",
+      "imageUrl": "stories/o-quadro-trocado/location/sala_principal.jpg",
       "initialDescription": "A sala principal da Galeria Sereno é um salão longo de paredes brancas, com holofotes direcionais e um silêncio de museu. No centro da parede maior, a moldura do Vertigem preside o salão sob o holofote da manhã.",
       "ambientClueIds": ["clue_frame_hinge_mark"],
       "objectIds": ["quadro_falso", "moldura"]
@@ -565,7 +565,7 @@
       "deletedAt": null,
       "name": "Atelier de restauração",
       "shortDescription": "Cômodo dos fundas onde Sônia trabalha e onde fica a caixa de transporte.",
-      "imageUrl": "histories/o-quadro-trocado/location/atelier.jpg",
+      "imageUrl": "stories/o-quadro-trocado/location/atelier.jpg",
       "initialDescription": "O atelier é um cômodo estreito nos fundos, com bancadas de trabalho, potes de tinta, pincéis, lupas e panos manchados. Ao fundo, encostada na parede, há uma caixa de transporte de madeira.",
       "ambientClueIds": [],
       "objectIds": ["caixa_transporte", "pincel_sonia"]
@@ -579,7 +579,7 @@
       "deletedAt": null,
       "name": "Quadro na parede",
       "shortDescription": "A cópia que agora ocupa o lugar do Vertigem.",
-      "imageUrl": "histories/o-quadro-trocado/object/quadro_falso.jpg",
+      "imageUrl": "stories/o-quadro-trocado/object/quadro_falso.jpg",
       "locationId": "sala_principal",
       "initialDescription": "A pintura na parede é, à primeira vista, o Vertigem. Mas há algo de diferente na textura da tinta e no brilho do verniz, difícil de precisar à primeira vista.",
       "clueRevealRules": [
@@ -604,7 +604,7 @@
       "deletedAt": null,
       "name": "Moldura do Vertigem",
       "shortDescription": "A moldura de madeira do Vertigem, na parede da sala principal.",
-      "imageUrl": "histories/o-quadro-trocado/object/moldura.jpg",
+      "imageUrl": "stories/o-quadro-trocado/object/moldura.jpg",
       "locationId": "sala_principal",
       "initialDescription": "A moldura é pesada, de madeira escura, com dobradiças de latão que permitem abrir o verso para retirar a tela.",
       "clueRevealRules": [
@@ -623,7 +623,7 @@
       "deletedAt": null,
       "name": "Caixa de transporte",
       "shortDescription": "Caixa de madeira para transporte de obras, no atelier.",
-      "imageUrl": "histories/o-quadro-trocado/object/caixa_transporte.jpg",
+      "imageUrl": "stories/o-quadro-trocado/object/caixa_transporte.jpg",
       "locationId": "atelier",
       "initialDescription": "A caixa de transporte de obras está encostada na parede do atelier, entre bancadas e materiais de restauração.",
       "clueRevealRules": [
@@ -642,7 +642,7 @@
       "deletedAt": null,
       "name": "Pincel de Sônia",
       "shortDescription": "Pincel de restauração de Sônia, sobre a bancada do atelier.",
-      "imageUrl": "histories/o-quadro-trocado/object/pincel_sonia.jpg",
+      "imageUrl": "stories/o-quadro-trocado/object/pincel_sonia.jpg",
       "locationId": "atelier",
       "initialDescription": "Entre os pincéis de Sônia na bancada, há pincéis de vários tamanhos, alguns úmidos, outros secos.",
       "clueRevealRules": [
@@ -923,7 +923,7 @@
       "deletedAt": null,
       "title": "A moldura certa para a tela certa",
       "type": "full_truth",
-      "imageUrl": "histories/o-quadro-trocado/endings/full_truth.jpg",
+      "imageUrl": "stories/o-quadro-trocado/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_took_painting": "sonia",
@@ -946,7 +946,7 @@
       "deletedAt": null,
       "title": "Uma tela pela metade",
       "type": "partial_truth",
-      "imageUrl": "histories/o-quadro-trocado/endings/partial_truth.jpg",
+      "imageUrl": "stories/o-quadro-trocado/endings/partial_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_took_painting": "sonia"
@@ -963,7 +963,7 @@
       "deletedAt": null,
       "title": "O suspeito óbvio",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-quadro-trocado/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-quadro-trocado/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

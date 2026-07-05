@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
-import { HistoryController } from '../history.controller';
-import { HistoryCatalogService } from '../../services/history/history-catalog.service';
+import { StoryController } from '../story.controller';
+import { StoryCatalogService } from '../../services/story/story-catalog.service';
 import { TranslationFunction } from '../../types/i18n.types';
 
-describe('HistoryController - list', () => {
-  let historyCatalogService: DeepMockProxy<HistoryCatalogService>;
-  let controller: HistoryController;
+describe('StoryController - list', () => {
+  let storyCatalogService: DeepMockProxy<StoryCatalogService>;
+  let controller: StoryController;
   let req: Partial<Request>;
   let res: Partial<Response>;
   let json: jest.Mock;
@@ -15,8 +15,8 @@ describe('HistoryController - list', () => {
   let t: TranslationFunction;
 
   beforeEach(() => {
-    historyCatalogService = mockDeep<HistoryCatalogService>();
-    controller = new HistoryController(historyCatalogService);
+    storyCatalogService = mockDeep<StoryCatalogService>();
+    controller = new StoryController(storyCatalogService);
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });
     res = { status };
@@ -24,14 +24,14 @@ describe('HistoryController - list', () => {
   });
 
   afterEach(() => {
-    mockReset(historyCatalogService);
+    mockReset(storyCatalogService);
   });
 
-  it('returns 200 with a paginated result of featured histories', async () => {
+  it('returns 200 with a paginated result of featured stories', async () => {
     const paginated = {
       items: [
         {
-          id: 'history-1',
+          id: 'story-1',
           slug: 'o-bilhete-na-mesa-7',
           title: 'O Bilhete na Mesa 7',
         },
@@ -41,7 +41,7 @@ describe('HistoryController - list', () => {
       limit: 20,
       totalPages: 1,
     };
-    historyCatalogService.listAvailable.mockResolvedValue(paginated as never);
+    storyCatalogService.listAvailable.mockResolvedValue(paginated as never);
     req = {
       query: { isFeatured: 'true' },
       user: { id: 'user-1', email: 'ana@teste.local' },
@@ -50,7 +50,7 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(
+    expect(storyCatalogService.listAvailable).toHaveBeenCalledWith(
       true,
       {
         page: 1,
@@ -67,7 +67,7 @@ describe('HistoryController - list', () => {
   });
 
   it('passes through provided page and limit', async () => {
-    historyCatalogService.listAvailable.mockResolvedValue({
+    storyCatalogService.listAvailable.mockResolvedValue({
       items: [],
       total: 0,
       page: 2,
@@ -82,7 +82,7 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(
+    expect(storyCatalogService.listAvailable).toHaveBeenCalledWith(
       false,
       {
         page: 2,
@@ -94,7 +94,7 @@ describe('HistoryController - list', () => {
   });
 
   it('passes isFree=true through as the third argument', async () => {
-    historyCatalogService.listAvailable.mockResolvedValue({
+    storyCatalogService.listAvailable.mockResolvedValue({
       items: [],
       total: 0,
       page: 1,
@@ -109,7 +109,7 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(
+    expect(storyCatalogService.listAvailable).toHaveBeenCalledWith(
       true,
       { page: 1, limit: 20 },
       true
@@ -117,7 +117,7 @@ describe('HistoryController - list', () => {
   });
 
   it('passes isFree=false through as the third argument', async () => {
-    historyCatalogService.listAvailable.mockResolvedValue({
+    storyCatalogService.listAvailable.mockResolvedValue({
       items: [],
       total: 0,
       page: 1,
@@ -132,7 +132,7 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).toHaveBeenCalledWith(
+    expect(storyCatalogService.listAvailable).toHaveBeenCalledWith(
       true,
       { page: 1, limit: 20 },
       false
@@ -148,7 +148,7 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).not.toHaveBeenCalled();
+    expect(storyCatalogService.listAvailable).not.toHaveBeenCalled();
     expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
   });
 
@@ -161,7 +161,7 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).not.toHaveBeenCalled();
+    expect(storyCatalogService.listAvailable).not.toHaveBeenCalled();
     expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
   });
 
@@ -174,7 +174,7 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).not.toHaveBeenCalled();
+    expect(storyCatalogService.listAvailable).not.toHaveBeenCalled();
     expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
   });
 
@@ -187,12 +187,12 @@ describe('HistoryController - list', () => {
 
     await controller.list(req as Request, res as Response);
 
-    expect(historyCatalogService.listAvailable).not.toHaveBeenCalled();
+    expect(storyCatalogService.listAvailable).not.toHaveBeenCalled();
     expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
   });
 
   it('returns 500 on unexpected errors', async () => {
-    historyCatalogService.listAvailable.mockRejectedValue(new Error('boom'));
+    storyCatalogService.listAvailable.mockRejectedValue(new Error('boom'));
     req = {
       query: { isFeatured: 'true' },
       user: { id: 'user-1', email: 'ana@teste.local' },
@@ -205,9 +205,9 @@ describe('HistoryController - list', () => {
   });
 });
 
-describe('HistoryController - getById', () => {
-  let historyCatalogService: DeepMockProxy<HistoryCatalogService>;
-  let controller: HistoryController;
+describe('StoryController - getById', () => {
+  let storyCatalogService: DeepMockProxy<StoryCatalogService>;
+  let controller: StoryController;
   let req: Partial<Request>;
   let res: Partial<Response>;
   let json: jest.Mock;
@@ -215,8 +215,8 @@ describe('HistoryController - getById', () => {
   let t: TranslationFunction;
 
   beforeEach(() => {
-    historyCatalogService = mockDeep<HistoryCatalogService>();
-    controller = new HistoryController(historyCatalogService);
+    storyCatalogService = mockDeep<StoryCatalogService>();
+    controller = new StoryController(storyCatalogService);
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });
     res = { status };
@@ -224,44 +224,44 @@ describe('HistoryController - getById', () => {
   });
 
   afterEach(() => {
-    mockReset(historyCatalogService);
+    mockReset(storyCatalogService);
   });
 
-  it('returns 200 with the requested history', async () => {
-    const history = {
-      id: 'history-1',
+  it('returns 200 with the requested story', async () => {
+    const story = {
+      id: 'story-1',
       slug: 'o-bilhete-na-mesa-7',
       title: 'O Bilhete na Mesa 7',
     };
-    historyCatalogService.getById.mockResolvedValue(history as never);
+    storyCatalogService.getById.mockResolvedValue(story as never);
     req = {
-      params: { historyId: 'history-1' },
+      params: { storyId: 'story-1' },
       user: { id: 'user-1', email: 'ana@teste.local' },
       t,
     };
 
     await controller.getById(req as Request, res as Response);
 
-    expect(historyCatalogService.getById).toHaveBeenCalledWith('history-1');
+    expect(storyCatalogService.getById).toHaveBeenCalledWith('story-1');
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
     expect(json).toHaveBeenCalledWith({
       success: true,
-      data: history,
+      data: story,
       message: undefined,
     });
   });
 
-  it('returns 404 when the history does not exist', async () => {
+  it('returns 404 when the story does not exist', async () => {
     const { HttpError } = await import('../../utils/http-error');
-    historyCatalogService.getById.mockRejectedValue(
+    storyCatalogService.getById.mockRejectedValue(
       new HttpError(
         StatusCodes.NOT_FOUND,
         'missing',
-        'session:errors.unknownHistory'
+        'session:errors.unknownStory'
       )
     );
     req = {
-      params: { historyId: 'missing' },
+      params: { storyId: 'missing' },
       user: { id: 'user-1', email: 'ana@teste.local' },
       t,
     };
@@ -272,9 +272,9 @@ describe('HistoryController - getById', () => {
   });
 
   it('returns 500 on unexpected errors', async () => {
-    historyCatalogService.getById.mockRejectedValue(new Error('boom'));
+    storyCatalogService.getById.mockRejectedValue(new Error('boom'));
     req = {
-      params: { historyId: 'history-1' },
+      params: { storyId: 'story-1' },
       user: { id: 'user-1', email: 'ana@teste.local' },
       t,
     };
@@ -285,9 +285,9 @@ describe('HistoryController - getById', () => {
   });
 });
 
-describe('HistoryController - getBySlug', () => {
-  let historyCatalogService: DeepMockProxy<HistoryCatalogService>;
-  let controller: HistoryController;
+describe('StoryController - getBySlug', () => {
+  let storyCatalogService: DeepMockProxy<StoryCatalogService>;
+  let controller: StoryController;
   let req: Partial<Request>;
   let res: Partial<Response>;
   let json: jest.Mock;
@@ -295,8 +295,8 @@ describe('HistoryController - getBySlug', () => {
   let t: TranslationFunction;
 
   beforeEach(() => {
-    historyCatalogService = mockDeep<HistoryCatalogService>();
-    controller = new HistoryController(historyCatalogService);
+    storyCatalogService = mockDeep<StoryCatalogService>();
+    controller = new StoryController(storyCatalogService);
     json = jest.fn();
     status = jest.fn().mockReturnValue({ json });
     res = { status };
@@ -304,16 +304,16 @@ describe('HistoryController - getBySlug', () => {
   });
 
   afterEach(() => {
-    mockReset(historyCatalogService);
+    mockReset(storyCatalogService);
   });
 
-  it('returns 200 with the requested history', async () => {
-    const history = {
-      id: 'history-1',
+  it('returns 200 with the requested story', async () => {
+    const story = {
+      id: 'story-1',
       slug: 'o-bilhete-na-mesa-7',
       title: 'O Bilhete na Mesa 7',
     };
-    historyCatalogService.getBySlug.mockResolvedValue(history as never);
+    storyCatalogService.getBySlug.mockResolvedValue(story as never);
     req = {
       params: { slug: 'o-bilhete-na-mesa-7' },
       user: { id: 'user-1', email: 'ana@teste.local' },
@@ -322,24 +322,24 @@ describe('HistoryController - getBySlug', () => {
 
     await controller.getBySlug(req as Request, res as Response);
 
-    expect(historyCatalogService.getBySlug).toHaveBeenCalledWith(
+    expect(storyCatalogService.getBySlug).toHaveBeenCalledWith(
       'o-bilhete-na-mesa-7'
     );
     expect(status).toHaveBeenCalledWith(StatusCodes.OK);
     expect(json).toHaveBeenCalledWith({
       success: true,
-      data: history,
+      data: story,
       message: undefined,
     });
   });
 
-  it('returns 404 when the history does not exist', async () => {
+  it('returns 404 when the story does not exist', async () => {
     const { HttpError } = await import('../../utils/http-error');
-    historyCatalogService.getBySlug.mockRejectedValue(
+    storyCatalogService.getBySlug.mockRejectedValue(
       new HttpError(
         StatusCodes.NOT_FOUND,
         'missing',
-        'session:errors.unknownHistory'
+        'session:errors.unknownStory'
       )
     );
     req = {
@@ -354,7 +354,7 @@ describe('HistoryController - getBySlug', () => {
   });
 
   it('returns 500 on unexpected errors', async () => {
-    historyCatalogService.getBySlug.mockRejectedValue(new Error('boom'));
+    storyCatalogService.getBySlug.mockRejectedValue(new Error('boom'));
     req = {
       params: { slug: 'o-bilhete-na-mesa-7' },
       user: { id: 'user-1', email: 'ana@teste.local' },

@@ -1,17 +1,17 @@
 import { PrismaClient } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import {
-  HistoryDefinitionRepository,
-  historyCatalogSelect,
-  historyDefinitionInclude,
-  HistoryWithDefinitions,
-} from '../HistoryDefinitionRepository';
+  StoryDefinitionRepository,
+  storyCatalogSelect,
+  storyDefinitionInclude,
+  StoryWithDefinitions,
+} from '../StoryDefinitionRepository';
 
-const mockHistory = (
-  overrides: Partial<HistoryWithDefinitions> = {}
-): HistoryWithDefinitions =>
+const mockStory = (
+  overrides: Partial<StoryWithDefinitions> = {}
+): StoryWithDefinitions =>
   ({
-    id: 'history-1',
+    id: 'story-1',
     createdAt: new Date('2026-01-01'),
     updatedAt: new Date('2026-01-01'),
     deletedAt: null,
@@ -35,15 +35,15 @@ const mockHistory = (
     conclusion: null,
     endings: [],
     ...overrides,
-  }) as HistoryWithDefinitions;
+  }) as StoryWithDefinitions;
 
-describe('HistoryDefinitionRepository', () => {
+describe('StoryDefinitionRepository', () => {
   let prisma: DeepMockProxy<PrismaClient>;
-  let repo: HistoryDefinitionRepository;
+  let repo: StoryDefinitionRepository;
 
   beforeEach(() => {
     prisma = mockDeep<PrismaClient>();
-    repo = new HistoryDefinitionRepository(prisma);
+    repo = new StoryDefinitionRepository(prisma);
   });
 
   afterEach(() => {
@@ -51,21 +51,21 @@ describe('HistoryDefinitionRepository', () => {
   });
 
   describe('findById', () => {
-    it('finds a non-deleted history by id with all definitions', async () => {
-      const history = mockHistory();
-      prisma.history.findFirst.mockResolvedValue(history);
+    it('finds a non-deleted story by id with all definitions', async () => {
+      const story = mockStory();
+      prisma.story.findFirst.mockResolvedValue(story);
 
-      const result = await repo.findById('history-1');
+      const result = await repo.findById('story-1');
 
-      expect(result).toEqual(history);
-      expect(prisma.history.findFirst).toHaveBeenCalledWith({
-        where: { id: 'history-1', deletedAt: null },
-        include: historyDefinitionInclude,
+      expect(result).toEqual(story);
+      expect(prisma.story.findFirst).toHaveBeenCalledWith({
+        where: { id: 'story-1', deletedAt: null },
+        include: storyDefinitionInclude,
       });
     });
 
-    it('returns null when history is not found', async () => {
-      prisma.history.findFirst.mockResolvedValue(null);
+    it('returns null when story is not found', async () => {
+      prisma.story.findFirst.mockResolvedValue(null);
 
       const result = await repo.findById('nonexistent');
 
@@ -74,21 +74,21 @@ describe('HistoryDefinitionRepository', () => {
   });
 
   describe('findBySlug', () => {
-    it('finds a non-deleted history by slug with all definitions', async () => {
-      const history = mockHistory();
-      prisma.history.findFirst.mockResolvedValue(history);
+    it('finds a non-deleted story by slug with all definitions', async () => {
+      const story = mockStory();
+      prisma.story.findFirst.mockResolvedValue(story);
 
       const result = await repo.findBySlug('o-bilhete-na-mesa-7');
 
-      expect(result).toEqual(history);
-      expect(prisma.history.findFirst).toHaveBeenCalledWith({
+      expect(result).toEqual(story);
+      expect(prisma.story.findFirst).toHaveBeenCalledWith({
         where: { slug: 'o-bilhete-na-mesa-7', deletedAt: null },
-        include: historyDefinitionInclude,
+        include: storyDefinitionInclude,
       });
     });
 
     it('returns null when slug is not found', async () => {
-      prisma.history.findFirst.mockResolvedValue(null);
+      prisma.story.findFirst.mockResolvedValue(null);
 
       const result = await repo.findBySlug('nonexistent');
 
@@ -99,23 +99,23 @@ describe('HistoryDefinitionRepository', () => {
   describe('list', () => {
     it('returns all non-deleted histories ordered by createdAt asc', async () => {
       const histories = [
-        mockHistory({ id: 'history-1' }),
-        mockHistory({ id: 'history-2' }),
+        mockStory({ id: 'story-1' }),
+        mockStory({ id: 'story-2' }),
       ];
-      prisma.history.findMany.mockResolvedValue(histories);
+      prisma.story.findMany.mockResolvedValue(histories);
 
       const result = await repo.list();
 
       expect(result).toEqual(histories);
-      expect(prisma.history.findMany).toHaveBeenCalledWith({
+      expect(prisma.story.findMany).toHaveBeenCalledWith({
         where: { deletedAt: null },
-        include: historyDefinitionInclude,
+        include: storyDefinitionInclude,
         orderBy: { createdAt: 'asc' },
       });
     });
 
     it('returns empty array when no histories exist', async () => {
-      prisma.history.findMany.mockResolvedValue([]);
+      prisma.story.findMany.mockResolvedValue([]);
 
       const result = await repo.list();
 
@@ -129,7 +129,7 @@ describe('HistoryDefinitionRepository', () => {
     it('returns a paginated result of published, featured histories', async () => {
       const histories = [
         {
-          id: 'history-1',
+          id: 'story-1',
           slug: 'o-bilhete-na-mesa-7',
           title: 'O Bilhete na Mesa 7',
           subtitle: null,
@@ -141,8 +141,8 @@ describe('HistoryDefinitionRepository', () => {
           thumbnailUrl: null,
         },
       ];
-      prisma.history.findMany.mockResolvedValue(histories as never);
-      prisma.history.count.mockResolvedValue(1);
+      prisma.story.findMany.mockResolvedValue(histories as never);
+      prisma.story.count.mockResolvedValue(1);
 
       const result = await repo.listPublished(true, pagination);
 
@@ -153,32 +153,32 @@ describe('HistoryDefinitionRepository', () => {
         limit: 20,
         totalPages: 1,
       });
-      expect(prisma.history.findMany).toHaveBeenCalledWith({
+      expect(prisma.story.findMany).toHaveBeenCalledWith({
         where: { status: 'published', isFeatured: true, deletedAt: null },
-        select: historyCatalogSelect,
+        select: storyCatalogSelect,
         orderBy: { updatedAt: 'desc' },
         skip: 0,
         take: 20,
       });
-      expect(prisma.history.count).toHaveBeenCalledWith({
+      expect(prisma.story.count).toHaveBeenCalledWith({
         where: { status: 'published', isFeatured: true, deletedAt: null },
       });
     });
 
     it('computes skip from page and limit', async () => {
-      prisma.history.findMany.mockResolvedValue([] as never);
-      prisma.history.count.mockResolvedValue(0);
+      prisma.story.findMany.mockResolvedValue([] as never);
+      prisma.story.count.mockResolvedValue(0);
 
       await repo.listPublished(false, { page: 3, limit: 10 });
 
-      expect(prisma.history.findMany).toHaveBeenCalledWith(
+      expect(prisma.story.findMany).toHaveBeenCalledWith(
         expect.objectContaining({ skip: 20, take: 10 })
       );
     });
 
     it('returns empty items and zero totalPages when there are no matches', async () => {
-      prisma.history.findMany.mockResolvedValue([] as never);
-      prisma.history.count.mockResolvedValue(0);
+      prisma.story.findMany.mockResolvedValue([] as never);
+      prisma.story.count.mockResolvedValue(0);
 
       const result = await repo.listPublished(false, pagination);
 
@@ -192,24 +192,24 @@ describe('HistoryDefinitionRepository', () => {
     });
 
     it('adds isFree to the where clause when isFree is true', async () => {
-      prisma.history.findMany.mockResolvedValue([] as never);
-      prisma.history.count.mockResolvedValue(0);
+      prisma.story.findMany.mockResolvedValue([] as never);
+      prisma.story.count.mockResolvedValue(0);
 
       await repo.listPublished(true, pagination, true);
 
-      expect(prisma.history.findMany).toHaveBeenCalledWith({
+      expect(prisma.story.findMany).toHaveBeenCalledWith({
         where: {
           status: 'published',
           isFeatured: true,
           deletedAt: null,
           isFree: true,
         },
-        select: historyCatalogSelect,
+        select: storyCatalogSelect,
         orderBy: { updatedAt: 'desc' },
         skip: 0,
         take: 20,
       });
-      expect(prisma.history.count).toHaveBeenCalledWith({
+      expect(prisma.story.count).toHaveBeenCalledWith({
         where: {
           status: 'published',
           isFeatured: true,
@@ -220,19 +220,19 @@ describe('HistoryDefinitionRepository', () => {
     });
 
     it('adds isFree to the where clause when isFree is false', async () => {
-      prisma.history.findMany.mockResolvedValue([] as never);
-      prisma.history.count.mockResolvedValue(0);
+      prisma.story.findMany.mockResolvedValue([] as never);
+      prisma.story.count.mockResolvedValue(0);
 
       await repo.listPublished(false, pagination, false);
 
-      expect(prisma.history.findMany).toHaveBeenCalledWith({
+      expect(prisma.story.findMany).toHaveBeenCalledWith({
         where: {
           status: 'published',
           isFeatured: false,
           deletedAt: null,
           isFree: false,
         },
-        select: historyCatalogSelect,
+        select: storyCatalogSelect,
         orderBy: { updatedAt: 'desc' },
         skip: 0,
         take: 20,
@@ -240,14 +240,14 @@ describe('HistoryDefinitionRepository', () => {
     });
 
     it('omits isFree from the where clause when isFree is undefined', async () => {
-      prisma.history.findMany.mockResolvedValue([] as never);
-      prisma.history.count.mockResolvedValue(0);
+      prisma.story.findMany.mockResolvedValue([] as never);
+      prisma.story.count.mockResolvedValue(0);
 
       await repo.listPublished(true, pagination);
 
-      expect(prisma.history.findMany).toHaveBeenCalledWith({
+      expect(prisma.story.findMany).toHaveBeenCalledWith({
         where: { status: 'published', isFeatured: true, deletedAt: null },
-        select: historyCatalogSelect,
+        select: storyCatalogSelect,
         orderBy: { updatedAt: 'desc' },
         skip: 0,
         take: 20,

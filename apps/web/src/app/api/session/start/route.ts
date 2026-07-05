@@ -10,10 +10,13 @@ interface StartSessionResponse {
 export async function POST(req: NextRequest): Promise<NextResponse> {
   const t = await getTranslations('stories');
   const body = (await req.json().catch(() => null)) as {
-    historyId?: string;
+    storyId?: string;
   } | null;
 
-  if (!body?.historyId) {
+  console.log('[BFF /api/session/start] body received', body);
+
+  if (!body?.storyId) {
+    console.log('[BFF /api/session/start] missing storyId');
     return NextResponse.json(
       { error: t('startError') },
       { status: StatusCodes.UNPROCESSABLE_ENTITY }
@@ -23,11 +26,19 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const data = await apiFetch<StartSessionResponse>('/session/start', {
       method: 'POST',
-      body: JSON.stringify({ historyId: body.historyId }),
+      body: JSON.stringify({ storyId: body.storyId }),
     });
 
+    console.log('[BFF /api/session/start] success', {
+      sessionId: data.session.id,
+    });
     return NextResponse.json({ sessionId: data.session.id });
   } catch (error) {
+    console.error('[BFF /api/session/start] error', {
+      message: error instanceof Error ? error.message : String(error),
+      status: error instanceof ApiError ? error.status : undefined,
+      stack: error instanceof Error ? error.stack : undefined,
+    });
     const { message, status } =
       error instanceof ApiError
         ? error

@@ -15,7 +15,7 @@ describe('StartSessionForm', () => {
   beforeEach(() => vi.clearAllMocks());
 
   it('renders the submit button', () => {
-    renderWithProviders(<StartSessionForm historyId="history-1" />);
+    renderWithProviders(<StartSessionForm storyId="story-1" />);
 
     expect(
       screen.getByRole('button', { name: /iniciar história/i })
@@ -24,10 +24,10 @@ describe('StartSessionForm', () => {
 
   it('starts the session on submit', async () => {
     const user = userEvent.setup();
-    renderWithProviders(<StartSessionForm historyId="history-1" />);
+    renderWithProviders(<StartSessionForm storyId="story-1" />);
 
     await user.click(screen.getByRole('button', { name: /iniciar história/i }));
 
-    expect(mutateMock).toHaveBeenCalledWith('history-1');
+    expect(mutateMock).toHaveBeenCalledWith('story-1');
   });
 });

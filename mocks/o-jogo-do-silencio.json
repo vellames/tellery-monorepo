@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/o-jogo-do-silencio/history/cover.jpg",
-  "thumbnailUrl": "histories/o-jogo-do-silencio/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-jogo-do-silencio/story/cover.jpg",
+  "thumbnailUrl": "stories/o-jogo-do-silencio/story/thumbnail.jpg",
   "opening": {
     "shortText": "Uma bola de roleta vazada esconde uma exigência datilografada. Alguém no clube quer ser calado com dinheiro até o amanhecer.",
     "fullText": "São 23h40 no Clube Atlas, um cassino privado à beira-mar. O salão já deveria estar vazio quando Viriato, o gerente, encontra sobre sua mesa uma bola de roleta com um corte fino na lateral. Dentro dela, um bilhete datilografado: pague uma quantia alta até o amanhecer, ou um segredo antigo de Dona Glória, cliente mais fiel do clube, será entregue à imprensa. Viriato tranca as portas do Atlas e reúne quem ainda circulava pelo prédio àquela hora: Glória, a própria ameaçada; Afonso, o croupier da mesa de roleta; Lúcia, a contabilista do clube; e Dr. Brandão, advogado e membro antigo, amigo de longa data de Glória. Alguém entre eles sabe o suficiente sobre o passado dela para chantageá-la — e agora quer envolver o próprio clube na exigência. Cabe a você percorrer o salão, o escritório e o guarda-volumes, ouvir as quatro versões e descobrir quem escreveu o bilhete, o que sabe e onde está a prova.",
@@ -380,7 +380,7 @@
       "name": "Viriato",
       "role": "Gerente do Clube Atlas",
       "shortDescription": "Gerente de meia-idade, discreto e meticuloso, que administra o clube há quinze anos.",
-      "imageUrl": "histories/o-jogo-do-silencio/characters/viriato.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/characters/viriato.jpg",
       "personality": "Controlado, protocolar e avesso a escândalos. Prefere resolver tudo internamente antes de considerar a polícia.",
       "speakingStyle": "Fala em tom baixo e formal, escolhendo as palavras com cuidado, como quem está sempre calculando o impacto de cada frase no clube.",
       "publicKnowledge": [
@@ -447,7 +447,7 @@
       "name": "Dona Glória",
       "role": "Cliente mais antiga do clube",
       "shortDescription": "Socialite elegante, frequentadora fiel do Atlas há décadas, visivelmente abalada desde que o bilhete apareceu.",
-      "imageUrl": "histories/o-jogo-do-silencio/characters/gloria.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/characters/gloria.jpg",
       "personality": "Orgulhosa e reservada, acostumada a manter a compostura em público mesmo sob grande pressão interna.",
       "speakingStyle": "Fala com elegância medida, mas trai o nervosismo em pausas longas e mudanças bruscas de assunto.",
       "publicKnowledge": [
@@ -545,7 +545,7 @@
       "name": "Afonso",
       "role": "Croupier da mesa de roleta",
       "shortDescription": "Croupier experiente, cordial com os clientes, trabalha na mesa de roleta principal há alguns anos.",
-      "imageUrl": "histories/o-jogo-do-silencio/characters/afonso.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/characters/afonso.jpg",
       "personality": "Charmoso e controlado em público, mas com uma ansiedade contida que escapa em pequenos deslizes quando pressionado.",
       "speakingStyle": "Fala de forma leve e profissional, usando o tom de quem está sempre no controle da mesa, mesmo quando não está.",
       "publicKnowledge": [
@@ -721,7 +721,7 @@
       "name": "Lúcia",
       "role": "Contabilista do clube",
       "shortDescription": "Contabilista discreta e organizada, responsável pelos livros financeiros do Clube Atlas.",
-      "imageUrl": "histories/o-jogo-do-silencio/characters/lucia.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/characters/lucia.jpg",
       "personality": "Precisa e reservada, prefere números a conversas e fica visivelmente incomodada quando questionada sobre seu trabalho fora do horário normal.",
       "speakingStyle": "Fala de forma objetiva e um pouco defensiva, como quem está acostumada a justificar cada centavo diante de auditorias.",
       "publicKnowledge": [
@@ -787,7 +787,7 @@
       "name": "Dr. Brandão",
       "role": "Advogado e membro antigo do clube",
       "shortDescription": "Advogado bem-vestido, membro do Atlas há muitos anos e amigo próximo de Dona Glória.",
-      "imageUrl": "histories/o-jogo-do-silencio/characters/brandao.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/characters/brandao.jpg",
       "personality": "Articulado e calmo, acostumado a lidar com situações delicadas com discrição profissional.",
       "speakingStyle": "Fala com vocabulário formal e argumentação cuidadosa, típica de quem lida com contratos e negociações.",
       "publicKnowledge": [
@@ -854,7 +854,7 @@
       "deletedAt": null,
       "name": "Salão principal",
       "shortDescription": "Salão de jogos do clube, com mesas de roleta e cartas, já vazio a essa hora.",
-      "imageUrl": "histories/o-jogo-do-silencio/location/salao_principal.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/location/salao_principal.jpg",
       "initialDescription": "O salão principal se estende sob luzes baixas e douradas, com mesas de roleta e cartas cobertas por panos verdes. A essa hora, as mesas estão vazias, mas ainda cheiram a fumaça de charuto.",
       "ambientClueIds": ["clue_ball_fingerprints"],
       "objectIds": ["bola_roleta", "bandeja_fichas"]
@@ -866,7 +866,7 @@
       "deletedAt": null,
       "name": "Escritório do gerente",
       "shortDescription": "Sala reservada de Viriato, com um cofre pequeno e a única máquina de escrever do clube.",
-      "imageUrl": "histories/o-jogo-do-silencio/location/escritorio_gerente.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/location/escritorio_gerente.jpg",
       "initialDescription": "O escritório é pequeno e organizado, com um cofre embutido na parede, uma escrivaninha de madeira escura e uma máquina de escrever antiga sobre uma mesa auxiliar.",
       "ambientClueIds": [],
       "objectIds": ["maquina_escrever", "cinzeiro_escritorio", "livro_turno"]
@@ -878,7 +878,7 @@
       "deletedAt": null,
       "name": "Guarda-volumes",
       "shortDescription": "Sala estreita onde os casacos e pertences dos clientes ficam guardados durante a noite.",
-      "imageUrl": "histories/o-jogo-do-silencio/location/guarda_volumes.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/location/guarda_volumes.jpg",
       "initialDescription": "Fileiras de casacos pendem em cabides numerados, sob uma luz fraca e amarelada. Um pequeno balcão de madeira marca a entrada da sala.",
       "ambientClueIds": [],
       "objectIds": ["casaco_gloria", "caderneta_vermelha"]
@@ -892,7 +892,7 @@
       "deletedAt": null,
       "name": "Bola de roleta vazada",
       "shortDescription": "Bola de roleta com um corte fino na lateral, encontrada na mesa de Viriato.",
-      "imageUrl": "histories/o-jogo-do-silencio/object/bola_roleta.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/object/bola_roleta.jpg",
       "locationId": "salao_principal",
       "initialDescription": "A bola é pesada, de material escuro, com um corte fino e preciso em uma das laterais, como se tivesse sido aberta com uma ferramenta pequena.",
       "clueRevealRules": [
@@ -917,7 +917,7 @@
       "deletedAt": null,
       "name": "Bandeja de fichas do caixa",
       "shortDescription": "Bandeja com as fichas do caixa da mesa de roleta, usada para conferência de valores.",
-      "imageUrl": "histories/o-jogo-do-silencio/object/bandeja_fichas.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/object/bandeja_fichas.jpg",
       "locationId": "salao_principal",
       "initialDescription": "A bandeja de madeira laqueada guarda pilhas de fichas coloridas, organizadas por valor, ao lado de um pequeno bloco de anotações do croupier.",
       "clueRevealRules": [
@@ -942,7 +942,7 @@
       "deletedAt": null,
       "name": "Máquina de escrever do escritório",
       "shortDescription": "Máquina de escrever antiga, de uso comum da equipe administrativa do clube.",
-      "imageUrl": "histories/o-jogo-do-silencio/object/maquina_escrever.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/object/maquina_escrever.jpg",
       "locationId": "escritorio_gerente",
       "initialDescription": "A máquina de escrever repousa sobre uma mesa auxiliar, com uma fita de tinta gasta e algumas teclas visivelmente mais usadas que outras.",
       "clueRevealRules": [
@@ -961,7 +961,7 @@
       "deletedAt": null,
       "name": "Cinzeiro do escritório",
       "shortDescription": "Cinzeiro de vidro sobre a escrivaninha, com resquícios de papel queimado.",
-      "imageUrl": "histories/o-jogo-do-silencio/object/cinzeiro_escritorio.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/object/cinzeiro_escritorio.jpg",
       "locationId": "escritorio_gerente",
       "initialDescription": "O cinzeiro de vidro guarda um pequeno amontoado de cinzas e um fragmento de papel parcialmente queimado, com letras datilografadas ainda visíveis na borda.",
       "clueRevealRules": [
@@ -980,7 +980,7 @@
       "deletedAt": null,
       "name": "Livro de registro de turno",
       "shortDescription": "Caderno onde a equipe anota entradas e saídas de áreas restritas do clube.",
-      "imageUrl": "histories/o-jogo-do-silencio/object/livro_turno.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/object/livro_turno.jpg",
       "locationId": "escritorio_gerente",
       "initialDescription": "O livro de capa preta está aberto sobre a escrivaninha, com anotações manuscritas de horários e nomes ao longo das últimas semanas.",
       "clueRevealRules": [
@@ -999,7 +999,7 @@
       "deletedAt": null,
       "name": "Casaco de Dona Glória",
       "shortDescription": "Casaco elegante de Glória, pendurado em seu cabide numerado no guarda-volumes.",
-      "imageUrl": "histories/o-jogo-do-silencio/object/casaco_gloria.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/object/casaco_gloria.jpg",
       "locationId": "guarda_volumes",
       "initialDescription": "O casaco de lã fina está pendurado num cabide com etiqueta numerada, com um dos bolsos internos ligeiramente puído.",
       "clueRevealRules": [
@@ -1024,7 +1024,7 @@
       "deletedAt": null,
       "name": "Caderneta vermelha",
       "shortDescription": "Pequena caderneta de capa vermelha, encontrada solta numa gaveta do balcão do guarda-volumes.",
-      "imageUrl": "histories/o-jogo-do-silencio/object/caderneta_vermelha.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/object/caderneta_vermelha.jpg",
       "locationId": "guarda_volumes",
       "initialDescription": "A caderneta tem capa de couro vermelho desgastado e páginas amareladas, cobertas por uma caligrafia apertada e antiga.",
       "clueRevealRules": [
@@ -1432,7 +1432,7 @@
       "deletedAt": null,
       "title": "A bola que guardava demais",
       "type": "full_truth",
-      "imageUrl": "histories/o-jogo-do-silencio/endings/full_truth.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_is_blackmailer": "afonso",
@@ -1462,7 +1462,7 @@
         },
         "requiresClueIds": ["clue_afonso_partial_confession"]
       },
-      "imageUrl": "histories/o-jogo-do-silencio/endings/partial_truth.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/endings/partial_truth.jpg",
       "summary": "Você identificou Afonso como autor da chantagem, mas não fechou o segredo exato usado como arma nem o paradeiro do dinheiro e da prova.",
       "epilogue": "Afonso já não consegue negar sua autoria, mas as perguntas sobre o quê exatamente ele sabia e onde escondeu o dinheiro ficam sem resposta clara. Viriato revira o escritório e o guarda-volumes sem sucesso, enquanto Glória observa tudo com o mesmo silêncio de sempre, aliviada apenas em parte. O clube reabrirá pela manhã com uma confissão incompleta e uma sensação de que a bola de roleta ainda guarda alguma coisa que ninguém encontrou."
     },
@@ -1473,7 +1473,7 @@
       "deletedAt": null,
       "title": "A mesa errada",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-jogo-do-silencio/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-jogo-do-silencio/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

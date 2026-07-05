@@ -14,8 +14,8 @@
   "isFeatured": true,
   "isFree": true,
   "version": 1,
-  "coverImageUrl": "histories/o-ultimo-brinde/history/cover.jpg",
-  "thumbnailUrl": "histories/o-ultimo-brinde/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-ultimo-brinde/story/cover.jpg",
+  "thumbnailUrl": "stories/o-ultimo-brinde/story/thumbnail.jpg",
   "opening": {
     "shortText": "Valentina Reyes morreu na noite anterior, na glorieta onde seria o brinde privado do casamento. Havia duas taças. Só a dela foi bebida.",
     "fullText": "São seis da manhã na Hacienda Las Palmas, no coração de Jalisco. O casamento de Valentina Reyes — herdeira da dinastia da tequila Reyes — com Rafael Domínguez aconteceria hoje ao pôr do sol. Em vez dos preparativos, há um corpo na glorieta do jardim, o pavilhão branco de onde se vê o campo de agave. Valentina está caída junto à mesinha de ferro, uma taça de champanhe derramada ao seu lado. Há duas taças no lugar — mas só uma foi servida. Quem combinou o brinde privado à meia-noite nunca apareceu. Don Esteban Reyes, o patriarca, reuniu os presentes na casa principal: Rafael, o noivo, que não compareceu ao brinde e não explica o porquê; Lucía, a dama-de-honra e melhor amiga de Valentina, que diz ter encontrado o corpo ao amanhecer; Doña Carmen, a madrasta de Valentina e senhora da casa, que observa a todos em silêncio; Sofía, prima de Valentina criada na família desde criança; Mateo, ex-namorado de Valentina, que reapareceu para a cerimônia; e o próprio Don Esteban, que nunca escondeu que este casamento não era bem o que queria para a filha. Cada um tem um motivo. Cada um esteve na hacienda. Cada um guarda um segredo. Cabe a você examinar a glorieta, percorrer a casa, ouvir as seis versões e descobrir quem, se alguém, serviu o último brinde de Valentina.",
@@ -416,7 +416,7 @@
       "name": "Lucía",
       "role": "Dama-de-honra e melhor amiga de Valentina",
       "shortDescription": "Melhor amiga de Valentina desde a infância e dama-de-honra. Foi ela quem encontrou o corpo ao amanhecer.",
-      "imageUrl": "histories/o-ultimo-brinde/characters/lucia.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/characters/lucia.jpg",
       "personality": "Aparenta doçura e devoção, mas por trás há uma intensidade controlada. Dramática quando emocionada, fiscal dos detalhes, incapaz de deixar o passado descansar.",
       "speakingStyle": "Voz meiga que se rompe em paixão quando acuada. Frases que começam comedidas e terminam em lágrimas ou desafio. Sempre fala de Valentina com carinho declarado.",
       "publicKnowledge": [
@@ -615,7 +615,7 @@
       "name": "Rafael",
       "role": "Noivo de Valentina",
       "shortDescription": "O noivo. Deveria ter comparecido ao brinde privado à meia-noite e não apareceu.",
-      "imageUrl": "histories/o-ultimo-brinde/characters/rafael.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/characters/rafael.jpg",
       "personality": "Encantador e evasivo, acostumado a agradar a todos. Esconde o pânico de quem tem muito a perder atrás de sorrisos educados.",
       "speakingStyle": "Fala com brandura diplomática, muda de assunto com galanteios, gagueja quando encurralado por uma pergunta direta.",
       "publicKnowledge": [
@@ -723,7 +723,7 @@
       "name": "Don Esteban",
       "role": "Patriarca da família Reyes",
       "shortDescription": "Patriarca da família Reyes e dono da Hacienda Las Palmas. Recebia a todos para o casamento da filha.",
-      "imageUrl": "histories/o-ultimo-brinde/characters/esteban.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/characters/esteban.jpg",
       "personality": "Imponente, formal, orgulhoso. Acostumado a comandar e a esconder falhas atrás do nome da família.",
       "speakingStyle": "Fala devagar, com peso de quem não se explica duas vezes. Vocabulário de patriarca de campo, cortês com mulheres, seco com homens.",
       "publicKnowledge": [
@@ -864,7 +864,7 @@
       "name": "Sofía",
       "role": "Prima de Valentina, criada na família",
       "shortDescription": "Prima de Valentina, acolhida na família desde criança. Sempre esteve perto dos preparativos.",
-      "imageUrl": "histories/o-ultimo-brinde/characters/sofia.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/characters/sofia.jpg",
       "personality": "Meiga, reservada, observadora. Esconde a ferida de quem sempre foi tratada como quase-família, nunca de todo.",
       "speakingStyle": "Fala baixo, com delicadeza estudada; evita conflito e só se firma quando provocada sobre seu lugar na casa.",
       "publicKnowledge": [
@@ -940,7 +940,7 @@
       "name": "Mateo",
       "role": "Ex-namorado de Valentina",
       "shortDescription": "Ex-namorado de Valentina, que reapareceu para o casamento. Diz ter vindo apenas se despedir.",
-      "imageUrl": "histories/o-ultimo-brinde/characters/mateo.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/characters/mateo.jpg",
       "personality": "Romântico, impulsivo, melancólico. Vive do que perdeu e não consegue disfarçar o que ainda sente.",
       "speakingStyle": "Frases carregadas de saudade, metáforas de fumaça e agave, voz que se quebra quando fala de Valentina.",
       "publicKnowledge": [
@@ -994,7 +994,7 @@
       "name": "Doña Carmen",
       "role": "Madrasta de Valentina e matriarca da hacienda",
       "shortDescription": "Madrasta de Valentina e senhora da casa. Observa os movimentos de todos e conhece os segredos da família.",
-      "imageUrl": "histories/o-ultimo-brinde/characters/carmen.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/characters/carmen.jpg",
       "personality": "Serena, cortês, implacável. Cuidou da casa e do nome da família por décadas, escondendo fendas com elegância.",
       "speakingStyle": "Frases medidas, vocabulário de casa grande, sempre polida até a frase final, que costuma ser precisa e cortante.",
       "publicKnowledge": [
@@ -1118,7 +1118,7 @@
       "deletedAt": null,
       "name": "Glorieta do jardim",
       "shortDescription": "O pavilhão branco no jardim onde o corpo de Valentina foi encontrado.",
-      "imageUrl": "histories/o-ultimo-brinde/location/glorieta.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/location/glorieta.jpg",
       "initialDescription": "A glorieta é um pavilhão branco de colunas finas, no ponto de onde se vê o campo de agave até a serra. Há uma mesinha de ferro forjado com duas taças de champanhe, uma garrafa aberta e flores brancas meio despenteadas. O ar da manhã ainda guarda o perfume doce da noite.",
       "ambientClueIds": ["clue_valentina_dead"],
       "objectIds": ["tacas", "champanhe", "convite", "brinco"]
@@ -1130,7 +1130,7 @@
       "deletedAt": null,
       "name": "Salão principal",
       "shortDescription": "O salão onde a família celebrou o jantar de ensaio na véspera.",
-      "imageUrl": "histories/o-ultimo-brinde/location/casarao.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/location/casarao.jpg",
       "initialDescription": "O salão principal da hacienda é amplo, de teto alto, com lampiões de ferro, azulejos nas paredes e uma longa mesa de madeira escura ainda posta com os restos do jantar de ensaio: taças, velas gastas e flores murchas.",
       "ambientClueIds": ["clue_ponche_dinner"],
       "objectIds": []
@@ -1142,7 +1142,7 @@
       "deletedAt": null,
       "name": "Cozinha e botica",
       "shortDescription": "A cozinha dos fundos, com a botica de ervas da casa.",
-      "imageUrl": "histories/o-ultimo-brinde/location/cozinha.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/location/cozinha.jpg",
       "initialDescription": "A cozinha é um cômodo comprido e fresco, com fogão a lenha, panelas de cobre e, numa das paredes, uma prateleira de botica com frascos de vidro cheios de ervas secas e tinturas, usadas há gerações como remédios da casa.",
       "ambientClueIds": [],
       "objectIds": ["frasco_conito"]
@@ -1154,7 +1154,7 @@
       "deletedAt": null,
       "name": "Ala de hóspedes",
       "shortDescription": "Os quartos onde os convidados estão hospedados.",
-      "imageUrl": "histories/o-ultimo-brinde/location/ala_quartos.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/location/ala_quartos.jpg",
       "initialDescription": "A ala de hóspedes é um corredor de portas brancas, com quartos simples e arejados, cada um com sua penteadeira e seu criado-mudo. À manhã, as camas ainda por fazer denunciam uma noite em que quase ninguém dormiu.",
       "ambientClueIds": [],
       "objectIds": ["certidao_casamento", "diario_lucia"]
@@ -1166,7 +1166,7 @@
       "deletedAt": null,
       "name": "Escritório de Don Esteban",
       "shortDescription": "O escritório onde Esteban trata dos negócios da tequila.",
-      "imageUrl": "histories/o-ultimo-brinde/location/estudio.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/location/estudio.jpg",
       "initialDescription": "O escritório de Don Esteban cheira a couro e agave. Há uma escrivaninha pesada coberta de contratos, um quadro da primeira safra e prateleiras com os livros de contas da hacienda. Tudo no lugar de sempre, como se a noite não tivesse passado.",
       "ambientClueIds": [],
       "objectIds": ["certidao_sofia"]
@@ -1180,7 +1180,7 @@
       "deletedAt": null,
       "name": "Taças de champanhe",
       "shortDescription": "As duas taças sobre a mesinha da glorieta.",
-      "imageUrl": "histories/o-ultimo-brinde/object/tacas.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/object/tacas.jpg",
       "locationId": "glorieta",
       "initialDescription": "Duas taças de cristal fino repousam sobre a mesinha de ferro da glorieta. Uma delas está caída de lado, com vestígios secos no fundo; a outra permanece de pé, cheia até a borda.",
       "clueRevealRules": [
@@ -1213,7 +1213,7 @@
       "deletedAt": null,
       "name": "Garrafa de champanhe",
       "shortDescription": "A garrafa de champanhe aberta na glorieta.",
-      "imageUrl": "histories/o-ultimo-brinde/object/champanhe.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/object/champanhe.jpg",
       "locationId": "glorieta",
       "initialDescription": "Uma garrafa de champanhe está aberta ao lado das taças, com o lacre partido. O gargalo ainda guarda gotas que escorreram pela noite.",
       "clueRevealRules": [
@@ -1242,7 +1242,7 @@
       "deletedAt": null,
       "name": "Cartão do brinde",
       "shortDescription": "Um cartão dobrado ao lado das taças.",
-      "imageUrl": "histories/o-ultimo-brinde/object/convite.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/object/convite.jpg",
       "locationId": "glorieta",
       "initialDescription": "Ao lado das taças, há um cartão branco dobrado, com uma caligrafia à mão em tinta dourada.",
       "clueRevealRules": [
@@ -1261,7 +1261,7 @@
       "deletedAt": null,
       "name": "Brinco de pérola",
       "shortDescription": "Um brinco solto encontrado no chão da glorieta.",
-      "imageUrl": "histories/o-ultimo-brinde/object/brinco.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/object/brinco.jpg",
       "locationId": "glorieta",
       "initialDescription": "No chão da glorieta, sob a mesinha, há um pequeno brinco de pérola, solto, de um par que parece ter se desprendido de alguém que esteve ali.",
       "clueRevealRules": [
@@ -1284,7 +1284,7 @@
       "deletedAt": null,
       "name": "Frasco da botica",
       "shortDescription": "Um frasco de ervas na botica da cozinha.",
-      "imageUrl": "histories/o-ultimo-brinde/object/frasco_conito.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/object/frasco_conito.jpg",
       "locationId": "cozinha",
       "initialDescription": "Na prateleira de botica, há um frasco de vidro escuro com raízes secas e uma etiqueta gasta, fora do alinhamento das outras mandecadas.",
       "clueRevealRules": [
@@ -1303,7 +1303,7 @@
       "deletedAt": null,
       "name": "Certidão de casamento",
       "shortDescription": "Um documento dentro de uma pasta, no quarto de Rafael.",
-      "imageUrl": "histories/o-ultimo-brinde/object/certidao_casamento.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/object/certidao_casamento.jpg",
       "locationId": "ala_quartos",
       "initialDescription": "Dentro de uma pasta de couro, no criado-mudo do quarto de hóspedes, há um documento oficial, antigo, com selos e nomes em caligrafia formal.",
       "clueRevealRules": [
@@ -1322,7 +1322,7 @@
       "deletedAt": null,
       "name": "Caderno de Lucía",
       "shortDescription": "Um caderno encadernado em couro no quarto de Lucía.",
-      "imageUrl": "histories/o-ultimo-brinde/object/diario_lucia.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/object/diario_lucia.jpg",
       "locationId": "ala_quartos",
       "initialDescription": "Sobre a penteadeira do quarto de Lucía, há um caderno de capa de couro, fechado por um laço delicado, com páginas marcadas e a ponta das folhas curvadas de tanto serem folheadas.",
       "clueRevealRules": [
@@ -1345,7 +1345,7 @@
       "deletedAt": null,
       "name": "Certidão no escritório",
       "shortDescription": "Uma certidão guardada no escritório de Don Esteban.",
-      "imageUrl": "histories/o-ultimo-brinde/object/certidao_sofia.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/object/certidao_sofia.jpg",
       "locationId": "estudio",
       "initialDescription": "Dentro de um envelope amarelado, numa gaveta entreaberta da escrivaninha, há uma certidão de nascimento dobrada com cuidado.",
       "clueRevealRules": [
@@ -1816,7 +1816,7 @@
       "deletedAt": null,
       "title": "O brinde que só ela bebeu",
       "type": "full_truth",
-      "imageUrl": "histories/o-ultimo-brinde/endings/full_truth.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "quem_matou_valentina": "lucia",
@@ -1840,7 +1840,7 @@
       "deletedAt": null,
       "title": "A mão certa, o motivo incerto",
       "type": "partial_truth",
-      "imageUrl": "histories/o-ultimo-brinde/endings/partial_truth_a.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/endings/partial_truth_a.jpg",
       "condition": {
         "conclusionMatches": {
           "quem_matou_valentina": "lucia",
@@ -1858,7 +1858,7 @@
       "deletedAt": null,
       "title": "O veneno certo, a mão errada",
       "type": "partial_truth",
-      "imageUrl": "histories/o-ultimo-brinde/endings/partial_truth_b.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/endings/partial_truth_b.jpg",
       "condition": {
         "conclusionMatches": {
           "metodo": "taca_envenenada"
@@ -1875,7 +1875,7 @@
       "deletedAt": null,
       "title": "Um brinde que nunca se encerra",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-ultimo-brinde/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-ultimo-brinde/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

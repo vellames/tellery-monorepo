@@ -1,20 +1,20 @@
-import { PrismaClient, Prisma, HistorySession } from '@prisma/client';
+import { PrismaClient, Prisma, StorySession } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
-import type { HistoryWithDefinitions } from '../HistoryDefinitionRepository';
+import type { StoryWithDefinitions } from '../StoryDefinitionRepository';
 import {
   SessionRepository,
-  historySessionInclude,
-  HistorySessionWithRelations,
+  storySessionInclude,
+  StorySessionWithRelations,
 } from '../SessionRepository';
 
-const mockSession = (overrides: Partial<HistorySession> = {}): HistorySession =>
+const mockSession = (overrides: Partial<StorySession> = {}): StorySession =>
   ({
     id: 'session-1',
     createdAt: new Date('2026-01-01'),
     updatedAt: new Date('2026-01-01'),
     deletedAt: null,
     userId: 'user-1',
-    historyId: 'history-1',
+    storyId: 'story-1',
     title: 'O Bilhete na Mesa 7',
     subtitle: null,
     teaser: 'teaser',
@@ -28,11 +28,11 @@ const mockSession = (overrides: Partial<HistorySession> = {}): HistorySession =>
     startedAt: new Date('2026-01-01'),
     completedAt: null,
     ...overrides,
-  }) as HistorySession;
+  }) as StorySession;
 
 const mockSessionWithRelations = (
-  overrides: Partial<HistorySessionWithRelations> = {}
-): HistorySessionWithRelations =>
+  overrides: Partial<StorySessionWithRelations> = {}
+): StorySessionWithRelations =>
   ({
     ...mockSession(),
     clues: [],
@@ -45,7 +45,7 @@ const mockSessionWithRelations = (
     conclusion: null,
     ending: null,
     ...overrides,
-  }) as HistorySessionWithRelations;
+  }) as StorySessionWithRelations;
 
 describe('SessionRepository', () => {
   let prisma: DeepMockProxy<PrismaClient>;
@@ -63,19 +63,19 @@ describe('SessionRepository', () => {
   describe('findById', () => {
     it('finds a non-deleted session by id with all relations', async () => {
       const session = mockSessionWithRelations();
-      prisma.historySession.findFirst.mockResolvedValue(session);
+      prisma.storySession.findFirst.mockResolvedValue(session);
 
       const result = await repo.findById('session-1');
 
       expect(result).toEqual(session);
-      expect(prisma.historySession.findFirst).toHaveBeenCalledWith({
+      expect(prisma.storySession.findFirst).toHaveBeenCalledWith({
         where: { id: 'session-1', deletedAt: null },
-        include: historySessionInclude,
+        include: storySessionInclude,
       });
     });
 
     it('returns null when session is not found', async () => {
-      prisma.historySession.findFirst.mockResolvedValue(null);
+      prisma.storySession.findFirst.mockResolvedValue(null);
 
       const result = await repo.findById('nonexistent');
 
@@ -83,11 +83,11 @@ describe('SessionRepository', () => {
     });
   });
 
-  describe('historySessionInclude — message ordering', () => {
+  describe('storySessionInclude — message ordering', () => {
     it('orders character conversation messages by createdAt asc', () => {
       expect(
         (
-          historySessionInclude.characterStates as {
+          storySessionInclude.characterStates as {
             include: { messages: unknown };
           }
         ).include.messages
@@ -97,7 +97,7 @@ describe('SessionRepository', () => {
     it('orders object interaction messages by createdAt asc', () => {
       expect(
         (
-          historySessionInclude.objectStates as {
+          storySessionInclude.objectStates as {
             include: { messages: unknown };
           }
         ).include.messages
@@ -111,14 +111,14 @@ describe('SessionRepository', () => {
         mockSession({ id: 'session-1' }),
         mockSession({ id: 'session-2' }),
       ];
-      prisma.historySession.findMany.mockResolvedValue(sessions);
-      prisma.historySession.count.mockResolvedValue(2);
+      prisma.storySession.findMany.mockResolvedValue(sessions);
+      prisma.storySession.count.mockResolvedValue(2);
 
       const result = await repo.list();
 
       expect(result.items).toEqual(sessions);
       expect(result.total).toBe(2);
-      expect(prisma.historySession.findMany).toHaveBeenCalledWith(
+      expect(prisma.storySession.findMany).toHaveBeenCalledWith(
         expect.objectContaining({
           where: { deletedAt: null },
           orderBy: { createdAt: 'desc' },
@@ -130,13 +130,13 @@ describe('SessionRepository', () => {
 
     it('filters by userId when provided', async () => {
       const sessions = [mockSession({ id: 'session-1', userId: 'user-1' })];
-      prisma.historySession.findMany.mockResolvedValue(sessions);
-      prisma.historySession.count.mockResolvedValue(1);
+      prisma.storySession.findMany.mockResolvedValue(sessions);
+      prisma.storySession.count.mockResolvedValue(1);
 
       const result = await repo.list('user-1');
 
       expect(result.items).toEqual(sessions);
-      expect(prisma.historySession.findMany).toHaveBeenCalledWith(
+      expect(prisma.storySession.findMany).toHaveBeenCalledWith(
         expect.objectContaining({
           where: { deletedAt: null, userId: 'user-1' },
           orderBy: { createdAt: 'desc' },
@@ -145,8 +145,8 @@ describe('SessionRepository', () => {
     });
 
     it('returns empty items when no sessions exist', async () => {
-      prisma.historySession.findMany.mockResolvedValue([]);
-      prisma.historySession.count.mockResolvedValue(0);
+      prisma.storySession.findMany.mockResolvedValue([]);
+      prisma.storySession.count.mockResolvedValue(0);
 
       const result = await repo.list();
 
@@ -155,12 +155,12 @@ describe('SessionRepository', () => {
     });
 
     it('respects page and limit for pagination', async () => {
-      prisma.historySession.findMany.mockResolvedValue([]);
-      prisma.historySession.count.mockResolvedValue(25);
+      prisma.storySession.findMany.mockResolvedValue([]);
+      prisma.storySession.count.mockResolvedValue(25);
 
       await repo.list(undefined, 3, 5);
 
-      expect(prisma.historySession.findMany).toHaveBeenCalledWith(
+      expect(prisma.storySession.findMany).toHaveBeenCalledWith(
         expect.objectContaining({
           skip: 10,
           take: 5,
@@ -171,8 +171,8 @@ describe('SessionRepository', () => {
 
   describe('create', () => {
     it('creates the session snapshot in a transaction and returns the full session', async () => {
-      const history = {
-        id: 'history-1',
+      const story = {
+        id: 'story-1',
         clues: [],
         intentDefinitions: [],
         characters: [],
@@ -180,32 +180,32 @@ describe('SessionRepository', () => {
         objects: [],
         endings: [],
         conclusion: null,
-      } as unknown as HistoryWithDefinitions;
+      } as unknown as StoryWithDefinitions;
       const fullSession = mockSessionWithRelations();
 
       prisma.$transaction.mockImplementation(async (cb) =>
         cb(prisma as unknown as Prisma.TransactionClient)
       );
-      prisma.historySession.create.mockResolvedValue({
+      prisma.storySession.create.mockResolvedValue({
         id: 'session-1',
         clues: [],
         intents: [],
       } as never);
-      prisma.historySession.findFirst.mockResolvedValue(fullSession);
+      prisma.storySession.findFirst.mockResolvedValue(fullSession);
 
-      const result = await repo.create({ userId: 'user-1', history });
+      const result = await repo.create({ userId: 'user-1', story });
 
       expect(result).toEqual(fullSession);
-      expect(prisma.historySession.create).toHaveBeenCalledWith({
+      expect(prisma.storySession.create).toHaveBeenCalledWith({
         data: expect.objectContaining({
           userId: 'user-1',
-          historyId: 'history-1',
+          storyId: 'story-1',
         }),
         include: { clues: true, intents: true },
       });
-      expect(prisma.historySession.findFirst).toHaveBeenCalledWith({
+      expect(prisma.storySession.findFirst).toHaveBeenCalledWith({
         where: { id: 'session-1' },
-        include: historySessionInclude,
+        include: storySessionInclude,
       });
     });
   });

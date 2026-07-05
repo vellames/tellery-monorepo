@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/o-relicario-de-santa-luzia/history/cover.jpg",
-  "thumbnailUrl": "histories/o-relicario-de-santa-luzia/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-relicario-de-santa-luzia/story/cover.jpg",
+  "thumbnailUrl": "stories/o-relicario-de-santa-luzia/story/thumbnail.jpg",
   "opening": {
     "shortText": "O relicário de ouro de Santa Luzia sumiu da vitrine trancada. A procissão do padroeiro seria hoje. Cinco pessoas tinham acesso ao salão do museu.",
     "fullText": "São 6h da manhã no Museu Sacro Diocesano, anexo à Sé Catedral, e a procissão de Santa Luzia — padroeira da cidade — está marcada para as 18h. A historiadora Beatriz Lage subiu ao Salão dos Relicários para a conferência final e encontrou a vitrine central aberta por dentro e o relicário de ouro de Santa Luzia — peça-mor do acervo, do século XVIII, com fragmentos ósseos do padroeiro num ostensório de ouro e pedraria — desaparecido do seu lugar de veludo. A fechadura não foi forçada, o vidro está intacto e o alarme não disparou, o que significa que quem abriu tinha o código e a chave. O pároco, Monsenhor Inácio, fechou as portas do museu e pediu discrição até a hora da procissão: não pode haver escândalo no dia do padroeiro. Cinco pessoas tinham acesso ao salão dos relicários na madrugada: o próprio Monsenhor Inácio, que guarda as chaves-mestras; a Dra. Sueli Fonseca, restauradora das peças sagradas; Irmão Geraldo, o sacristão que abre e fecha a igreja; o Sr. Dante Aguiar, principal doador do acervo e benfeitor da diocese; e a própria Dra. Beatriz, que dorme na residência anexa ao museu. Cabe a você examinar o salão e a Sé, ouvir as cinco versões e descobrir quem tirou o relicário da vitrine, por quê e onde ele está agora.",
@@ -359,7 +359,7 @@
       "name": "Beatriz",
       "role": "Historiadora responsável pelo Museu Sacro Diocesano",
       "shortDescription": "Historiadora do museu, que vive na residência anexa e encontrou a vitrine vazia na madrugada da procissão.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/beatriz.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/characters/beatriz.jpg",
       "personality": "Metódica, devota do acervo e discretamente orgulhosa. Trata cada peça como documento histórico e nota pequenas alterações que ninguém mais vê.",
       "speakingStyle": "Fala com vocabulário acadêmico de historiadora, cita datas e proveniências, e usa uma calma de quem passa a vida entre arquivos.",
       "publicKnowledge": [
@@ -411,7 +411,7 @@
       "name": "Inácio",
       "role": "Monsenhor pároco da Sé Catedral e guardião das chaves-mestras",
       "shortDescription": "Pároco da Sé Catedral, guardião das chaves-mestras, contrário à venda de qualquer peça do acervo.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/inacio.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/characters/inacio.jpg",
       "personality": "Formal, intransigente com a fé e protetor do patrimônio sacro. Trata as relíquias como herança intocável da diocese.",
       "speakingStyle": "Fala com pausas medidas de púlpito, cita escrituras e cânones, e usa o tratamento formal com todos.",
       "publicKnowledge": [
@@ -463,7 +463,7 @@
       "name": "Sueli",
       "role": "Restauradora das peças sacras do museu",
       "shortDescription": "Restauradora das peças sacras, com acesso técnico a todas as vitrines do museu.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/sueli.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/characters/sueli.jpg",
       "personality": "Caprichosa, talentosa e discretamente exausta. Trata o restauro como ofício quase religioso e sente que seu trabalho é invisível.",
       "speakingStyle": "Fala com vocabulário técnico de conservação, descreve pátinas e ligas, e fica evasiva quando o assunto é o valor de mercado das peças.",
       "publicKnowledge": [
@@ -508,7 +508,7 @@
       "name": "Geraldo",
       "role": "Sacristão da Sé Catedral e bedel do museu",
       "shortDescription": "Sacristão da Sé Catedral, responsável por abrir e fechar a igreja e o museu.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/geraldo.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/characters/geraldo.jpg",
       "personality": "Devoto, prático e discretamente endividado. Trata a sacristia como extensão da fé, mas carrega um aperto financeiro que esconde de todos.",
       "speakingStyle": "Fala baixo e reverente, mistura salmos e comentários do cotidiano, e desvia quando o assunto é dinheiro.",
       "publicKnowledge": [
@@ -553,7 +553,7 @@
       "name": "Dante",
       "role": "Principal doador do acervo e benfeitor da diocese",
       "shortDescription": "Principal doador do acervo sacro e benfeitor da diocese, colecionador privado com passaporte internacional.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/characters/dante.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/characters/dante.jpg",
       "personality": "Culto, generoso à vista e discretamente calculista. Trata as doações como construção de reputação e acesso, e esconde o olho de comerciante por trás do benfeitor.",
       "speakingStyle": "Fala com vocabulário de colecionador, cita leilões e proveniências, e é agradável demais quando o assunto é a origem das peças.",
       "publicKnowledge": [
@@ -762,7 +762,7 @@
       "deletedAt": null,
       "name": "Salão dos Relicários",
       "shortDescription": "Sala central do museu onde ficam as vitrines das relíquias.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/location/salao_relicarios.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/location/salao_relicarios.jpg",
       "initialDescription": "O Salão dos Relicários é uma nave longa de pedra clara, com vitrais filtrando a luz da manhã em feixes coloridos. De ambos os lados do corredor central alinham-se vitrines de madeira escura e vidro, e ao fundo, sob um arco abobadado, a vitrine central de Santa Luzia, aberta por dentro e vazia no centro do veludo. O ar cheira a cera de vela e madeira antiga.",
       "ambientClueIds": [],
       "objectIds": ["vitrine_central", "replica_leve"]
@@ -774,7 +774,7 @@
       "deletedAt": null,
       "name": "Atelier de restauro",
       "shortDescription": "Oficina nos fundos do museu onde Sueli restaura as peças sacras.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/location/atelier_restauro.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/location/atelier_restauro.jpg",
       "initialDescription": "O atelier de restauro é uma sala clara nos fundos do museu, com bancadas de madeira, lupas, frascos de solventes e um andor de Santa Luzia em conserto ao centro, cercado de panos e ferramentas de douração. Há um cheiro de verniz e cera de abelha, e prateleiras com peças em diferentes estágios de conservação.",
       "ambientClueIds": [],
       "objectIds": ["andor_luzia", "registro_visitas"]
@@ -786,7 +786,7 @@
       "deletedAt": null,
       "name": "Sacristia da Sé",
       "shortDescription": "Sacristia da catedral, onde Geraldo prepara os paramentos.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/location/sacristia.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/location/sacristia.jpg",
       "initialDescription": "A sacristia é uma sala comprida de armários de madeira escura, com paramentos bordados em manequins de vulto, cálices polidos e um cheiro forte de incenso e madeira. Sobre uma bancada repousam as vestes da procissão de Santa Luzia, em vermelho e dourado, ainda por passar a ferro.",
       "ambientClueIds": [],
       "objectIds": ["paramentos", "caixa_esmolas"]
@@ -798,7 +798,7 @@
       "deletedAt": null,
       "name": "Residência de Dante",
       "shortDescription": "Casa de cidade de Dante, onde fica o cofre do esconderijo.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/location/residencia_dante.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/location/residencia_dante.jpg",
       "initialDescription": "A residência de Dante na cidade é um sobrado elegante de jóias e estantes, com um escritório forrado de quadros e um cofre antigo embutido na parede, atrás de um painel de madeira. Há um ar de casa pouco habitada, com móveis cobertos e um cheiro de cera e couro.",
       "ambientClueIds": [],
       "objectIds": ["cofre_dante", "maleta_forrada"]
@@ -810,7 +810,7 @@
       "deletedAt": null,
       "name": "Corredor de entrada do museu",
       "shortDescription": "Corredor que dá acesso ao salão, com a câmera e o painel de alarme.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/location/corredor_museu.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/location/corredor_museu.jpg",
       "initialDescription": "O corredor de entrada do museu tem piso de ladrilho, um painel eletrônico de alarme junto à porta dupla do salão e uma câmera discreta no teto. Pelas janelas vê-se o adro da catedral e, ao fundo, a residência anexa onde vive Beatriz.",
       "ambientClueIds": [],
       "objectIds": ["painel_alarme", "camera_corredor"]
@@ -824,7 +824,7 @@
       "deletedAt": null,
       "name": "Vitrine central de Santa Luzia",
       "shortDescription": "Vitrine de madeira e vidro, aberta por dentro, vazia.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/vitrine_central.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/vitrine_central.jpg",
       "locationId": "salao_relicarios",
       "initialDescription": "A vitrine central, sob o arco abobadado, é de jacarandá e vidro, com a porta interna aberta e o veludo escarlate vazio no centro, onde o relicário de ouro de Santa Luzia deveria estar.",
       "clueRevealRules": [
@@ -849,7 +849,7 @@
       "deletedAt": null,
       "name": "Réplica leve na vitrine",
       "shortDescription": "Peça de liga leve deixada no lugar do relicário para adiar a descoberta.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/replica_leve.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/replica_leve.jpg",
       "locationId": "salao_relicarios",
       "initialDescription": "Sobre o veludo, no lugar do relicário, há uma peça de aparância semelhante, mas que ao primeiro exame soa estranhamente leve e sem o brilho do ouro velho.",
       "clueRevealRules": [
@@ -874,7 +874,7 @@
       "deletedAt": null,
       "name": "Andor de Santa Luzia",
       "shortDescription": "Andor em conserto no atelier, onde o relicário iria na procissão.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/andor_luzia.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/andor_luzia.jpg",
       "locationId": "atelier_restauro",
       "initialDescription": "O andor de Santa Luzia é uma estrutura de madeira dourada, com flores e anjos esculpidos, em conserto ao centro do atelier, cercado de panos e ferramentas de douração.",
       "clueRevealRules": [
@@ -893,7 +893,7 @@
       "deletedAt": null,
       "name": "Registro de visitas e doações",
       "shortDescription": "Livro aberto sobre a bancada do atelier.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/registro_visitas.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/registro_visitas.jpg",
       "locationId": "atelier_restauro",
       "initialDescription": "Um livro de capa preta fica aberto sobre a bancada do atelier, com anotações recentes sobre visitas, doações e proveniências de peças.",
       "clueRevealRules": [
@@ -912,7 +912,7 @@
       "deletedAt": null,
       "name": "Paramentos da procissão",
       "shortDescription": "Vestes de Santa Luzia sobre a bancada da sacristia.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/paramentos.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/paramentos.jpg",
       "locationId": "sacristia",
       "initialDescription": "As vestes da procissão de Santa Luzia, em vermelho e dourado, repousam sobre a bancada da sacristia, ainda por passar a ferro.",
       "clueRevealRules": [
@@ -931,7 +931,7 @@
       "deletedAt": null,
       "name": "Caixa de esmolas",
       "shortDescription": "Caixa de madeira na sacristia com bilhetes de dívida.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/caixa_esmolas.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/caixa_esmolas.jpg",
       "locationId": "sacristia",
       "initialDescription": "Uma caixa de madeira com tampa, etiquetada 'ESMOLAS', repousa sobre um armário da sacristia.",
       "clueRevealRules": [
@@ -950,7 +950,7 @@
       "deletedAt": null,
       "name": "Cofre de Dante",
       "shortDescription": "Cofre antigo embutido na parede do escritório, trancado.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/cofre_dante.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/cofre_dante.jpg",
       "locationId": "residencia_dante",
       "initialDescription": "O cofre antigo, embutido na parede atrás de um painel de madeira, está trancado, com a porta de ferro fria ao toque.",
       "clueRevealRules": [
@@ -969,7 +969,7 @@
       "deletedAt": null,
       "name": "Maleta forrada de vermelho",
       "shortDescription": "Maleta no escritório de Dante, com forro vermelho.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/maleta_forrada.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/maleta_forrada.jpg",
       "locationId": "residencia_dante",
       "initialDescription": "Uma maleta de couro escuro repousa aberta sobre a escrivaninha de Dante, com o forro interno de veludo vermelho.",
       "clueRevealRules": [
@@ -988,7 +988,7 @@
       "deletedAt": null,
       "name": "Painel de alarme",
       "shortDescription": "Painel eletrônico junto à porta do salão.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/painel_alarme.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/painel_alarme.jpg",
       "locationId": "corredor_museu",
       "initialDescription": "O painel eletrônico de alarme, junto à porta dupla do salão, exibe uma tela verde com os logs de armamento e desarmamento.",
       "clueRevealRules": [
@@ -1007,7 +1007,7 @@
       "deletedAt": null,
       "name": "Câmera do corredor",
       "shortDescription": "Câmera discreta no teto do corredor de entrada.",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/object/camera_corredor.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/object/camera_corredor.jpg",
       "locationId": "corredor_museu",
       "initialDescription": "Uma câmera discreta fica fixada no teto do corredor, voltada para a porta dupla do salão, com uma luz vermelha de gravação apagada.",
       "clueRevealRules": [
@@ -1437,7 +1437,7 @@
       "deletedAt": null,
       "title": "O ouro que volta à vitrine",
       "type": "full_truth",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/endings/full_truth.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_took_reliquary": "dante",
@@ -1466,7 +1466,7 @@
         },
         "requiresClueIds": ["clue_dante_took_reliquary"]
       },
-      "imageUrl": "histories/o-relicario-de-santa-luzia/endings/partial_truth.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/endings/partial_truth.jpg",
       "summary": "Você identificou Dante como autor do roubo, mas não fechou o motivo real nem o paradeiro do relicário.",
       "epilogue": "Dante não consegue mais negar que esteve no salão, mas o silêncio sobre o colecionador estrangeiro pesa mais do que a confissão parcial. Sem o paradeiro do relicário, a procissão fica em suspenso e o museu segue de portas cerradas, com a vitrine central vazia e a réplica leve sobre o veludo. O relicário, onde quer que esteja, continua guardando o silêncio de uma verdade que ainda não foi servida."
     },
@@ -1477,7 +1477,7 @@
       "deletedAt": null,
       "title": "O suspeito errado",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-relicario-de-santa-luzia/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-relicario-de-santa-luzia/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

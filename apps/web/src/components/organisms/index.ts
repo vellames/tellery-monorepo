@@ -15,7 +15,7 @@ export { HowItWorks } from './how-it-works/how-it-works';
 export { StoryList } from './story-list/story-list';
 export { StoriesFilters } from './stories-filters/stories-filters';
 export { SessionHub } from './session-hub/session-hub';
-export { SessionHistory } from './session-history/session-history';
+export { SessionStory } from './session-story/session-story';
 export { ProfileForm } from './profile-form/profile-form';
 export { ChangePasswordForm } from './change-password-form/change-password-form';
 export { SubscriptionPanel } from './subscription-panel/subscription-panel';

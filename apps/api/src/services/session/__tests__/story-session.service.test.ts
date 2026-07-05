@@ -2,15 +2,15 @@ import { Subscription, User } from '@prisma/client';
 import { StatusCodes } from 'http-status-codes';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import {
-  IHistoryDefinitionRepository,
+  IStoryDefinitionRepository,
   IImageUrlSigner,
   ISessionRepository,
   ISubscriptionRepository,
   IUserRepository,
 } from '../../../interfaces';
-import type { HistoryWithDefinitions } from '../../../repositories/HistoryDefinitionRepository';
-import type { HistorySessionWithRelations } from '../../../repositories/SessionRepository';
-import { HistorySessionService } from '../history-session.service';
+import type { StoryWithDefinitions } from '../../../repositories/StoryDefinitionRepository';
+import type { StorySessionWithRelations } from '../../../repositories/SessionRepository';
+import { StorySessionService } from '../story-session.service';
 
 const mockUser = (overrides: Partial<User> = {}): User =>
   ({
@@ -26,11 +26,11 @@ const mockUser = (overrides: Partial<User> = {}): User =>
     ...overrides,
   }) as User;
 
-const mockHistory = (
-  overrides: Partial<HistoryWithDefinitions> = {}
-): HistoryWithDefinitions =>
+const mockStory = (
+  overrides: Partial<StoryWithDefinitions> = {}
+): StoryWithDefinitions =>
   ({
-    id: 'history-1',
+    id: 'story-1',
     slug: 'o-bilhete-na-mesa-7',
     title: 'O Bilhete na Mesa 7',
     subtitle: null,
@@ -38,7 +38,7 @@ const mockHistory = (
     objective: 'objective text',
     isFree: true,
     ...overrides,
-  }) as unknown as HistoryWithDefinitions;
+  }) as unknown as StoryWithDefinitions;
 
 const mockSubscription = (
   overrides: Partial<Subscription> = {}
@@ -61,8 +61,8 @@ const mockSubscription = (
   }) as Subscription;
 
 const mockSession = (
-  overrides: Partial<HistorySessionWithRelations> = {}
-): HistorySessionWithRelations =>
+  overrides: Partial<StorySessionWithRelations> = {}
+): StorySessionWithRelations =>
   ({
     id: 'session-1',
     status: 'active',
@@ -73,28 +73,28 @@ const mockSession = (
     conclusion: null,
     ending: null,
     ...overrides,
-  }) as unknown as HistorySessionWithRelations;
+  }) as unknown as StorySessionWithRelations;
 
-describe('HistorySessionService', () => {
+describe('StorySessionService', () => {
   let users: DeepMockProxy<IUserRepository>;
-  let histories: DeepMockProxy<IHistoryDefinitionRepository>;
+  let stories: DeepMockProxy<IStoryDefinitionRepository>;
   let sessions: DeepMockProxy<ISessionRepository>;
   let imageUrlSigner: DeepMockProxy<IImageUrlSigner>;
   let subscriptions: DeepMockProxy<ISubscriptionRepository>;
-  let service: HistorySessionService;
+  let service: StorySessionService;
 
   beforeEach(() => {
     users = mockDeep<IUserRepository>();
-    histories = mockDeep<IHistoryDefinitionRepository>();
+    stories = mockDeep<IStoryDefinitionRepository>();
     sessions = mockDeep<ISessionRepository>();
     imageUrlSigner = mockDeep<IImageUrlSigner>();
     subscriptions = mockDeep<ISubscriptionRepository>();
     imageUrlSigner.sign.mockImplementation(async (key: string | null) =>
       key ? `https://signed.test/${key}` : null
     );
-    service = new HistorySessionService(
+    service = new StorySessionService(
       users,
-      histories,
+      stories,
       sessions,
       imageUrlSigner,
       subscriptions
@@ -110,23 +110,23 @@ describe('HistorySessionService', () => {
 
   afterEach(() => {
     mockReset(users);
-    mockReset(histories);
+    mockReset(stories);
     mockReset(sessions);
     mockReset(imageUrlSigner);
     mockReset(subscriptions);
   });
 
   describe('startSession', () => {
-    it('creates and persists a session for the specified history', async () => {
-      const history = mockHistory();
+    it('creates and persists a session for the specified story', async () => {
+      const story = mockStory();
       const session = mockSession();
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(history);
-      sessions.findActiveByHistory.mockResolvedValue(null);
+      stories.findById.mockResolvedValue(story);
+      sessions.findActiveByStory.mockResolvedValue(null);
       sessions.create.mockResolvedValue(session);
 
       const result = await service.startSession('user-1', {
-        historyId: 'history-1',
+        storyId: 'story-1',
       });
 
       expect(users.decrementAvailableCredits).toHaveBeenCalledWith(
@@ -134,14 +134,14 @@ describe('HistorySessionService', () => {
         expect.anything()
       );
       expect(sessions.create).toHaveBeenCalledWith(
-        { userId: 'user-1', history },
+        { userId: 'user-1', story },
         expect.anything()
       );
       expect(result).toEqual({
         session,
         sessionStatus: 'active',
-        history: {
-          id: 'history-1',
+        story: {
+          id: 'story-1',
           slug: 'o-bilhete-na-mesa-7',
           title: 'O Bilhete na Mesa 7',
           subtitle: null,
@@ -151,15 +151,15 @@ describe('HistorySessionService', () => {
       });
     });
 
-    it('throws 409 when an active session already exists for the same history', async () => {
+    it('throws 409 when an active session already exists for the same story', async () => {
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(mockHistory());
-      sessions.findActiveByHistory.mockResolvedValue(
+      stories.findById.mockResolvedValue(mockStory());
+      sessions.findActiveByStory.mockResolvedValue(
         mockSession({ id: 'existing-session' })
       );
 
       await expect(
-        service.startSession('user-1', { historyId: 'history-1' })
+        service.startSession('user-1', { storyId: 'story-1' })
       ).rejects.toMatchObject({
         statusCode: StatusCodes.CONFLICT,
         messageKey: 'session:errors.sessionAlreadyActive',
@@ -170,12 +170,12 @@ describe('HistorySessionService', () => {
 
     it('throws 402 when the user has no available sessions left', async () => {
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(mockHistory());
-      sessions.findActiveByHistory.mockResolvedValue(null);
+      stories.findById.mockResolvedValue(mockStory());
+      sessions.findActiveByStory.mockResolvedValue(null);
       users.decrementAvailableCredits.mockResolvedValue(false);
 
       await expect(
-        service.startSession('user-1', { historyId: 'history-1' })
+        service.startSession('user-1', { storyId: 'story-1' })
       ).rejects.toMatchObject({
         statusCode: StatusCodes.PAYMENT_REQUIRED,
         messageKey: 'session:errors.noCreditsAvailable',
@@ -187,59 +187,59 @@ describe('HistorySessionService', () => {
       users.findById.mockResolvedValue(null);
 
       await expect(
-        service.startSession('nope', { historyId: 'history-1' })
+        service.startSession('nope', { storyId: 'story-1' })
       ).rejects.toMatchObject({ statusCode: 404 });
       expect(sessions.create).not.toHaveBeenCalled();
     });
 
-    it('throws 404 when the specified history is not found', async () => {
+    it('throws 404 when the specified story is not found', async () => {
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(null);
+      stories.findById.mockResolvedValue(null);
 
       await expect(
-        service.startSession('user-1', { historyId: 'missing' })
+        service.startSession('user-1', { storyId: 'missing' })
       ).rejects.toMatchObject({ statusCode: 404 });
       expect(sessions.create).not.toHaveBeenCalled();
     });
 
-    it('resolves the history by id when provided', async () => {
-      const history = mockHistory();
+    it('resolves the story by id when provided', async () => {
+      const story = mockStory();
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(history);
-      sessions.findActiveByHistory.mockResolvedValue(null);
+      stories.findById.mockResolvedValue(story);
+      sessions.findActiveByStory.mockResolvedValue(null);
       sessions.create.mockResolvedValue(mockSession());
 
-      await service.startSession('user-1', { historyId: 'history-1' });
+      await service.startSession('user-1', { storyId: 'story-1' });
 
-      expect(histories.findById).toHaveBeenCalledWith('history-1');
-      expect(histories.findBySlug).not.toHaveBeenCalled();
+      expect(stories.findById).toHaveBeenCalledWith('story-1');
+      expect(stories.findBySlug).not.toHaveBeenCalled();
     });
 
-    it('falls back to slug when the history id is not found', async () => {
-      const history = mockHistory();
+    it('falls back to slug when the story id is not found', async () => {
+      const story = mockStory();
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(null);
-      histories.findBySlug.mockResolvedValue(history);
-      sessions.findActiveByHistory.mockResolvedValue(null);
+      stories.findById.mockResolvedValue(null);
+      stories.findBySlug.mockResolvedValue(story);
+      sessions.findActiveByStory.mockResolvedValue(null);
       sessions.create.mockResolvedValue(mockSession());
 
       await service.startSession('user-1', {
-        historyId: 'missing',
-        historySlug: 'o-bilhete-na-mesa-7',
+        storyId: 'missing',
+        storySlug: 'o-bilhete-na-mesa-7',
       });
 
-      expect(histories.findById).toHaveBeenCalledWith('missing');
-      expect(histories.findBySlug).toHaveBeenCalledWith('o-bilhete-na-mesa-7');
+      expect(stories.findById).toHaveBeenCalledWith('missing');
+      expect(stories.findBySlug).toHaveBeenCalledWith('o-bilhete-na-mesa-7');
     });
 
-    it('throws 402 subscriptionRequired when a premium history is started without a subscription', async () => {
+    it('throws 402 subscriptionRequired when a premium story is started without a subscription', async () => {
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(mockHistory({ isFree: false }));
-      sessions.findActiveByHistory.mockResolvedValue(null);
+      stories.findById.mockResolvedValue(mockStory({ isFree: false }));
+      sessions.findActiveByStory.mockResolvedValue(null);
       subscriptions.findByUserId.mockResolvedValue(null);
 
       await expect(
-        service.startSession('user-1', { historyId: 'history-1' })
+        service.startSession('user-1', { storyId: 'story-1' })
       ).rejects.toMatchObject({
         statusCode: StatusCodes.PAYMENT_REQUIRED,
         messageKey: 'session:errors.subscriptionRequired',
@@ -249,16 +249,16 @@ describe('HistorySessionService', () => {
       expect(sessions.create).not.toHaveBeenCalled();
     });
 
-    it('throws 402 subscriptionRequired when a premium history is started with an inactive subscription', async () => {
+    it('throws 402 subscriptionRequired when a premium story is started with an inactive subscription', async () => {
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(mockHistory({ isFree: false }));
-      sessions.findActiveByHistory.mockResolvedValue(null);
+      stories.findById.mockResolvedValue(mockStory({ isFree: false }));
+      sessions.findActiveByStory.mockResolvedValue(null);
       subscriptions.findByUserId.mockResolvedValue(
         mockSubscription({ status: 'canceled' })
       );
 
       await expect(
-        service.startSession('user-1', { historyId: 'history-1' })
+        service.startSession('user-1', { storyId: 'story-1' })
       ).rejects.toMatchObject({
         statusCode: StatusCodes.PAYMENT_REQUIRED,
         messageKey: 'session:errors.subscriptionRequired',
@@ -267,17 +267,17 @@ describe('HistorySessionService', () => {
       expect(sessions.create).not.toHaveBeenCalled();
     });
 
-    it('starts a premium history when the user has an active subscription', async () => {
-      const history = mockHistory({ isFree: false });
+    it('starts a premium story when the user has an active subscription', async () => {
+      const story = mockStory({ isFree: false });
       const session = mockSession();
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(history);
-      sessions.findActiveByHistory.mockResolvedValue(null);
+      stories.findById.mockResolvedValue(story);
+      sessions.findActiveByStory.mockResolvedValue(null);
       subscriptions.findByUserId.mockResolvedValue(mockSubscription());
       sessions.create.mockResolvedValue(session);
 
       const result = await service.startSession('user-1', {
-        historyId: 'history-1',
+        storyId: 'story-1',
       });
 
       expect(subscriptions.findByUserId).toHaveBeenCalledWith('user-1');
@@ -286,19 +286,19 @@ describe('HistorySessionService', () => {
         expect.anything()
       );
       expect(sessions.create).toHaveBeenCalledWith(
-        { userId: 'user-1', history },
+        { userId: 'user-1', story },
         expect.anything()
       );
       expect(result.session).toBe(session);
     });
 
-    it('does not check the subscription for a free history', async () => {
+    it('does not check the subscription for a free story', async () => {
       users.findById.mockResolvedValue(mockUser());
-      histories.findById.mockResolvedValue(mockHistory({ isFree: true }));
-      sessions.findActiveByHistory.mockResolvedValue(null);
+      stories.findById.mockResolvedValue(mockStory({ isFree: true }));
+      sessions.findActiveByStory.mockResolvedValue(null);
       sessions.create.mockResolvedValue(mockSession());
 
-      await service.startSession('user-1', { historyId: 'history-1' });
+      await service.startSession('user-1', { storyId: 'story-1' });
 
       expect(subscriptions.findByUserId).not.toHaveBeenCalled();
     });
@@ -308,8 +308,8 @@ describe('HistorySessionService', () => {
     it('returns the session state with signed image urls', async () => {
       const session = mockSession({
         userId: 'user-1',
-        coverImageUrl: 'histories/cover.png',
-        thumbnailUrl: 'histories/thumb.png',
+        coverImageUrl: 'stories/cover.png',
+        thumbnailUrl: 'stories/thumb.png',
         characterStates: [
           {
             id: 'char-1',
@@ -337,16 +337,16 @@ describe('HistorySessionService', () => {
           },
         ],
         clues: [],
-      } as unknown as HistorySessionWithRelations);
+      } as unknown as StorySessionWithRelations);
       sessions.findById.mockResolvedValue(session);
 
       const result = await service.getSessionState('session-1', 'user-1');
 
-      expect(result.history.coverImageUrl).toBe(
-        'https://signed.test/histories/cover.png'
+      expect(result.story.coverImageUrl).toBe(
+        'https://signed.test/stories/cover.png'
       );
-      expect(result.history.thumbnailUrl).toBe(
-        'https://signed.test/histories/thumb.png'
+      expect(result.story.thumbnailUrl).toBe(
+        'https://signed.test/stories/thumb.png'
       );
       expect(result.characters[0].imageUrl).toBe(
         'https://signed.test/characters/elisa.png'

@@ -55,7 +55,7 @@ export interface SessionState {
   status: string;
   startedAt: string;
   completedAt: string | null;
-  history: {
+  story: {
     id: string;
     title: string;
     subtitle: string | null;
@@ -121,7 +121,7 @@ export interface SessionListItem {
   thumbnailUrl: string | null;
   startedAt: string;
   completedAt: string | null;
-  historyId: string;
+  storyId: string;
   endingType: string | null;
 }
 
@@ -133,7 +133,7 @@ export interface PaginatedSessions {
   totalPages: number;
 }
 
-export type CompletedHistoryMap = Record<string, string>;
+export type CompletedStoryMap = Record<string, string>;
 
 export interface InteractPayload {
   stateId: string;
