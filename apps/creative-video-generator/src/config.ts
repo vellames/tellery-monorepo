@@ -47,6 +47,19 @@ export interface GeneratorConfig {
   force: boolean;
   useReferenceImages: boolean;
   imagesDir: string;
+  generateCover: boolean;
+  coverModel: string;
+  coverResolution: string;
+  coverMaxSizeBytes: number;
+  coverMaxDimension: number | null;
+  generateVoiceover: boolean;
+  voiceId: string;
+  voiceModel: string;
+  voiceSpeed: number;
+  voiceStability: number;
+  voiceSimilarity: number;
+  voiceStyle: number;
+  elevenLabsApiKey: string;
 }
 
 export const DEFAULT_MODEL = 'bytedance/seedance-2.0/text-to-video';
@@ -58,6 +71,22 @@ export const DEFAULT_GENERATE_AUDIO = true;
 export const DEFAULT_USE_REFERENCE_IMAGES = true;
 export const DEFAULT_LLM_MODEL = 'deepseek/deepseek-v4-pro';
 export const DEFAULT_REASONING_EFFORT = 'high';
+export const DEFAULT_GENERATE_COVER = true;
+export const DEFAULT_COVER_MODEL = 'google/nano-banana-2/text-to-image';
+export const DEFAULT_COVER_RESOLUTION = '1k';
+export const DEFAULT_COVER_MAX_SIZE_KB = 200;
+export const SUPPORTED_COVER_RESOLUTIONS = new Set(['0.5k', '1k', '2k', '4k']);
+export const DEFAULT_GENERATE_VOICEOVER = true;
+export const DEFAULT_VOICE_MODEL = 'eleven_multilingual_v2';
+export const DEFAULT_VOICE_SPEED = 1.1;
+export const DEFAULT_VOICE_STABILITY = 0.5;
+export const DEFAULT_VOICE_SIMILARITY = 0.75;
+export const DEFAULT_VOICE_STYLE = 0.0;
+export const DEFAULT_VOICE_ID = 'JBFqnCBsd6RMkjVDRZzb';
+export const MIN_VOICE_SPEED = 0.25;
+export const MAX_VOICE_SPEED = 4.0;
+export const MIN_VOICE_TRAIT = 0.0;
+export const MAX_VOICE_TRAIT = 1.0;
 export const DEFAULT_IMAGES_DIR = path.resolve(
   __dirname,
   '..',
@@ -138,6 +167,18 @@ function parseArgs(argv: string[]): {
   force: boolean;
   useReferenceImages: boolean;
   imagesDir: string;
+  generateCover: boolean;
+  coverModel: string;
+  coverResolution: string;
+  coverMaxSizeKb: number;
+  coverMaxDimension: number | null;
+  generateVoiceover: boolean;
+  voiceId: string;
+  voiceModel: string;
+  voiceSpeed: number;
+  voiceStability: number;
+  voiceSimilarity: number;
+  voiceStyle: number;
 } {
   const positional: string[] = [];
   let imagesMapPath: string | undefined;
@@ -156,6 +197,18 @@ function parseArgs(argv: string[]): {
   let force = false;
   let useReferenceImages = DEFAULT_USE_REFERENCE_IMAGES;
   let imagesDir = DEFAULT_IMAGES_DIR;
+  let generateCover = DEFAULT_GENERATE_COVER;
+  let coverModel = DEFAULT_COVER_MODEL;
+  let coverResolution = DEFAULT_COVER_RESOLUTION;
+  let coverMaxSizeKb = DEFAULT_COVER_MAX_SIZE_KB;
+  let coverMaxDimension: number | null = null;
+  let generateVoiceover = DEFAULT_GENERATE_VOICEOVER;
+  let voiceId = process.env.ELEVENLABS_VOICE_ID ?? DEFAULT_VOICE_ID;
+  let voiceModel = DEFAULT_VOICE_MODEL;
+  let voiceSpeed = DEFAULT_VOICE_SPEED;
+  let voiceStability = DEFAULT_VOICE_STABILITY;
+  let voiceSimilarity = DEFAULT_VOICE_SIMILARITY;
+  let voiceStyle = DEFAULT_VOICE_STYLE;
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
@@ -229,6 +282,58 @@ function parseArgs(argv: string[]): {
         imagesDir = next;
         i++;
         break;
+      case '--cover':
+        generateCover = true;
+        break;
+      case '--no-cover':
+        generateCover = false;
+        break;
+      case '--cover-model':
+        coverModel = next;
+        i++;
+        break;
+      case '--cover-resolution':
+        coverResolution = next;
+        i++;
+        break;
+      case '--cover-max-size':
+        coverMaxSizeKb = Number(next);
+        i++;
+        break;
+      case '--cover-max-dimension':
+        coverMaxDimension = Number(next);
+        i++;
+        break;
+      case '--voiceover':
+        generateVoiceover = true;
+        break;
+      case '--no-voiceover':
+        generateVoiceover = false;
+        break;
+      case '--voice-id':
+        voiceId = next;
+        i++;
+        break;
+      case '--voice-model':
+        voiceModel = next;
+        i++;
+        break;
+      case '--voice-speed':
+        voiceSpeed = Number(next);
+        i++;
+        break;
+      case '--voice-stability':
+        voiceStability = Number(next);
+        i++;
+        break;
+      case '--voice-similarity':
+        voiceSimilarity = Number(next);
+        i++;
+        break;
+      case '--voice-style':
+        voiceStyle = Number(next);
+        i++;
+        break;
       case '--help':
       case '-h':
         printHelp();
@@ -298,6 +403,66 @@ function parseArgs(argv: string[]): {
     );
   }
 
+  if (generateCover) {
+    if (!SUPPORTED_COVER_RESOLUTIONS.has(coverResolution)) {
+      throw new Error(
+        `Unsupported cover resolution "${coverResolution}". Valid values: ${[...SUPPORTED_COVER_RESOLUTIONS].join(', ')}`
+      );
+    }
+    if (!Number.isFinite(coverMaxSizeKb) || coverMaxSizeKb <= 0) {
+      throw new Error(
+        `--cover-max-size must be a positive number in KB (got "${coverMaxSizeKb}")`
+      );
+    }
+    if (
+      coverMaxDimension !== null &&
+      (!Number.isFinite(coverMaxDimension) || coverMaxDimension <= 0)
+    ) {
+      throw new Error(
+        `--cover-max-dimension must be a positive integer (got "${coverMaxDimension}")`
+      );
+    }
+  }
+
+  // Seedance requires at least one reference image alongside a reference audio.
+  // If the user disabled reference images but kept the voiceover on, we must
+  // disable the voiceover to avoid a Seedance-side rejection.
+  if (generateVoiceover && !useReferenceImages) {
+    console.warn(
+      '[creative-video-generator] voiceover disabled: --no-reference-images was set, ' +
+        'but Seedance requires at least one reference image alongside the reference audio. ' +
+        'Re-enable reference images or keep voiceover off.'
+    );
+    generateVoiceover = false;
+  }
+
+  if (generateVoiceover) {
+    if (
+      !Number.isFinite(voiceSpeed) ||
+      voiceSpeed < MIN_VOICE_SPEED ||
+      voiceSpeed > MAX_VOICE_SPEED
+    ) {
+      throw new Error(
+        `--voice-speed must be between ${MIN_VOICE_SPEED} and ${MAX_VOICE_SPEED} (got "${voiceSpeed}")`
+      );
+    }
+    for (const [name, value] of [
+      ['--voice-stability', voiceStability],
+      ['--voice-similarity', voiceSimilarity],
+      ['--voice-style', voiceStyle],
+    ] as const) {
+      if (
+        !Number.isFinite(value) ||
+        value < MIN_VOICE_TRAIT ||
+        value > MAX_VOICE_TRAIT
+      ) {
+        throw new Error(
+          `${name} must be between ${MIN_VOICE_TRAIT} and ${MAX_VOICE_TRAIT} (got "${value}")`
+        );
+      }
+    }
+  }
+
   return {
     inputPath,
     imagesMapPath: resolvedImagesMapPath,
@@ -317,6 +482,18 @@ function parseArgs(argv: string[]): {
     force,
     useReferenceImages,
     imagesDir,
+    generateCover,
+    coverModel,
+    coverResolution,
+    coverMaxSizeKb,
+    coverMaxDimension,
+    generateVoiceover,
+    voiceId,
+    voiceModel,
+    voiceSpeed,
+    voiceStability,
+    voiceSimilarity,
+    voiceStyle,
   };
 }
 
@@ -333,13 +510,12 @@ Input:
                             <slug>-images-map.json in the same directory.
 
 Modes:
-  (none)                    Full run: LLM → Seedance → download .mp4 (spends credits).
-  --dry-run                 LLM → builds the exact Seedance payload and STOPS.
+  (none)                    Full run: LLM → VO (ElevenLabs) → Seedance → download .mp4 + cover.jpg (spends credits).
+  --dry-run                 LLM → VO → builds the exact Seedance payload and STOPS.
                             Prints the payload and writes it to manifest; does NOT
-                            call WaveSpeed.
+                            call WaveSpeed for the video. Cover is NOT generated.
   --prompt-only             Runs the LLM and saves the video prompt, then STOPS.
-                            Does not build the Seedance payload. Useful to iterate
-                            on creative direction.
+                            Does not generate VO, build the Seedance payload, or call WaveSpeed.
   --prompt-file <path>      Load a previously saved video prompt JSON and skip the
                             LLM. Combine with --dry-run to audit the final payload,
                             or use alone to generate the video from a tuned prompt.
@@ -351,13 +527,28 @@ Options:
   --reasoning-effort <lvl>  low | medium | high | xhigh (default: ${DEFAULT_REASONING_EFFORT}). Only affects the LLM call.
   --duration <s>            Clip length in seconds, ${MIN_DURATION}-${MAX_DURATION} (default: ${DEFAULT_DURATION})
   --resolution <res>        480p | 720p | 1080p (default: ${DEFAULT_RESOLUTION})
-  --aspect-ratio <ratio>    e.g. 9:16, 16:9, 1:1 (default: ${DEFAULT_ASPECT_RATIO})
+  --aspect-ratio <ratio>    e.g. 9:16, 16:9, 1:1 (default: ${DEFAULT_ASPECT_RATIO}). Also used as the cover aspect ratio.
   --no-generate-audio       Disable native audio generation (default: audio on)
   --no-reference-images     Do not upload reference images to S3 / send to Seedance
   --reference-images        Force reference images on (default: on)
   --images-dir <dir>        image-generator output directory (default: ../image-generator/output)
   --no-prefix-master        Do not prepend the image-map master prompt to the context
-  --force                   Re-generate even if the output file already exists
+  --force                   Re-generate even if the output files already exist
+  --no-cover                Do not generate the cover image (default: cover on)
+  --cover                   Force cover generation on (default: on)
+  --cover-model <slug>      WaveSpeed text-to-image model for the cover (default: ${DEFAULT_COVER_MODEL})
+  --cover-resolution <res>  0.5k | 1k | 2k | 4k (default: ${DEFAULT_COVER_RESOLUTION})
+  --cover-max-size <kb>     Target cover JPEG size in KB (default: ${DEFAULT_COVER_MAX_SIZE_KB}). Quality and dimensions are auto-reduced to stay under this.
+  --cover-max-dimension <px>  Optional cap on the cover's longest side in pixels (no cap by default)
+  --no-voiceover            Do not generate the voiceover audio (default: VO on)
+  --voiceover               Force voiceover generation on (default: on)
+  --voice-id <id>           ElevenLabs voice ID (default: ${DEFAULT_VOICE_ID}, or ELEVENLABS_VOICE_ID env var).
+                            Set to a pt-BR voice from your library for best results.
+  --voice-model <slug>      ElevenLabs model (default: ${DEFAULT_VOICE_MODEL})
+  --voice-speed <n>         Speech speed, ${MIN_VOICE_SPEED}-${MAX_VOICE_SPEED} (default: ${DEFAULT_VOICE_SPEED})
+  --voice-stability <n>     0-1 (default: ${DEFAULT_VOICE_STABILITY})
+  --voice-similarity <n>    0-1 (default: ${DEFAULT_VOICE_SIMILARITY})
+  --voice-style <n>         0-1 (default: ${DEFAULT_VOICE_STYLE})
   -h, --help                Show this help
 
 The slug is derived from the input filename by stripping the
@@ -374,14 +565,28 @@ Environment:
   AWS_SECRET_ACCESS_KEY     Required when using reference images
   AWS_S3_BUCKET             Required when using reference images
   AWS_S3_PRESIGNED_EXPIRATION_SECONDS  Optional (default: 3600)
+  ELEVENLABS_API_KEY        Required when using voiceover (default: on)
+  ELEVENLABS_VOICE_ID       Optional ElevenLabs voice ID (overrides the default)
 `);
 }
 
 export function loadConfig(argv: string[]): GeneratorConfig {
   const parsed = parseArgs(argv);
+
+  if (parsed.voiceId === DEFAULT_VOICE_ID && parsed.generateVoiceover) {
+    console.warn(
+      `[creative-video-generator] using default voice ${DEFAULT_VOICE_ID} (English "George"). ` +
+        'For pt-BR results, set ELEVENLABS_VOICE_ID in .env or pass --voice-id with a Portuguese voice from your library.'
+    );
+  }
+
   return {
     ...parsed,
     llmApiKey: required('OPENROUTER_API_KEY', '.env'),
     apiKey: required('WAVESPEED_API_KEY', '.env'),
+    coverMaxSizeBytes: Math.round(parsed.coverMaxSizeKb * 1024),
+    elevenLabsApiKey: parsed.generateVoiceover
+      ? required('ELEVENLABS_API_KEY', '.env')
+      : (process.env.ELEVENLABS_API_KEY ?? ''),
   };
 }

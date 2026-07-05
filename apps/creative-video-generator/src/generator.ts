@@ -4,6 +4,8 @@ import { OpenRouterJsonClient } from './llm-client';
 import { WavespeedClient } from './wavespeed-client';
 import { GeneratorConfig } from './config';
 import {
+  CoverPrompt,
+  CoverResult,
   GenerateOptions,
   ReferenceImage,
   RunResult,
@@ -13,6 +15,8 @@ import {
   SpoilerFreeContext,
   VideoPrompt,
   VideoShot,
+  VoiceoverPrompt,
+  VoiceoverResult,
 } from './types';
 
 const OUTPUT_VIDEO_FORMAT = 'mp4';
@@ -100,7 +104,29 @@ function buildLlmMessages(
     '(lista apenas das tags sem a #, para uso programático).\n' +
     '13. Retorne APENAS um objeto JSON: ' +
     '{"styleNote": string, "shots": [{"timecode": string, "visual": string, "narration": string}], ' +
-    '"socialCaption": {"caption": string, "hashtags": string[]}}.';
+    '"socialCaption": {"caption": string, "hashtags": string[]}, ' +
+    '"cover": {"prompt": string}, ' +
+    '"voiceover": {"script": string}}.\n' +
+    '14. O campo "cover.prompt" é o prompt de UMA imagem estática vertical que servirá de ' +
+    'capa/poster do criativo, renderizada por um modelo de imagem (nano-banana-2). Deve ser ' +
+    'uma composição única, forte e cinematográfica, capaz de capturar a atmosfera e o mistério ' +
+    'em um único quadro (pense no "key art" de um thriller). Reuse e reforce o "styleNote" ' +
+    '(paleta, iluminação, identidade visual global) para manter coesão com o vídeo. ' +
+    'NUNCA inclua texto, título, logotipo ou CTA sobreposto na imagem — descreva apenas elementos ' +
+    'visuais (modelos de IA de imagem lidam mal com texto legível). ' +
+    'SEM spoilers (não revele culpado, vítima ou desfecho). ' +
+    'O aspect ratio da capa é vertical (acompanha o vídeo, ex.: 9:16), então componha em retrato. ' +
+    'Concreto e autossuficiente: nomeie sujeito, ambiente, paleta, iluminação, ângulo e profundidade. ' +
+    'NÃO inclua narração nem timecode — é um quadro estático, não um shot do vídeo.\n' +
+    '15. O campo "voiceover.script" é a ÚNICA linha de locução em off (voiceover) que cobre todo o ' +
+    `criativo (~${duration}s). Será sintetizada por TTS (ElevenLabs) em português do Brasil e usada ` +
+    'como áudio de referência do clipe. Deve ter entre 30 e 35 palavras (cabe em ~15s a ~1.1x de ' +
+    'velocidade), com gancho forte nos primeiros 2-3s e CTA web explícito no final (verbos de acesso ' +
+    'web: "jogue", "acesse", "investigue", "descubra" — nunca "baixe/baixar"). ' +
+    'SEM spoilers. SEM hashtags, SEM "narrado por", SEM indicadores de cena — apenas a fala pura. ' +
+    'Uma única frase contínua ou duas curtas, prontas para TTS. Coerente com o gancho do criativo ' +
+    'mas INDEPENDENTE dos "narration" por shot (esses viram direção de cena; o voiceover é o áudio ' +
+    'final que o espectador vai ouvir).';
 
   const appName = 'Tellery';
   const user =
@@ -196,6 +222,8 @@ function coerceVideoPrompt(raw: unknown): VideoPrompt {
     shots?: unknown;
     styleNote?: unknown;
     socialCaption?: unknown;
+    cover?: unknown;
+    voiceover?: unknown;
   };
   if (!Array.isArray(obj.shots) || obj.shots.length === 0) {
     throw new Error(
@@ -245,10 +273,14 @@ function coerceVideoPrompt(raw: unknown): VideoPrompt {
       : undefined;
 
   const socialCaption = coerceSocialCaption(obj.socialCaption);
+  const cover = coerceCoverPrompt(obj.cover);
+  const voiceover = coerceVoiceoverPrompt(obj.voiceover);
 
   return {
     shots,
     socialCaption,
+    cover,
+    voiceover,
     ...(styleNote ? { styleNote } : {}),
   };
 }
@@ -287,42 +319,92 @@ function coerceSocialCaption(raw: unknown): SocialCaption {
   return { caption: obj.caption.trim(), hashtags };
 }
 
+function coerceCoverPrompt(raw: unknown): CoverPrompt {
+  if (typeof raw !== 'object' || raw === null) {
+    throw new Error(
+      `LLM response is missing a "cover" object: ${JSON.stringify(raw).slice(0, 200)}`
+    );
+  }
+
+  const obj = raw as { prompt?: unknown };
+  if (typeof obj.prompt !== 'string' || obj.prompt.trim().length === 0) {
+    throw new Error(
+      `LLM "cover.prompt" is missing or empty: ${JSON.stringify(raw).slice(0, 200)}`
+    );
+  }
+
+  return { prompt: obj.prompt.trim() };
+}
+
+function coerceVoiceoverPrompt(raw: unknown): VoiceoverPrompt {
+  if (typeof raw !== 'object' || raw === null) {
+    throw new Error(
+      `LLM response is missing a "voiceover" object: ${JSON.stringify(raw).slice(0, 200)}`
+    );
+  }
+
+  const obj = raw as { script?: unknown };
+  if (typeof obj.script !== 'string' || obj.script.trim().length === 0) {
+    throw new Error(
+      `LLM "voiceover.script" is missing or empty: ${JSON.stringify(raw).slice(0, 200)}`
+    );
+  }
+
+  return { script: obj.script.trim() };
+}
+
 /**
  * Serialize the shot list into a single text prompt for the Seedance
  * text-to-video endpoint (which takes one string). The shots are laid out
  * as a labeled sequence with timecodes so the model renders them in order
  * as a single continuous clip.
+ *
+ * When a voiceover reference audio is provided (hasVoiceover), the per-shot
+ * "narration" lines are suppressed — they would compete with the @Audio1
+ * reference for the model's attention. Instead, a single global cue tells
+ * Seedance to sync the edit to @Audio1.
  */
-function shotsToSeedancePrompt(prompt: VideoPrompt): string {
+function shotsToSeedancePrompt(
+  prompt: VideoPrompt,
+  hasVoiceover = false
+): string {
   const header = prompt.styleNote ? `${prompt.styleNote}\n\n` : '';
   const body = prompt.shots
     .map((shot) => {
-      const narration = shot.narration
-        ? ` Narração VO: "${shot.narration}".`
-        : '';
+      const narration =
+        !hasVoiceover && shot.narration
+          ? ` Narração VO: "${shot.narration}".`
+          : '';
       return `[${shot.timecode}] ${shot.visual}${narration}`;
     })
     .join('\n');
-  return `${header}${body}`;
+  const audioCue = hasVoiceover
+    ? '\n\nVoiceover em off sincronizado via @Audio1.'
+    : '';
+  return `${header}${body}${audioCue}`;
 }
 
 /**
  * Build the exact Seedance payload (shared by normal and --dry-run modes).
- * Includes reference image URLs when provided.
+ * Includes reference image URLs when provided, and reference audio URLs when
+ * a voiceover was generated.
  */
 export function buildSeedancePayload(
   prompt: VideoPrompt,
   config: GeneratorConfig,
-  referenceImages: ReferenceImage[]
+  referenceImages: ReferenceImage[],
+  referenceAudioUrls: string[] = []
 ): { payload: SeedancePayload; generateOptions: GenerateOptions } {
   const referenceUrls = referenceImages.map((ref) => ref.url);
+  const hasVoiceover = referenceAudioUrls.length > 0;
   const generateOptions: GenerateOptions = {
-    prompt: shotsToSeedancePrompt(prompt),
+    prompt: shotsToSeedancePrompt(prompt, hasVoiceover),
     aspectRatio: config.aspectRatio,
     duration: config.duration,
     resolution: config.resolution,
     generateAudio: config.generateAudio,
     ...(referenceUrls.length > 0 ? { referenceImages: referenceUrls } : {}),
+    ...(hasVoiceover ? { referenceAudios: referenceAudioUrls } : {}),
   };
   const client = new WavespeedClient(config.apiKey, config.model);
   return { payload: client.buildRequestBody(generateOptions), generateOptions };
@@ -451,7 +533,9 @@ function formatInference(result: { inferenceTime: number | null }): string {
 export function writeManifest(
   result: RunResult,
   payload: SeedancePayload,
-  outputDir: string
+  outputDir: string,
+  cover: CoverResult | null = null,
+  voiceover: VoiceoverResult | null = null
 ): void {
   fs.mkdirSync(outputDir, { recursive: true });
   const manifestPath = path.join(outputDir, 'manifest.json');
@@ -460,6 +544,8 @@ export function writeManifest(
     summary: { status: result.status },
     payload,
     result,
+    ...(cover ? { cover } : {}),
+    ...(voiceover ? { voiceover } : {}),
   };
   fs.writeFileSync(manifestPath, JSON.stringify(filePayload, null, 2), 'utf8');
   console.log(`[creative-video-generator] manifest:  ${manifestPath}`);

@@ -112,11 +112,34 @@ export interface SpoilerFreeContext {
  * (fed to Seedance), and an optional narration line (for voiceover in
  * post-production — Seedance's native audio is ambient/SFX, not narration).
  * `socialCaption` is a ready-to-post caption for TikTok/Instagram.
+ * `cover` is a single-image prompt fed to nano-banana-2 to render the
+ * creative's cover/poster (`<slug>-cover.jpg`).
+ * `voiceover` is a single-line PT-BR narration script (~30-35 words) fed to
+ * ElevenLabs to render the VO MP3 used as the Seedance `@Audio1` reference.
  */
 export interface VideoPrompt {
   shots: VideoShot[];
   socialCaption: SocialCaption;
+  cover: CoverPrompt;
+  voiceover: VoiceoverPrompt;
   styleNote?: string;
+}
+
+/**
+ * A single static-image prompt for the creative cover, produced by the LLM
+ * alongside the video shots. Rendered via nano-banana-2 (text-to-image).
+ */
+export interface CoverPrompt {
+  prompt: string;
+}
+
+/**
+ * A single voiceover script in Brazilian Portuguese covering the full clip
+ * duration (~30-35 words to fit ~15s). Rendered to MP3 via ElevenLabs and
+ * passed to Seedance 2.0 as the `@Audio1` reference audio.
+ */
+export interface VoiceoverPrompt {
+  script: string;
 }
 
 /**
@@ -160,6 +183,7 @@ export interface GenerateOptions {
   resolution: string;
   generateAudio: boolean;
   referenceImages?: string[];
+  referenceAudios?: string[];
 }
 
 export interface GenerateResult {
@@ -179,6 +203,7 @@ export interface SeedancePayload {
   resolution: string;
   generate_audio: boolean;
   reference_images?: string[];
+  reference_audios?: string[];
 }
 
 export type RunStatus = 'generated' | 'dry_run' | 'failed';
@@ -190,4 +215,42 @@ export interface RunResult {
   inferenceTime: number | null;
   error: string | null;
   referenceImages: ReferenceImage[];
+}
+
+/**
+ * Outcome of the cover image generation step. Mirrors the video RunResult
+ * shape but with `prompt` (the image prompt used) and `path` (local .jpg).
+ *
+ * - `generated`: nano-banana-2 produced and saved a new <slug>-cover.jpg.
+ * - `skipped`: the file already existed (and --force was not set).
+ * - `disabled`: --no-cover was passed, so no call was made.
+ * - `failed`: the API call or download/compress failed.
+ */
+export type CoverStatus = 'generated' | 'skipped' | 'disabled' | 'failed';
+
+export interface CoverResult {
+  status: CoverStatus;
+  prompt: string;
+  path: string | null;
+  remoteUrl: string | null;
+  inferenceTime: number | null;
+  error: string | null;
+}
+
+/**
+ * Outcome of the ElevenLabs voiceover generation step.
+ *
+ * - `generated`: TTS produced and saved a new <slug>-voiceover.mp3, uploaded to S3.
+ * - `skipped`: the file already existed (and --force was not set).
+ * - `disabled`: --no-voiceover was passed, so no call was made.
+ * - `failed`: the ElevenLabs call or S3 upload failed.
+ */
+export type VoiceoverStatus = 'generated' | 'skipped' | 'disabled' | 'failed';
+
+export interface VoiceoverResult {
+  status: VoiceoverStatus;
+  script: string;
+  path: string | null;
+  s3Url: string | null;
+  error: string | null;
 }

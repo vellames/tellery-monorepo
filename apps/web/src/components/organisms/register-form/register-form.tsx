@@ -20,13 +20,6 @@ import {
 } from '@/lib/monitoring/sentry';
 import { withQueryParams } from '@/lib/with-query-params';
 
-/**
- * Watchdog window for the form to become visible. If the IntersectionObserver
- * hasn't reported visibility by this deadline, we capture an error so the
- * failure surfaces as a Sentry issue instead of a silent blank screen.
- */
-const FORM_VISIBLE_TIMEOUT_MS = 5000;
-
 interface RegisterFormValues {
   name: string;
   email: string;
@@ -153,8 +146,6 @@ export function RegisterForm() {
     });
 
     let observer: IntersectionObserver | null = null;
-    let lastEntry: IntersectionObserverEntry | null = null;
-    let visibilityTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
     if (!form || !hasObserver) {
       // No form ref or no IntersectionObserver — fall back to "visible" so the
@@ -165,7 +156,6 @@ export function RegisterForm() {
       observer = new IntersectionObserver(
         ([entry]) => {
           if (!entry) return;
-          lastEntry = entry;
           if (!entry.isIntersecting) return;
           addBreadcrumbOnce(SignupBreadcrumb.FORM_VISIBLE, {
             ratio: entry.intersectionRatio,
@@ -178,35 +168,13 @@ export function RegisterForm() {
       );
 
       observer.observe(form);
-
-      // Watchdog: if the form hasn't become visible by the deadline, capture
-      // an error with the current geometry + last observer entry so the
-      // failure surfaces as a Sentry issue rather than a silent blank screen.
-      visibilityTimeoutId = setTimeout(() => {
-        if (breadcrumbGuardsRef.current.has(SignupBreadcrumb.FORM_VISIBLE)) {
-          return;
-        }
-
-        const timeoutRect = safeRect(form);
-        const error = new Error(
-          'Signup form did not become visible within timeout'
-        );
-        captureSignupException(error, SignupBreadcrumb.FORM_VISIBLE_TIMEOUT, {
-          hasFormRef: Boolean(form),
-          rectWidth: timeoutRect?.width,
-          rectHeight: timeoutRect?.height,
-          lastIntersectionRatio: lastEntry?.intersectionRatio ?? null,
-          lastIsIntersecting: lastEntry?.isIntersecting ?? null,
-          viewport: `${window.innerWidth}x${window.innerHeight}`,
-        });
-      }, FORM_VISIBLE_TIMEOUT_MS);
     }
 
     const handleVisibilityChange = () => {
       if (document.visibilityState !== 'hidden') return;
 
       // Final geometry snapshot on tab hide — complements PAGE_HIDDEN when the
-      // user abandons before the visibility timeout fires.
+      // user abandons.
       const exitRect = safeRect(form);
       addSignupBreadcrumb(SignupBreadcrumb.FORM_RECT_SNAPSHOT, {
         rectWidth: exitRect?.width,
@@ -225,9 +193,6 @@ export function RegisterForm() {
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
-      if (visibilityTimeoutId !== null) {
-        clearTimeout(visibilityTimeoutId);
-      }
       observer?.disconnect();
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };

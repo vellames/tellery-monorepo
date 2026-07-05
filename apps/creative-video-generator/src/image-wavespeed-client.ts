@@ -1,6 +1,26 @@
-import { GenerateOptions, GenerateResult, SeedancePayload } from './types';
-
+/**
+ * WaveSpeed client for text-to-image models (nano-banana-2).
+ *
+ * Kept separate from the Seedance-oriented WavespeedClient because the
+ * request/response shapes differ: text-to-image uses `output_format` +
+ * `resolution`, while Seedance uses `duration` + `generate_audio` +
+ * `reference_images`. Two single-purpose clients respect the
+ * Single Responsibility principle better than one overloaded client.
+ */
 const BASE_URL = 'https://api.wavespeed.ai/api/v3';
+
+export const SUPPORTED_ASPECT_RATIOS = new Set([
+  '1:1',
+  '3:2',
+  '2:3',
+  '3:4',
+  '4:3',
+  '4:5',
+  '5:4',
+  '9:16',
+  '16:9',
+  '21:9',
+]);
 
 type PredictionStatus = 'created' | 'processing' | 'completed' | 'failed';
 
@@ -17,38 +37,34 @@ interface Envelope<T> {
   data: T;
 }
 
-export class WavespeedClient {
-  private readonly pollIntervalMs = 3000;
-  private readonly timeoutMs = 600000;
+export interface ImageGenerateOptions {
+  prompt: string;
+  aspectRatio: string;
+  resolution: string;
+  outputFormat: string;
+}
+
+export interface ImageGenerateResult {
+  outputs: string[];
+  inferenceTime: number | null;
+}
+
+export class ImageWavespeedClient {
+  private readonly pollIntervalMs = 2000;
+  private readonly timeoutMs = 180000;
 
   constructor(
     private readonly apiKey: string,
     private readonly model: string
   ) {}
 
-  /**
-   * Build the exact request body that would be POSTed to WaveSpeed.
-   * Exposed so --dry-run can show the payload without sending it.
-   */
-  buildRequestBody(opts: GenerateOptions): SeedancePayload {
-    const body: SeedancePayload = {
-      model: this.model,
-      prompt: opts.prompt,
-      aspect_ratio: opts.aspectRatio,
-      duration: opts.duration,
-      resolution: opts.resolution,
-      generate_audio: opts.generateAudio,
-    };
-    if (opts.referenceImages && opts.referenceImages.length > 0) {
-      body.reference_images = opts.referenceImages;
+  async generate(opts: ImageGenerateOptions): Promise<ImageGenerateResult> {
+    if (!SUPPORTED_ASPECT_RATIOS.has(opts.aspectRatio)) {
+      throw new Error(
+        `Unsupported aspect ratio "${opts.aspectRatio}". Valid values: ${[...SUPPORTED_ASPECT_RATIOS].join(', ')}`
+      );
     }
-    if (opts.referenceAudios && opts.referenceAudios.length > 0) {
-      body.reference_audios = opts.referenceAudios;
-    }
-    return body;
-  }
 
-  async generate(opts: GenerateOptions): Promise<GenerateResult> {
     const id = await this.submit(opts);
     const result = await this.poll(id);
 
@@ -62,8 +78,13 @@ export class WavespeedClient {
     };
   }
 
-  private async submit(opts: GenerateOptions): Promise<string> {
-    const body = this.buildRequestBody(opts);
+  private async submit(opts: ImageGenerateOptions): Promise<string> {
+    const body = {
+      prompt: opts.prompt,
+      aspect_ratio: opts.aspectRatio,
+      resolution: opts.resolution,
+      output_format: opts.outputFormat,
+    };
 
     const response = await fetch(`${BASE_URL}/${this.model}`, {
       method: 'POST',
