@@ -20,12 +20,27 @@ Sentry.init({
   dsn: IS_LOCAL_DEVELOPMENT ? undefined : SENTRY_DSN,
   environment: process.env.NEXT_PUBLIC_APP_ENV ?? process.env.NODE_ENV,
 
-  // Add optional integrations for additional features
   integrations: [
+    // Session Replay. Tellery is a mystery game built on text + images, so we
+    // keep media and text *visible* to make replays useful for debugging
+    // gameplay/investigation. Inputs (forms, auth, chat) stay masked to avoid
+    // leaking PII. Masking can still be tightened per-element via the `mask`
+    // selector list if a sensitive surface shows up.
     Sentry.replayIntegration({
-      maskAllText: true,
+      maskAllText: false,
       maskAllInputs: true,
-      blockAllMedia: true,
+      blockAllMedia: false,
+
+      // Aggressive flush cadence so replays survive hostile environments —
+      // especially in-app browsers (Facebook/Instagram) where the webview is
+      // suspended or killed before the default 60s flush window. Shorter
+      // windows mean more, smaller segments but far less data loss.
+      flushMinDelay: 1_000,
+      flushMaxDelay: 5_000,
+
+      // Ad/webview sessions are often very short (median ~10s). The default
+      // minReplayDuration was dropping those before they were ever sent.
+      minReplayDuration: 1_000,
     }),
   ],
 
