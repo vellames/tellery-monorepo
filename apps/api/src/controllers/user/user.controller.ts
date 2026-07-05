@@ -46,10 +46,15 @@ export class UserController {
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -71,10 +76,15 @@ export class UserController {
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -100,10 +110,15 @@ export class UserController {
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -129,10 +144,15 @@ export class UserController {
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -145,10 +165,15 @@ export class UserController {
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -160,11 +185,16 @@ export class UserController {
       if (error instanceof HttpError) {
         const t = req.t as TranslationFunction;
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
       const t = req.t as TranslationFunction;
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -186,10 +216,15 @@ export class UserController {
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -215,10 +250,15 @@ export class UserController {
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -240,10 +280,15 @@ export class UserController {
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -259,10 +304,15 @@ export class UserController {
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey ? t(error.messageKey) : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 }

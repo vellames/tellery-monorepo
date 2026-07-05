@@ -2,15 +2,15 @@ import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { StatusCodes } from 'http-status-codes';
 import { SessionConclusionService } from '../session-conclusion.service';
 import { ISessionRepository } from '../../../interfaces';
-import type { HistorySessionWithRelations } from '../../../repositories/SessionRepository';
+import type { StorySessionWithRelations } from '../../../repositories/SessionRepository';
 
 const buildSession = (
-  overrides: Partial<HistorySessionWithRelations> = {}
-): HistorySessionWithRelations =>
+  overrides: Partial<StorySessionWithRelations> = {}
+): StorySessionWithRelations =>
   ({
     id: 'session-1',
     userId: 'user-1',
-    historyId: 'history-1',
+    storyId: 'story-1',
     status: 'active',
     startedAt: new Date('2026-01-01'),
     completedAt: null,
@@ -32,7 +32,7 @@ const buildSession = (
     conclusion: null,
     ending: null,
     ...overrides,
-  }) as unknown as HistorySessionWithRelations;
+  }) as unknown as StorySessionWithRelations;
 
 describe('SessionConclusionService', () => {
   let sessions: DeepMockProxy<ISessionRepository>;

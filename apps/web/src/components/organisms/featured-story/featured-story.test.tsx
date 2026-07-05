@@ -5,9 +5,9 @@ import userEvent from '@testing-library/user-event';
 
 import { FeaturedStory } from '@/components/organisms/featured-story/featured-story';
 import { renderWithProviders } from '@/test-utils';
-import type { History } from '@/lib/types/history';
+import type { Story } from '@/lib/types/story';
 
-const mockHistories: History[] = [
+const mockStories: Story[] = [
   {
     id: '1',
     slug: 'o-bilhete-na-mesa-7',
@@ -36,7 +36,7 @@ const mockHistories: History[] = [
 
 describe('FeaturedStory', () => {
   it('renders the first story title and teaser', () => {
-    renderWithProviders(<FeaturedStory histories={mockHistories} />);
+    renderWithProviders(<FeaturedStory stories={mockStories} />);
 
     expect(screen.getByText('O Bilhete na Mesa 7')).toBeInTheDocument();
     expect(
@@ -45,7 +45,7 @@ describe('FeaturedStory', () => {
   });
 
   it('shows the free label for free stories', () => {
-    renderWithProviders(<FeaturedStory histories={mockHistories} />);
+    renderWithProviders(<FeaturedStory stories={mockStories} />);
 
     expect(screen.getByText('Grátis')).toBeInTheDocument();
   });
@@ -53,7 +53,7 @@ describe('FeaturedStory', () => {
   it('navigates to the next slide', async () => {
     const user = userEvent.setup();
     const { container } = renderWithProviders(
-      <FeaturedStory histories={mockHistories} />
+      <FeaturedStory stories={mockStories} />
     );
 
     await user.click(screen.getByLabelText('Próximo'));
@@ -64,7 +64,7 @@ describe('FeaturedStory', () => {
   it('wraps around when navigating previous from the first slide', async () => {
     const user = userEvent.setup();
     const { container } = renderWithProviders(
-      <FeaturedStory histories={mockHistories} />
+      <FeaturedStory stories={mockStories} />
     );
 
     await user.click(screen.getByLabelText('Anterior'));
@@ -75,7 +75,7 @@ describe('FeaturedStory', () => {
   it('navigates via dot indicators', async () => {
     const user = userEvent.setup();
     const { container } = renderWithProviders(
-      <FeaturedStory histories={mockHistories} />
+      <FeaturedStory stories={mockStories} />
     );
 
     await user.click(screen.getByLabelText('Slide 2'));
@@ -83,8 +83,8 @@ describe('FeaturedStory', () => {
     expect(getTrackTransform(container)).toContain('-100%');
   });
 
-  it('renders nothing when histories is empty', () => {
-    const { container } = renderWithProviders(<FeaturedStory histories={[]} />);
+  it('renders nothing when stories is empty', () => {
+    const { container } = renderWithProviders(<FeaturedStory stories={[]} />);
 
     expect(container.firstChild).toBeNull();
   });
@@ -93,7 +93,7 @@ describe('FeaturedStory', () => {
     vi.useFakeTimers();
     try {
       const { container } = renderWithProviders(
-        <FeaturedStory histories={mockHistories} />
+        <FeaturedStory stories={mockStories} />
       );
 
       expect(getTrackTransform(container)).not.toContain('-100%');
@@ -112,7 +112,7 @@ describe('FeaturedStory', () => {
     vi.useFakeTimers();
     try {
       const { container } = renderWithProviders(
-        <FeaturedStory histories={mockHistories} />
+        <FeaturedStory stories={mockStories} />
       );
 
       fireEvent.click(screen.getByLabelText('Próximo'));

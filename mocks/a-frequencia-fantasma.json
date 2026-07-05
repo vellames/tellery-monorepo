@@ -14,8 +14,8 @@
   "isFeatured": true,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/a-frequencia-fantasma/history/cover.jpg",
-  "thumbnailUrl": "histories/a-frequencia-fantasma/history/thumbnail.jpg",
+  "coverImageUrl": "stories/a-frequencia-fantasma/story/cover.jpg",
+  "thumbnailUrl": "stories/a-frequencia-fantasma/story/thumbnail.jpg",
   "opening": {
     "shortText": "Uma voz desconhecida invadiu a transmissão da Rádio Aurora à meia-noite. Minutos depois, uma matriz de gravação desapareceu do arquivo trancado.",
     "fullText": "É madrugada de domingo na Rádio Aurora, instalada no último andar do Edifício Marconi, no centro de São Paulo. A emissora celebrava vinte anos no ar com um programa especial transmitido ao vivo: Celeste no microfone, Íris ao piano, Miguel na mesa de som, Anita no arquivo, Arnaldo recebendo convidados e Raul acompanhando tudo como patrocinador. À meia-noite, durante um silêncio de poucos segundos, uma voz rouca atravessou a frequência e disse apenas: \"devolvam o que enterraram\". O estúdio congelou. Quando Anita abriu o arquivo para conferir a matriz 12-B, o disco de acetato reservado ao especial não estava mais no armário. Ninguém saiu do andar depois do incidente. Cabe a você percorrer a rádio, examinar os equipamentos e ouvir cada versão para descobrir quem colocou a voz no ar, quem levou a matriz e por quê.",
@@ -288,7 +288,7 @@
       "name": "Celeste Amaral",
       "role": "Locutora principal da Rádio Aurora",
       "shortDescription": "Voz mais conhecida da emissora, elegante e precisa diante do microfone.",
-      "imageUrl": "histories/a-frequencia-fantasma/characters/celeste.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/characters/celeste.jpg",
       "personality": "Controlada, orgulhosa, muito atenta a ritmo, pausas e dicção. Odeia parecer vulnerável ao vivo.",
       "speakingStyle": "Frases bem pontuadas, tom radiofônico mesmo fora do ar, com pausas calculadas quando fica tensa.",
       "publicKnowledge": [
@@ -387,7 +387,7 @@
       "name": "Miguel Farias",
       "role": "Técnico de som",
       "shortDescription": "Operador meticuloso da cabine, responsável pelos controles da transmissão ao vivo.",
-      "imageUrl": "histories/a-frequencia-fantasma/characters/miguel.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/characters/miguel.jpg",
       "personality": "Paciente, técnico, desconfiado de improvisos. Fica defensivo quando alguém questiona sua mesa.",
       "speakingStyle": "Vocabulário técnico, frases curtas, corrige termos errados e mede cada admissão.",
       "publicKnowledge": [
@@ -482,7 +482,7 @@
       "name": "Anita Valença",
       "role": "Arquivista da Rádio Aurora",
       "shortDescription": "Guardião do acervo sonoro da emissora, silenciosa e extremamente cuidadosa com registros antigos.",
-      "imageUrl": "histories/a-frequencia-fantasma/characters/anita.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/characters/anita.jpg",
       "personality": "Reservada, obstinada, sentimental com o arquivo e desconfiada da direção. Fica firme quando fala de memória institucional.",
       "speakingStyle": "Voz baixa, precisa, com datas e códigos de arquivo. Quando acuada, responde com perguntas. ",
       "publicKnowledge": [
@@ -630,7 +630,7 @@
       "name": "Íris Monteiro",
       "role": "Cantora convidada",
       "shortDescription": "Artista convidada para o especial, vistosa no palco e atenta ao próprio repertório.",
-      "imageUrl": "histories/a-frequencia-fantasma/characters/iris.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/characters/iris.jpg",
       "personality": "Carismática, vaidosa, sensível a acusações de oportunismo. Observa mais do que admite.",
       "speakingStyle": "Dramática e musical, com metáforas de palco, mas fica objetiva quando o piano é mencionado.",
       "publicKnowledge": [
@@ -728,7 +728,7 @@
       "name": "Arnaldo Paes",
       "role": "Diretor e proprietário da Rádio Aurora",
       "shortDescription": "Homem de negócios da velha guarda, cordial em público e rígido nos bastidores.",
-      "imageUrl": "histories/a-frequencia-fantasma/characters/arnaldo.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/characters/arnaldo.jpg",
       "personality": "Polido, autoritário, calcula perdas antes de sentimentos. Usa nostalgia como moeda de venda.",
       "speakingStyle": "Tom paternalista, frases de diretor, evita nomes de escândalos e fala em patrimônio. ",
       "publicKnowledge": [
@@ -843,7 +843,7 @@
       "name": "Raul Mendonça",
       "role": "Patrocinador do especial",
       "shortDescription": "Empresário influente, impecavelmente vestido, acompanhando a transmissão como convidado de honra.",
-      "imageUrl": "histories/a-frequencia-fantasma/characters/raul.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/characters/raul.jpg",
       "personality": "Cortês, calculista, pragmático. Trata reputação como investimento e memória como risco jurídico.",
       "speakingStyle": "Tom de negociação, frases polidas, responde perguntas com condições e números. ",
       "publicKnowledge": [
@@ -942,7 +942,7 @@
       "id": "estudio_principal",
       "name": "Estúdio principal",
       "shortDescription": "Sala de transmissão com microfones, piano vertical e isolamento acústico de madeira escura.",
-      "imageUrl": "histories/a-frequencia-fantasma/location/estudio_principal.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/location/estudio_principal.jpg",
       "initialDescription": "O estúdio principal tem paredes de madeira curva, tapetes grossos, dois microfones cromados e um piano vertical sob uma luminária âmbar. Cabos correm organizados pelo rodapé até uma janela dupla que dá para a cabine.",
       "ambientClueIds": ["clue_luz_microfone_acesa"],
       "objectIds": ["microfone_celeste", "piano_iris", "partitura_marcada"]
@@ -951,7 +951,7 @@
       "id": "cabine_controle",
       "name": "Cabine de controle",
       "shortDescription": "Pequena sala técnica separada do estúdio por vidro duplo.",
-      "imageUrl": "histories/a-frequencia-fantasma/location/cabine_controle.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/location/cabine_controle.jpg",
       "initialDescription": "A cabine abriga uma mesa de som com mostradores analógicos, fones pendurados e uma parede de conexões numeradas. A janela para o estúdio reflete as luzes vermelhas dos medidores.",
       "ambientClueIds": ["clue_sinal_veio_da_cabine"],
       "objectIds": ["mesa_som", "cabo_auxiliar", "tesoura_edicao"]
@@ -960,7 +960,7 @@
       "id": "arquivo_matrizes",
       "name": "Arquivo de matrizes",
       "shortDescription": "Sala de prateleiras estreitas onde discos de acetato e roteiros antigos são guardados por código.",
-      "imageUrl": "histories/a-frequencia-fantasma/location/arquivo_matrizes.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/location/arquivo_matrizes.jpg",
       "initialDescription": "O arquivo é frio e seco, com armários metálicos, etiquetas datilografadas e caixas de acetato alinhadas em prateleiras altas. Uma mesa de catalogação fica junto à porta.",
       "ambientClueIds": ["clue_matriz_12b_sumiu"],
       "objectIds": [
@@ -973,7 +973,7 @@
       "id": "sala_transmissores",
       "name": "Sala dos transmissores",
       "shortDescription": "Ambiente quente e ruidoso com válvulas, painéis e cheiro de metal aquecido.",
-      "imageUrl": "histories/a-frequencia-fantasma/location/sala_transmissores.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/location/sala_transmissores.jpg",
       "initialDescription": "A sala vibra com o zumbido constante dos transmissores. Válvulas acesas iluminam o metal perfurado dos painéis, e uma bancada lateral guarda ferramentas de manutenção.",
       "ambientClueIds": ["clue_transmissor_sem_invasao"],
       "objectIds": ["painel_transmissor"]
@@ -984,7 +984,7 @@
       "id": "microfone_celeste",
       "name": "Microfone de Celeste",
       "shortDescription": "Microfone cromado usado pela locutora durante o especial.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/microfone_celeste.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/microfone_celeste.jpg",
       "locationId": "estudio_principal",
       "initialDescription": "O microfone de pedestal fica diante do roteiro de Celeste, com a luz vermelha de transmissão no topo do suporte.",
       "clueRevealRules": [
@@ -1003,7 +1003,7 @@
       "id": "piano_iris",
       "name": "Piano de Íris",
       "shortDescription": "Piano vertical usado na apresentação musical do especial.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/piano_iris.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/piano_iris.jpg",
       "locationId": "estudio_principal",
       "initialDescription": "O piano vertical está perto da parede lateral, com o banco acolchoado alinhado ao teclado e uma luminária baixa sobre as partituras.",
       "clueRevealRules": [
@@ -1022,7 +1022,7 @@
       "id": "partitura_marcada",
       "name": "Partitura marcada",
       "shortDescription": "Folhas de música deixadas sobre o piano.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/partitura_marcada.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/partitura_marcada.jpg",
       "locationId": "estudio_principal",
       "initialDescription": "As partituras estão presas por um clipe metálico, com anotações a lápis nas margens e marcas de ensaio.",
       "clueRevealRules": [
@@ -1037,7 +1037,7 @@
       "id": "mesa_som",
       "name": "Mesa de som",
       "shortDescription": "Console analógico da cabine de controle.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/mesa_som.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/mesa_som.jpg",
       "locationId": "cabine_controle",
       "initialDescription": "A mesa tem chaves de corte, botões de ganho e medidores de agulha. Fitas de papel indicam os canais usados no especial.",
       "clueRevealRules": [
@@ -1056,7 +1056,7 @@
       "id": "cabo_auxiliar",
       "name": "Cabo auxiliar",
       "shortDescription": "Cabo enrolado junto ao patch bay da cabine.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/cabo_auxiliar.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/cabo_auxiliar.jpg",
       "locationId": "cabine_controle",
       "initialDescription": "Um cabo de tecido escuro está enrolado perto das conexões numeradas, com plugues metálicos gastos nas pontas.",
       "clueRevealRules": [
@@ -1075,7 +1075,7 @@
       "id": "tesoura_edicao",
       "name": "Tesoura de edição",
       "shortDescription": "Tesoura pequena usada para cortar fita e papel de marcação.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/tesoura_edicao.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/tesoura_edicao.jpg",
       "locationId": "cabine_controle",
       "initialDescription": "A tesoura repousa sobre uma almofada de feltro ao lado de rolos de fita de marcação e etiquetas brancas.",
       "clueRevealRules": [
@@ -1094,7 +1094,7 @@
       "id": "armario_matrizes",
       "name": "Armário das matrizes",
       "shortDescription": "Armário metálico onde as gravações-mestre são guardadas por código.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/armario_matrizes.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/armario_matrizes.jpg",
       "locationId": "arquivo_matrizes",
       "initialDescription": "O armário de metal tem gavetas estreitas, fechadura antiga e etiquetas datilografadas com códigos de programas.",
       "clueRevealRules": [
@@ -1113,7 +1113,7 @@
       "id": "livro_registro",
       "name": "Livro de registro",
       "shortDescription": "Livro usado para anotar retiradas e devoluções do arquivo.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/livro_registro.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/livro_registro.jpg",
       "locationId": "arquivo_matrizes",
       "initialDescription": "O livro está aberto na mesa de catalogação, com linhas preenchidas a tinta azul e uma régua de metal marcando a página do dia.",
       "clueRevealRules": [
@@ -1132,7 +1132,7 @@
       "id": "envelope_maria_luiza",
       "name": "Envelope antigo",
       "shortDescription": "Envelope amarelado guardado entre fichas de catálogo.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/envelope_maria_luiza.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/envelope_maria_luiza.jpg",
       "locationId": "arquivo_matrizes",
       "initialDescription": "O envelope de papel grosso está preso por um barbante fino, com carimbo antigo da rádio e bordas gastas pelo tempo.",
       "clueRevealRules": [
@@ -1160,7 +1160,7 @@
       "id": "painel_transmissor",
       "name": "Painel dos transmissores",
       "shortDescription": "Painel principal da sala técnica dos transmissores.",
-      "imageUrl": "histories/a-frequencia-fantasma/object/painel_transmissor.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/object/painel_transmissor.jpg",
       "locationId": "sala_transmissores",
       "initialDescription": "O painel metálico exibe válvulas brilhantes, chaves grandes e mostradores de voltagem presos por parafusos escurecidos.",
       "clueRevealRules": [
@@ -1441,7 +1441,7 @@
       "id": "full_truth",
       "title": "A voz devolvida",
       "type": "full_truth",
-      "imageUrl": "histories/a-frequencia-fantasma/endings/full_truth.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "culpado": "anita",
@@ -1462,7 +1462,7 @@
       "id": "partial_truth",
       "title": "A frequência certa, a memória incompleta",
       "type": "partial_truth",
-      "imageUrl": "histories/a-frequencia-fantasma/endings/partial_truth.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/endings/partial_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "culpado": "anita",
@@ -1480,7 +1480,7 @@
       "id": "wrong_accusation",
       "title": "Ruído no ar",
       "type": "wrong_accusation",
-      "imageUrl": "histories/a-frequencia-fantasma/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/a-frequencia-fantasma/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {}
       },

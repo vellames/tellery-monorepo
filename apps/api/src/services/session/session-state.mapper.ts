@@ -1,5 +1,5 @@
 import { InteractionRole } from '@prisma/client';
-import type { HistorySessionWithRelations } from '../../repositories/SessionRepository';
+import type { StorySessionWithRelations } from '../../repositories/SessionRepository';
 
 export interface SessionMessageDto {
   role: string;
@@ -83,7 +83,7 @@ export interface SessionStateResponse {
   status: string;
   startedAt: Date;
   completedAt: Date | null;
-  history: {
+  story: {
     id: string;
     title: string;
     subtitle: string | null;
@@ -107,8 +107,8 @@ export interface SessionStateResponse {
   } | null;
 }
 
-type SessionClue = HistorySessionWithRelations['clues'][number];
-type CharacterState = HistorySessionWithRelations['characterStates'][number];
+type SessionClue = StorySessionWithRelations['clues'][number];
+type CharacterState = StorySessionWithRelations['characterStates'][number];
 
 const toClueDto = (clue: SessionClue): SessionClueDto => ({
   id: clue.id,
@@ -156,15 +156,15 @@ const mapConversationMessages = (
     .map(mapMessage);
 
 export function buildSessionStateResponse(
-  session: HistorySessionWithRelations
+  session: StorySessionWithRelations
 ): SessionStateResponse {
   return {
     id: session.id,
     status: session.status,
     startedAt: session.startedAt,
     completedAt: session.completedAt,
-    history: {
-      id: session.historyId,
+    story: {
+      id: session.storyId,
       title: session.title,
       subtitle: session.subtitle,
       teaser: session.teaser,

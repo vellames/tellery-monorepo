@@ -1,26 +1,26 @@
 import { Prisma } from '@prisma/client';
-import type { HistoryWithDefinitions } from './HistoryDefinitionRepository';
+import type { StoryWithDefinitions } from './StoryDefinitionRepository';
 
 export type DefinitionIdMap = Record<string, string>;
 
 export function buildSessionRootCreateData(
-  history: HistoryWithDefinitions,
+  story: StoryWithDefinitions,
   userId: string
-): Prisma.HistorySessionUncheckedCreateInput {
+): Prisma.StorySessionUncheckedCreateInput {
   return {
     userId,
-    historyId: history.id,
-    title: history.title,
-    subtitle: history.subtitle,
-    teaser: history.teaser,
-    opening: history.opening,
-    objective: history.objective,
-    genre: history.genre,
-    coverImageUrl: history.coverImageUrl,
-    thumbnailUrl: history.thumbnailUrl,
-    estimatedDurationMinutes: history.estimatedDurationMinutes,
+    storyId: story.id,
+    title: story.title,
+    subtitle: story.subtitle,
+    teaser: story.teaser,
+    opening: story.opening,
+    objective: story.objective,
+    genre: story.genre,
+    coverImageUrl: story.coverImageUrl,
+    thumbnailUrl: story.thumbnailUrl,
+    estimatedDurationMinutes: story.estimatedDurationMinutes,
     clues: {
-      create: history.clues.map((clue) => ({
+      create: story.clues.map((clue) => ({
         clueDefinitionId: clue.id,
         title: clue.title,
         description: clue.description,
@@ -28,7 +28,7 @@ export function buildSessionRootCreateData(
       })),
     },
     intents: {
-      create: history.intentDefinitions.map((intent) => ({
+      create: story.intentDefinitions.map((intent) => ({
         intentDefinitionId: intent.id,
         description: intent.description,
         examples: intent.examples,
@@ -37,7 +37,7 @@ export function buildSessionRootCreateData(
     },
     conclusionFields: {
       create:
-        history.conclusion?.fields.map((field) => ({
+        story.conclusion?.fields.map((field) => ({
           fieldDefinitionId: field.id,
           label: field.label,
           type: field.type,
@@ -53,11 +53,11 @@ export function buildSessionRootCreateData(
 }
 
 export function buildEndingSnapshots(
-  history: HistoryWithDefinitions,
+  story: StoryWithDefinitions,
   sessionId: string,
   clueMap: DefinitionIdMap
 ): Prisma.SessionEndingSnapshotUncheckedCreateInput[] {
-  return history.endings.map((ending) => ({
+  return story.endings.map((ending) => ({
     sessionId,
     endingDefinitionId: ending.id,
     title: ending.title,
@@ -73,11 +73,11 @@ export function buildEndingSnapshots(
 }
 
 export function buildLocationStates(
-  history: HistoryWithDefinitions,
+  story: StoryWithDefinitions,
   sessionId: string,
   clueMap: DefinitionIdMap
 ): Prisma.LocationSessionStateUncheckedCreateInput[] {
-  return history.locations.map((location) => ({
+  return story.locations.map((location) => ({
     sessionId,
     locationDefinitionId: location.id,
     name: location.name,
@@ -91,13 +91,13 @@ export function buildLocationStates(
 }
 
 export function buildObjectStates(
-  history: HistoryWithDefinitions,
+  story: StoryWithDefinitions,
   sessionId: string,
   clueMap: DefinitionIdMap,
   intentMap: DefinitionIdMap,
   locationMap: DefinitionIdMap
 ): Prisma.ObjectSessionStateUncheckedCreateInput[] {
-  return history.objects.map((object) => ({
+  return story.objects.map((object) => ({
     sessionId,
     objectDefinitionId: object.id,
     locationStateId: locationMap[object.locationId] ?? null,
@@ -123,12 +123,12 @@ export function buildObjectStates(
 }
 
 export function buildCharacterStates(
-  history: HistoryWithDefinitions,
+  story: StoryWithDefinitions,
   sessionId: string,
   clueMap: DefinitionIdMap,
   intentMap: DefinitionIdMap
 ): Prisma.CharacterSessionStateUncheckedCreateInput[] {
-  return history.characters.map((character) => ({
+  return story.characters.map((character) => ({
     sessionId,
     characterDefinitionId: character.id,
     name: character.name,

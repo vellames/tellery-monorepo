@@ -14,8 +14,8 @@
   "isFeatured": true,
   "isFree": true,
   "version": 1,
-  "coverImageUrl": "histories/o-bilhete-na-mesa-7/history/cover.jpg",
-  "thumbnailUrl": "histories/o-bilhete-na-mesa-7/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-bilhete-na-mesa-7/story/cover.jpg",
+  "thumbnailUrl": "stories/o-bilhete-na-mesa-7/story/thumbnail.jpg",
   "opening": {
     "shortText": "O Café Aurora já fechou, mas ninguém consegue ir embora depois que Elisa encontra um bilhete anônimo na mesa 7.",
     "fullText": "São 22h17 no Café Aurora. As luzes estão mais baixas, as cadeiras começam a subir sobre as mesas e a chuva fina do início da noite virou apenas brilho no vidro. Elisa, a dona do café, acaba de encontrar um bilhete dobrado na mesa 7. A frase é curta: \"Eu sei o que você fez ontem.\" Clara, Rafa e Davi ainda estão ali. O bilhete parece acusar alguém, mas também pode ter sido escrito para assustar, proteger ou pressionar. Cabe a você conversar, observar os detalhes certos e reconstruir o que aconteceu.",
@@ -395,7 +395,7 @@
       "name": "Elisa",
       "role": "Dona do Café Aurora",
       "shortDescription": "Dona do café, nervosa e prática, quer entender o bilhete sem transformar a noite em escândalo.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/characters/elisa.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/characters/elisa.jpg",
       "personality": "Atenta, orgulhosa do café e visivelmente abalada. Quer respostas, mas evita acusações sem fundamento.",
       "speakingStyle": "Fala com educação firme, frases curtas e um cuidado evidente para não perder o controle da situação.",
       "publicKnowledge": [
@@ -449,7 +449,7 @@
       "name": "Clara",
       "role": "Última cliente do café",
       "shortDescription": "Cliente elegante e impaciente, com perfume cítrico discreto, que voltou ao café pouco antes do fechamento.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/characters/clara.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/characters/clara.jpg",
       "personality": "Controlada, vaidosa, reativa a perguntas diretas. Tenta parecer ofendida quando se sente encurralada.",
       "speakingStyle": "Fala com precisão e ironia suave, cortando perguntas quando considera que passaram do limite.",
       "publicKnowledge": [
@@ -624,7 +624,7 @@
       "name": "Rafa",
       "role": "Garçom",
       "shortDescription": "Garçom jovem e ansioso que trabalhava no fechamento do café.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/characters/rafa.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/characters/rafa.jpg",
       "personality": "Prestativo, inseguro sob pressão e rápido demais para se defender.",
       "speakingStyle": "Fala em frases atropeladas, com explicações demais e pedidos indiretos para que acreditem nele.",
       "publicKnowledge": [
@@ -719,7 +719,7 @@
       "name": "Davi",
       "role": "Músico do Café Aurora",
       "shortDescription": "Músico calmo e observador que tocava no café naquela noite.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/characters/davi.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/characters/davi.jpg",
       "personality": "Sereno, perspicaz e evasivo quando pressionado. Tem senso moral, mas evita confronto direto.",
       "speakingStyle": "Fala em imagens discretas e observações laterais, como quem prefere sugerir a declarar.",
       "publicKnowledge": [
@@ -855,7 +855,7 @@
       "deletedAt": null,
       "name": "Mesa 7",
       "shortDescription": "Mesa junto à janela onde o bilhete foi encontrado.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/location/mesa_7.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/location/mesa_7.jpg",
       "initialDescription": "A mesa 7 fica perto da janela, com uma xícara fria, um guardanapo dobrado e o bilhete que interrompeu o fechamento do café. Dali, a área externa é parcialmente visível pelo vidro.",
       "ambientClueIds": ["clue_table_7_near_window"],
       "objectIds": ["bilhete", "xicara", "guardanapo", "caneta_azul_davi"]
@@ -867,7 +867,7 @@
       "deletedAt": null,
       "name": "Balcão",
       "shortDescription": "Área do caixa, das comandas e da rotina de fechamento.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/location/balcao.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/location/balcao.jpg",
       "initialDescription": "O balcão de metal reflete a luz baixa do fechamento. O caixa fica encaixado ao lado da máquina de espresso, e uma caneta preta repousa próxima às comandas de Rafa.",
       "ambientClueIds": [],
       "objectIds": ["caixa", "caneta_preta_rafa"]
@@ -879,7 +879,7 @@
       "deletedAt": null,
       "name": "Área externa",
       "shortDescription": "Pequena entrada do café, vista parcialmente da mesa 7.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/location/area_externa.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/location/area_externa.jpg",
       "initialDescription": "Do lado de fora, a calçada reflete a luz âmbar do letreiro. Perto da porta há um suporte de guarda-chuvas e a janela que dá vista parcial para a mesa 7.",
       "ambientClueIds": [],
       "objectIds": ["suporte_guarda_chuvas", "janela", "guarda_chuva_clara"]
@@ -893,7 +893,7 @@
       "deletedAt": null,
       "name": "Bilhete",
       "shortDescription": "Papel dobrado com a frase: \"Eu sei o que você fez ontem.\"",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/object/bilhete.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/object/bilhete.jpg",
       "locationId": "mesa_7",
       "initialDescription": "O papel é simples, arrancado de um bloco pequeno. A frase foi escrita com letra firme e pouca pressa.",
       "clueRevealRules": [
@@ -938,7 +938,7 @@
       "deletedAt": null,
       "name": "Xícara",
       "shortDescription": "Xícara fria deixada na mesa 7.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/object/xicara.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/object/xicara.jpg",
       "locationId": "mesa_7",
       "initialDescription": "Uma xícara com resto de café frio repousa perto do lugar onde o bilhete foi encontrado.",
       "clueRevealRules": [
@@ -957,7 +957,7 @@
       "deletedAt": null,
       "name": "Guardanapo",
       "shortDescription": "Guardanapo dobrado ao lado da xícara.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/object/guardanapo.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/object/guardanapo.jpg",
       "locationId": "mesa_7",
       "initialDescription": "O guardanapo está dobrado com cuidado, sem mensagem escrita. Parece mais parte da arrumação do que uma pista central.",
       "clueRevealRules": []
@@ -969,7 +969,7 @@
       "deletedAt": null,
       "name": "Caixa",
       "shortDescription": "Registradora do Café Aurora no balcão.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/object/caixa.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/object/caixa.jpg",
       "locationId": "balcao",
       "initialDescription": "O caixa está fechado agora, mas a gaveta tem marcas de uso constante e fica ao alcance de quem se aproxima do balcão.",
       "clueRevealRules": [
@@ -991,7 +991,7 @@
       "deletedAt": null,
       "name": "Caneta preta de Rafa",
       "shortDescription": "Caneta preta usada por Rafa nas comandas.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/object/caneta_preta_rafa.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/object/caneta_preta_rafa.jpg",
       "locationId": "balcao",
       "initialDescription": "Uma caneta preta barata está ao lado das comandas, com a tampa mordida e o corpo gasto.",
       "clueRevealRules": [
@@ -1014,7 +1014,7 @@
       "deletedAt": null,
       "name": "Caneta azul de Davi",
       "shortDescription": "Caneta azul usada por Davi para anotar músicas.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/object/caneta_azul_davi.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/object/caneta_azul_davi.jpg",
       "locationId": "mesa_7",
       "initialDescription": "Uma caneta azul aparece entre papéis de música de Davi, discreta o bastante para passar despercebida.",
       "clueRevealRules": [
@@ -1037,7 +1037,7 @@
       "deletedAt": null,
       "name": "Suporte de guarda-chuvas",
       "shortDescription": "Suporte próximo à entrada do café.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/object/suporte_guarda_chuvas.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/object/suporte_guarda_chuvas.jpg",
       "locationId": "area_externa",
       "initialDescription": "O suporte de metal fica perto da porta, com alguns respingos antigos no fundo.",
       "clueRevealRules": []
@@ -1049,7 +1049,7 @@
       "deletedAt": null,
       "name": "Janela",
       "shortDescription": "Janela ao lado da mesa 7, com vista parcial da entrada.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/object/janela.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/object/janela.jpg",
       "locationId": "area_externa",
       "initialDescription": "A janela reflete parte do salão e mostra a entrada do café em ângulo. A mesa 7 fica próxima o bastante para ser vista por quem presta atenção.",
       "clueRevealRules": [
@@ -1072,7 +1072,7 @@
       "deletedAt": null,
       "name": "Guarda-chuva de Clara",
       "shortDescription": "Guarda-chuva que Clara diz ter voltado para buscar.",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/object/guarda_chuva_clara.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/object/guarda_chuva_clara.jpg",
       "locationId": "area_externa",
       "initialDescription": "O guarda-chuva é elegante e compacto. Clara afirma que voltou ao café apenas para buscá-lo.",
       "clueRevealRules": [
@@ -1428,7 +1428,7 @@
       "deletedAt": null,
       "title": "A frase certa para a pessoa certa",
       "type": "full_truth",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/endings/full_truth.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_wrote_note": "davi",
@@ -1451,7 +1451,7 @@
       "deletedAt": null,
       "title": "Uma verdade pela metade",
       "type": "partial_truth",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/endings/partial_truth.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/endings/partial_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_wrote_note": "davi"
@@ -1468,7 +1468,7 @@
       "deletedAt": null,
       "title": "O suspeito mais fácil",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-bilhete-na-mesa-7/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-bilhete-na-mesa-7/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

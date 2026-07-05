@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/a-corda-partida/history/cover.jpg",
-  "thumbnailUrl": "histories/a-corda-partida/history/thumbnail.jpg",
+  "coverImageUrl": "stories/a-corda-partida/story/cover.jpg",
+  "thumbnailUrl": "stories/a-corda-partida/story/thumbnail.jpg",
   "opening": {
     "shortText": "Um Stradivarius emprestado aparece rachado na manhã do concurso nacional. Não foi acidente.",
     "fullText": "São 7h da manhã no Conservatório Villa-Lobos. Amanhã é a final do Concurso Nacional para Jovens Violinistas, e o prêmio é um contrato com a Orquestra Sinfônica — definição de carreira. Décio, o diretor do conservatório, emprestou a Marina, aluna mais talentosa e favorita ao título, o Stradivarius da coleção permanente, instrumento avaliado em mais que o prédio. Quando Marina abre o estojo nesta manhã, o harmônico está rachado de cima a baixo. Sérgio, o luthier residente que mantém cada instrumento da casa, é chamado para avaliar o dano. Aurora, a segunda favorita, jura que não sabe de nada. Todos tinham acesso ao corredor dos ensaios durante a noite. Cabe a você examinar os violinos, ouvir as versões e descobrir quem rachou o Stradivarius e o que estava em jogo.",
@@ -251,7 +251,7 @@
       "name": "Décio",
       "role": "Diretor do Conservatório Villa-Lobos",
       "shortDescription": "Diretor do conservatório, protetor da reputação da instituição. Emprestou o Stradivarius a Marina.",
-      "imageUrl": "histories/a-corda-partida/characters/decio.jpg",
+      "imageUrl": "stories/a-corda-partida/characters/decio.jpg",
       "personality": "Institucional, calmo, diplomático. Valoriza o nome do conservatório acima de indivíduos.",
       "speakingStyle": "Fala com formalidade acadêmica, frases medidas, vocabulão de gestor cultural.",
       "publicKnowledge": [
@@ -334,7 +334,7 @@
       "name": "Marina",
       "role": "Finalista e favorita ao título",
       "shortDescription": "Aluna mais talentosa do conservatório, incumbida do Stradivarius. Encontrou o instrumento danificado pela manhã.",
-      "imageUrl": "histories/a-corda-partida/characters/marina.jpg",
+      "imageUrl": "stories/a-corda-partida/characters/marina.jpg",
       "personality": "Disciplinada, intensa, perfeccionista. Esconde vulnerabilidade atrás de técnica impecável.",
       "speakingStyle": "Fala com precisão de quem ensaia falas tanto quanto escalas, frases curtas e controladas.",
       "publicKnowledge": [
@@ -422,7 +422,7 @@
       "name": "Aurora",
       "role": "Finalista, segunda favorita",
       "shortDescription": "Competidora talentosa, há anos à sombra de Marina. Reservada e controlada.",
-      "imageUrl": "histories/a-corda-partida/characters/aurora.jpg",
+      "imageUrl": "stories/a-corda-partida/characters/aurora.jpg",
       "personality": "Contida, ambiciosa, ferida pelo fato de sempre chegar em segundo. Esconde raiva atrás de polidez.",
       "speakingStyle": "Fala com educação gélida, frases medidas que se tornam cortantes quando pressionada.",
       "publicKnowledge": [
@@ -560,7 +560,7 @@
       "name": "Sérgio",
       "role": "Luthier residente",
       "shortDescription": "Luthier do conservatório há vinte anos, responsável por manter todos os instrumentos da casa.",
-      "imageUrl": "histories/a-corda-partida/characters/sergio.jpg",
+      "imageUrl": "stories/a-corda-partida/characters/sergio.jpg",
       "personality": "Metódico, quieto, devoto aos instrumentos. Fala pouco mas vê tudo.",
       "speakingStyle": "Frases econômicas, vocabulão técnico de oficiana, silêncios que pesam mais que palavras.",
       "publicKnowledge": [
@@ -691,7 +691,7 @@
       "deletedAt": null,
       "name": "Sala de ensaio",
       "shortDescription": "Sala de ensaio onde Marina guardava o Stradivarius.",
-      "imageUrl": "histories/a-corda-partida/location/sala_ensaio.jpg",
+      "imageUrl": "stories/a-corda-partida/location/sala_ensaio.jpg",
       "initialDescription": "A sala de ensaio é pequena e acolchoada, com paredes forradas de feltro cinza, um piano de parede, estantes de partitura metálicas e duas cadeiras. O armário de instrumentos está aberto e vazio — o estojo do Stradivarius foi levado.",
       "ambientClueIds": [],
       "objectIds": [
@@ -708,7 +708,7 @@
       "deletedAt": null,
       "name": "Oficina do luthier",
       "shortDescription": "Oficina de Sérgio, onde repara os instrumentos do conservatório.",
-      "imageUrl": "histories/a-corda-partida/location/oficina.jpg",
+      "imageUrl": "stories/a-corda-partida/location/oficina.jpg",
       "initialDescription": "A oficina do Sérgio é um cômodo cheiroso de verniz e madeira, com bancadas cobertas de ferramentas de precisão, cavacos no chão e instrumentos em vários estágios de reparo pendurados na parede. Tudo está organizado com mania e cuidado.",
       "ambientClueIds": [],
       "objectIds": ["ferramentas"]
@@ -720,7 +720,7 @@
       "deletedAt": null,
       "name": "Salão de concerto",
       "shortDescription": "Salão onde acontecerá a final do concurso.",
-      "imageUrl": "histories/a-corda-partida/location/concerto.jpg",
+      "imageUrl": "stories/a-corda-partida/location/concerto.jpg",
       "initialDescription": "O salão de concerto do Conservatório Villa-Lobos tem pé direito alto, poltronas de veludo carmesim, um palco de madeira clara e um lustre de cristal ainda apagado. O silêncio da manhã pesa mais do que qualquer aplauso.",
       "ambientClueIds": [],
       "objectIds": []
@@ -734,7 +734,7 @@
       "deletedAt": null,
       "name": "Stradivarius danificado",
       "shortDescription": "O Stradivarius da coleção permanente, com o harmônico rachado.",
-      "imageUrl": "histories/a-corda-partida/object/stradivarius.jpg",
+      "imageUrl": "stories/a-corda-partida/object/stradivarius.jpg",
       "locationId": "sala_ensaio",
       "initialDescription": "O Stradivarius repousa aberto sobre uma mesa, com o harmônico rachado de cima a baixo. A madeira de spruce está fendida num padrão reto e limpo.",
       "clueRevealRules": [
@@ -764,7 +764,7 @@
       "deletedAt": null,
       "name": "Violino pessoal de Marina",
       "shortDescription": "O violino pessoal de Marina, ileso.",
-      "imageUrl": "histories/a-corda-partida/object/violino_marina.jpg",
+      "imageUrl": "stories/a-corda-partida/object/violino_marina.jpg",
       "locationId": "sala_ensaio",
       "initialDescription": "O violino pessoal de Marina está no canto da sala, dentro de um estojo preto.",
       "clueRevealRules": [
@@ -782,7 +782,7 @@
       "deletedAt": null,
       "name": "Estojos de violino",
       "shortDescription": "Dois estojos pretos para violino, na sala de ensaio.",
-      "imageUrl": "histories/a-corda-partida/object/estojos.jpg",
+      "imageUrl": "stories/a-corda-partida/object/estojos.jpg",
       "locationId": "sala_ensaio",
       "initialDescription": "Sobre a cadeira há dois estojos de violino, ambos pretos e de dimensões parecidas.",
       "clueRevealRules": [
@@ -814,7 +814,7 @@
       "deletedAt": null,
       "name": "Bilhete de ameaça",
       "shortDescription": "Papéis dobrados dentro do estojo de Marina.",
-      "imageUrl": "histories/a-corda-partida/object/bilhete_ameaca.jpg",
+      "imageUrl": "stories/a-corda-partida/object/bilhete_ameaca.jpg",
       "locationId": "sala_ensaio",
       "initialDescription": "Dentro do estojo de Marina, entre partituras, há três bilhetes dobrados, escritos à mão.",
       "clueRevealRules": [
@@ -846,7 +846,7 @@
       "deletedAt": null,
       "name": "Ferramentas do luthier",
       "shortDescription": "Ferramentas de precisão de Sérgio, na oficina.",
-      "imageUrl": "histories/a-corda-partida/object/ferramentas.jpg",
+      "imageUrl": "stories/a-corda-partida/object/ferramentas.jpg",
       "locationId": "oficina",
       "initialDescription": "As ferramentas de Sérgio estão organizadas na bancada: goivas, formões, alicates de precisão, espátulas.",
       "clueRevealRules": [
@@ -1207,7 +1207,7 @@
       "deletedAt": null,
       "title": "A nota que ninguém queria ouvir",
       "type": "full_truth",
-      "imageUrl": "histories/a-corda-partida/endings/full_truth.jpg",
+      "imageUrl": "stories/a-corda-partida/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_cracked_strad": "aurora",
@@ -1230,7 +1230,7 @@
       "deletedAt": null,
       "title": "Um acorde incompleto",
       "type": "partial_truth",
-      "imageUrl": "histories/a-corda-partida/endings/partial_truth.jpg",
+      "imageUrl": "stories/a-corda-partida/endings/partial_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_cracked_strad": "aurora"
@@ -1247,7 +1247,7 @@
       "deletedAt": null,
       "title": "O suspeito errado",
       "type": "wrong_accusation",
-      "imageUrl": "histories/a-corda-partida/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/a-corda-partida/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

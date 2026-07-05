@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": true,
   "version": 1,
-  "coverImageUrl": "histories/o-envelope-pardo/history/cover.jpg",
-  "thumbnailUrl": "histories/o-envelope-pardo/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-envelope-pardo/story/cover.jpg",
+  "thumbnailUrl": "stories/o-envelope-pardo/story/thumbnail.jpg",
   "opening": {
     "shortText": "Três cartas anônimas no envelope pardo. Uma ameaça: ou a reportagem morre, ou uma mentira de 20 anos vem à tona.",
     "fullText": "São 7h de uma terça-feira na redação do jornal O Farol, na pequena Areias. Otávio, o editor-chefe, chega antes de todos e encontra sobre a mesa um envelope pardo sem remetente. Dentro, três cartas datilografadas, sem assinatura, todas com a mesma exigência: mate a reportagem que sai na próxima edição, ou uma mentira de 20 anos virá a público. A reportagem em jogo é uma investigação de Bete, a jovem repórter da casa, sobre negócios irregulares de terras envolvendo o vereador Nélio. Otávio convoca quem circulou pela redação na véspera: Dirce, sua subeditora de longa data; o próprio Nélio, que veio reclamar da matéria; Bete, a autora da investigação; e Sérgio, o arquivista do jornal. Cabe a você ler as cartas, examinar a redação, o escritório e o arquivo, ouvir as cinco versões e descobrir quem está por trás da chantagem.",
@@ -322,7 +322,7 @@
       "name": "Otávio",
       "role": "Editor-chefe do jornal O Farol",
       "shortDescription": "Editor veterano, respeitado e orgulhoso do prêmio que conquistou há 20 anos. Chegou cedo e encontrou as cartas sobre a mesa.",
-      "imageUrl": "histories/o-envelope-pardo/characters/otavio.jpg",
+      "imageUrl": "stories/o-envelope-pardo/characters/otavio.jpg",
       "personality": "Proud, defensive, protective of his reputation. Hates admitting weakness. Under pressure he becomes clipped and changes the subject to his record.",
       "speakingStyle": "Speaks in measured editorial sentences, cites dates and headlines from memory, repeats his accomplishments when cornered.",
       "publicKnowledge": [
@@ -496,7 +496,7 @@
       "name": "Dirce",
       "role": "Subeditora de O Farol há 15 anos",
       "shortDescription": "Subeditora experiente e contida, que conhece a redação melhor do que ninguém e mantém a compostura em qualquer situação.",
-      "imageUrl": "histories/o-envelope-pardo/characters/dirce.jpg",
+      "imageUrl": "stories/o-envelope-pardo/characters/dirce.jpg",
       "personality": "Composed, precise, quietly resentful after years of loyalty without promotion. Channels frustration into editorial control rather than outbursts.",
       "speakingStyle": "Calm and formal, careful with words, references the newspaper's routines and standards. Never raises her voice.",
       "publicKnowledge": [
@@ -629,7 +629,7 @@
       "name": "Nélio",
       "role": "Vereador e empresário, alvo da reportagem",
       "shortDescription": "Vereador e empresário, alvo direto da investigação que sai na próxima edição. Veio à redação na véspera reclamar da matéria.",
-      "imageUrl": "histories/o-envelope-pardo/characters/nelio.jpg",
+      "imageUrl": "stories/o-envelope-pardo/characters/nelio.jpg",
       "personality": "Brash, loud, confrontational. Accustomed to settling problems face-to-face with pressure and money.",
       "speakingStyle": "Direct and blunt, raises his voice, drops names and threats openly, never hides behind anonymous words.",
       "publicKnowledge": [
@@ -702,7 +702,7 @@
       "name": "Bete",
       "role": "Repórter de O Farol e autora da investigação",
       "shortDescription": "Jovem repórter responsável pela investigação sobre Nélio. Está tensa e distraída nos últimos dias, sem explicar o motivo.",
-      "imageUrl": "histories/o-envelope-pardo/characters/bete.jpg",
+      "imageUrl": "stories/o-envelope-pardo/characters/bete.jpg",
       "personality": "Idealistic, thorough, currently anxious. Believes in the story but is shaken by something she found while fact-checking.",
       "speakingStyle": "Quick, precise, uses journalistic terms, gets defensive when asked about the anniversary research.",
       "publicKnowledge": [
@@ -747,7 +747,7 @@
       "name": "Sérgio",
       "role": "Arquivista de O Farol",
       "shortDescription": "Arquivista antigo da casa, conhece o acervo e os costumes da redação como ninguém. Fala pouco, mas observa tudo.",
-      "imageUrl": "histories/o-envelope-pardo/characters/sergio.jpg",
+      "imageUrl": "stories/o-envelope-pardo/characters/sergio.jpg",
       "personality": "Quiet, observant, loyal to the newspaper rather than to any person. Drops useful observations without drama.",
       "speakingStyle": "Short sentences, dry, references dates, shelves and boxes from memory, never speculates beyond what he saw.",
       "publicKnowledge": [
@@ -793,7 +793,7 @@
       "deletedAt": null,
       "name": "Escritório de Otávio",
       "shortDescription": "Sala do editor-chefe, ao fundo da redação.",
-      "imageUrl": "histories/o-envelope-pardo/location/sala_otavio.jpg",
+      "imageUrl": "stories/o-envelope-pardo/location/sala_otavio.jpg",
       "initialDescription": "O escritório de Otávio fica ao fundo da redação, separado por uma porta envidraçada. Sobre a mesa de mogno, jornais antigos, um abajur de latão e, ao centro, um envelope pardo fechado.",
       "ambientClueIds": [],
       "objectIds": ["envelope_pardo", "trofeu_otavio"]
@@ -805,7 +805,7 @@
       "deletedAt": null,
       "name": "Redação",
       "shortDescription": "Salão aberto com mesas, máquinas de escrever e o fichário da próxima edição.",
-      "imageUrl": "histories/o-envelope-pardo/location/redacao.jpg",
+      "imageUrl": "stories/o-envelope-pardo/location/redacao.jpg",
       "initialDescription": "A redação é um salão longo de mesas compartilhadas, com máquinas de escrever, pilhas de provas e um quadro de cortiça com o fluxo da próxima edição. Uma máquina antiga ao canto permanece sobre uma das mesas.",
       "ambientClueIds": [],
       "objectIds": ["maquina_escrever", "recorte_expose"]
@@ -817,7 +817,7 @@
       "deletedAt": null,
       "name": "Arquivo do jornal",
       "shortDescription": "Acervo de recortes, fitas e edições antigas, ao fundo do corredor.",
-      "imageUrl": "histories/o-envelope-pardo/location/arquivo.jpg",
+      "imageUrl": "stories/o-envelope-pardo/location/arquivo.jpg",
       "initialDescription": "O arquivo, ou morgue, como chamam na casa, é uma sala estreita de prateleiras altas, com caixas rotuladas, pastas de recortes amarelados, fitas cassete e edições encadernadas. O ar cheira a papel velho.",
       "ambientClueIds": [],
       "objectIds": ["fita_cassete", "recorte_arquivo"]
@@ -831,7 +831,7 @@
       "deletedAt": null,
       "name": "Envelope pardo",
       "shortDescription": "Envelope sem remetente encontrado sobre a mesa de Otávio.",
-      "imageUrl": "histories/o-envelope-pardo/object/envelope_pardo.jpg",
+      "imageUrl": "stories/o-envelope-pardo/object/envelope_pardo.jpg",
       "locationId": "sala_otavio",
       "initialDescription": "Um envelope pardo comum, sem remetente, lacrado com fita. Dentro, três folhas datilografadas, dobradas em três.",
       "clueRevealRules": [
@@ -856,7 +856,7 @@
       "deletedAt": null,
       "name": "Troféu do prêmio",
       "shortDescription": "Troféu de metal numa prateleira do escritório.",
-      "imageUrl": "histories/o-envelope-pardo/object/trofeu_otavio.jpg",
+      "imageUrl": "stories/o-envelope-pardo/object/trofeu_otavio.jpg",
       "locationId": "sala_otavio",
       "initialDescription": "Sobre uma prateleira ao lado da mesa, um troféu de metal com uma placa gravada: o principal prêmio estadual de jornalismo, entregue a Otávio há 20 anos.",
       "clueRevealRules": [
@@ -875,7 +875,7 @@
       "deletedAt": null,
       "name": "Máquina de escrever da redação",
       "shortDescription": "Máquina antiga ao canto da redação.",
-      "imageUrl": "histories/o-envelope-pardo/object/maquina_escrever.jpg",
+      "imageUrl": "stories/o-envelope-pardo/object/maquina_escrever.jpg",
       "locationId": "redacao",
       "initialDescription": "Uma máquina de escrever antiga permanece sobre uma mesa ao canto da redação, com uma folha em branco parcialmente alimentada.",
       "clueRevealRules": [
@@ -894,7 +894,7 @@
       "deletedAt": null,
       "name": "Provas da próxima edição",
       "shortDescription": "Páginas de prova da investigação de Bete sobre Nélio.",
-      "imageUrl": "histories/o-envelope-pardo/object/recorte_expose.jpg",
+      "imageUrl": "stories/o-envelope-pardo/object/recorte_expose.jpg",
       "locationId": "redacao",
       "initialDescription": "Sobre uma das mesas, um jogo de páginas de prova com o título da investigação de Bete: negócios irregulares de terras envolvendo o vereador Nélio.",
       "clueRevealRules": [
@@ -913,7 +913,7 @@
       "deletedAt": null,
       "name": "Fita da entrevista",
       "shortDescription": "Fita cassete guardada numa caixa do arquivo.",
-      "imageUrl": "histories/o-envelope-pardo/object/fita_cassete.jpg",
+      "imageUrl": "stories/o-envelope-pardo/object/fita_cassete.jpg",
       "locationId": "arquivo",
       "initialDescription": "Numa caixa rotulada com o ano da série premiada, há uma fita cassete com uma etiqueta manuscrita e parcialmente apagada.",
       "clueRevealRules": [
@@ -932,7 +932,7 @@
       "deletedAt": null,
       "name": "Recortes da série premiada",
       "shortDescription": "Pasta de recortes amarelados da série de 20 anos atrás.",
-      "imageUrl": "histories/o-envelope-pardo/object/recorte_arquivo.jpg",
+      "imageUrl": "stories/o-envelope-pardo/object/recorte_arquivo.jpg",
       "locationId": "arquivo",
       "initialDescription": "Uma pasta de arquivo com os recortes amarelados da série que deu o prêmio a Otávio, as páginas marcadas com traços de caneta antiga.",
       "clueRevealRules": [
@@ -1273,7 +1273,7 @@
       "deletedAt": null,
       "title": "A máquina da casa",
       "type": "full_truth",
-      "imageUrl": "histories/o-envelope-pardo/endings/full_truth.jpg",
+      "imageUrl": "stories/o-envelope-pardo/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_blackmailing": "dirce",
@@ -1303,7 +1303,7 @@
         },
         "requiresClueIds": ["clue_dirce_sent_letters"]
       },
-      "imageUrl": "histories/o-envelope-pardo/endings/partial_truth.jpg",
+      "imageUrl": "stories/o-envelope-pardo/endings/partial_truth.jpg",
       "summary": "Você identificou Dirce como a autora das cartas, mas não fechou o segredo que sustenta a chantagem nem o paradeiro da prova.",
       "epilogue": "Dirce admite, sem rodeios, que datilografou as três cartas na máquina da redação. Mas o silêncio sobre o que ela sabe — e sobre onde está a prova — pesa mais do que a própria confissão. Otávio a encara de dentro do escritório, sem saber ainda o quanto ela descobriu. O envelope pardo segue sobre a mesa de mogno, e a próxima edição permanece, por enquanto, suspensa. A fita no arquivo espera, muda, o dia em que alguém finalmente a ouça."
     },
@@ -1314,7 +1314,7 @@
       "deletedAt": null,
       "title": "O suspeito óbvio",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-envelope-pardo/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-envelope-pardo/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

@@ -3,7 +3,7 @@ import { S3Client } from '@aws-sdk/client-s3';
 import { t } from '@ai-history/i18n';
 import { appConfig } from '../config/app.config';
 import { HealthController } from '../controllers/health.controller';
-import { HistoryController } from '../controllers/history.controller';
+import { StoryController } from '../controllers/story.controller';
 import { SessionController } from '../controllers/session.controller';
 import { SubscriptionController } from '../controllers/subscription/subscription.controller';
 import { LeadController } from '../controllers/lead/lead.controller';
@@ -13,7 +13,7 @@ import { IntentDetectionService } from '../engine/intent/intent-detection.servic
 import { ObjectAgent } from '../engine/object/object-agent.service';
 import { OpenRouterStructuredChatModel } from '../engine/llm/openrouter-structured-chat-model';
 import {
-  IHistoryDefinitionRepository,
+  IStoryDefinitionRepository,
   IImageUrlSigner,
   ILeadRepository,
   ISessionRepository,
@@ -30,7 +30,7 @@ import {
   IEmailVerificationService,
 } from '../interfaces';
 import {
-  HistoryDefinitionRepository,
+  StoryDefinitionRepository,
   LeadRepository,
   LlmCallRecorder,
   PlanRepository,
@@ -38,10 +38,10 @@ import {
   SubscriptionRepository,
   UserRepository,
 } from '../repositories';
-import { HistorySessionService } from '../services/session/history-session.service';
+import { StorySessionService } from '../services/session/story-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
 import { SessionConclusionService } from '../services/session/session-conclusion.service';
-import { HistoryCatalogService } from '../services/history/history-catalog.service';
+import { StoryCatalogService } from '../services/story/story-catalog.service';
 import { S3ImageUrlSigner } from '../services/image/s3-image-url-signer';
 import { S3AudioStorage } from '../services/audio/s3-audio-storage';
 import { OpenRouterAudioTranscriptionService } from '../services/audio/openrouter-audio-transcription.service';
@@ -71,8 +71,8 @@ export class DIContainer {
   );
   private readonly subscriptionRepository: ISubscriptionRepository =
     new SubscriptionRepository(this.prisma);
-  private readonly historyDefinitionRepository: IHistoryDefinitionRepository =
-    new HistoryDefinitionRepository(this.prisma);
+  private readonly storyDefinitionRepository: IStoryDefinitionRepository =
+    new StoryDefinitionRepository(this.prisma);
   private readonly sessionRepository: ISessionRepository =
     new SessionRepository(this.prisma);
   private readonly leadRepository: ILeadRepository = new LeadRepository(
@@ -151,9 +151,9 @@ export class DIContainer {
     appConfig.aws.s3Bucket as string,
     appConfig.aws.presignedExpirationSeconds
   );
-  private readonly historySessionService = new HistorySessionService(
+  private readonly storySessionService = new StorySessionService(
     this.userRepository,
-    this.historyDefinitionRepository,
+    this.storyDefinitionRepository,
     this.sessionRepository,
     this.imageUrlSigner,
     this.subscriptionRepository
@@ -200,18 +200,18 @@ export class DIContainer {
   private readonly audioTranscription: IAudioTranscriptionService =
     new OpenRouterAudioTranscriptionService(this.llmCallRecorder);
   private readonly sessionController = new SessionController(
-    this.historySessionService,
+    this.storySessionService,
     this.sessionInteractionService,
     this.sessionConclusionService,
     this.audioStorage,
     this.audioTranscription
   );
-  private readonly historyCatalogService = new HistoryCatalogService(
-    this.historyDefinitionRepository,
+  private readonly storyCatalogService = new StoryCatalogService(
+    this.storyDefinitionRepository,
     this.imageUrlSigner
   );
-  private readonly historyController = new HistoryController(
-    this.historyCatalogService
+  private readonly storyController = new StoryController(
+    this.storyCatalogService
   );
 
   static getInstance(): DIContainer {
@@ -230,8 +230,8 @@ export class DIContainer {
     return this.sessionController;
   }
 
-  getHistoryController(): HistoryController {
-    return this.historyController;
+  getStoryController(): StoryController {
+    return this.storyController;
   }
 
   getUserController(): UserController {

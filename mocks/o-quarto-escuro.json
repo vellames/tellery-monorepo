@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/o-quarto-escuro/history/cover.jpg",
-  "thumbnailUrl": "histories/o-quarto-escuro/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-quarto-escuro/story/cover.jpg",
+  "thumbnailUrl": "stories/o-quarto-escuro/story/thumbnail.jpg",
   "opening": {
     "shortText": "Otto Salgado, fotógrafo consagrado, foi encontrado morto dentro do quarto escuro do seu estúdio, na manhã da abertura da sua retrospectiva. A porta estava trancada por dentro e o cofre do escritório, aberto e vazio.",
     "fullText": "É manhã de sábado em Ouro Preto, abril de 1974. Na Rua Direita, o Estúdio Salgado deveria abrir hoje as portas da retrospectiva que celebraria vinte e cinco anos de carreira de Otto Salgado — o retratista mais requisitado da cidade, o olho que durante um quarto de século registrou batizados, formaturas, poses de políticos e poses de família. Em vez dos preparativos, há um corpo no quarto escuro, o laboratório de revelação onde Otto trabalhava sozinho. Ele está caído junto à bancada, a porta trancada por dentro. No escritório ao lado, o cofre aparece aberto e vazio. Otto era casado com Dona Aurora, seu braço de sombra há trinta anos. Viviam com a sobrinha Vera, assistente do estúdio, que dormia no fundo na noite passada. Na véspera, cinco convidados passaram pelo estúdio para saudar o fotógrafo antes da grande abertura: Hélio Brandão, o prefeito da cidade; Madalena Reis, atriz consagrada dos palcos mineiros; Dr. Tomás Vieira, o cirurgião que seria homenageado na mesma semana; Irmã Bárbara, da diretoria do Orfanato Santo Antônio; e Vera, que tem as chaves do estúdio. Cada um conhecia Otto há muitos anos. Cada um tinha motivo para entrar no laboratório na noite em que ele morreu. Cabe a você examinar o quarto escuro e o escritório, ouvir as cinco versões e descobrir quem, se alguém, trancou Otto com seu próprio segredo.",
@@ -460,7 +460,7 @@
       "name": "Dona Aurora",
       "role": "Esposa de Otto há trinta anos",
       "shortDescription": "Esposa de Otto há trinta anos e dona da casa. Estava na retrospectiva da véspera e foi quem trouxe o café da manhã ao estúdio.",
-      "imageUrl": "histories/o-quarto-escuro/characters/aurora.jpg",
+      "imageUrl": "stories/o-quarto-escuro/characters/aurora.jpg",
       "personality": "Senhora de ferro por trás de modos cuidadosos. Trinta anos de casamento a ensinaram a ouvir atrás das portas e a contar o que convém. Há uma dignidade ferida em tudo o que diz.",
       "speakingStyle": "Voz baixa e medida, vocabulário de casa antiga, frases que pesam cada palavra. Fala do mar com a correção de viúva exemplar, mas os olhos denunciam o que a boca cala.",
       "publicKnowledge": [
@@ -595,7 +595,7 @@
       "name": "Hélio Brandão",
       "role": "Prefeito de Ouro Preto",
       "shortDescription": "Prefeito de Ouro Preto e antigo cliente do estúdio. Compareceu à retrospectiva da véspera.",
-      "imageUrl": "histories/o-quarto-escuro/characters/helio.jpg",
+      "imageUrl": "stories/o-quarto-escuro/characters/helio.jpg",
       "personality": "Carismático no palanque, carrancudo em particular. Veste o sorriso público como um paletó que tira ao entrar em casa. Carrega o peso de uma juventude que preferia esquecer.",
       "speakingStyle": "Fala no tom pausado de quem discursa, usa clichês de político para desviar de pergunta direta, gagueja só quando a pergunta chega perto demais.",
       "publicKnowledge": [
@@ -650,7 +650,7 @@
       "name": "Madalena Reis",
       "role": "Atriz consagrada do teatro mineiro",
       "shortDescription": "Atriz consagrada dos palcos mineiros e amiga de longa data de Otto. Veio de Belo Horizonte para a retrospectiva.",
-      "imageUrl": "histories/o-quarto-escuro/characters/madalena.jpg",
+      "imageUrl": "stories/o-quarto-escuro/characters/madalena.jpg",
       "personality": "Teatral até na intimidade, generosa com o aplauso e impiedosa consigo mesma. Veste o drama como um xale. Há no fundo uma ferida antiga que ela transformou em arte.",
       "speakingStyle": "Voz de palco mesmo na sala, frases longas, metáforas de bastidores. Chora bonito, quando precisa; ri mais bonito ainda.",
       "publicKnowledge": [
@@ -705,7 +705,7 @@
       "name": "Dr. Tomás Vieira",
       "role": "Cirurgião respeitado e homenageado da semana",
       "shortDescription": "Cirurgião respeitado, homenageado pela Cruz Vermelha na mesma semana. Conhecia Otto desde a faculdade.",
-      "imageUrl": "histories/o-quarto-escuro/characters/tomas.jpg",
+      "imageUrl": "stories/o-quarto-escuro/characters/tomas.jpg",
       "personality": "Controlado, polido, professoral. A compostura é o paletó que veste — por baixo há um homem que aprendeu, há muito, a não mostrar as mãos trêmulas.",
       "speakingStyle": "Voz grave e didática, vocabulário médico quando quer distância, frases medidas que se rompem só quando a pressão vem.",
       "publicKnowledge": [
@@ -841,7 +841,7 @@
       "name": "Irmã Bárbara",
       "role": "Diretora do Orfanato Santo Antônio",
       "shortDescription": "Irmã da Ordem e diretora do Orfanato Santo Antônio. Cliente antiga do estúdio, onde mandava retratar as crianças.",
-      "imageUrl": "histories/o-quarto-escuro/characters/barbara.jpg",
+      "imageUrl": "stories/o-quarto-escuro/characters/barbara.jpg",
       "personality": "Prática, enxuta, de sorriso curto. Aprendeu, no convento, a oferecer o essencial e a guardar o resto. Há uma fadiga antiga nos seus ombros.",
       "speakingStyle": "Frases curtas e diretas, vocabulário simples de quem cuida de crianças, um humor seco que aparece de vez em quando.",
       "publicKnowledge": [
@@ -895,7 +895,7 @@
       "name": "Vera Salgado",
       "role": "Sobrinha de Otto e sua assistente no estúdio",
       "shortDescription": "Sobrinha de Otto e sua assistente no estúdio. Dormia no quarto dos fundos na noite em que o tio morreu.",
-      "imageUrl": "histories/o-quarto-escuro/characters/vera.jpg",
+      "imageUrl": "stories/o-quarto-escuro/characters/vera.jpg",
       "personality": "Atenta, calada, eficiente. Aprendeu cedo a revelar o que os outros não queriam ver. Há nela uma lealdade cansada a um tio que ela amava e temia em partes iguais.",
       "speakingStyle": "Voz baixa e precisa, vocabulário técnico de estúdio, frases curtas que poupam adjetivos. Responde o suficiente; nunca uma palavra a mais.",
       "publicKnowledge": [
@@ -962,7 +962,7 @@
       "deletedAt": null,
       "name": "Quarto escuro",
       "shortDescription": "O laboratório de revelação onde Otto foi encontrado morto.",
-      "imageUrl": "histories/o-quarto-escuro/location/laboratorio.jpg",
+      "imageUrl": "stories/o-quarto-escuro/location/laboratorio.jpg",
       "initialDescription": "O quarto escuro é um cubículo sem janelas, forrado de prateleiras pretas, com uma bancada úmida, três cubas de revelação e uma lâmpada vermelha ainda acesa. O cheiro de ácido e éter ainda preenche o ar, denso, do teto ao chão de cimento.",
       "ambientClueIds": [
         "clue_otto_dead",
@@ -978,7 +978,7 @@
       "deletedAt": null,
       "name": "Escritório do estúdio",
       "shortDescription": "O escritório onde Otto guardava o cofre e o arquivo.",
-      "imageUrl": "histories/o-quarto-escuro/location/escritorio.jpg",
+      "imageUrl": "stories/o-quarto-escuro/location/escritorio.jpg",
       "initialDescription": "O escritório é um cômodo pequeno e ordenado, com uma escrivaninha de couro, um calendário antigo na parede e, no canto, um cofre de ferro encravado na parede. Há uma estante de cadernos encadernados e um toca-fitas sobre a mesa.",
       "ambientClueIds": [],
       "objectIds": [
@@ -997,7 +997,7 @@
       "deletedAt": null,
       "name": "Sala de retratos",
       "shortDescription": "A sala principal do estúdio, com o fundo pintado e os aparelhos fotográficos.",
-      "imageUrl": "histories/o-quarto-escuro/location/estudio.jpg",
+      "imageUrl": "stories/o-quarto-escuro/location/estudio.jpg",
       "initialDescription": "A sala de retratos tem pé-direito alto, um fundo pintado de paisagem de Minas, tripés de câmeras de madeira e um piano encostado na parede. Há retratos antigos nas molduras e o cheiro de pó e verniz antigo.",
       "ambientClueIds": [],
       "objectIds": []
@@ -1009,7 +1009,7 @@
       "deletedAt": null,
       "name": "Sala da retrospectiva",
       "shortDescription": "A sala onde foi montada a retrospectiva de Otto, na noite anterior.",
-      "imageUrl": "histories/o-quarto-escuro/location/sala_exposicao.jpg",
+      "imageUrl": "stories/o-quarto-escuro/location/sala_exposicao.jpg",
       "initialDescription": "A sala da retrospectiva é longa, com paredes forradas de fotografias emolduradas em preto, taças de champanhe ainda sobre a mesinha de serve e flores brancas começando a murchar. As cortinas foram fechadas às pressas pela manhã.",
       "ambientClueIds": [],
       "objectIds": []
@@ -1023,7 +1023,7 @@
       "deletedAt": null,
       "name": "Café meio cheio",
       "shortDescription": "Uma xícara de café deixada pela metade sobre a bancada.",
-      "imageUrl": "histories/o-quarto-escuro/object/cafeca.jpg",
+      "imageUrl": "stories/o-quarto-escuro/object/cafeca.jpg",
       "locationId": "laboratorio",
       "initialDescription": "Sobre a bancada úmida do laboratório, ao lado das cubas de revelação, há uma xícara de porcelana branca com café pela metade, frio, com uma fina pele escura na superfície.",
       "clueRevealRules": [
@@ -1046,7 +1046,7 @@
       "deletedAt": null,
       "name": "Frasco de sedativo",
       "shortDescription": "Um frasco hospitalar atirado no lixo do laboratório.",
-      "imageUrl": "histories/o-quarto-escuro/object/frasco_sedativo.jpg",
+      "imageUrl": "stories/o-quarto-escuro/object/frasco_sedativo.jpg",
       "locationId": "laboratorio",
       "initialDescription": "No cesto de lixo do laboratório, meio escondido sob papéis de revelação usados, há um pequeno frasco de vidro sem rótulo, do tipo usado em hospitais, com vestígios de líquido no fundo.",
       "clueRevealRules": [
@@ -1069,7 +1069,7 @@
       "deletedAt": null,
       "name": "Cofre do escritório",
       "shortDescription": "O cofre de ferro embutido na parede do escritório.",
-      "imageUrl": "histories/o-quarto-escuro/object/cofre.jpg",
+      "imageUrl": "stories/o-quarto-escuro/object/cofre.jpg",
       "locationId": "escritorio",
       "initialDescription": "No canto do escritório, um cofre de ferro embutido na parede está escancarado, a porta aberta para dentro, o interior vazio exceto por uma gaveta de aço também aberta.",
       "clueRevealRules": [
@@ -1092,7 +1092,7 @@
       "deletedAt": null,
       "name": "Roleta de negativos",
       "shortDescription": "Uma roleta de chapas, vazia, dentro do cofre.",
-      "imageUrl": "histories/o-quarto-escuro/object/roleta_negativos.jpg",
+      "imageUrl": "stories/o-quarto-escuro/object/roleta_negativos.jpg",
       "locationId": "escritorio",
       "initialDescription": "Dentro do cofre aberto há uma roleta metálica de chapas fotográficas, com os compartimentos abertos e vazios — apenas os encaixes escuros restam.",
       "clueRevealRules": [
@@ -1115,7 +1115,7 @@
       "deletedAt": null,
       "name": "Bilhete sobre a mesa",
       "shortDescription": "Um bilhete dobrado sobre a escrivaninha de Otto.",
-      "imageUrl": "histories/o-quarto-escuro/object/bilhete_ameaca.jpg",
+      "imageUrl": "stories/o-quarto-escuro/object/bilhete_ameaca.jpg",
       "locationId": "escritorio",
       "initialDescription": "Sobre a escrivaninha de couro, há um bilheto pequeno, dobrado ao meio, com uma caligrafia apressada em tinta azul.",
       "clueRevealRules": [
@@ -1138,7 +1138,7 @@
       "deletedAt": null,
       "name": "Agenda de Otto",
       "shortDescription": "Uma agenda encadernada, com anotações em código.",
-      "imageUrl": "histories/o-quarto-escuro/object/agenda_otto.jpg",
+      "imageUrl": "stories/o-quarto-escuro/object/agenda_otto.jpg",
       "locationId": "escritorio",
       "initialDescription": "Na gaveta da escrivaninha, há uma agenda pequena, de capa preta, com páginas cobertas de iniciais, datas e valores anotados a lápis em colunas apertadas.",
       "clueRevealRules": [
@@ -1161,7 +1161,7 @@
       "deletedAt": null,
       "name": "Fita no toca-fitas",
       "shortDescription": "Uma fita cassete deixada pronta no toca-fitas da escrivaninha.",
-      "imageUrl": "histories/o-quarto-escuro/object/gravacao_otto.jpg",
+      "imageUrl": "stories/o-quarto-escuro/object/gravacao_otto.jpg",
       "locationId": "escritorio",
       "initialDescription": "Sobre a escrivaninha, o toca-fitas tem uma fita cassete já rebobinada, com uma etiqueta colada à mão, em posição de tocar.",
       "clueRevealRules": [
@@ -1184,7 +1184,7 @@
       "deletedAt": null,
       "name": "Maço de recibos",
       "shortDescription": "Um maço de recibos avulsos dentro de uma pasta.",
-      "imageUrl": "histories/o-quarto-escuro/object/recibos.jpg",
+      "imageUrl": "stories/o-quarto-escuro/object/recibos.jpg",
       "locationId": "escritorio",
       "initialDescription": "Dentro de uma pasta de cartolina, na segunda gaveta, há um maço de recibos datilografados, sem assinatura, com valores em dinheiro e datas dos últimos meses.",
       "clueRevealRules": [
@@ -1664,7 +1664,7 @@
       "deletedAt": null,
       "title": "O amigo mais antigo",
       "type": "full_truth",
-      "imageUrl": "histories/o-quarto-escuro/endings/full_truth.jpg",
+      "imageUrl": "stories/o-quarto-escuro/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "quem_matou_otto": "tomas",
@@ -1689,7 +1689,7 @@
       "deletedAt": null,
       "title": "A mão certa, o motivo incerto",
       "type": "partial_truth",
-      "imageUrl": "histories/o-quarto-escuro/endings/partial_truth_a.jpg",
+      "imageUrl": "stories/o-quarto-escuro/endings/partial_truth_a.jpg",
       "condition": {
         "conclusionMatches": {
           "quem_matou_otto": "tomas",
@@ -1707,7 +1707,7 @@
       "deletedAt": null,
       "title": "O chantagista certo, a mão errada",
       "type": "partial_truth",
-      "imageUrl": "histories/o-quarto-escuro/endings/partial_truth_b.jpg",
+      "imageUrl": "stories/o-quarto-escuro/endings/partial_truth_b.jpg",
       "condition": {
         "conclusionMatches": {
           "verdade_otto": "era_chantagista",
@@ -1728,7 +1728,7 @@
       "deletedAt": null,
       "title": "Um negativo que nunca se revela",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-quarto-escuro/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-quarto-escuro/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

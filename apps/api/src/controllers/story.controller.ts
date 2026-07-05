@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import { HistoryCatalogService } from '../services/history/history-catalog.service';
-import { listHistoriesQuerySchema } from '../types/http/history.validation';
+import { StatusCodes } from 'http-status-codes';
+import { StoryCatalogService } from '../services/story/story-catalog.service';
+import { listStoriesQuerySchema } from '../types/http/story.validation';
 import { HttpError } from '../utils/http-error';
 import {
   handleError,
@@ -9,12 +10,12 @@ import {
 } from '../utils/response.utils';
 import { TranslationFunction } from '../types/i18n.types';
 
-export class HistoryController {
-  constructor(private readonly historyCatalogService: HistoryCatalogService) {}
+export class StoryController {
+  constructor(private readonly storyCatalogService: StoryCatalogService) {}
 
   list = async (req: Request, res: Response): Promise<void> => {
     const t = req.t as TranslationFunction;
-    const parsedQuery = listHistoriesQuerySchema.safeParse(req.query);
+    const parsedQuery = listStoriesQuerySchema.safeParse(req.query);
 
     if (!parsedQuery.success) {
       sendValidationError(
@@ -27,14 +28,19 @@ export class HistoryController {
 
     try {
       const { isFeatured, isFree, page, limit } = parsedQuery.data;
-      const histories = await this.historyCatalogService.listAvailable(
+      const stories = await this.storyCatalogService.listAvailable(
         isFeatured,
         { page, limit },
         isFree
       );
-      sendSuccess(res, histories);
-    } catch {
-      handleError(res, new Error(t('common:errors.internalError')));
+      sendSuccess(res, stories);
+    } catch (error) {
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -42,19 +48,24 @@ export class HistoryController {
     const t = req.t as TranslationFunction;
 
     try {
-      const history = await this.historyCatalogService.getById(
-        String(req.params.historyId)
+      const story = await this.storyCatalogService.getById(
+        String(req.params.storyId)
       );
-      sendSuccess(res, history);
+      sendSuccess(res, story);
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey
           ? t(error.messageKey, { id: error.message })
           : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 
@@ -62,19 +73,24 @@ export class HistoryController {
     const t = req.t as TranslationFunction;
 
     try {
-      const history = await this.historyCatalogService.getBySlug(
+      const story = await this.storyCatalogService.getBySlug(
         String(req.params.slug)
       );
-      sendSuccess(res, history);
+      sendSuccess(res, story);
     } catch (error) {
       if (error instanceof HttpError) {
         const message = error.messageKey
           ? t(error.messageKey, { id: error.message })
           : error.message;
-        handleError(res, new Error(message), error.statusCode);
+        handleError(res, error, error.statusCode, message);
         return;
       }
-      handleError(res, new Error(t('common:errors.internalError')));
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
     }
   };
 }

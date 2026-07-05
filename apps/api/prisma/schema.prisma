@@ -9,10 +9,12 @@ datasource db {
 
 // ─── Enums ────────────────────────────────────────────────────────────────────
 
-enum HistoryStatus {
+enum StoryStatus {
   draft
   published
   archived
+
+  @@map("HistoryStatus")
 }
 
 enum ClueImportance {
@@ -40,10 +42,12 @@ enum SecretDefaultStrategy {
   justify
 }
 
-enum HistorySessionStatus {
+enum StorySessionStatus {
   active
   completed
   abandoned
+
+  @@map("HistorySessionStatus")
 }
 
 enum InteractionRole {
@@ -94,14 +98,14 @@ model User {
 
   availableCredits Int @default(3)
 
-  sessions     HistorySession[]
+  sessions     StorySession[]
   subscription Subscription?
   leads        Lead[]
 }
 
-// ─── History (authored content) ───────────────────────────────────────────────
+// ─── Story (authored content) ─────────────────────────────────────────────────
 
-model History {
+model Story {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -116,7 +120,7 @@ model History {
   genre String
 
   estimatedDurationMinutes Int
-  status                   HistoryStatus @default(draft)
+  status                   StoryStatus @default(draft)
   isFeatured               Boolean       @default(false)
   isFree                   Boolean       @default(false)
 
@@ -135,6 +139,8 @@ model History {
   clues             ClueDefinition[]
   conclusion        ConclusionDefinition?
   endings           EndingDefinition[]
+
+  @@map("History")
 }
 
 model IntentDefinition {
@@ -143,8 +149,8 @@ model IntentDefinition {
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  historyId String
-  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+  storyId String @map("historyId")
+  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   description String
   examples    String[] @default([])
@@ -154,7 +160,7 @@ model IntentDefinition {
   triggerIntentsForObjectRules    ObjectClueRevealRule[]    @relation("ObjectRevealRuleTriggerIntents")
   triggerIntentsForSecretStages   SecretRevealStage[]       @relation("SecretStageTriggerIntents")
 
-  @@index([historyId])
+  @@index([storyId], map: "IntentDefinition_historyId_idx")
 }
 
 model CharacterDefinition {
@@ -163,8 +169,8 @@ model CharacterDefinition {
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  historyId String
-  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+  storyId String @map("historyId")
+  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   name             String
   role             String
@@ -184,7 +190,7 @@ model CharacterDefinition {
   clueRevealRules CharacterClueRevealRule[]
   secrets         CharacterSecret[]
 
-  @@index([historyId])
+  @@index([storyId], map: "CharacterDefinition_historyId_idx")
 }
 
 model CharacterClueRevealRule {
@@ -254,8 +260,8 @@ model LocationDefinition {
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  historyId String
-  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+  storyId String @map("historyId")
+  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   name             String
   shortDescription String
@@ -268,7 +274,7 @@ model LocationDefinition {
 
   objects ObjectDefinition[]
 
-  @@index([historyId])
+  @@index([storyId], map: "LocationDefinition_historyId_idx")
 }
 
 model ObjectDefinition {
@@ -277,8 +283,8 @@ model ObjectDefinition {
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  historyId String
-  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+  storyId String @map("historyId")
+  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   locationId String
   location   LocationDefinition @relation(fields: [locationId], references: [id], onDelete: Cascade)
@@ -292,7 +298,7 @@ model ObjectDefinition {
 
   clueRevealRules ObjectClueRevealRule[]
 
-  @@index([historyId])
+  @@index([storyId], map: "ObjectDefinition_historyId_idx")
   @@index([locationId])
 }
 
@@ -320,8 +326,8 @@ model ClueDefinition {
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  historyId String
-  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+  storyId String @map("historyId")
+  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   title       String
   description String
@@ -340,7 +346,7 @@ model ClueDefinition {
   ambientInLocations LocationDefinition[] @relation("LocationAmbientClues")
   requiredByEndings  EndingDefinition[]   @relation("EndingRequiredClues")
 
-  @@index([historyId])
+  @@index([storyId], map: "ClueDefinition_historyId_idx")
 }
 
 model ConclusionDefinition {
@@ -349,8 +355,8 @@ model ConclusionDefinition {
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  historyId String @unique
-  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+  storyId String @unique @map("historyId")
+  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   fields ConclusionField[]
 }
@@ -392,8 +398,8 @@ model EndingDefinition {
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  historyId String
-  history   History @relation(fields: [historyId], references: [id], onDelete: Cascade)
+  storyId String @map("historyId")
+  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   title String
 
@@ -407,12 +413,12 @@ model EndingDefinition {
   summary  String
   epilogue String
 
-  @@index([historyId])
+  @@index([storyId], map: "EndingDefinition_historyId_idx")
 }
 
-// ─── History session (runtime state — full definition snapshot) ───────────────
+// ─── Story session (runtime state — full definition snapshot) ────────────────
 
-model HistorySession {
+model StorySession {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -421,9 +427,9 @@ model HistorySession {
   userId String
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  historyId String
+  storyId String @map("historyId")
 
-  // history snapshot
+  // story snapshot
   title                    String
   subtitle                 String?
   teaser                   String
@@ -434,7 +440,7 @@ model HistorySession {
   thumbnailUrl             String?
   estimatedDurationMinutes Int
 
-  status      HistorySessionStatus @default(active)
+  status      StorySessionStatus @default(active)
   startedAt   DateTime             @default(now())
   completedAt DateTime?
 
@@ -453,7 +459,9 @@ model HistorySession {
   llmCalls LlmCall[]
 
   @@index([userId])
-  @@index([historyId])
+  @@index([storyId], map: "HistorySession_historyId_idx")
+
+  @@map("HistorySession")
 }
 
 model SessionClue {
@@ -463,7 +471,7 @@ model SessionClue {
   deletedAt DateTime?
 
   sessionId String
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   clueDefinitionId String
 
@@ -497,7 +505,7 @@ model SessionIntent {
   deletedAt DateTime?
 
   sessionId String
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   intentDefinitionId String
 
@@ -519,7 +527,7 @@ model CharacterSessionState {
   deletedAt DateTime?
 
   sessionId String
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   characterDefinitionId String
 
@@ -621,7 +629,7 @@ model LocationSessionState {
   deletedAt DateTime?
 
   sessionId String
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   locationDefinitionId String
 
@@ -648,7 +656,7 @@ model ObjectSessionState {
   deletedAt DateTime?
 
   sessionId String
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   locationStateId String?
   locationState   LocationSessionState? @relation(fields: [locationStateId], references: [id], onDelete: SetNull)
@@ -724,7 +732,7 @@ model SessionConclusionField {
   deletedAt DateTime?
 
   sessionId String
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   fieldDefinitionId String
 
@@ -762,7 +770,7 @@ model SessionConclusion {
   deletedAt DateTime?
 
   sessionId String @unique
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   submittedAt DateTime
 
@@ -797,7 +805,7 @@ model SessionEndingSnapshot {
   deletedAt DateTime?
 
   sessionId String
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   endingDefinitionId String
 
@@ -822,7 +830,7 @@ model SessionEnding {
   deletedAt DateTime?
 
   sessionId String @unique
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   endingSnapshotId String @unique
   endingSnapshot   SessionEndingSnapshot @relation(fields: [endingSnapshotId], references: [id], onDelete: Cascade)
@@ -855,7 +863,7 @@ model LlmCall {
   createdAt DateTime @default(now())
 
   sessionId String
-  session   HistorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   purpose LlmCallPurpose
   model   String

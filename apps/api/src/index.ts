@@ -35,4 +35,14 @@ async function startServer() {
   process.on('SIGINT', () => void shutdown('SIGINT'));
 }
 
+// Catch-all loggers — surface anything that escapes the request cycle so a bare
+// 500 (or worse, a silent hang) never happens without a stack trace.
+process.on('unhandledRejection', (reason) => {
+  console.error('[unhandledRejection]', reason);
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('[uncaughtException]', err);
+});
+
 void startServer();

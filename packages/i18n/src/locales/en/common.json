@@ -11,7 +11,7 @@
   "api": {
     "name": "AI History API",
     "healthCheck": "Health check",
-    "startSession": "Start a mock-in-memory history session",
+    "startSession": "Start a mock-in-memory story session",
     "interactSession": "Interact with a character or object in a session"
   },
   "errors": {

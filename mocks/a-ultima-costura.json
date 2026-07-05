@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/a-ultima-costura/history/cover.jpg",
-  "thumbnailUrl": "histories/a-ultima-costura/history/thumbnail.jpg",
+  "coverImageUrl": "stories/a-ultima-costura/story/cover.jpg",
+  "thumbnailUrl": "stories/a-ultima-costura/story/thumbnail.jpg",
   "opening": {
     "shortText": "O Vestido Estelar está cortado do risco à barra no manequim. A porta do atelier estava trancada. Só quatro pessoas tinham acesso.",
     "fullText": "São 23h40 no Atelier Aurora, no centro de São Paulo, na véspera do Desfile Nacional. Inês, a estilista dona do atelier, abre a sala de costura para a checagem final e encontra o Vestido Estelar — a peça única que abriria o desfile, com meses de bordado manual em fio dourado — cortado do risco à barra, ainda preso ao manequim. A porta do atelier estava trancada e não há sinal de arrombamento. Quatro pessoas circularam pelo atelier naquela noite: Lia, a costureira-chefe; Salma, a aprendiz; Otto, o fornecedor de tecidos; e a própria Inês. Cada um tinha razão para estar ali, e cada um diz ter saído antes do estrago. Cabe a você examinar o vestido, a porta e a bancada, ouvir as quatro versões e reconstruir quem destruiu o Vestido Estelar, por quê e com o quê.",
@@ -309,7 +309,7 @@
       "name": "Inês",
       "role": "Estilista e dona do Atelier Aurora",
       "shortDescription": "Estilista reconhecida, orgulhosa e controlada, abalada ao encontrar sua peça principal destruída na véspera do desfile.",
-      "imageUrl": "histories/a-ultima-costura/characters/ines.jpg",
+      "imageUrl": "stories/a-ultima-costura/characters/ines.jpg",
       "personality": "Perfeccionista, exigente e leal ao próprio nome. Oscila entre raiva contida e desolação. Toma decisões rápidas e não gosta de parecer vulnerável.",
       "speakingStyle": "Fala em frases medidas, com vocabulário de atelier e moda. Cita cores, tecidos e prazos com precisão técnica.",
       "publicKnowledge": [
@@ -403,7 +403,7 @@
       "name": "Lia",
       "role": "Costureira-chefe do Atelier Aurora",
       "shortDescription": "Costureira-chefe meticulosa e serena, com mãos firmes e reputação impecável no atelier.",
-      "imageUrl": "histories/a-ultima-costura/characters/lia.jpg",
+      "imageUrl": "stories/a-ultima-costura/characters/lia.jpg",
       "personality": "Precisa, controlada, profissional em qualquer circunstância. Esconde a ferida profissional atrás de competência fria. Quando encurralada, fica mais pausada, nunca mais nervosa.",
       "speakingStyle": "Fala devagar, com vocabulário técnico de costura e corte. Escolhe cada palavra como escolhe um ponto. Nunca se justifica demais.",
       "publicKnowledge": [
@@ -574,7 +574,7 @@
       "name": "Salma",
       "role": "Aprendiz do Atelier Aurora",
       "shortDescription": "Aprendiz jovem e dedicada, visivelmente nervosa desde que o estrago foi descoberto.",
-      "imageUrl": "histories/a-ultima-costura/characters/salma.jpg",
+      "imageUrl": "stories/a-ultima-costura/characters/salma.jpg",
       "personality": "Aplicada, sensível e propensa a se justificar demais quando pressionada. Tem medo de ser a culpada fácil da casa.",
       "speakingStyle": "Fala rápido, tropeça nas palavras quando nervosa e tenta antecipar o que o outro quer ouvir.",
       "publicKnowledge": [
@@ -630,7 +630,7 @@
       "name": "Otto",
       "role": "Fornecedor de tecidos",
       "shortDescription": "Fornecedor experiente e prático, que veio entregar a última bolta de seda antes do desfile.",
-      "imageUrl": "histories/a-ultima-costura/characters/otto.jpg",
+      "imageUrl": "stories/a-ultima-costura/characters/otto.jpg",
       "personality": "Direto, negotiationista e levemente impaciente. Sabe que a pendência financeira o torna suspeito óbvio e trata o fato com naturalidade.",
       "speakingStyle": "Fala em frases curtas e comerciais, cita prazos, notas fiscais e horários com facilidade.",
       "publicKnowledge": [
@@ -683,7 +683,7 @@
       "deletedAt": null,
       "name": "Sala de costura",
       "shortDescription": "Salão principal do atelier onde fica o manequim, a bancada e a porta de entrada.",
-      "imageUrl": "histories/a-ultima-costura/location/sala_costura.jpg",
+      "imageUrl": "stories/a-ultima-costura/location/sala_costura.jpg",
       "initialDescription": "A sala de costura é o coração do Atelier Aurora. O manequim central sustenta o Vestido Estelar sob uma luz fria de inspeção. Ao longo da parede, a bancada de corte organiza tesouras, réguas e o suporte do descoscidor. A porta do atelier, com fechadura antiga de latão, fica ao fundo.",
       "ambientClueIds": ["clue_dress_slashed"],
       "objectIds": [
@@ -701,7 +701,7 @@
       "deletedAt": null,
       "name": "Provador",
       "shortDescription": "Sala dos espelhos onde peças são provadas e armazenadas.",
-      "imageUrl": "histories/a-ultima-costura/location/provador.jpg",
+      "imageUrl": "stories/a-ultima-costura/location/provador.jpg",
       "initialDescription": "O provador tem três espelhos altos e um cabideiro comprido. Em um dos cantos, penduradas atrás de uma cortina, ficam as peças que não entraram na programação principal do desfile.",
       "ambientClueIds": [],
       "objectIds": ["collection_lia"]
@@ -713,7 +713,7 @@
       "deletedAt": null,
       "name": "Almoxarifado",
       "shortDescription": "Depósito de boltas de tecido e insumos do atelier.",
-      "imageUrl": "histories/a-ultima-costura/location/almoxarifado.jpg",
+      "imageUrl": "stories/a-ultima-costura/location/almoxarifado.jpg",
       "initialDescription": "O almoxarifado guarda boltas de tecido empilhadas em prateleiras de madeira. Sobre o bancão do fundo repousa a última seda entregue por Otto, ainda com a etiqueta de remessa.",
       "ambientClueIds": [],
       "objectIds": ["bolta_seda"]
@@ -727,7 +727,7 @@
       "deletedAt": null,
       "name": "Vestido Estelar cortado",
       "shortDescription": "Peça única de bordado manual, agora cortada no manequim.",
-      "imageUrl": "histories/a-ultima-costura/object/vestido_cortado.jpg",
+      "imageUrl": "stories/a-ultima-costura/object/vestido_cortado.jpg",
       "locationId": "sala_costura",
       "initialDescription": "O Vestido Estelar segue preso ao manequim, com o bordado em fio dourado ainda intacto nas bordas. Um único corte vertical desce do risco até a barra.",
       "clueRevealRules": [
@@ -756,7 +756,7 @@
       "deletedAt": null,
       "name": "Tesoura de tecido",
       "shortDescription": "Tesoura pesada de tecido deixada sobre a bancada.",
-      "imageUrl": "histories/a-ultima-costura/object/tesoura_tecido.jpg",
+      "imageUrl": "stories/a-ultima-costura/object/tesoura_tecido.jpg",
       "locationId": "sala_costura",
       "initialDescription": "Uma tesoura pesada de tecido repousa sobre um pano na bancada, com as lâminas voltadas para baixo.",
       "clueRevealRules": [
@@ -781,7 +781,7 @@
       "deletedAt": null,
       "name": "Descoscidor de precisão",
       "shortDescription": "Pequena lâmina de costura usada para desfazer pontos.",
-      "imageUrl": "histories/a-ultima-costura/object/descoscidor.jpg",
+      "imageUrl": "stories/a-ultima-costura/object/descoscidor.jpg",
       "locationId": "sala_costura",
       "initialDescription": "O suporte do descoscidor na bancada está vazio. Logo ao lado, sob um pano, a pequena lâmina aparece fora do lugar habitual.",
       "clueRevealRules": [
@@ -806,7 +806,7 @@
       "deletedAt": null,
       "name": "Porta do atelier",
       "shortDescription": "Porta de entrada com fechadura antiga de latão.",
-      "imageUrl": "histories/a-ultima-costura/object/porta_atelier.jpg",
+      "imageUrl": "stories/a-ultima-costura/object/porta_atelier.jpg",
       "locationId": "sala_costura",
       "initialDescription": "A porta do atelier tem uma fechadura antiga de latão, com uma placa de 'aberto/fechado' que se vira por dentro.",
       "clueRevealRules": [
@@ -831,7 +831,7 @@
       "deletedAt": null,
       "name": "Livro de encomendas",
       "shortDescription": "Caderno onde Inês anota a programação do desfile.",
-      "imageUrl": "histories/a-ultima-costura/object/livro_encomendas.jpg",
+      "imageUrl": "stories/a-ultima-costura/object/livro_encomendas.jpg",
       "locationId": "sala_costura",
       "initialDescription": "O livro de capa preta fica aberto sobre o bancão, com a programação do Desfile Nacional escrita à mão.",
       "clueRevealRules": [
@@ -860,7 +860,7 @@
       "deletedAt": null,
       "name": "Coleção Costuras do Silêncio",
       "shortDescription": "Cabideiro com a coleção de Lia, fora da programação principal.",
-      "imageUrl": "histories/a-ultima-costura/object/collection_lia.jpg",
+      "imageUrl": "stories/a-ultima-costura/object/collection_lia.jpg",
       "locationId": "provador",
       "initialDescription": "Atrás da cortina do provador, um cabideiro reúne as peças da coleção Costuras do Silêncio, com etiquetas indicando que ficaram de fora da abertura.",
       "clueRevealRules": [
@@ -879,7 +879,7 @@
       "deletedAt": null,
       "name": "Bolta de seda",
       "shortDescription": "Última seda entregue por Otto para o Vestido Estelar.",
-      "imageUrl": "histories/a-ultima-costura/object/bolta_seda.jpg",
+      "imageUrl": "stories/a-ultima-costura/object/bolta_seda.jpg",
       "locationId": "almoxarifado",
       "initialDescription": "A bolta de seda repousa sobre o bancão do almoxarifado, com a etiqueta de remessa e o recibo de entrega ainda presos.",
       "clueRevealRules": [
@@ -1210,7 +1210,7 @@
       "deletedAt": null,
       "title": "A costura que não desmancha",
       "type": "full_truth",
-      "imageUrl": "histories/a-ultima-costura/endings/full_truth.jpg",
+      "imageUrl": "stories/a-ultima-costura/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_cut_dress": "lia",
@@ -1239,7 +1239,7 @@
         },
         "requiresClueIds": ["clue_lia_cut_dress"]
       },
-      "imageUrl": "histories/a-ultima-costura/endings/partial_truth.jpg",
+      "imageUrl": "stories/a-ultima-costura/endings/partial_truth.jpg",
       "summary": "Você identificou Lia como autora, mas não fechou o instrumento exato nem o motivo completo da sabotagem.",
       "epilogue": "Lia não consegue mais negar que esteve no vestido, mas o silêncio sobre o descoscidor e sobre a coleção preterida pesa mais do que a meia confissão. O Vestido Estelar segue aberto no manequim, e o desfile do dia seguinte vai começar sob uma suspeita que ninguém conseguiu costurar até o fim."
     },
@@ -1250,7 +1250,7 @@
       "deletedAt": null,
       "title": "A mão errada",
       "type": "wrong_accusation",
-      "imageUrl": "histories/a-ultima-costura/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/a-ultima-costura/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

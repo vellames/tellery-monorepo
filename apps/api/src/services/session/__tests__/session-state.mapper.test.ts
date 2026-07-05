@@ -1,13 +1,13 @@
 import { buildSessionStateResponse } from '../session-state.mapper';
-import type { HistorySessionWithRelations } from '../../../repositories/SessionRepository';
+import type { StorySessionWithRelations } from '../../../repositories/SessionRepository';
 
 const buildSession = (
-  overrides: Partial<HistorySessionWithRelations> = {}
-): HistorySessionWithRelations =>
+  overrides: Partial<StorySessionWithRelations> = {}
+): StorySessionWithRelations =>
   ({
     id: 'session-1',
     userId: 'user-1',
-    historyId: 'history-1',
+    storyId: 'story-1',
     status: 'active',
     startedAt: new Date('2026-01-01'),
     completedAt: null,
@@ -29,16 +29,16 @@ const buildSession = (
     conclusion: null,
     ending: null,
     ...overrides,
-  }) as unknown as HistorySessionWithRelations;
+  }) as unknown as StorySessionWithRelations;
 
 describe('buildSessionStateResponse', () => {
-  it('maps the session root and history snapshot', () => {
+  it('maps the session root and story snapshot', () => {
     const result = buildSessionStateResponse(buildSession());
 
     expect(result.id).toBe('session-1');
     expect(result.status).toBe('active');
-    expect(result.history).toEqual({
-      id: 'history-1',
+    expect(result.story).toEqual({
+      id: 'story-1',
       title: 'O Bilhete na Mesa 7',
       subtitle: null,
       teaser: 'teaser',

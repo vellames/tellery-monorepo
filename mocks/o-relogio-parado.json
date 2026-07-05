@@ -14,8 +14,8 @@
   "isFeatured": true,
   "isFree": true,
   "version": 1,
-  "coverImageUrl": "histories/o-relogio-parado/history/cover.jpg",
-  "thumbnailUrl": "histories/o-relogio-parado/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-relogio-parado/story/cover.jpg",
+  "thumbnailUrl": "stories/o-relogio-parado/story/thumbnail.jpg",
   "opening": {
     "shortText": "O Cronos sumiu da vitrine trancada. Não há arrombamento. Só três pessoas estiveram na loja na véspera.",
     "fullText": "São 8h da segunda-feira na Relojoaria O Pêndulo. Hugo, o relojoeiro dono da loja, abre a vitrine central para conferir o Cronos — um relógio de bolso antigo, peça mais valiosa do acervo — e encontra o estojo vazio. A fechadura não foi forçada, o vidro está intacto e não há sinal de entrada forçada na loja. Quem pegou o relógio tinha acesso legítimo. Na véspera, domingo à tarde, apenas duas pessoas circularam pela loja: Bia, a aprendiz, e Theo, um colecionador que veio avaliar justamente o Cronos. Hugo pede que ambos fiquem até a situação se esclarecer. Cabe a você examinar a vitrine, ouvir as três versões e descobrir quem pegou o Cronos, por quê e onde ele está agora.",
@@ -238,7 +238,7 @@
       "name": "Hugo",
       "role": "Dono da Relojoaria O Pêndulo",
       "shortDescription": "Relojoeiro veterano, organizado e orgulhoso. Quer o Cronos de volta sem transformar o caso em escândalo policial.",
-      "imageUrl": "histories/o-relogio-parado/characters/hugo.jpg",
+      "imageUrl": "stories/o-relogio-parado/characters/hugo.jpg",
       "personality": "Metódico, observador, dado a silêncios longos. Evita acusações precipitadas e prefere provas a palpites.",
       "speakingStyle": "Fala devagar, com frases medidas e vocabulário técnico de ofício. Repete detalhes quando está tenso.",
       "publicKnowledge": [
@@ -291,7 +291,7 @@
       "name": "Bia",
       "role": "Aprendiz de relojoeira",
       "shortDescription": "Jovem aprendiz dedicada, visivelmente nervosa desde que o sumiço foi descoberto.",
-      "imageUrl": "histories/o-relogio-parado/characters/bia.jpg",
+      "imageUrl": "stories/o-relogio-parado/characters/bia.jpg",
       "personality": "Aplicada, sensível e propensa a se justificar demais quando pressionada.",
       "speakingStyle": "Fala rápido, tropeça nas palavras quando nervosa e tenta antecipar o que o outro quer ouvir.",
       "publicKnowledge": [
@@ -450,7 +450,7 @@
       "name": "Theo",
       "role": "Cliente colecionador",
       "shortDescription": "Colecionador experiente e articulado, que veio avaliar o Cronos na véspera.",
-      "imageUrl": "histories/o-relogio-parado/characters/theo.jpg",
+      "imageUrl": "stories/o-relogio-parado/characters/theo.jpg",
       "personality": "Calmo, falante e ligeiramente presunçoso. Sabe que parece suspeito e usa a franqueza como escudo.",
       "speakingStyle": "Fala com segurança e vocabulário de colecionador, frequentemente citando leilões e peças raras.",
       "publicKnowledge": [
@@ -531,7 +531,7 @@
       "deletedAt": null,
       "name": "Vitrine central",
       "shortDescription": "Armário de vidro onde o Cronos ficava exposto.",
-      "imageUrl": "histories/o-relogio-parado/location/vitrine.jpg",
+      "imageUrl": "stories/o-relogio-parado/location/vitrine.jpg",
       "initialDescription": "A vitrine central fica ao fundo da loja, em madeira escura e vidro grosso. O estojo do Cronos repousa aberto e vazio no centro do móvel, sob uma luz discreta.",
       "ambientClueIds": ["clue_vitrine_scratch"],
       "objectIds": ["estojo_vazio", "chave_reserva"]
@@ -543,7 +543,7 @@
       "deletedAt": null,
       "name": "Bancada de trabalho",
       "shortDescription": "Bancada onde Bia organiza peças e ferramentas do ofício.",
-      "imageUrl": "histories/o-relogio-parado/location/bancada.jpg",
+      "imageUrl": "stories/o-relogio-parado/location/bancada.jpg",
       "initialDescription": "A bancada fica junto da parede lateral, repleta de ferramentas pequenas, lupas e gavetas. Ao canto, há uma lixeira de metal.",
       "ambientClueIds": [],
       "objectIds": ["agenda_hugo", "recibo_penhor"]
@@ -557,7 +557,7 @@
       "deletedAt": null,
       "name": "Estojo do Cronos",
       "shortDescription": "Estojo de veludo onde o Cronos deveria estar.",
-      "imageUrl": "histories/o-relogio-parado/object/estojo_vazio.jpg",
+      "imageUrl": "stories/o-relogio-parado/object/estojo_vazio.jpg",
       "locationId": "vitrine",
       "initialDescription": "O estojo de veludo escuro está aberto e vazio no centro da vitrine, sem sinais de violência.",
       "clueRevealRules": [
@@ -576,7 +576,7 @@
       "deletedAt": null,
       "name": "Chave reserva da vitrine",
       "shortDescription": "Chave pequena deixada habitualmente sobre a bancada.",
-      "imageUrl": "histories/o-relogio-parado/object/chave_reserva.jpg",
+      "imageUrl": "stories/o-relogio-parado/object/chave_reserva.jpg",
       "locationId": "vitrine",
       "initialDescription": "Uma chave pequena e antiga repousa sobre um pano ao lado da vitrine.",
       "clueRevealRules": [
@@ -600,7 +600,7 @@
       "deletedAt": null,
       "name": "Agenda de visitantes",
       "shortDescription": "Caderno onde Hugo anota quem entra e sai da loja.",
-      "imageUrl": "histories/o-relogio-parado/object/agenda_hugo.jpg",
+      "imageUrl": "stories/o-relogio-parado/object/agenda_hugo.jpg",
       "locationId": "bancada",
       "initialDescription": "A agenda de capa gasta fica aberta sobre a bancada, com anotações recentes à caneta.",
       "clueRevealRules": [
@@ -619,7 +619,7 @@
       "deletedAt": null,
       "name": "Recibo amassado",
       "shortDescription": "Papel amassado jogado na lixeira da bancada.",
-      "imageUrl": "histories/o-relogio-parado/object/recibo_penhor.jpg",
+      "imageUrl": "stories/o-relogio-parado/object/recibo_penhor.jpg",
       "locationId": "bancada",
       "initialDescription": "No fundo da lixeira há um papel amassado, com letras de um carimbo parcialmente legíveis.",
       "clueRevealRules": [
@@ -900,7 +900,7 @@
       "deletedAt": null,
       "title": "A hora certa de confessar",
       "type": "full_truth",
-      "imageUrl": "histories/o-relogio-parado/endings/full_truth.jpg",
+      "imageUrl": "stories/o-relogio-parado/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_took_watch": "bia",
@@ -929,7 +929,7 @@
         },
         "requiresClueIds": ["clue_bia_took_watch"]
       },
-      "imageUrl": "histories/o-relogio-parado/endings/partial_truth.jpg",
+      "imageUrl": "stories/o-relogio-parado/endings/partial_truth.jpg",
       "summary": "Você identificou Bia como autora, mas não fechou o motivo real nem o paradeiro do Cronos.",
       "epilogue": "Bia não consegue mais negar que pegou o relógio, mas o silêncio sobre o porquê pesa mais do que a confissão. Sem o paradeiro, o Cronos segue sumido entre uma casa de penhor, uma gaveta e uma promessa que ninguém confirmou. Hugo fecha a vitrine vazia e decide esperar mais um dia antes de qualquer decisão. O relógio, onde quer que esteja, continua marcando uma hora que ninguém ainda soube nomear."
     },
@@ -940,7 +940,7 @@
       "deletedAt": null,
       "title": "O suspeito óbvio",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-relogio-parado/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-relogio-parado/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

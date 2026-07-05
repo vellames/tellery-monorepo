@@ -10,14 +10,14 @@ import { prisma } from '@/lib/prisma';
 
 export type SessionStatusFilter = 'all' | 'active' | 'completed' | 'abandoned';
 
-import type { HistorySessionStatus } from '@prisma/client';
+import type { StorySessionStatus } from '@prisma/client';
 
 /** The three concrete status values a session can have (excludes the "all" filter). */
 export const SESSION_STATUS_VALUES = [
   'active',
   'completed',
   'abandoned',
-] as const satisfies readonly HistorySessionStatus[];
+] as const satisfies readonly StorySessionStatus[];
 
 export type EventType =
   | 'session_start'
@@ -104,9 +104,9 @@ const sessionDetailInclude = {
     },
   },
   llmCalls: { orderBy: { createdAt: 'asc' } },
-} satisfies Prisma.HistorySessionInclude;
+} satisfies Prisma.StorySessionInclude;
 
-export type SessionDetail = Prisma.HistorySessionGetPayload<{
+export type SessionDetail = Prisma.StorySessionGetPayload<{
   include: typeof sessionDetailInclude;
 }>;
 
@@ -121,9 +121,9 @@ const listSelect = {
   // State ids are used to attribute message counts back to their session.
   characterStates: { select: { id: true } },
   objectStates: { select: { id: true } },
-} satisfies Prisma.HistorySessionSelect;
+} satisfies Prisma.StorySessionSelect;
 
-export type SessionListItem = Prisma.HistorySessionGetPayload<{
+export type SessionListItem = Prisma.StorySessionGetPayload<{
   select: typeof listSelect;
 }>;
 
@@ -425,20 +425,20 @@ export async function listSessions(params: {
   const page = Math.max(1, params.page ?? 1);
   const pageSize = SESSIONS_PAGE_SIZE;
 
-  const where: Prisma.HistorySessionWhereInput = { deletedAt: null };
+  const where: Prisma.StorySessionWhereInput = { deletedAt: null };
   if (params.status && params.status !== 'all') {
     where.status = params.status;
   }
 
   const [items, total] = await Promise.all([
-    prisma.historySession.findMany({
+    prisma.storySession.findMany({
       where,
       select: listSelect,
       orderBy: { createdAt: 'desc' },
       skip: (page - 1) * pageSize,
       take: pageSize,
     }),
-    prisma.historySession.count({ where }),
+    prisma.storySession.count({ where }),
   ]);
 
   const stateIdToSession = new Map<string, string>();
@@ -546,7 +546,7 @@ export async function getSessionCounts(
 export async function getSessionDetail(
   id: string
 ): Promise<SessionDetail | null> {
-  return prisma.historySession.findUnique({
+  return prisma.storySession.findUnique({
     where: { id },
     include: sessionDetailInclude,
   });

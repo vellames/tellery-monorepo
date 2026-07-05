@@ -11,7 +11,7 @@ import {
   ObjectAgentDiscoveredClue,
 } from '../../engine/object/object-agent.service';
 import { ISessionRepository } from '../../interfaces';
-import type { HistorySessionWithRelations } from '../../repositories/SessionRepository';
+import type { StorySessionWithRelations } from '../../repositories/SessionRepository';
 import { InteractBody } from '../../types/http/session.validation';
 import { HttpError } from '../../utils/http-error';
 import {
@@ -21,9 +21,9 @@ import {
 
 export type SessionStateType = ResolvedSessionState['type'];
 
-type ObjectState = HistorySessionWithRelations['objectStates'][number];
-type CharacterState = HistorySessionWithRelations['characterStates'][number];
-type LocationState = HistorySessionWithRelations['locationStates'][number];
+type ObjectState = StorySessionWithRelations['objectStates'][number];
+type CharacterState = StorySessionWithRelations['characterStates'][number];
+type LocationState = StorySessionWithRelations['locationStates'][number];
 
 const LOCATION_VISIT_REASONING = 'Ambient clue revealed on first visit.';
 const OFF_TOPIC_INTENT_ID = 'off_topic';
@@ -123,7 +123,7 @@ export class SessionInteractionService {
   }
 
   private async resolveInteraction(
-    session: HistorySessionWithRelations,
+    session: StorySessionWithRelations,
     resolvedState: ResolvedSessionState,
     input: InteractBody,
     language: SupportedLanguage
@@ -148,7 +148,7 @@ export class SessionInteractionService {
   }
 
   private async resolveCharacterState(
-    session: HistorySessionWithRelations,
+    session: StorySessionWithRelations,
     characterState: CharacterState,
     input: InteractBody,
     language: SupportedLanguage
@@ -175,7 +175,7 @@ export class SessionInteractionService {
   }
 
   private async resolveObjectState(
-    session: HistorySessionWithRelations,
+    session: StorySessionWithRelations,
     objectState: ObjectState
   ): Promise<{
     reply: string | null;
@@ -199,7 +199,7 @@ export class SessionInteractionService {
   }
 
   private async detectIntents(
-    intents: HistorySessionWithRelations['intents'],
+    intents: StorySessionWithRelations['intents'],
     input: InteractBody,
     characterState: CharacterState,
     language: SupportedLanguage,
@@ -248,9 +248,9 @@ export class SessionInteractionService {
   }
 
   private resolveRelevantIntents(
-    allIntents: HistorySessionWithRelations['intents'],
+    allIntents: StorySessionWithRelations['intents'],
     characterState: CharacterState
-  ): HistorySessionWithRelations['intents'] {
+  ): StorySessionWithRelations['intents'] {
     const relevantIntentIds = new Set<string>([OFF_TOPIC_INTENT_ID]);
 
     for (const rule of characterState.clueRevealRules) {
@@ -273,7 +273,7 @@ export class SessionInteractionService {
   }
 
   private async runObjectInspection(
-    session: HistorySessionWithRelations,
+    session: StorySessionWithRelations,
     objectState: ObjectState
   ): Promise<InteractDiscoveredClue[]> {
     const alreadyDiscovered = new Set(
@@ -316,7 +316,7 @@ export class SessionInteractionService {
   }
 
   private async runCharacterInteraction(
-    session: HistorySessionWithRelations,
+    session: StorySessionWithRelations,
     characterState: CharacterState,
     input: InteractBody,
     detectedIntents: DetectedIntent[],
@@ -408,7 +408,7 @@ export class SessionInteractionService {
 
   private enrichDiscoveredClues(
     agentResult: ObjectAgentDiscoveredClue[],
-    clues: HistorySessionWithRelations['clues']
+    clues: StorySessionWithRelations['clues']
   ): InteractDiscoveredClue[] {
     return agentResult.map((discovered) => {
       const clue = clues.find((entry) => entry.id === discovered.clueId);

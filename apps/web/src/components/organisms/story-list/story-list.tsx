@@ -3,18 +3,18 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { config } from '@/lib/config';
 import { StoryCard } from '@/components/molecules';
-import type { History } from '@/lib/types/history';
-import type { CompletedHistoryMap } from '@/lib/types/session';
+import type { Story } from '@/lib/types/story';
+import type { CompletedStoryMap } from '@/lib/types/session';
 
 export interface StoryListProps {
-  histories: History[];
-  completedMap?: CompletedHistoryMap;
+  stories: Story[];
+  completedMap?: CompletedStoryMap;
 }
 
-export function StoryList({ histories, completedMap = {} }: StoryListProps) {
+export function StoryList({ stories, completedMap = {} }: StoryListProps) {
   const t = useTranslations('home.upcoming');
 
-  if (histories.length === 0) return null;
+  if (stories.length === 0) return null;
 
   return (
     <section>
@@ -32,11 +32,11 @@ export function StoryList({ histories, completedMap = {} }: StoryListProps) {
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {histories.map((history) => (
+        {stories.map((story) => (
           <StoryCard
-            history={history}
-            key={history.id}
-            endingType={completedMap[history.id] ?? null}
+            story={story}
+            key={story.id}
+            endingType={completedMap[story.id] ?? null}
           />
         ))}
       </div>

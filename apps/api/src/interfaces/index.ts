@@ -1,6 +1,6 @@
 export * from './repositories/base.repository.interface';
 export * from './repositories/lead.repository.interface';
-export * from './repositories/history-definition.repository.interface';
+export * from './repositories/story-definition.repository.interface';
 export * from './repositories/plan.repository.interface';
 export * from './repositories/session.repository.interface';
 export * from './repositories/subscription.repository.interface';

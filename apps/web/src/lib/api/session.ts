@@ -1,7 +1,7 @@
 import 'server-only';
 import { apiFetch } from '@/lib/api/client';
 import type {
-  CompletedHistoryMap,
+  CompletedStoryMap,
   PaginatedSessions,
   SessionState,
 } from '@/lib/types/session';
@@ -19,8 +19,8 @@ export async function fetchSessions(
   return apiFetch<PaginatedSessions>(`/session?${qs}`);
 }
 
-export async function fetchCompletedHistoryMap(): Promise<CompletedHistoryMap> {
-  const map: CompletedHistoryMap = {};
+export async function fetchCompletedStoryMap(): Promise<CompletedStoryMap> {
+  const map: CompletedStoryMap = {};
   let page = 1;
   let totalPages = 1;
 
@@ -31,7 +31,7 @@ export async function fetchCompletedHistoryMap(): Promise<CompletedHistoryMap> {
     totalPages = data.totalPages;
     for (const item of data.items) {
       if (item.endingType) {
-        map[item.historyId] = item.endingType;
+        map[item.storyId] = item.endingType;
       }
     }
     page++;

@@ -64,7 +64,7 @@ describe('apiFetch', () => {
       })
     );
 
-    await apiFetch('/histories');
+    await apiFetch('/stories');
 
     const init = fetchMock.mock.calls[0][1]!;
     const headers = init.headers as Record<string, string>;

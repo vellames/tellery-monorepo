@@ -22,8 +22,8 @@ const checkSessionOwnership: RequestHandler = (req, res, next) => {
  * /session/start:
  *   post:
  *     tags: [Session]
- *     summary: Start a new history session
- *     description: Creates and persists a history session for the authenticated user.
+ *     summary: Start a new story session
+ *     description: Creates and persists a story session for the authenticated user.
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -35,12 +35,12 @@ const checkSessionOwnership: RequestHandler = (req, res, next) => {
  *           schema:
  *             type: object
  *             properties:
- *               historyId:
+ *               storyId:
  *                 type: string
- *                 description: The history ID to start a session for. Either historyId or historySlug is required.
- *               historySlug:
+ *                 description: The story ID to start a session for. Either storyId or storySlug is required.
+ *               storySlug:
  *                 type: string
- *                 description: The history slug to start a session for. Used if historyId is omitted or not found.
+ *                 description: The story slug to start a session for. Used if storyId is omitted or not found.
  *     responses:
  *       201:
  *         description: Session created successfully
@@ -55,7 +55,7 @@ const checkSessionOwnership: RequestHandler = (req, res, next) => {
  *                 sessionStatus:
  *                   type: string
  *                   example: active
- *                 history:
+ *                 story:
  *                   type: object
  *                   properties:
  *                     id:
@@ -86,19 +86,19 @@ const checkSessionOwnership: RequestHandler = (req, res, next) => {
  *       402:
  *         description: >
  *           Payment required. Returned when the user has no available credits,
- *           or when starting a premium (non-free) history without an active subscription.
+ *           or when starting a premium (non-free) story without an active subscription.
  *         content:
  *           application/json:
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  *       404:
- *         description: User or history not found
+ *         description: User or story not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: "#/components/schemas/ErrorResponse"
  *       409:
- *         description: An active session already exists for this history
+ *         description: An active session already exists for this story
  *         content:
  *           application/json:
  *             schema:
@@ -371,7 +371,7 @@ router.post(
  *   get:
  *     tags: [Session]
  *     summary: Get the current session state
- *     description: Returns the player-facing state of a session (discovered clues, inspected/visited states, conversation history). Hides game-master data such as reveal rules, secret truths and private knowledge.
+ *     description: Returns the player-facing state of a session (discovered clues, inspected/visited states, conversation log). Hides game-master data such as reveal rules, secret truths and private knowledge.
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -402,7 +402,7 @@ router.post(
  *                   type: string
  *                   format: date-time
  *                   nullable: true
- *                 history:
+ *                 story:
  *                   type: object
  *                   properties:
  *                     id:
@@ -440,7 +440,7 @@ router.post(
  *                         nullable: true
  *                 cluesTotal:
  *                   type: integer
- *                   description: Total number of clues in the history.
+ *                   description: Total number of clues in the story.
  *                 characters:
  *                   type: array
  *                   items:

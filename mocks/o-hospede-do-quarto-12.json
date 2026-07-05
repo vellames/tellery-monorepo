@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/o-hospede-do-quarto-12/history/cover.jpg",
-  "thumbnailUrl": "histories/o-hospede-do-quarto-12/history/thumbnail.jpg",
+  "coverImageUrl": "stories/o-hospede-do-quarto-12/story/cover.jpg",
+  "thumbnailUrl": "stories/o-hospede-do-quarto-12/story/thumbnail.jpg",
   "opening": {
     "shortText": "Um hóspede registrou-se como Sr. Almeida e sumiu durante a noite. O quarto está vazio, exceto por uma carta inacabada.",
     "fullText": "São 8h da manhã no Hotel Meridiano, um boutique hotel de bairro tranquilo. Helena, a recepcionista, subiu ao quarto 12 para o chamado de despertar e encontrou a porta destrancada, a cama arrumada demais, e tudo leve: sem mala, sem roupas nos cabides, sem escova de dente no banheiro. Sobre a mesa, uma carta pela metade, escrita à mão, sem assinatura. O hóspede se registrou como Sr. Almeida às 21h da noite anterior, pagou em dinheiro, não deixou documento e não fez checkout. Bruno, o portineiro da noite, esteve de plantão das 22h às 6h e jura que ninguém passou pela recepção. Caio, outro hóspede, tomou um drink com Almeida no bar antes de ambos subirem. Cabe a você examinar o quarto, ouvir as três versões e descobrir quem era o hóspede do quarto 12, como saiu sem ser visto e o que a carta deixada para trás revela.",
@@ -238,7 +238,7 @@
       "name": "Helena",
       "role": "Recepcionista do Hotel Meridiano",
       "shortDescription": "Recepcionista experiente, atenta e discreta. Fez o check-in de Almeida e é quem mais sabe sobre a entrada.",
-      "imageUrl": "histories/o-hospede-do-quarto-12/characters/helena.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/characters/helena.jpg",
       "personality": "Profissional, observadora, empática. Esconde compaixão por trás de eficiência.",
       "speakingStyle": "Fala com clareza de quem trabalha em hotelaria, frases educadas que se tornam evasivas quando o assunto aperta.",
       "publicKnowledge": [
@@ -379,7 +379,7 @@
       "name": "Bruno",
       "role": "Portineiro da noite",
       "shortDescription": "Portineiro noturno, metódico e sono leve. Esteve de plantão das 22h às 6h.",
-      "imageUrl": "histories/o-hospede-do-quarto-12/characters/bruno.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/characters/bruno.jpg",
       "personality": "Calmo, detalhista, orgulhoso da rotina. Leva o plantão a sério.",
       "speakingStyle": "Fala com precisão de quem anota horários, frases curtas e factual.",
       "publicKnowledge": [
@@ -441,7 +441,7 @@
       "name": "Caio",
       "role": "Hóspede do quarto 8",
       "shortDescription": "Hóspede que tomou um drink com Almeida no bar antes de ambos subirem. Observador e falante.",
-      "imageUrl": "histories/o-hospede-do-quarto-12/characters/caio.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/characters/caio.jpg",
       "personality": "Curioso, sociável, levemente intrusivo. Gosta de conversar e observer pessoas.",
       "speakingStyle": "Fala com entusiasmo de quem adora uma boa história, frases descritivas e imagens.",
       "publicKnowledge": [
@@ -497,7 +497,7 @@
       "deletedAt": null,
       "name": "Quarto 12",
       "shortDescription": "O quarto onde Almeida dormiu e desapareceu.",
-      "imageUrl": "histories/o-hospede-do-quarto-12/location/quarto_12.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/location/quarto_12.jpg",
       "initialDescription": "O quarto 12 está impecavelmente arrumado demais para alguém que dormiu ali. A cama foi refeita com cuidado, os cabides vazios, o banheiro sem escova nem sabonete. Sobre a mesa, uma carta pela metade, escrita à mão. Perto da janela, um copo de bar com resíduo de uísque.",
       "ambientClueIds": [],
       "objectIds": ["carta_inacabada", "copo_bar", "janela"]
@@ -509,7 +509,7 @@
       "deletedAt": null,
       "name": "Recepção",
       "shortDescription": "O balcão da recepção onde Helena fez o check-in de Almeida.",
-      "imageUrl": "histories/o-hospede-do-quarto-12/location/recepcao.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/location/recepcao.jpg",
       "initialDescription": "A recepção do Hotel Meridiano é pequena e elegante, com um balcão de madeira clara, um livro de hóspedes aberto, uma campainha de latão e um vaso de lavanda.",
       "ambientClueIds": [],
       "objectIds": ["livro_hospedes"]
@@ -523,7 +523,7 @@
       "deletedAt": null,
       "name": "Carta inacabada",
       "shortDescription": "Carta escrita à mão, pela metade, encontrada sobre a mesa do quarto 12.",
-      "imageUrl": "histories/o-hospede-do-quarto-12/object/carta_inacabada.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/object/carta_inacabada.jpg",
       "locationId": "quarto_12",
       "initialDescription": "A carta está escrita à mão, em letra pequena e apressada, sem assinatura. A frase termina no meio de uma palavra, como quem ouviu algo e precisou parar.",
       "clueRevealRules": [
@@ -565,7 +565,7 @@
       "deletedAt": null,
       "name": "Copo de bar",
       "shortDescription": "Copo de uísque encontrado perto da janela do quarto 12.",
-      "imageUrl": "histories/o-hospede-do-quarto-12/object/copo_bar.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/object/copo_bar.jpg",
       "locationId": "quarto_12",
       "initialDescription": "Um copo de bar com resíduo de uísque está sobre a mesinha perto da janela, como se Almeida bebesse enquanto escrevia a carta.",
       "clueRevealRules": [
@@ -584,7 +584,7 @@
       "deletedAt": null,
       "name": "Janela do quarto 12",
       "shortDescription": "Janela que dá para um beco lateral do hotel.",
-      "imageUrl": "histories/o-hospede-do-quarto-12/object/janela.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/object/janela.jpg",
       "locationId": "quarto_12",
       "initialDescription": "A janela do quarto 12 dá para um beco lateral pouco iluminado, com parapeito de metal voltado para a calçada.",
       "clueRevealRules": [
@@ -608,7 +608,7 @@
       "deletedAt": null,
       "name": "Livro de hóspedes",
       "shortDescription": "Registro de entradas e saídas do hotel.",
-      "imageUrl": "histories/o-hospede-do-quarto-12/object/livro_hospedes.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/object/livro_hospedes.jpg",
       "locationId": "recepcao",
       "initialDescription": "O livro de hóspedes está aberto na última página, com anotações recentes à mão.",
       "clueRevealRules": [
@@ -948,7 +948,7 @@
       "deletedAt": null,
       "title": "A manhã que ela esperava",
       "type": "full_truth",
-      "imageUrl": "histories/o-hospede-do-quarto-12/endings/full_truth.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_was_guest": "woman_fleeing",
@@ -971,7 +971,7 @@
       "deletedAt": null,
       "title": "Metade de uma carta",
       "type": "partial_truth",
-      "imageUrl": "histories/o-hospede-do-quarto-12/endings/partial_truth.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/endings/partial_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_was_guest": "woman_fleeing"
@@ -988,7 +988,7 @@
       "deletedAt": null,
       "title": "O suspeito errado",
       "type": "wrong_accusation",
-      "imageUrl": "histories/o-hospede-do-quarto-12/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/o-hospede-do-quarto-12/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []

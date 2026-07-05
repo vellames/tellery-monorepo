@@ -6,7 +6,7 @@ import { IntentDetectionService } from '../../../engine/intent/intent-detection.
 import { ObjectAgent } from '../../../engine/object/object-agent.service';
 import { SessionInteractionService } from '../session-interaction.service';
 import { ISessionRepository } from '../../../interfaces';
-import type { HistorySessionWithRelations } from '../../../repositories/SessionRepository';
+import type { StorySessionWithRelations } from '../../../repositories/SessionRepository';
 
 jest.mock('@ai-history/i18n', () => ({
   ...jest.requireActual('@ai-history/i18n'),
@@ -47,8 +47,8 @@ describe('SessionInteractionService', () => {
   };
 
   const buildSession = (
-    overrides: Partial<HistorySessionWithRelations> = {}
-  ): HistorySessionWithRelations =>
+    overrides: Partial<StorySessionWithRelations> = {}
+  ): StorySessionWithRelations =>
     ({
       id: sessionId,
       userId: ownerId,
@@ -62,7 +62,7 @@ describe('SessionInteractionService', () => {
       conclusion: null,
       ending: null,
       ...overrides,
-    }) as unknown as HistorySessionWithRelations;
+    }) as unknown as StorySessionWithRelations;
 
   beforeEach(() => {
     sessions = mockDeep<ISessionRepository>();

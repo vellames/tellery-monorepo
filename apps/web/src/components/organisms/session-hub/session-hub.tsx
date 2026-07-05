@@ -53,7 +53,7 @@ export function SessionHub({
   const router = useRouter();
   const {
     id: sessionId,
-    history,
+    story,
     clues,
     cluesTotal,
     requiredCluesTotal,
@@ -158,11 +158,11 @@ export function SessionHub({
       {/* ── Cinematic case header ─────────────────────────────────────── */}
       <header className="scene-reveal scene-grain scene-vignette relative overflow-hidden rounded-[28px] border border-[#fff9ef]/10 sm:rounded-[36px]">
         <div className="relative min-h-[340px] sm:min-h-[420px]">
-          {history.coverImageUrl ? (
+          {story.coverImageUrl ? (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
-              src={history.coverImageUrl}
-              alt={history.title}
+              src={story.coverImageUrl}
+              alt={story.title}
               className="absolute inset-0 h-full w-full scale-105 object-cover"
             />
           ) : (
@@ -207,16 +207,16 @@ export function SessionHub({
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-[#fff9ef]/15 bg-black/30 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-[#fff9ef]/80 uppercase backdrop-blur">
                 <Search className="size-3.5" />
-                {tGenre(history.genre)}
+                {tGenre(story.genre)}
               </span>
             </div>
 
             <h1 className="font-heading max-w-2xl text-4xl leading-[0.98] font-semibold tracking-tight text-[#fff9ef] drop-shadow-sm sm:text-6xl">
-              {history.title}
+              {story.title}
             </h1>
-            {history.subtitle && (
+            {story.subtitle && (
               <p className="max-w-xl text-sm leading-relaxed text-[#fff9ef]/70 sm:text-base">
-                {history.subtitle}
+                {story.subtitle}
               </p>
             )}
           </div>
@@ -232,7 +232,7 @@ export function SessionHub({
       >
         <Target className="text-gold/70 size-4 shrink-0" />
         <span className="line-clamp-1 flex-1 text-sm text-[#fff9ef]/60">
-          {history.opening}
+          {story.opening}
         </span>
         <span className="text-gold shrink-0 text-xs font-bold tracking-wide uppercase">
           {t('reviewCase')}
@@ -447,8 +447,8 @@ export function SessionHub({
 
       {showCase && (
         <CaseModal
-          opening={history.opening}
-          objective={history.objective}
+          opening={story.opening}
+          objective={story.objective}
           briefingLabel={t('briefing')}
           objectiveLabel={t('objective')}
           closeLabel={t('close')}

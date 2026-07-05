@@ -5,7 +5,7 @@ import {
   ClueImportance,
   ConclusionFieldType,
   EndingType,
-  HistoryStatus,
+  StoryStatus,
   SecretDefaultStrategy,
 } from '@prisma/client';
 
@@ -131,14 +131,14 @@ interface EndingSeed {
   epilogue: string;
 }
 
-interface HistorySeed {
+interface StorySeed {
   slug: string;
   title: string;
   subtitle?: string;
   teaser: string;
   genre: string;
   estimatedDurationMinutes: number;
-  status: HistoryStatus;
+  status: StoryStatus;
   isFeatured?: boolean;
   isFree?: boolean;
   coverImageUrl?: string | null;
@@ -164,53 +164,53 @@ function joinText(parts: Array<string | undefined | null>): string {
 }
 
 async function updateExistingImageUrls(
-  historyId: string,
-  data: HistorySeed
+  storyId: string,
+  data: StorySeed
 ): Promise<void> {
   for (const character of data.characters) {
     await prisma.characterDefinition.updateMany({
-      where: { historyId, name: character.name },
+      where: { storyId, name: character.name },
       data: { imageUrl: character.imageUrl ?? null },
     });
   }
 
   for (const location of data.locations) {
     await prisma.locationDefinition.updateMany({
-      where: { historyId, name: location.name },
+      where: { storyId, name: location.name },
       data: { imageUrl: location.imageUrl ?? null },
     });
   }
 
   for (const object of data.objects) {
     await prisma.objectDefinition.updateMany({
-      where: { historyId, name: object.name },
+      where: { storyId, name: object.name },
       data: { imageUrl: object.imageUrl ?? null },
     });
   }
 
   for (const ending of data.endings) {
     await prisma.endingDefinition.updateMany({
-      where: { historyId, type: ending.type },
+      where: { storyId, type: ending.type },
       data: { imageUrl: ending.imageUrl ?? null },
     });
   }
 }
 
-async function seedHistory(
+async function seedStory(
   fileName: string,
   force: boolean = false
 ): Promise<void> {
-  const data = readJson<HistorySeed>(fileName);
+  const data = readJson<StorySeed>(fileName);
 
-  const existing = await prisma.history.findUnique({
+  const existing = await prisma.story.findUnique({
     where: { slug: data.slug },
   });
 
   if (existing && force) {
-    await prisma.history.delete({ where: { slug: data.slug } });
-    console.log(`History "${data.slug}" deleted for re-seed (--force).`);
+    await prisma.story.delete({ where: { slug: data.slug } });
+    console.log(`Story "${data.slug}" deleted for re-seed (--force).`);
   } else if (existing) {
-    await prisma.history.update({
+    await prisma.story.update({
       where: { slug: data.slug },
       data: {
         status: data.status,
@@ -224,12 +224,12 @@ async function seedHistory(
     await updateExistingImageUrls(existing.id, data);
 
     console.log(
-      `History "${data.slug}" already seeded, updated status, isFeatured, isFree and image urls.`
+      `Story "${data.slug}" already seeded, updated status, isFeatured, isFree and image urls.`
     );
     return;
   }
 
-  const history = await prisma.history.create({
+  const story = await prisma.story.create({
     data: {
       slug: data.slug,
       title: data.title,
@@ -258,7 +258,7 @@ async function seedHistory(
   for (const clue of data.clues) {
     const created = await prisma.clueDefinition.create({
       data: {
-        historyId: history.id,
+        storyId: story.id,
         title: clue.title,
         description: clue.description,
         importance: clue.importance,
@@ -271,7 +271,7 @@ async function seedHistory(
   for (const intent of data.intentDefinitions) {
     const created = await prisma.intentDefinition.create({
       data: {
-        historyId: history.id,
+        storyId: story.id,
         description: intent.description,
         examples: intent.examples,
         keywords: intent.keywords,
@@ -284,7 +284,7 @@ async function seedHistory(
   for (const location of data.locations) {
     const created = await prisma.locationDefinition.create({
       data: {
-        historyId: history.id,
+        storyId: story.id,
         name: location.name,
         shortDescription: location.shortDescription,
         imageUrl: location.imageUrl ?? null,
@@ -300,7 +300,7 @@ async function seedHistory(
   for (const object of data.objects) {
     const created = await prisma.objectDefinition.create({
       data: {
-        historyId: history.id,
+        storyId: story.id,
         locationId: locationIdMap[object.locationId],
         name: object.name,
         shortDescription: object.shortDescription,
@@ -331,7 +331,7 @@ async function seedHistory(
   for (const character of data.characters) {
     const created = await prisma.characterDefinition.create({
       data: {
-        historyId: history.id,
+        storyId: story.id,
         name: character.name,
         role: character.role,
         shortDescription: character.shortDescription,
@@ -404,7 +404,7 @@ async function seedHistory(
   }
 
   const conclusion = await prisma.conclusionDefinition.create({
-    data: { historyId: history.id },
+    data: { storyId: story.id },
   });
 
   const fieldIdMap: Record<string, string> = {};
@@ -440,7 +440,7 @@ async function seedHistory(
 
     await prisma.endingDefinition.create({
       data: {
-        historyId: history.id,
+        storyId: story.id,
         title: ending.title,
         type: ending.type,
         imageUrl: ending.imageUrl ?? null,
@@ -488,7 +488,7 @@ async function seedPlan(): Promise<void> {
 async function main(): Promise<void> {
   const force = process.argv.includes('--force');
   await seedPlan();
-  const historyFiles = [
+  const storyFiles = [
     'o-bilhete-na-mesa-7.json',
     'o-relogio-parado.json',
     'o-quadro-trocado.json',
@@ -508,8 +508,8 @@ async function main(): Promise<void> {
     'o-jogo-do-silencio.json',
     'a-frequencia-fantasma.json',
   ];
-  for (const fileName of historyFiles) {
-    await seedHistory(fileName, force);
+  for (const fileName of storyFiles) {
+    await seedStory(fileName, force);
   }
   console.log('Seed completed.');
 }

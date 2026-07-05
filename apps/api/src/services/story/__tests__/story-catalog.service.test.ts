@@ -1,19 +1,19 @@
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import {
-  IHistoryDefinitionRepository,
+  IStoryDefinitionRepository,
   IImageUrlSigner,
 } from '../../../interfaces';
 import type {
-  HistoryCatalogDetailItem,
-  HistoryCatalogItem,
-} from '../../../repositories/HistoryDefinitionRepository';
-import { HistoryCatalogService } from '../history-catalog.service';
+  StoryCatalogDetailItem,
+  StoryCatalogItem,
+} from '../../../repositories/StoryDefinitionRepository';
+import { StoryCatalogService } from '../story-catalog.service';
 
 const mockCatalogItem = (
-  overrides: Partial<HistoryCatalogItem> = {}
-): HistoryCatalogItem =>
+  overrides: Partial<StoryCatalogItem> = {}
+): StoryCatalogItem =>
   ({
-    id: 'history-1',
+    id: 'story-1',
     slug: 'o-bilhete-na-mesa-7',
     title: 'O Bilhete na Mesa 7',
     subtitle: null,
@@ -21,33 +21,33 @@ const mockCatalogItem = (
     genre: 'mystery',
     estimatedDurationMinutes: 10,
     isFree: true,
-    coverImageUrl: 'histories/o-bilhete-na-mesa-7/history/cover.png',
-    thumbnailUrl: 'histories/o-bilhete-na-mesa-7/history/thumbnail.png',
+    coverImageUrl: 'stories/o-bilhete-na-mesa-7/story/cover.png',
+    thumbnailUrl: 'stories/o-bilhete-na-mesa-7/story/thumbnail.png',
     ...overrides,
-  }) as HistoryCatalogItem;
+  }) as StoryCatalogItem;
 
 const mockCatalogDetailItem = (
-  overrides: Partial<HistoryCatalogDetailItem> = {}
-): HistoryCatalogDetailItem =>
+  overrides: Partial<StoryCatalogDetailItem> = {}
+): StoryCatalogDetailItem =>
   ({
     ...mockCatalogItem(),
     opening: 'opening text',
     objective: 'objective text',
     ...overrides,
-  }) as HistoryCatalogDetailItem;
+  }) as StoryCatalogDetailItem;
 
-describe('HistoryCatalogService', () => {
-  let histories: DeepMockProxy<IHistoryDefinitionRepository>;
+describe('StoryCatalogService', () => {
+  let histories: DeepMockProxy<IStoryDefinitionRepository>;
   let imageUrlSigner: DeepMockProxy<IImageUrlSigner>;
-  let service: HistoryCatalogService;
+  let service: StoryCatalogService;
 
   beforeEach(() => {
-    histories = mockDeep<IHistoryDefinitionRepository>();
+    histories = mockDeep<IStoryDefinitionRepository>();
     imageUrlSigner = mockDeep<IImageUrlSigner>();
     imageUrlSigner.sign.mockImplementation(async (key: string | null) =>
       key ? `https://signed.test/${key}` : null
     );
-    service = new HistoryCatalogService(histories, imageUrlSigner);
+    service = new StoryCatalogService(histories, imageUrlSigner);
   });
 
   afterEach(() => {
@@ -68,20 +68,20 @@ describe('HistoryCatalogService', () => {
       const result = await service.listAvailable(true, { page: 1, limit: 20 });
 
       expect(result.items[0].coverImageUrl).toBe(
-        'https://signed.test/histories/o-bilhete-na-mesa-7/history/cover.png'
+        'https://signed.test/stories/o-bilhete-na-mesa-7/story/cover.png'
       );
       expect(result.items[0].thumbnailUrl).toBe(
-        'https://signed.test/histories/o-bilhete-na-mesa-7/history/thumbnail.png'
+        'https://signed.test/stories/o-bilhete-na-mesa-7/story/thumbnail.png'
       );
       expect(imageUrlSigner.sign).toHaveBeenCalledWith(
-        'histories/o-bilhete-na-mesa-7/history/cover.png'
+        'stories/o-bilhete-na-mesa-7/story/cover.png'
       );
       expect(imageUrlSigner.sign).toHaveBeenCalledWith(
-        'histories/o-bilhete-na-mesa-7/history/thumbnail.png'
+        'stories/o-bilhete-na-mesa-7/story/thumbnail.png'
       );
     });
 
-    it('returns null image urls when the history has none', async () => {
+    it('returns null image urls when the story has none', async () => {
       histories.listPublished.mockResolvedValue({
         items: [mockCatalogItem({ coverImageUrl: null, thumbnailUrl: null })],
         total: 1,
@@ -155,27 +155,25 @@ describe('HistoryCatalogService', () => {
   });
 
   describe('getById', () => {
-    it('returns the history with opening and objective and signed image urls', async () => {
+    it('returns the story with opening and objective and signed image urls', async () => {
       histories.findPublishedDetailById.mockResolvedValue(
         mockCatalogDetailItem()
       );
 
-      const result = await service.getById('history-1');
+      const result = await service.getById('story-1');
 
-      expect(histories.findPublishedDetailById).toHaveBeenCalledWith(
-        'history-1'
-      );
+      expect(histories.findPublishedDetailById).toHaveBeenCalledWith('story-1');
       expect(result.opening).toBe('opening text');
       expect(result.objective).toBe('objective text');
       expect(result.coverImageUrl).toBe(
-        'https://signed.test/histories/o-bilhete-na-mesa-7/history/cover.png'
+        'https://signed.test/stories/o-bilhete-na-mesa-7/story/cover.png'
       );
       expect(result.thumbnailUrl).toBe(
-        'https://signed.test/histories/o-bilhete-na-mesa-7/history/thumbnail.png'
+        'https://signed.test/stories/o-bilhete-na-mesa-7/story/thumbnail.png'
       );
     });
 
-    it('throws 404 when the history is not found', async () => {
+    it('throws 404 when the story is not found', async () => {
       histories.findPublishedDetailById.mockResolvedValue(null);
 
       await expect(service.getById('missing')).rejects.toMatchObject({

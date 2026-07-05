@@ -82,14 +82,14 @@ export type ConversionFunnel = {
   convertedLeads: number;
   temporaryUsers: number;
   permanentUsers: number;
-  usersStartedHistory: number;
+  usersStartedStory: number;
   /** Share of users (created in window) who started at least one history. */
-  startedHistoryRate: number;
+  startedStoryRate: number;
   /**
    * Time between account creation and the user's FIRST history session, for
    * users who started one within the window. `null` when nobody started.
    */
-  timeToFirstHistory: DurationSummary | null;
+  timeToFirstStory: DurationSummary | null;
   /** Distribution of interaction counts across sessions started in the window. */
   interactionBuckets: {
     zero: number;
@@ -235,12 +235,12 @@ export async function getConversionFunnel(): Promise<ConversionFunnel> {
   // Sessions started in the window — needed both for "users who started a
   // history" (distinct userIds), for the interaction buckets (per-session),
   // and for the time-to-first-history delta (createdAt → startedAt).
-  const sessionsInWindow = await prisma.historySession.findMany({
+  const sessionsInWindow = await prisma.storySession.findMany({
     select: { id: true, userId: true, startedAt: true },
     where: { ...notDeleted, createdAt: createdInRange },
   });
   const distinctUsersStarted = new Set(sessionsInWindow.map((s) => s.userId));
-  const usersStartedHistory = distinctUsersStarted.size;
+  const usersStartedStory = distinctUsersStarted.size;
 
   // For each user who started a history in the window, find their earliest
   // session's startedAt — that's their "first history" timestamp regardless of
@@ -265,7 +265,7 @@ export async function getConversionFunnel(): Promise<ConversionFunnel> {
     const delta = firstStarted.getTime() - u.createdAt.getTime();
     if (delta >= 0) deltasMs.push(delta);
   }
-  const timeToFirstHistory = summarizeDeltasMs(deltasMs);
+  const timeToFirstStory = summarizeDeltasMs(deltasMs);
 
   // Count non-system messages per session, then bucketize.
   const sessionIds = sessionsInWindow.map((s) => s.id);
@@ -278,9 +278,9 @@ export async function getConversionFunnel(): Promise<ConversionFunnel> {
     convertedLeads,
     temporaryUsers,
     permanentUsers,
-    usersStartedHistory,
-    startedHistoryRate: rate(usersStartedHistory, usersTotal),
-    timeToFirstHistory,
+    usersStartedStory,
+    startedStoryRate: rate(usersStartedStory, usersTotal),
+    timeToFirstStory,
     interactionBuckets: buildInteractionBuckets(counts),
   };
 }
@@ -339,7 +339,7 @@ async function mapStateIdsToSessions(
 ): Promise<Map<string, string>> {
   const result = new Map<string, string>();
   if (stateIds.size === 0) return result;
-  const sessions = await prisma.historySession.findMany({
+  const sessions = await prisma.storySession.findMany({
     where: { id: { in: sessionIds } },
     select: {
       id: true,
@@ -371,7 +371,7 @@ export async function get30DayStats(): Promise<Stats> {
   ] = await Promise.all([
     prisma.lead.count({ where: { ...notDeleted, createdAt: createdInRange } }),
     prisma.user.count({ where: { ...notDeleted, createdAt: createdInRange } }),
-    prisma.historySession.count({
+    prisma.storySession.count({
       where: { ...notDeleted, createdAt: createdInRange },
     }),
     prisma.lead.findMany({
@@ -382,7 +382,7 @@ export async function get30DayStats(): Promise<Stats> {
       select: { createdAt: true },
       where: { ...notDeleted, createdAt: createdInRange },
     }),
-    prisma.historySession.findMany({
+    prisma.storySession.findMany({
       select: { createdAt: true },
       where: { ...notDeleted, createdAt: createdInRange },
     }),

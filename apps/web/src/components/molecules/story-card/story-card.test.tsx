@@ -3,9 +3,9 @@ import { screen } from '@testing-library/react';
 
 import { StoryCard } from '@/components/molecules/story-card/story-card';
 import { renderWithProviders } from '@/test-utils';
-import type { History } from '@/lib/types/history';
+import type { Story } from '@/lib/types/story';
 
-const freeHistory: History = {
+const freeStory: Story = {
   id: '1',
   slug: 'o-ultimo-quarto',
   title: 'O Último Quarto',
@@ -18,7 +18,7 @@ const freeHistory: History = {
   thumbnailUrl: null,
 };
 
-const premiumHistory: History = {
+const premiumStory: Story = {
   id: '2',
   slug: 'a-carta',
   title: 'A Carta Sem Remetente',
@@ -33,7 +33,7 @@ const premiumHistory: History = {
 
 describe('StoryCard', () => {
   it('renders the title, genre and duration', () => {
-    renderWithProviders(<StoryCard history={freeHistory} />);
+    renderWithProviders(<StoryCard story={freeStory} />);
 
     expect(screen.getByText('O Último Quarto')).toBeInTheDocument();
     expect(screen.getByText('Mistério')).toBeInTheDocument();
@@ -41,39 +41,39 @@ describe('StoryCard', () => {
   });
 
   it('links to the story start page', () => {
-    renderWithProviders(<StoryCard history={freeHistory} />);
+    renderWithProviders(<StoryCard story={freeStory} />);
 
     const link = screen.getByRole('link');
     expect(link).toHaveAttribute('href', '/stories/1');
   });
 
   it('shows the free label for free stories', () => {
-    renderWithProviders(<StoryCard history={freeHistory} />);
+    renderWithProviders(<StoryCard story={freeStory} />);
 
     expect(screen.getByText('Grátis')).toBeInTheDocument();
   });
 
   it('shows the premium label and lock for paid stories', () => {
-    renderWithProviders(<StoryCard history={premiumHistory} />);
+    renderWithProviders(<StoryCard story={premiumStory} />);
 
     expect(screen.getByText('Premium')).toBeInTheDocument();
     expect(screen.getByText('A Carta Sem Remetente')).toBeInTheDocument();
   });
 
   it('renders the thumbnail image when available', () => {
-    renderWithProviders(<StoryCard history={premiumHistory} />);
+    renderWithProviders(<StoryCard story={premiumStory} />);
 
     expect(screen.getByAltText('A Carta Sem Remetente')).toBeInTheDocument();
   });
 
   it('shows the featured badge when featured', () => {
-    renderWithProviders(<StoryCard history={freeHistory} featured />);
+    renderWithProviders(<StoryCard story={freeStory} featured />);
 
     expect(screen.getByText('Destaque')).toBeInTheDocument();
   });
 
   it('does not show the featured badge by default', () => {
-    renderWithProviders(<StoryCard history={freeHistory} />);
+    renderWithProviders(<StoryCard story={freeStory} />);
 
     expect(screen.queryByText('Destaque')).not.toBeInTheDocument();
   });

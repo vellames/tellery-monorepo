@@ -28,7 +28,7 @@ describe('useStartSession', () => {
     const { result } = renderHookWithProviders(() => useStartSession());
 
     await act(async () => {
-      await result.current.mutateAsync('history-1');
+      await result.current.mutateAsync('story-1');
     });
 
     expect(pushMock).toHaveBeenCalledWith('/sessions/session-1');
@@ -41,7 +41,7 @@ describe('useStartSession', () => {
     const { result } = renderHookWithProviders(() => useStartSession());
 
     await act(async () => {
-      await expect(result.current.mutateAsync('history-1')).rejects.toThrow(
+      await expect(result.current.mutateAsync('story-1')).rejects.toThrow(
         'You have no credits available'
       );
     });

@@ -1,14 +1,14 @@
 import {
   PrismaClient,
   Prisma,
-  HistorySession,
+  StorySession,
   InteractionRole,
 } from '@prisma/client';
 import { ISessionRepository } from '../interfaces';
 import type { UpdatedSecretState } from '../engine/character/character-agent.service';
 import { PrismaTransaction } from '../types/database.types';
 import { BaseRepository } from './base.repository';
-import type { HistoryWithDefinitions } from './HistoryDefinitionRepository';
+import type { StoryWithDefinitions } from './StoryDefinitionRepository';
 import type {
   LlmCallRecordInput,
   SessionCostSummary,
@@ -24,7 +24,7 @@ import {
 
 const MESSAGE_TIMESTAMP_INCREMENT_MS = 1;
 
-export const historySessionInclude = {
+export const storySessionInclude = {
   clues: true,
   intents: true,
   characterStates: {
@@ -75,13 +75,13 @@ export const historySessionInclude = {
       score: true,
     },
   },
-} satisfies Prisma.HistorySessionInclude;
+} satisfies Prisma.StorySessionInclude;
 
-export type HistorySessionWithRelations = Prisma.HistorySessionGetPayload<{
-  include: typeof historySessionInclude;
+export type StorySessionWithRelations = Prisma.StorySessionGetPayload<{
+  include: typeof storySessionInclude;
 }>;
 
-export type SessionListItemWithEnding = Prisma.HistorySessionGetPayload<{
+export type SessionListItemWithEnding = Prisma.StorySessionGetPayload<{
   include: {
     ending: {
       include: { endingSnapshot: { select: { type: true } } };
@@ -98,14 +98,14 @@ export class SessionRepository
   }
 
   async create(
-    input: { userId: string; history: HistoryWithDefinitions },
+    input: { userId: string; story: StoryWithDefinitions },
     tx?: PrismaTransaction
-  ): Promise<HistorySessionWithRelations> {
+  ): Promise<StorySessionWithRelations> {
     const run = async (
       client: PrismaTransaction
-    ): Promise<HistorySessionWithRelations> => {
-      const session = await client.historySession.create({
-        data: buildSessionRootCreateData(input.history, input.userId),
+    ): Promise<StorySessionWithRelations> => {
+      const session = await client.storySession.create({
+        data: buildSessionRootCreateData(input.story, input.userId),
         include: { clues: true, intents: true },
       });
 
@@ -117,7 +117,7 @@ export class SessionRepository
       );
 
       for (const data of buildEndingSnapshots(
-        input.history,
+        input.story,
         session.id,
         clueMap
       )) {
@@ -126,7 +126,7 @@ export class SessionRepository
       const createdLocations: { id: string; locationDefinitionId: string }[] =
         [];
       for (const data of buildLocationStates(
-        input.history,
+        input.story,
         session.id,
         clueMap
       )) {
@@ -140,7 +140,7 @@ export class SessionRepository
         createdLocations.map((loc) => [loc.locationDefinitionId, loc.id])
       );
       for (const data of buildObjectStates(
-        input.history,
+        input.story,
         session.id,
         clueMap,
         intentMap,
@@ -149,7 +149,7 @@ export class SessionRepository
         await client.objectSessionState.create({ data });
       }
       for (const data of buildCharacterStates(
-        input.history,
+        input.story,
         session.id,
         clueMap,
         intentMap
@@ -157,9 +157,9 @@ export class SessionRepository
         await client.characterSessionState.create({ data });
       }
 
-      const full = await client.historySession.findFirst({
+      const full = await client.storySession.findFirst({
         where: { id: session.id },
-        include: historySessionInclude,
+        include: storySessionInclude,
       });
       if (!full) {
         throw new Error(`Session ${session.id} not found after creation`);
@@ -174,24 +174,24 @@ export class SessionRepository
   async findById(
     sessionId: string,
     tx?: PrismaTransaction
-  ): Promise<HistorySessionWithRelations | null> {
+  ): Promise<StorySessionWithRelations | null> {
     const client = tx ?? this.prisma;
-    return client.historySession.findFirst({
+    return client.storySession.findFirst({
       where: { id: sessionId, deletedAt: null },
-      include: historySessionInclude,
+      include: storySessionInclude,
     });
   }
 
-  async findActiveByHistory(
+  async findActiveByStory(
     userId: string,
-    historyId: string,
+    storyId: string,
     tx?: PrismaTransaction
-  ): Promise<HistorySession | null> {
+  ): Promise<StorySession | null> {
     const client = tx ?? this.prisma;
-    return client.historySession.findFirst({
+    return client.storySession.findFirst({
       where: {
         userId,
-        historyId,
+        storyId,
         status: 'active',
         deletedAt: null,
       },
@@ -200,7 +200,7 @@ export class SessionRepository
 
   async abandon(sessionId: string, tx?: PrismaTransaction): Promise<void> {
     const client = tx ?? this.prisma;
-    await client.historySession.update({
+    await client.storySession.update({
       where: { id: sessionId },
       data: { status: 'abandoned' },
     });
@@ -220,7 +220,7 @@ export class SessionRepository
     const skip = (page - 1) * limit;
 
     const [items, total] = await Promise.all([
-      client.historySession.findMany({
+      client.storySession.findMany({
         where,
         orderBy: { createdAt: 'desc' },
         skip,
@@ -231,7 +231,7 @@ export class SessionRepository
           },
         },
       }),
-      client.historySession.count({ where }),
+      client.storySession.count({ where }),
     ]);
 
     return { items, total };
@@ -445,7 +445,7 @@ export class SessionRepository
         },
       });
 
-      await client.historySession.update({
+      await client.storySession.update({
         where: { id: input.sessionId },
         data: {
           status: 'completed',

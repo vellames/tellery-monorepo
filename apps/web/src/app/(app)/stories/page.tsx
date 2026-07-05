@@ -1,9 +1,6 @@
 import { Suspense } from 'react';
-import {
-  fetchFeaturedHistories,
-  fetchNonFeaturedHistories,
-} from '@/lib/api/history';
-import { fetchCompletedHistoryMap } from '@/lib/api/session';
+import { fetchFeaturedStories, fetchNonFeaturedStories } from '@/lib/api/story';
+import { fetchCompletedStoryMap } from '@/lib/api/session';
 import { StoryCard } from '@/components/molecules';
 import { StoriesFilters } from '@/components/organisms';
 import { getTranslations } from 'next-intl/server';
@@ -24,9 +21,9 @@ export default async function StoriesPage({
 
   const [t, featured, rest, completedMap] = await Promise.all([
     getTranslations('stories'),
-    fetchFeaturedHistories(isFree),
-    fetchNonFeaturedHistories(isFree),
-    fetchCompletedHistoryMap(),
+    fetchFeaturedStories(isFree),
+    fetchNonFeaturedStories(isFree),
+    fetchCompletedStoryMap(),
   ]);
 
   return (
@@ -45,12 +42,12 @@ export default async function StoriesPage({
             {t('featuredSection')}
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
-            {featured.map((history) => (
+            {featured.map((story) => (
               <StoryCard
-                history={history}
+                story={story}
                 featured
-                key={history.id}
-                endingType={completedMap[history.id] ?? null}
+                key={story.id}
+                endingType={completedMap[story.id] ?? null}
               />
             ))}
           </div>
@@ -63,11 +60,11 @@ export default async function StoriesPage({
             {t('allSection')}
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
-            {rest.map((history) => (
+            {rest.map((story) => (
               <StoryCard
-                history={history}
-                key={history.id}
-                endingType={completedMap[history.id] ?? null}
+                story={story}
+                key={story.id}
+                endingType={completedMap[story.id] ?? null}
               />
             ))}
           </div>

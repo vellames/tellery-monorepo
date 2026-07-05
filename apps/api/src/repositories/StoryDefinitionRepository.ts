@@ -1,5 +1,5 @@
 import { PrismaClient, Prisma } from '@prisma/client';
-import { IHistoryDefinitionRepository } from '../interfaces';
+import { IStoryDefinitionRepository } from '../interfaces';
 import {
   buildPaginatedResult,
   paginateSkip,
@@ -9,7 +9,7 @@ import {
 import { PrismaTransaction } from '../types/database.types';
 import { BaseRepository } from './base.repository';
 
-export const historyDefinitionInclude = {
+export const storyDefinitionInclude = {
   intentDefinitions: true,
   characters: {
     include: {
@@ -40,13 +40,13 @@ export const historyDefinitionInclude = {
   clues: true,
   conclusion: { include: { fields: { include: { options: true } } } },
   endings: { include: { requiredClues: true } },
-} satisfies Prisma.HistoryInclude;
+} satisfies Prisma.StoryInclude;
 
-export type HistoryWithDefinitions = Prisma.HistoryGetPayload<{
-  include: typeof historyDefinitionInclude;
+export type StoryWithDefinitions = Prisma.StoryGetPayload<{
+  include: typeof storyDefinitionInclude;
 }>;
 
-export const historyCatalogSelect = {
+export const storyCatalogSelect = {
   id: true,
   slug: true,
   title: true,
@@ -57,85 +57,83 @@ export const historyCatalogSelect = {
   isFree: true,
   coverImageUrl: true,
   thumbnailUrl: true,
-} satisfies Prisma.HistorySelect;
+} satisfies Prisma.StorySelect;
 
-export type HistoryCatalogItem = Prisma.HistoryGetPayload<{
-  select: typeof historyCatalogSelect;
+export type StoryCatalogItem = Prisma.StoryGetPayload<{
+  select: typeof storyCatalogSelect;
 }>;
 
-export const historyCatalogDetailSelect = {
-  ...historyCatalogSelect,
+export const storyCatalogDetailSelect = {
+  ...storyCatalogSelect,
   opening: true,
   objective: true,
-} satisfies Prisma.HistorySelect;
+} satisfies Prisma.StorySelect;
 
-export type HistoryCatalogDetailItem = Prisma.HistoryGetPayload<{
-  select: typeof historyCatalogDetailSelect;
+export type StoryCatalogDetailItem = Prisma.StoryGetPayload<{
+  select: typeof storyCatalogDetailSelect;
 }>;
 
-export class HistoryDefinitionRepository
+export class StoryDefinitionRepository
   extends BaseRepository
-  implements IHistoryDefinitionRepository
+  implements IStoryDefinitionRepository
 {
   constructor(prisma: PrismaClient) {
     super(prisma);
   }
 
   async findById(
-    historyId: string,
+    storyId: string,
     tx?: PrismaTransaction
-  ): Promise<HistoryWithDefinitions | null> {
+  ): Promise<StoryWithDefinitions | null> {
     const client = tx ?? this.prisma;
-    return client.history.findFirst({
-      where: { id: historyId, deletedAt: null },
-      include: historyDefinitionInclude,
+    return client.story.findFirst({
+      where: { id: storyId, deletedAt: null },
+      include: storyDefinitionInclude,
     });
   }
 
   async findBySlug(
     slug: string,
     tx?: PrismaTransaction
-  ): Promise<HistoryWithDefinitions | null> {
+  ): Promise<StoryWithDefinitions | null> {
     const client = tx ?? this.prisma;
-    return client.history.findFirst({
+    return client.story.findFirst({
       where: { slug, deletedAt: null },
-      include: historyDefinitionInclude,
+      include: storyDefinitionInclude,
     });
   }
 
-  async list(tx?: PrismaTransaction): Promise<HistoryWithDefinitions[]> {
+  async list(tx?: PrismaTransaction): Promise<StoryWithDefinitions[]> {
     const client = tx ?? this.prisma;
-    return client.history.findMany({
+    return client.story.findMany({
       where: { deletedAt: null },
-      include: historyDefinitionInclude,
+      include: storyDefinitionInclude,
       orderBy: { createdAt: 'asc' },
     });
   }
 
-  async findPublishedById(
-    historyId: string
-  ): Promise<HistoryCatalogItem | null> {
-    return this.prisma.history.findFirst({
-      where: { id: historyId, status: 'published', deletedAt: null },
-      select: historyCatalogSelect,
+  async findPublishedById(storyId: string): Promise<StoryCatalogItem | null> {
+    return this.prisma.story.findFirst({
+      where: { id: storyId, status: 'published', deletedAt: null },
+      select: storyCatalogSelect,
     });
   }
 
   async findPublishedDetailById(
-    historyId: string
-  ): Promise<HistoryCatalogDetailItem | null> {
-    return this.prisma.history.findFirst({
-      where: { id: historyId, status: 'published', deletedAt: null },
-      select: historyCatalogDetailSelect,
+    storyId: string
+  ): Promise<StoryCatalogDetailItem | null> {
+    return this.prisma.story.findFirst({
+      where: { id: storyId, status: 'published', deletedAt: null },
+      select: storyCatalogDetailSelect,
     });
   }
 
   async findPublishedDetailBySlug(
     slug: string
-  ): Promise<HistoryCatalogDetailItem | null> {
-    return this.prisma.history.findFirst({
+  ): Promise<StoryCatalogDetailItem | null> {
+    return this.prisma.story.findFirst({
       where: { slug, status: 'published', deletedAt: null },
-      select: historyCatalogDetailSelect,
+      select: storyCatalogDetailSelect,
     });
   }
 
@@ -143,22 +141,22 @@ export class HistoryDefinitionRepository
     isFeatured: boolean,
     pagination: PaginationQuery,
     isFree?: boolean
-  ): Promise<PaginatedResult<HistoryCatalogItem>> {
-    const where: Prisma.HistoryWhereInput = {
+  ): Promise<PaginatedResult<StoryCatalogItem>> {
+    const where: Prisma.StoryWhereInput = {
       status: 'published',
       isFeatured,
       deletedAt: null,
       ...(isFree !== undefined && { isFree }),
     };
     const [items, total] = await Promise.all([
-      this.prisma.history.findMany({
+      this.prisma.story.findMany({
         where,
-        select: historyCatalogSelect,
+        select: storyCatalogSelect,
         orderBy: { updatedAt: 'desc' },
         skip: paginateSkip(pagination),
         take: pagination.limit,
       }),
-      this.prisma.history.count({ where }),
+      this.prisma.story.count({ where }),
     ]);
     return buildPaginatedResult(
       items,

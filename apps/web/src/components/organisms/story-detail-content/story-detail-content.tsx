@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { ArrowLeft, Clock, Search, Target } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { config } from '@/lib/config';
-import type { HistoryDetail } from '@/lib/types/history';
+import type { StoryDetail } from '@/lib/types/story';
 import { StoryStartActions } from '../story-start-actions/story-start-actions';
 
 export interface StoryDetailContentProps {
-  history: HistoryDetail;
+  story: StoryDetail;
   activeSessionId: string | null;
   availableCredits: number;
   hasActiveSubscription: boolean;
@@ -24,7 +24,7 @@ export interface StoryDetailContentProps {
 }
 
 export async function StoryDetailContent({
-  history,
+  story,
   activeSessionId,
   availableCredits,
   hasActiveSubscription,
@@ -35,7 +35,7 @@ export async function StoryDetailContent({
   const tGenre = await getTranslations('common.genres');
   const tUpcoming = await getTranslations('home.upcoming');
 
-  const requiresSubscription = !history.isFree && !hasActiveSubscription;
+  const requiresSubscription = !story.isFree && !hasActiveSubscription;
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8">
@@ -50,11 +50,11 @@ export async function StoryDetailContent({
       )}
 
       <section className="shadow-card relative aspect-[16/10] overflow-hidden rounded-[28px] bg-gradient-to-br from-stone-900 via-stone-700 to-zinc-500 sm:aspect-[2/1]">
-        {history.coverImageUrl && (
+        {story.coverImageUrl && (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
-            src={history.coverImageUrl}
-            alt={history.title}
+            src={story.coverImageUrl}
+            alt={story.title}
             className="absolute inset-0 h-full w-full object-cover"
           />
         )}
@@ -63,36 +63,36 @@ export async function StoryDetailContent({
 
       <header className="flex flex-col gap-3">
         <h1 className="font-heading text-primary text-3xl font-semibold tracking-tight sm:text-4xl">
-          {history.title}
+          {story.title}
         </h1>
         <div className="text-muted-foreground flex flex-wrap items-center gap-3 text-sm font-medium">
           <span className="inline-flex items-center gap-1.5">
             <Search className="size-4" />
-            {tGenre(history.genre)}
+            {tGenre(story.genre)}
           </span>
           <span>•</span>
           <span className="inline-flex items-center gap-1.5">
             <Clock className="size-4" />
             {tUpcoming('duration', {
-              minutes: history.estimatedDurationMinutes,
+              minutes: story.estimatedDurationMinutes,
             })}
           </span>
         </div>
       </header>
 
-      <p className="text-foreground/80 text-lg leading-8">{history.opening}</p>
+      <p className="text-foreground/80 text-lg leading-8">{story.opening}</p>
 
       <section className="border-gold/30 bg-clue/60 border-l-accent rounded-3xl border p-6">
         <h2 className="font-heading text-gold-foreground mb-2 inline-flex items-center gap-2 text-lg font-semibold tracking-tight">
           <Target className="size-5" />
           {tObj('objective')}
         </h2>
-        <p className="text-foreground/80 leading-7">{history.objective}</p>
+        <p className="text-foreground/80 leading-7">{story.objective}</p>
       </section>
 
       {!hideStartActions && (
         <StoryStartActions
-          historyId={history.id}
+          storyId={story.id}
           activeSessionId={activeSessionId}
           availableCredits={availableCredits}
           requiresSubscription={requiresSubscription}

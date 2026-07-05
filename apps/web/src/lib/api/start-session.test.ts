@@ -10,7 +10,7 @@ describe('startSessionRequest', () => {
       new Response(JSON.stringify({ sessionId: 'session-1' }), { status: 200 })
     );
 
-    const result = await startSessionRequest('history-1');
+    const result = await startSessionRequest('story-1');
 
     expect(result).toEqual({ sessionId: 'session-1' });
     expect(globalThis.fetch).toHaveBeenCalledWith(
@@ -18,7 +18,7 @@ describe('startSessionRequest', () => {
       expect.objectContaining({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ historyId: 'history-1' }),
+        body: JSON.stringify({ storyId: 'story-1' }),
       })
     );
   });
@@ -30,7 +30,7 @@ describe('startSessionRequest', () => {
       })
     );
 
-    await expect(startSessionRequest('history-1')).rejects.toThrow(
+    await expect(startSessionRequest('story-1')).rejects.toThrow(
       'You have no credits available'
     );
   });

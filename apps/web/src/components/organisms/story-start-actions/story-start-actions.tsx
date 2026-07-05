@@ -10,7 +10,7 @@ import {
 } from '@/components/molecules';
 
 export interface StoryStartActionsProps {
-  historyId: string;
+  storyId: string;
   activeSessionId: string | null;
   availableCredits: number;
   requiresSubscription: boolean;
@@ -22,7 +22,7 @@ export interface StoryStartActionsProps {
  * prominent spot while reusing the exact same logic as the catalog page.
  */
 export async function StoryStartActions({
-  historyId,
+  storyId,
   activeSessionId,
   availableCredits,
   requiresSubscription,
@@ -59,7 +59,7 @@ export async function StoryStartActions({
   }
 
   if (hasSessionsLeft) {
-    return <StartSessionForm historyId={historyId} />;
+    return <StartSessionForm storyId={storyId} />;
   }
 
   return <StartSessionButton unavailable />;

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { CheckCircle2, Clock, Lock, MapPin, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import type { History } from '@/lib/types/history';
+import type { Story } from '@/lib/types/story';
 
 const ENDING_LABEL_KEY: Record<string, string> = {
   full_truth: 'endingFullTruth',
@@ -17,13 +17,13 @@ const ENDING_BADGE_STYLES: Record<string, string> = {
 };
 
 export interface StoryCardProps {
-  history: History;
+  story: Story;
   featured?: boolean;
   endingType?: string | null;
 }
 
 export function StoryCard({
-  history,
+  story,
   featured = false,
   endingType = null,
 }: StoryCardProps) {
@@ -32,20 +32,20 @@ export function StoryCard({
   const tCommon = useTranslations('common');
   const tEnding = useTranslations('play');
 
-  const image = history.thumbnailUrl ?? history.coverImageUrl;
+  const image = story.thumbnailUrl ?? story.coverImageUrl;
   const endingLabelKey = endingType ? ENDING_LABEL_KEY[endingType] : null;
 
   const accessBadge = (
     <span
       className={cn(
         'inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-bold tracking-wide uppercase backdrop-blur',
-        history.isFree
+        story.isFree
           ? 'border-success/40 bg-black/30 text-[#b9e4c5]'
           : 'border-gold/40 bg-black/40 text-[#f4d78f]'
       )}
     >
-      {!history.isFree && <Lock className="size-3.5" />}
-      {history.isFree ? t('free') : t('premium')}
+      {!story.isFree && <Lock className="size-3.5" />}
+      {story.isFree ? t('free') : t('premium')}
     </span>
   );
 
@@ -68,13 +68,13 @@ export function StoryCard({
         'group shadow-card relative block cursor-pointer overflow-hidden rounded-3xl bg-gradient-to-br from-stone-900 via-stone-700 to-zinc-500',
         featured ? 'aspect-[4/3]' : 'aspect-[4/5]'
       )}
-      href={`/stories/${history.id}`}
+      href={`/stories/${story.id}`}
     >
       {image && (
         /* eslint-disable-next-line @next/next/no-img-element */
         <img
           src={image}
-          alt={history.title}
+          alt={story.title}
           className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
       )}
@@ -100,16 +100,16 @@ export function StoryCard({
 
       <div className="absolute inset-x-0 bottom-0 p-6">
         <h3 className="font-heading text-xl leading-tight font-semibold tracking-tight text-[#fff9ef] sm:text-2xl">
-          {history.title}
+          {story.title}
         </h3>
         <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-[#fff9ef]/75 sm:text-sm">
           <span className="inline-flex items-center gap-1.5">
-            <MapPin className="size-4" /> {tGenre(history.genre)}
+            <MapPin className="size-4" /> {tGenre(story.genre)}
           </span>
           <span className="text-[#fff9ef]/40">•</span>
           <span className="inline-flex items-center gap-1.5">
             <Clock className="size-4" />{' '}
-            {t('duration', { minutes: history.estimatedDurationMinutes })}
+            {t('duration', { minutes: story.estimatedDurationMinutes })}
           </span>
         </div>
       </div>

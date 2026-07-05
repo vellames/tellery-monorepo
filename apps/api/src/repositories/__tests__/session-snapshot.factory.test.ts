@@ -2,10 +2,10 @@ import {
   ClueImportance,
   ConclusionFieldType,
   EndingType,
-  HistoryStatus,
+  StoryStatus,
   SecretDefaultStrategy,
 } from '@prisma/client';
-import type { HistoryWithDefinitions } from '../HistoryDefinitionRepository';
+import type { StoryWithDefinitions } from '../StoryDefinitionRepository';
 import {
   buildCharacterStates,
   buildEndingSnapshots,
@@ -15,9 +15,9 @@ import {
   DefinitionIdMap,
 } from '../session-snapshot.factory';
 
-const mockHistory = (): HistoryWithDefinitions =>
+const mockStory = (): StoryWithDefinitions =>
   ({
-    id: 'history-1',
+    id: 'story-1',
     createdAt: new Date('2026-01-01'),
     updatedAt: new Date('2026-01-01'),
     deletedAt: null,
@@ -27,7 +27,7 @@ const mockHistory = (): HistoryWithDefinitions =>
     teaser: 'teaser',
     genre: 'mystery',
     estimatedDurationMinutes: 10,
-    status: 'draft' as HistoryStatus,
+    status: 'draft' as StoryStatus,
     coverImageUrl: null,
     thumbnailUrl: null,
     opening: 'opening',
@@ -133,25 +133,25 @@ const mockHistory = (): HistoryWithDefinitions =>
         id: 'ending-1',
         title: 'Ending',
         type: 'full_truth' as EndingType,
-        imageUrl: 'histories/o-bilhete-na-mesa-7/endings/full_truth.png',
+        imageUrl: 'stories/o-bilhete-na-mesa-7/endings/full_truth.png',
         summary: 'sum',
         epilogue: 'epi',
         conclusionMatches: { field: 'opt' },
         requiredClues: [{ id: 'clue-1' }],
       },
     ],
-  }) as unknown as HistoryWithDefinitions;
+  }) as unknown as StoryWithDefinitions;
 
 const clueMap: DefinitionIdMap = { 'clue-1': 'session-clue-1' };
 const intentMap: DefinitionIdMap = { 'intent-1': 'session-intent-1' };
 
 describe('session-snapshot.factory', () => {
   describe('buildSessionRootCreateData', () => {
-    it('maps history scalars and nested clues, intents and conclusion form', () => {
-      const data = buildSessionRootCreateData(mockHistory(), 'user-1');
+    it('maps story scalars and nested clues, intents and conclusion form', () => {
+      const data = buildSessionRootCreateData(mockStory(), 'user-1');
 
       expect(data.userId).toBe('user-1');
-      expect(data.historyId).toBe('history-1');
+      expect(data.storyId).toBe('story-1');
       expect(data.title).toBe('O Bilhete na Mesa 7');
       expect(data.opening).toBe('opening');
 
@@ -189,11 +189,11 @@ describe('session-snapshot.factory', () => {
       });
     });
 
-    it('produces empty conclusionFields when history has no conclusion', () => {
-      const history = mockHistory();
-      (history as { conclusion: unknown }).conclusion = null;
+    it('produces empty conclusionFields when story has no conclusion', () => {
+      const story = mockStory();
+      (story as { conclusion: unknown }).conclusion = null;
 
-      const data = buildSessionRootCreateData(history, 'user-1');
+      const data = buildSessionRootCreateData(story, 'user-1');
 
       expect(data.conclusionFields).toEqual({ create: [] });
     });
@@ -201,16 +201,12 @@ describe('session-snapshot.factory', () => {
 
   describe('buildEndingSnapshots', () => {
     it('maps endings and connects requiredClues via clueMap', () => {
-      const [ending] = buildEndingSnapshots(
-        mockHistory(),
-        'session-1',
-        clueMap
-      );
+      const [ending] = buildEndingSnapshots(mockStory(), 'session-1', clueMap);
 
       expect(ending.sessionId).toBe('session-1');
       expect(ending.endingDefinitionId).toBe('ending-1');
       expect(ending.imageUrl).toBe(
-        'histories/o-bilhete-na-mesa-7/endings/full_truth.png'
+        'stories/o-bilhete-na-mesa-7/endings/full_truth.png'
       );
       expect(ending.requiredClues).toEqual({
         connect: [{ id: 'session-clue-1' }],
@@ -220,11 +216,7 @@ describe('session-snapshot.factory', () => {
 
   describe('buildLocationStates', () => {
     it('maps locations and connects ambientClues via clueMap', () => {
-      const [location] = buildLocationStates(
-        mockHistory(),
-        'session-1',
-        clueMap
-      );
+      const [location] = buildLocationStates(mockStory(), 'session-1', clueMap);
 
       expect(location.locationDefinitionId).toBe('loc-1');
       expect(location.ambientClues).toEqual({
@@ -237,7 +229,7 @@ describe('session-snapshot.factory', () => {
     it('maps objects with clueRevealRules wired via maps', () => {
       const locationMap: DefinitionIdMap = { 'loc-1': 'session-loc-1' };
       const [object] = buildObjectStates(
-        mockHistory(),
+        mockStory(),
         'session-1',
         clueMap,
         intentMap,
@@ -262,7 +254,7 @@ describe('session-snapshot.factory', () => {
   describe('buildCharacterStates', () => {
     it('maps characters with reveal rules and secrets/stages wired via maps', () => {
       const [character] = buildCharacterStates(
-        mockHistory(),
+        mockStory(),
         'session-1',
         clueMap,
         intentMap

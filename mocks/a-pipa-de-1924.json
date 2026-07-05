@@ -14,8 +14,8 @@
   "isFeatured": false,
   "isFree": false,
   "version": 1,
-  "coverImageUrl": "histories/a-pipa-de-1924/history/cover.jpg",
-  "thumbnailUrl": "histories/a-pipa-de-1924/history/thumbnail.jpg",
+  "coverImageUrl": "stories/a-pipa-de-1924/story/cover.jpg",
+  "thumbnailUrl": "stories/a-pipa-de-1924/story/thumbnail.jpg",
   "opening": {
     "shortText": "Augusto Seixas está morto na adega, coberto de tinto. A festa do centenário da vinícola seria hoje. Cinco pessoas dormiam na casa grande.",
     "fullText": "São 6h da manhã na Vinícola Seixas, no alto do Vale dos Eucaliptos, e a festa do centenário que abriria o jantar desta noite agora é luto. Nair, a governanta que está na casa há quarenta anos, desceu à adega de caverna para conferir as garrafas do lote histórico e encontrou Augusto Seixas — 70 anos, patriarca e vinicultor da casa — caído entre as pipas de carvalho, banhado no tinto escuro de uma pipa antiga que vazou sobre o corpo. Não há sinal de luta ampla, mas a base de uma das pipas apresenta uma amassadura recente na altura da têmpora dele, e um torneirinho de bronze foi encontrado aberto ao lado do corpo, derramando o vinho sobre as pedras. Para completar, o lote de 1924 — joia da vinícola, guardado há cem anos para a taça de hoje — havia sido tirado da prateleira alta e estava na bancada de degustação, fora da ordem. Cinco pessoas dormiam na casa grande: Bento, o filho enólogo que prepara os vinhos; Margô, vinicultora de uma família rival que viera negociar um antigo litígio; Salles, negociante que compra a produção da casa; Dora, sommelière contratada para o jantar; e a própria Nair, que vive na casa grande. Cabe a você examinar a adega e a casa, ouvir as cinco versões e descobrir quem silenciou Augusto antes da taça do centenário.",
@@ -347,7 +347,7 @@
       "name": "Bento",
       "role": "Enólogo da vinícola e filho de Augusto",
       "shortDescription": "Enólogo da casa e filho de Augusto, responsável por toda a produção e pelos lotes de guarda.",
-      "imageUrl": "histories/a-pipa-de-1924/characters/bento.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/characters/bento.jpg",
       "personality": "Aplicado, sensível e inseguro sob a sombra do pai. Trata a vinícola como uma herança pesada que precisa defender de qualquer forma.",
       "speakingStyle": "Fala com vocabulário técnico de enologia, calmo por fora, mas se enrosa nas palavras quando o assunto é o pai ou o dinheiro.",
       "publicKnowledge": [
@@ -557,7 +557,7 @@
       "name": "Margô",
       "role": "Vinicultora de uma família rival que veio negociar um antigo litígio",
       "shortDescription": "Vinicultora de uma família rival, que subiu à casa para negociar um litígio fronteiriço de décadas.",
-      "imageUrl": "histories/a-pipa-de-1924/characters/margo.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/characters/margo.jpg",
       "personality": "Direta, astuta e orgulhosa. Trata a briga de terras como uma questão de honra de família, não como negócio.",
       "speakingStyle": "Fala firme, com vocabulário de advogado de provincia e ironia contida. Não esconde o desprezo pela família Seixas.",
       "publicKnowledge": [
@@ -630,7 +630,7 @@
       "name": "Salles",
       "role": "Negociante que compra a produção da vinícola",
       "shortDescription": "Negociante que compra grande parte da produção da casa, com contratos antigos e valores atrasados.",
-      "imageUrl": "histories/a-pipa-de-1924/characters/salles.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/characters/salles.jpg",
       "personality": "Comercial, afável e disfarçadamente apertado. Trata a vinícola como cliente principal e teme perder o fornecedor.",
       "speakingStyle": "Fala com familiaridade de quem frequenta a casa há anos, cita safras e jantares antigos, e desvia quando o assunto é dinheiro atrasado.",
       "publicKnowledge": [
@@ -703,7 +703,7 @@
       "name": "Dora",
       "role": "Sommelière contratada para o jantar do centenário",
       "shortDescription": "Sommelière contratada para o jantar do centenário, a primeira pessoa de fora a tocar nas garrafas de guarda em décadas.",
-      "imageUrl": "histories/a-pipa-de-1924/characters/dora.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/characters/dora.jpg",
       "personality": "Caprichosa, profissional e observadora. Trata o vinho como ofício de precisão e nota pequenas anomalias que ninguém mais vê.",
       "speakingStyle": "Fala com vocabulário técnico de sommellerie, descreve aromas e cores, e é honesta demais quando o assunto é qualidade.",
       "publicKnowledge": [
@@ -755,7 +755,7 @@
       "name": "Nair",
       "role": "Governanta da casa grande há quarenta anos",
       "shortDescription": "Governanta que está na casa há quarenta anos e encontrou o corpo ao conferir as garrafas da festa.",
-      "imageUrl": "histories/a-pipa-de-1924/characters/nair.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/characters/nair.jpg",
       "personality": "Observadora, leal e prática. Conhece a rotina de cada morador e nota o que ninguém mais nota.",
       "speakingStyle": "Fala com calma do interior, mistura conselhos e comentários diretos, e usa palavras simples e afetuosas.",
       "publicKnowledge": [
@@ -815,7 +815,7 @@
       "deletedAt": null,
       "name": "Adega de caverna",
       "shortDescription": "Caverna de pedra sob a casa grande onde descansam as pipas e os lotes de guarda.",
-      "imageUrl": "histories/a-pipa-de-1924/location/adega.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/location/adega.jpg",
       "initialDescription": "A adega é uma caverna de pedra sob a casa grande, com paredes úmidas e teto abobadado, iluminada por lâmpadas amarelas. De ambos os lados do corredor central alinham-se pipas de carvalho escuro, e ao fundo uma bancada de degustação com taças e um caderno de safras. Um cheiro forte de tinto derramado toma o ar, e há um brilho escuro no chão de pedra junto às pipas do fundo.",
       "ambientClueIds": ["clue_cellar_damp_floor"],
       "objectIds": ["pipa_amassada", "torneirinho_bronze"]
@@ -827,7 +827,7 @@
       "deletedAt": null,
       "name": "Bancada de degustação",
       "shortDescription": "Bancada ao fundo da adega onde se faz a prova e se arquivam os cadernos de safra.",
-      "imageUrl": "histories/a-pipa-de-1924/location/bancada.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/location/bancada.jpg",
       "initialDescription": "A bancada de degustação fica ao fundo da adega, sob uma lâmpada pendente. Há taças limpas, uma garrafa sem rótulo, e um caderno aberto com anotações a lápis. A uma ponta, uma pilha desordenada de papéis e um livro de registros encadernado em couro.",
       "ambientClueIds": [],
       "objectIds": ["caderno_safras", "discurso_centenario", "garrafa_1924"]
@@ -839,7 +839,7 @@
       "deletedAt": null,
       "name": "Salão de provas",
       "shortDescription": "Sala no primeiro andar com mesas de prova, taças e o quadro de rótulos antigos.",
-      "imageUrl": "histories/a-pipa-de-1924/location/salao_provas.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/location/salao_provas.jpg",
       "initialDescription": "O salão de provas fica no primeiro andar, com janelas voltadas para o vinhedo. Há uma mesa longa com taças invertidas sobre panos brancos, um quadro de cortiça com rótulos antigos pregados, e um armário aberto com caixas de garrafas. Um cheiro leve de tinto seco paira no ar.",
       "ambientClueIds": [],
       "objectIds": ["rotulos_antigos", "caixa_1924"]
@@ -851,7 +851,7 @@
       "deletedAt": null,
       "name": "Escritório de Augusto",
       "shortDescription": "Sala particular de Augusto com a escrivaninha, os contratos e o cofre.",
-      "imageUrl": "histories/a-pipa-de-1924/location/escritorio.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/location/escritorio.jpg",
       "initialDescription": "O escritório de Augusto fica ao lado da sala de visitas, com uma escrivaninha de jacarandá, estantes de contratos antigos e um cofre antigo entre dois quadros. Sobre a mesa há papéis organizados em pilhas, um calendário aberto na semana do centenário e um par de óculos de leitura sobre uma carteira de tabaco.",
       "ambientClueIds": [],
       "objectIds": ["livro_razao", "porta_cofre"]
@@ -863,7 +863,7 @@
       "deletedAt": null,
       "name": "Corredor da casa grande",
       "shortDescription": "Corredor principal que dá acesso à adega, ao salão e aos quartos.",
-      "imageUrl": "histories/a-pipa-de-1924/location/corredor_casa.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/location/corredor_casa.jpg",
       "initialDescription": "O corredor da casa grande é largo, de assoalho de madeira escura, com quadros de safras antigas nas paredes e um relógio de parede que ainda bate as horas. Junto à porta da adega há um painel eletrônico de acessos que registra quem entra e sai. O ar cheira a cera de madeira e café passado.",
       "ambientClueIds": [],
       "objectIds": ["painel_acessos", "registro_portas"]
@@ -877,7 +877,7 @@
       "deletedAt": null,
       "name": "Pipa amassada",
       "shortDescription": "Pipa de carvalho cuja base tem uma amassadura recente na altura da têmpora do corpo.",
-      "imageUrl": "histories/a-pipa-de-1924/object/pipa_amassada.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/pipa_amassada.jpg",
       "locationId": "adega",
       "initialDescription": "Uma das pipas do fundo da adega tem, na base, uma amassadura recente, com a madeira ligeiramente rachada, na altura exata da têmpora do corpo caído ao lado.",
       "clueRevealRules": [
@@ -902,7 +902,7 @@
       "deletedAt": null,
       "name": "Torneirinho de bronze aberto",
       "shortDescription": "Torneirinho de bronze da pipa, encontrado aberto ao lado do corpo.",
-      "imageUrl": "histories/a-pipa-de-1924/object/torneirinho_bronze.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/torneirinho_bronze.jpg",
       "locationId": "adega",
       "initialDescription": "Um torneirinho de bronze, preso à pipa amassada, está aberto, derramando um fio escuro de tinto sobre as pedras do chão.",
       "clueRevealRules": [
@@ -927,7 +927,7 @@
       "deletedAt": null,
       "name": "Caderno de safras",
       "shortDescription": "Caderno aberto sobre a bancada com anotações de Augusto.",
-      "imageUrl": "histories/a-pipa-de-1924/object/caderno_safras.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/caderno_safras.jpg",
       "locationId": "bancada",
       "initialDescription": "O caderno de capa preta de Augusto está aberto sobre a bancada de degustação, com anotações a lápis nas últimas páginas.",
       "clueRevealRules": [
@@ -952,7 +952,7 @@
       "deletedAt": null,
       "name": "Discurso do centenário",
       "shortDescription": "Folhas datilografadas com o esboço do discurso de Augusto para a festa.",
-      "imageUrl": "histories/a-pipa-de-1924/object/discurso_centenario.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/discurso_centenario.jpg",
       "locationId": "bancada",
       "initialDescription": "Três folhas datilografadas, com correções a caneta vermelha, descansam sob o caderno de Augusto.",
       "clueRevealRules": [
@@ -971,7 +971,7 @@
       "deletedAt": null,
       "name": "Garrafa do lote 1924",
       "shortDescription": "Garrafa sem rótulo, aberta, sobre a bancada.",
-      "imageUrl": "histories/a-pipa-de-1924/object/garrafa_1924.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/garrafa_1924.jpg",
       "locationId": "bancada",
       "initialDescription": "Uma garrafa de vinho escuro, sem rótulo, está aberta sobre a bancada, ao lado de uma taça usada.",
       "clueRevealRules": [
@@ -996,7 +996,7 @@
       "deletedAt": null,
       "name": "Quadro de rótulos antigos",
       "shortDescription": "Quadro de cortiça no salão de provas com rótulos de safras históricas.",
-      "imageUrl": "histories/a-pipa-de-1924/object/rotulos_antigos.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/rotulos_antigos.jpg",
       "locationId": "salao_provas",
       "initialDescription": "Um quadro de cortiça na parede do salão de provas exibe rótulos antigos de safras históricas, pregados em ordem de ano.",
       "clueRevealRules": [
@@ -1015,7 +1015,7 @@
       "deletedAt": null,
       "name": "Caixa do lote 1924",
       "shortDescription": "Caixa de madeira aberta com garrafas do lote histórico.",
-      "imageUrl": "histories/a-pipa-de-1924/object/caixa_1924.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/caixa_1924.jpg",
       "locationId": "salao_provas",
       "initialDescription": "Uma caixa de madeira escura, aberta, com a inscrição 'LOTE 1924 — GUARDA', repousa no armário do salão de provas, com garrafas em seu interior.",
       "clueRevealRules": [
@@ -1034,7 +1034,7 @@
       "deletedAt": null,
       "name": "Livro-razão da vinícola",
       "shortDescription": "Livro de registros contábeis da vinícola sobre a escrivaninha.",
-      "imageUrl": "histories/a-pipa-de-1924/object/livro_razao.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/livro_razao.jpg",
       "locationId": "escritorio",
       "initialDescription": "Um livro-razão encadernado em couro, aberto sobre a escrivaninha de Augusto, mostra colunas de entradas e saídas dos últimos dois anos.",
       "clueRevealRules": [
@@ -1053,7 +1053,7 @@
       "deletedAt": null,
       "name": "Cofre aberto",
       "shortDescription": "Cofre antigo entre dois quadros, parcialmente aberto.",
-      "imageUrl": "histories/a-pipa-de-1924/object/porta_cofre.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/porta_cofre.jpg",
       "locationId": "escritorio",
       "initialDescription": "Um cofre antigo, entre dois quadros na parede, está parcialmente aberto, com a porta de ferro entreaberta.",
       "clueRevealRules": [
@@ -1072,7 +1072,7 @@
       "deletedAt": null,
       "name": "Painel eletrônico de acessos",
       "shortDescription": "Painel no corredor que registra quem entra e sai das áreas restritas.",
-      "imageUrl": "histories/a-pipa-de-1924/object/painel_acessos.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/painel_acessos.jpg",
       "locationId": "corredor_casa",
       "initialDescription": "O painel eletrônico junto à porta da adega exibe uma lista cronológica de acessos às áreas restritas da casa grande.",
       "clueRevealRules": [
@@ -1097,7 +1097,7 @@
       "deletedAt": null,
       "name": "Registro de portas do salão",
       "shortDescription": "Folha de papel junto ao painel com a marcação manual das portas.",
-      "imageUrl": "histories/a-pipa-de-1924/object/registro_portas.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/object/registro_portas.jpg",
       "locationId": "corredor_casa",
       "initialDescription": "Uma folha de papel, presa com fita ao lado do painel, registra manualmente quem entrou e saiu do salão de provas na última noite.",
       "clueRevealRules": [
@@ -1613,7 +1613,7 @@
       "deletedAt": null,
       "title": "A taça que ninguém bebeu",
       "type": "full_truth",
-      "imageUrl": "histories/a-pipa-de-1924/endings/full_truth.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/endings/full_truth.jpg",
       "condition": {
         "conclusionMatches": {
           "who_killed_augusto": "bento",
@@ -1643,7 +1643,7 @@
         },
         "requiresClueIds": ["clue_bento_pushed_augusto"]
       },
-      "imageUrl": "histories/a-pipa-de-1924/endings/partial_truth.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/endings/partial_truth.jpg",
       "summary": "Você identificou Bento como responsável pela morte de Augusto, mas não fechou o método exato, o motivo real e o paradeiro da evidência decisiva.",
       "epilogue": "Bento não consegue mais negar que esteve na adega, mas o silêncio sobre o lote de 1924 pesa mais do que a confissão parcial. Sem o resíduo da taça e sem o discurso na balança, o caso se arrasta entre a acusação e a dúvida. A festa do centenário é suspensa, a garrafa sem rótulo segue na bancada, e o nome de 1924 permanece, por enquanto, como uma verdade que ninguém conseguiu servir."
     },
@@ -1654,7 +1654,7 @@
       "deletedAt": null,
       "title": "O suspeito errado",
       "type": "wrong_accusation",
-      "imageUrl": "histories/a-pipa-de-1924/endings/wrong_accusation.jpg",
+      "imageUrl": "stories/a-pipa-de-1924/endings/wrong_accusation.jpg",
       "condition": {
         "conclusionMatches": {},
         "requiresClueIds": []
