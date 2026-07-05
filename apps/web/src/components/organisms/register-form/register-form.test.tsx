@@ -94,7 +94,6 @@ describe('RegisterForm visibility telemetry', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.useFakeTimers();
     ioCallback = null;
     // Regular function (not arrow) so `new IntersectionObserver(cb)` works.
     function StubIntersectionObserver(
@@ -113,7 +112,6 @@ describe('RegisterForm visibility telemetry', () => {
   });
 
   afterEach(() => {
-    vi.useRealTimers();
     window.IntersectionObserver = originalIO;
     ioCallback = null;
   });
@@ -161,52 +159,8 @@ describe('RegisterForm visibility telemetry', () => {
     );
   });
 
-  it('fires signup_form_visible_timeout as an error after 5s without visibility', () => {
+  it('does not capture an error when visibility is not reported', () => {
     renderWithProviders(<RegisterForm />);
-
-    vi.advanceTimersByTime(5001);
-
-    expectBreadcrumb('signup_form_visible_timeout');
-    expect(vi.mocked(Sentry.captureException)).toHaveBeenCalledWith(
-      expect.any(Error),
-      expect.objectContaining({
-        tags: { signup_event: 'signup_form_visible_timeout' },
-      })
-    );
-    const captureHint = vi.mocked(Sentry.captureException).mock
-      .calls[0]?.[1] as
-      | { contexts?: { signup?: Record<string, unknown> } }
-      | undefined;
-    expect(captureHint?.contexts?.signup).toEqual(
-      expect.objectContaining({
-        lastIntersectionRatio: null,
-        lastIsIntersecting: null,
-      })
-    );
-  });
-
-  it('does not fire the timeout after the form becomes visible', () => {
-    renderWithProviders(<RegisterForm />);
-
-    emitEntry({
-      isIntersecting: true,
-      intersectionRatio: 1,
-      boundingClientRect: { width: 400, height: 600 },
-    });
-    vi.advanceTimersByTime(5001);
-
-    const sawTimeout = vi
-      .mocked(Sentry.addBreadcrumb)
-      .mock.calls.some((c) => c[0]?.message === 'signup_form_visible_timeout');
-    expect(sawTimeout).toBe(false);
-    expect(vi.mocked(Sentry.captureException)).not.toHaveBeenCalled();
-  });
-
-  it('clears the visibility timeout on unmount', () => {
-    const { unmount } = renderWithProviders(<RegisterForm />);
-    unmount();
-
-    vi.advanceTimersByTime(5001);
 
     expect(vi.mocked(Sentry.captureException)).not.toHaveBeenCalled();
   });

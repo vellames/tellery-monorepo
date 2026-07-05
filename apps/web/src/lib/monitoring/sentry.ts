@@ -6,7 +6,6 @@ export const SignupBreadcrumb = {
   PAGE_LOADED: 'signup_page_loaded',
   FORM_MOUNTED: 'signup_form_mounted',
   FORM_VISIBLE: 'signup_form_visible',
-  FORM_VISIBLE_TIMEOUT: 'signup_form_visible_timeout',
   FORM_RECT_SNAPSHOT: 'signup_form_rect_snapshot',
   FIRST_FIELD_FOCUS: 'signup_first_field_focus',
   PASSWORD_FOCUS: 'signup_password_focus',
