@@ -24,12 +24,18 @@ describe('proxy', () => {
     }
   );
 
-  it.each(['/privacy', '/terms'])(
-    'allows public info route %s without session',
+  it.each(['/privacy', '/terms', '/verify-email'])(
+    'allows public route %s without session',
     (path) => {
       expect(proxy(makeReq(path)).status).toBe(200);
     }
   );
+
+  it('allows verify-email even when the visitor already has a session', () => {
+    expect(
+      proxy(makeReq('/verify-email', 'ai-history.session=tok')).status
+    ).toBe(200);
+  });
 
   it('allows the Sentry tunnel without session', () => {
     expect(proxy(makeReq('/monitoring')).status).toBe(200);

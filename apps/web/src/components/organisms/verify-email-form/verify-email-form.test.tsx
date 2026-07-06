@@ -40,8 +40,11 @@ describe('VerifyEmailForm', () => {
     );
     expect(verifyEmailRequest).toHaveBeenCalledWith('valid-token');
     expect(
-      screen.getByRole('button', { name: /continuar/i })
+      screen.getByText(/você já pode fechar esta aba/i)
     ).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /continuar/i })
+    ).not.toBeInTheDocument();
   });
 
   it('shows the error state when verification fails', async () => {

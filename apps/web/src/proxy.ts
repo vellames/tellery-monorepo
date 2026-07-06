@@ -7,9 +7,12 @@ const AUTH_ROUTES: string[] = [
   appConfig.routes.forgotPassword,
 ];
 
-const PUBLIC_INFO_ROUTES: string[] = [
+const PUBLIC_ROUTES: string[] = [
   appConfig.routes.privacy,
   appConfig.routes.terms,
+  // Verifying an email must work whether or not the visitor has a web
+  // session — e.g. mobile app users clicking the link never have one.
+  appConfig.routes.verifyEmail,
 ];
 
 const TECHNICAL_ROUTES: string[] = ['/monitoring', '/sentry-example-page'];
@@ -21,7 +24,7 @@ export function proxy(req: NextRequest): NextResponse {
   const isAuthRoute = AUTH_ROUTES.includes(pathname);
   const isPublic =
     isAuthRoute ||
-    PUBLIC_INFO_ROUTES.includes(pathname) ||
+    PUBLIC_ROUTES.includes(pathname) ||
     TECHNICAL_ROUTES.includes(pathname) ||
     PUBLIC_PLAY_PREFIXES.some((prefix) => pathname.startsWith(prefix));
   const hasSession = Boolean(

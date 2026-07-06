@@ -53,14 +53,6 @@ export function VerifyEmailForm() {
           {t('successTitle')}
         </h2>
         <p className="text-muted-foreground text-sm">{t('successMessage')}</p>
-        <Button
-          size="lg"
-          className="w-full"
-          nativeButton={false}
-          render={<Link href={config.routes.profile} />}
-        >
-          {t('continue')}
-        </Button>
       </div>
     );
   }
