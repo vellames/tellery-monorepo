@@ -106,6 +106,11 @@ describe('classifySource', () => {
     expect(classifySource('?igshid=ghi')).toBe('Instagram');
   });
 
+  it('matches the mobile app onboarding source tags', () => {
+    expect(classifySource('?source=android-app')).toBe('Android App');
+    expect(classifySource('?source=ios-app')).toBe('iOS App');
+  });
+
   it('matches when query string has multiple params', () => {
     expect(
       classifySource(

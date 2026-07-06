@@ -39,6 +39,10 @@ export const LEAD_SOURCES = [
   { source: 'TikTok', matches: ['utm_source=tiktok', 'ttclid'] },
   { source: 'Google', matches: ['utm_source=google', 'gclid'] },
   { source: 'Facebook', matches: ['utm_source=facebook', 'fbclid'] },
+  // Tagged by the tellery-app mobile onboarding flow (guest created before
+  // sign-up), not a URL query string — see mobile's `getAppSourceQueryParams`.
+  { source: 'Android App', matches: ['source=android-app'] },
+  { source: 'iOS App', matches: ['source=ios-app'] },
 ] as const satisfies readonly { source: string; matches: readonly string[] }[];
 
 export type LeadSourceDef = (typeof LEAD_SOURCES)[number];
