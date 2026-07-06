@@ -184,8 +184,6 @@
     "refreshMonthly": "Credits refresh every cycle — unused ones don't roll over",
     "cancelAnytime": "Cancel anytime from the customer portal",
     "subscribe": "Subscribe",
-    "subscribeNow": "Subscribe now",
-    "subscribeForMoreCredits": "Subscribe for more credits",
     "activeWillEnd": "Active (will be cancelled at the end of the period)",
     "manage": "Manage subscription",
     "checkoutSuccess": "Subscription activated! Your credits were added.",
@@ -209,8 +207,6 @@
       "unpaid": "Payment failed",
       "paused": "Paused"
     },
-    "link": "Subscription",
-    "linkDescription": "Manage your plan and credits.",
     "errors": {
       "checkoutFailed": "Failed to start checkout. Please try again.",
       "portalFailed": "Failed to open the customer portal.",
@@ -232,8 +228,7 @@
     "starting": "Starting…",
     "startError": "Could not start the session. Please try again.",
     "noCreditsAvailable": "You have no credits available.",
-    "premiumRequiredMessage": "This is a premium story. You need an active subscription to play it.",
-    "subscribeToPlay": "Subscribe to play",
+    "premiumRequiredMessage": "This is a premium story and isn't available right now.",
     "backToStories": "Back to stories",
     "continueButton": "Continue investigation",
     "activeSessionDisclaimer": "You already have an ongoing investigation for this story. Pick up where you left off.",
@@ -411,7 +406,7 @@
     }
   },
   "adStories": {
-    "premiumTitle": "This story is exclusive to subscribers",
+    "premiumTitle": "This story is exclusive",
     "premiumDescription": "To play this story, create an account or log in.",
     "premiumCta": "Create account",
     "creatingUser": "Preparing your experience...",

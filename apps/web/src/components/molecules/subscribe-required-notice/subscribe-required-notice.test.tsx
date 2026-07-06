@@ -21,10 +21,9 @@ describe('SubscribeRequiredNotice', () => {
     ).toBeInTheDocument();
   });
 
-  it('links to the subscription page', () => {
+  it('does not render a subscribe link', () => {
     renderWithProviders(<SubscribeRequiredNotice />);
 
-    const link = screen.getByRole('link', { name: /assine para jogar/i });
-    expect(link).toHaveAttribute('href', '/subscription');
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 });

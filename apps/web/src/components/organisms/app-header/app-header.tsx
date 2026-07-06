@@ -1,19 +1,14 @@
-import Link from 'next/link';
-import { Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { type User, isTemporaryUser } from '@/lib/types/auth';
+import { type User } from '@/lib/types/auth';
 import { CreditsAvailableBadge } from '@/components/molecules';
 import { UserMenu } from '@/components/organisms/user-menu/user-menu';
-import { config } from '@/lib/config';
 
 export interface AppHeaderProps {
   user: User;
-  hasActiveSubscription?: boolean;
 }
 
-export function AppHeader({ user, hasActiveSubscription }: AppHeaderProps) {
+export function AppHeader({ user }: AppHeaderProps) {
   const t = useTranslations('common');
-  const tSub = useTranslations('subscription');
 
   return (
     <header className="flex items-center justify-between gap-4">
@@ -34,19 +29,7 @@ export function AppHeader({ user, hasActiveSubscription }: AppHeaderProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <CreditsAvailableBadge
-          className="px-3 py-2 sm:px-5 sm:py-3"
-          hasActiveSubscription={hasActiveSubscription}
-        />
-        {!hasActiveSubscription && !isTemporaryUser(user) && (
-          <Link
-            href={config.routes.subscription}
-            className="bg-primary text-primary-foreground shadow-soft hover:bg-primary/80 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition"
-          >
-            <Sparkles className="size-4" />
-            <span>{tSub('subscribeNow')}</span>
-          </Link>
-        )}
+        <CreditsAvailableBadge className="px-3 py-2 sm:px-5 sm:py-3" />
         <UserMenu user={user} />
       </div>
     </header>

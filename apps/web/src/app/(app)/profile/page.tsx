@@ -1,9 +1,5 @@
 import { getLocale, getTranslations } from 'next-intl/server';
-import {
-  ProfileForm,
-  ChangePasswordForm,
-  SubscriptionPanel,
-} from '@/components/organisms';
+import { ProfileForm, ChangePasswordForm } from '@/components/organisms';
 import {
   CreditsAvailableBadge,
   EmailVerificationBanner,
@@ -16,11 +12,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { fetchMe } from '@/lib/api/me';
-import {
-  fetchSubscriptionSynced,
-  fetchSubscriptionPlan,
-} from '@/lib/api/subscription-data';
-import { isActiveSubscription } from '@/lib/types/subscription';
 
 export default async function ProfilePage() {
   const user = await fetchMe();
@@ -31,12 +22,6 @@ export default async function ProfilePage() {
     month: 'long',
   }).format(new Date(user.createdAt));
 
-  const [plan, subscription] = await Promise.all([
-    fetchSubscriptionPlan(),
-    fetchSubscriptionSynced(),
-  ]);
-  const hasActiveSubscription = isActiveSubscription(subscription);
-
   return (
     <section className="space-y-8">
       <header className="space-y-1">
@@ -44,12 +29,6 @@ export default async function ProfilePage() {
         <p className="text-muted-foreground">{t('subtitle')}</p>
       </header>
       {!user.emailVerifiedAt && <EmailVerificationBanner />}
-      <SubscriptionPanel
-        plan={plan}
-        subscription={subscription}
-        locale={locale}
-        user={user}
-      />
       <div className="grid gap-6">
         <Card>
           <CardHeader>
@@ -57,10 +36,7 @@ export default async function ProfilePage() {
             <CardDescription>
               {t('memberSince', { date: memberSince })}
             </CardDescription>
-            <CreditsAvailableBadge
-              className="w-fit"
-              hasActiveSubscription={hasActiveSubscription}
-            />
+            <CreditsAvailableBadge className="w-fit" />
           </CardHeader>
           <CardContent>
             <ProfileForm user={user} />

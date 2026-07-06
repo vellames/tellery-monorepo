@@ -35,28 +35,12 @@ describe('CreditsAvailableBadge', () => {
     ).toBeInTheDocument();
   });
 
-  it('shows the subscribe link when there is no active subscription', async () => {
+  it('does not render a subscribe link in the modal', async () => {
     const user = userEvent.setup();
-    renderWithProviders(
-      <CreditsAvailableBadge hasActiveSubscription={false} />,
-      { locale: 'en' }
-    );
+    renderWithProviders(<CreditsAvailableBadge />, { locale: 'en' });
 
     await user.click(screen.getByRole('button'));
 
-    expect(screen.getByText('Subscribe for more credits')).toBeInTheDocument();
-  });
-
-  it('hides the subscribe link when there is an active subscription', async () => {
-    const user = userEvent.setup();
-    renderWithProviders(<CreditsAvailableBadge hasActiveSubscription />, {
-      locale: 'en',
-    });
-
-    await user.click(screen.getByRole('button'));
-
-    expect(
-      screen.queryByText('Subscribe for more credits')
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 });

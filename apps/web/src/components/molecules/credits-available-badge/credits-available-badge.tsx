@@ -1,25 +1,20 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
-import { Sparkles, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Modal } from '@/components/ui/modal';
 import { cn } from '@/lib/utils';
-import { config } from '@/lib/config';
 import { useAvailableCredits } from '@/lib/hooks/use-available-credits';
 
 export interface CreditsAvailableBadgeProps {
   className?: string;
-  hasActiveSubscription?: boolean;
 }
 
 export function CreditsAvailableBadge({
   className,
-  hasActiveSubscription = false,
 }: CreditsAvailableBadgeProps) {
   const tCommon = useTranslations('common');
-  const tSub = useTranslations('subscription');
   const [open, setOpen] = useState(false);
   const { data: count, isLoading } = useAvailableCredits();
 
@@ -63,16 +58,6 @@ export function CreditsAvailableBadge({
           <p className="text-muted-foreground">
             {tCommon('youHaveCredits', { count: displayCount })}
           </p>
-          {!hasActiveSubscription && (
-            <Link
-              href={config.routes.subscription}
-              onClick={() => setOpen(false)}
-              className="bg-primary text-primary-foreground shadow-soft hover:bg-primary/80 mt-2 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold transition"
-            >
-              <Sparkles className="size-4" />
-              {tSub('subscribeForMoreCredits')}
-            </Link>
-          )}
         </div>
       </Modal>
     </>

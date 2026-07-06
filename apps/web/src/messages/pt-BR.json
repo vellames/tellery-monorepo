@@ -184,8 +184,6 @@
     "refreshMonthly": "Os créditos renovam a cada ciclo — os não usados não acumulam",
     "cancelAnytime": "Cancele quando quiser pelo portal do cliente",
     "subscribe": "Assinar",
-    "subscribeNow": "Assinar agora",
-    "subscribeForMoreCredits": "Assinar para mais créditos",
     "activeWillEnd": "Ativa (será cancelada ao fim do período)",
     "manage": "Gerenciar assinatura",
     "checkoutSuccess": "Assinatura ativada! Seus créditos foram adicionados.",
@@ -209,8 +207,6 @@
       "unpaid": "Pagamento falhou",
       "paused": "Pausada"
     },
-    "link": "Assinatura",
-    "linkDescription": "Gerencie seu plano e créditos.",
     "errors": {
       "checkoutFailed": "Falha ao iniciar o checkout. Tente novamente.",
       "portalFailed": "Falha ao abrir o portal do cliente.",
@@ -232,8 +228,7 @@
     "starting": "Iniciando…",
     "startError": "Não foi possível iniciar a sessão. Tente novamente.",
     "noCreditsAvailable": "Você não tem créditos disponíveis.",
-    "premiumRequiredMessage": "Esta é uma história premium. Você precisa de uma assinatura ativa para jogá-la.",
-    "subscribeToPlay": "Assine para jogar",
+    "premiumRequiredMessage": "Esta é uma história premium e não está disponível no momento.",
     "backToStories": "Voltar para histórias",
     "continueButton": "Continuar investigação",
     "activeSessionDisclaimer": "Você já tem uma investigação em andamento desta história. Continue de onde parou.",
@@ -411,7 +406,7 @@
     }
   },
   "adStories": {
-    "premiumTitle": "Esta história é exclusiva para assinantes",
+    "premiumTitle": "Esta história é exclusiva",
     "premiumDescription": "Para jogar esta história, crie sua conta ou faça login.",
     "premiumCta": "Criar conta",
     "creatingUser": "Preparando sua experiência...",

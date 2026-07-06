@@ -1,7 +1,5 @@
-import Link from 'next/link';
-import { Lock, Sparkles } from 'lucide-react';
+import { Lock } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { config } from '@/lib/config';
 
 export function SubscribeRequiredNotice() {
   const t = useTranslations('stories');
@@ -14,13 +12,6 @@ export function SubscribeRequiredNotice() {
           {t('premiumRequiredMessage')}
         </p>
       </div>
-      <Link
-        href={config.routes.subscription}
-        className="shadow-button bg-primary text-primary-foreground mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-8 py-4 text-base font-bold transition hover:scale-[1.01]"
-      >
-        <Sparkles className="size-5" />
-        {t('subscribeToPlay')}
-      </Link>
       <button
         type="button"
         disabled
