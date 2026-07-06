@@ -5,6 +5,7 @@ export * from './repositories/plan.repository.interface';
 export * from './repositories/session.repository.interface';
 export * from './repositories/subscription.repository.interface';
 export * from './repositories/user.repository.interface';
+export * from './repositories/user-address.repository.interface';
 export * from './services/audio-storage.interface';
 export * from './services/audio-transcription.interface';
 export * from './services/email-token-service.interface';

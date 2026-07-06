@@ -36,6 +36,7 @@ describe('UserController', () => {
         email: 'ana@teste.local',
         accountType: 'permanent' as const,
         ssn: null,
+        address: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
@@ -125,6 +126,7 @@ describe('UserController', () => {
           email: 'ana@teste.local',
           accountType: 'permanent' as const,
           ssn: null,
+          address: null,
           emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
@@ -202,6 +204,7 @@ describe('UserController', () => {
         email: 'ana@teste.local',
         accountType: 'permanent' as const,
         ssn: null,
+        address: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
@@ -321,6 +324,7 @@ describe('UserController', () => {
         email: 'ana.updated@teste.local',
         accountType: 'permanent' as const,
         ssn: null,
+        address: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-02T00:00:00.000Z',
@@ -349,6 +353,83 @@ describe('UserController', () => {
         data: userDto,
         message: undefined,
       });
+    });
+
+    it('should forward the address payload to the service', async () => {
+      const addressDto = {
+        zipCode: '01310100',
+        street: 'Avenida Paulista',
+        state: 'SP',
+        city: 'São Paulo',
+        neighborhood: 'Bela Vista',
+        number: '1000',
+        complement: 'Apto 1',
+      };
+      const userDto = {
+        id: 'user-1',
+        name: 'Ana Teste',
+        email: 'ana@teste.local',
+        accountType: 'permanent' as const,
+        ssn: null,
+        address: addressDto,
+        emailVerifiedAt: null,
+        createdAt: '2026-01-01T00:00:00.000Z',
+        updatedAt: '2026-01-02T00:00:00.000Z',
+      };
+      userService.update.mockResolvedValue(userDto);
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: {
+          address: {
+            zipCode: '01310-100',
+            street: 'Avenida Paulista',
+            state: 'SP',
+            city: 'São Paulo',
+            neighborhood: 'Bela Vista',
+            number: '1000',
+            complement: 'Apto 1',
+          },
+        },
+        t,
+      } as Partial<Request>;
+
+      await controller.updateProfile(req as Request, res as Response);
+
+      expect(userService.update).toHaveBeenCalledWith('user-1', {
+        address: {
+          zipCode: '01310-100',
+          street: 'Avenida Paulista',
+          state: 'SP',
+          city: 'São Paulo',
+          neighborhood: 'Bela Vista',
+          number: '1000',
+          complement: 'Apto 1',
+        },
+      });
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({ data: userDto })
+      );
+    });
+
+    it('should return 422 when a required address field is missing', async () => {
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        body: {
+          address: {
+            zipCode: '01310-100',
+            state: 'SP',
+            city: 'São Paulo',
+            neighborhood: 'Bela Vista',
+          },
+        },
+        t,
+      } as Partial<Request>;
+
+      await controller.updateProfile(req as Request, res as Response);
+
+      expect(userService.update).not.toHaveBeenCalled();
+      expect(status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
     });
 
     it('should return 422 when body is invalid', async () => {
@@ -570,6 +651,7 @@ describe('UserController', () => {
         email: null,
         accountType: 'temporary' as const,
         ssn: null,
+        address: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
@@ -645,6 +727,7 @@ describe('UserController', () => {
         email: 'ana@teste.local',
         accountType: 'permanent' as const,
         ssn: null,
+        address: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
@@ -775,6 +858,7 @@ describe('UserController', () => {
       email: 'ana@teste.local',
       accountType: 'permanent' as const,
       ssn: null,
+      address: null,
       emailVerifiedAt: '2026-07-01T00:00:00.000Z',
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',

@@ -16,11 +16,22 @@ export const updateUserSchema = z.object({
   password: z.string().min(1).optional(),
 });
 
+export const updateMeAddressSchema = z.object({
+  zipCode: z.string().min(1),
+  street: z.string().min(1),
+  state: z.string().min(1),
+  city: z.string().min(1),
+  neighborhood: z.string().min(1),
+  number: z.string().nullable().optional(),
+  complement: z.string().nullable().optional(),
+});
+
 export const updateMeSchema = z
   .object({
     name: z.string().min(1).optional(),
     email: z.string().email().optional(),
     ssn: z.string().nullable().optional(),
+    address: updateMeAddressSchema.optional(),
   })
   .strict();
 

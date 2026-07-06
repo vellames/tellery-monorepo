@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { User, UserAddress } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import {
   IUserRepository,
@@ -6,6 +6,7 @@ import {
   ITokenService,
   IEmailVerificationService,
   ILeadRepository,
+  IUserAddressRepository,
 } from '../../../interfaces';
 import { UserService } from '../user.service';
 import { HttpError } from '../../../utils/http-error';
@@ -25,9 +26,26 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   ...overrides,
 });
 
+const mockAddress = (overrides: Partial<UserAddress> = {}): UserAddress => ({
+  id: 'address-1',
+  createdAt: new Date('2026-01-01'),
+  updatedAt: new Date('2026-01-01'),
+  deletedAt: null,
+  userId: 'user-1',
+  zipCode: '01310100',
+  street: 'Avenida Paulista',
+  state: 'SP',
+  city: 'São Paulo',
+  neighborhood: 'Bela Vista',
+  number: '1000',
+  complement: 'Apto 1',
+  ...overrides,
+});
+
 describe('UserService', () => {
   let repo: DeepMockProxy<IUserRepository>;
   let leadRepo: DeepMockProxy<ILeadRepository>;
+  let addressRepo: DeepMockProxy<IUserAddressRepository>;
   let passwordHasher: DeepMockProxy<IPasswordHasher>;
   let tokenService: DeepMockProxy<ITokenService>;
   let emailVerification: DeepMockProxy<IEmailVerificationService>;
@@ -36,6 +54,8 @@ describe('UserService', () => {
   beforeEach(() => {
     repo = mockDeep<IUserRepository>();
     leadRepo = mockDeep<ILeadRepository>();
+    addressRepo = mockDeep<IUserAddressRepository>();
+    addressRepo.findByUserId.mockResolvedValue(null);
     passwordHasher = mockDeep<IPasswordHasher>();
     passwordHasher.hash.mockResolvedValue('hashed-password');
     tokenService = mockDeep<ITokenService>();
@@ -49,6 +69,7 @@ describe('UserService', () => {
     service = new UserService(
       repo,
       leadRepo,
+      addressRepo,
       passwordHasher,
       tokenService,
       emailVerification
@@ -58,6 +79,7 @@ describe('UserService', () => {
   afterEach(() => {
     mockReset(repo);
     mockReset(leadRepo);
+    mockReset(addressRepo);
     mockReset(passwordHasher);
     mockReset(tokenService);
     mockReset(emailVerification);
@@ -91,6 +113,7 @@ describe('UserService', () => {
           email: 'ana@teste.local',
           accountType: 'permanent',
           ssn: null,
+          address: null,
           emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
@@ -227,6 +250,7 @@ describe('UserService', () => {
           email: 'ana@teste.local',
           accountType: 'permanent',
           ssn: null,
+          address: null,
           emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
@@ -297,6 +321,32 @@ describe('UserService', () => {
       await expect(service.findById('nonexistent')).rejects.toThrow(
         'User not found'
       );
+    });
+
+    it('should include the address when one exists', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      addressRepo.findByUserId.mockResolvedValue(mockAddress());
+
+      const result = await service.findById('user-1');
+
+      expect(result.address).toEqual({
+        zipCode: '01310100',
+        street: 'Avenida Paulista',
+        state: 'SP',
+        city: 'São Paulo',
+        neighborhood: 'Bela Vista',
+        number: '1000',
+        complement: 'Apto 1',
+      });
+    });
+
+    it('should return address null when none exists', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      addressRepo.findByUserId.mockResolvedValue(null);
+
+      const result = await service.findById('user-1');
+
+      expect(result.address).toBeNull();
     });
   });
 
@@ -434,6 +484,105 @@ describe('UserService', () => {
       ).rejects.toMatchObject({ statusCode: 422 });
 
       expect(repo.update).not.toHaveBeenCalled();
+    });
+
+    const validAddressInput = {
+      zipCode: '01310-100',
+      street: 'Avenida Paulista',
+      state: 'SP',
+      city: 'São Paulo',
+      neighborhood: 'Bela Vista',
+      number: '1000',
+      complement: 'Apto 1',
+    };
+
+    it('should normalize the zip code and upsert the address', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      repo.update.mockResolvedValue(mockUser());
+      addressRepo.upsertByUserId.mockResolvedValue(
+        mockAddress({ zipCode: '01310100' })
+      );
+
+      const result = await service.update('user-1', {
+        address: validAddressInput,
+      });
+
+      expect(addressRepo.upsertByUserId).toHaveBeenCalledWith('user-1', {
+        ...validAddressInput,
+        zipCode: '01310100',
+      });
+      expect(result.address).toEqual({
+        zipCode: '01310100',
+        street: 'Avenida Paulista',
+        state: 'SP',
+        city: 'São Paulo',
+        neighborhood: 'Bela Vista',
+        number: '1000',
+        complement: 'Apto 1',
+      });
+    });
+
+    it('should default number and complement to null when omitted', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      repo.update.mockResolvedValue(mockUser());
+      const {
+        number: _number,
+        complement: _complement,
+        ...required
+      } = validAddressInput;
+      addressRepo.upsertByUserId.mockResolvedValue(
+        mockAddress({ zipCode: '01310100', number: null, complement: null })
+      );
+
+      await service.update('user-1', { address: required });
+
+      expect(addressRepo.upsertByUserId).toHaveBeenCalledWith('user-1', {
+        ...required,
+        zipCode: '01310100',
+        number: null,
+        complement: null,
+      });
+    });
+
+    it('should throw 422 when the zip code does not have 8 digits', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+
+      await expect(
+        service.update('user-1', {
+          address: { ...validAddressInput, zipCode: '123' },
+        })
+      ).rejects.toMatchObject({ statusCode: 422 });
+
+      expect(addressRepo.upsertByUserId).not.toHaveBeenCalled();
+      expect(repo.update).not.toHaveBeenCalled();
+    });
+
+    it('should not touch the address repository when address is not provided', async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      repo.update.mockResolvedValue(mockUser());
+
+      await service.update('user-1', { name: 'Updated' });
+
+      expect(addressRepo.upsertByUserId).not.toHaveBeenCalled();
+    });
+
+    it("should include the user's existing address when it is not being updated", async () => {
+      repo.findById.mockResolvedValue(mockUser());
+      repo.update.mockResolvedValue(mockUser({ name: 'Updated' }));
+      addressRepo.findByUserId.mockResolvedValue(mockAddress());
+
+      const result = await service.update('user-1', { name: 'Updated' });
+
+      expect(addressRepo.findByUserId).toHaveBeenCalledWith('user-1');
+      expect(result.address).toEqual({
+        zipCode: '01310100',
+        street: 'Avenida Paulista',
+        state: 'SP',
+        city: 'São Paulo',
+        neighborhood: 'Bela Vista',
+        number: '1000',
+        complement: 'Apto 1',
+      });
     });
   });
 
@@ -608,6 +757,7 @@ describe('UserService', () => {
           email: null,
           accountType: 'temporary',
           ssn: null,
+          address: null,
           emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',
@@ -715,6 +865,7 @@ describe('UserService', () => {
           email: 'ana@teste.local',
           accountType: 'permanent',
           ssn: null,
+          address: null,
           emailVerifiedAt: null,
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-01-01T00:00:00.000Z',

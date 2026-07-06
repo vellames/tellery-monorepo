@@ -3,6 +3,7 @@
     "userNotFound": "Usuário não encontrado",
     "emailAlreadyInUse": "E-mail já está em uso",
     "invalidSsn": "CPF inválido",
+    "invalidZipCode": "CEP inválido",
     "invalidCredentials": "E-mail ou senha inválidos",
     "currentPasswordIncorrect": "Senha atual incorreta",
     "unknownUser": "Usuário desconhecido: {{id}}",

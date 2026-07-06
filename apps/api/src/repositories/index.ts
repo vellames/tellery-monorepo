@@ -6,3 +6,4 @@ export * from './PlanRepository';
 export * from './SessionRepository';
 export * from './SubscriptionRepository';
 export * from './UserRepository';
+export * from './UserAddressRepository';

@@ -8,8 +8,9 @@ import {
   ITokenService,
   IEmailVerificationService,
   ILeadRepository,
+  IUserAddressRepository,
 } from '../../interfaces';
-import { User } from '@prisma/client';
+import { User, UserAddress } from '@prisma/client';
 import { UserController } from '../../controllers/user/user.controller';
 import { UserService } from '../../services/user/user.service';
 import { JwtTokenService } from '../../services/user/jwt-token.service';
@@ -33,9 +34,12 @@ const mockEmailVerification: DeepMockProxy<IEmailVerificationService> =
   mockDeep<IEmailVerificationService>();
 const mockLeadRepo: DeepMockProxy<ILeadRepository> =
   mockDeep<ILeadRepository>();
+const mockAddressRepo: DeepMockProxy<IUserAddressRepository> =
+  mockDeep<IUserAddressRepository>();
 const userService = new UserService(
   mockRepo,
   mockLeadRepo,
+  mockAddressRepo,
   mockPasswordHasher,
   realTokenService,
   mockEmailVerification
@@ -87,10 +91,31 @@ const mockUser = (overrides: Partial<User> = {}): User => ({
   ...overrides,
 });
 
+const mockAddress = (overrides: Partial<UserAddress> = {}): UserAddress => ({
+  id: 'address-1',
+  createdAt: new Date('2026-01-01'),
+  updatedAt: new Date('2026-01-01'),
+  deletedAt: null,
+  userId: AUTHENTICATED_USER_ID,
+  zipCode: '01310100',
+  street: 'Avenida Paulista',
+  state: 'SP',
+  city: 'São Paulo',
+  neighborhood: 'Bela Vista',
+  number: '1000',
+  complement: 'Apto 1',
+  ...overrides,
+});
+
 const authHeader = { Authorization: `Bearer ${validToken}` };
 
 beforeAll(async () => {
   await initI18n();
+});
+
+beforeEach(() => {
+  mockReset(mockAddressRepo);
+  mockAddressRepo.findByUserId.mockResolvedValue(null);
 });
 
 describe('E2E: GET /me', () => {
@@ -111,12 +136,31 @@ describe('E2E: GET /me', () => {
       email: AUTHENTICATED_USER_EMAIL,
       accountType: 'permanent',
       ssn: null,
+      address: null,
       emailVerifiedAt: null,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
     expect(response.body.data).not.toHaveProperty('password');
     expect(mockRepo.findById).toHaveBeenCalledWith(AUTHENTICATED_USER_ID);
+  });
+
+  it('should include the address when the user has one', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+    mockAddressRepo.findByUserId.mockResolvedValue(mockAddress());
+
+    const response = await request(app).get('/me').set(authHeader);
+
+    expect(response.status).toBe(StatusCodes.OK);
+    expect(response.body.data.address).toEqual({
+      zipCode: '01310100',
+      street: 'Avenida Paulista',
+      state: 'SP',
+      city: 'São Paulo',
+      neighborhood: 'Bela Vista',
+      number: '1000',
+      complement: 'Apto 1',
+    });
   });
 
   it('should return 401 when no token is provided', async () => {
@@ -161,6 +205,7 @@ describe('E2E: PATCH /me', () => {
       email: 'ana.updated@teste.local',
       accountType: 'permanent',
       ssn: null,
+      address: null,
       emailVerifiedAt: null,
       createdAt: '2026-01-01T00:00:00.000Z',
       updatedAt: '2026-01-01T00:00:00.000Z',
@@ -247,6 +292,73 @@ describe('E2E: PATCH /me', () => {
       .patch('/me')
       .set(authHeader)
       .send({ ssn: '111.111.111-11' });
+
+    expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(response.body.success).toBe(false);
+    expect(mockRepo.update).not.toHaveBeenCalled();
+  });
+
+  const addressPayload = {
+    zipCode: '01310-100',
+    street: 'Avenida Paulista',
+    state: 'SP',
+    city: 'São Paulo',
+    neighborhood: 'Bela Vista',
+    number: '1000',
+    complement: 'Apto 1',
+  };
+
+  it('should upsert the address and return it normalized', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+    mockRepo.update.mockResolvedValue(mockUser());
+    mockAddressRepo.upsertByUserId.mockResolvedValue(
+      mockAddress({ zipCode: '01310100' })
+    );
+
+    const response = await request(app)
+      .patch('/me')
+      .set(authHeader)
+      .send({ ssn: '295.379.955-93', address: addressPayload });
+
+    expect(response.status).toBe(StatusCodes.OK);
+    expect(response.body.data.address).toEqual({
+      zipCode: '01310100',
+      street: 'Avenida Paulista',
+      state: 'SP',
+      city: 'São Paulo',
+      neighborhood: 'Bela Vista',
+      number: '1000',
+      complement: 'Apto 1',
+    });
+    expect(mockAddressRepo.upsertByUserId).toHaveBeenCalledWith(
+      AUTHENTICATED_USER_ID,
+      { ...addressPayload, zipCode: '01310100' }
+    );
+  });
+
+  it('should return 422 when the zip code is invalid', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+
+    const response = await request(app)
+      .patch('/me')
+      .set(authHeader)
+      .send({ address: { ...addressPayload, zipCode: '123' } });
+
+    expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+    expect(response.body.success).toBe(false);
+    expect(mockRepo.update).not.toHaveBeenCalled();
+    expect(mockAddressRepo.upsertByUserId).not.toHaveBeenCalled();
+  });
+
+  it('should return 422 when a required address field is missing', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+
+    const { street: _street, ...incomplete } = addressPayload;
+
+    const response = await request(app)
+      .patch('/me')
+      .set(authHeader)
+      .send({ address: incomplete });
 
     expect(response.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
     expect(response.body.success).toBe(false);

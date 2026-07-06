@@ -29,6 +29,7 @@ import {
   IMailer,
   IEmailTokenService,
   IEmailVerificationService,
+  IUserAddressRepository,
 } from '../interfaces';
 import {
   StoryDefinitionRepository,
@@ -38,6 +39,7 @@ import {
   SessionRepository,
   SubscriptionRepository,
   UserRepository,
+  UserAddressRepository,
 } from '../repositories';
 import { StorySessionService } from '../services/session/story-session.service';
 import { SessionInteractionService } from '../services/session/session-interaction.service';
@@ -80,6 +82,8 @@ export class DIContainer {
   private readonly leadRepository: ILeadRepository = new LeadRepository(
     this.prisma
   );
+  private readonly userAddressRepository: IUserAddressRepository =
+    new UserAddressRepository(this.prisma);
   private readonly llmCallRecorder = new LlmCallRecorder(
     this.sessionRepository
   );
@@ -115,6 +119,7 @@ export class DIContainer {
   private readonly userService = new UserService(
     this.userRepository,
     this.leadRepository,
+    this.userAddressRepository,
     this.passwordHasher,
     this.tokenService,
     this.emailVerificationService

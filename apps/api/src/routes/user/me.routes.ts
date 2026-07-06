@@ -40,6 +40,21 @@ const authenticate: RequestHandler = (req, res, next) => {
  *                     email:
  *                       type: string
  *                       format: email
+ *                     ssn:
+ *                       type: string
+ *                       nullable: true
+ *                     address:
+ *                       type: object
+ *                       nullable: true
+ *                       description: Address collected alongside the CPF, required before subscribing.
+ *                       properties:
+ *                         zipCode: { type: string, example: '01310100' }
+ *                         street: { type: string, example: 'Avenida Paulista' }
+ *                         state: { type: string, example: 'SP' }
+ *                         city: { type: string, example: 'São Paulo' }
+ *                         neighborhood: { type: string, example: 'Bela Vista' }
+ *                         number: { type: string, nullable: true, example: '1000' }
+ *                         complement: { type: string, nullable: true, example: 'Apto 1' }
  *                     createdAt:
  *                       type: string
  *                       format: date-time
@@ -130,7 +145,7 @@ router.get('/available-credits', authenticate, async (req, res) => {
  *   patch:
  *     tags: [Users]
  *     summary: Update the logged-in user's profile
- *     description: Updates the name, email, and/or SSN of the authenticated user. The password cannot be changed through this endpoint. The SSN field currently accepts Brazilian CPF values only.
+ *     description: Updates the name, email, SSN, and/or address of the authenticated user. The password cannot be changed through this endpoint. The SSN field currently accepts Brazilian CPF values only. Both CPF and address are required before the user can subscribe.
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -154,6 +169,27 @@ router.get('/available-credits', authenticate, async (req, res) => {
  *                 nullable: true
  *                 description: Stored as SSN, currently validated as a Brazilian CPF.
  *                 example: '295.379.955-93'
+ *               address:
+ *                 type: object
+ *                 description: Upserts the user's address. All fields except number and complement are required when provided.
+ *                 required: [zipCode, street, state, city, neighborhood]
+ *                 properties:
+ *                   zipCode:
+ *                     type: string
+ *                     description: Brazilian CEP, with or without punctuation. Stored as 8 digits.
+ *                     example: '01310-100'
+ *                   street: { type: string, example: 'Avenida Paulista' }
+ *                   state: { type: string, example: 'SP' }
+ *                   city: { type: string, example: 'São Paulo' }
+ *                   neighborhood: { type: string, example: 'Bela Vista' }
+ *                   number:
+ *                     type: string
+ *                     nullable: true
+ *                     example: '1000'
+ *                   complement:
+ *                     type: string
+ *                     nullable: true
+ *                     example: 'Apto 1'
  *     responses:
  *       200:
  *         description: Profile updated successfully
@@ -179,6 +215,17 @@ router.get('/available-credits', authenticate, async (req, res) => {
  *                     ssn:
  *                       type: string
  *                       nullable: true
+ *                     address:
+ *                       type: object
+ *                       nullable: true
+ *                       properties:
+ *                         zipCode: { type: string, example: '01310100' }
+ *                         street: { type: string, example: 'Avenida Paulista' }
+ *                         state: { type: string, example: 'SP' }
+ *                         city: { type: string, example: 'São Paulo' }
+ *                         neighborhood: { type: string, example: 'Bela Vista' }
+ *                         number: { type: string, nullable: true, example: '1000' }
+ *                         complement: { type: string, nullable: true, example: 'Apto 1' }
  *                     createdAt:
  *                       type: string
  *                       format: date-time

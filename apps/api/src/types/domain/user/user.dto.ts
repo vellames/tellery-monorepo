@@ -14,11 +14,32 @@ export interface ConvertTemporaryUserDto {
   password: string;
 }
 
+export interface UpdateUserAddressDto {
+  zipCode: string;
+  street: string;
+  state: string;
+  city: string;
+  neighborhood: string;
+  number?: string | null;
+  complement?: string | null;
+}
+
 export interface UpdateUserDto {
   name?: string;
   email?: string;
   password?: string;
   ssn?: string | null;
+  address?: UpdateUserAddressDto;
+}
+
+export interface UserAddressResponseDto {
+  zipCode: string;
+  street: string;
+  state: string;
+  city: string;
+  neighborhood: string;
+  number: string | null;
+  complement: string | null;
 }
 
 export interface LoginDto {
@@ -37,6 +58,7 @@ export interface UserResponseDto {
   email: string | null;
   accountType: 'permanent' | 'temporary';
   ssn: string | null;
+  address: UserAddressResponseDto | null;
   emailVerifiedAt: string | null;
   createdAt: string;
   updatedAt: string;

@@ -8,6 +8,7 @@ import {
   ITokenService,
   IEmailVerificationService,
   ILeadRepository,
+  IUserAddressRepository,
 } from '../../interfaces';
 import { User } from '@prisma/client';
 import { UserController } from '../../controllers/user/user.controller';
@@ -27,9 +28,13 @@ const mockEmailVerification: DeepMockProxy<IEmailVerificationService> =
   mockDeep<IEmailVerificationService>();
 const mockLeadRepo: DeepMockProxy<ILeadRepository> =
   mockDeep<ILeadRepository>();
+const mockAddressRepo: DeepMockProxy<IUserAddressRepository> =
+  mockDeep<IUserAddressRepository>();
+mockAddressRepo.findByUserId.mockResolvedValue(null);
 const userService = new UserService(
   mockRepo,
   mockLeadRepo,
+  mockAddressRepo,
   mockPasswordHasher,
   mockTokenService,
   mockEmailVerification
@@ -122,6 +127,7 @@ describe('E2E: /users/register', () => {
         email: 'ana@teste.local',
         accountType: 'permanent',
         ssn: null,
+        address: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',
@@ -243,6 +249,7 @@ describe('E2E: /users/login', () => {
         email: 'ana@teste.local',
         accountType: 'permanent',
         ssn: null,
+        address: null,
         emailVerifiedAt: null,
         createdAt: '2026-01-01T00:00:00.000Z',
         updatedAt: '2026-01-01T00:00:00.000Z',

@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { User, UserAddress } from '@prisma/client';
 import { cpf } from 'cpf-cnpj-validator';
 import { StatusCodes } from 'http-status-codes';
 import { SupportedLanguage } from '@ai-history/i18n';
@@ -8,6 +8,7 @@ import {
   ITokenService,
   IEmailVerificationService,
   ILeadRepository,
+  IUserAddressRepository,
 } from '../../interfaces';
 import {
   AvailableCreditsResponseDto,
@@ -15,15 +16,20 @@ import {
   ConvertTemporaryUserDto,
   CreateUserDto,
   LoginDto,
+  UpdateUserAddressDto,
   UpdateUserDto,
+  UserAddressResponseDto,
   UserResponseDto,
 } from '../../types/domain/user/user.dto';
 import { HttpError } from '../../utils/http-error';
+
+const ZIP_CODE_LENGTH = 8;
 
 export class UserService {
   constructor(
     private readonly users: IUserRepository,
     private readonly leads: ILeadRepository,
+    private readonly addresses: IUserAddressRepository,
     private readonly passwordHasher: IPasswordHasher,
     private readonly tokenService: ITokenService,
     private readonly emailVerification: IEmailVerificationService
@@ -96,7 +102,8 @@ export class UserService {
       sub: user.id,
       email: user.email ?? '',
     });
-    return { user: this.toResponseDto(user), token };
+    const address = await this.addresses.findByUserId(user.id);
+    return { user: this.toResponseDto(user, address), token };
   }
 
   async createTemporary(
@@ -164,7 +171,8 @@ export class UserService {
         console.error('[email] failed to send verification', error);
       });
 
-    return { user: this.toResponseDto(converted), token };
+    const address = await this.addresses.findByUserId(converted.id);
+    return { user: this.toResponseDto(converted, address), token };
   }
 
   async verifyEmail(token: string): Promise<UserResponseDto> {
@@ -185,7 +193,8 @@ export class UserService {
       );
     }
     const updated = await this.users.markEmailVerified(sub);
-    return this.toResponseDto(updated);
+    const address = await this.addresses.findByUserId(sub);
+    return this.toResponseDto(updated, address);
   }
 
   async resendEmailVerification(
@@ -222,7 +231,8 @@ export class UserService {
         'user:errors.userNotFound'
       );
     }
-    return this.toResponseDto(user);
+    const address = await this.addresses.findByUserId(id);
+    return this.toResponseDto(user, address);
   }
 
   async getAvailableCredits(id: string): Promise<AvailableCreditsResponseDto> {
@@ -263,17 +273,27 @@ export class UserService {
       }
     }
 
-    const updateData: UpdateUserDto = { ...data };
+    const { address, ...rest } = data;
+    const updateData: UpdateUserDto = { ...rest };
     if ('ssn' in updateData) {
       updateData.ssn = this.normalizeCpf(updateData.ssn);
     }
+
+    const normalizedAddress = address
+      ? this.normalizeAddress(address)
+      : undefined;
 
     if (data.password) {
       updateData.password = await this.passwordHasher.hash(data.password);
     }
 
     const updated = await this.users.update(id, updateData);
-    return this.toResponseDto(updated);
+
+    const addressRecord = normalizedAddress
+      ? await this.addresses.upsertByUserId(id, normalizedAddress)
+      : await this.addresses.findByUserId(id);
+
+    return this.toResponseDto(updated, addressRecord);
   }
 
   async delete(id: string): Promise<void> {
@@ -319,18 +339,34 @@ export class UserService {
     await this.users.update(id, { password: hashedPassword });
   }
 
-  private toResponseDto(user: User): UserResponseDto {
+  private toResponseDto(
+    user: User,
+    address: UserAddress | null = null
+  ): UserResponseDto {
     return {
       id: user.id,
       name: user.name,
       email: user.email,
       accountType: user.accountType,
       ssn: user.ssn,
+      address: address ? this.toAddressResponseDto(address) : null,
       emailVerifiedAt: user.emailVerifiedAt
         ? user.emailVerifiedAt.toISOString()
         : null,
       createdAt: user.createdAt.toISOString(),
       updatedAt: user.updatedAt.toISOString(),
+    };
+  }
+
+  private toAddressResponseDto(address: UserAddress): UserAddressResponseDto {
+    return {
+      zipCode: address.zipCode,
+      street: address.street,
+      state: address.state,
+      city: address.city,
+      neighborhood: address.neighborhood,
+      number: address.number,
+      complement: address.complement,
     };
   }
 
@@ -348,5 +384,28 @@ export class UserService {
     }
 
     return cpf.strip(value);
+  }
+
+  private normalizeAddress(
+    address: UpdateUserAddressDto
+  ): UpdateUserAddressDto {
+    const zipCode = address.zipCode.replace(/\D/g, '');
+    if (zipCode.length !== ZIP_CODE_LENGTH) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        'Invalid zip code',
+        'user:errors.invalidZipCode'
+      );
+    }
+
+    return {
+      zipCode,
+      street: address.street,
+      state: address.state,
+      city: address.city,
+      neighborhood: address.neighborhood,
+      number: address.number ?? null,
+      complement: address.complement ?? null,
+    };
   }
 }
