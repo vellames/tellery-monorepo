@@ -75,6 +75,13 @@ enum SubscriptionStatus {
   paused
 }
 
+// Which payment processor originated a given Subscription/CreditGrant row.
+// Stripe remains the default so existing rows need no backfill.
+enum BillingProvider {
+  stripe
+  revenuecat
+}
+
 enum AccountType {
   permanent
   temporary
@@ -83,13 +90,13 @@ enum AccountType {
 // ─── User ─────────────────────────────────────────────────────────────────────
 
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   name        String
-  email       String? @unique
+  email       String?     @unique
   password    String?
   accountType AccountType @default(permanent)
   ssn         String?
@@ -106,9 +113,9 @@ model User {
 // ─── Story (authored content) ─────────────────────────────────────────────────
 
 model Story {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   slug String @unique
@@ -121,8 +128,8 @@ model Story {
 
   estimatedDurationMinutes Int
   status                   StoryStatus @default(draft)
-  isFeatured               Boolean       @default(false)
-  isFree                   Boolean       @default(false)
+  isFeatured               Boolean     @default(false)
+  isFree                   Boolean     @default(false)
 
   coverImageUrl String?
   thumbnailUrl  String?
@@ -144,13 +151,13 @@ model Story {
 }
 
 model IntentDefinition {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   storyId String @map("historyId")
-  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   description String
   examples    String[] @default([])
@@ -164,13 +171,13 @@ model IntentDefinition {
 }
 
 model CharacterDefinition {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   storyId String @map("historyId")
-  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   name             String
   role             String
@@ -213,9 +220,9 @@ model CharacterClueRevealRule {
 }
 
 model CharacterSecret {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   characterId String
@@ -232,9 +239,9 @@ model CharacterSecret {
 }
 
 model SecretRevealStage {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   secretId String
@@ -255,13 +262,13 @@ model SecretRevealStage {
 }
 
 model LocationDefinition {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   storyId String @map("historyId")
-  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   name             String
   shortDescription String
@@ -278,13 +285,13 @@ model LocationDefinition {
 }
 
 model ObjectDefinition {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   storyId String @map("historyId")
-  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   locationId String
   location   LocationDefinition @relation(fields: [locationId], references: [id], onDelete: Cascade)
@@ -321,13 +328,13 @@ model ObjectClueRevealRule {
 }
 
 model ClueDefinition {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   storyId String @map("historyId")
-  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   title       String
   description String
@@ -350,21 +357,21 @@ model ClueDefinition {
 }
 
 model ConclusionDefinition {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   storyId String @unique @map("historyId")
-  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   fields ConclusionField[]
 }
 
 model ConclusionField {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   conclusionId String
@@ -379,9 +386,9 @@ model ConclusionField {
 }
 
 model ConclusionOption {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   fieldId String
@@ -393,13 +400,13 @@ model ConclusionOption {
 }
 
 model EndingDefinition {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   storyId String @map("historyId")
-  story   Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
 
   title String
 
@@ -419,13 +426,13 @@ model EndingDefinition {
 // ─── Story session (runtime state — full definition snapshot) ────────────────
 
 model StorySession {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   userId String
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   storyId String @map("historyId")
 
@@ -441,7 +448,7 @@ model StorySession {
   estimatedDurationMinutes Int
 
   status      StorySessionStatus @default(active)
-  startedAt   DateTime             @default(now())
+  startedAt   DateTime           @default(now())
   completedAt DateTime?
 
   clues            SessionClue[]
@@ -460,14 +467,13 @@ model StorySession {
 
   @@index([userId])
   @@index([storyId], map: "HistorySession_historyId_idx")
-
   @@map("HistorySession")
 }
 
 model SessionClue {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   sessionId String
@@ -477,7 +483,7 @@ model SessionClue {
 
   title       String
   description String
-  importance ClueImportance
+  importance  ClueImportance
 
   discovered   Boolean   @default(false)
   discoveredAt DateTime?
@@ -491,17 +497,17 @@ model SessionClue {
   ambientForLocations         LocationSessionState[]           @relation("SessionLocationAmbientClues")
   revealedAmbientForLocations LocationSessionState[]           @relation("LocationRevealedAmbientClues")
   requiredByEndings           SessionEndingSnapshot[]          @relation("SessionEndingRequiredClues")
-  revealedByCharacterStates   CharacterSessionState[]         @relation("CharStateRevealedClues")
-  revealedByObjectStates      ObjectSessionState[]            @relation("ObjStateRevealedClues")
-  revealedBySecretStates      CharacterSecretSessionState[]   @relation("SecretStateRevealedClues")
+  revealedByCharacterStates   CharacterSessionState[]          @relation("CharStateRevealedClues")
+  revealedByObjectStates      ObjectSessionState[]             @relation("ObjStateRevealedClues")
+  revealedBySecretStates      CharacterSecretSessionState[]    @relation("SecretStateRevealedClues")
 
   @@index([sessionId])
 }
 
 model SessionIntent {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   sessionId String
@@ -521,9 +527,9 @@ model SessionIntent {
 }
 
 model CharacterSessionState {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   sessionId String
@@ -548,7 +554,7 @@ model CharacterSessionState {
 
   clueRevealRules SessionCharacterClueRevealRule[]
   secrets         CharacterSecretSessionState[]
-  revealedClues   SessionClue[]               @relation("CharStateRevealedClues")
+  revealedClues   SessionClue[]                    @relation("CharStateRevealedClues")
   messages        CharacterConversationMessage[]
 
   @@index([sessionId])
@@ -574,9 +580,9 @@ model SessionCharacterClueRevealRule {
 }
 
 model CharacterSecretSessionState {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   characterStateId String
@@ -598,9 +604,9 @@ model CharacterSecretSessionState {
 }
 
 model SessionSecretRevealStage {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   secretStateId String
@@ -623,9 +629,9 @@ model SessionSecretRevealStage {
 }
 
 model LocationSessionState {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   sessionId String
@@ -633,9 +639,9 @@ model LocationSessionState {
 
   locationDefinitionId String
 
-  name             String
-  shortDescription String
-  imageUrl         String?
+  name               String
+  shortDescription   String
+  imageUrl           String?
   initialDescription String
 
   ambientClues         SessionClue[] @relation("SessionLocationAmbientClues")
@@ -650,9 +656,9 @@ model LocationSessionState {
 }
 
 model ObjectSessionState {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   sessionId String
@@ -663,9 +669,9 @@ model ObjectSessionState {
 
   objectDefinitionId String
 
-  name             String
-  shortDescription String
-  imageUrl         String?
+  name               String
+  shortDescription   String
+  imageUrl           String?
   initialDescription String
 
   clueRevealRules SessionObjectClueRevealRule[]
@@ -726,9 +732,9 @@ model CharacterConversationMessage {
 }
 
 model SessionConclusionField {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   sessionId String
@@ -746,9 +752,9 @@ model SessionConclusionField {
 }
 
 model SessionConclusionOption {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   fieldId String
@@ -764,12 +770,12 @@ model SessionConclusionOption {
 }
 
 model SessionConclusion {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  sessionId String @unique
+  sessionId String       @unique
   session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   submittedAt DateTime
@@ -799,9 +805,9 @@ model SessionConclusionAnswer {
 }
 
 model SessionEndingSnapshot {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   sessionId String
@@ -824,15 +830,15 @@ model SessionEndingSnapshot {
 }
 
 model SessionEnding {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  sessionId String @unique
+  sessionId String       @unique
   session   StorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
-  endingSnapshotId String @unique
+  endingSnapshotId String                @unique
   endingSnapshot   SessionEndingSnapshot @relation(fields: [endingSnapshotId], references: [id], onDelete: Cascade)
 
   score SessionScore?
@@ -845,7 +851,7 @@ model SessionScore {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
-  sessionEndingId String @unique
+  sessionEndingId String        @unique
   sessionEnding   SessionEnding @relation(fields: [sessionEndingId], references: [id], onDelete: Cascade)
 
   discoveredClues         Int
@@ -881,62 +887,67 @@ model LlmCall {
   @@index([createdAt])
 }
 
-// ─── Subscriptions (Stripe) ───────────────────────────────────────────────────
+// ─── Subscriptions (Stripe + RevenueCat) ──────────────────────────────────────
 
 model Plan {
-  id              String         @id @default(uuid())
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-  deletedAt       DateTime?
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 
-  stripePriceId   String         @unique
-  name            String
-  creditsPerCycle Int
-  interval        String
-  active          Boolean        @default(true)
+  stripePriceId       String  @unique
+  revenueCatProductId String? @unique
+  name                String
+  creditsPerCycle     Int
+  interval            String
+  active              Boolean @default(true)
 
-  subscriptions   Subscription[]
+  subscriptions Subscription[]
 
   @@index([active])
 }
 
 model Subscription {
-  id                   String             @id @default(uuid())
-  createdAt            DateTime           @default(now())
-  updatedAt            DateTime           @updatedAt
-  deletedAt            DateTime?
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 
-  userId               String             @unique
-  user                 User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  planId               String?
-  plan                 Plan?              @relation(fields: [planId], references: [id])
+  planId String?
+  plan   Plan?   @relation(fields: [planId], references: [id])
 
-  stripeCustomerId         String         @unique
-  stripeSubscriptionId     String?        @unique
-  stripePriceId            String?
+  provider                        BillingProvider @default(stripe)
+  stripeCustomerId                String?         @unique
+  stripeSubscriptionId            String?         @unique
+  stripePriceId                   String?
+  revenueCatOriginalTransactionId String?         @unique
 
-  status               SubscriptionStatus
-  currentPeriodStart   DateTime?
-  currentPeriodEnd     DateTime?
-  cancelAtPeriodEnd    Boolean            @default(false)
+  status             SubscriptionStatus
+  currentPeriodStart DateTime?
+  currentPeriodEnd   DateTime?
+  cancelAtPeriodEnd  Boolean            @default(false)
 
-  creditGrants         CreditGrant[]
+  creditGrants CreditGrant[]
 
   @@index([status])
 }
 
-// Idempotency ledger — one row per Stripe invoice we've granted credits for.
+// Idempotency ledger — one row per Stripe invoice or RevenueCat event we've
+// granted credits for.
 model CreditGrant {
-  id               String   @id @default(uuid())
-  createdAt        DateTime @default(now())
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
 
-  subscriptionId   String
-  subscription     Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  subscriptionId String
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
 
-  stripeInvoiceId  String   @unique
-  credits          Int
-  userId           String
+  stripeInvoiceId   String? @unique
+  revenueCatEventId String? @unique
+  credits           Int
+  userId            String
 
   @@index([subscriptionId])
   @@index([userId])
@@ -945,24 +956,24 @@ model CreditGrant {
 // ─── Registration funnel leads ───────────────────────────────────────────────
 
 model Lead {
-  id                       String   @id @default(uuid())
-  createdAt                DateTime @default(now())
-  updatedAt                DateTime @updatedAt
-  deletedAt                DateTime?
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 
   localUuid                String
   queryParams              String?
   deviceInfo               Json?
   name                     String?
   email                    String?
-  isFirstInputFocus        Boolean  @default(false)
-  isPasswordTouched        Boolean  @default(false)
-  isConfirmPasswordTouched Boolean  @default(false)
-  isPrivacyAccepted        Boolean  @default(false)
-  isTermsAccepted          Boolean  @default(false)
+  isFirstInputFocus        Boolean @default(false)
+  isPasswordTouched        Boolean @default(false)
+  isConfirmPasswordTouched Boolean @default(false)
+  isPrivacyAccepted        Boolean @default(false)
+  isTermsAccepted          Boolean @default(false)
 
-  userId                   String?
-  user                     User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([localUuid])
   @@index([userId])

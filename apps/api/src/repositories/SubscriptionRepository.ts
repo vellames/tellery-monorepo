@@ -54,6 +54,8 @@ export class SubscriptionRepository
       data: {
         userId: data.userId,
         stripeCustomerId: data.stripeCustomerId,
+        provider: data.provider ?? 'stripe',
+        revenueCatOriginalTransactionId: data.revenueCatOriginalTransactionId,
         status: data.status,
       },
     });
@@ -87,6 +89,37 @@ export class SubscriptionRepository
           subscriptionId: data.subscriptionId,
           userId: data.userId,
           stripeInvoiceId: data.stripeInvoiceId,
+          credits: data.credits,
+        },
+      });
+      return true;
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2002'
+      ) {
+        return false;
+      }
+      throw error;
+    }
+  }
+
+  async grantCreditsIdempotentRevenueCat(
+    data: {
+      subscriptionId: string;
+      userId: string;
+      revenueCatEventId: string;
+      credits: number;
+    },
+    tx?: PrismaTransaction
+  ): Promise<boolean> {
+    const client = tx || this.prisma;
+    try {
+      await client.creditGrant.create({
+        data: {
+          subscriptionId: data.subscriptionId,
+          userId: data.userId,
+          revenueCatEventId: data.revenueCatEventId,
           credits: data.credits,
         },
       });

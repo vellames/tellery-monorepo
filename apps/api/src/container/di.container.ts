@@ -6,6 +6,7 @@ import { HealthController } from '../controllers/health.controller';
 import { StoryController } from '../controllers/story.controller';
 import { SessionController } from '../controllers/session.controller';
 import { SubscriptionController } from '../controllers/subscription/subscription.controller';
+import { RevenueCatWebhookController } from '../controllers/subscription/revenuecat-webhook.controller';
 import { LeadController } from '../controllers/lead/lead.controller';
 import { UserController } from '../controllers/user/user.controller';
 import { CharacterAgent } from '../engine/character/character-agent.service';
@@ -53,6 +54,7 @@ import { EmailTokenService } from '../services/email/email-token.service';
 import { EmailVerificationService } from '../services/email/email-verification.service';
 import { StripeService } from '../services/subscription/stripe.service';
 import { SubscriptionService } from '../services/subscription/subscription.service';
+import { RevenueCatWebhookService } from '../services/subscription/revenuecat-webhook.service';
 import { LeadService } from '../services/lead/lead.service';
 import { createAuthMiddleware } from '../middleware/auth.middleware';
 import { createSessionOwnershipMiddleware } from '../middleware/session-ownership.middleware';
@@ -137,6 +139,15 @@ export class DIContainer {
   private readonly subscriptionController = new SubscriptionController(
     this.subscriptionService
   );
+  private readonly revenueCatWebhookService = new RevenueCatWebhookService(
+    this.subscriptionRepository,
+    this.planRepository,
+    this.userRepository
+  );
+  private readonly revenueCatWebhookController =
+    new RevenueCatWebhookController(this.revenueCatWebhookService, {
+      webhookAuthorization: appConfig.revenueCat.webhookAuthorization,
+    });
   private readonly s3Client = new S3Client({
     region: appConfig.aws.region,
     credentials: appConfig.aws.accessKeyId
@@ -244,6 +255,10 @@ export class DIContainer {
 
   getSubscriptionController(): SubscriptionController {
     return this.subscriptionController;
+  }
+
+  getRevenueCatWebhookController(): RevenueCatWebhookController {
+    return this.revenueCatWebhookController;
   }
 
   getAuthMiddleware(): RequestHandler {

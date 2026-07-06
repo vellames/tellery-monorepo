@@ -7,5 +7,9 @@ export interface IPlanRepository extends IBaseRepository {
     stripePriceId: string,
     tx?: PrismaTransaction
   ): Promise<Plan | null>;
+  findByRevenueCatProductId(
+    revenueCatProductId: string,
+    tx?: PrismaTransaction
+  ): Promise<Plan | null>;
   findActive(tx?: PrismaTransaction): Promise<Plan | null>;
 }

@@ -135,7 +135,9 @@ export class SubscriptionService {
     const cancelUrl = `${this.config.webBaseUrl}/subscription?status=cancel`;
 
     const session = await this.stripe.createCheckoutSession({
-      customerId: subscription.stripeCustomerId,
+      // stripeCustomerId is always populated for Stripe-created subscriptions
+      // (set above); it's only nullable to support RevenueCat subscriptions.
+      customerId: subscription.stripeCustomerId!,
       userId,
       priceId,
       successUrl,
@@ -167,7 +169,9 @@ export class SubscriptionService {
 
     const returnUrl = `${this.config.webBaseUrl}/subscription`;
     const session = await this.stripe.createBillingPortalSession({
-      customerId: subscription.stripeCustomerId,
+      // stripeCustomerId is always populated for Stripe-created subscriptions;
+      // it's only nullable to support RevenueCat subscriptions.
+      customerId: subscription.stripeCustomerId!,
       returnUrl,
     });
 

@@ -37,5 +37,14 @@ export interface ISubscriptionRepository extends IBaseRepository {
     },
     tx?: PrismaTransaction
   ): Promise<boolean>;
+  grantCreditsIdempotentRevenueCat(
+    data: {
+      subscriptionId: string;
+      userId: string;
+      revenueCatEventId: string;
+      credits: number;
+    },
+    tx?: PrismaTransaction
+  ): Promise<boolean>;
   softDelete(id: string, tx?: PrismaTransaction): Promise<void>;
 }

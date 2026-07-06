@@ -8,6 +8,7 @@ const mockPlan = (overrides: Partial<Plan> = {}): Plan => ({
   updatedAt: new Date('2026-01-01'),
   deletedAt: null,
   stripePriceId: 'price_1',
+  revenueCatProductId: null,
   name: 'Mensal',
   creditsPerCycle: 20,
   interval: 'month',
@@ -44,6 +45,25 @@ describe('PlanRepository', () => {
     it('should return null when no plan matches', async () => {
       prisma.plan.findFirst.mockResolvedValue(null);
       expect(await repo.findByStripePriceId('nope')).toBeNull();
+    });
+  });
+
+  describe('findByRevenueCatProductId', () => {
+    it('should find a non-deleted plan by its revenuecat product id', async () => {
+      const plan = mockPlan({ revenueCatProductId: 'monthly' });
+      prisma.plan.findFirst.mockResolvedValue(plan);
+
+      const result = await repo.findByRevenueCatProductId('monthly');
+
+      expect(result).toEqual(plan);
+      expect(prisma.plan.findFirst).toHaveBeenCalledWith({
+        where: { revenueCatProductId: 'monthly', deletedAt: null },
+      });
+    });
+
+    it('should return null when no plan matches', async () => {
+      prisma.plan.findFirst.mockResolvedValue(null);
+      expect(await repo.findByRevenueCatProductId('nope')).toBeNull();
     });
   });
 

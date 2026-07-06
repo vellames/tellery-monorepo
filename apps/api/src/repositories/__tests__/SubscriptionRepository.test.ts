@@ -11,9 +11,11 @@ const mockSubscription = (
   deletedAt: null,
   userId: 'user-1',
   planId: null,
+  provider: 'stripe',
   stripeCustomerId: 'cus_123',
   stripeSubscriptionId: 'sub_stripe_1',
   stripePriceId: 'price_1',
+  revenueCatOriginalTransactionId: null,
   status: 'active',
   currentPeriodStart: new Date('2026-01-01'),
   currentPeriodEnd: new Date('2026-02-01'),
@@ -97,7 +99,37 @@ describe('SubscriptionRepository', () => {
         data: {
           userId: 'user-1',
           stripeCustomerId: 'cus_123',
+          provider: 'stripe',
+          revenueCatOriginalTransactionId: undefined,
           status: 'incomplete',
+        },
+      });
+    });
+
+    it('should create a revenuecat-provider subscription without a stripe customer', async () => {
+      const created = mockSubscription({
+        provider: 'revenuecat',
+        stripeCustomerId: null,
+        revenueCatOriginalTransactionId: 'rc_txn_1',
+        status: 'active',
+      });
+      prisma.subscription.create.mockResolvedValue(created);
+
+      const result = await repo.create({
+        userId: 'user-1',
+        provider: 'revenuecat',
+        revenueCatOriginalTransactionId: 'rc_txn_1',
+        status: 'active',
+      });
+
+      expect(result).toEqual(created);
+      expect(prisma.subscription.create).toHaveBeenCalledWith({
+        data: {
+          userId: 'user-1',
+          stripeCustomerId: undefined,
+          provider: 'revenuecat',
+          revenueCatOriginalTransactionId: 'rc_txn_1',
+          status: 'active',
         },
       });
     });
@@ -171,6 +203,65 @@ describe('SubscriptionRepository', () => {
           subscriptionId: 'sub-1',
           userId: 'user-1',
           stripeInvoiceId: 'in_1',
+          credits: 20,
+        })
+      ).rejects.toThrow();
+    });
+  });
+
+  describe('grantCreditsIdempotentRevenueCat', () => {
+    it('should return true when the grant row is newly created', async () => {
+      prisma.creditGrant.create.mockResolvedValue({} as never);
+
+      const result = await repo.grantCreditsIdempotentRevenueCat({
+        subscriptionId: 'sub-1',
+        userId: 'user-1',
+        revenueCatEventId: 'evt_1',
+        credits: 20,
+      });
+
+      expect(result).toBe(true);
+      expect(prisma.creditGrant.create).toHaveBeenCalledWith({
+        data: {
+          subscriptionId: 'sub-1',
+          userId: 'user-1',
+          revenueCatEventId: 'evt_1',
+          credits: 20,
+        },
+      });
+    });
+
+    it('should return false on unique constraint violation (already granted)', async () => {
+      prisma.creditGrant.create.mockRejectedValue(
+        new Prisma.PrismaClientKnownRequestError('dup', {
+          code: 'P2002',
+          clientVersion: 'test',
+        })
+      );
+
+      const result = await repo.grantCreditsIdempotentRevenueCat({
+        subscriptionId: 'sub-1',
+        userId: 'user-1',
+        revenueCatEventId: 'evt_1',
+        credits: 20,
+      });
+
+      expect(result).toBe(false);
+    });
+
+    it('should rethrow non-P2002 prisma errors', async () => {
+      prisma.creditGrant.create.mockRejectedValue(
+        new Prisma.PrismaClientKnownRequestError('other', {
+          code: 'P2025',
+          clientVersion: 'test',
+        })
+      );
+
+      await expect(
+        repo.grantCreditsIdempotentRevenueCat({
+          subscriptionId: 'sub-1',
+          userId: 'user-1',
+          revenueCatEventId: 'evt_1',
           credits: 20,
         })
       ).rejects.toThrow();

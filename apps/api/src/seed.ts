@@ -466,23 +466,32 @@ async function seedPlan(): Promise<void> {
     return;
   }
 
+  const revenueCatProductId = process.env.REVENUECAT_MONTHLY_PRODUCT_ID;
+
   await prisma.plan.upsert({
     where: { stripePriceId },
     create: {
       stripePriceId,
+      revenueCatProductId,
       name: 'Mensal',
       creditsPerCycle: 20,
       interval: 'month',
       active: true,
     },
     update: {
+      revenueCatProductId,
       name: 'Mensal',
       creditsPerCycle: 20,
       interval: 'month',
       active: true,
     },
   });
-  console.log(`Plan seeded for price "${stripePriceId}".`);
+  console.log(
+    `Plan seeded for price "${stripePriceId}"` +
+      (revenueCatProductId
+        ? ` (RevenueCat product "${revenueCatProductId}").`
+        : '.')
+  );
 }
 
 async function main(): Promise<void> {

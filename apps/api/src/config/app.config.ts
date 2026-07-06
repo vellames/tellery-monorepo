@@ -35,6 +35,9 @@ const envSchema = z.object({
   STRIPE_PUBLISHABLE_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
   STRIPE_MONTHLY_PRICE_ID: z.string().optional(),
+  REVENUECAT_WEBHOOK_AUTHORIZATION: z.string().optional(),
+  REVENUECAT_ENTITLEMENT_ID: z.string().default('premium'),
+  REVENUECAT_MONTHLY_PRODUCT_ID: z.string().optional(),
   WEB_BASE_URL: z.string().url().default('http://localhost:3000'),
   RESEND_API_KEY: z.string().optional(),
   EMAIL_FROM: z.string().optional(),
@@ -125,6 +128,12 @@ export const appConfig = {
     webhookSecret: env.STRIPE_WEBHOOK_SECRET,
     monthlyPriceId: env.STRIPE_MONTHLY_PRICE_ID,
     apiVersion: '2026-06-24.dahlia',
+  },
+
+  revenueCat: {
+    webhookAuthorization: env.REVENUECAT_WEBHOOK_AUTHORIZATION,
+    entitlementId: env.REVENUECAT_ENTITLEMENT_ID,
+    monthlyProductId: env.REVENUECAT_MONTHLY_PRODUCT_ID,
   },
 
   web: {

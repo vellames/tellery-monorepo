@@ -18,6 +18,16 @@ export class PlanRepository extends BaseRepository implements IPlanRepository {
     });
   }
 
+  async findByRevenueCatProductId(
+    revenueCatProductId: string,
+    tx?: PrismaTransaction
+  ): Promise<Plan | null> {
+    const client = tx || this.prisma;
+    return client.plan.findFirst({
+      where: { revenueCatProductId, deletedAt: null },
+    });
+  }
+
   async findActive(tx?: PrismaTransaction): Promise<Plan | null> {
     const client = tx || this.prisma;
     return client.plan.findFirst({

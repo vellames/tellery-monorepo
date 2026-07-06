@@ -34,7 +34,12 @@ export interface SubscriptionResponseDto {
 
 export interface CreateSubscriptionData {
   userId: string;
-  stripeCustomerId: string;
+  // Optional: RevenueCat-originated subscriptions have no Stripe customer.
+  // Defaults to the 'stripe' provider when omitted, preserving existing
+  // Stripe call sites' behavior exactly.
+  stripeCustomerId?: string;
+  provider?: import('@prisma/client').BillingProvider;
+  revenueCatOriginalTransactionId?: string;
   status: import('@prisma/client').SubscriptionStatus;
 }
 
@@ -42,8 +47,10 @@ export interface UpdateSubscriptionData {
   stripeSubscriptionId?: string | null;
   stripePriceId?: string | null;
   planId?: string | null;
+  provider?: import('@prisma/client').BillingProvider;
   status?: import('@prisma/client').SubscriptionStatus;
   currentPeriodStart?: Date | null;
   currentPeriodEnd?: Date | null;
   cancelAtPeriodEnd?: boolean;
+  revenueCatOriginalTransactionId?: string | null;
 }
