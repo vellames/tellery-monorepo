@@ -93,7 +93,8 @@ export class DIContainer {
     appConfig.security.jwtExpiresIn
   );
   private readonly authMiddleware: RequestHandler = createAuthMiddleware(
-    this.tokenService
+    this.tokenService,
+    this.userRepository
   );
   private readonly sessionOwnershipMiddleware: RequestHandler =
     createSessionOwnershipMiddleware(this.sessionRepository);

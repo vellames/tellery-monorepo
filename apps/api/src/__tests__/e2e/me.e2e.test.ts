@@ -63,7 +63,7 @@ jest.mock('../../container/di.container', () => ({
           res.status(StatusCodes.CREATED).json({}),
         interact: async (_req: Request, res: Response) => res.json({}),
       }),
-      getAuthMiddleware: () => createAuthMiddleware(realTokenService),
+      getAuthMiddleware: () => createAuthMiddleware(realTokenService, mockRepo),
     }),
   },
 }));
@@ -127,12 +127,12 @@ describe('E2E: GET /me', () => {
     expect(mockRepo.findById).not.toHaveBeenCalled();
   });
 
-  it('should return 404 when the authenticated user no longer exists', async () => {
+  it('should return 401 when the authenticated user no longer exists (e.g. deleted)', async () => {
     mockRepo.findById.mockResolvedValue(null);
 
     const response = await request(app).get('/me').set(authHeader);
 
-    expect(response.status).toBe(StatusCodes.NOT_FOUND);
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
     expect(response.body.success).toBe(false);
   });
 });
@@ -198,6 +198,8 @@ describe('E2E: PATCH /me', () => {
   });
 
   it('should return 422 when email is invalid', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+
     const response = await request(app)
       .patch('/me')
       .set(authHeader)
@@ -209,6 +211,8 @@ describe('E2E: PATCH /me', () => {
   });
 
   it('should return 422 when a password field is sent', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+
     const response = await request(app)
       .patch('/me')
       .set(authHeader)
@@ -266,7 +270,7 @@ describe('E2E: PATCH /me', () => {
     expect(response.body.error).toBe('Email already in use');
   });
 
-  it('should return 404 when the authenticated user no longer exists', async () => {
+  it('should return 401 when the authenticated user no longer exists (e.g. deleted)', async () => {
     mockRepo.findById.mockResolvedValue(null);
 
     const response = await request(app)
@@ -274,11 +278,13 @@ describe('E2E: PATCH /me', () => {
       .set(authHeader)
       .send({ name: 'Ana' });
 
-    expect(response.status).toBe(StatusCodes.NOT_FOUND);
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
     expect(response.body.success).toBe(false);
   });
 
   it('should return 422 with Portuguese message when email is invalid', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+
     const response = await request(app)
       .patch('/me')
       .set(authHeader)
@@ -350,6 +356,8 @@ describe('E2E: PATCH /me/password', () => {
   });
 
   it('should return 422 when required fields are missing', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+
     const response = await request(app)
       .patch('/me/password')
       .set(authHeader)
@@ -361,6 +369,8 @@ describe('E2E: PATCH /me/password', () => {
   });
 
   it('should return 422 when newPassword is shorter than 6 chars', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+
     const response = await request(app)
       .patch('/me/password')
       .set(authHeader)
@@ -372,6 +382,8 @@ describe('E2E: PATCH /me/password', () => {
   });
 
   it('should return 422 when newPassword equals currentPassword', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+
     const response = await request(app)
       .patch('/me/password')
       .set(authHeader)
@@ -391,7 +403,7 @@ describe('E2E: PATCH /me/password', () => {
     expect(mockPasswordHasher.compare).not.toHaveBeenCalled();
   });
 
-  it('should return 404 when the authenticated user no longer exists', async () => {
+  it('should return 401 when the authenticated user no longer exists (e.g. deleted)', async () => {
     mockRepo.findById.mockResolvedValue(null);
 
     const response = await request(app)
@@ -399,7 +411,59 @@ describe('E2E: PATCH /me/password', () => {
       .set(authHeader)
       .send({ currentPassword: 'password123', newPassword: 'new-password' });
 
-    expect(response.status).toBe(StatusCodes.NOT_FOUND);
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
     expect(response.body.success).toBe(false);
+  });
+});
+
+describe('E2E: DELETE /me', () => {
+  afterEach(() => {
+    mockReset(mockRepo);
+  });
+
+  it('should return 200 and soft-delete the account when authenticated', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+    mockRepo.softDelete.mockResolvedValue(undefined);
+
+    const response = await request(app).delete('/me').set(authHeader);
+
+    expect(response.status).toBe(StatusCodes.OK);
+    expect(response.body.success).toBe(true);
+    expect(response.body.data).toBeNull();
+    expect(mockRepo.softDelete).toHaveBeenCalledWith(AUTHENTICATED_USER_ID);
+  });
+
+  it('should return 401 when no token is provided', async () => {
+    const response = await request(app).delete('/me');
+
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
+    expect(response.body.success).toBe(false);
+    expect(mockRepo.softDelete).not.toHaveBeenCalled();
+  });
+
+  it('should return 401 when the authenticated user no longer exists (e.g. deleted)', async () => {
+    mockRepo.findById.mockResolvedValue(null);
+
+    const response = await request(app).delete('/me').set(authHeader);
+
+    expect(response.status).toBe(StatusCodes.UNAUTHORIZED);
+    expect(response.body.success).toBe(false);
+    expect(mockRepo.softDelete).not.toHaveBeenCalled();
+  });
+
+  it('should reject the same token with 401 once the account has been deleted', async () => {
+    mockRepo.findById.mockResolvedValue(mockUser());
+    mockRepo.softDelete.mockResolvedValue(undefined);
+
+    const deleteResponse = await request(app).delete('/me').set(authHeader);
+    expect(deleteResponse.status).toBe(StatusCodes.OK);
+
+    // Simulate the account now being soft-deleted (findById filters deletedAt).
+    mockRepo.findById.mockResolvedValue(null);
+
+    const followUpResponse = await request(app).get('/me').set(authHeader);
+
+    expect(followUpResponse.status).toBe(StatusCodes.UNAUTHORIZED);
+    expect(followUpResponse.body.success).toBe(false);
   });
 });

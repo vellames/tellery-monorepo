@@ -7,6 +7,11 @@ import {
   UpdateUserDto,
 } from '../types/domain/user/user.dto';
 import { PrismaTransaction } from '../types/database.types';
+import {
+  DELETED_USER_PASSWORD_REDACTED,
+  REDACTED_USER_NAME,
+  buildRedactedEmail,
+} from '../types/domain/user/user.constants';
 import { BaseRepository } from './base.repository';
 
 export class UserRepository extends BaseRepository implements IUserRepository {
@@ -120,7 +125,12 @@ export class UserRepository extends BaseRepository implements IUserRepository {
     const client = tx || this.prisma;
     await client.user.update({
       where: { id },
-      data: { deletedAt: new Date() },
+      data: {
+        deletedAt: new Date(),
+        email: buildRedactedEmail(id),
+        name: REDACTED_USER_NAME,
+        password: DELETED_USER_PASSWORD_REDACTED,
+      },
     });
   }
 

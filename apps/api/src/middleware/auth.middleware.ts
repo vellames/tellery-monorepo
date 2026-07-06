@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { ITokenService } from '../interfaces';
+import { ITokenService, IUserRepository } from '../interfaces';
 import { TranslationFunction } from '../types/i18n.types';
 
 export interface AuthenticatedUser {
@@ -16,30 +16,49 @@ declare module 'express-serve-static-core' {
 
 const BEARER_PREFIX = 'Bearer ';
 
-export const createAuthMiddleware = (tokenService: ITokenService) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+export const createAuthMiddleware = (
+  tokenService: ITokenService,
+  users: IUserRepository
+) => {
+  return async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
     const t = req.t as TranslationFunction;
     const header = req.headers.authorization;
 
-    if (!header || !header.startsWith(BEARER_PREFIX)) {
+    const unauthorized = (): void => {
       res.status(StatusCodes.UNAUTHORIZED).json({
         success: false,
         error: t('common:errors.authenticationRequired'),
       });
+    };
+
+    if (!header || !header.startsWith(BEARER_PREFIX)) {
+      unauthorized();
       return;
     }
 
     const token = header.slice(BEARER_PREFIX.length).trim();
 
+    let payload;
     try {
-      const payload = tokenService.verify(token);
-      req.user = { id: payload.sub, email: payload.email };
-      next();
+      payload = tokenService.verify(token);
     } catch {
-      res.status(StatusCodes.UNAUTHORIZED).json({
-        success: false,
-        error: t('common:errors.authenticationRequired'),
-      });
+      unauthorized();
+      return;
     }
+
+    // Reject tokens issued for accounts that have since been soft-deleted
+    // (deleted users cannot perform any authenticated action).
+    const user = await users.findById(payload.sub);
+    if (!user) {
+      unauthorized();
+      return;
+    }
+
+    req.user = { id: payload.sub, email: payload.email };
+    next();
   };
 };

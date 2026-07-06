@@ -1,6 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import { UserRepository } from '../UserRepository';
+import {
+  DELETED_USER_PASSWORD_REDACTED,
+  REDACTED_USER_NAME,
+} from '../../types/domain/user/user.constants';
 
 type PrismaUser = {
   id: string;
@@ -212,8 +216,27 @@ describe('UserRepository', () => {
 
       expect(prisma.user.update).toHaveBeenCalledWith({
         where: { id: 'user-1' },
-        data: { deletedAt: expect.any(Date) },
+        data: {
+          deletedAt: expect.any(Date),
+          email: 'redacted_user-1',
+          name: REDACTED_USER_NAME,
+          password: DELETED_USER_PASSWORD_REDACTED,
+        },
       });
+    });
+
+    it('should redact the email using the user id so it stays unique', async () => {
+      prisma.user.update.mockResolvedValue(mockUser());
+
+      await repo.softDelete('another-user-id');
+
+      expect(prisma.user.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            email: 'redacted_another-user-id',
+          }),
+        })
+      );
     });
   });
 

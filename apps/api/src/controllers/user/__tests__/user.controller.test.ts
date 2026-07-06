@@ -887,4 +887,52 @@ describe('UserController', () => {
       expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
     });
   });
+
+  describe('deleteAccount', () => {
+    it('should return 200 when the account is deleted', async () => {
+      userService.delete.mockResolvedValue(undefined);
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.deleteAccount(req as Request, res as Response);
+
+      expect(userService.delete).toHaveBeenCalledWith('user-1');
+      expect(status).toHaveBeenCalledWith(StatusCodes.OK);
+      expect(json).toHaveBeenCalledWith(
+        expect.objectContaining({ success: true, data: null })
+      );
+    });
+
+    it('should return 404 when user is not found', async () => {
+      userService.delete.mockRejectedValue(
+        new HttpError(
+          StatusCodes.NOT_FOUND,
+          'User not found',
+          'user:errors.userNotFound'
+        )
+      );
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.deleteAccount(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.NOT_FOUND);
+    });
+
+    it('should return 500 on unexpected errors', async () => {
+      userService.delete.mockRejectedValue(new Error('Something went wrong'));
+      req = {
+        user: { id: 'user-1', email: 'ana@teste.local' },
+        t,
+      } as Partial<Request>;
+
+      await controller.deleteAccount(req as Request, res as Response);
+
+      expect(status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    });
+  });
 });

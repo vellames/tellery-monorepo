@@ -292,6 +292,27 @@ export class UserController {
     }
   };
 
+  deleteAccount = async (req: Request, res: Response): Promise<void> => {
+    const t = req.t as TranslationFunction;
+
+    try {
+      await this.userService.delete(req.user!.id);
+      sendSuccess(res, null);
+    } catch (error) {
+      if (error instanceof HttpError) {
+        const message = error.messageKey ? t(error.messageKey) : error.message;
+        handleError(res, error, error.statusCode, message);
+        return;
+      }
+      handleError(
+        res,
+        error,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        t('common:errors.internalError')
+      );
+    }
+  };
+
   resendVerification = async (req: Request, res: Response): Promise<void> => {
     const t = req.t as TranslationFunction;
 

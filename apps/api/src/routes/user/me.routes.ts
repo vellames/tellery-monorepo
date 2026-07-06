@@ -317,4 +317,58 @@ router.patch('/password', authenticate, async (req, res) => {
   await DIContainer.getInstance().getUserController().changePassword(req, res);
 });
 
+/**
+ * @openapi
+ * /me:
+ *   delete:
+ *     tags: [Users]
+ *     summary: Delete the logged-in user's account
+ *     description: Soft-deletes the authenticated user's account (sets deletedAt) and redacts their name, email, and password. Once deleted, the account can no longer log in or perform any authenticated action, even with a previously issued token.
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - $ref: '#/components/parameters/AcceptLanguage'
+ *     responses:
+ *       200:
+ *         description: Account deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   nullable: true
+ *                   example: null
+ *       401:
+ *         description: Missing or invalid authentication token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *       404:
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ */
+router.delete('/', authenticate, async (req, res) => {
+  await DIContainer.getInstance().getUserController().deleteAccount(req, res);
+});
+
 export default router;
